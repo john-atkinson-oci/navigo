@@ -1,0 +1,22 @@
+<div class="fluid-row modal-header task_header clearfix">
+    <h3>Task Details</h3>
+    <p>{{task.type}}</p>
+    <div class="pull-right righty small semi">Task ID {{task.id}}</div>
+</div>
+<div class="modal-body">
+    <div class="row">
+        <div id="input_items" class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+            <vs-param ng-repeat="p in inputItems" param="p"></vs-param>
+        </div>
+        <div id="params" class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+            <vs-param ng-repeat="p in params" param="p"></vs-param>
+        </div>
+    </div>
+    <br class="clearfix">
+</div>
+<div class="modal-footer">
+    <div class="cta_row">
+        <button class="btn btn-primary" ng-click="cancel()">Close</button>
+    </div>
+</div>
+<a href="javascript:;" class="modal-close icon-x" ng-click="cancel()"></a>

@@ -1,0 +1,1089 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for ./app/src/search/search-map-controller.js</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../../../prettify.css">
+    <link rel="stylesheet" href="../../../base.css">
+    <style type='text/css'>
+        div.coverage-summary .sorter {
+            background-image: url(../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class="header low">
+    <h1>Code coverage report for <span class="entity">./app/src/search/search-map-controller.js</span></h1>
+    <h2>
+        Statements: <span class="metric">3.57% <small>(7 / 196)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Branches: <span class="metric">0% <small>(0 / 79)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Functions: <span class="metric">0% <small>(0 / 34)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">3.57% <small>(7 / 196)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../../../index.html">All files</a> &#187; <a href="index.html">./app/src/search/</a> &#187; search-map-controller.js</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318
+319
+320
+321
+322
+323
+324
+325
+326
+327
+328
+329
+330
+331
+332
+333
+334
+335
+336
+337
+338
+339
+340
+341
+342
+343
+344
+345
+346
+347
+348
+349</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/*global angular, _, L, $ */
+// this controller wraps the search map directive - TODO: refactor - its confusing since the direcive has its own controller method
+angular.module('voyager.search')
+    .controller('SearchMapCtrl', <span class="fstat-no" title="function not covered" >function ($scope, filterService, $location, searchService, $stateParams, mapUtil, usSpinnerService, $compile, $timeout, dialogs, config, leafletData, $analytics, mapServiceFactory, inView, heatmapService) {</span>
+&nbsp;
+        'use strict';
+<span class="cstat-no" title="statement not covered" >        var _points;</span>
+<span class="cstat-no" title="statement not covered" >        var _searchBoundary;</span>
+<span class="cstat-no" title="statement not covered" >        var _searchBoundaryLayer;</span>
+<span class="cstat-no" title="statement not covered" >        var _resultsBoundary;</span>
+<span class="cstat-no" title="statement not covered" >        var loaded = false;</span>
+<span class="cstat-no" title="statement not covered" >        var layersControl = null;</span>
+<span class="cstat-no" title="statement not covered" >        var layers = {};</span>
+<span class="cstat-no" title="statement not covered" >        var addedLayer = false;</span>
+<span class="cstat-no" title="statement not covered" >        var _geoGroup;</span>
+<span class="cstat-no" title="statement not covered" >        var _cancelledDraw = false;</span>
+<span class="cstat-no" title="statement not covered" >        var _geoHighlightLayer;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        $scope.hasMapError = config.hasMapError;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        leafletData.getMap('search-map').then(<span class="fstat-no" title="function not covered" >function(map) {</span></span>
+<span class="cstat-no" title="statement not covered" >            $scope.map = map;</span>
+        });
+&nbsp;
+<span class="fstat-no" title="function not covered" >        function _compileLayersControl() {</span>
+<span class="cstat-no" title="statement not covered" >            var elem = $('.leaflet-control-layers-overlays');</span>
+<span class="cstat-no" title="statement not covered" >            $compile(elem.contents())($scope);</span>
+<span class="cstat-no" title="statement not covered" >            $('.leaflet-control-layers .leaflet-control-layers-toggle').addClass('icon-map_layers');</span>
+        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        $scope.removeLayer = <span class="fstat-no" title="function not covered" >function (layerName) {</span></span>
+<span class="cstat-no" title="statement not covered" >            if (layersControl !== null &amp;&amp; angular.isDefined(layers[layerName])) {</span>
+<span class="cstat-no" title="statement not covered" >                var layer = layers[layerName];</span>
+<span class="cstat-no" title="statement not covered" >                delete layers[layerName];</span>
+<span class="cstat-no" title="statement not covered" >                layersControl.removeLayer(layer);</span>
+<span class="cstat-no" title="statement not covered" >                $scope.map.removeLayer(layer);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                if(layerName === 'Place') {</span>
+<span class="cstat-no" title="statement not covered" >                    $location.search('place', null);</span>
+<span class="cstat-no" title="statement not covered" >                    $location.search('place.op', null);</span>
+<span class="cstat-no" title="statement not covered" >                    $location.search('place.id', null);</span>
+<span class="cstat-no" title="statement not covered" >                    $scope.$emit('removeFilterEvent', {isBbox:true}); </span> //fire filter event
+                }
+<span class="cstat-no" title="statement not covered" >                if (_.isEmpty(layers)) {</span>
+<span class="cstat-no" title="statement not covered" >                    $scope.map.removeControl(layersControl);</span>
+<span class="cstat-no" title="statement not covered" >                    layersControl = null;</span>
+<span class="cstat-no" title="statement not covered" >                    delete $scope.map.currentBounds;</span>
+                } else {
+                    //recompile after dom change
+<span class="cstat-no" title="statement not covered" >                    _compileLayersControl();</span>
+                }
+            }
+        };
+&nbsp;
+<span class="fstat-no" title="function not covered" >        function _addToLayerControl(layer, map, mapInfo, permanent) {</span>
+<span class="cstat-no" title="statement not covered" >            addedLayer = true;</span>
+<span class="cstat-no" title="statement not covered" >            layers[mapInfo.mapKey] = layer;</span>
+<span class="cstat-no" title="statement not covered" >            if (layersControl === null) {</span>
+<span class="cstat-no" title="statement not covered" >                layersControl = L.control.layers(null, null).addTo(map);</span>
+            }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            var template = ' &lt;a class="btn btn-xs" style="cursor: pointer;" ng-click="removeLayer(\'' + mapInfo.mapKey + '\')"&gt;X&lt;/a&gt;';</span>
+<span class="cstat-no" title="statement not covered" >            if(permanent) {</span>
+<span class="cstat-no" title="statement not covered" >                template = '';</span>
+            }
+<span class="cstat-no" title="statement not covered" >            layersControl.addOverlay(layer, mapInfo.mapKey + template);</span>
+<span class="cstat-no" title="statement not covered" >            $timeout(<span class="fstat-no" title="function not covered" >function() {</span>  //wait for scope to digest so control is added to leaflet</span>
+<span class="cstat-no" title="statement not covered" >                _compileLayersControl();</span>
+            });
+        }
+&nbsp;
+<span class="fstat-no" title="function not covered" >        function _addBbox(map, bbox, type) {</span>
+<span class="cstat-no" title="statement not covered" >            _searchBoundaryLayer = mapUtil.drawBBox(map, bbox, false, type);</span>
+<span class="cstat-no" title="statement not covered" >            _points = _searchBoundaryLayer.getLatLngs();</span>
+<span class="cstat-no" title="statement not covered" >            if(angular.isUndefined($stateParams.vw)) {</span>
+<span class="cstat-no" title="statement not covered" >                $timeout(<span class="fstat-no" title="function not covered" >function () {</span>  //workaround for leaflet bug:  https://github.com/Leaflet/Leaflet/issues/2021</span>
+<span class="cstat-no" title="statement not covered" >                    mapUtil.fitToBBox(map,bbox, true);</span>
+                }, 200);
+            }
+        }
+&nbsp;
+<span class="fstat-no" title="function not covered" >        function _removeSearchBoundary() {</span>
+<span class="cstat-no" title="statement not covered" >            if(layersControl) {</span>
+<span class="cstat-no" title="statement not covered" >                delete layers.Place;</span>
+<span class="cstat-no" title="statement not covered" >                layersControl.removeLayer(_searchBoundaryLayer);</span>
+            }
+<span class="cstat-no" title="statement not covered" >            $scope.map.removeLayer(_searchBoundaryLayer);</span>
+<span class="cstat-no" title="statement not covered" >            _searchBoundaryLayer = null;</span>
+<span class="cstat-no" title="statement not covered" >            if (_.isEmpty(layers) &amp;&amp; layersControl) {</span>
+<span class="cstat-no" title="statement not covered" >                $scope.map.removeControl(layersControl);</span>
+<span class="cstat-no" title="statement not covered" >                layersControl = null;</span>
+<span class="cstat-no" title="statement not covered" >                delete $scope.map.currentBounds;</span>
+            } else <span class="cstat-no" title="statement not covered" >if(layersControl) {</span>
+                //recompile after dom change
+<span class="cstat-no" title="statement not covered" >                _compileLayersControl();</span>
+            }
+<span class="cstat-no" title="statement not covered" >            $scope.map.currentBounds = null;</span>
+        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        $scope.$on('clearBbox', <span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >            if(_searchBoundaryLayer) {</span>
+<span class="cstat-no" title="statement not covered" >                _removeSearchBoundary();</span>
+            }
+        });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        $scope.$on('addToMap', <span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >            if (angular.isDefined(layers[$scope.mapInfo.name])) {</span>
+<span class="cstat-no" title="statement not covered" >                return;</span>
+            }
+<span class="cstat-no" title="statement not covered" >            usSpinnerService.spin('map-spinner');</span>
+<span class="cstat-no" title="statement not covered" >            $scope.addToMap();</span>
+        });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        $scope.$on('addBbox', <span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >            if (_searchBoundaryLayer) {  //remove existing</span>
+<span class="cstat-no" title="statement not covered" >                _removeSearchBoundary();</span>
+            }
+<span class="cstat-no" title="statement not covered" >            _searchBoundary = filterService.getBounds();</span>
+<span class="cstat-no" title="statement not covered" >            var searchBoundaryType = filterService.getBoundsType();</span>
+            //console.log(_searchBoundary);
+<span class="cstat-no" title="statement not covered" >            if(angular.isDefined(_searchBoundary) &amp;&amp; _searchBoundary !== null) {</span>
+<span class="cstat-no" title="statement not covered" >                _addBbox($scope.map, _searchBoundary, searchBoundaryType);</span>
+            } else {
+<span class="cstat-no" title="statement not covered" >                $scope.map.setView([config.mapDefault.lat, config.mapDefault.lng], config.mapDefault.zoom);</span>
+            }
+        });
+&nbsp;
+<span class="fstat-no" title="function not covered" >        function _addGeoJson(docs) {</span>
+<span class="cstat-no" title="statement not covered" >            if(_geoGroup) {</span>
+<span class="cstat-no" title="statement not covered" >                $scope.map.removeLayer(_geoGroup);</span>
+<span class="cstat-no" title="statement not covered" >                _geoGroup = null;</span>
+            }
+<span class="cstat-no" title="statement not covered" >            var boxes = [];</span>
+<span class="cstat-no" title="statement not covered" >            _.each(docs, <span class="fstat-no" title="function not covered" >function(doc) {</span></span>
+<span class="cstat-no" title="statement not covered" >                if (angular.isDefined(doc.geo)) {</span>
+<span class="cstat-no" title="statement not covered" >                    boxes.push(mapUtil.getGeoJson(doc.geo));</span>
+                }
+            });
+<span class="cstat-no" title="statement not covered" >            if(boxes.length &gt; 0) {</span>
+<span class="cstat-no" title="statement not covered" >                _geoGroup = L.featureGroup(boxes);</span>
+<span class="cstat-no" title="statement not covered" >                _geoGroup.vgCount = boxes.length;</span>
+<span class="cstat-no" title="statement not covered" >                $scope.map.addLayer(_geoGroup);</span>
+            }
+        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        inView.setViewObserver(_addGeoJson);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        $scope.$on('searchResults', <span class="fstat-no" title="function not covered" >function (event, results) {</span></span>
+<span class="cstat-no" title="statement not covered" >            if (results.scrolled === true) {  //ignore when scrolling</span>
+<span class="cstat-no" title="statement not covered" >                return;</span>
+            }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            if(results.placefinder &amp;&amp; results.placefinder.match) {</span>
+<span class="cstat-no" title="statement not covered" >                if (_searchBoundaryLayer) {</span>
+<span class="cstat-no" title="statement not covered" >                    _removeSearchBoundary();</span>
+                }
+<span class="cstat-no" title="statement not covered" >                var place = results.placefinder.match;</span>
+<span class="cstat-no" title="statement not covered" >                _searchBoundary = place.extent.join(' ');</span>
+<span class="cstat-no" title="statement not covered" >                _searchBoundaryLayer = mapUtil.drawGeoJson($scope.map, place.geo, true, results.placefinder.search.op);</span>
+<span class="cstat-no" title="statement not covered" >                _addToLayerControl(_searchBoundaryLayer, $scope.map, {mapKey:'Place'});</span>
+            } else <span class="cstat-no" title="statement not covered" >if(_searchBoundaryLayer) {  //if no place remove the search boundary layer</span>
+<span class="cstat-no" title="statement not covered" >                _removeSearchBoundary();</span>
+<span class="cstat-no" title="statement not covered" >                if (angular.isDefined(results['extent.bbox'])) {</span>
+<span class="cstat-no" title="statement not covered" >                    _resultsBoundary = results['extent.bbox'];</span>
+<span class="cstat-no" title="statement not covered" >                    mapUtil.fitToBBox($scope.map, _resultsBoundary);</span>
+                }
+            } else <span class="cstat-no" title="statement not covered" >if (angular.isDefined(results['extent.bbox'])) {</span>
+<span class="cstat-no" title="statement not covered" >                _resultsBoundary = results['extent.bbox'];</span>
+<span class="cstat-no" title="statement not covered" >                mapUtil.fitToBBox($scope.map, _resultsBoundary);</span>
+            } else {
+<span class="cstat-no" title="statement not covered" >                _searchBoundary = null;</span>
+<span class="cstat-no" title="statement not covered" >                _resultsBoundary = null;</span>
+            }
+&nbsp;
+            //TODO only show what is in the viewport?
+<span class="cstat-no" title="statement not covered" >            _addGeoJson(results.response.docs);</span>
+        });
+&nbsp;
+<span class="fstat-no" title="function not covered" >        function _showError(error) {</span>
+<span class="cstat-no" title="statement not covered" >            var message = null;</span>
+<span class="cstat-no" title="statement not covered" >            if(angular.isDefined(error.details)) {</span>
+<span class="cstat-no" title="statement not covered" >                message = error.details[0];</span>
+            }
+<span class="cstat-no" title="statement not covered" >            dialogs.error(error.message, message);</span>
+        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        $scope.addToMap = <span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >            addedLayer = true;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            $scope.map.invalidateSize(false); </span> //workaround when initially hidden
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            var mapService = mapServiceFactory.getMapService($scope.mapInfo);</span>
+<span class="cstat-no" title="statement not covered" >            mapService.addToMap($scope.mapInfo, $scope.map).then(<span class="fstat-no" title="function not covered" >function (layer) {</span></span>
+<span class="cstat-no" title="statement not covered" >                $scope.mapInfo.mapKey = $scope.mapInfo.name.replace(/'/g, '');</span>
+<span class="cstat-no" title="statement not covered" >                if (layer.isValid !== false) {</span>
+<span class="cstat-no" title="statement not covered" >                    loaded = false;</span>
+<span class="cstat-no" title="statement not covered" >                    layer.on('loading', <span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >                        if(loaded === false) {</span>
+<span class="cstat-no" title="statement not covered" >                            usSpinnerService.spin('map-spinner');</span>
+                        }
+                    });
+<span class="cstat-no" title="statement not covered" >                    _addToLayerControl(layer, $scope.map, $scope.mapInfo);</span>
+<span class="cstat-no" title="statement not covered" >                    usSpinnerService.stop('map-spinner');</span>
+<span class="cstat-no" title="statement not covered" >                    layer.on('load', <span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >                        loaded = true;</span>
+<span class="cstat-no" title="statement not covered" >                        usSpinnerService.stop('map-spinner');</span>
+                    });
+<span class="cstat-no" title="statement not covered" >                    $analytics.eventTrack('addToMap', {</span>
+                        category: 'results', label: $scope.mapInfo.format // jshint ignore:line
+                    });
+                } else {
+<span class="cstat-no" title="statement not covered" >                    usSpinnerService.stop('map-spinner');</span>
+<span class="cstat-no" title="statement not covered" >                    $analytics.eventTrack('addToMap', {</span>
+                        category: 'error', label: $scope.mapInfo.format // jshint ignore:line
+                    });
+<span class="cstat-no" title="statement not covered" >                    _showError(layer.error);</span>
+                }
+            }, <span class="fstat-no" title="function not covered" >function (error) {</span>
+<span class="cstat-no" title="statement not covered" >                usSpinnerService.stop('map-spinner');</span>
+<span class="cstat-no" title="statement not covered" >                $analytics.eventTrack('addToMap', {</span>
+                    category: 'error', label: $scope.mapInfo.format // jshint ignore:line
+                });
+<span class="cstat-no" title="statement not covered" >                _showError(error.error);</span>
+            });
+        };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        $scope.$watch('map',<span class="fstat-no" title="function not covered" >function(old) {</span>  //fires when map is created in directive</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            if(angular.isUndefined(old)) {</span>
+<span class="cstat-no" title="statement not covered" >                return;</span>
+            }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            $scope.map.on('overlayadd', <span class="fstat-no" title="function not covered" >function (e) {</span></span>
+                //html is added dynamically by leaflet so need to compile it here
+<span class="cstat-no" title="statement not covered" >                _compileLayersControl();</span>
+<span class="cstat-no" title="statement not covered" >                e.target.fitBounds(e.layer.bounds);</span>
+            });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            $scope.map.on('layeradd', <span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >                if (addedLayer) {</span>
+<span class="cstat-no" title="statement not covered" >                    addedLayer = false;</span>
+                    //html is added dynamically by leaflet so need to compile it here
+<span class="cstat-no" title="statement not covered" >                    _compileLayersControl();</span>
+                }
+            });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            $scope.map.on('draw:drawstart', <span class="fstat-no" title="function not covered" >function () {</span></span>
+//                if (_searchBoundaryLayer) {  //remove existing
+//                    $scope.map.removeLayer(_searchBoundaryLayer);
+//                    _searchBoundaryLayer = null;
+//                }
+<span class="cstat-no" title="statement not covered" >                _cancelledDraw = false;</span>
+            });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            $scope.map.on('draw:drawstop', <span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >                $timeout(<span class="fstat-no" title="function not covered" >function() {</span>  //wait for scope digest</span>
+<span class="cstat-no" title="statement not covered" >                    if (!_cancelledDraw) {</span>
+<span class="cstat-no" title="statement not covered" >                        if (_searchBoundaryLayer) {  //remove existing</span>
+<span class="cstat-no" title="statement not covered" >                            _removeSearchBoundary();</span>
+                        }
+                        //TODO use map util
+<span class="cstat-no" title="statement not covered" >                        var type = $scope.map.vsSearchType;</span>
+<span class="cstat-no" title="statement not covered" >                        var color = (type === 'within') ? '#f06eaa' : '#1771b4';</span>
+<span class="cstat-no" title="statement not covered" >                        _searchBoundaryLayer = L.rectangle(_points, {color: color, width: 1, fill:false, className:'drawn-extent'});</span>
+<span class="cstat-no" title="statement not covered" >                        $scope.map.addLayer(_searchBoundaryLayer);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                        var bbox = _searchBoundary.replace(/,/g, ' ');</span>
+&nbsp;
+                        //update url params
+<span class="cstat-no" title="statement not covered" >                        $location.search('place', bbox);</span>
+<span class="cstat-no" title="statement not covered" >                        var placeType = type.toLowerCase();</span>
+<span class="cstat-no" title="statement not covered" >                        $location.search('place.op', placeType);</span>
+<span class="cstat-no" title="statement not covered" >                        var point = $scope.map.getCenter();</span>
+<span class="cstat-no" title="statement not covered" >                        var vw = point.lng + ' ' + point.lat + ' ' + $scope.map.getZoom();</span>
+<span class="cstat-no" title="statement not covered" >                        $location.search('vw', vw);</span>
+<span class="cstat-no" title="statement not covered" >                        searchService.setMapView(vw);</span>
+&nbsp;
+                        //search controller will capture this event and fire a search
+<span class="cstat-no" title="statement not covered" >                        $scope.$emit('bboxChangeEvent', {'bbox': bbox, 'bboxt': placeType, 'vw': vw, 'place':bbox, 'place.op':placeType});</span>
+                    }
+                });
+&nbsp;
+            });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            $scope.$on('cancelledDraw', <span class="fstat-no" title="function not covered" >function() {</span></span>
+<span class="cstat-no" title="statement not covered" >                _cancelledDraw = true;</span>
+            });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            $scope.map.on('draw:created', <span class="fstat-no" title="function not covered" >function (e) {</span></span>
+<span class="cstat-no" title="statement not covered" >                _cancelledDraw = false;</span>
+<span class="cstat-no" title="statement not covered" >                _points = e.layer.getLatLngs();</span>
+<span class="cstat-no" title="statement not covered" >                _searchBoundary = e.layer.getBounds().toBBoxString();</span>
+            });
+&nbsp;
+            //@TODO: add search on map move feature
+            // $scope.map.on('dragend', function (e){
+            //     if ($scope.moveMapOption.value) {
+            //         $scope.$emit('searchEvent', {});
+            //     }
+            // });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            $scope.$on('resultHover', <span class="fstat-no" title="function not covered" >function(evt, data) {</span></span>
+<span class="cstat-no" title="statement not covered" >                if (!_geoHighlightLayer) {</span>
+<span class="cstat-no" title="statement not covered" >                    _geoHighlightLayer = L.geoJson(null, {</span>
+                        style: {
+                            color: '#e6e600',
+                            weight: 6,
+                            fill: true
+                        },
+                        pointToLayer: <span class="fstat-no" title="function not covered" >function(f, ll) {</span>
+<span class="cstat-no" title="statement not covered" >                            return L.circleMarker(ll, {</span>
+                                radius: 6,
+                                color: '#e6e600',
+                                fillOpacity: 0.65
+                            });
+                        }
+                    }).addTo($scope.map);
+                }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                if (data.doc &amp;&amp; data.doc.geo) {</span>
+<span class="cstat-no" title="statement not covered" >                    try {</span>
+<span class="cstat-no" title="statement not covered" >                        _geoHighlightLayer.addData(data.doc.geo);</span>
+                    } catch(err) {
+<span class="cstat-no" title="statement not covered" >                        console.log('WARNING: failed adding geojson layer to search map');</span>
+                    }
+                }
+                else {
+<span class="cstat-no" title="statement not covered" >                    _geoHighlightLayer.clearLayers();</span>
+                }
+            });
+&nbsp;
+            // set up the heatmap layer, but first check there is actual data to
+            // render (ie. the geo field is configured and populated)
+<span class="cstat-no" title="statement not covered" >            heatmapService.fetch('-180,-90,180,90', 1).then(<span class="fstat-no" title="function not covered" >function(hm) {</span></span>
+<span class="cstat-no" title="statement not covered" >                if (!_.isEmpty(hm.counts_ints2D)) {</span>
+<span class="cstat-no" title="statement not covered" >                    var heatmapLayer = heatmapService.init($scope.map);</span>
+<span class="cstat-no" title="statement not covered" >                    _addToLayerControl(heatmapLayer, $scope.map, {mapKey: 'Heatmap'}, true);</span>
+                }
+            });
+        });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        $scope.$on('filterChanged', <span class="fstat-no" title="function not covered" >function() {</span></span>
+<span class="cstat-no" title="statement not covered" >            var params = _.pick($location.search(), <span class="fstat-no" title="function not covered" >function(val, key) {</span></span>
+<span class="cstat-no" title="statement not covered" >                return 'q' === key || 'fq' === key || key.indexOf('place') === 0;</span>
+            });
+<span class="cstat-no" title="statement not covered" >            heatmapService.filter(params);</span>
+&nbsp;
+        });
+    });</pre></td></tr>
+</table></pre>
+
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Aug 03 2015 16:37:56 GMT-0400 (Eastern Daylight Time)</div>
+</div>
+<script src="../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../sorter.js"></script>
+</body>
+</html>

@@ -1,0 +1,134 @@
+.tab ul, .nav-tabs {
+	li {
+		float: left;
+		font-family: $semiStrongFont;
+		font-size: $smallSize;
+		position: relative;
+
+		&:before {
+			content: '';
+			position: absolute;
+			top: 0;
+			width: 1px;
+			height: 100%;
+			left: 0;
+			background-color: #e3e4e4;
+			border-top: 1px solid $borderColor;
+			border-bottom: 2px solid $slightDarkGrey;
+			box-sizing: border-box;
+		}
+
+		&:active {
+			&:before {
+				border-bottom-color: $activeColor;
+				border-top-color: $activeTopBorderColor;
+			}
+		}
+
+		&:first-child {
+			border-left: 1px solid #e3e4e4;
+			&:before {
+				display: none;
+			}
+		}
+
+		&:last-child {
+			border-right: 1px solid #e3e4e4;
+		}
+
+		&:first-child, &:first-child a {
+			border-top-left-radius: 5px;
+			border-bottom-left-radius: 5px;
+			//@include borderRadius(5px 0 0 5px);
+		}
+
+		&:last-child, &:last-child a {
+			//@include borderRadius(0 5px 5px 0);
+			border-top-right-radius: 5px;
+			border-bottom-right-radius: 5px;
+		}
+
+		&.selected, &.active {
+			a, a:hover, a:active {
+				background-color: $tabSelectedColor;
+				border-bottom-color: $tabSelectedColor;
+				border-top-color: $tabSelectedBorderColor;
+				color: $white;
+			}
+
+			a {
+				padding-top: 9px;
+			}
+		}
+
+		a {
+			color: $defaultTextColor;
+			background-color: $white;
+			display: block;
+			padding: 9px 20px;
+			border-top: 1px solid $borderColor;
+			border-bottom: 2px solid $slightDarkGrey;
+			text-decoration: none;
+			@extend .animate;
+
+			&:hover, &:active {
+				@extend .animate;
+			}
+
+			&:hover {
+				background-color: $lightestGrey;
+			}
+
+			&:active {
+				background-color: $activeColor;
+				border-bottom-color: $activeColor;
+				border-top-color: $activeTopBorderColor;
+			}
+		}
+	}
+}
+
+.nav-tabs {
+	border-bottom: 0;
+	margin-bottom: 20px;
+}
+
+
+.tab_progress {
+	ul li {
+		border-left: 1px solid $slightDarkGrey;
+
+		&:last-child {
+			border-right: 1px solid $slightDarkGrey;
+		}
+
+		&.selected, &:hover {
+			a {
+				background-color: $darkerBlue;
+				border-bottom-color: $darkerBlue;
+				border-top: 3px solid $darkBlueBorder;
+				padding-top: 7px;
+				color: $white;
+			}
+		}
+
+		a {
+			border-top: 1px solid $slightDarkGrey;
+			border-bottom: 3px solid $slightDarkGrey;
+			padding: 9px 0 7px;
+			color: $navyText;
+			width: 114px;
+			text-align: center;
+		}
+	}
+}
+
+.tab_tert {
+	li {
+		a {
+			font-size: $smallestSize;
+			padding-top: 7px;
+			padding-bottom: 7px;
+		}
+	}
+}

@@ -1,0 +1,180 @@
+%icon_style {
+	font-family: 'icomoon';
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+
+	/* Better Font Rendering =========== */
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+[class^="icon-"], [class*=" icon-"], .icon-map_pan_open {
+	&:before {
+		@extend %icon_style;
+	}
+}
+
+.icon-arrow {
+	position: relative;
+	padding-right: 20px;
+	&:before {
+		opacity: 0.5;
+		position: absolute;
+		font-size: 7px;
+		top: 30%;
+		right: 0;
+	}
+}
+
+.svg_map_icon {
+	width: 26px;
+	height: 26px;
+	display: inline-block;
+}
+
+.svg_map_contain {
+	background: url(../img/icon_map_contain.svg) no-repeat 50% 50%;
+}
+
+.svg_map_intersect {
+	background: url(../img/icon_map_intersect.svg) no-repeat 50% 50%;
+}
+
+.icon-edit:before {
+	font-size: 10px;
+}
+
+.icon-card_star_empty:before {
+	content: "\e600";
+}
+.icon-arrow:before {
+	content: "\e601";
+}
+.icon-card_gear:before {
+	content: "\e602";
+}
+.icon-card_list:before {
+	content: "\e603";
+}
+.icon-card_star_1:before {
+	content: "\e615";
+}
+.icon-header_account:before {
+	content: "\e605";
+}
+.icon-heart_empty:before {
+	content: "\e606";
+}
+.icon-heart_filled:before {
+	content: "\e607";
+}
+.icon-input_location:before {
+	content: "\e608";
+}
+.icon-input_search:before {
+	content: "\e609";
+}
+.icon-collection:before {
+	content: "\e60d";
+}
+.icon-x:before {
+	content: "\e60e";
+}
+.icon-plus:before {
+	content: "\e60f";
+}
+.icon-error:before {
+	content: "\e610";
+}
+.icon-lock:before {
+	content: "\e611";
+}
+.icon-map_home:before {
+	content: "\e616";
+}
+.icon-map_layers:before {
+	content: "\e617";
+}
+.icon-filters:before {
+	content: "\e618";
+}
+.icon-pagination_next:before {
+	content: "\e619";
+}
+.icon-pagination_prev:before {
+	content: "\e61a";
+}
+.icon-edit:before {
+	content: "\e61b";
+}
+.icon-tools:before {
+	content: "\e61c";
+}
+.icon-queue_download:before {
+	content: "\e61d";
+}
+.icon-queue_rerun:before {
+	content: "\e61e";
+}
+.icon-queue_status_error:before {
+	content: "\e61f";
+}
+.icon-queue_status_working:before {
+	content: "\e620";
+}
+.icon-queue_status_cancled:before {
+	content: "\e621";
+}
+.icon-queue_status_complete:before {
+	content: "\e622";
+}
+.icon-queue_status_waiting:before {
+	content: "\e623";
+}
+.icon-managecontrols_discover:before {
+	content: "\e60a";
+}
+.icon-managecontrols_index:before {
+	content: "\e604";
+}
+.icon-managecontrols_system:before {
+	content: "\e60b";
+}
+.icon-managecontrols_security:before {
+	content: "\e60c";
+}
+.icon-managecontrols_extensions:before {
+	content: "\e612";
+}
+.icon-managecontrols_settings:before {
+	content: "\e613";
+}
+.icon-managecontrols_appearance:before {
+	content: "\e614";
+}
+.icon-place_search:before {
+	content: "\e625";
+}
+.icon-looking_search:before {
+	content: "\e626";
+}
+.icon-search_map:before {
+	content: "\e627";
+}
+
+.icon-map_pan:before {
+	font-size: 16px;
+	content: "\e624";
+	position: relative;
+	top: 3px;
+}
+
+.frame-loading {
+    background-image: url(../img/loading2.gif);
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+}

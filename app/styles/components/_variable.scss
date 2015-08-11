@@ -1,0 +1,112 @@
+//COLORS
+$defaultTextColor: #2e3438;
+$white: #ffffff;
+$likewhite: #ecf0f1;
+$black: #000000;
+$backgroundColor: $likewhite;
+$borderColor: #d2d6d7;
+$linkColor: #1985d5;
+$lightLinkColor: #cde3f4;
+$hoverUnderlineColor: #c1d9e8;
+$ddHoverBg: #ebeeef;
+$secondaryLinkColor: #8f9497;
+$secondaryBtnBorderColor: $borderColor;
+
+$lightestGrey: #fbfcfc;
+$lightGrey: #c1c2c4;
+$slightDarkGrey: #b8bbbc;
+$slightDarkerGrey: #a2a8b0;
+$lightDarkGrey: #9097a0;
+$darkGrey: #878e90;
+
+
+$grayBlue: #393a49;
+$lighterBlue: #badaf2;
+$lightBlueBorder: #97c8ec;
+$lightBlue: $linkColor;
+$darkBlue: #12619b;
+$darkerBlue: #333c4e;
+$darkBlueBorder: #252c39;
+$navyText: #31373f;
+
+$placeholderTextColor: #888992;
+$placeholderFocusTextColor: #749fc0;
+
+$primaryColor: #fa6603;
+$primaryBorderColor: #be4e02;
+$primaryHoverColor: #fa8333;
+$primaryHoverBorderColor: #c35b15;
+$primaryActiveColor: #da5903;
+$primaryActiveBorderColor: #a64402;
+
+$actionColor: #1b86d5;
+$actionBorderColor: #1771b4;
+$actionHoverColor: #3ea0e8;
+$actionActiveColor: #1875b9;
+$actionActiveBorderColor: #12598d;
+
+$inputActiveBorderColor: #9cc0da;
+
+$activeColor: #dedede;
+$activeTopBorderColor: #b2b2b2;
+
+$defaultTagBgColor: #333c4e;
+$hoverTagBgColor: #455676;
+$activeTagBgColor: #282d31;
+
+$hoverLinkColor: #47a3e8;
+$activeLinkColor: #106fb6;
+$activeLinkBgColor: #f2f5f5;
+
+$mapControlColor: #333c4e;
+$mapControlSelectedColor: $lightBlue;
+
+$tabSelectedColor: #3a992d;
+$tabSelectedBorderColor: #2a7021;
+$savedIconColor: $lightBlue;
+
+//filter
+$filterBorderColor: #44556a;
+$filterColor: #c5ccd9;
+
+//ERROR
+$errorColor: #cd1717;
+
+
+//STAR COLORS
+$high: #f73e19;
+$medium: #f78c19;
+$low: #e2b52b;
+
+//WIDTHS
+$minWidth:  320px; //768px;
+$maxWidth: 1400px;
+$containerWidth: 1170px;
+$filterWidth: 290px;
+
+//HEIGHTS
+$formHeight: 60px;
+
+
+//FONTS
+$lightFont: 'proxima_novalight';
+$regularFont: 'proxima_nova_rgregular';
+$semiStrongFont: 'proxima_novasemibold';
+$strongFont: 'proxima_nova_rgbold';
+
+
+//FONT SIZES
+$xsmallSize: 0.625rem; //10px
+$smallestSize: 0.75rem; //12px
+$smallerSize: 0.8125rem; //13px
+$smallSize: 0.875rem; //14px
+$defaultSize: 16px;
+$mediumSize: 1.125rem; //18px
+$xlSize: 1.875rem; //30px
+$xxlSize: 2.5rem; //40px
+
+
+//Z-INDEX
+$headerZIndex: 1005;
+$modalZIndex: 1100;
+$stickyZIndex: 900;

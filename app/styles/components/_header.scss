@@ -1,0 +1,166 @@
+#header {
+	font-size: $smallSize;
+	position: fixed;
+	z-index: $headerZIndex;
+	height: 64px;
+	padding: 0 40px;
+	width: 100%;
+	box-sizing: border-box;
+	@include boxShadow(0, 1px, 3px, 0px, rgba(0, 0, 0, 0.11));
+	min-width: $minWidth;
+
+	.inner {
+		max-width: 100%;
+
+		h1 {
+			float: left;
+			.logo {
+				display: block;
+				height: 30px;
+				width: 110px;
+			}
+		}
+
+		> ul {
+			float: right;
+			padding-top: 24px;
+
+			> li {
+				display: inline-block;
+				margin-left: 15px;
+
+				> a {
+					color: $darkerBlue;
+
+					span[class*="icon-"], &.icon-header_account:before {
+						font-size: 11px;
+						margin-right: 7px;
+						position: relative;
+					}
+				}
+				.queue_count {
+					background-color: $slightDarkerGrey;
+					font-size: $xsmallSize;
+					min-width: 20px;
+					text-align: center;
+				}
+
+				&:last-child {
+					a span[class*="icon-"] {
+						font-size: 13px;
+					}
+				}
+			}
+		}
+	}
+
+/*	.hover_flyout {
+		&:hover .flyout {
+			display: block !important;
+			@extend .animate_fadein;
+		}
+	}*/
+
+	.flyout {
+		left: -20px;
+	}
+
+	.queue_flyout, .user_flyout {
+		width: 150px;
+	}
+}
+
+#headerSearchForm {
+	height: 40px;
+	top: 12px;
+	margin-left: 40px;
+
+	input {
+		-webkit-appearance: none;
+		font-size: $smallSize;
+		&[type="text"] {
+			position: relative;
+			border: 1px solid $borderColor;
+		}
+	}
+
+	button {
+		border-radius: 0 5px 5px 0;
+		position: absolute;
+		top: 0;
+		padding: 6px 15px;
+	}
+
+	fieldset:hover {
+		.icon-x {
+			display: block;
+		}
+	}
+
+	.search_fieldset {
+		input {
+			border-right: none;
+		}
+	}
+
+	.location_fieldset {
+		input {
+			border-radius: 0;
+		}
+	}
+
+	label {
+		left: 0;
+		top: 0;
+		&:before {
+			top: 12px;
+			width: 36px;
+		}
+
+	}
+
+	.icon-x {
+		display: none;
+		outline: none;
+		position: absolute;
+		z-index: 5;
+		cursor: pointer;
+		color: #d3d7d8;
+		right: 10px;
+		top: 13px;
+		font-size: $smallestSize;
+	}
+
+	.location_wrap .input_field {
+		padding-left: 120px;
+
+		+ .suggest-container + label:before {
+			left: 90px;
+		}
+	}
+
+	.select_wrap {
+		position: absolute;
+		left: 5px;
+		top: 5px;
+		z-index: 2;
+
+		.select2-container {
+			.select2-choice {
+				font-size: $smallestSize;
+				padding: 5px 10px;
+				height: 30px;
+				width: 90px;
+
+				&:before {
+					right: 10px;
+					font-size: 6px;
+				}
+
+				> .select2-chosen {
+					overflow: visible;
+				}
+			}
+		}
+	}
+}

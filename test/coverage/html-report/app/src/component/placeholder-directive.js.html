@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for ./app/src/component/placeholder-directive.js</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../../../prettify.css">
+    <link rel="stylesheet" href="../../../base.css">
+    <style type='text/css'>
+        div.coverage-summary .sorter {
+            background-image: url(../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class="header low">
+    <h1>Code coverage report for <span class="entity">./app/src/component/placeholder-directive.js</span></h1>
+    <h2>
+        Statements: <span class="metric">3.33% <small>(1 / 30)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Branches: <span class="metric">0% <small>(0 / 22)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Functions: <span class="metric">0% <small>(0 / 7)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">3.33% <small>(1 / 30)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../../../index.html">All files</a> &#187; <a href="index.html">./app/src/component/</a> &#187; placeholder-directive.js</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/*global angular */
+&nbsp;
+angular.module('voyager.component')
+	.directive('placeholder', <span class="fstat-no" title="function not covered" >function($timeout) {</span>
+		'use strict';
+<span class="cstat-no" title="statement not covered" >		return {</span>
+			restrict: 'A',
+			link: <span class="fstat-no" title="function not covered" >function(scope, element, attr, ctrl) {</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >				if ($(element).parents('#ecobar_addin').length) {</span>
+<span class="cstat-no" title="statement not covered" >					return;</span>
+				}
+&nbsp;
+				//if browser supports placeholder, do nothing
+<span class="cstat-no" title="statement not covered" >				var test = document.createElement('input');</span>
+<span class="cstat-no" title="statement not covered" >				if ('placeholder' in test) {</span>
+<span class="cstat-no" title="statement not covered" >					return true;</span>
+				}
+&nbsp;
+<span class="cstat-no" title="statement not covered" >				$timeout(<span class="fstat-no" title="function not covered" >function() {</span></span>
+<span class="cstat-no" title="statement not covered" >					element.val(element.attr('placeholder')).addClass('placeholder');</span>
+				});
+&nbsp;
+<span class="cstat-no" title="statement not covered" >				if (element.attr('type').toLowerCase() === 'password') {</span>
+<span class="cstat-no" title="statement not covered" >					element.data('oType', 'password').attr('type', 'text');</span>
+				}
+&nbsp;
+<span class="cstat-no" title="statement not covered" >				element.bind('focus', <span class="fstat-no" title="function not covered" >function(){</span></span>
+<span class="cstat-no" title="statement not covered" >					if (element.data('oType') === 'password') {</span>
+<span class="cstat-no" title="statement not covered" >						element.attr('type', 'password');</span>
+					}
+&nbsp;
+<span class="cstat-no" title="statement not covered" >					if (element.val() === element.attr('placeholder')) {</span>
+<span class="cstat-no" title="statement not covered" >						element.val('').removeClass('placeholder');</span>
+					}
+				}).bind('blur', <span class="fstat-no" title="function not covered" >function(){</span>
+<span class="cstat-no" title="statement not covered" >					if (element.val() === '') {</span>
+<span class="cstat-no" title="statement not covered" >						element.val(element.attr('placeholder')).addClass('placeholder');</span>
+<span class="cstat-no" title="statement not covered" >						if (element.data('oType') === 'password') {</span>
+<span class="cstat-no" title="statement not covered" >							element.attr('type', 'text');</span>
+						}
+					}
+				});
+&nbsp;
+<span class="cstat-no" title="statement not covered" >				if (attr.ngModel !== undefined &amp;&amp; ctrl !== undefined) {</span>
+<span class="cstat-no" title="statement not covered" >					var value;</span>
+<span class="cstat-no" title="statement not covered" >					scope.$watch(attr.ngModel, <span class="fstat-no" title="function not covered" >function(val){</span></span>
+<span class="cstat-no" title="statement not covered" >						value = val || '';</span>
+					});
+&nbsp;
+<span class="cstat-no" title="statement not covered" >					ctrl.$formatters.unshift(<span class="fstat-no" title="function not covered" >function(val){</span></span>
+<span class="cstat-no" title="statement not covered" >						if (!val) {</span>
+<span class="cstat-no" title="statement not covered" >							element.val(element.attr('placeholder'));</span>
+<span class="cstat-no" title="statement not covered" >							value = '';</span>
+<span class="cstat-no" title="statement not covered" >							return attr.placeholder;</span>
+						}
+&nbsp;
+<span class="cstat-no" title="statement not covered" >						return val;</span>
+					});
+				}
+			} //link
+		};
+	});
+&nbsp;
+&nbsp;</pre></td></tr>
+</table></pre>
+
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Aug 03 2015 16:37:56 GMT-0400 (Eastern Daylight Time)</div>
+</div>
+<script src="../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../sorter.js"></script>
+</body>
+</html>

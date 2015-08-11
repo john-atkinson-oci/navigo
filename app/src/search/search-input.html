@@ -1,0 +1,27 @@
+<div ng-controller="SearchInputCtrl" ng-show="showSearch">
+	<form name="searchForm" id="headerSearchForm" class="search_form col-lg-5 col-md-5 col-sm-7 col-xs-7 no_padding" ng-submit="submitSearch()">
+		<div class="col-md-12 no_padding">
+			<fieldset class="no_padding" ng-class="showLocation ? 'col-lg-5 col-md-4 col-sm-5 col-xs-4 search_fieldset':''">
+				<input type="text" class="input_field focus_field" name="query" ng-model="search.q" maxlength="256" autocomplete="off" placeholder="What are you looking for?" tabindex="1" />
+				<label for="query" class="icon-looking_search" aria-label="What are you looking for?"><span class="sr-only">What are you looking for?</span></label>
+				<a href="javascript:;" class="icon-x" aria-label="clear" ng-click="clearField('q', false)"><span class="sr-only">clear</span></a>
+			</fieldset>
+			<fieldset class="col-lg-7 col-md-8 col-sm-7 col-xs-8 location_fieldset no_padding" ng-if="showLocation">
+				<div class="location_wrap">
+					<input style="padding-right: 0px" vs-suggest type="text" class="input_field focus_field" ng-model="search.place" name="location" maxlength="256" placeholder="Where is it located?" autocomplete="off" ng-keypress="locationChange()" tabindex="2" />
+					<label for="location" class="icon-input_location" aria-label="Where is it located?"><span class="sr-only">Where is it located?</span></label>
+					<a href="javascript:;" class="icon-x" aria-label="clear" ng-click="clearField('location', true)"><span class="sr-only">clear</span></a>
+				</div>
+				<div class="select_wrap">
+					<label class="icon-arrow sr-only" for="locationSelect" aria-label="Select location type"><span class="sr-only">Select location type</span></label>
+					<select ui-select2="{dropdownAutoWidth: 'true', minimumResultsForSearch: -1}" name="place.op" id="locationSelect" ng-model="selectedDrawingType" vs-search-tool-toggle ng-change="placeOpChange(selectedDrawingType)">
+						<option ng-repeat="type in drawingTypes" value="{{type}}">{{type}}</option>
+					</select>
+				</div>
+			</fieldset>
+		</div>
+		<button class="btn btn-primary">
+			<span class="icon-input_search"></span>
+		</button>
+	</form>
+</div>

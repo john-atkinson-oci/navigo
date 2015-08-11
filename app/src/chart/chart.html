@@ -1,0 +1,103 @@
+<style>
+    .dc-chart .pie-slice {
+        fill: black !important;
+        stroke: black !important;
+        stroke-width: .5 !important;
+    }
+</style>
+<div class="container" style="margin-top: 20px;" ng-controller="ChartCtrl">
+    <div class="row">
+        <div class="col-sm-12">
+        <h3 style="margin-top: 0px; margin-bottom: 20px">NY Wells</h3>
+        </div>
+    </div>
+
+    <div id="chart-info" style="display: none">
+        <div class="row col-sm-12">
+            <div id="fields-chart">
+                <strong>Well Field</strong>
+                <div class="clearfix"></div>
+                <a class="reset" href="javascript:;" ng-click="resetChart('fieldsChart')" style="display: none;">reset</a>
+                <!--
+                    dc.js will also automatically inject applied current filter value into
+                    any html element with css class set to "filter"
+                -->
+                <span class="reset" style="display: none;"><div class="filter" style="max-width: 200px"></div></span>
+                <div class="clearfix"></div>
+            </div>
+
+            <div id="operator-chart">
+                <strong>Operator</strong>
+                <div class="clearfix"></div>
+                <a class="reset" href="javascript:;" ng-click="resetChart('operatorChart')" style="display: none;">reset</a>
+                <!--
+                    dc.js will also automatically inject applied current filter value into
+                    any html element with css class set to "filter"
+                -->
+                <span class="reset" style="display: none;"><div class="filter" style="max-width: 200px"></div></span>
+                <div class="clearfix"></div>
+            </div>
+
+            <div id="producing-chart">
+                <strong>Producing</strong>
+                <div class="clearfix"></div>
+                <a class="reset" href="javascript:;" ng-click="resetChart('producingChart')" style="display: none;">reset</a>
+                <!--
+                    dc.js will also automatically inject applied current filter value into
+                    any html element with css class set to "filter"
+                -->
+                <span class="reset" style="display: none;"><div class="filter" style="max-width: 200px"></div></span>
+                <div class="clearfix"></div>
+            </div>
+
+            <div id="status-chart">
+                <strong>Status</strong>
+                <div class="clearfix"></div>
+                <a class="reset" href="javascript:;" ng-click="resetChart('statusChart')" style="display: none;">reset</a>
+                <!--
+                    dc.js will also automatically inject applied current filter value into
+                    any html element with css class set to "filter"
+                -->
+                <span class="reset" style="display: none;"><div class="filter" style="max-width: 200px"></div></span>
+                <div class="clearfix"></div>
+            </div>
+
+            <div id="type-chart">
+                <strong>Type</strong>
+                <div class="clearfix"></div>
+                <a class="reset" href="javascript:;" ng-click="resetChart('typeChart')" style="display: none;">reset</a>
+                <!--
+                    dc.js will also automatically inject applied current filter value into
+                    any html element with css class set to "filter"
+                -->
+                <span class="reset" style="display: none;"><div class="filter" style="max-width: 200px"></div></span>
+                <div class="clearfix"></div>
+            </div>
+
+        </div>
+
+        <br>
+
+        <div class="row col-sm-12">
+            <div>Well Depth</div>
+            <div range-slider id="slider" min="0" max="maxDepth" model-min="depth.min" model-max="depth.max" step="1" on-handle-up="slide()"></div>
+            <div class="pull-left">{{depth.min}}</div>
+            <div class="pull-right">{{depth.max}}</div>
+        </div>
+
+
+        <div class="dc-data-count" style="clear: left;">
+            <span class="filter-count"></span> selected out of <span class="total-count"></span> records
+        </div>
+
+        <div>
+            <table class="table table-hover dc-data-table">
+                <thead>
+                <th>Name</th><th>Well Field</th><th>Operator</th><th>Producing</th><th>Status</th><th>Type</th><th>Depth</th>
+
+                </thead>
+            </table>
+        </div>
+
+    </div>
+</div>

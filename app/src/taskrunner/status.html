@@ -1,0 +1,135 @@
+<div class="page queue">
+	<ng-include src="'src/cart/cart-nav.html'"></ng-include>
+	<div class="queue-secondary">
+		<div class="inner" ng-controller="StatusCtrl">
+			<div class="content queue-content">
+				<div us-spinner spinner-key="status-spinner" spinner-start-active="1"></div>
+
+				<article class="task_status" style="{{statusStyle}}" ng-show="statusReady">
+					<header class="row">
+						<h4 class="col-lg-8 col-md-8 semi {{statusColor}}"><i class="{{statusIcon.icon}}" style="color: {{statusIcon.color}}"></i> {{statusMessage}}</h4>
+						<div class="col-lg-4 col-md-4 pull-right semi "><span class="{{statusColor}}">Task ID {{id}}</span></div>
+					</header>
+
+					<div class="task_detail row">
+                        <!--left side-->
+                        <div class="col-sm-6">
+                            <h1 class="semi">{{type}}</h1>
+                            <div class="{{statusColor}}" ng-bind="itemCount + ' item' + (itemCount > 1 ? 's' : '')"></div>
+                        </div>
+
+                        <!--right side-->
+						<div class="col-sm-6">
+
+                            <div class="righty" ng-show="!isRunning && files.length < 1">
+                                <i class="{{statusIcon.icon}}" style="color: {{statusIcon.color}}"></i>
+                                <span class="{{statusColor}}">&nbsp;{{statusDetail}}</span>
+                            </div>
+
+							<div ng-show="hasProgressMessage" class="col-sm-12">
+						        <div>{{progressMessage}}</div>
+							</div>
+
+                            <div ng-repeat="p in progress track by $index" class="col-sm-12">
+                                <div ng-show="p.text != progressMessage">{{p.text}}</div>
+                                <div>
+                                    <progressbar class="active progress-striped" max="100" value="p.percent * 100" type="info">&nbsp;{{p.percent * 100 | number:0}}%</progressbar>
+                                </div>
+                            </div>
+
+                            <div class="pull-right mt10">
+	                            <a class="btn btn-secondary pull-right ml15" ng-repeat="file in files" href="{{file.downloadUrl}}"><span class="glyphicon glyphicon-download-alt"></span> Download file</a>
+	                            <a class="btn btn-secondary" ng-hide="isRunning" href="{{searchItemURL}}">Items Processed</a>
+	                        </div>
+						</div>
+
+					</div><!-- /.task_detail -->
+
+					<footer>
+						<ul>
+							<li ng-if="isRunning">
+								<a href="javascript:;" ng-click="cancelClick()"><span class="icon-x"></span>Cancel task</a>
+							</li>
+							<li ng-if="logFiles.length">
+								<div class="hover_flyout">
+									<a href="javascript:;" class="flyout_trigger"><i class="fa fa-file"></i>&nbsp;View task log</a>
+									<div class="flyout">
+										<div class="arrow"></div>
+										<div class="flyout_inner">
+											<ul>
+												<li ng-repeat="file in logFiles">
+													<a href="javascript:;" class="btn btn-link" ng-click="getData(file)">{{file.displayName}}</a>
+												</li>
+											</ul>
+										</div>
+									</div>
+								</div>
+							</li>
+                            <li ng-if="hasMessages">
+                                <div class="hover_flyout">
+                                    <a href="javascript:;" class="flyout_trigger">Messages</a>
+                                    <div class="flyout">
+                                        <div class="arrow"></div>
+                                        <div class="flyout_inner">
+                                            <ul>
+                                                <li ng-repeat="message in messages">
+                                                    {{message.message}}
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li ng-if="hasWarnings">
+                                <div class="hover_flyout">
+                                    <a href="javascript:;" class="flyout_trigger">Warnings</a>
+                                    <div class="flyout">
+                                        <div class="arrow"></div>
+                                        <div class="flyout_inner">
+                                            <ul>
+                                                <li ng-repeat="warning in warnings track by $index">
+                                                    {{warning}}
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+							<li ng-if="!isRunning">
+								<a href="javascript:;" ng-click="showDetails()"><span class="fa fa-info"></span>&nbsp;Show task details</a>
+							</li>
+							<li ng-show="isRunning && allowNotify">
+								<div class="hover_flyout keep_open">
+									<a href="javascript:" class="flyout_trigger"><i class="fa fa-bell"></i>&nbsp;Notify when complete</a>
+									<div class="flyout">
+										<div class="arrow"></div>
+										<div class="flyout_inner">
+											<form class="form-inline" role="form" style="padding: 20px 20px 20px 20px; width: 300px; height: 110px;">
+												<div class="form-group" style="width: 100%">
+													<label class="sr-only" for="email">Email address</label>
+													<input type="email" class="form-control" id="email" ng-model="email" placeholder="Enter email address..." style="width:100%"/>
+												</div>
+												<button class="btn btn-default btn-sm pull-right" style="margin-top: 10px" type="button" ng-click="emailClick()">  <span class="glyphicon glyphicon-envelope"></span> Submit</button>
+											</form>
+										</div>
+									</div>
+								</div>
+							</li>
+                            <li>
+                                <div class="hover_flyout">
+                                    <a href="javascript:" class="flyout_trigger"><i class="fa fa-copy"></i>&nbsp;Copy URL</a>
+                                    <div class="flyout copy_flyout">
+                                        <div class="arrow"></div>
+                                        <div class="flyout_inner">
+                                            <input id="copy-url" type="text" readonly value="{{copyUrl}}" onClick="javascript:this.select();" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+						</ul>
+					</footer>
+				</article>
+			</div>
+		</div>
+	</div>
+</div>

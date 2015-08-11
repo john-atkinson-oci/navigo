@@ -1,0 +1,966 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for ./app/src/filters/tree-service.js</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../../../prettify.css">
+    <link rel="stylesheet" href="../../../base.css">
+    <style type='text/css'>
+        div.coverage-summary .sorter {
+            background-image: url(../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class="header low">
+    <h1>Code coverage report for <span class="entity">./app/src/filters/tree-service.js</span></h1>
+    <h2>
+        Statements: <span class="metric">32.99% <small>(65 / 197)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Branches: <span class="metric">23.81% <small>(10 / 42)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Functions: <span class="metric">28.21% <small>(11 / 39)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">32.99% <small>(65 / 197)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../../../index.html">All files</a> &#187; <a href="index.html">./app/src/filters/</a> &#187; tree-service.js</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">9</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/*global angular, $, _, console */
+&nbsp;
+angular.module('voyager.filters').
+    factory('treeService', function (config, $http, configService, $q, solrGrunt, sugar, facetService) {
+        'use strict';
+        var _tree= {};
+        var _fields = {};
+        var _trees = {};
+&nbsp;
+        function _getTreeParams() {
+            var configFilters = configService.getFilters(), facetParams = '';
+            $.each(configFilters, function (index, filter) {
+                if(filter.style === 'HIERARCHY') {
+                    facetParams += '&amp;facet.field=' + filter.field + '&amp;f.' + filter.field + '.facet.mincount=1' + '&amp;f.' + filter.field + '.facet.prefix=%s/';
+                    _trees[filter.field] = {};
+                }
+            });
+            return facetParams;
+        }
+&nbsp;
+        function _hasTreeParam() {
+            var configFilters = configService.getFilters();
+            var hasTree = false;
+            $.each(configFilters, function (index, filter) {
+                if(filter.style === 'HIERARCHY') {
+                    hasTree = true;
+                    return false;
+                }
+            });
+            return hasTree;
+        }
+&nbsp;
+        function _getQueryString(params, filterParams, bboxParams) {
+            var solrParams = solrGrunt.getSolrParams(params);
+            delete solrParams.fq; //filter service will apply filter params below
+            solrParams.q = solrGrunt.getInput(solrParams.q); //default to all if no input filter
+            var queryString = config.root + 'solr/v0/select?rows=0&amp;block=false&amp;facet=true' + _getTreeParams();
+            console.log(solrParams)
+            queryString += '&amp;' + sugar.toQueryString(solrParams);
+            console.log(queryString)
+            queryString += filterParams;
+            queryString += bboxParams;
+            <span class="missing-if-branch" title="else path not taken" >E</span>if(angular.isDefined(configService.getConfigId())) {
+                queryString += '&amp;voyager.config.id=' + configService.getConfigId();
+            }
+            queryString += '&amp;wt=json&amp;json.wrf=JSON_CALLBACK';
+            return queryString;
+        }
+&nbsp;
+        function _getSelectedLevel(params) {
+            var paths, level = 0;
+            <span class="missing-if-branch" title="if path not taken" >I</span>if (params.fq) {
+<span class="cstat-no" title="statement not covered" >                paths = _.filter(sugar.toArray(params.fq), <span class="fstat-no" title="function not covered" >function(f) {</span></span>
+<span class="cstat-no" title="statement not covered" >                    return f.indexOf('path_path') &gt; -1;</span>
+                });
+<span class="cstat-no" title="statement not covered" >                if(paths.length &gt; 0) {</span>
+<span class="cstat-no" title="statement not covered" >                    var path = paths[0];</span>
+<span class="cstat-no" title="statement not covered" >                    path = path.replace(/\\/g, '');</span>
+<span class="cstat-no" title="statement not covered" >                    level = path.split('/').length;</span>
+                }
+            }
+            return level;
+        }
+&nbsp;
+        //query 2 levels so we can get the children of the next level for display of the expand/collapse icon
+        function _queryLevels(queryString, level) {
+            var deferred = $q.defer();
+            var promises = [];
+            var level1 = '1', level2 = '2';
+&nbsp;
+            <span class="missing-if-branch" title="if path not taken" >I</span>if (level &gt; 0) {  //TODO add path to prefix filter like query node levels?
+<span class="cstat-no" title="statement not covered" >                level1 = level.toString();</span>
+<span class="cstat-no" title="statement not covered" >                level2 = (level + 1).toString();</span>
+            }
+&nbsp;
+            var queryLevel = _.sprintf(queryString,level1);
+<span class="cstat-no" title="statement not covered" >            var queryLevel2 = _.sprintf(queryString,level2);</span>
+<span class="cstat-no" title="statement not covered" >            var queries = [queryLevel, queryLevel2];</span>
+<span class="cstat-no" title="statement not covered" >            $.each(queries, <span class="fstat-no" title="function not covered" >function(index, query) {</span></span>
+<span class="cstat-no" title="statement not covered" >                promises.push($http.jsonp(query));</span>
+            });
+<span class="cstat-no" title="statement not covered" >            $q.all(promises).then(<span class="fstat-no" title="function not covered" >function (response) {</span></span>
+                //console.log("levels");
+<span class="cstat-no" title="statement not covered" >                $.each(_trees, <span class="fstat-no" title="function not covered" >function(name) {</span></span>
+<span class="cstat-no" title="statement not covered" >                    var raw = response[0].data.facet_counts.facet_fields[name]; </span>// jshint ignore:line
+<span class="cstat-no" title="statement not covered" >                    var tree = facetService.buildFacets(raw,{field:name,style:'HIERARCHY'},{});</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                    raw = response[1].data.facet_counts.facet_fields[name]; </span>// jshint ignore:line
+<span class="cstat-no" title="statement not covered" >                    var next = facetService.buildFacets(raw,{field:name,style:'HIERARCHY'},{});</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                    $.merge(tree, next);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                    _trees[name] = tree;</span>
+                });
+<span class="cstat-no" title="statement not covered" >                deferred.resolve(_trees);</span>
+            }, <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >                console.log('failed');</span>
+<span class="cstat-no" title="statement not covered" >                deferred.reject();</span>
+            });
+<span class="cstat-no" title="statement not covered" >            return deferred.promise;</span>
+        }
+&nbsp;
+        //query 2 levels so we can get the children of the next level for display of the expand/collapse icon
+<span class="fstat-no" title="function not covered" >        function _queryNodeLevels(queryString, name, level, path) {</span>
+<span class="cstat-no" title="statement not covered" >            var deferred = $q.defer();</span>
+<span class="cstat-no" title="statement not covered" >            var promises = [];</span>
+<span class="cstat-no" title="statement not covered" >            var level1 = level.toString() + '/' + path;</span>
+<span class="cstat-no" title="statement not covered" >            var level2 = (level + 1).toString() + '/' + path;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            var queryLevel = _.sprintf(queryString,level1);</span>
+<span class="cstat-no" title="statement not covered" >            var queryLevel2 = _.sprintf(queryString,level2);</span>
+<span class="cstat-no" title="statement not covered" >            var queries = [queryLevel, queryLevel2];</span>
+<span class="cstat-no" title="statement not covered" >            $.each(queries, <span class="fstat-no" title="function not covered" >function(index, query) {</span></span>
+<span class="cstat-no" title="statement not covered" >                promises.push($http.jsonp(query));</span>
+            });
+<span class="cstat-no" title="statement not covered" >            $q.all(promises).then(<span class="fstat-no" title="function not covered" >function (response) {</span></span>
+<span class="cstat-no" title="statement not covered" >                var raw = response[0].data.facet_counts.facet_fields[name]; </span>// jshint ignore:line
+<span class="cstat-no" title="statement not covered" >                var tree = facetService.buildFacets(raw,{field:name,style:'HIERARCHY'},{});</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                raw = response[1].data.facet_counts.facet_fields[name]; </span>// jshint ignore:line
+<span class="cstat-no" title="statement not covered" >                var next = facetService.buildFacets(raw,{field:name,style:'HIERARCHY'},{});</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                $.merge(tree, next);</span>
+<span class="cstat-no" title="statement not covered" >                deferred.resolve(tree);</span>
+            }, <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >                console.log('failed');</span>
+<span class="cstat-no" title="statement not covered" >                deferred.reject();</span>
+            });
+<span class="cstat-no" title="statement not covered" >            return deferred.promise;</span>
+        }
+&nbsp;
+        function _setTree(params, filterParams, bboxParams) {
+            _trees = {};
+            var deferred = $q.defer();
+            if (_hasTreeParam()) {
+                var level = _getSelectedLevel(params);
+                var queryString = _getQueryString(params, filterParams, bboxParams);
+                _queryLevels(queryString, level).then(<span class="fstat-no" title="function not covered" >function() {</span>
+<span class="cstat-no" title="statement not covered" >                    deferred.resolve();</span>
+                });
+            } else {
+                deferred.resolve(null);
+            }
+            return deferred.promise;
+        }
+&nbsp;
+<span class="fstat-no" title="function not covered" >        function _addChild(folder, nodes, collapsed, field) {</span>
+<span class="cstat-no" title="statement not covered" >            var child = nodes[folder.path];</span>
+<span class="cstat-no" title="statement not covered" >            if(angular.isUndefined(child)) {</span>
+<span class="cstat-no" title="statement not covered" >                child = {level:folder.level, root:folder.node[0], path:folder.path, children:[], childMap:{}, mime:'application/vnd.voyager.folder', id:folder.path, collapsed:true, field:field};</span>
+<span class="cstat-no" title="statement not covered" >                nodes[child.path] = child;</span>
+            }
+<span class="cstat-no" title="statement not covered" >            if(angular.isUndefined(nodes[folder.parentPath].childMap[child.path])) {</span>
+<span class="cstat-no" title="statement not covered" >                nodes[folder.parentPath].children.push(child);</span>
+<span class="cstat-no" title="statement not covered" >                nodes[folder.parentPath].childMap[child.path] = child;</span>
+            }
+<span class="cstat-no" title="statement not covered" >            if(nodes[folder.parentPath].collapsed === true) { //if flagged as expanded, don't collapse</span>
+<span class="cstat-no" title="statement not covered" >                nodes[folder.parentPath].collapsed = collapsed;</span>
+            }
+        }
+&nbsp;
+<span class="fstat-no" title="function not covered" >        function _getFolder(row, index) {</span>
+<span class="cstat-no" title="statement not covered" >            var folder = {};</span>
+<span class="cstat-no" title="statement not covered" >            folder.level = row[0]; </span> //TODO set level to actual folder level? not using currently
+<span class="cstat-no" title="statement not covered" >            folder.node = row.slice(1,index+1);</span>
+<span class="cstat-no" title="statement not covered" >            folder.name = folder.node[folder.node.length-1];</span>
+<span class="cstat-no" title="statement not covered" >            folder.path = folder.node.join('/');</span>
+<span class="cstat-no" title="statement not covered" >            folder.parent = row.slice(1,index);</span>
+<span class="cstat-no" title="statement not covered" >            folder.parentPath = folder.parent.join('/');</span>
+<span class="cstat-no" title="statement not covered" >            return folder;</span>
+        }
+&nbsp;
+<span class="fstat-no" title="function not covered" >        function _getPathInfo(path) {</span>
+<span class="cstat-no" title="statement not covered" >            var pathInfo = {};</span>
+<span class="cstat-no" title="statement not covered" >            pathInfo.value = path.value.replace(/\\/g, '/'); </span> //some contain backslash, make em all forward slash
+<span class="cstat-no" title="statement not covered" >            pathInfo.name = path.name.replace(/\\/g, '/');</span>
+<span class="cstat-no" title="statement not covered" >            pathInfo.folders = pathInfo.name.split('/');</span>
+<span class="cstat-no" title="statement not covered" >            pathInfo.level = pathInfo.folders.length - 1; </span> //level from the response is incorrect if there are backslashes in the path so doing this instead
+<span class="cstat-no" title="statement not covered" >            pathInfo.display = pathInfo.value.substring(pathInfo.value.lastIndexOf('/')+1, pathInfo.value.length);</span>
+<span class="cstat-no" title="statement not covered" >            pathInfo.path = pathInfo.name.substring(pathInfo.name.indexOf('/')+1, pathInfo.name.length);</span>
+<span class="cstat-no" title="statement not covered" >            pathInfo.count = path.count;</span>
+<span class="cstat-no" title="statement not covered" >            return pathInfo;</span>
+        }
+&nbsp;
+<span class="fstat-no" title="function not covered" >        function _getNode(pathInfo, selected, field) {</span>
+<span class="cstat-no" title="statement not covered" >            var node = {level:pathInfo.level, root:pathInfo.folders[1], path:pathInfo.path, children:[], display: pathInfo.display, childMap:{}, mime:'application/vnd.voyager.folder', id:pathInfo.path, collapsed:true, field:field};</span>
+<span class="cstat-no" title="statement not covered" >            if (angular.isDefined(selected[node.path])) {</span>
+                //node.collapsed = false;
+<span class="cstat-no" title="statement not covered" >                node.selected = true;</span>
+            }
+<span class="cstat-no" title="statement not covered" >            return node;</span>
+        }
+&nbsp;
+<span class="fstat-no" title="function not covered" >        function _getParentNode(folder, field, pathInfo) {</span>
+<span class="cstat-no" title="statement not covered" >            var parentNode = {level:folder.parent.length, root:folder.parent[0], path:folder.parentPath, children:[], childMap: {}, mime:'application/vnd.voyager.folder', id: folder.parentPath, collapsed:true, field:field};</span>
+<span class="cstat-no" title="statement not covered" >            var name = parentNode.path;</span>
+<span class="cstat-no" title="statement not covered" >            if (name.indexOf('/') !== -1) {</span>
+<span class="cstat-no" title="statement not covered" >                name = name.split('/');</span>
+<span class="cstat-no" title="statement not covered" >                name = name[name.length-1];</span>
+            }
+<span class="cstat-no" title="statement not covered" >            parentNode.display = name + ' (' + pathInfo.count + ')';</span>
+<span class="cstat-no" title="statement not covered" >            return parentNode;</span>
+        }
+&nbsp;
+        //structure is a flat hash of all nodes keyed by path, and also a hierarchy.  children reference back to the hash
+<span class="fstat-no" title="function not covered" >        function _buildStructure(pathList, selected, field) {</span>
+<span class="cstat-no" title="statement not covered" >            var nodes = {}, pathInfo;</span>
+<span class="cstat-no" title="statement not covered" >            $.each(pathList, <span class="fstat-no" title="function not covered" >function(index, path) {</span></span>
+<span class="cstat-no" title="statement not covered" >                pathInfo = _getPathInfo(path);</span>
+<span class="cstat-no" title="statement not covered" >                var node = _getNode(pathInfo, selected, field);</span>
+<span class="cstat-no" title="statement not covered" >                nodes[pathInfo.path] = node;</span>
+                //move backward up this path and build/add each node
+<span class="cstat-no" title="statement not covered" >                for(var i = pathInfo.folders.length-1; i &gt; 1; i--) {</span>
+<span class="cstat-no" title="statement not covered" >                    var folder = _getFolder(pathInfo.folders, i);</span>
+<span class="cstat-no" title="statement not covered" >                    if(angular.isDefined(nodes[folder.parentPath])) {  //parent folder exists, add child</span>
+<span class="cstat-no" title="statement not covered" >                        _addChild(folder,nodes, !node.selected, field);</span>
+                    } else {  //new parent folder
+<span class="cstat-no" title="statement not covered" >                        var parentNode = _getParentNode(folder, field, pathInfo);</span>
+<span class="cstat-no" title="statement not covered" >                        nodes[parentNode.path] = parentNode;</span>
+<span class="cstat-no" title="statement not covered" >                        if(angular.isDefined(selected[parentNode.path])) {</span>
+<span class="cstat-no" title="statement not covered" >                            parentNode.selected = true;</span>
+                        }
+<span class="cstat-no" title="statement not covered" >                        parentNode.children.push(nodes[folder.path]); </span> //add the child
+<span class="cstat-no" title="statement not covered" >                        parentNode.childMap[folder.path] = nodes[folder.path];</span>
+                    }
+                }
+            });
+<span class="cstat-no" title="statement not covered" >            return nodes;</span>
+        }
+&nbsp;
+<span class="fstat-no" title="function not covered" >        function _getSelected(filters) {</span>
+<span class="cstat-no" title="statement not covered" >            var selected = {};</span>
+<span class="cstat-no" title="statement not covered" >            filters = sugar.toArray(filters);</span>
+<span class="cstat-no" title="statement not covered" >            if(angular.isDefined(filters)) {</span>
+<span class="cstat-no" title="statement not covered" >                $.each(filters, <span class="fstat-no" title="function not covered" >function (key, value) {</span></span>
+<span class="cstat-no" title="statement not covered" >                    if (value.indexOf('path_path') !== -1) {</span>
+<span class="cstat-no" title="statement not covered" >                        var path = value.split(':')[1].replace(/\\/g, '');</span>
+<span class="cstat-no" title="statement not covered" >                        selected[path] = path;</span>
+                    }
+                });
+            }
+<span class="cstat-no" title="statement not covered" >            return selected;</span>
+        }
+&nbsp;
+<span class="fstat-no" title="function not covered" >        function _getNodesToExpand(name) {</span>
+<span class="cstat-no" title="statement not covered" >            var path = name.split('/'), key = null, expanded = [];</span>
+<span class="cstat-no" title="statement not covered" >            $.each(path, <span class="fstat-no" title="function not covered" >function(index, node) {</span></span>
+<span class="cstat-no" title="statement not covered" >                if (key === null) {</span>
+<span class="cstat-no" title="statement not covered" >                    key = node;</span>
+                } else {
+<span class="cstat-no" title="statement not covered" >                    key = key + '/' + node;</span>
+                }
+<span class="cstat-no" title="statement not covered" >                expanded.push(key);</span>
+            });
+<span class="cstat-no" title="statement not covered" >            return expanded;</span>
+        }
+&nbsp;
+        //public methods - client interface
+        return {
+&nbsp;
+            updateTree: function(params, filterParams, bboxParams, filters) {
+                var self = this;
+                _setTree(params, filterParams, bboxParams).then(function() {
+                    <span class="missing-if-branch" title="if path not taken" >I</span>if (!_.isEmpty(_trees)) {
+<span class="cstat-no" title="statement not covered" >                        $.each(filters, <span class="fstat-no" title="function not covered" >function(index, filter) {</span></span>
+<span class="cstat-no" title="statement not covered" >                            if (filter.style === 'HIERARCHY') {</span>
+                                //var tree = _getTree(_trees[filter.field], _getSelected(params.fq), filter.field);
+<span class="cstat-no" title="statement not covered" >                                var structure = _buildStructure(_trees[filter.field], _getSelected(params.fq), filter.field);</span>
+<span class="cstat-no" title="statement not covered" >                                var expanded = [];</span>
+<span class="cstat-no" title="statement not covered" >                                $.each(structure, <span class="fstat-no" title="function not covered" >function(name, node) {</span></span>
+<span class="cstat-no" title="statement not covered" >                                    if (node.selected &amp;&amp; !node.loaded) {</span>
+<span class="cstat-no" title="statement not covered" >                                        expanded = expanded.concat(_getNodesToExpand(name));</span>
+<span class="cstat-no" title="statement not covered" >                                        self.loadNode(params, filterParams, bboxParams, filters, node);</span>
+                                    }
+                                });
+<span class="cstat-no" title="statement not covered" >                                $.each(expanded, <span class="fstat-no" title="function not covered" >function(index, node) {</span></span>
+<span class="cstat-no" title="statement not covered" >                                    structure[node].collapsed = false;</span>
+                                });
+<span class="cstat-no" title="statement not covered" >                                var tree = _.where(structure,{'level':1});</span>
+<span class="cstat-no" title="statement not covered" >                                filter.values = [{tree:tree, filter: filter.field, style:filter.style}];</span>
+                            }
+                        });
+                    }
+                });
+            },
+&nbsp;
+            loadNode: <span class="fstat-no" title="function not covered" >function(params, filterParams, bboxParams, filters, node) {</span>
+<span class="cstat-no" title="statement not covered" >                node.loaded = true;</span>
+<span class="cstat-no" title="statement not covered" >                var queryString = _getQueryString(params, filterParams, bboxParams);</span>
+<span class="cstat-no" title="statement not covered" >                _queryNodeLevels(queryString,node.field, node.level + 1, node.path).then(<span class="fstat-no" title="function not covered" >function(data) {</span></span>
+<span class="cstat-no" title="statement not covered" >                    var structure = _buildStructure(data,_getSelected(params.fq), node.field);</span>
+<span class="cstat-no" title="statement not covered" >                    var children = _.where(structure,{'level':node.level + 1});</span>
+<span class="cstat-no" title="statement not covered" >                    node.children = children;</span>
+                });
+            },
+&nbsp;
+            setTreeFields: <span class="fstat-no" title="function not covered" >function(fields) {</span>
+<span class="cstat-no" title="statement not covered" >                _fields = fields;</span>
+            },
+&nbsp;
+            getTree: <span class="fstat-no" title="function not covered" >function(filter) {</span>
+<span class="cstat-no" title="statement not covered" >                return _tree[filter];</span>
+            }
+&nbsp;
+        };
+&nbsp;
+    });
+&nbsp;</pre></td></tr>
+</table></pre>
+
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Aug 03 2015 16:37:56 GMT-0400 (Eastern Daylight Time)</div>
+</div>
+<script src="../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../sorter.js"></script>
+</body>
+</html>

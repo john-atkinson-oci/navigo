@@ -1,0 +1,267 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for ./app/src/bulk-updater/edit-presentation-controller.js</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../../../prettify.css">
+    <link rel="stylesheet" href="../../../base.css">
+    <style type='text/css'>
+        div.coverage-summary .sorter {
+            background-image: url(../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class="header low">
+    <h1>Code coverage report for <span class="entity">./app/src/bulk-updater/edit-presentation-controller.js</span></h1>
+    <h2>
+        Statements: <span class="metric">8.11% <small>(3 / 37)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Branches: <span class="metric">0% <small>(0 / 8)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Functions: <span class="metric">0% <small>(0 / 9)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">8.11% <small>(3 / 37)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../../../index.html">All files</a> &#187; <a href="index.html">./app/src/bulk-updater/</a> &#187; edit-presentation-controller.js</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/*global angular, _ */
+angular.module('voyager.search')
+    .controller('EditPresentationCtrl', <span class="fstat-no" title="function not covered" >function ($scope, $modalInstance, tagService, configService, resultTotalCount, usSpinnerService, config) {</span>
+        'use strict';
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        var _tags = [];</span>
+<span class="cstat-no" title="statement not covered" >        var error = false;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        $scope.resultTotalCount = resultTotalCount;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        $scope.overLimit = resultTotalCount &gt; config.bulkLimit;</span>
+<span class="cstat-no" title="statement not covered" >        if ($scope.overLimit) {</span>
+<span class="cstat-no" title="statement not covered" >            $scope.error = 'This operation is limited to ' + config.bulkLimit + ' records.  Please refine your search.';</span>
+        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        $scope.select2Options = {</span>
+            'multiple': true,
+            'simple_tags': true,
+            'tags': _tags
+        };
+&nbsp;
+<span class="fstat-no" title="function not covered" >        function _init() {</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            tagService.fetchTags().then(<span class="fstat-no" title="function not covered" >function(tags) {</span></span>
+<span class="cstat-no" title="statement not covered" >                $.merge(_tags,tags);</span>
+            });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            _getFieldList();</span>
+        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        _init();</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        $scope.hasError = <span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >            return (error);</span>
+        };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        $scope.save = <span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >            if (!_.isEmpty($scope.fieldText) &amp;&amp; !_.isEmpty($scope.selectedField)) {</span>
+<span class="cstat-no" title="statement not covered" >                error = false;</span>
+<span class="cstat-no" title="statement not covered" >                $scope.error = false;</span>
+<span class="cstat-no" title="statement not covered" >                usSpinnerService.spin('task-spinner');</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                tagService.saveBulkField($scope.fieldText, $scope.selectedField).then(<span class="fstat-no" title="function not covered" >function(response){</span></span>
+<span class="cstat-no" title="statement not covered" >                    usSpinnerService.stop('task-spinner');</span>
+<span class="cstat-no" title="statement not covered" >                    if (angular.isUndefined(response.error)) {</span>
+<span class="cstat-no" title="statement not covered" >                        $scope.success = true;</span>
+<span class="cstat-no" title="statement not covered" >                        $scope.successMessage = response.documents + ' Items were edited.';</span>
+                    }
+                    else {
+<span class="cstat-no" title="statement not covered" >                        error = true;</span>
+<span class="cstat-no" title="statement not covered" >                        $scope.success = false;</span>
+<span class="cstat-no" title="statement not covered" >                        $scope.error = 'Sorry, please try again later.';</span>
+                    }
+                });
+            } else {
+<span class="cstat-no" title="statement not covered" >                error = true;</span>
+<span class="cstat-no" title="statement not covered" >                $scope.success = false;</span>
+<span class="cstat-no" title="statement not covered" >                $scope.error = 'Please select a field and enter a tag.';</span>
+            }
+        };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        $scope.cancel = <span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >            $modalInstance.dismiss('cancel');</span>
+        };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        $scope.done = <span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >            $modalInstance.close();</span>
+        };
+&nbsp;
+<span class="fstat-no" title="function not covered" >        function _getFieldList() {</span>
+<span class="cstat-no" title="statement not covered" >            $scope.fieldList = configService.getEditable();</span>
+        }
+&nbsp;
+    });
+&nbsp;</pre></td></tr>
+</table></pre>
+
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Aug 03 2015 16:37:56 GMT-0400 (Eastern Daylight Time)</div>
+</div>
+<script src="../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../sorter.js"></script>
+</body>
+</html>

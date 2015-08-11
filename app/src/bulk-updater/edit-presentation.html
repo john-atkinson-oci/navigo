@@ -1,0 +1,35 @@
+<div class="modal-header">
+	<h3>Edit All Items <span class="highlight">{{resultTotalCount | number}}</span></h3>
+ </div>
+<div class="alert alert-danger icon-error" style="margin-left:25px" ng-show="error">{{error}}</div>
+ <div class="modal-body">
+	<form class="form-bulk-updater" role="form">
+		<p>Edit a specific field for all of the selected items like adding a new copyright date or a new keyword.</p>
+		<p>WARNING: These tags are shared with all members of your organization and any tags will overwrite whatever else is shown in that field. This does NOT edit the metadata for this item, only the presentation.</p>
+
+		<div us-spinner spinner-key="task-spinner"></div>
+		<div class="alert alert-danger icon-error" ng-show="hasError()">{{error}}</div>
+		<div ng-if="success">{{successMessage}}</div>
+		<div class="row inline_form">
+			<div class="col-lg-4 col-md-4 col-sm-12">
+				<label for="selectField" aria-label="Select a Field" class="sr-only">Select a Field</label>
+				<select name="selectField" id="selectField" ui-select2="{minimumResultsForSearch: -1}" ng-model="selectedField">
+					<option value="">Select a Field</option>
+					<option ng-repeat="(key, field) in fieldList" value="{{::key}}">{{::key}}</option>
+				</select>
+			</div>
+			<div class="col-lg-8 col-md-8 col-sm-12 pull-right">
+				<input type="text" data-placeholder="Enter Tag" ui-select2="select2Options" max-length="256" ng-model="fieldText" style="width: 100%" />
+			</div>
+		</div>
+
+		<p class="small">To create editable fields, on the Classic UI Search Results page, go to View > Settings > Configure Display > Select the check box "Make Fields Editable" for the fields you wish to have this control.</p>
+	</form>
+</div>
+<div class="modal-footer">
+	<div class="cta_row">
+		<input type="submit" class="btn btn-primary" ng-click="save()" ng-disabled="overLimit" value="Save" />
+		<a href="javascript:;" class="link_secondary" ng-click="done()">Done</a>
+	</div>
+</div>
+<a href="javascript:;" class="modal-close icon-x" ng-click="cancel()"></a>

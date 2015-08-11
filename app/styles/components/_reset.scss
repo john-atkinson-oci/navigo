@@ -1,0 +1,64 @@
+//reset
+body, ul, li, p, fieldset {
+    margin: 0;
+    padding: 0;
+}
+
+ul, ul li {
+    list-style: none;
+}
+
+a {
+	outline: none;
+	text-decoration: none;
+
+	&:active, &:focus, &:hover {
+		text-decoration: none;
+		outline: none;
+	}
+
+	&.underline {
+		display: inline-block;
+		color: $linkColor;
+		@extend .animate;
+
+		.txt {
+			@extend .animate_txt;
+		}
+
+		&:hover .txt {
+			@extend .animate_txt;
+			box-shadow: 0 1px 0 $hoverUnderlineColor,  0 1px 0 $hoverUnderlineColor;
+		}
+
+		&:hover, &:active {
+			@extend .animate_txt;
+		}
+
+		&:hover {
+			color: $hoverLinkColor !important;
+		}
+
+		&:active {
+			color: $activeLinkColor !important;
+		}
+	}
+}
+
+html {
+  font-size: $defaultSize;
+}
+
+body {
+  font-family: $regularFont;
+  font-size: $defaultSize;
+  background-color: $backgroundColor;
+  color: $defaultTextColor;
+}
+
+.preload * {
+  -webkit-transition: none !important;
+  -moz-transition: none !important;
+  -ms-transition: none !important;
+  -o-transition: none !important;
+}

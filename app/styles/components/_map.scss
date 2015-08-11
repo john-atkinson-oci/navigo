@@ -1,0 +1,130 @@
+.dragging_disabled {
+	.leaflet-container {
+		cursor: pointer;
+	}
+
+
+	.leaflet-control-container {
+		.leaflet-top > div {
+			display: none;
+
+			&.leaflet-map-toggle-section {
+				display: block;
+			}
+		}
+	}
+}
+
+.leaflet-top {
+	.leaflet-control {
+		margin-top: 20px;
+		margin-left: 20px;
+	}
+}
+
+.leaflet-bottom {
+	bottom: 10px;
+}
+
+.leaflet-bar {
+	border-radius: 0;
+	a {
+		position: relative;
+		border-radius: 0 !important;
+		color: $mapControlColor;
+
+		&:hover {
+			color: $mapControlColor;
+		}
+
+		&.selected {
+			&:before {
+				border: 2px solid $mapControlSelectedColor;
+				content: '';
+				position: absolute;
+				width: 100%;
+				height: 100%;
+				left: 0;
+			}
+		}
+	}
+}
+
+.leaflet-draw-tooltip {
+	font-family: $semiStrongFont;
+	font-size: $smallSize;
+
+  	.leaflet-draw-tooltip-subtext {
+	  	display: none;
+	}
+}
+
+.leaflet-draw-tooltip > br {
+	display: none;
+}
+
+.leaflet-control-layers {
+	border-radius: 0;
+
+	.leaflet-control-layers-toggle {
+		color: $defaultTagBgColor;
+		font-size: 20px;
+		background: none;
+		line-height: 38px;
+		text-align: center;
+	}
+}
+
+.leaflet-control-layers-expanded {
+	padding: 0;
+}
+
+.leaflet-control-layers-list {
+	bottom: 0;
+	pointer-events: auto;
+
+	.leaflet-control-layers-overlays {
+		label {
+			border-bottom: 1px solid $ddHoverBg;
+			position: relative;
+			padding: 10px 35px;
+			margin-bottom: 0;
+
+			.leaflet-control-layers-selector {
+				position: absolute;
+				top: 9px;
+				left: 20px;
+			}
+
+			&:hover {
+				background-color: #ebeeef;
+			}
+
+			span {
+				margin-left: 5px;
+				max-width: 350px;
+				overflow: hidden;
+				display: block;
+			}
+
+			button {
+				position: absolute;
+				top: 9px;
+				right: 20px;
+				z-index: 2;
+				padding: 0;
+				color: #939aa3;
+				font-weight: bold;
+				background-color: transparent;
+			}
+
+			&:last-child {
+				border-bottom: 0;
+			}
+		}
+	}
+}
+
+.leaflet-touch .leaflet-draw-actions {
+	left: 32px;
+}

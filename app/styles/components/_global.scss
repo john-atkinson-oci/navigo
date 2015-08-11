@@ -1,0 +1,66 @@
+body {
+	min-width: $minWidth;
+
+	#header {
+		background-color: $white;
+	}
+
+	.inner {
+		position: relative;
+		max-width: $containerWidth;
+		margin: 0 auto;
+	}
+
+	.main_container {
+		clear: both;
+		padding-top: 64px;
+	}
+
+	.wrapper {
+		clear: both;
+		max-width: $maxWidth;
+		margin: 0 auto;
+	}
+
+	.page {
+		padding-top: 35px;
+		> .inner {
+			> header {
+				h1 {
+					font-family: $lightFont;
+					font-size: $xlSize;
+					margin-bottom: 30px;
+					letter-spacing: -0.05em;
+				}
+			}
+		}
+
+		.content {
+			clear: both;
+			padding-top: 30px;
+		}
+	}
+	.container-fluid {
+		padding: 0 20px;
+	}
+}
+
+.full {
+	.main_container {
+		padding-bottom: 30px;
+		overflow-x: hidden;
+	}
+}
+
+.missing_data {
+	color: $white;
+	font-size: $smallSize;
+	font-family: $regularFont;
+	display: block;
+	text-align: left;
+	padding: 9px 14px;
+}
+
+.righty {
+	text-align: right;
+}

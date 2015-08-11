@@ -1,0 +1,39 @@
+<div class="page queue">
+	<ng-include src="'src/cart/cart-nav.html'"></ng-include>
+	<div class="queue-secondary">
+		<div class="inner" ng-controller="JobsCtrl">
+			<div class="content queue-content">
+				<span us-spinner spinner-key="job-spinner" spinner-start-active="1"></span>
+				<table class="table table-striped" id="historyTable">
+					<thead>
+						<tr class="semi">
+							<th>Status</th>
+							<th>Task</th>
+							<th>Requested</th>
+							<th>Started</th>
+							<th>Ended</th>
+							<th>Items Processed</th>
+							<!--<th>Queue</th>-->
+							<th class="actions">Actions</th>
+						</tr>
+					</thead>
+				  	<tbody>
+						<tr ng-repeat="job in jobs">
+							<td title="{{job.task}}"><i class="{{job.statusIcon.icon}}" style="color: {{job.statusIcon.color}}"></i></td>
+							<td><a href="#/status/{{job.id}}?disp={{display}}" class="semi underline"><span class="txt">{{job.displayName}} ({{job.id}})</span></a></td>
+							<td>{{job.queue_time | date : 'M/d/yy h:mm a'}}</td>
+							<td>{{job.start_time | date : 'M/d/yy h:mm a'}}</td>
+							<td>{{job.finish_time | date : 'M/d/yy h:mm a'}}</td>
+							<td><a href="javascript:;" ng-click="viewItems(job)">Items Processed</a></td>
+							<!--<td><a href="#/status/{{job.id}}" class="underline"><span class="txt">View Items</span></a></td>-->
+							<td class="actions">
+								<a href="javascript:;" ng-click="download(job)" class="{{!job.hasDownload && 'invisible' || ''}}" title="Download"><span class="icon-queue_download"></span></a>
+								<a href="javascript:;" ng-click="run(job)" ng-show="isDone(job)" title="Run Again"><span class="icon-queue_rerun"></span></a>
+							</td>
+						</tr>
+				  	</tbody>
+				</table>
+			 </div>
+		</div>
+	</div>
+</div>

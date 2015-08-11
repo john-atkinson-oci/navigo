@@ -1,0 +1,528 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for ./app/src/search/search-input-controller.js</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../../../prettify.css">
+    <link rel="stylesheet" href="../../../base.css">
+    <style type='text/css'>
+        div.coverage-summary .sorter {
+            background-image: url(../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class="header low">
+    <h1>Code coverage report for <span class="entity">./app/src/search/search-input-controller.js</span></h1>
+    <h2>
+        Statements: <span class="metric">8.33% <small>(8 / 96)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Branches: <span class="metric">0% <small>(0 / 40)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Functions: <span class="metric">0% <small>(0 / 12)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">8.33% <small>(8 / 96)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../../../index.html">All files</a> &#187; <a href="index.html">./app/src/search/</a> &#187; search-input-controller.js</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/*global angular, _ */
+&nbsp;
+angular.module('voyager.search')
+	.controller('SearchInputCtrl', <span class="fstat-no" title="function not covered" >function ($scope, config, $location, searchService, $timeout, filterService, mapUtil, sugar) {</span>
+		'use strict';
+&nbsp;
+<span class="cstat-no" title="statement not covered" >		var placeChanged = false;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >		$scope.search = {};</span>
+<span class="cstat-no" title="statement not covered" >		$scope.submitSearch = _submitSearch;</span>
+<span class="cstat-no" title="statement not covered" >		$scope.clearField = _clearField;</span>
+<span class="cstat-no" title="statement not covered" >		$scope.locationChange = _locationChange;</span>
+<span class="cstat-no" title="statement not covered" >        $scope.showLocation = config.homepage &amp;&amp; config.homepage.showPlaceQuery !== false;</span>
+<span class="cstat-no" title="statement not covered" >		$scope.drawingTypes = ['Within', 'Intersects'];</span>
+<span class="cstat-no" title="statement not covered" >		$scope.selectedDrawingType = ($location.search())['place.op'] === 'intersects' ? 'Intersects' : 'Within';</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >		$scope.placeOpChange = <span class="fstat-no" title="function not covered" >function(type) {</span></span>
+<span class="cstat-no" title="statement not covered" >			$scope.selectedDrawingType = type;</span>
+		};
+&nbsp;
+<span class="cstat-no" title="statement not covered" >		_init();</span>
+&nbsp;
+		// listen to stateChangeSuccess event to toggle search form
+<span class="cstat-no" title="statement not covered" >		$scope.$on('$stateChangeSuccess', _init);</span>
+<span class="cstat-no" title="statement not covered" >		$scope.$on('updateBBox', <span class="fstat-no" title="function not covered" >function(event, args){</span></span>
+<span class="cstat-no" title="statement not covered" >			_updatePlaceToBbox(args);</span>
+		});
+&nbsp;
+<span class="cstat-no" title="statement not covered" >		$scope.$on('clearSearch', _clearAllField);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >		$scope.$on('filterChanged', <span class="fstat-no" title="function not covered" >function(args){</span></span>
+<span class="cstat-no" title="statement not covered" >            if(args &amp;&amp; args.refresh === false) {</span>
+<span class="cstat-no" title="statement not covered" >                return;</span>
+            }
+<span class="cstat-no" title="statement not covered" >			_init();</span>
+		});
+&nbsp;
+		/**
+		 * @function Populate query and location fields based on querystring
+		 */
+<span class="fstat-no" title="function not covered" >		function _init() {</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >			if ($location.path() !== '/search') {</span>
+<span class="cstat-no" title="statement not covered" >				$scope.showSearch = false;</span>
+<span class="cstat-no" title="statement not covered" >				return;</span>
+			}
+&nbsp;
+<span class="cstat-no" title="statement not covered" >			$scope.showSearch = true;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >			var initParams = $location.search();</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >			if (!_.isEmpty(initParams.q)) {</span>
+<span class="cstat-no" title="statement not covered" >				$scope.search.q = initParams.q;</span>
+			} else {
+<span class="cstat-no" title="statement not covered" >				$scope.search.q = '';</span>
+			}
+&nbsp;
+<span class="cstat-no" title="statement not covered" >			if (!_.isEmpty(initParams.place)) {</span>
+<span class="cstat-no" title="statement not covered" >				$scope.search.place = initParams.place;</span>
+<span class="cstat-no" title="statement not covered" >				var placeType = initParams['place.op'];</span>
+<span class="cstat-no" title="statement not covered" >				if(angular.isDefined(placeType)) {</span>
+<span class="cstat-no" title="statement not covered" >					$scope.search['place.op'] = placeType;</span>
+<span class="cstat-no" title="statement not covered" >					$scope.selectedDrawingType = _.classify(placeType);</span>
+				}
+<span class="cstat-no" title="statement not covered" >				_setBBoxNull();</span>
+			}
+			else <span class="cstat-no" title="statement not covered" >if (!_.isEmpty(initParams.bbox)) {</span>
+<span class="cstat-no" title="statement not covered" >				_updatePlaceToBbox(initParams);</span>
+			} else {
+<span class="cstat-no" title="statement not covered" >				$scope.search.place = '';</span>
+			}
+		}
+&nbsp;
+<span class="fstat-no" title="function not covered" >		function _updatePlaceToBbox(params) {</span>
+<span class="cstat-no" title="statement not covered" >			$scope.search.place = null;</span>
+<span class="cstat-no" title="statement not covered" >			$location.search('place', params.place);</span>
+<span class="cstat-no" title="statement not covered" >            $location.search('place.id', null);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >			$timeout(<span class="fstat-no" title="function not covered" >function() {</span></span>
+<span class="cstat-no" title="statement not covered" >				$scope.search.place = sugar.formatBBox(params.place);</span>
+<span class="cstat-no" title="statement not covered" >				$scope.search['place.op'] = params['place.op'];</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >				if (!_.isNull(params.vw)) {</span>
+<span class="cstat-no" title="statement not covered" >					$scope.search.vw = params.vw;</span>
+				}
+			}, 1);
+		}
+&nbsp;
+<span class="fstat-no" title="function not covered" >		function _setBBoxNull() {</span>
+			//$scope.search.place = null;
+<span class="cstat-no" title="statement not covered" >			$scope.search['place.op'] = null;</span>
+<span class="cstat-no" title="statement not covered" >			$scope.search.vw = null;</span>
+		}
+&nbsp;
+<span class="fstat-no" title="function not covered" >		function _submitSearch() {</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >			if (placeChanged) {</span>
+<span class="cstat-no" title="statement not covered" >                $location.search('place.id', null);</span>
+<span class="cstat-no" title="statement not covered" >				$scope.$emit('clearBboxEvent', {});</span>
+			}
+<span class="cstat-no" title="statement not covered" >			$scope.search['place.op'] = $scope.selectedDrawingType.toLowerCase();</span>
+<span class="cstat-no" title="statement not covered" >			if (_.isEmpty($scope.search.place)) {</span>
+<span class="cstat-no" title="statement not covered" >				$scope.search.place = null;</span>
+<span class="cstat-no" title="statement not covered" >                $location.search('place.id', null);</span>
+<span class="cstat-no" title="statement not covered" >				_setBBoxNull();</span>
+			} else {
+<span class="cstat-no" title="statement not covered" >				if (placeChanged &amp;&amp; mapUtil.isBbox($scope.search.place)) {</span>
+<span class="cstat-no" title="statement not covered" >					_setBBoxNull();</span>
+				}
+			}
+&nbsp;
+<span class="cstat-no" title="statement not covered" >			if (_.isEmpty($scope.search.q)) {</span>
+<span class="cstat-no" title="statement not covered" >				$scope.search.q = null;</span>
+			}
+&nbsp;
+<span class="cstat-no" title="statement not covered" >			if (!_.isEmpty($scope.search.q) || !_.isEmpty($scope.search.place)) {</span>
+<span class="cstat-no" title="statement not covered" >				var params = $location.search();</span>
+<span class="cstat-no" title="statement not covered" >				delete(params.id);</span>
+<span class="cstat-no" title="statement not covered" >				delete(params.recent);</span>
+<span class="cstat-no" title="statement not covered" >                params.block='false';</span>
+<span class="cstat-no" title="statement not covered" >				_.extend(params, $scope.search);</span>
+<span class="cstat-no" title="statement not covered" >				_.extend(params, {'fq': filterService.getFilterAsLocationParams()});</span>
+<span class="cstat-no" title="statement not covered" >				$location.search(params);</span>
+<span class="cstat-no" title="statement not covered" >				$scope.$emit('filterEvent', {}); </span> //TODO: this event is captured above, pass arg to ignore it
+			}
+&nbsp;
+<span class="cstat-no" title="statement not covered" >			placeChanged = false;</span>
+		}
+&nbsp;
+<span class="fstat-no" title="function not covered" >		function _locationChange() {</span>
+<span class="cstat-no" title="statement not covered" >			placeChanged = true;</span>
+		}
+&nbsp;
+<span class="fstat-no" title="function not covered" >		function _clearField(field, isPlace) {</span>
+<span class="cstat-no" title="statement not covered" >            var eventArgs = {};</span>
+<span class="cstat-no" title="statement not covered" >            $location.search('block', null);</span>
+<span class="cstat-no" title="statement not covered" >			if (isPlace) {</span>
+<span class="cstat-no" title="statement not covered" >				eventArgs.isBbox = mapUtil.isBbox($scope.search.place);</span>
+<span class="cstat-no" title="statement not covered" >				$scope.search.place = '';</span>
+<span class="cstat-no" title="statement not covered" >                $location.search('place.id', null);</span>
+<span class="cstat-no" title="statement not covered" >				$location.search('place.op', null);</span>
+<span class="cstat-no" title="statement not covered" >                $location.search('place', null);</span>
+<span class="cstat-no" title="statement not covered" >				_locationChange();</span>
+			} else {
+<span class="cstat-no" title="statement not covered" >                $location.search(field, null);</span>
+<span class="cstat-no" title="statement not covered" >				$scope.search[field] = '';</span>
+			}
+<span class="cstat-no" title="statement not covered" >            $scope.$emit('removeFilterEvent', eventArgs); </span>//TODO: this event is captured above, pass arg to ignore it
+		}
+&nbsp;
+<span class="fstat-no" title="function not covered" >		function _clearAllField(event, args) {</span>
+<span class="cstat-no" title="statement not covered" >            $location.search('place.id', null);</span>
+<span class="cstat-no" title="statement not covered" >            $location.search('block', null);</span>
+<span class="cstat-no" title="statement not covered" >			$scope.search = {};</span>
+<span class="cstat-no" title="statement not covered" >			filterService.clear();</span>
+<span class="cstat-no" title="statement not covered" >            if(args &amp;&amp; args.filter === true) {</span>
+<span class="cstat-no" title="statement not covered" >                $scope.$emit('filterEvent', {}); </span>//TODO: this event is captured above, pass arg to ignore it
+            }
+		}
+&nbsp;
+	});
+&nbsp;</pre></td></tr>
+</table></pre>
+
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Aug 03 2015 16:37:56 GMT-0400 (Eastern Daylight Time)</div>
+</div>
+<script src="../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../sorter.js"></script>
+</body>
+</html>

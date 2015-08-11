@@ -1,0 +1,642 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for ./app/src/search/search-service.js</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../../../prettify.css">
+    <link rel="stylesheet" href="../../../base.css">
+    <style type='text/css'>
+        div.coverage-summary .sorter {
+            background-image: url(../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class="header low">
+    <h1>Code coverage report for <span class="entity">./app/src/search/search-service.js</span></h1>
+    <h2>
+        Statements: <span class="metric">17.98% <small>(16 / 89)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Branches: <span class="metric">8.33% <small>(2 / 24)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Functions: <span class="metric">6.9% <small>(2 / 29)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">17.98% <small>(16 / 89)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../../../index.html">All files</a> &#187; <a href="index.html">./app/src/search/</a> &#187; search-service.js</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/*global angular, $, _ */
+&nbsp;
+angular.module('voyager.search').
+    factory('searchService', function ($http, translateService, filterService, urlUtil, config, queryBuilder, sugar, $q, configService, solrGrunt, cartService, $analytics, authService, resultsDecorator) {
+        'use strict';
+        var _page = 1;
+        var _idsPage = _page;
+        var _itemsPerPage = 24;
+        var _lastResult = {};
+        var _recordIds = [];
+        var _sortDirection = angular.isDefined(config.defaultSortDirection)? <span class="branch-0 cbranch-no" title="branch not covered" >config.defaultSortDirection </span>: 'desc';
+        var _defaultSortField = angular.isDefined(config.defaultSort)? <span class="branch-0 cbranch-no" title="branch not covered" >config.defaultSort </span>: 'score';
+        var _sortField = 'score';
+        var _mapView = '0 0 0';
+        var _searchParams;
+&nbsp;
+        var getMapView = <span class="fstat-no" title="function not covered" >function (mapView) {</span>
+<span class="cstat-no" title="statement not covered" >            var val;</span>
+<span class="cstat-no" title="statement not covered" >            if (_mapView) {  //_view is set via map. use it. will now be synced on url</span>
+<span class="cstat-no" title="statement not covered" >                val = _mapView;</span>
+<span class="cstat-no" title="statement not covered" >                _mapView = null;</span>
+<span class="cstat-no" title="statement not covered" >                return val;</span>
+            }
+<span class="cstat-no" title="statement not covered" >            return mapView;</span>
+        };
+&nbsp;
+<span class="fstat-no" title="function not covered" >        function _setParams(params) {</span>
+<span class="cstat-no" title="statement not covered" >            if(angular.isUndefined(_sortField)) {</span>
+<span class="cstat-no" title="statement not covered" >                _sortField = _defaultSortField;</span>
+            }
+<span class="cstat-no" title="statement not covered" >            if(angular.isDefined(params.sort)) {</span>
+<span class="cstat-no" title="statement not covered" >                _sortField = params.sort;</span>
+            }
+<span class="cstat-no" title="statement not covered" >            if(angular.isDefined(params.sortdir)) {</span>
+<span class="cstat-no" title="statement not covered" >                _sortDirection = params.sortdir;</span>
+            }
+<span class="cstat-no" title="statement not covered" >            _searchParams = solrGrunt.getSolrParams(params);</span>
+        }
+&nbsp;
+<span class="fstat-no" title="function not covered" >        function _track(solrPage, data, endTime) {</span>
+<span class="cstat-no" title="statement not covered" >            $analytics.eventTrack('search', {</span>
+                category: 'time', label: solrPage, value:endTime  // jshint ignore:line
+            });
+<span class="cstat-no" title="statement not covered" >            $analytics.eventTrack('search', {</span>
+                category: 'size', label: solrPage, value:data.response.docs.length  // jshint ignore:line
+            });
+<span class="cstat-no" title="statement not covered" >            $analytics.eventTrack('search-group', {</span>
+                category: authService.getGroupsJoined(), label: solrPage  // jshint ignore:line
+            });
+        }
+&nbsp;
+//        function _featureGroupVisitor(featureGroups, doc) {
+//            if(angular.isDefined(doc.tag_flags)) {
+//                doc.featureGroup = featureGroups[doc.tag_flags[0]];
+//                if(doc.featureGroup) {
+//                    doc.featuredName = doc.featureGroup.name;
+//                }
+//            }
+//        }
+&nbsp;
+        //public methods - client interface
+        return {
+            doSearch2: <span class="fstat-no" title="function not covered" >function (params, append) {</span>
+<span class="cstat-no" title="statement not covered" >                _setParams(params);</span>
+<span class="cstat-no" title="statement not covered" >                var service = queryBuilder.doBuild2(_searchParams, _page, _itemsPerPage, _sortDirection, _sortField);</span>
+<span class="cstat-no" title="statement not covered" >                var solrPage = service.substring(service.indexOf('solr')-1);</span>
+<span class="cstat-no" title="statement not covered" >                urlUtil.buildSearchUrl2(_searchParams, _page, getMapView(params.vw), params.view, _sortField); </span>//keeps the url in sync
+<span class="cstat-no" title="statement not covered" >                var startTime = Date.now();</span>
+<span class="cstat-no" title="statement not covered" >                return $http.jsonp(service).success(<span class="fstat-no" title="function not covered" >function (data) {</span></span>
+<span class="cstat-no" title="statement not covered" >                    var endTime = Date.now() - startTime;</span>
+<span class="cstat-no" title="statement not covered" >                    _lastResult = data;</span>
+<span class="cstat-no" title="statement not covered" >                    if(!append) {</span>
+<span class="cstat-no" title="statement not covered" >                        _recordIds = [];</span>
+<span class="cstat-no" title="statement not covered" >                        _idsPage = _page;</span>
+                    }
+                    //var visitor = _.partial(_featureGroupVisitor,featuredService.getFeatures());
+<span class="cstat-no" title="statement not covered" >                    resultsDecorator.decorate(data.response.docs, _recordIds);</span>
+<span class="cstat-no" title="statement not covered" >                    _track(solrPage, data, endTime);</span>
+                });
+            },
+&nbsp;
+            setPage: <span class="fstat-no" title="function not covered" >function (value) {</span>
+<span class="cstat-no" title="statement not covered" >                _page = value;</span>
+            },
+&nbsp;
+            getPage: <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >                return _page;</span>
+            },
+&nbsp;
+            clear: <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >                filterService.clear();</span>
+<span class="cstat-no" title="statement not covered" >                _page = 1;</span>
+            },
+&nbsp;
+            getLastSearch: <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >                return urlUtil.getLastUrl();</span>
+            },
+&nbsp;
+            setSort: <span class="fstat-no" title="function not covered" >function (direction) {</span>
+<span class="cstat-no" title="statement not covered" >                _sortDirection = direction;</span>
+            },
+&nbsp;
+            setSortField: <span class="fstat-no" title="function not covered" >function (field) {</span>
+<span class="cstat-no" title="statement not covered" >                _sortField = field;</span>
+            },
+&nbsp;
+            getSortField: <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >                return _sortField;</span>
+            },
+&nbsp;
+            getPrettySortField: <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >                return translateService.getFieldName(_sortField);</span>
+            },
+&nbsp;
+            getSort: <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >                return _sortDirection;</span>
+            },
+&nbsp;
+            setMapView: <span class="fstat-no" title="function not covered" >function (val) {</span>
+<span class="cstat-no" title="statement not covered" >                _mapView = val;</span>
+            },
+&nbsp;
+            setItemsPerPage: <span class="fstat-no" title="function not covered" >function(val) {</span>
+<span class="cstat-no" title="statement not covered" >                _itemsPerPage = val;</span>
+            },
+&nbsp;
+            getItemsPerPage: <span class="fstat-no" title="function not covered" >function() {</span>
+<span class="cstat-no" title="statement not covered" >                return _itemsPerPage;</span>
+            },
+&nbsp;
+            getResults: <span class="fstat-no" title="function not covered" >function() {</span>
+<span class="cstat-no" title="statement not covered" >                return _lastResult;</span>
+            },
+&nbsp;
+            hasRecords: function() {
+                return _recordIds.length &gt; 0;
+            },
+&nbsp;
+            getPageIds: <span class="fstat-no" title="function not covered" >function() {</span>
+<span class="cstat-no" title="statement not covered" >                return _recordIds;</span>
+            },
+&nbsp;
+            getPreviousId: <span class="fstat-no" title="function not covered" >function(id) {</span>
+<span class="cstat-no" title="statement not covered" >                var index = _.findIndex(_recordIds,{id:id});</span>
+<span class="cstat-no" title="statement not covered" >                if(index !== 0) {</span>
+<span class="cstat-no" title="statement not covered" >                    return _recordIds[index-1];</span>
+                }
+<span class="cstat-no" title="statement not covered" >                return null;</span>
+            },
+&nbsp;
+            getNextId: <span class="fstat-no" title="function not covered" >function(id) {</span>
+<span class="cstat-no" title="statement not covered" >                var deferred = $q.defer();</span>
+<span class="cstat-no" title="statement not covered" >                var index = _.findIndex(_recordIds,{id:id}), nextId = null;</span>
+<span class="cstat-no" title="statement not covered" >                if(index !== _recordIds.length-1) {</span>
+<span class="cstat-no" title="statement not covered" >                    nextId = _recordIds[index+1];</span>
+<span class="cstat-no" title="statement not covered" >                    deferred.resolve(nextId);</span>
+                }
+<span class="cstat-no" title="statement not covered" >                if(nextId === null) {</span>
+<span class="cstat-no" title="statement not covered" >                    _idsPage = _idsPage + 1;</span>
+<span class="cstat-no" title="statement not covered" >                    var service = queryBuilder.doBuild2(_searchParams, _idsPage, _itemsPerPage, _sortDirection, _sortField);</span>
+<span class="cstat-no" title="statement not covered" >                    $http.jsonp(service).success(<span class="fstat-no" title="function not covered" >function (data) {</span></span>
+<span class="cstat-no" title="statement not covered" >                        $.each(data.response.docs, <span class="fstat-no" title="function not covered" >function (index, doc) {</span></span>
+<span class="cstat-no" title="statement not covered" >                            if(index === 0) {  //first one in the next chunk is the next record</span>
+<span class="cstat-no" title="statement not covered" >                                nextId = {id:doc.id, shard:doc.shard};</span>
+                            }
+<span class="cstat-no" title="statement not covered" >                            _recordIds.push({id:doc.id, shard:doc.shard});</span>
+                        });
+<span class="cstat-no" title="statement not covered" >                        deferred.resolve(nextId);</span>
+                    });
+                }
+<span class="cstat-no" title="statement not covered" >                return deferred.promise;</span>
+            },
+&nbsp;
+            getAllIds: <span class="fstat-no" title="function not covered" >function() {</span>
+<span class="cstat-no" title="statement not covered" >                var service = queryBuilder.buildAllIds(_searchParams);</span>
+<span class="cstat-no" title="statement not covered" >                return $http.jsonp(service);</span>
+            },
+&nbsp;
+            getAllBboxes: <span class="fstat-no" title="function not covered" >function() {</span>
+<span class="cstat-no" title="statement not covered" >                var service = queryBuilder.buildAllBboxes(_searchParams);</span>
+<span class="cstat-no" title="statement not covered" >                return $http.jsonp(service);</span>
+            },
+&nbsp;
+            testEsriGeocodeService: <span class="fstat-no" title="function not covered" >function() {</span>
+<span class="cstat-no" title="statement not covered" >                var d = $q.defer();</span>
+<span class="cstat-no" title="statement not covered" >                $http.jsonp(queryBuilder.buildEsriGeocodeServiceTestQuery())</span>
+                    .success(<span class="fstat-no" title="function not covered" >function(rsp) {</span>
+<span class="cstat-no" title="statement not covered" >                        if (!_.isEmpty(rsp.placefinder.results)) {</span>
+<span class="cstat-no" title="statement not covered" >                            d.resolve(true);</span>
+                        }
+                        else {
+<span class="cstat-no" title="statement not covered" >                            d.resolve(false);</span>
+                        }
+                    });
+<span class="cstat-no" title="statement not covered" >                return d.promise;</span>
+            }
+        };
+&nbsp;
+    });
+&nbsp;</pre></td></tr>
+</table></pre>
+
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Aug 03 2015 16:37:56 GMT-0400 (Eastern Daylight Time)</div>
+</div>
+<script src="../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../sorter.js"></script>
+</body>
+</html>

@@ -1,0 +1,1278 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for ./app/src/config/config-service.js</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../../../prettify.css">
+    <link rel="stylesheet" href="../../../base.css">
+    <style type='text/css'>
+        div.coverage-summary .sorter {
+            background-image: url(../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class="header medium">
+    <h1>Code coverage report for <span class="entity">./app/src/config/config-service.js</span></h1>
+    <h2>
+        Statements: <span class="metric">53.3% <small>(113 / 212)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Branches: <span class="metric">30.3% <small>(20 / 66)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Functions: <span class="metric">42.86% <small>(27 / 63)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">53.55% <small>(113 / 211)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../../../index.html">All files</a> &#187; <a href="index.html">./app/src/config/</a> &#187; config-service.js</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318
+319
+320
+321
+322
+323
+324
+325
+326
+327
+328
+329
+330
+331
+332
+333
+334
+335
+336
+337
+338
+339
+340
+341
+342
+343
+344
+345
+346
+347
+348
+349
+350
+351
+352
+353
+354
+355
+356
+357
+358
+359
+360
+361
+362
+363
+364
+365
+366
+367
+368
+369
+370
+371
+372
+373
+374
+375
+376
+377
+378
+379
+380
+381
+382
+383
+384
+385
+386
+387
+388
+389
+390
+391
+392
+393
+394
+395
+396
+397
+398
+399
+400
+401
+402
+403
+404
+405
+406
+407
+408
+409
+410
+411
+412</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">23</span>
+<span class="cline-any cline-yes">23</span>
+<span class="cline-any cline-yes">23</span>
+<span class="cline-any cline-yes">23</span>
+<span class="cline-any cline-yes">23</span>
+<span class="cline-any cline-yes">23</span>
+<span class="cline-any cline-yes">23</span>
+<span class="cline-any cline-yes">23</span>
+<span class="cline-any cline-yes">23</span>
+<span class="cline-any cline-yes">23</span>
+<span class="cline-any cline-yes">23</span>
+<span class="cline-any cline-yes">23</span>
+<span class="cline-any cline-yes">23</span>
+<span class="cline-any cline-yes">23</span>
+<span class="cline-any cline-yes">23</span>
+<span class="cline-any cline-yes">23</span>
+<span class="cline-any cline-yes">23</span>
+<span class="cline-any cline-yes">23</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">26</span>
+<span class="cline-any cline-yes">31</span>
+<span class="cline-any cline-yes">31</span>
+<span class="cline-any cline-yes">31</span>
+<span class="cline-any cline-yes">31</span>
+<span class="cline-any cline-yes">31</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">26</span>
+<span class="cline-any cline-yes">26</span>
+<span class="cline-any cline-yes">26</span>
+<span class="cline-any cline-yes">26</span>
+<span class="cline-any cline-yes">26</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">25</span>
+<span class="cline-any cline-yes">25</span>
+<span class="cline-any cline-yes">25</span>
+<span class="cline-any cline-yes">25</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">26</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">23</span>
+<span class="cline-any cline-yes">23</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">23</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">'use strict';
+angular.module('voyager.config').
+    factory('configService', function (config, translateService, $http, $q, catalogService, $location) {
+        var _configId = null;
+        var _systemFilters = null;
+        var _systemFilterMap = {};
+        var _displayFields = {};
+        var _summaryFields = {};
+        var _solrParams = '';
+        var _summarySolrParams = '';
+        var _tableFields = [];
+        var _displayFieldsOrder = {};
+        var _displayFieldsStyle = {};
+        var _summaryFieldsOrder = {};
+        var _summaryFieldsStyle = {};
+        var _tableColumnWidthMap = {};
+        var _shards = null;
+        var _homepage = {};
+        var _editable = {};
+        var _defaultMapView = {lng: 0, lat: 0, zoom: 3};
+        var _catalogsPromise;
+&nbsp;
+        function _setConfigFields(displayFields) {
+            $.each(displayFields, function (index, value) {
+                _displayFields[value.name] =  translateService.getFieldName(value.name);
+                _displayFieldsOrder[value.name] = index;
+                _displayFieldsStyle[value.name] = value.style;
+                _solrParams += ',' + value.name;
+                <span class="missing-if-branch" title="if path not taken" >I</span>if (value.editable) {
+<span class="cstat-no" title="statement not covered" >                    _editable[value.name] = value.name;</span>
+                }
+            });
+        }
+&nbsp;
+        function _setSummaryFields(summaryFields) {
+            $.each(summaryFields, function (index, value) {
+                _summaryFields[value.name] =  translateService.getFieldName(value.name);
+                _summaryFieldsOrder[value.name] = index;
+                _summaryFieldsStyle[value.name] = value.style;
+                _summarySolrParams += ',' + value.name;
+            });
+        }
+&nbsp;
+<span class="fstat-no" title="function not covered" >        function _setTableFields(table) {</span>
+<span class="cstat-no" title="statement not covered" >            _tableFields = [];</span>
+<span class="cstat-no" title="statement not covered" >            $.each(table, <span class="fstat-no" title="function not covered" >function (index, value) {</span></span>
+<span class="cstat-no" title="statement not covered" >                var tableField = {field:value.field, display:translateService.getFieldName(value.field), width: value.width};</span>
+<span class="cstat-no" title="statement not covered" >                _tableFields.push(tableField);</span>
+<span class="cstat-no" title="statement not covered" >                if(angular.isDefined(value.width)) {</span>
+<span class="cstat-no" title="statement not covered" >                    _tableColumnWidthMap[value.field] = {value:parseFloat(value.width)};</span>
+                }
+            });
+        }
+&nbsp;
+        function _updateConfig(configData) {
+            _shards = null;
+            _systemFilterMap = _.indexBy(configData.filters, 'field');
+            _setConfigFields(configData.display.fields);
+            _homepage = configData.homepage;
+            if(configData.summary) {
+                _setSummaryFields(configData.summary.fields);
+            } else {
+                _summaryFields = {};
+                _summarySolrParams = '';
+                _summaryFieldsOrder = {};
+                _summaryFieldsStyle = {};
+            }
+            <span class="missing-if-branch" title="if path not taken" >I</span>if(angular.isDefined(configData.table)) {
+<span class="cstat-no" title="statement not covered" >                _setTableFields(configData.table);</span>
+            }
+        }
+&nbsp;
+        try {
+            _updateConfig(config.settings.data);
+        } catch(err) {
+            //console.log(err);
+        }
+&nbsp;
+        function _setFilterDataTypes() {
+            var filterString = _.keys(_systemFilterMap).join(' ');
+&nbsp;
+            return $http.jsonp(config.root + 'solr/fields/select?q=name:(' + filterString + ')&amp;fl=name,multivalued,disp:disp_en,stype&amp;wt=json&amp;json.wrf=JSON_CALLBACK&amp;rows=1000').then(function(filterData){
+                _.each(filterData.data.response.docs, function(doc) {
+                    var filter = _systemFilterMap[doc.name];
+                    filter.stype = doc.stype;
+                    filter.multivalued = doc.multivalued;
+                    filter.disp = doc.disp;
+                });
+            });
+        }
+&nbsp;
+        function _load(configId) {
+            return $http.get(config.root + 'api/rest/display/config/' + configId + '.json').then(function (res) {
+                _configId = configId;
+                config.settings = res;
+                _updateConfig(config.settings.data);
+&nbsp;
+                return _setFilterDataTypes().then(function() {
+                    return config.settings.data;
+                });
+&nbsp;
+            });
+        }
+&nbsp;
+        function _setDefaultConfig() {
+            <span class="missing-if-branch" title="else path not taken" >E</span>if(_configId !== null) {
+                _configId = null;
+                return _load(config.configid).then(function() {
+                    $location.search('disp', config.configid);
+                    return {configId: config.configid};
+                });
+            } else {
+                //TODO what if _load failed (bad config 404) settings won't be set
+<span class="cstat-no" title="statement not covered" >                if(config.settings) {</span>
+<span class="cstat-no" title="statement not covered" >                    _updateConfig(config.settings.data);</span>
+<span class="cstat-no" title="statement not covered" >                    return $q.when({configId: config.configid});</span>
+                } else {  //no settings set, load "default" config
+<span class="cstat-no" title="statement not covered" >                    return _load(config.configid).then(<span class="fstat-no" title="function not covered" >function() {</span></span>
+<span class="cstat-no" title="statement not covered" >                        $location.search('disp', config.configid);</span>
+<span class="cstat-no" title="statement not covered" >                        return {configId: config.configid};</span>
+                    }, <span class="fstat-no" title="function not covered" >function(error) {</span>
+                        //failed to set "default" config, now what?
+<span class="cstat-no" title="statement not covered" >                        return $q.reject(error);</span>
+                    });
+                }
+            }
+        }
+&nbsp;
+        function _setFilterConfig(configId) {
+            var deferred = $q.defer();
+            <span class="missing-if-branch" title="if path not taken" >I</span>if(configId === _configId) {  //don't reload same config
+<span class="cstat-no" title="statement not covered" >                deferred.resolve({configId: configId});</span>
+            }
+            //var configId = params['voyager.config.id'];
+            else if (angular.isDefined(configId)) {
+                _load(configId).then(function() {
+                    deferred.resolve({configId: configId});
+                }, <span class="fstat-no" title="function not covered" >function() {</span> //probably 404, invalid config
+<span class="cstat-no" title="statement not covered" >                    _setDefaultConfig().then(<span class="fstat-no" title="function not covered" >function(config) {</span></span>
+<span class="cstat-no" title="statement not covered" >                        deferred.resolve(config);</span>
+                    });
+                });
+            } else {  //reset to default
+                _setDefaultConfig().then(function(config) {
+                    deferred.resolve(config);
+                });
+            }
+            return deferred.promise;
+        }
+&nbsp;
+<span class="fstat-no" title="function not covered" >        function _createCatalogFacet(catalog, urlShards) {</span>
+<span class="cstat-no" title="statement not covered" >            var selected = _.indexOf(urlShards, catalog.id);</span>
+<span class="cstat-no" title="statement not covered" >            return {display: catalog.name, style: 'CHECK', isSelected: selected !== -1, field: 'shard', hasCount: false, id: catalog.id, raw: catalog.url};</span>
+        }
+&nbsp;
+<span class="fstat-no" title="function not covered" >        function _createCatalogFilter(catalogFilter, facetTypes) {</span>
+<span class="cstat-no" title="statement not covered" >            if (!catalogFilter) {</span>
+<span class="cstat-no" title="statement not covered" >                catalogFilter = {field: 'shards', value: 'Catalog', values: []};</span>
+<span class="cstat-no" title="statement not covered" >                facetTypes.unshift(catalogFilter);</span>
+            }
+<span class="cstat-no" title="statement not covered" >            catalogFilter.value = 'Catalog';</span>
+<span class="cstat-no" title="statement not covered" >            var urlShards = $location.search().shards;</span>
+<span class="cstat-no" title="statement not covered" >            urlShards = urlShards.split(',');</span>
+<span class="cstat-no" title="statement not covered" >            _catalogsPromise = catalogService.fetch().then(<span class="fstat-no" title="function not covered" >function (catalogs) {</span></span>
+<span class="cstat-no" title="statement not covered" >                var selectedCount = 0;</span>
+<span class="cstat-no" title="statement not covered" >                _.each(catalogs, <span class="fstat-no" title="function not covered" >function (catalog) {</span></span>
+<span class="cstat-no" title="statement not covered" >                    var facet = _createCatalogFacet(catalog, urlShards);</span>
+<span class="cstat-no" title="statement not covered" >                    catalogFilter.values.push(facet);</span>
+<span class="cstat-no" title="statement not covered" >                    if (facet.isSelected) {</span>
+<span class="cstat-no" title="statement not covered" >                        selectedCount++;</span>
+                    }
+                });
+<span class="cstat-no" title="statement not covered" >                if (selectedCount === 1) {  //if only 1 selected, disable it so one has to always be selected</span>
+<span class="cstat-no" title="statement not covered" >                    var filter = _.find(catalogFilter.values, {isSelected: true});</span>
+<span class="cstat-no" title="statement not covered" >                    filter.disabled = true;</span>
+                }
+<span class="cstat-no" title="statement not covered" >                return;</span>
+            });
+        }
+&nbsp;
+        return {
+&nbsp;
+            getDisplayFilters: function () {
+                //facetTypes are filters
+                var facetTypes = config.settings.data.filters, hasShard = false, catalogFilter;
+                $.each(facetTypes, function (index, value) {
+                    value.value = '';
+                    value.values = [];  //facets
+                    <span class="missing-if-branch" title="if path not taken" >I</span>if(value.style === 'HIERARCHY') {
+<span class="cstat-no" title="statement not covered" >                        value.value = translateService.getFieldName(value.field);</span>
+                    }
+                    <span class="missing-if-branch" title="if path not taken" >I</span>if(value.field === 'shards') {
+<span class="cstat-no" title="statement not covered" >                        hasShard = true;</span>
+<span class="cstat-no" title="statement not covered" >                        catalogFilter = value;</span>
+                    }
+                });
+&nbsp;
+                translateService.translateFilterNames(facetTypes);
+                <span class="missing-if-branch" title="if path not taken" >I</span>if(config.settings.data.showFederatedSerach &amp;&amp; <span class="branch-1 cbranch-no" title="branch not covered" >angular.isDefined($location.search().shards))</span> {
+<span class="cstat-no" title="statement not covered" >                    _createCatalogFilter(catalogFilter, facetTypes);</span>
+                }
+                return facetTypes;
+            },
+&nbsp;
+            getDisplay: <span class="fstat-no" title="function not covered" >function() {</span>
+<span class="cstat-no" title="statement not covered" >                return config.settings.data;</span>
+            },
+&nbsp;
+            lookupFilter: function(filter) {
+                return _systemFilterMap[filter];
+            },
+&nbsp;
+            lookupFilterStyle: function(filterName) {
+                var filterConfig = this.lookupFilter(filterName);
+                <span class="missing-if-branch" title="else path not taken" >E</span>if (angular.isDefined(filterConfig)) {
+                    <span class="missing-if-branch" title="if path not taken" >I</span>if (filterConfig.stype === 'date') {
+<span class="cstat-no" title="statement not covered" >                        return 'DATE';</span>
+                    } else {
+                        return filterConfig.style;
+                    }
+                } else {
+<span class="cstat-no" title="statement not covered" >                    return '';</span>
+                }
+            },
+&nbsp;
+            getSystemFilters: <span class="fstat-no" title="function not covered" >function() {</span>
+<span class="cstat-no" title="statement not covered" >                return _systemFilters;</span>
+            },
+&nbsp;
+            getFilters: function () {
+                return config.settings.data.filters;
+            },
+&nbsp;
+            setConfigId: function (configId) {
+                _configId = configId;
+            },
+&nbsp;
+            getConfigId: function () {
+                <span class="missing-if-branch" title="if path not taken" >I</span>if(_configId !== null) {
+<span class="cstat-no" title="statement not covered" >                    return _configId;</span>
+                } else <span class="missing-if-branch" title="if path not taken" >I</span>if(angular.isDefined(config.defaultId)) {
+<span class="cstat-no" title="statement not covered" >                    return config.defaultId; </span>//set if there is a default saved search
+                } else {
+                    return config.configid;  //default config.js id
+                }
+            },
+&nbsp;
+            setFilterConfig: function(configId) {
+                return _setFilterConfig(configId);
+            },
+&nbsp;
+            getConfigDetails: <span class="fstat-no" title="function not covered" >function(id) {</span>
+<span class="cstat-no" title="statement not covered" >                return $http.get(config.root + 'api/rest/display/config/' + id + '.json');</span>
+            },
+&nbsp;
+            getSolrFields: <span class="fstat-no" title="function not covered" >function() {</span>
+<span class="cstat-no" title="statement not covered" >                if(_summarySolrParams !== '') {</span>
+<span class="cstat-no" title="statement not covered" >                    return _summarySolrParams;</span>
+                }
+<span class="cstat-no" title="statement not covered" >                return _solrParams;</span>
+            },
+&nbsp;
+            getDisplayFields: function(doc) {
+                var prettyFields = [], fields, order, style;
+&nbsp;
+                fields = _displayFields;
+                order = _displayFieldsOrder;
+                style = _displayFieldsStyle;
+&nbsp;
+                if(!_.isEmpty(_summaryFields)) {
+                    fields = _summaryFields;
+                    order = _summaryFieldsOrder;
+                    style = _summaryFieldsStyle;
+                }
+                $.each(doc, function (name, value) {
+                    <span class="missing-if-branch" title="else path not taken" >E</span>if (fields[name]) {
+                        <span class="missing-if-branch" title="if path not taken" >I</span>if(_.isArray(value )) {
+<span class="cstat-no" title="statement not covered" >                            value = value.join(', ');</span>
+                        }
+                        prettyFields.push({'name': fields[name], 'value': value, order: order[name], style: style[name], raw: name});
+                    }
+                });
+&nbsp;
+                return _.sortBy(prettyFields,'order');
+            },
+&nbsp;
+            getTableFields: <span class="fstat-no" title="function not covered" >function() {</span>
+<span class="cstat-no" title="statement not covered" >                return _tableFields;</span>
+            },
+&nbsp;
+            getTableFieldNames: <span class="fstat-no" title="function not covered" >function() {</span>
+<span class="cstat-no" title="statement not covered" >                return _.map(_tableFields, 'field');</span>
+            },
+&nbsp;
+            updateColumnWidth: <span class="fstat-no" title="function not covered" >function(field, value) {</span>
+<span class="cstat-no" title="statement not covered" >                _tableColumnWidthMap[field] = {changed:true, value:value};</span>
+            },
+&nbsp;
+            getColumnWidth: <span class="fstat-no" title="function not covered" >function(field) {</span>
+<span class="cstat-no" title="statement not covered" >                var col = _tableColumnWidthMap[field];</span>
+<span class="cstat-no" title="statement not covered" >                if(angular.isDefined(col)) {</span>
+<span class="cstat-no" title="statement not covered" >                    return col.value;</span>
+                }
+<span class="cstat-no" title="statement not covered" >                return col;</span>
+            },
+&nbsp;
+            resetColumns: <span class="fstat-no" title="function not covered" >function() {</span>
+<span class="cstat-no" title="statement not covered" >                $.each(_tableFields, <span class="fstat-no" title="function not covered" >function(index, field) {</span></span>
+<span class="cstat-no" title="statement not covered" >                    if(angular.isDefined(field.width)) {</span>
+<span class="cstat-no" title="statement not covered" >                        _tableColumnWidthMap[field.field] = {value:parseFloat(field.width)};</span>
+                    }
+                });
+            },
+&nbsp;
+            hasChanges: <span class="fstat-no" title="function not covered" >function() {</span>
+<span class="cstat-no" title="statement not covered" >                return !_.isEmpty(_tableColumnWidthMap);</span>
+            },
+&nbsp;
+            getUpdatedSettings: <span class="fstat-no" title="function not covered" >function() {</span>
+<span class="cstat-no" title="statement not covered" >                var colInfo;</span>
+<span class="cstat-no" title="statement not covered" >                $.each(config.settings.data.table, <span class="fstat-no" title="function not covered" >function(index, column) {</span></span>
+<span class="cstat-no" title="statement not covered" >                    colInfo = _tableColumnWidthMap[column.field];</span>
+<span class="cstat-no" title="statement not covered" >                    if(angular.isDefined(colInfo)) {</span>
+<span class="cstat-no" title="statement not covered" >                        column.width = colInfo.value;</span>
+                    }
+                });
+<span class="cstat-no" title="statement not covered" >                return config.settings.data;</span>
+            },
+&nbsp;
+&nbsp;
+            getSort: <span class="fstat-no" title="function not covered" >function() {</span>
+<span class="cstat-no" title="statement not covered" >                var sort = {};</span>
+<span class="cstat-no" title="statement not covered" >                sort.direction = angular.isDefined(config.defaultSortDirection)? config.defaultSortDirection : 'desc';</span>
+<span class="cstat-no" title="statement not covered" >                sort.field = angular.isDefined(config.defaultSort)? config.defaultSort : 'score';</span>
+<span class="cstat-no" title="statement not covered" >                return sort;</span>
+            },
+&nbsp;
+            showMap: <span class="fstat-no" title="function not covered" >function() {</span>
+<span class="cstat-no" title="statement not covered" >                var showMap = config.settings.data.display.showMap;</span>
+<span class="cstat-no" title="statement not covered" >                if (angular.isUndefined(showMap)) {</span>
+<span class="cstat-no" title="statement not covered" >                    showMap = true; </span>//default
+                }
+<span class="cstat-no" title="statement not covered" >                return showMap;</span>
+            },
+&nbsp;
+            getSortable: <span class="fstat-no" title="function not covered" >function() {</span>
+<span class="cstat-no" title="statement not covered" >                var sortable = [];</span>
+<span class="cstat-no" title="statement not covered" >                if(angular.isDefined(config.settings.data.sortable)) {</span>
+<span class="cstat-no" title="statement not covered" >                    $.each(config.settings.data.sortable, <span class="fstat-no" title="function not covered" >function(index, field) {</span></span>
+<span class="cstat-no" title="statement not covered" >                        sortable.push({key:field, value:translateService.getFieldName(field)});</span>
+                    });
+                }
+<span class="cstat-no" title="statement not covered" >                return sortable;</span>
+            },
+&nbsp;
+            setShards: <span class="fstat-no" title="function not covered" >function(shards) {</span>
+<span class="cstat-no" title="statement not covered" >                _shards = shards;</span>
+            },
+&nbsp;
+            getShards: <span class="fstat-no" title="function not covered" >function() {</span>
+<span class="cstat-no" title="statement not covered" >                return _shards;</span>
+            },
+&nbsp;
+            getHomePage: <span class="fstat-no" title="function not covered" >function() {</span>
+<span class="cstat-no" title="statement not covered" >                return _homepage;</span>
+            },
+&nbsp;
+            getEditable: <span class="fstat-no" title="function not covered" >function() {</span>
+<span class="cstat-no" title="statement not covered" >                return _editable;</span>
+            },
+&nbsp;
+            getDefaultMapView: <span class="fstat-no" title="function not covered" >function() {</span>
+<span class="cstat-no" title="statement not covered" >                return _defaultMapView;</span>
+            },
+&nbsp;
+            /**
+             * @param mapView Object with lng, lat, and zoom properties.
+             */
+            setDefaultMapView: <span class="fstat-no" title="function not covered" >function(mapView) {</span>
+<span class="cstat-no" title="statement not covered" >                _defaultMapView = mapView;</span>
+            },
+&nbsp;
+            /**
+             * Parse view string.
+             *
+             * @param str as "longitude, latitude[, zoom]" pair/ triple.
+             * @param delim is optional, defaults to comma
+             */
+            parseMapViewString: <span class="fstat-no" title="function not covered" >function(str, delim) {</span>
+<span class="cstat-no" title="statement not covered" >                var coords = str.split(_.isEmpty(delim)?',':delim);</span>
+<span class="cstat-no" title="statement not covered" >                coords = _.map(coords, <span class="fstat-no" title="function not covered" >function(val) {<span class="cstat-no" title="statement not covered" ></span>return parseFloat(val);}</span>);</span>
+<span class="cstat-no" title="statement not covered" >                var view = {</span>
+                    lng: 0,
+                    lat: 0,
+                    zoom: 3
+                };
+<span class="cstat-no" title="statement not covered" >                if (coords.length &gt; 1) {</span>
+<span class="cstat-no" title="statement not covered" >                    view.lng = coords[0];</span>
+<span class="cstat-no" title="statement not covered" >                    view.lat = coords[1];</span>
+                }
+<span class="cstat-no" title="statement not covered" >                if (coords.length &gt; 2) {</span>
+<span class="cstat-no" title="statement not covered" >                    view.zoom = coords[2];</span>
+                }
+<span class="cstat-no" title="statement not covered" >                return view;</span>
+            },
+            getCatalogs: <span class="fstat-no" title="function not covered" >function() {</span>
+<span class="cstat-no" title="statement not covered" >                return _catalogsPromise;</span>
+            }
+        };
+&nbsp;
+    });
+&nbsp;</pre></td></tr>
+</table></pre>
+
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Aug 03 2015 16:37:56 GMT-0400 (Eastern Daylight Time)</div>
+</div>
+<script src="../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../sorter.js"></script>
+</body>
+</html>

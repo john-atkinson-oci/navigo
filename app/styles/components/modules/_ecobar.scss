@@ -1,0 +1,46 @@
+body.cbp-spmenu-push {
+	.main_container {
+		padding-top: 124px;
+	}
+
+	.NGA_Bar_Container {
+		z-index: 1020;
+		width: 100%;
+	}
+
+	#header {
+		top: 60px;
+	}
+
+	#searchPage .result_container header {
+		left: 33.33%;
+	}
+
+	&.cbp-spmenu-fixed-backtoleft {
+		#header, #searchPage .map_fixed {
+			-webkit-animation: animate_toleft 0.3s ease both;
+			-moz-animation: animate_toleft 0.3s ease both;
+			animation: animate_toleft 0.3s ease both;
+		}
+
+		#searchPage .result_container header {
+			-webkit-animation: animate_margin_toleft 0.3s ease both;
+			-moz-animation: animate_margin_toleft 0.3s ease both;
+			animation: animate_margin_toleft 0.3s ease both;
+		}
+	}
+
+	&.cbp-spmenu-push-toright {
+		#header, #searchPage .map_fixed {
+			-webkit-animation: animate_toright 0.3s ease both;
+			-moz-animation: animate_toright 0.3s ease both;
+			animation: animate_toright 0.3s ease both;
+		}
+
+		#searchPage .result_container header {
+			-webkit-animation: animate_margin_toright 0.3s ease both;
+			-moz-animation: animate_margin_toright 0.3s ease both;
+			animation: animate_margin_toright 0.3s ease both;
+		}
+	}
+}

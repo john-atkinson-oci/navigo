@@ -1,0 +1,32 @@
+<div ng-controller="CartItemsCtrl">
+    <span us-spinner spinner-key="cart-spinner" spinner-start-active="1"></span>
+    <div class="alert alert-danger" ng-show="hasError">
+        <form class="form-inline" role="form">
+            <span class="glyphicon glyphicon-exclamation-sign"></span> {{errorMessage}}</button>
+        </form>
+    </div>
+    <div>
+        <div class="col-sm-12">
+            <div>
+                <h4 style="float: left; margin-top: 5px">{{cartItemCount}} Selected Items</h4>
+                <button ng-click="showTasks()" ng-disabled="cartItemCount < 1" class="btn btn-primary pull-right" style="margin-bottom: 10px">Select Task <span class="glyphicon glyphicon-step-forward"></span></button>
+            </div>
+            <table class="table table-striped">
+                <tr>
+                    <th>Thumbnail</th>
+                    <th>Name</th>
+                    <th>Remove</th>
+                </tr>
+                <tr ng:repeat="item in cartItems">
+                    <td><img ng-src="{{item.thumb}}" alt="..." class="img-thumbnail" style="height:50px; width:50px"></td>
+                    <td>
+                        <a href="#/show/{{item.id}}">{{item.name}}</a>
+                    </td>
+                    <td>
+                        [<a href ng:click="removeItem(item.id)"><span class="glyphicon glyphicon-remove"></span></a>]
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>

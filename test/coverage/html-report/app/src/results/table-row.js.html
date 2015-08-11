@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for ./app/src/results/table-row.js</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../../../prettify.css">
+    <link rel="stylesheet" href="../../../base.css">
+    <style type='text/css'>
+        div.coverage-summary .sorter {
+            background-image: url(../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class="header low">
+    <h1>Code coverage report for <span class="entity">./app/src/results/table-row.js</span></h1>
+    <h2>
+        Statements: <span class="metric">15.38% <small>(2 / 13)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Branches: <span class="metric">0% <small>(0 / 12)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Functions: <span class="metric">0% <small>(0 / 3)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">15.38% <small>(2 / 13)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../../../index.html">All files</a> &#187; <a href="index.html">./app/src/results/</a> &#187; table-row.js</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">'use strict';
+angular.module('voyager.results')
+    .directive('vsTableRow', <span class="fstat-no" title="function not covered" >function (inView, $document) {</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        return {</span>
+            link: <span class="fstat-no" title="function not covered" >function($scope, $element) {</span>
+&nbsp;
+<span class="fstat-no" title="function not covered" >                function _isInView() {</span>
+<span class="cstat-no" title="statement not covered" >                    var visible = $element.is(':visible'), isIn = false, clientHeight, imageRect;</span>
+<span class="cstat-no" title="statement not covered" >                    if (visible) {</span>
+<span class="cstat-no" title="statement not covered" >                        clientHeight = $document[0].documentElement.clientHeight;</span>
+<span class="cstat-no" title="statement not covered" >                        imageRect = $element[0].getBoundingClientRect();</span>
+                        //entire image in view, or bottom part, or top part
+<span class="cstat-no" title="statement not covered" >                        isIn = (imageRect.top &gt;= 0 &amp;&amp; imageRect.bottom &lt;= clientHeight) || (imageRect.bottom &gt;= 0 &amp;&amp; imageRect.bottom &lt;= clientHeight) || (imageRect.top &gt;= 0 &amp;&amp; imageRect.top &lt;= clientHeight);</span>
+                    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                    if(isIn) {</span>
+<span class="cstat-no" title="statement not covered" >                        inView.add($scope.doc);</span>
+                    } else {
+<span class="cstat-no" title="statement not covered" >                        inView.remove($scope.doc);</span>
+                    }
+                }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                if (angular.isDefined($scope.doc.geo)) {  //we don't care if there isn't a bbox to draw</span>
+<span class="cstat-no" title="statement not covered" >                    inView.addCheckObserver(_isInView);</span>
+                }
+            }
+        };
+    });</pre></td></tr>
+</table></pre>
+
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Aug 03 2015 16:37:56 GMT-0400 (Eastern Daylight Time)</div>
+</div>
+<script src="../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../sorter.js"></script>
+</body>
+</html>

@@ -1,0 +1,101 @@
+//rating
+.rating_wrap {
+	display: inline-block;
+
+	.flyout_trigger {
+		cursor: text;
+	}
+
+	&.hover_flyout {
+		.flyout_trigger {
+			cursor: pointer;
+		}
+	}
+}
+
+
+.star_wrap {
+
+	span {
+		position: relative;
+		padding-left: 60px;
+		font-size: $smallerSize;
+		display: block;
+		top: 2px;
+		color: $navyText;
+
+		&:before {
+			content: "\e600\e600\e600";
+			color: $lightGrey;
+		}
+
+		&:after, &:before {
+			font-size: 14px;
+			position: absolute;
+			left: 0;
+			letter-spacing: 0.25em;
+			@extend %icon_style;
+			top: 2px;
+		}
+
+		&.star3:after {
+			content: "\e604\e604\e604";
+			color: $high;
+		}
+		&.star2:after {
+			content: "\e604\e604";
+			color: $medium;
+		}
+		&.star1:after {
+			content: "\e604";
+			color: $low;
+		}
+	}
+
+	&:hover {
+		.rating_breakdown {
+			display: block;
+		}
+	}
+}
+
+.rating_breakdown {
+	.flyout_inner {
+		padding: 15px 20px;
+		width: 185px;
+	}
+
+	.title {
+		font-family: $semiStrongFont;
+		font-size: $smallSize;
+	}
+
+	.star_wrap {
+		margin-top: 10px;
+	}
+}
+
+.rating_flyout {
+	.flyout_inner {
+		width: 230px;
+		padding: 20px;
+
+		span i {
+			font-size: 20px;
+			color: $lightDarkGrey;
+			outline: none;
+
+			&.glyphicon-star {
+				color: $medium;
+			}
+		}
+
+		i + i {
+			margin-left: 5px;
+		}
+	}
+}
+
+.hover_flyout.bottom .rating_flyout {
+	bottom: 50px;
+}

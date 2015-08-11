@@ -1,0 +1,320 @@
+<!doctype html>
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta charset="utf-8">
+		<title>Voyager</title>
+		<meta name="viewport" content="width=device-width">
+		<!-- build:css assets/css/vendor.css -->
+		<!-- bower:css -->
+		<link rel="stylesheet" href="bower_components/select2/select2.css" />
+		<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+		<link rel="stylesheet" href="bower_components/angular-rangeslider/angular.rangeSlider.css" />
+		<link rel="stylesheet" href="bower_components/ng-sortable/dist/ng-sortable.css" />
+		<link rel="stylesheet" href="bower_components/leaflet/dist/leaflet.css" />
+		<link rel="stylesheet" href="bower_components/leaflet.draw/dist/leaflet.draw.css" />
+		<link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css" />
+		<link rel="stylesheet" href="bower_components/angular-dialog-service/dialogs.min.css" />
+	    <link rel="stylesheet" href="bower_components/leaflet.markercluster/dist/MarkerCluster.css" />
+	    <link rel="stylesheet" href="bower_components/leaflet.markercluster/dist/MarkerCluster.Default.css" />
+	    <link rel="stylesheet" href="bower_components/angular-grid/ng-grid.css" />
+        <link rel="stylesheet" href="bower_components/angular-block-ui/dist/angular-block-ui.min.css"/>
+		<!-- endbower -->
+		<!-- endbuild -->
+		<!-- build:css({.tmp,app}) assets/css/main.css -->
+		<link rel="stylesheet" href="assets/css/main.css">
+		<!-- endbuild -->
+
+	</head>
+    <!-- ecobar - add class to body tag to enable - see example below-->
+    <body vs-popover vs-layout ng-app="portalApp">
+        <div id="no_access" class="alert alert-danger" style="display: none">
+            <h3> <span class="glyphicon glyphicon-lock"></span> You don't have permission to use Voyager.</h3>
+        </div>
+		<div class="sr-only"><a href="#mainContainer">Skip to Main Content</a></div>
+		<div>
+			<div id="header" ng-include="'src/layout/header.html'"></div>
+
+			<!-- Add your site or application content here -->
+			<div id="mainContainer" class="main_container clearfix" ui-view=""></div>
+
+			<div id="footer" ng-include="'src/layout/footer.html'"></div>
+			<div id="initialLoadContainer"></div>
+		</div>
+
+		<!-- build:js scripts/vendor.js -->
+        <script src="bower_components/modernizr/modernizr.js"></script>
+		<script src="bower_components/jquery/jquery.js"></script>
+
+		<script src="bower_components/es5-shim/es5-shim.js"></script>
+		<script src="bower_components/json3/lib/json3.min.js"></script>
+
+		<script src="bower_components/angular/angular.js"></script>
+		<script src="bower_components/angular-resource/angular-resource.js"></script>
+		<script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+		<script src="bower_components/angular-local-storage/dist/angular-local-storage.js"></script>
+		<script src="bower_components/angular-route/angular-route.js"></script>
+		<script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+        <script src="bower_components/angular-block-ui/dist/angular-block-ui.min.js"></script>
+		<!--ui-->
+		<script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+		<script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+		<script src="bower_components/select2/select2.js"></script>
+		<script src="bower_components/angular-ui-select2/src/select2.js"></script>
+		<script src="bower_components/spin.js/spin.js"></script>
+		<script src="bower_components/angular-spinner/angular-spinner.js"></script>
+		<script src="bower_components/angular-rangeslider/angular.rangeSlider.js"></script>
+		<script src="bower_components/angular-dialog-service/dialogs.min.js"></script>
+		<script src="bower_components/ng-table/ng-table.js"></script>
+		<script src="bower_components/angular-grid/build/ng-grid.js"></script>
+		<script src="bower_components/ng-sortable/dist/ng-sortable.js"></script>
+
+		<script src="bower_components/lodash/dist/lodash.min.js"></script>
+        <script src="bower_components/lodash-contrib/dist/lodash-contrib.min.js"></script>
+		<script src="bower_components/underscore-contrib/dist/underscore-contrib.min.js"></script>
+    	<script src="bower_components/underscore.string/dist/underscore.string.min.js"></script>
+
+		<script src="bower_components/querystring/querystring.min.js"></script>
+		<script src="bower_components/angular-translate/angular-translate.js"></script>
+		<script src="bower_components/jquery-waypoints/waypoints.js"></script>
+		<script src="bower_components/SHA-1/sha1.js"></script>
+
+		<script src="bower_components/angulartics/src/angulartics.js"></script>
+		<script src="bower_components/angulartics/src/angulartics-ga.js"></script>
+		<script src="bower_components/proj4/dist/proj4.js"></script>
+
+		<script src="bower_components/leaflet/dist/leaflet.js"></script>
+        <script src="bower_components/esri-leaflet/dist/esri-leaflet.js"></script>
+		<script src="bower_components/leaflet.draw/dist/leaflet.draw.js"></script>
+		<script src="bower_components/angular-leaflet-directive/dist/angular-leaflet-directive.js"></script>
+		<script src="bower_components/leaflet.markercluster/dist/leaflet.markercluster.js"></script>
+        <script src="lib/leaflet/wicket.js"></script>
+        <script src="lib/leaflet/wicket-leaflet.js"></script>
+        <script src="lib/leaflet/leaflet_canvas_layer.js"></script>
+
+		<script src="bower_components/angular-aria/angular-aria.js"></script>
+		<!-- endbuild -->
+
+		<script src="config.js"></script>
+
+		<!-- chart demo - remove comments below -->
+
+		<!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dc/1.7.3/dc.min.css" />-->
+		<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>-->
+		<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/crossfilter/1.3.11/crossfilter.min.js"></script>-->
+		<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/dc/1.7.3/dc.min.js"></script>-->
+
+		<!-- build:js({.tmp,app}) scripts/scripts.js -->
+     	<script src="common/shiv/ie-class.js"></script>
+		<script src="src/initializer.js"></script>
+		<script src="src/app.js"></script>
+
+        <!--common-->
+		<script src="common/util/util-module.js"></script>
+        <script src="common/util/loading.js"></script>
+		<script src="common/util/sugar.js"></script>
+        <script src="common/util/converter.js"></script>
+        <script src="common/util/query-builder.js"></script>
+        <script src="common/util/translate-service.js"></script>
+        <script src="common/util/url-util.js"></script>
+		<script src="common/util/solr-util.js"></script>
+        <script src="common/util/solr-grunt.js"></script>
+        <script src="common/util/frame-load.js"></script>
+        <script src="common/security/auth-module.js"></script>
+        <script src="common/security/auth-controller.js"></script>
+        <script src="common/security/auth-service.js"></script>
+        <script src="common/security/auth-page-controller.js"></script>
+
+        <!--common featured-->
+        <script src="common/featured/featured-module.js"></script>
+        <script src="common/featured/featured-service.js"></script>
+
+        <!--common saved search-->
+        <script src="common/saved-search/saved-search-query.js"></script>
+
+		<!--common simple search-->
+		<script src="common/simple-search/simple-search-module.js"></script>
+		<script src="common/simple-search/simple-search-service.js"></script>
+		<script src="common/simple-search/simple-search-controller.js"></script>
+
+        <!--common fields-->
+        <script src="common/fields/field-module.js"></script>
+        <script src="common/fields/field-service.js"></script>
+
+        <!--common heatmap-->
+        <script src="common/heatmap/heatmap-module.js"></script>
+        <script src="common/heatmap/colorizer.js"></script>
+        <script src="common/heatmap/heatmap-service.js"></script>
+
+        <!--tagging-->
+        <script src="common/tagging/tagging-module.js"></script>
+        <script src="common/tagging/tagging-dialog.js"></script>
+        <script src="common/tagging/tagging-controller.js"></script>
+        <script src="common/tagging/tagging-service.js"></script>
+
+		<!--task runner-->
+		<script src="src/taskrunner/task-runner-module.js"></script>
+		<script src="src/taskrunner/params/ghost-items.js"></script>
+		<script src="src/taskrunner/params/view-items.js"></script>
+		<script src="src/taskrunner/params/template-service.js"></script>
+		<script src="src/taskrunner/params/param-service.js"></script>
+		<script src="src/taskrunner/params/param-control.js"></script>
+        <script src="src/taskrunner/params/field-param.js"></script>
+
+		<script src="src/taskrunner/task-service.js"></script>
+		<script src="src/taskrunner/task-runner-controller.js"></script>
+		<script src="src/taskrunner/task-list-controller.js"></script>
+		<script src="src/taskrunner/task-controller.js"></script>
+		<script src="src/taskrunner/status.js"></script>
+		<script src="src/taskrunner/task-log-controller.js"></script>
+        <script src="src/taskrunner/task-details-controller.js"></script>
+		<script src="src/jobs/job-service.js"></script>
+		<script src="src/jobs/view-jobs.js"></script>
+		<script src="src/taskrunner/params/modal-browse-controller.js"></script>
+		<script src="src/taskrunner/params/modal-search-controller.js"></script>
+
+
+		<!--maps-->
+		<script src="common/map/map-module.js"></script>
+		<script src="common/map/map-util.js"></script>
+		<script src="common/map/map-controls.js"></script>
+		<script src="common/map/view-map.js"></script>
+		<script src="common/map/read-only-map.js"></script>
+		<script src="common/map/clip-map.js"></script>
+        <script src="common/map/map-service.js"></script>
+        <script src="common/map/wms-layer-query.js"></script>
+        <script src="common/map/simple-map-server.js"></script>
+        <script src="common/map/simple-feature-server.js"></script>
+        <script src="common/map/simple-wms-service.js"></script>
+        <script src="common/map/map-service-factory.js"></script>
+
+	    <!--file browser-->
+	    <script src="common/filebrowser/file-browser-module.js"></script>
+	    <script src="common/filebrowser/file-browser-service.js"></script>
+	    <script src="common/filebrowser/file-browser-control.js"></script>
+
+        <!--config-->
+		<script src="src/config/config-module.js"></script>
+		<script src="src/config/config-service.js"></script>
+        <script src="src/config/config-loader.js"></script>
+
+        <!--component-->
+		<script src="src/component/component-module.js"></script>
+		<script src="src/component/placeholder-directive.js"></script>
+		<script src="src/component/highlight-directive.js"></script>
+		<script src="src/component/popover-directive.js"></script>
+		<script src="src/component/bytes-filter.js"></script>
+		<script src="src/component/clip-service.js"></script>
+		<script src="src/component/search-tool-toggle-directive.js"></script>
+		<script src="src/component/selected-filter-directive.js"></script>
+
+        <!--layout-->
+		<script src="src/layout/layout-module.js"></script>
+		<script src="src/layout/layout-directive.js"></script>
+		<script src="src/layout/header-controller.js"></script>
+
+        <!--home-->
+		<script src="src/home/home-module.js"></script>
+        <script src="src/home/feature-query.js"></script>
+        <script src="src/home/collections-query.js"></script>
+		<script src="src/home/home-service.js"></script>
+		<script src="src/home/home-controller.js"></script>
+		<script src="src/home/home-directive.js"></script>
+
+		<!--search-->
+		<script src="src/search/search-module.js"></script>
+		<script src="src/search/results-decorator.js"></script>
+		<script src="src/search/search-service.js"></script>
+		<script src="src/search/search-scroll.js"></script>
+		<script src="src/search/search-controller.js"></script>
+		<script src="src/search/search-map-controller.js"></script>
+		<script src="src/search/search-map.js"></script>
+		<script src="src/search/search-input-controller.js"></script>
+
+        <!--suggest-->
+        <script src="src/suggest/suggest-query.js"></script>
+        <script src="src/suggest/suggest-component.js"></script>
+
+		<!--results-->
+		<script src="src/results/results-module.js"></script>
+		<script src="src/results/action-manager.js"></script>
+		<script src="src/results/card.js"></script>
+		<script src="src/results/table-row.js"></script>
+		<script src="src/results/table-results-controller.js"></script>
+		<script src="src/results/relationship.js"></script>
+        <script src="src/results/in-view.js"></script>
+        <script src="src/results/result-error-controller.js"></script>
+
+		<!--detail-->
+		<script src="src/details/details-module.js"></script>
+		<script src="src/details/detail-service.js"></script>
+		<script src="src/details/details-map.js"></script>
+        <script src="src/details/detail-config.js"></script>
+		<script src="src/details/details.js"></script>
+		<script src="src/details/tags-directive.js"></script>
+		<script src="src/preview/preview-directive.js"></script>
+
+		<!--saved search-->
+		<script src="src/saved-search/saved-search-controller.js"></script>
+		<script src="src/saved-search/saved-search-service.js"></script>
+		<script src="src/saved-search/home-saved-search-controller.js"></script>
+		<script src="src/saved-search/save-search-dialog-controller.js"></script>
+		<script src="src/saved-search/saved-search-modal-controller.js"></script>
+
+		<!--recent search-->
+		<script src="src/recent-search/recent-search-service.js"></script>
+		<script src="src/recent-search/recent-search-controller.js"></script>
+
+		<!--bulk updater-->
+		<script src="src/bulk-updater/bulk-updater-controller.js"></script>
+		<script src="src/bulk-updater/edit-presentation-controller.js"></script>
+		<script src="src/bulk-updater/remove-flag-all-controller.js"></script>
+
+	    <!--filters-->
+	    <script src="src/filters/filters-module.js"></script>
+        <script src="src/filters/catalog-service.js"></script>
+	    <script src="src/filters/stats-service.js"></script>
+	    <script src="src/filters/tree-service.js"></script>
+	    <script src="src/filters/filter.js"></script>
+        <script src="src/filters/filters.js"></script>
+	    <script src="src/filters/facets-controller.js"></script>
+        <script src="src/filters/calendar-filter.js"></script>
+	    <script src="src/filters/filters-controller.js"></script>
+	    <script src="src/filters/selected-filters-controller.js"></script>
+	    <script src="src/filters/range-service.js"></script>
+	    <script src="src/filters/facet-service.js"></script>
+        <script src="src/filters/filter-query.js"></script>
+	    <script src="src/filters/filter-service.js"></script>
+        <script src="src/filters/filter-style.js"></script>
+
+		<!--cart-->
+		<script src="src/cart/cart-module.js"></script>
+		<script src="src/cart/cart-items-controller.js"></script>
+		<script src="src/cart/cart-service.js"></script>
+        <script src="src/cart/cart-items-query.js"></script>
+		<script src="src/cart/cart-nav-controller.js"></script>
+		<script src="src/cart/cart.js"></script>
+
+		<!--tree-->
+		<script src="lib/tree/directives.js"></script>
+
+		<!--table-->
+		<script src="lib/ng_table/ng-table-resizable-columns.src.js"></script>
+
+		<!-- chart -->
+		<script src="src/chart/chart-controller.js"></script>
+
+		<!-- endbuild -->
+
+	    <script>
+	        if(!_.isUndefined(config.analyticsId) && config.analyticsId !== '') {
+                //inject google analytics script
+	            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	                    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	            })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+	            ga('create', config.analyticsId, 'auto');
+	        }
+	    </script>
+	</body>
+</html>

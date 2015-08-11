@@ -1,0 +1,378 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for ./app/src/home/feature-query.js</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../../../prettify.css">
+    <link rel="stylesheet" href="../../../base.css">
+    <style type='text/css'>
+        div.coverage-summary .sorter {
+            background-image: url(../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class="header low">
+    <h1>Code coverage report for <span class="entity">./app/src/home/feature-query.js</span></h1>
+    <h2>
+        Statements: <span class="metric">11.11% <small>(6 / 54)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Branches: <span class="metric">0% <small>(0 / 16)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Functions: <span class="metric">0% <small>(0 / 13)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">11.11% <small>(6 / 54)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../../../index.html">All files</a> &#187; <a href="index.html">./app/src/home/</a> &#187; feature-query.js</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/*global querystring */
+'use strict';
+angular.module('voyager.home')
+	.service('featureQuery', <span class="fstat-no" title="function not covered" >function(config, $http, cartService, $q, configService, translateService, featuredService, savedSearchQuery, sugar, authService, resultsDecorator, $location) {</span>
+&nbsp;
+//        //TODO use featuredService in closure?  Then we don't need to pass in groups/_.partial
+//        function _featureGroupVisitor(featureGroups, doc) {
+//            if(angular.isDefined(doc.tag_flags)) {
+//                doc.featureGroup = featureGroups[doc.tag_flags[0]];
+//                if(doc.featureGroup) {
+//                    doc.featuredName = doc.featureGroup.name;
+//                }
+//            }
+//        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        var _featureQuery;</span>
+&nbsp;
+<span class="fstat-no" title="function not covered" >        function _getSavedSearchQueryString(savedSearch) {</span>
+<span class="cstat-no" title="statement not covered" >            var config = $location.search().disp; </span>//override saved search disp if set on url
+<span class="cstat-no" title="statement not covered" >            if(angular.isUndefined(config)) {</span>
+<span class="cstat-no" title="statement not covered" >                config = savedSearch.config;</span>
+            }
+<span class="cstat-no" title="statement not covered" >            return configService.setFilterConfig(config).then(<span class="fstat-no" title="function not covered" >function() {</span></span>
+<span class="cstat-no" title="statement not covered" >                var solrParams = querystring.parse(sugar.trim(savedSearch.query,'&amp;'));</span>
+<span class="cstat-no" title="statement not covered" >                sugar.decodeParams(solrParams); </span> //workaround - seems the params get encoded twice
+<span class="cstat-no" title="statement not covered" >                var queryString = _getQueryString();</span>
+<span class="cstat-no" title="statement not covered" >                queryString += '&amp;' + querystring.stringify(solrParams);</span>
+<span class="cstat-no" title="statement not covered" >                return queryString;</span>
+            });
+        }
+&nbsp;
+<span class="fstat-no" title="function not covered" >        function _getDefaultQueryString() {</span>
+<span class="cstat-no" title="statement not covered" >            var savedSearch;</span>
+<span class="cstat-no" title="statement not covered" >            return savedSearchQuery.fetchDefault().then(<span class="fstat-no" title="function not covered" >function(docs) {</span></span>
+<span class="cstat-no" title="statement not covered" >                if(docs &amp;&amp; docs.length &gt; 0) {</span>
+<span class="cstat-no" title="statement not covered" >                    savedSearch = docs[0];</span>
+<span class="cstat-no" title="statement not covered" >                    _featureQuery = savedSearch;</span>
+<span class="cstat-no" title="statement not covered" >                    return _getSavedSearchQueryString(savedSearch);</span>
+                } else { //no default, just run a query
+<span class="cstat-no" title="statement not covered" >                    _featureQuery = undefined;</span>
+<span class="cstat-no" title="statement not covered" >                    return _getQueryString();</span>
+                }
+            });
+        }
+&nbsp;
+        // attempt to get the configured query, fallback to default, fallback to query all
+<span class="fstat-no" title="function not covered" >        function _getConfiguredQuery() {</span>
+<span class="cstat-no" title="statement not covered" >            var featuredQuery = '', savedSearch;</span>
+<span class="cstat-no" title="statement not covered" >            if(config.homepage &amp;&amp; config.homepage.featuredContentQuery) {</span>
+<span class="cstat-no" title="statement not covered" >                featuredQuery = config.homepage.featuredContentQuery;</span>
+            }
+<span class="cstat-no" title="statement not covered" >            if(featuredQuery !== '') {</span>
+<span class="cstat-no" title="statement not covered" >                return savedSearchQuery.fetch(featuredQuery).then(<span class="fstat-no" title="function not covered" >function(docs) {</span></span>
+<span class="cstat-no" title="statement not covered" >                    if(docs &amp;&amp; docs.length &gt; 0) {</span>
+<span class="cstat-no" title="statement not covered" >                        savedSearch = docs[0];</span>
+<span class="cstat-no" title="statement not covered" >                        _featureQuery = savedSearch;</span>
+<span class="cstat-no" title="statement not covered" >                        return _getSavedSearchQueryString(savedSearch);</span>
+                    } else {  //get default
+<span class="cstat-no" title="statement not covered" >                        return _getDefaultQueryString();</span>
+                    }
+                });
+            } else {
+<span class="cstat-no" title="statement not covered" >                return _getDefaultQueryString();</span>
+            }
+        }
+&nbsp;
+        //TODO use query defined in config homepage
+<span class="fstat-no" title="function not covered" >		function _getQueryString() {</span>
+<span class="cstat-no" title="statement not covered" >			var rows = 12; </span> //TODO set to what we really want
+<span class="cstat-no" title="statement not covered" >			var queryString = config.root + 'solr/v0/select?';</span>
+<span class="cstat-no" title="statement not covered" >			queryString += 'fl=id,title, name:[name],format,abstract,path:[absolute],thumb:[thumbURL], path_to_thumb, subject,download:[downloadURL],format_type,bytes,modified,shard:[shard],bbox,format_category, component_files, tag_flags';</span>
+<span class="cstat-no" title="statement not covered" >			queryString += configService.getSolrFields();</span>
+            //queryString += '&amp;fq=tag_featured:[* TO *]';  //TODO don't filter out those not tagged
+<span class="cstat-no" title="statement not covered" >			queryString += '&amp;rows=' + rows;</span>
+<span class="cstat-no" title="statement not covered" >			queryString += '&amp;rand=' + Math.random(); </span>// avoid browser caching?
+<span class="cstat-no" title="statement not covered" >			queryString += '&amp;wt=json&amp;json.wrf=JSON_CALLBACK';</span>
+<span class="cstat-no" title="statement not covered" >			return queryString;</span>
+		}
+&nbsp;
+<span class="fstat-no" title="function not covered" >		function _execute() {</span>
+<span class="cstat-no" title="statement not covered" >			var deferred = $q.defer();</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >			var queryPromise = _getConfiguredQuery().then(<span class="fstat-no" title="function not covered" >function(queryString) {</span></span>
+<span class="cstat-no" title="statement not covered" >                return $http.jsonp(queryString);</span>
+            });
+&nbsp;
+// TODO remove this - not using feature groups for showing flags now
+//            var featurePromise = featuredService.fetchFeatures();
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            $q.all([queryPromise]).then(<span class="fstat-no" title="function not covered" >function(res) {</span></span>
+<span class="cstat-no" title="statement not covered" >                var searchResult = res[0].data.response.docs;</span>
+//                var featureGroups = res[1];
+//                var visitor = _.partial(_featureGroupVisitor,featureGroups);
+<span class="cstat-no" title="statement not covered" >                resultsDecorator.decorate(searchResult, []);</span>
+<span class="cstat-no" title="statement not covered" >                return deferred.resolve(searchResult);</span>
+            });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >			return deferred.promise;</span>
+		}
+&nbsp;
+<span class="cstat-no" title="statement not covered" >		return {</span>
+			execute: <span class="fstat-no" title="function not covered" >function() {</span>
+<span class="cstat-no" title="statement not covered" >				return _execute();</span>
+			},
+            getFeatureQuery: <span class="fstat-no" title="function not covered" >function() {</span>
+<span class="cstat-no" title="statement not covered" >                return _featureQuery;</span>
+            }
+		};
+&nbsp;
+	});
+&nbsp;
+&nbsp;</pre></td></tr>
+</table></pre>
+
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Aug 03 2015 16:37:56 GMT-0400 (Eastern Daylight Time)</div>
+</div>
+<script src="../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../sorter.js"></script>
+</body>
+</html>

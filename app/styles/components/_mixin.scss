@@ -1,0 +1,86 @@
+@mixin boxShadow($hshadow, $vshadow, $blur, $spread, $color) {
+	-webkit-box-shadow: $hshadow $vshadow $blur $spread $color;
+	   -moz-box-shadow: $hshadow $vshadow $blur $spread $color;
+			box-shadow: $hshadow $vshadow $blur $spread $color;
+}
+
+@mixin borderRadius($r) {
+	-moz-border-radius: $r;
+	-webkit-border-radius: $r;
+	border-radius: $r;
+}
+
+@mixin tri() {
+	width: 0;
+	height: 0;
+	border-style: solid;
+}
+
+
+@mixin triLeft($h, $w, $color) {
+	border-width: $h $w $h 0;
+	border-color: transparent $color transparent transparent;
+}
+
+@mixin triRight($h, $w, $color) {
+	border-width: $h 0 $h $w;
+	border-color: transparent transparent transparent $color;
+}
+
+@mixin triDown($h, $w, $color) {
+	border-width: $h $w 0 $w;
+	border-color: $color transparent transparent transparent;
+}
+
+@mixin triUp($h, $w, $color) {
+	border-width: 0 $w $h $w;
+	border-color: transparent transparent $color transparent;
+}
+
+%formFocusStyle {
+	input::-webkit-input-placeholder {
+	   color: $placeholderFocusTextColor;
+	}
+
+	input::-moz-placeholder {  /* Firefox 19+ */
+	   color: $placeholderFocusTextColor;
+	}
+
+	input:-ms-input-placeholder {
+		color: $placeholderFocusTextColor;
+	}
+	input::placeholder {
+		color: $placeholderFocusTextColor;
+	}
+}
+
+%formFieldLabel {
+	height: 100%;
+	position: absolute;
+}
+
+%formFieldIcon {
+	font-size: $defaultSize;
+	position: relative;
+	text-indent: 0;
+	top: 23px;
+}
+
+%flyoutStyle {
+	&:before, &:after {
+		content: '';
+		border-style: solid;
+		position: absolute;
+		top: -7px;
+		left: 20px;
+	}
+
+	&:before {
+		@include triUp(7px, 6px, $borderColor);
+	}
+
+	&:after {
+		top: -6px;
+		@include triUp(8px, 6px, $white);
+	}
+}

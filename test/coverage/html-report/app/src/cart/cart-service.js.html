@@ -1,0 +1,696 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for ./app/src/cart/cart-service.js</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../../../prettify.css">
+    <link rel="stylesheet" href="../../../base.css">
+    <style type='text/css'>
+        div.coverage-summary .sorter {
+            background-image: url(../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class="header low">
+    <h1>Code coverage report for <span class="entity">./app/src/cart/cart-service.js</span></h1>
+    <h2>
+        Statements: <span class="metric">7.44% <small>(9 / 121)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Branches: <span class="metric">0% <small>(0 / 46)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Functions: <span class="metric">6.25% <small>(2 / 32)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">7.44% <small>(9 / 121)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../../../index.html">All files</a> &#187; <a href="index.html">./app/src/cart/</a> &#187; cart-service.js</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">16</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/*global angular, $, _ */
+&nbsp;
+angular.module('cart')
+    .config(['localStorageServiceProvider', function (localStorageServiceProvider) {
+        'use strict';
+        localStorageServiceProvider.setPrefix('vs');
+    }])
+    .factory('cartService', function (localStorageService, queryBuilder, $http, $q, translateService, cartItemsQuery) {
+        'use strict';
+        var observers = [], CART_STORAGE_NAME = 'cart-items';
+&nbsp;
+        var _notify = <span class="fstat-no" title="function not covered" >function (itemMap, action) {</span>
+<span class="cstat-no" title="statement not covered" >            var length = _.size(itemMap);</span>
+<span class="cstat-no" title="statement not covered" >            var query = localStorageService.get('cart-query');</span>
+<span class="cstat-no" title="statement not covered" >            if(query) {</span>
+<span class="cstat-no" title="statement not covered" >                length += query.count;</span>
+            }
+<span class="cstat-no" title="statement not covered" >            observers.forEach(<span class="fstat-no" title="function not covered" >function (entry) {</span></span>
+<span class="cstat-no" title="statement not covered" >                entry(length, itemMap, action);</span>
+            });
+        };
+&nbsp;
+        var _notifyCount = <span class="fstat-no" title="function not covered" >function (count) {</span>
+<span class="cstat-no" title="statement not covered" >            var items = _getItems();</span>
+<span class="cstat-no" title="statement not covered" >            observers.forEach(<span class="fstat-no" title="function not covered" >function (entry) {</span></span>
+<span class="cstat-no" title="statement not covered" >                entry(count, items);</span>
+            });
+        };
+&nbsp;
+        var _getItems = <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >            var items = localStorageService.get(CART_STORAGE_NAME);</span>
+<span class="cstat-no" title="statement not covered" >            if (items) {</span>
+<span class="cstat-no" title="statement not covered" >                return items;</span>
+            }
+<span class="cstat-no" title="statement not covered" >            return {};</span>
+        };
+&nbsp;
+<span class="fstat-no" title="function not covered" >        function _setItems(items) {</span>
+<span class="cstat-no" title="statement not covered" >            var itemMap = {};</span>
+<span class="cstat-no" title="statement not covered" >            $.each(items, <span class="fstat-no" title="function not covered" >function( index, value ) {</span></span>
+<span class="cstat-no" title="statement not covered" >                itemMap[value.id] = value.id;</span>
+            });
+<span class="cstat-no" title="statement not covered" >            localStorageService.add(CART_STORAGE_NAME, itemMap);</span>
+<span class="cstat-no" title="statement not covered" >            _notify(itemMap);</span>
+        }
+&nbsp;
+<span class="fstat-no" title="function not covered" >        function _syncItems() {</span>
+<span class="cstat-no" title="statement not covered" >            return cartItemsQuery.fetchItemsOnly(_getItems()).then(<span class="fstat-no" title="function not covered" >function(items) {</span></span>
+<span class="cstat-no" title="statement not covered" >                _setItems(items);</span>
+<span class="cstat-no" title="statement not covered" >                return;</span>
+            });
+        }
+&nbsp;
+        // function _decorator(items) {
+        //     $.each(items, function(index, item) {
+        //         item.displayFormat = translateService.getType(item.format);
+        //     });
+        // }
+&nbsp;
+        return {
+            addItem: <span class="fstat-no" title="function not covered" >function (item) {</span>
+<span class="cstat-no" title="statement not covered" >                var query = localStorageService.get('cart-query');</span>
+<span class="cstat-no" title="statement not covered" >                var removedFilter = false;</span>
+<span class="cstat-no" title="statement not covered" >                if(query) {</span>
+<span class="cstat-no" title="statement not covered" >                    if(angular.isDefined(query.filters)) {</span>
+<span class="cstat-no" title="statement not covered" >                        if (query.filters.indexOf('&amp;fq=-id:' + item.id) !== -1) {</span>
+<span class="cstat-no" title="statement not covered" >                            query.filters = query.filters.replace('&amp;fq=-id:' + item.id, '');</span>
+<span class="cstat-no" title="statement not covered" >                            if (query.filters === '') {</span>
+<span class="cstat-no" title="statement not covered" >                                delete query.filters;</span>
+                            }
+<span class="cstat-no" title="statement not covered" >                            removedFilter = true;</span>
+                        }
+                    }
+<span class="cstat-no" title="statement not covered" >                    query.count = query.count + 1;</span>
+<span class="cstat-no" title="statement not covered" >                    this.addQuery(query);</span>
+                }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                if(!removedFilter) {  //wasn't filtered out so add it</span>
+<span class="cstat-no" title="statement not covered" >                    var itemMap = _getItems();</span>
+<span class="cstat-no" title="statement not covered" >                    itemMap[item.id] = item.id;</span>
+<span class="cstat-no" title="statement not covered" >                    localStorageService.add(CART_STORAGE_NAME, itemMap);</span>
+                }
+<span class="cstat-no" title="statement not covered" >                _notify(_getItems());</span>
+            },
+            addItems: <span class="fstat-no" title="function not covered" >function (items) {</span>
+<span class="cstat-no" title="statement not covered" >                var itemMap = _getItems();</span>
+<span class="cstat-no" title="statement not covered" >                $.each(items, <span class="fstat-no" title="function not covered" >function( index, item ) {</span></span>
+<span class="cstat-no" title="statement not covered" >                    itemMap[item.id] = item.id;</span>
+                });
+<span class="cstat-no" title="statement not covered" >                localStorageService.add(CART_STORAGE_NAME, itemMap);</span>
+<span class="cstat-no" title="statement not covered" >                _notify(itemMap);</span>
+<span class="cstat-no" title="statement not covered" >                var query = localStorageService.get('cart-query');</span>
+<span class="cstat-no" title="statement not covered" >                if (query) {</span>
+<span class="cstat-no" title="statement not covered" >                    query.count += items.length;</span>
+<span class="cstat-no" title="statement not covered" >                    this.addQuery(query);</span>
+                }
+            },
+            getItems: <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >                return _getItems();</span>
+            },
+            setItems: <span class="fstat-no" title="function not covered" >function(items) {</span>
+<span class="cstat-no" title="statement not covered" >                _setItems(items);</span>
+            },
+            getCount: <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >                var count = 0;</span>
+<span class="cstat-no" title="statement not covered" >                var query = this.getQuery();</span>
+<span class="cstat-no" title="statement not covered" >                if(query) {</span>
+<span class="cstat-no" title="statement not covered" >                    count += query.count;</span>
+<span class="cstat-no" title="statement not covered" >                    if (query.actualCount) {</span>
+<span class="cstat-no" title="statement not covered" >                        return count;</span>
+                    }
+                }
+<span class="cstat-no" title="statement not covered" >                count += _.size(_getItems());</span>
+<span class="cstat-no" title="statement not covered" >                return count;</span>
+            },
+            addObserver: <span class="fstat-no" title="function not covered" >function (observer) {</span>
+<span class="cstat-no" title="statement not covered" >                observers.push(observer);</span>
+            },
+            remove: <span class="fstat-no" title="function not covered" >function (id) {</span>
+<span class="cstat-no" title="statement not covered" >                var itemMap = _getItems();</span>
+<span class="cstat-no" title="statement not covered" >                var query = localStorageService.get('cart-query');</span>
+<span class="cstat-no" title="statement not covered" >                if(angular.isDefined(itemMap[id])) {</span>
+<span class="cstat-no" title="statement not covered" >                    delete itemMap[id];</span>
+<span class="cstat-no" title="statement not covered" >                    localStorageService.add(CART_STORAGE_NAME, itemMap);</span>
+<span class="cstat-no" title="statement not covered" >                    _notify(itemMap);</span>
+                } else {  //add fq param to query to filter out item
+<span class="cstat-no" title="statement not covered" >                    if(angular.isUndefined(query.filters)) {</span>
+<span class="cstat-no" title="statement not covered" >                        query.filters = '';</span>
+                    }
+<span class="cstat-no" title="statement not covered" >                    query.filters += '&amp;fq=-id:' + id;</span>
+                }
+<span class="cstat-no" title="statement not covered" >                if(query) {</span>
+<span class="cstat-no" title="statement not covered" >                    query.count = query.count - 1;</span>
+<span class="cstat-no" title="statement not covered" >                    this.addQuery(query);</span>
+                }
+            },
+            isInCart: <span class="fstat-no" title="function not covered" >function (id) {</span>
+<span class="cstat-no" title="statement not covered" >                return angular.isDefined(_getItems()[id]);</span>
+            },
+            getItemIds: <span class="fstat-no" title="function not covered" >function() {</span>
+<span class="cstat-no" title="statement not covered" >                return $.map(_getItems(), <span class="fstat-no" title="function not covered" >function (item) {</span></span>
+<span class="cstat-no" title="statement not covered" >                    return item;</span>
+                });
+            },
+            fetch:<span class="fstat-no" title="function not covered" >function() {</span>
+<span class="cstat-no" title="statement not covered" >                var query = this.getQuery(), itemIds = this.getItemIds();</span>
+<span class="cstat-no" title="statement not covered" >                if(query || itemIds.length &gt; 0) {</span>
+<span class="cstat-no" title="statement not covered" >                    return cartItemsQuery.execute(query, itemIds);</span>
+                } else {
+<span class="cstat-no" title="statement not covered" >                    return $q.when({count:0, docs:[]});</span>
+                }
+            },
+            fetchQueued:<span class="fstat-no" title="function not covered" >function(items) {</span>
+<span class="cstat-no" title="statement not covered" >                var query = this.getQuery(), itemIds = this.getItemIds();</span>
+<span class="cstat-no" title="statement not covered" >                if(query || itemIds.length &gt; 0) {</span>
+<span class="cstat-no" title="statement not covered" >                    return cartItemsQuery.fetchQueued(query, itemIds, items);</span>
+                } else {
+<span class="cstat-no" title="statement not covered" >                    return $q.when([]);</span>
+                }
+            },
+            clear: <span class="fstat-no" title="function not covered" >function() {</span>
+<span class="cstat-no" title="statement not covered" >                localStorageService.remove(CART_STORAGE_NAME);</span>
+<span class="cstat-no" title="statement not covered" >                localStorageService.remove('cart-query');</span>
+<span class="cstat-no" title="statement not covered" >                _notify({},'clear');</span>
+            },
+            getItemsArray: <span class="fstat-no" title="function not covered" >function() {</span>
+<span class="cstat-no" title="statement not covered" >                var itemsArray = [];</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                $.map(_getItems(), <span class="fstat-no" title="function not covered" >function(item){</span></span>
+<span class="cstat-no" title="statement not covered" >                    itemsArray.push(item);</span>
+                });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                return itemsArray;</span>
+            },
+            removeByFormat: <span class="fstat-no" title="function not covered" >function(format) {</span>
+<span class="cstat-no" title="statement not covered" >                var query = localStorageService.get('cart-query');</span>
+<span class="cstat-no" title="statement not covered" >                if(angular.isUndefined(query.filters)) {</span>
+<span class="cstat-no" title="statement not covered" >                    query.filters = '';</span>
+                }
+<span class="cstat-no" title="statement not covered" >                query.filters += '&amp;fq=-format:' + format;</span>
+<span class="cstat-no" title="statement not covered" >                query.actualCount = false;</span>
+<span class="cstat-no" title="statement not covered" >                this.addQuery(query);</span>
+            },
+            addQuery: <span class="fstat-no" title="function not covered" >function(query) {</span>
+<span class="cstat-no" title="statement not covered" >                var items = _getItems();</span>
+<span class="cstat-no" title="statement not covered" >                var length = _.keys(items).length;</span>
+<span class="cstat-no" title="statement not covered" >                if(length &gt; 0 &amp;&amp; query.actualCount !== true) {</span>
+<span class="cstat-no" title="statement not covered" >                    query.count += length;</span>
+                }
+<span class="cstat-no" title="statement not covered" >                query.actualCount = true;</span>
+<span class="cstat-no" title="statement not covered" >                localStorageService.add('cart-query', query);</span>
+<span class="cstat-no" title="statement not covered" >                _notifyCount(query.count);</span>
+            },
+            getQuery: <span class="fstat-no" title="function not covered" >function() {</span>
+<span class="cstat-no" title="statement not covered" >                return localStorageService.get('cart-query');</span>
+            },
+            setQueryCount: <span class="fstat-no" title="function not covered" >function(count) {</span>
+<span class="cstat-no" title="statement not covered" >                var query = localStorageService.get('cart-query');</span>
+<span class="cstat-no" title="statement not covered" >                if(query) {</span>
+<span class="cstat-no" title="statement not covered" >                    query.count = count;</span>
+<span class="cstat-no" title="statement not covered" >                    query.actualCount = true;</span>
+<span class="cstat-no" title="statement not covered" >                    this.addQuery(query);</span>
+                } else {
+<span class="cstat-no" title="statement not covered" >                    if(count !== this.getCount()) {  //single items are out of sync (deleted etc)</span>
+<span class="cstat-no" title="statement not covered" >                        _syncItems();</span>
+                    }
+                }
+<span class="cstat-no" title="statement not covered" >                _notifyCount(count);</span>
+            },
+            hasItems: <span class="fstat-no" title="function not covered" >function() {</span>
+<span class="cstat-no" title="statement not covered" >                var query = localStorageService.get('cart-query');</span>
+<span class="cstat-no" title="statement not covered" >                var items = localStorageService.get(CART_STORAGE_NAME);</span>
+<span class="cstat-no" title="statement not covered" >                return query || items;</span>
+            }
+        };
+&nbsp;
+    });
+&nbsp;</pre></td></tr>
+</table></pre>
+
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Aug 03 2015 16:37:56 GMT-0400 (Eastern Daylight Time)</div>
+</div>
+<script src="../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../sorter.js"></script>
+</body>
+</html>

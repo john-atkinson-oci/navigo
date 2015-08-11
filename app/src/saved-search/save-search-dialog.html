@@ -1,0 +1,31 @@
+<div class="modal-header">
+    <h3>Save this search</h3>
+</div>
+<div class="modal-body">
+    <form class="form-save-search" role="form">
+    	<div class="alert alert-danger" ng-show="hasError()">{{error}}</div>
+    	<fieldset>
+	        <input id="savedSearchName" type="text" class="form-control focus_field" placeholder="Enter name" ng-model="savedSearch.title" ng-keypress="handleEnter($event)" required autofocus>
+	    	<label class="icon-heart_filled" for="savedSearchName" aria-lable="Enter name"><span class="sr-only">Enter name</span></label>
+	    </fieldset>
+	    <fieldset>
+	        <label class="checkbox_label"><input type="checkbox" ng-model="savedSearch.makeDefault"> Make default view</label>
+	        <!--<label class="checkbox_label" ng-show="hasPermission('manage')"><input type="checkbox" ng-model="savedSearchGlobal"> Make global</label>-->
+            <div ng-if="canShare">
+                <div>
+                    <label>Share</label>
+                </div>
+                <div>
+                    <input type="hidden" ui-select2="sharedOptions" ng-model="savedSearch.share" style="width: 100%">
+                </div>
+            </div>
+	    </fieldset>
+    </form>
+</div>
+<div class="modal-footer">
+	<div class="cta_row">
+    	<button class="btn btn-primary" ng-click="ok()" ng-disabled="savedSearch.title == undefined">Save</button>
+		<a href="javascript:;" class="link_secondary" ng-click="cancel()">Cancel</a>
+	</div>
+</div>
+<a href="javascript:;" class="modal-close icon-x" ng-click="cancel()"></a>

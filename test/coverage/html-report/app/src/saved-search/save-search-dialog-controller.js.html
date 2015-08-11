@@ -1,0 +1,285 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for ./app/src/saved-search/save-search-dialog-controller.js</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../../../prettify.css">
+    <link rel="stylesheet" href="../../../base.css">
+    <style type='text/css'>
+        div.coverage-summary .sorter {
+            background-image: url(../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class="header low">
+    <h1>Code coverage report for <span class="entity">./app/src/saved-search/save-search-dialog-controller.js</span></h1>
+    <h2>
+        Statements: <span class="metric">10.26% <small>(4 / 39)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Branches: <span class="metric">0% <small>(0 / 6)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Functions: <span class="metric">0% <small>(0 / 14)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">10.53% <small>(4 / 38)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../../../index.html">All files</a> &#187; <a href="index.html">./app/src/saved-search/</a> &#187; save-search-dialog-controller.js</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/*global angular */
+'use strict';
+&nbsp;
+angular.module('voyager.search')
+    .controller('SaveSearchDialog', <span class="fstat-no" title="function not covered" >function($scope, $modalInstance, savedSearchService, $location, authService, $analytics, recentSearchService, searchItem) {</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        $scope.savedSearch = {query:searchItem.query};</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        var _shareGroups = [];</span>
+<span class="cstat-no" title="statement not covered" >        var _coreRoles = [{id:'_EVERYONE',text:'EVERYONE'},{id:'_LOGGEDIN',text:'LOGGEDIN'},{id:'_ANONYMOUS',text:'ANONYMOUS'}];</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        $scope.sharedOptions = {</span>
+            'multiple': true,
+            'simple_tags': true,
+            data: <span class="fstat-no" title="function not covered" >function() {</span>
+<span class="cstat-no" title="statement not covered" >                return {results:_shareGroups};</span>
+            }
+        };
+&nbsp;
+<span class="fstat-no" title="function not covered" >        function _loadGroups() {</span>
+<span class="cstat-no" title="statement not covered" >            if($scope.canAdmin) { // use system groups</span>
+<span class="cstat-no" title="statement not covered" >                $.merge(_shareGroups, _coreRoles);</span>
+<span class="cstat-no" title="statement not covered" >                authService.fetchGroups().then(<span class="fstat-no" title="function not covered" >function(groups) {</span></span>
+<span class="cstat-no" title="statement not covered" >                    $.merge(_shareGroups, groups);</span>
+                });
+            } else <span class="cstat-no" title="statement not covered" >if ($scope.canShare) {  // use user's groups</span>
+<span class="cstat-no" title="statement not covered" >                authService.getUserInfo().then(<span class="fstat-no" title="function not covered" >function(user) {</span></span>
+<span class="cstat-no" title="statement not covered" >                    var groups = [];</span>
+<span class="cstat-no" title="statement not covered" >                    _(user.groups).forEach(<span class="fstat-no" title="function not covered" >function(n) {<span class="cstat-no" title="statement not covered" ></span>groups.push({id:n,text:n});}</span>);</span>
+<span class="cstat-no" title="statement not covered" >                    $.merge(_shareGroups, groups);</span>
+                });
+            }
+        }
+&nbsp;
+<span class="fstat-no" title="function not covered" >        function _getPrivileges() {</span>
+<span class="cstat-no" title="statement not covered" >            authService.getPrivileges().then(<span class="fstat-no" title="function not covered" >function() {</span></span>
+<span class="cstat-no" title="statement not covered" >                $scope.canAdmin = authService.hasPermission('manage');</span>
+<span class="cstat-no" title="statement not covered" >                $scope.canSave = authService.hasPermission('save_searches');</span>
+<span class="cstat-no" title="statement not covered" >                $scope.canShare = authService.hasPermission('share_saved_search');</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                _loadGroups();</span>
+            });
+        }
+&nbsp;
+<span class="fstat-no" title="function not covered" >        function _activate() {</span>
+<span class="cstat-no" title="statement not covered" >            _getPrivileges();</span>
+        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        _activate();</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        $scope.ok = <span class="fstat-no" title="function not covered" >function () {</span></span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            if (_.isEmpty($scope.savedSearch.title)) {</span>
+<span class="cstat-no" title="statement not covered" >                return;</span>
+            }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            savedSearchService.saveSearch($scope.savedSearch, searchItem).then(<span class="fstat-no" title="function not covered" >function(response) {</span></span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                $modalInstance.close();</span>
+<span class="cstat-no" title="statement not covered" >                $analytics.eventTrack('saved-search', {</span>
+                    category: 'save'
+                });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                recentSearchService.updateSearchID(searchItem, response.data);</span>
+<span class="cstat-no" title="statement not covered" >                $scope.$emit('saveSearchSuccess', response.data);</span>
+&nbsp;
+            }, <span class="fstat-no" title="function not covered" >function(error) {</span>
+<span class="cstat-no" title="statement not covered" >                console.log(error.data);</span>
+            });
+        };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        $scope.cancel = <span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >            $modalInstance.dismiss('cancel');</span>
+        };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        $scope.hasPermission = <span class="fstat-no" title="function not covered" >function(permission) {</span></span>
+<span class="cstat-no" title="statement not covered" >            return authService.hasPermission(permission);</span>
+        };
+&nbsp;
+    });
+&nbsp;</pre></td></tr>
+</table></pre>
+
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Aug 03 2015 16:37:56 GMT-0400 (Eastern Daylight Time)</div>
+</div>
+<script src="../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../sorter.js"></script>
+</body>
+</html>

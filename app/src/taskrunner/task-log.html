@@ -1,0 +1,15 @@
+<div class="fluid-row modal-header task_header clearfix">
+    <h3>Task log</h3>
+    <p>{{task.type}}</p>
+    <div class="pull-right righty small semi">Task ID {{task.id}}</div>
+</div>
+<div class="modal-body modal_log_body">
+    <span us-spinner spinner-key="spinner" spinner-start-active="1"></span>
+    <pre>{{logFileData}}</pre>
+</div>
+<div class="modal-footer">
+    <div class="cta_row">
+        <button class="btn btn-primary" ng-click="download()">Download task log</button>
+    </div>
+</div>
+<a href="javascript:;" class="modal-close icon-x" ng-click="cancel()"></a>

@@ -1,0 +1,476 @@
+//form elements
+
+fieldset {
+	border: 0;
+}
+
+textarea {
+	outline: none;
+	border-radius: 5px;
+	border: 1px solid $borderColor;
+	resize: none;
+	padding: 5px 10px;
+}
+
+button, .btn {
+	@include borderRadius(5px 5px 5px 5px);
+	background-color: $white;
+	color: $defaultTextColor;
+	font-family: $semiStrongFont;
+	font-size: $smallSize;
+	border: 0;
+	outline: none;
+	box-shadow: none;
+
+	&:active, &:active {
+		box-shadow: none;
+	}
+
+	span:before {
+		opacity: 1 !important;
+	}
+
+	&.btn-primary {
+		text-align: center;
+		padding: 13px 30px 10px;
+		border-top: 3px solid $primaryColor;
+		border-bottom: 3px solid $primaryBorderColor;
+		background-color: $primaryColor;
+		font-size: $defaultSize;
+		color: $white;
+	}
+
+	&.btn-primary-sm {
+	  padding: 6px 12px !important;
+	  @extend .btn-primary;
+	}
+
+	&.btn-default {
+		border: 1px solid $secondaryBtnBorderColor;
+		padding: 5px 15px;
+	}
+
+	&.btn-secondary {
+		border: 1px solid $secondaryBtnBorderColor;
+		border-bottom-width: 2px;
+		padding: 9px 20px;
+	}
+
+	&.btn-action {
+		color: $white;
+		border-bottom: 2px solid $actionBorderColor;
+		border-top: 2px solid $actionColor;
+		background-color: $actionColor;
+		padding: 8px 20px;
+		&:hover, &:active {
+			color: $white;
+		}
+	}
+
+	&.btn-border {
+		color: $linkColor;
+		border: 1px solid $linkColor;
+		background-color: $likewhite;
+		padding-top: 9px;
+		padding-bottom: 9px;
+	}
+
+	&[class*=icon-] {
+		&:before {
+			font-size: $smallestSize;
+			margin-right: 10px;
+		}
+	}
+
+	&.btn-util {
+		border: 1px solid $secondaryBtnBorderColor;
+		border-bottom-width: 2px;
+		background-color: $white;
+		color: $lightBlue;
+		padding: 9px 20px;
+
+		&.icon-arrow {
+			padding-right: 40px;
+		}
+
+		span[class*=icon] {
+			font-size: 12px;
+			padding-right: 7px;
+		}
+
+		&:before {
+			color: $lightBlue;
+			opacity: 1;
+			font-size: 6px;
+			margin-top: 4px;
+			margin-right: 20px;
+		}
+	}
+}
+
+.btn-action {
+	&:hover {
+		background-color: $actionHoverColor;
+		border-top-color: $actionHoverColor;
+	}
+
+	&:active {
+		background-color: $actionActiveColor;
+		border-bottom: 2px solid $actionActiveColor;
+		border-top: 2px solid $actionActiveBorderColor;
+	}
+}
+
+.btn-primary, .btn-action {
+	@extend .animate;
+	&:hover, &:active {
+		@extend .animate;
+	}
+}
+
+.btn-secondary, .btn-default {
+	@extend .animate_bg_txt;
+	&:hover, &:active {
+		@extend .animate_bg_txt;
+	}
+}
+
+.btn-primary {
+	&:hover {
+		background-color: $primaryHoverColor;
+		border-bottom-color: $primaryHoverBorderColor;
+		border-top-color: $primaryHoverColor;
+	}
+
+	&:active {
+		background-color: $primaryActiveColor;
+		border-bottom-color: $primaryActiveColor;
+		border-top-color: $primaryActiveBorderColor;
+		outline: none;
+	}
+}
+
+.btn-secondary {
+	&:hover {
+		background-color: $lightestGrey;
+	}
+
+	&:active {
+		background-color: $activeLinkBgColor;
+	}
+}
+
+input, button, .btn {
+	outline: none !important;
+
+	&:focus, &:active {
+		outline: none !important;
+	}
+}
+
+input.form-control {
+	transition: none;
+	box-shadow: none;
+	@include borderRadius(5px);
+	border: 1px solid $borderColor;
+
+	&:focus {
+		border: 1px solid $inputActiveBorderColor;
+		transition: none;
+		box-shadow: none;
+		background-color: $lighterBlue !important;
+	}
+}
+
+@-moz-document url-prefix() {
+	.select_label {
+		select {
+			color: rgba(0,0,0,0);
+			text-shadow: 0 0 0 #000;
+		}
+	}
+}
+
+input[type=text], input[type=password] {
+	font-size: $mediumSize;
+	outline: none;
+	color: $defaultTextColor;
+
+	&.placeholder {
+		color: $placeholderTextColor;
+	}
+}
+
+
+input[type=submit] {
+	border: none;
+	color: $white;
+	font-family: $semiStrongFont;
+	font-size: $defaultSize;
+	background-color: $primaryColor;
+	border-bottom: 2px solid #be4e02;
+	padding-left: 25px;
+	padding-right: 25px;
+}
+
+label[class*="icon-"] {
+	@extend %formFieldLabel;
+
+	&:before {
+		@extend %formFieldIcon;
+		color: $borderColor;
+		display: block;
+		width: 50px;
+		text-align: center;
+		z-index: 2;
+	}
+}
+
+.focus_field:focus {
+	background-color: $lighterBlue;
+
+	&::-webkit-input-placeholder {
+	   color: $placeholderFocusTextColor;
+	}
+
+	&::-moz-placeholder {  /* Firefox 19+ */
+	   color: $placeholderFocusTextColor;
+	}
+
+	input:-ms-input-placeholder {
+		color: $placeholderFocusTextColor;
+	}
+	&::placeholder {
+		color: $placeholderFocusTextColor;
+	}
+
+	+ label, + .suggest-container + label {
+		&:before {
+			color: $defaultTextColor;
+		}
+
+		+ .icon-x {
+			display: block;
+			&:before {
+				color: $defaultTextColor;
+			}
+		}
+	}
+
+}
+
+.alert-error {
+  color: $errorColor;
+  border: 0;
+  border-radius: 0;
+  background-color: transparent;
+  margin-bottom: 10px;
+
+  &:before {
+    margin-right: 10px;
+  }
+}
+
+.alert-danger {
+	color: $errorColor;
+	border: 0;
+	border-radius: 0;
+	background-color: transparent;
+	margin-bottom: 10px;
+
+	&:before {
+		margin-right: 10px;
+	}
+}
+
+.alert-warning {
+  color: darkorange;
+  border: 0;
+  border-radius: 0;
+  background-color: transparent;
+  margin-bottom: 10px;
+
+  &:before {
+    margin-right: 10px;
+  }
+}
+
+.alert-success {
+  color: #3c763d;
+  border: 0;
+  border-radius: 0;
+  background-color: transparent;
+  margin-bottom: 10px;
+
+  &:before {
+    margin-right: 10px;
+  }
+}
+
+.checkbox_label {
+	display: block;
+
+	input {
+		margin-right: 5px;
+	}
+}
+
+
+
+//custom form select style
+.select2-container {
+	&.select2-dropdown-open, .select2-drop-above.select2-dropdown-open {
+		.select2-choice {
+			border-color: $borderColor;
+			border-top-width: 2px;
+			background: $activeColor;
+			padding-top: 8px;
+			padding-bottom: 9px;
+			margin-top: 0;
+			border-radius: 4px;
+		}
+	}
+
+	.select2-choice {
+		@include borderRadius(5px 5px 5px 5px);
+		border: 1px solid $borderColor;
+		border-bottom: 2px solid $borderColor;
+		font-family: $semiStrongFont;
+		font-size: $smallSize;
+		padding: 9px 20px;
+		height: 41px;
+		line-height: 1.3em;
+		background: $white;
+		margin-top: 0;
+		box-shadow: none;
+
+		&:hover {
+			background: $lightestGrey;
+		}
+
+		&:before {
+			@extend %icon_style;
+			top: 38%;
+			right: 20px;
+		}
+
+		@extend .icon-arrow;
+
+		.select2-arrow {
+			display: none;
+		}
+
+		> .select2-chosen {
+			margin-top: 2px;
+		}
+	}
+}
+
+.select2-drop {
+	margin-top: 15px;
+	border: 0 !important;
+	@extend %flyoutStyle;
+
+	ul {
+		border: 1px solid $borderColor;
+		li {
+			border-bottom: 1px solid $ddHoverBg;
+
+			&:last-child {
+				border: none;
+			}
+		}
+	}
+
+	&.select2-drop-above {
+		margin-top: -15px;
+		@extend .bottom_popover_arrow;
+	}
+}
+
+
+.select2-results {
+	padding: 0;
+	margin: 0;
+	border-radius: 0;
+
+	li {
+		color: $defaultTextColor;
+		font-family: $semiStrongFont;
+		font-size: $smallSize;
+		padding: 10px 20px;
+
+		.select2-result-label {
+			padding: 0;
+		}
+
+		&:hover, &.select2-highlighted {
+			background-color: $lightestGrey;
+			color: $hoverLinkColor;
+		}
+
+		&:active {
+			background-color: $activeLinkBgColor;
+			color: $activeLinkColor;
+		}
+	}
+}
+
+.typeahead_input + ul.dropdown-menu {
+	border-radius: 0;
+	padding: 0;
+	width: 100%;
+	@extend  %flyoutStyle;
+	margin-top: 10px;
+
+	li {
+		width: 100%;
+		border-bottom: 1px solid $borderColor;
+		position: relative;
+		z-index: 10;
+
+		> a {
+			display: block;
+			color: $defaultTextColor;
+			font-family: $semiStrongFont;
+			font-size: $smallSize;
+			padding: 10px 20px;
+			@extend .animate_bg_txt;
+			cursor: pointer;
+
+			&:hover, &:active {
+				@extend .animate_bg_txt;
+			}
+
+			&:hover {
+				background-color: $lightestGrey;
+				color: $hoverLinkColor;
+			}
+
+			&:active {
+				background-color: $activeLinkBgColor;
+				color: $activeLinkColor;
+			}
+		}
+
+		&:last-child {
+			border-bottom: none;
+		}
+	}
+}
+
+input.error {
+	border-color: $errorColor;
+	border-bottom: 2px solid $errorColor;
+}
+
+
+.label-danger {
+	background-color: $errorColor;
+	border-radius: 0;
+	font-weight: normal;
+
+	&.icon-error:before {
+		margin-right: 5px;
+	}
+}

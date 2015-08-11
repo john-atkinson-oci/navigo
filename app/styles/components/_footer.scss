@@ -1,0 +1,43 @@
+#footer {
+	box-sizing: border-box;
+	clear: both;
+	font-size: $smallestSize;
+	margin-top: 60px;
+	overflow: hidden;
+	background-color: $likewhite;
+
+	.inner {
+		border-top: 1px solid $borderColor;
+		overflow: hidden;
+		padding: 8px 0;
+	}
+
+	ul {
+		float: right;
+		padding-right: 20px;
+
+		li {
+			display: inline-block;
+			margin-left: 5px;
+
+			strong {
+				color: #5c5e5e;
+				font-family: $strongFont;
+				margin-right: 2px;
+				letter-spacing: -0.04em;
+			}
+		}
+	}
+}
+
+.full #footer {
+	position: fixed;
+	z-index: 2;
+	right: 0;
+	bottom: 0;
+	width: 100%;
+
+	.inner {
+		max-width: 100%;
+	}
+}

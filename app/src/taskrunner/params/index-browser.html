@@ -1,0 +1,28 @@
+<div id="indexBrowser">
+    <div us-spinner spinner-key="browser-spinner" spinner-start-active="1"></div>
+    <div class="modal-header" ng-hide="isInline">
+        <h3 class="modal-title">Search Index</h3>
+    </div>
+    <div ng-class="{'modal-body':!isInline}">
+        <div class="alert alert-danger alert-dismissible" role="alert" ng-show="error">
+            <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            <strong>{{error.message}}</strong></div>
+        <div>
+            <input id="pathInput" type="text" ng-model="path" ng-enter="search()" style="width: 100%">
+        </div>
+        <div>
+            <table>
+                <tbody>
+                    <tr ng-repeat="doc in docs">
+                        <td>{{doc.name}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <br>
+    <div class="modal-footer" ng-hide="isInline">
+        <button class="btn btn-warning" ng-click="closeBrowser()">Cancel</button>
+        <button class="btn btn-primary" ng-click="setPath()">OK</button>
+    </div>
+</div>

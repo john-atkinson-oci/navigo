@@ -1,0 +1,51 @@
+<html>
+<head>
+    <!-- build:css({.tmp,app}) styles/map.css -->
+    <link rel="stylesheet" href="styles/map.css">
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <!-- endbuild -->
+
+    <!-- build:js scripts/map.js -->
+    <script src="bower_components/jquery/jquery.js"></script>
+    <script src="bower_components/jquery-total-storage/jquery.total-storage.min.js"></script>
+    <script src="bower_components/spin.js/spin.js"></script>
+    <!-- endbuild -->
+
+    <script>
+        function _getFrameSrc(webMapSettings) {
+            var frameSrc = webMapSettings.webMap, sep='?';
+            if (frameSrc.indexOf('?') !== -1) {
+                sep = '&';
+            }
+            frameSrc += sep + 'url=' + encodeURIComponent(webMapSettings.urls[0]);
+            return frameSrc;
+        }
+
+        $(document).ready(function () {
+
+            var target = document.getElementById('spinner');
+            var spinner = new Spinner({}).spin(target);
+
+            var webMapSettings = $.totalStorage('vs.web-map-settings');
+
+            $('#mapApp').attr('src', _getFrameSrc(webMapSettings));
+            $('#mapApp').load(function () {
+                $('#back').show();
+                spinner.stop();
+            });
+            $('#backLink').attr('href', webMapSettings.back);
+        });
+
+        //http://www.arcgis.com/home/webmap/viewer.html?http://www.csc.noaa.gov/ArcGIS/rest/services/Roadmap/RoadmapPilot_SLR/MapServer&extent=-75.78070183294203,38.45021494480993,-71.77627810872809,41.32557810299646"
+    </script>
+</head>
+<body>
+<div id="spinner"></div>
+<div id="back" style="display: none">
+    <a id='backLink' href="#/search">
+        <span class="glyphicon glyphicon-arrow-left"> </span>&nbsp;Return to Search
+    </a>
+</div>
+<iframe src="" id="mapApp" marginheight="0" frameborder="0"></iframe>
+</body>
+</html>

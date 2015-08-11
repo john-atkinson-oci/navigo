@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for ./app/src/preview/preview-directive.js</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../../../prettify.css">
+    <link rel="stylesheet" href="../../../base.css">
+    <style type='text/css'>
+        div.coverage-summary .sorter {
+            background-image: url(../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class="header low">
+    <h1>Code coverage report for <span class="entity">./app/src/preview/preview-directive.js</span></h1>
+    <h2>
+        Statements: <span class="metric">10.71% <small>(3 / 28)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Branches: <span class="metric">0% <small>(0 / 6)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Functions: <span class="metric">0% <small>(0 / 8)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">10.71% <small>(3 / 28)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../../../index.html">All files</a> &#187; <a href="index.html">./app/src/preview/</a> &#187; preview-directive.js</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">'use strict';
+angular.module('voyager.details')
+	.directive('vsPreview', <span class="fstat-no" title="function not covered" >function(detailService, $timeout, translateService, loading, detailConfig){</span>
+<span class="cstat-no" title="statement not covered" >		return {</span>
+			restrict: 'A',
+			link: <span class="fstat-no" title="function not covered" >function($scope, element) {</span>
+&nbsp;
+<span class="fstat-no" title="function not covered" >				function _lookup(id, el) {</span>
+<span class="cstat-no" title="statement not covered" >					_positionPreview(el);</span>
+<span class="cstat-no" title="statement not covered" >					$scope.previewLoading = true;</span>
+<span class="cstat-no" title="statement not covered" >					loading.show('#previewLoading');</span>
+<span class="cstat-no" title="statement not covered" >					$scope.node = {};</span>
+<span class="cstat-no" title="statement not covered" >					detailService.lookup(id).then(<span class="fstat-no" title="function not covered" >function (data) {</span></span>
+<span class="cstat-no" title="statement not covered" >						$scope.node = data.data.response.docs[0];</span>
+<span class="cstat-no" title="statement not covered" >						if ($scope.node === undefined) {</span>
+<span class="cstat-no" title="statement not covered" >							$('#preview').css({'display': 'none'});</span>
+<span class="cstat-no" title="statement not covered" >							return;</span>
+						}
+&nbsp;
+<span class="cstat-no" title="statement not covered" >						$scope.previewNodeData = detailConfig.getFields(data.data.response.docs[0]);</span>
+<span class="cstat-no" title="statement not covered" >						if(angular.isDefined(data.data.response.docs[0].format)) {</span>
+<span class="cstat-no" title="statement not covered" >							$scope.node.displayFormat = translateService.getType(data.data.response.docs[0].format);</span>
+						}
+&nbsp;
+<span class="cstat-no" title="statement not covered" >						$scope.previewLoading = false;</span>
+<span class="cstat-no" title="statement not covered" >						loading.done();</span>
+					});
+				}
+&nbsp;
+<span class="fstat-no" title="function not covered" >				function _positionPreview(el) {</span>
+<span class="cstat-no" title="statement not covered" >					var cp = el.offset(),</span>
+						parentOffset = el.parents('.relationship').offset();
+<span class="cstat-no" title="statement not covered" >					$('#preview').css({'display': 'block', 'left': parseInt(cp.left - parentOffset.left + el.parents('div').width() - 20) + 'px', 'top': parseInt(cp.top - parentOffset.top - 22) + 'px'});</span>
+				}
+&nbsp;
+<span class="cstat-no" title="statement not covered" >				element.on('mouseenter', '.label a', <span class="fstat-no" title="function not covered" >function(event) {</span></span>
+<span class="cstat-no" title="statement not covered" >					$scope.node = {};</span>
+<span class="cstat-no" title="statement not covered" >					var el = $(event.currentTarget);</span>
+<span class="cstat-no" title="statement not covered" >					this.timeoutPromise = $timeout(<span class="fstat-no" title="function not covered" >function() {</span></span>
+<span class="cstat-no" title="statement not covered" >						_lookup(el.data('id'), el);</span>
+					}, 100);
+				}).on('mouseleave', '.label a', <span class="fstat-no" title="function not covered" >function(){</span>
+<span class="cstat-no" title="statement not covered" >					if (angular.isDefined(this.timeoutPromise)) {</span>
+<span class="cstat-no" title="statement not covered" >						$timeout.cancel(this.timeoutPromise);</span>
+					}
+<span class="cstat-no" title="statement not covered" >					$('#preview').css({'display': 'none'});</span>
+				});
+			}
+		};
+	});</pre></td></tr>
+</table></pre>
+
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Aug 03 2015 16:37:56 GMT-0400 (Eastern Daylight Time)</div>
+</div>
+<script src="../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../sorter.js"></script>
+</body>
+</html>

@@ -1,0 +1,7 @@
+<div ng-show="hasRecommendations" class="suggest-header"><span>&nbsp;Did you mean:</span></div>
+<div class="suggest-item" ng-repeat="suggestion in suggestions | limitTo: 5" ng-mousedown="select(suggestion)">
+    <span class="suggest-icon glyphicon glyphicon-map-marker" aria-hidden="true"></span>
+    <span class="suggest-item-query">
+        <span class="suggest-matched">{{::suggestion.name}}</span>
+    </span>
+</div>

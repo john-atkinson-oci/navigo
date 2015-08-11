@@ -1,0 +1,390 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for ./app/src/filters/stats-service.js</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../../../prettify.css">
+    <link rel="stylesheet" href="../../../base.css">
+    <style type='text/css'>
+        div.coverage-summary .sorter {
+            background-image: url(../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class="header low">
+    <h1>Code coverage report for <span class="entity">./app/src/filters/stats-service.js</span></h1>
+    <h2>
+        Statements: <span class="metric">32.81% <small>(21 / 64)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Branches: <span class="metric">18.75% <small>(3 / 16)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Functions: <span class="metric">33.33% <small>(6 / 18)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">32.81% <small>(21 / 64)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../../../index.html">All files</a> &#187; <a href="index.html">./app/src/filters/</a> &#187; stats-service.js</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/*global angular, $ */
+&nbsp;
+angular.module('voyager.filters').
+    factory('statsService', function (config, $http, configService, translateService, $q, solrGrunt, sugar) {
+        'use strict';
+        var _stats= {};
+        var _statsFields = {};
+&nbsp;
+<span class="fstat-no" title="function not covered" >        function _getStatsParams() {</span>
+<span class="cstat-no" title="statement not covered" >            var configFilters = configService.getFilters(), facetParams = '';</span>
+<span class="cstat-no" title="statement not covered" >            $.each(configFilters, <span class="fstat-no" title="function not covered" >function (index, filter) {</span></span>
+<span class="cstat-no" title="statement not covered" >                if(filter.style === 'STATS') {</span>
+<span class="cstat-no" title="statement not covered" >                    facetParams += '&amp;stats.field=' + filter.field;</span>
+                }
+            });
+<span class="cstat-no" title="statement not covered" >            return facetParams;</span>
+        }
+&nbsp;
+        function _hasStatsParam() {
+            var configFilters = configService.getFilters();
+            var hasStats = false;
+            $.each(configFilters, function (index, filter) {
+                <span class="missing-if-branch" title="if path not taken" >I</span>if(filter.style === 'STATS') {
+<span class="cstat-no" title="statement not covered" >                    hasStats = true;</span>
+<span class="cstat-no" title="statement not covered" >                    return false;</span>
+                }
+            });
+            return hasStats;
+        }
+&nbsp;
+        /* jshint ignore:start */
+<span class="fstat-no" title="function not covered" >        function _getAllStatsQuery() {</span>
+<span class="cstat-no" title="statement not covered" >            var queryString = config.root + 'solr/v0/select?rows=0&amp;block=false&amp;stats=true' + _getStatsParams();</span>
+<span class="cstat-no" title="statement not covered" >            if(angular.isDefined(configService.getConfigId())) {</span>
+<span class="cstat-no" title="statement not covered" >                queryString += '&amp;voyager.config.id=' + configService.getConfigId();</span>
+            }
+<span class="cstat-no" title="statement not covered" >            queryString += '&amp;wt=json&amp;json.wrf=JSON_CALLBACK';</span>
+<span class="cstat-no" title="statement not covered" >            return queryString;</span>
+        }
+        /* jshint ignore:end */
+&nbsp;
+<span class="fstat-no" title="function not covered" >        function _getQueryString(params, filterParams, bboxParams) {</span>
+<span class="cstat-no" title="statement not covered" >            var solrParams = solrGrunt.getSolrParams(params);</span>
+<span class="cstat-no" title="statement not covered" >            delete solrParams.fq; </span>//filter service will apply filter params below
+<span class="cstat-no" title="statement not covered" >            solrParams.q = solrGrunt.getInput(solrParams.q); </span>//default to all if no input filter
+<span class="cstat-no" title="statement not covered" >            var queryString = config.root + 'solr/v0/select?rows=0&amp;stats=true' + _getStatsParams();</span>
+<span class="cstat-no" title="statement not covered" >            queryString += '&amp;' + sugar.toQueryString(solrParams);</span>
+<span class="cstat-no" title="statement not covered" >            queryString += filterParams;</span>
+<span class="cstat-no" title="statement not covered" >            queryString += bboxParams;</span>
+<span class="cstat-no" title="statement not covered" >            if(angular.isDefined(configService.getConfigId())) {</span>
+<span class="cstat-no" title="statement not covered" >                queryString += '&amp;voyager.config.id=' + configService.getConfigId();</span>
+            }
+<span class="cstat-no" title="statement not covered" >            queryString += '&amp;wt=json&amp;json.wrf=JSON_CALLBACK';</span>
+<span class="cstat-no" title="statement not covered" >            return queryString;</span>
+        }
+&nbsp;
+        function _setStats(params, filterParams, bboxParams) {
+            var deferred = $q.defer();
+            <span class="missing-if-branch" title="if path not taken" >I</span>if (_hasStatsParam()) {
+<span class="cstat-no" title="statement not covered" >                $http.jsonp(_getQueryString(params, filterParams, bboxParams)).success(<span class="fstat-no" title="function not covered" >function (data) {</span></span>
+<span class="cstat-no" title="statement not covered" >                    _stats = data.stats.stats_fields; </span>// jshint ignore:line
+<span class="cstat-no" title="statement not covered" >                    deferred.resolve(_stats);</span>
+                });
+            } else {
+                deferred.resolve(null);
+            }
+            return deferred.promise;
+        }
+&nbsp;
+<span class="fstat-no" title="function not covered" >        function _parseInt(val) {</span>
+<span class="cstat-no" title="statement not covered" >            var ret = 0;</span>
+<span class="cstat-no" title="statement not covered" >            if (angular.isDefined(val)) {</span>
+<span class="cstat-no" title="statement not covered" >                ret = parseInt(val);</span>
+            }
+<span class="cstat-no" title="statement not covered" >            return ret;</span>
+        }
+        //public methods - client interface
+        return {
+            fetchStats: <span class="fstat-no" title="function not covered" >function() {</span>
+<span class="cstat-no" title="statement not covered" >                return _setStats();</span>
+            },
+&nbsp;
+            updateStats: function(params, filterParams, bboxParams, filters) {
+                _setStats(params, filterParams, bboxParams).then(function(stats) {
+                    <span class="missing-if-branch" title="if path not taken" >I</span>if (stats !== null) {
+<span class="cstat-no" title="statement not covered" >                        $.each(filters, <span class="fstat-no" title="function not covered" >function(index, filter) {</span></span>
+<span class="cstat-no" title="statement not covered" >                            if (filter.style === 'STATS') {</span>
+<span class="cstat-no" title="statement not covered" >                                $.each(filter.values, <span class="fstat-no" title="function not covered" >function(i, facet) {</span>  //TODO if style is stats there is only 1 facet, looping is overkill</span>
+<span class="cstat-no" title="statement not covered" >                                    facet.stddev = _parseInt(stats[filter.field].stddev);</span>
+<span class="cstat-no" title="statement not covered" >                                    facet.sum = _parseInt(stats[filter.field].sum);</span>
+<span class="cstat-no" title="statement not covered" >                                    facet.mean = _parseInt(stats[filter.field].mean);</span>
+                                });
+                            }
+                        });
+                    }
+                });
+            },
+&nbsp;
+            setStatsFields: <span class="fstat-no" title="function not covered" >function(statsFields) {</span>
+<span class="cstat-no" title="statement not covered" >                _statsFields = statsFields;</span>
+            },
+&nbsp;
+            getStats: <span class="fstat-no" title="function not covered" >function(filter) {</span>
+<span class="cstat-no" title="statement not covered" >                return _stats[filter];</span>
+            },
+&nbsp;
+            decorateSelected: <span class="fstat-no" title="function not covered" >function(selectedFilter, filterKeyValue) {</span>
+<span class="cstat-no" title="statement not covered" >                var range = filterKeyValue.value.replace('TO',',');</span>
+<span class="cstat-no" title="statement not covered" >                selectedFilter.name = filterKeyValue.name;</span>
+<span class="cstat-no" title="statement not covered" >                selectedFilter.model = JSON.parse(range);</span>
+<span class="cstat-no" title="statement not covered" >                selectedFilter.humanized = translateService.getFieldName(filterKeyValue.name) + ': ' + filterKeyValue.value;</span>
+            }
+        };
+&nbsp;
+    });
+&nbsp;</pre></td></tr>
+</table></pre>
+
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Aug 03 2015 16:37:56 GMT-0400 (Eastern Daylight Time)</div>
+</div>
+<script src="../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../sorter.js"></script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<div ng-controller="SavedSearchCtrl" class="dropdown"  is-open="isSavedOpen">
+    <button type="button" class="btn btn-link dropdown-toggle" ng-disabled="disabled" style="margin-top: 2px;">
+        Saved Searches <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu" role="menu" style="z-index: 2000">
+        <li ng-show="hasPermission('save_searches')"><a ng-click="createSavedSearch()" style="cursor: pointer;">Create Saved Search</a></li>
+        <li ng-show="hasPermission('configure_view')" class="divider"></li>
+        <li ng-if="personalSavedSearches.length > 0 && !isAnonymous">
+            <table class="table table-condensed" style="margin-bottom: 0px">
+                <tr>
+                    <td class="ss-menu-category"><b>My Saved Searches</b></td>
+                </tr>
+                <tr ng-repeat="saved in personalSavedSearches">
+                    <td nowrap class="ss-menu-item" ng-click="applySavedSearch(saved)">
+                        <i ng-show="saved.default" class="fa fa-asterisk" style="margin-left: -15px"></i>
+                        <a>{{saved.title}}</a>
+                    </td>
+                    <td class="ss-menu-close" width="36">
+                        <a  class="pull-right" ng-click="deleteSearch(saved.id)" style="cursor: pointer;color:#d9534f"><i class="fa fa-times" title="Default"></i></a>
+                    </td>
+                </tr>
+            </table>
+        </li>
+        <li ng-if="personalSavedSearches.length > 0" class="divider"></li>
+        <li>
+            <table class="table table-condensed" style="margin-bottom: 0px">
+                <tr>
+                    <td class="ss-menu-category"><strong>Recommended</strong></td>
+                </tr>
+                <tr ng-repeat="saved in savedSearches">
+                    <td nowrap class="ss-menu-item" ng-click="applySavedSearch(saved)">
+                        <i ng-show="saved.default" class="fa fa-asterisk" style="margin-left: -15px"></i>
+                        <a>{{saved.title}}</a>
+                    </td>
+                    <td class="ss-menu-close" ng-show="hasPermission('manage')">
+                        <a ng-click="deleteSearch(saved.id)" style="cursor: pointer;color:#d9534f"><i class="fa fa-times" title="Default"></i></a>
+                    </td>
+                </tr>
+            </table>
+        </li>
+    </ul>
+</div>

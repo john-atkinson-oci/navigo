@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for ./app/src/saved-search/home-saved-search-controller.js</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../../../prettify.css">
+    <link rel="stylesheet" href="../../../base.css">
+    <style type='text/css'>
+        div.coverage-summary .sorter {
+            background-image: url(../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class="header low">
+    <h1>Code coverage report for <span class="entity">./app/src/saved-search/home-saved-search-controller.js</span></h1>
+    <h2>
+        Statements: <span class="metric">7.41% <small>(2 / 27)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Branches: <span class="metric">0% <small>(0 / 10)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Functions: <span class="metric">0% <small>(0 / 8)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">7.41% <small>(2 / 27)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../../../index.html">All files</a> &#187; <a href="index.html">./app/src/saved-search/</a> &#187; home-saved-search-controller.js</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/*global angular */
+'use strict';
+&nbsp;
+angular.module('voyager.search')
+.controller('HomeSavedSearchCtrl', <span class="fstat-no" title="function not covered" >function ($scope, $location, filterService, savedSearchService, authService, $analytics, recentSearchService) {</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    $scope.hasPermission = <span class="fstat-no" title="function not covered" >function(permission) {</span></span>
+<span class="cstat-no" title="statement not covered" >        return authService.hasPermission(permission);</span>
+    };
+&nbsp;
+<span class="fstat-no" title="function not covered" >	function _loadSavedSearches() {</span>
+<span class="cstat-no" title="statement not covered" >		savedSearchService.getSavedSearches().then(<span class="fstat-no" title="function not covered" >function(savedSearches) {</span></span>
+<span class="cstat-no" title="statement not covered" >			var global = [], personal = [], permissions, all = '_EVERYONE';</span>
+<span class="cstat-no" title="statement not covered" >			$.each(savedSearches, <span class="fstat-no" title="function not covered" >function(index, saved) {</span></span>
+<span class="cstat-no" title="statement not covered" >				permissions = _.indexBy(saved.share);</span>
+<span class="cstat-no" title="statement not covered" >				if(angular.isDefined(permissions[all])) {</span>
+<span class="cstat-no" title="statement not covered" >					if (global.length &lt; 6) {</span>
+<span class="cstat-no" title="statement not covered" >						global.push(saved);</span>
+					}
+				} else <span class="cstat-no" title="statement not covered" >if (personal.length &lt; 6) {</span>
+<span class="cstat-no" title="statement not covered" >					personal.push(saved);</span>
+				}
+&nbsp;
+<span class="cstat-no" title="statement not covered" >				if (global.length === 6 &amp;&amp; personal.length === 6) {</span>
+<span class="cstat-no" title="statement not covered" >					return false;</span>
+				}
+			});
+<span class="cstat-no" title="statement not covered" >			$scope.savedSearches = global;</span>
+<span class="cstat-no" title="statement not covered" >			$scope.personalSavedSearches = personal;</span>
+		});
+	}
+&nbsp;
+<span class="cstat-no" title="statement not covered" >	_loadSavedSearches();</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >	authService.addObserver(_loadSavedSearches);</span>
+<span class="cstat-no" title="statement not covered" >	savedSearchService.addObserver(_loadSavedSearches);</span>
+<span class="cstat-no" title="statement not covered" >	recentSearchService.addObserver(_loadSavedSearches);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >	$scope.applySavedSearch = <span class="fstat-no" title="function not covered" >function(saved) {</span></span>
+<span class="cstat-no" title="statement not covered" >		savedSearchService.applySavedSearch(saved, $scope);</span>
+	};
+&nbsp;
+<span class="cstat-no" title="statement not covered" >	$scope.deleteSearch = <span class="fstat-no" title="function not covered" >function(id) {</span></span>
+<span class="cstat-no" title="statement not covered" >		savedSearchService.deleteSearch(id).then(<span class="fstat-no" title="function not covered" >function(){</span></span>
+<span class="cstat-no" title="statement not covered" >			_loadSavedSearches();</span>
+<span class="cstat-no" title="statement not covered" >			$analytics.eventTrack('saved-search', {</span>
+				category: 'delete'
+			});
+		});
+	};
+&nbsp;
+});</pre></td></tr>
+</table></pre>
+
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Aug 03 2015 16:37:56 GMT-0400 (Eastern Daylight Time)</div>
+</div>
+<script src="../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../sorter.js"></script>
+</body>
+</html>

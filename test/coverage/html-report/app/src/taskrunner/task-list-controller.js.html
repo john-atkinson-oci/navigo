@@ -1,0 +1,312 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for ./app/src/taskrunner/task-list-controller.js</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../../../prettify.css">
+    <link rel="stylesheet" href="../../../base.css">
+    <style type='text/css'>
+        div.coverage-summary .sorter {
+            background-image: url(../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class="header low">
+    <h1>Code coverage report for <span class="entity">./app/src/taskrunner/task-list-controller.js</span></h1>
+    <h2>
+        Statements: <span class="metric">6.12% <small>(3 / 49)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Branches: <span class="metric">0% <small>(0 / 16)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Functions: <span class="metric">0% <small>(0 / 13)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">6.38% <small>(3 / 47)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../../../index.html">All files</a> &#187; <a href="index.html">./app/src/taskrunner/</a> &#187; task-list-controller.js</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/*global angular, $, _*/
+&nbsp;
+angular.module('taskRunner')
+    .controller('TaskListCtrl', <span class="fstat-no" title="function not covered" >function ($scope, taskService, $stateParams, usSpinnerService, $timeout) {</span>
+        'use strict';
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        $scope.toggleTasksText = 'Show All';</span>
+<span class="cstat-no" title="statement not covered" >        $scope.hasUnavailable = false;</span>
+&nbsp;
+<span class="fstat-no" title="function not covered" >        function _loadTasks() {</span>
+<span class="cstat-no" title="statement not covered" >            taskService.findAllTasks($scope.canReload).then(<span class="fstat-no" title="function not covered" >function(response) {</span></span>
+<span class="cstat-no" title="statement not covered" >                $scope.taskList = response;</span>
+<span class="cstat-no" title="statement not covered" >                usSpinnerService.stop('tasks-spinner');</span>
+<span class="cstat-no" title="statement not covered" >                $scope.refreshing = false;</span>
+&nbsp;
+                //_.each($scope.taskList, function(item){item.available = false;});  //test all unavailable
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                var unavailableTasks = _.filter($scope.taskList, <span class="fstat-no" title="function not covered" >function(task){<span class="cstat-no" title="statement not covered" ></span>task.img = 'fa-chevron-circle-right'; <span class="cstat-no" title="statement not covered" ></span>return task.available === false;}</span>);</span>
+<span class="cstat-no" title="statement not covered" >                $scope.hasUnavailable = unavailableTasks.length &gt; 0;</span>
+<span class="cstat-no" title="statement not covered" >                $scope.allUnavailable = unavailableTasks.length === $scope.taskList.length;</span>
+<span class="cstat-no" title="statement not covered" >                if ($scope.allUnavailable) {</span>
+<span class="cstat-no" title="statement not covered" >                    $scope.toggleTasksText = 'Show Available'; </span>// will show all tasks, button text is opposite (toggle)
+                }
+            });
+        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        $scope.refreshTasks = <span class="fstat-no" title="function not covered" >function() {</span></span>
+<span class="cstat-no" title="statement not covered" >            $scope.refreshing = true;</span>
+<span class="cstat-no" title="statement not covered" >            usSpinnerService.spin('tasks-spinner');</span>
+<span class="cstat-no" title="statement not covered" >            taskService.refresh().then(<span class="fstat-no" title="function not covered" >function() {</span></span>
+<span class="cstat-no" title="statement not covered" >                _loadTasks();</span>
+            });
+        };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        $scope.searchParams = '&amp;' + $.param($stateParams,true);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        $scope.getIcon = <span class="fstat-no" title="function not covered" >function(task) {</span></span>
+<span class="cstat-no" title="statement not covered" >            return task.available ? 'glyphicon-ok-circle':'glyphicon-ban-circle';</span>
+        };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        $scope.getStyle = <span class="fstat-no" title="function not covered" >function(task) {</span></span>
+<span class="cstat-no" title="statement not covered" >            var style = 'cursor:' +  (task.available?'pointer;':'not-allowed;');</span>
+<span class="cstat-no" title="statement not covered" >            style += 'color:' + (task.available?'':'#bbb;');</span>
+<span class="cstat-no" title="statement not covered" >            return style;</span>
+        };
+&nbsp;
+//        security.getPrivileges().then(function() {
+//            $scope.canReload = security.hasPermission('manage');
+<span class="cstat-no" title="statement not covered" >        _loadTasks();</span>
+//        });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        $scope.toggleFilter = <span class="fstat-no" title="function not covered" >function() {</span></span>
+<span class="cstat-no" title="statement not covered" >            if ($scope.toggleTasksText === 'Show Available') {</span>
+<span class="cstat-no" title="statement not covered" >                $scope.toggleTasksText = 'Show All';</span>
+            } else {
+<span class="cstat-no" title="statement not covered" >                $scope.toggleTasksText = 'Show Available';</span>
+            }
+        };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        $scope.filterTask = <span class="fstat-no" title="function not covered" >function(task) {</span></span>
+<span class="cstat-no" title="statement not covered" >            var match = true;</span>
+<span class="cstat-no" title="statement not covered" >            if ($scope.toggleTasksText === 'Show All') {  //means currently showing only available</span>
+<span class="cstat-no" title="statement not covered" >                match = task.available;</span>
+            }
+<span class="cstat-no" title="statement not covered" >            return match;</span>
+        };
+&nbsp;
+<span class="fstat-no" title="function not covered" >        function _moveTo(id) {</span>
+<span class="cstat-no" title="statement not covered" >            var top = $('#'+id).offset().top;</span>
+<span class="cstat-no" title="statement not covered" >            $timeout(<span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >                window.scrollTo(0, top);</span>
+            }, 600);
+&nbsp;
+        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        $scope.selectTask = <span class="fstat-no" title="function not covered" >function(task) {</span></span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            task.isSelected = !task.isSelected;</span>
+<span class="cstat-no" title="statement not covered" >            task.img = task.isSelected ? 'fa-chevron-circle-down':'fa-chevron-circle-right';</span>
+            //$routeParams.t = task.name;
+<span class="cstat-no" title="statement not covered" >            if(task.available === true) {</span>
+                //$scope.task = {'name':task.name,'isNew':true};
+<span class="cstat-no" title="statement not covered" >                task.isNew = true;</span>
+<span class="cstat-no" title="statement not covered" >                $scope.task = $.extend({},task); </span> //clone so watcher always fires
+<span class="cstat-no" title="statement not covered" >                $scope.$broadcast('taskSelected', task); </span> //fire task exec event
+<span class="cstat-no" title="statement not covered" >                _moveTo(task.name);</span>
+            }
+        };
+&nbsp;
+    });</pre></td></tr>
+</table></pre>
+
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Aug 03 2015 16:37:56 GMT-0400 (Eastern Daylight Time)</div>
+</div>
+<script src="../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../sorter.js"></script>
+</body>
+</html>

@@ -1,0 +1,342 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for ./app/src/results/action-manager.js</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../../../prettify.css">
+    <link rel="stylesheet" href="../../../base.css">
+    <style type='text/css'>
+        div.coverage-summary .sorter {
+            background-image: url(../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class="header low">
+    <h1>Code coverage report for <span class="entity">./app/src/results/action-manager.js</span></h1>
+    <h2>
+        Statements: <span class="metric">12% <small>(6 / 50)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Branches: <span class="metric">0% <small>(0 / 16)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Functions: <span class="metric">8.33% <small>(1 / 12)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">12% <small>(6 / 50)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../../../index.html">All files</a> &#187; <a href="index.html">./app/src/results/</a> &#187; action-manager.js</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100</td><td class="line-coverage"><span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">(function() {
+    'use strict';
+&nbsp;
+    angular.module('voyager.results')
+        .factory('actionManager', actionManager);
+&nbsp;
+<span class="fstat-no" title="function not covered" >    function actionManager($window, $analytics, config, $modal) {</span>
+&nbsp;
+<span class="fstat-no" title="function not covered" >        function _isVisible(action, scope) {</span>
+<span class="cstat-no" title="statement not covered" >            if (action.visible === true) {</span>
+<span class="cstat-no" title="statement not covered" >                return true;</span>
+            }
+<span class="cstat-no" title="statement not covered" >            return scope.doc[action.visible];</span>
+        }
+&nbsp;
+<span class="fstat-no" title="function not covered" >        function _toggleDisplay(action, scope) {</span>
+<span class="cstat-no" title="statement not covered" >            if(scope.doc[action.toggle] === true) {</span>
+<span class="cstat-no" title="statement not covered" >                action.display = action.off;</span>
+<span class="cstat-no" title="statement not covered" >                action.icon = action.offIcon;</span>
+<span class="cstat-no" title="statement not covered" >                action.buttonType = 'btn-default';</span>
+            } else {
+<span class="cstat-no" title="statement not covered" >                action.display = action.text;</span>
+<span class="cstat-no" title="statement not covered" >                action.icon = action.onIcon;</span>
+<span class="cstat-no" title="statement not covered" >                action.buttonType = 'btn-primary';</span>
+            }
+        }
+&nbsp;
+<span class="fstat-no" title="function not covered" >        function _setAction(action, scope) {</span>
+<span class="cstat-no" title="statement not covered" >            action.visible = _isVisible(action, scope);</span>
+<span class="cstat-no" title="statement not covered" >            if(action.action === 'add') {</span>
+<span class="cstat-no" title="statement not covered" >                action.do = <span class="fstat-no" title="function not covered" >function() {</span></span>
+<span class="cstat-no" title="statement not covered" >                    scope.doc.isopen = false;</span>
+<span class="cstat-no" title="statement not covered" >                    scope.toggleCart(scope.doc);</span>
+<span class="cstat-no" title="statement not covered" >                    _toggleDisplay(action, scope);</span>
+                };
+<span class="cstat-no" title="statement not covered" >                _toggleDisplay(action, scope);</span>
+            } else <span class="cstat-no" title="statement not covered" >if (action.action === 'preview') {</span>
+<span class="cstat-no" title="statement not covered" >                action.do = <span class="fstat-no" title="function not covered" >function() {</span></span>
+<span class="cstat-no" title="statement not covered" >                    scope.doc.isopen = false;</span>
+<span class="cstat-no" title="statement not covered" >                    scope.addToMap(scope.doc);</span>
+<span class="cstat-no" title="statement not covered" >                    $window.scrollTo(0,0);</span>
+                };
+            } else <span class="cstat-no" title="statement not covered" >if (action.action === 'download') {</span>
+<span class="cstat-no" title="statement not covered" >                action.do = <span class="fstat-no" title="function not covered" >function() {</span></span>
+<span class="cstat-no" title="statement not covered" >                    scope.doc.isopen = false;</span>
+<span class="cstat-no" title="statement not covered" >                    $analytics.eventTrack('download', {</span>
+                        category: 'results', label: scope.doc.format // jshint ignore:line
+                    });
+                    //TODO not sure if we need category of GIS but we don't want to do this with general images
+                    //if(scope.doc.format_category === 'GIS' &amp;&amp; scope.doc.component_files &amp;&amp; scope.doc.component_files.length &gt; 0) { // jshint ignore:line
+                    //    var url = config.root + 'stream/' + scope.doc.id + '.zip';
+                    //    $window.location.href = url;
+                    //} else {
+<span class="cstat-no" title="statement not covered" >                    $window.location.href = scope.doc.download;</span>
+                    //}
+                };
+            } else <span class="cstat-no" title="statement not covered" >if (action.action === 'open') {</span>
+<span class="cstat-no" title="statement not covered" >                action.do = <span class="fstat-no" title="function not covered" >function() {</span></span>
+<span class="cstat-no" title="statement not covered" >                    scope.doc.isopen = false;</span>
+<span class="cstat-no" title="statement not covered" >                    $analytics.eventTrack('openWith', {</span>
+                        category: 'results', label: action.url // jshint ignore:line
+                    });
+<span class="cstat-no" title="statement not covered" >                    $window.open(action.url + '?url=' + encodeURIComponent(scope.doc.fullpath));</span>
+                };
+            } else <span class="cstat-no" title="statement not covered" >if (action.action === 'openArcMap') {</span>
+<span class="cstat-no" title="statement not covered" >                action.do = <span class="fstat-no" title="function not covered" >function() {</span></span>
+<span class="cstat-no" title="statement not covered" >                    scope.doc.isopen = false;</span>
+<span class="cstat-no" title="statement not covered" >                    $analytics.eventTrack('openArcMap', {</span>
+                        category: 'results', label: scope.doc.id // jshint ignore:line
+                    });
+<span class="cstat-no" title="statement not covered" >                    $window.location.href = scope.doc.layerURL;</span>
+                };
+            } else <span class="cstat-no" title="statement not covered" >if (action.action === 'tag') {</span>
+<span class="cstat-no" title="statement not covered" >                action.do = <span class="fstat-no" title="function not covered" >function() {</span></span>
+<span class="cstat-no" title="statement not covered" >                    scope.doc.isopen = false;</span>
+<span class="cstat-no" title="statement not covered" >                    $analytics.eventTrack('tag', {</span>
+                        category: 'results', label: action.url // jshint ignore:line
+                    });
+<span class="cstat-no" title="statement not covered" >                    $modal.open({</span>
+                        templateUrl: 'common/tagging/tagging.html',
+                        size: 'md',
+                        controller: 'TagDialog',
+                        resolve: {
+                            doc: <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >                                return scope.doc;</span>
+                            }
+                        }
+                    });
+                };
+            }
+        }
+&nbsp;
+        //public methods - client interface
+<span class="cstat-no" title="statement not covered" >        return {</span>
+            setAction : _setAction,
+            toggleDisplay : _toggleDisplay
+        };
+    }
+&nbsp;
+})();</pre></td></tr>
+</table></pre>
+
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Aug 03 2015 16:37:56 GMT-0400 (Eastern Daylight Time)</div>
+</div>
+<script src="../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../sorter.js"></script>
+</body>
+</html>

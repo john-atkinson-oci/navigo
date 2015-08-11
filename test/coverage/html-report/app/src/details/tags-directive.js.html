@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for ./app/src/details/tags-directive.js</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../../../prettify.css">
+    <link rel="stylesheet" href="../../../base.css">
+    <style type='text/css'>
+        div.coverage-summary .sorter {
+            background-image: url(../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class="header low">
+    <h1>Code coverage report for <span class="entity">./app/src/details/tags-directive.js</span></h1>
+    <h2>
+        Statements: <span class="metric">12% <small>(3 / 25)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Branches: <span class="metric">0% <small>(0 / 8)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Functions: <span class="metric">0% <small>(0 / 10)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">12% <small>(3 / 25)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../../../index.html">All files</a> &#187; <a href="index.html">./app/src/details/</a> &#187; tags-directive.js</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/* global angular */
+angular.module('voyager.details')
+    .directive('vgTags', <span class="fstat-no" title="function not covered" >function($timeout, tagService, $window, searchService) {</span>
+        'use strict';
+&nbsp;
+<span class="fstat-no" title="function not covered" >        function _decorateTags() {</span>
+<span class="cstat-no" title="statement not covered" >            var $container = $('#s2id_labels');</span>
+<span class="cstat-no" title="statement not covered" >            var $tags = $container.children('.select2-choices').children('.select2-search-choice').children('div');</span>
+<span class="cstat-no" title="statement not covered" >            var hasTags = false;</span>
+<span class="cstat-no" title="statement not covered" >            $.each($tags, <span class="fstat-no" title="function not covered" >function(name, value) {</span></span>
+<span class="cstat-no" title="statement not covered" >                $(value).hover( <span class="fstat-no" title="function not covered" >function(e) {</span></span>
+<span class="cstat-no" title="statement not covered" >                    $(e.currentTarget).css({'text-decoration':'underline', 'cursor':'pointer'});</span>
+                }, <span class="fstat-no" title="function not covered" >function(e) {</span>
+<span class="cstat-no" title="statement not covered" >                    $(e.currentTarget).css({'text-decoration':'none', 'cursor':'auto'});</span>
+                });
+<span class="cstat-no" title="statement not covered" >                hasTags = true;</span>
+            });
+<span class="cstat-no" title="statement not covered" >            return hasTags;</span>
+        }
+&nbsp;
+<span class="fstat-no" title="function not covered" >        function _searchByTag() {</span>
+<span class="cstat-no" title="statement not covered" >            $('#labels').off('choice-selected');</span>
+<span class="cstat-no" title="statement not covered" >            $('#labels').on('choice-selected', <span class="fstat-no" title="function not covered" >function(e,v) {</span></span>
+<span class="cstat-no" title="statement not covered" >                var tag = $(v).text().trim();</span>
+<span class="cstat-no" title="statement not covered" >                if (searchService.getLastSearch().indexOf('?') === -1) {</span>
+<span class="cstat-no" title="statement not covered" >                    $window.location.href = searchService.getLastSearch() + '?fq=tag_tags:' + tag;</span>
+                } else {
+<span class="cstat-no" title="statement not covered" >                    $window.location.href = searchService.getLastSearch() + '&amp;fq=tag_tags:' + tag;</span>
+                }
+            });
+        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        return {</span>
+            restrict: 'A',
+            require: 'ngModel',
+            link: <span class="fstat-no" title="function not covered" >function (scope, el, attrs) {</span>
+<span class="cstat-no" title="statement not covered" >                return scope.$watch(attrs.ngModel, <span class="fstat-no" title="function not covered" >function (newValues, last) {</span></span>
+<span class="cstat-no" title="statement not covered" >                    $timeout(<span class="fstat-no" title="function not covered" >function() {</span>  //defer until scope is done</span>
+<span class="cstat-no" title="statement not covered" >                        if (_decorateTags()) {</span>
+<span class="cstat-no" title="statement not covered" >                            _searchByTag();</span>
+                        }
+                    },0);
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                    if(!_.isEqual(newValues, last) &amp;&amp; !scope.loading) {</span>
+<span class="cstat-no" title="statement not covered" >                        tagService.saveLabels(scope.doc.id, newValues);</span>
+                    }
+                });
+            }
+        };
+    });</pre></td></tr>
+</table></pre>
+
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Aug 03 2015 16:37:56 GMT-0400 (Eastern Daylight Time)</div>
+</div>
+<script src="../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../sorter.js"></script>
+</body>
+</html>

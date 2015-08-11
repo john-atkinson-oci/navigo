@@ -1,0 +1,112 @@
+<div class="home" ng-controller="HomeCtrl">
+	<section id="searchContainer" style="{{containerStyle}}">
+		<div id="map" class="search-map" vs-search-map togglestyle="true" resize="false" ng-if="!hideMap" origin="home"></div>
+		<div class="inner {{displayFormat}}" vs-searchform>
+			<div class="search_wrap">
+				<form name="searchForm" id="searchForm" ng-submit="submitSearch()" class="search_form">
+					<div class="col-md-12 no_padding">
+						<fieldset class="{{searchInputClass}} search_fieldset no_padding">
+							<label for="query" class="icon-looking_search" aria-label="What are you looking for?"><span class="sr-only">What are you looking for?</span></label>
+							<input type="text" class="input_field" name="query" ng-model="search.query" maxlength="256" autocomplete="off" placeholder="What are you looking for?" autofocus />
+						</fieldset>
+						<fieldset class="{{searchInputClass}} location_fieldset no_padding" ng-show="showSpatialInput">
+							<div class="location_wrap" ng-show="showMap">
+								<label for="location" class="icon-input_location" aria-label="Draw region on the map"><span class="sr-only">Draw region on the map</span></label>
+								<input type="text" class="input_field" readonly="true" ng-model="search.displayBBox" name="location" maxlength="256" placeholder="Draw region on the map" autocomplete="off" />
+							</div>
+							<div class="location_wrap" ng-hide="showMap">
+								<label for="location" class="icon-input_location" aria-label="Where is it located?"><span class="sr-only">Where is it located?</span></label>
+								<input vs-suggest autosearch="off" type="text" class="input_field" ng-model="search.location" name="location" maxlength="256" placeholder="Where is it located?" autocomplete="off" />
+							</div>
+							<div class="select_wrap">
+								<label class="icon-arrow sr-only" for="locationSelect" aria-label="Select drawing type"><span class="sr-only">Select drawing type</span></label>
+								<select ui-select2="{dropdownAutoWidth: 'true', minimumResultsForSearch: -1}" name="locationSelect" id="locationSelect" ng-model="selectedDrawingType">
+									<option ng-repeat="type in ::drawingTypes">{{::type}}</option>
+								</select>
+							</div>
+						</fieldset>
+					</div>
+					<button class="btn btn-primary">
+						<span class="icon-input_search"></span>
+					</button>
+				</form>
+			</div>
+			<div id="searchHistory" ng-if="!hideMap">
+				<nav class="tab clearfix">
+					<ul>
+						<li ng-class="showRecent ? 'selected' : ''"><a href="javascript:;" ng-click="changeTab('recent')">Recent searches</a></li>
+						<li ng-class="!showRecent ? 'selected' : ''"><a href="javascript:;" ng-click="changeTab('saved')">Saved searches</a></li>
+					</ul>
+				</nav>
+				<article ng-show="showRecent" ng-controller="RecentSearchCtrl">
+					<p ng-show="!recentSearches.length">You have no recent searches.</p>
+					<ul class="clearfix">
+						<li ng-repeat="search in recentSearches">
+							<a href="javascript:;" ng-if="hasPermission('save_searches')" ng-click="toggleSave(search)" class="favorite_link">
+								<span class="{{search.saved == true ? 'icon-heart_filled' : 'icon-heart_empty'}}"></span>
+							</a>
+							<a href="javascript:;" ng-click="applyRecentSearch(search)" class="underline">
+                                <span class="txt">
+                                    <em ng-bind="search.title || search.q"></em>
+                                    {{search.displayBBox == '' ? 'near' : ''}}{{search.displayPlaceOP}}
+                                    <em ng-bind="search.displayBBox || search.place"></em>
+                                </span>
+                            </a>
+						</li>
+					</ul>
+				</article>
+				<article ng-hide="showRecent" ng-controller="HomeSavedSearchCtrl">
+					<ul ng-show="personalSavedSearches.length">
+						<li ng-repeat="search in personalSavedSearches">
+							<a href="javascript:;" ng-if="hasPermission('save_searches')" ng-click="deleteSearch(search.id)" class="favorite_link">
+								<span class="icon-heart_filled"></span>
+							</a>
+							<a href="javascript:;" class="underline" ng-click="applySavedSearch(search)"><em class="txt" ng-bind="::search.title"></em></a>
+						</li>
+					</ul>
+					<ul ng-hide="personalSavedSearches.length">
+						<li ng-repeat="search in savedSearches">
+							<a href="javascript:;" ng-if="hasPermission('manage')" ng-click="deleteSearch(search.id)" class="favorite_link">
+								<span class="icon-heart_filled"></span>
+							</a>
+							<a href="javascript:;" class="underline" ng-click="applySavedSearch(search)"><em class="txt" ng-bind="::search.title"></em></a>
+						</li>
+					</ul>
+				</article>
+			</div>
+		</div>
+	</section>
+
+	<div class="wrapper container-fluid">
+		<div class="col-md-12 no_padding">
+			<div class="inner">
+				<section class="featured cards no_padding {{collections.length && 'col-md-9 col-sm-8' || 'col-md-12'}} col-xs-12" ng-if="::featured.length">
+					<header>
+						<h1>{{featuredTitle}}</h1>
+					</header>
+					<div class="list clearfix">
+						<div class="row">
+							<article ng-repeat="doc in ::featured" vs-card></article>
+						</div>
+					</div>
+				</section>
+
+				<section class="collections col-md-3 col-sm-4 col-xs-12 pull-right" ng-show="collections.length">
+					<header>
+						<h1>{{collectionsTitle}}</h1>
+					</header>
+					<ul>
+						<li ng-repeat="item in ::collections">
+							<a href="javascript:;" class="icon-collection" ng-click="applyCollection(item)">{{::item.title}}<span>{{::item.count | number}} item{{::item.count > 1 ? "s" : ""}}</span></a>
+						</li>
+					</ul>
+				</section>
+			</div>
+			<div class="col-md-12 no_padding">
+				<div class="inner">
+					<a href="javascript:;" ng-click="showAll()">Show All </a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

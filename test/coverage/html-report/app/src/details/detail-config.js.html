@@ -1,0 +1,693 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for ./app/src/details/detail-config.js</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../../../prettify.css">
+    <link rel="stylesheet" href="../../../base.css">
+    <style type='text/css'>
+        div.coverage-summary .sorter {
+            background-image: url(../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class="header low">
+    <h1>Code coverage report for <span class="entity">./app/src/details/detail-config.js</span></h1>
+    <h2>
+        Statements: <span class="metric">22.13% <small>(27 / 122)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Branches: <span class="metric">1.61% <small>(1 / 62)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Functions: <span class="metric">15.79% <small>(3 / 19)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">22.13% <small>(27 / 122)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../../../index.html">All files</a> &#187; <a href="index.html">./app/src/details/</a> &#187; detail-config.js</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">'use strict';
+&nbsp;
+angular.module('voyager.details').
+    factory('detailConfig', function(config, $q, configService, translateService, configLoader) {
+&nbsp;
+        var displayFields;
+        <span class="missing-if-branch" title="else path not taken" >E</span>if(config.settings) {
+            displayFields = config.settings.data.display.fields;
+        }
+&nbsp;
+        //summary
+        var _summaryFields = [];
+        var _summaryInclusions = {};
+        var _summaryParams = '';
+        var _summaryFieldsOrder = {};
+        //detail
+        var inclusions = {};
+        var _displayFieldsOrder = {};
+        var displayParams = '';
+        var _showAllFields = false;
+        var _editable = {};
+        var _styles = {};
+        var _summaryStyles = {};
+&nbsp;
+        var _showPath = true;
+        var _showFormat = true;
+&nbsp;
+        var excludePrefix = config.excludeDetails;
+&nbsp;
+<span class="fstat-no" title="function not covered" >        function _setInclusions() {</span>
+<span class="cstat-no" title="statement not covered" >            $.each(displayFields, <span class="fstat-no" title="function not covered" >function (index, value) {</span></span>
+<span class="cstat-no" title="statement not covered" >                inclusions[value.name] = value.name;</span>
+<span class="cstat-no" title="statement not covered" >                _styles[value.name] = value.style;</span>
+<span class="cstat-no" title="statement not covered" >                displayParams += ', ' + value.name;</span>
+<span class="cstat-no" title="statement not covered" >                _displayFieldsOrder[value.name] = index;</span>
+<span class="cstat-no" title="statement not covered" >                _editable[value.name] = value.editable;</span>
+            });
+        }
+&nbsp;
+<span class="fstat-no" title="function not covered" >        function _setSummaryInclusions() {</span>
+<span class="cstat-no" title="statement not covered" >            $.each(_summaryFields, <span class="fstat-no" title="function not covered" >function (index, value) {</span></span>
+<span class="cstat-no" title="statement not covered" >                _summaryInclusions[value.name] = value.name;</span>
+<span class="cstat-no" title="statement not covered" >                _summaryStyles[value.name] = value.style;</span>
+<span class="cstat-no" title="statement not covered" >                _summaryParams += ', ' + value.name;</span>
+<span class="cstat-no" title="statement not covered" >                _summaryFieldsOrder[value.name] = index;</span>
+            });
+        }
+&nbsp;
+<span class="fstat-no" title="function not covered" >        function _load(configId) {</span>
+<span class="cstat-no" title="statement not covered" >            var deferred = $q.defer();</span>
+<span class="cstat-no" title="statement not covered" >            configLoader.prepare().then(<span class="fstat-no" title="function not covered" >function() {</span></span>
+<span class="cstat-no" title="statement not covered" >                translateService.init();</span>
+<span class="cstat-no" title="statement not covered" >                configService.getConfigDetails(configId).then(<span class="fstat-no" title="function not covered" >function(response) {</span></span>
+<span class="cstat-no" title="statement not covered" >                    var display = response.data.display;</span>
+<span class="cstat-no" title="statement not covered" >                    if(display.path === false) {</span>
+<span class="cstat-no" title="statement not covered" >                        _showPath = false;</span>
+                    }
+<span class="cstat-no" title="statement not covered" >                    if(display.ref === false) {</span>
+<span class="cstat-no" title="statement not covered" >                        _showFormat = false;</span>
+                    }
+<span class="cstat-no" title="statement not covered" >                    displayFields = response.data.display.fields;</span>
+<span class="cstat-no" title="statement not covered" >                    _showAllFields = response.data.display.showAllFields;</span>
+<span class="cstat-no" title="statement not covered" >                    if (response.data.summary) {</span>
+<span class="cstat-no" title="statement not covered" >                        _summaryFields = response.data.summary.fields;</span>
+<span class="cstat-no" title="statement not covered" >                        _setSummaryInclusions();</span>
+                    }
+<span class="cstat-no" title="statement not covered" >                    _setInclusions();</span>
+<span class="cstat-no" title="statement not covered" >                    deferred.resolve();</span>
+                });
+            });
+<span class="cstat-no" title="statement not covered" >            return deferred.promise;</span>
+        }
+&nbsp;
+<span class="fstat-no" title="function not covered" >        function _exclude(name){</span>
+<span class="cstat-no" title="statement not covered" >            var index =_.findIndex(excludePrefix, <span class="fstat-no" title="function not covered" >function(prefix) {</span></span>
+<span class="cstat-no" title="statement not covered" >                return name.indexOf(prefix) === 0 || name === prefix;</span>
+            });
+<span class="cstat-no" title="statement not covered" >            return index !== -1;</span>
+        }
+&nbsp;
+<span class="fstat-no" title="function not covered" >        function _getFields(doc, fields) {</span>
+<span class="cstat-no" title="statement not covered" >            var prettyFields = [];</span>
+<span class="cstat-no" title="statement not covered" >            var emptyFields = _.clone(inclusions);</span>
+<span class="cstat-no" title="statement not covered" >            var isArray = false;</span>
+&nbsp;
+            //var exclusions = {'id':true, 'name':true,'format':true,'path':true,'thumb':true,'preview':true,'download':true,'bbox':true,'title':true};
+<span class="cstat-no" title="statement not covered" >            var formattedValue = '';</span>
+<span class="cstat-no" title="statement not covered" >            $.each(doc, <span class="fstat-no" title="function not covered" >function (name, value) {</span></span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                if ((inclusions[name] || _showAllFields === true) &amp;&amp; angular.isDefined(fields[name]) &amp;&amp; fields[name].displayable === true) {</span>
+<span class="cstat-no" title="statement not covered" >                    delete emptyFields[name];</span>
+<span class="cstat-no" title="statement not covered" >                    if (!_exclude(name)) {</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                        formattedValue = value;</span>
+<span class="cstat-no" title="statement not covered" >                        isArray = false;</span>
+<span class="cstat-no" title="statement not covered" >                        var formattedValues = {};</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                        if (_.isArray(value)) {</span>
+<span class="cstat-no" title="statement not covered" >                            formattedValue = value.join(', ');</span>
+<span class="cstat-no" title="statement not covered" >                            isArray = true;</span>
+<span class="cstat-no" title="statement not covered" >                            formattedValues = _.indexBy(value);</span>
+                        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                        if (name === 'format') {</span>
+<span class="cstat-no" title="statement not covered" >                            formattedValue = translateService.getType(value);</span>
+                        }
+<span class="cstat-no" title="statement not covered" >                        if (name === 'contains_mime') {</span>
+<span class="cstat-no" title="statement not covered" >                            if (_.isArray(value)) {</span>
+<span class="cstat-no" title="statement not covered" >                                formattedValues = {}; </span> //overwrite with actual formatted values
+<span class="cstat-no" title="statement not covered" >                                _.each(value, <span class="fstat-no" title="function not covered" >function (val) {</span></span>
+<span class="cstat-no" title="statement not covered" >                                    formattedValues[val] = translateService.getType(val);</span>
+                                });
+                                //formattedValue = formattedValues.join();
+                            } else {
+<span class="cstat-no" title="statement not covered" >                                formattedValue = translateService.getType(value);</span>
+                            }
+                        }
+<span class="cstat-no" title="statement not covered" >                        if (name === 'location') {</span>
+<span class="cstat-no" title="statement not covered" >                            formattedValue = translateService.getLocation(value);</span>
+                        }
+<span class="cstat-no" title="statement not covered" >                        if (_styles[name] === 'STRIP_HTML') {</span>
+<span class="cstat-no" title="statement not covered" >                            formattedValue = $('&lt;p&gt;' + value + '&lt;/p&gt;').text();</span>
+                        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                        var isHtml = false;</span>
+<span class="cstat-no" title="statement not covered" >                        if (_styles[name] === 'HTML') {</span>
+<span class="cstat-no" title="statement not covered" >                            isHtml = true;</span>
+                        }
+<span class="cstat-no" title="statement not covered" >                        if (value.length &gt; 100 &amp;&amp; !isHtml) {</span>
+<span class="cstat-no" title="statement not covered" >                            _styles[name] = 'STRING'; </span>//so it doesn't become a link
+                        }
+<span class="cstat-no" title="statement not covered" >                        prettyFields.push({</span>
+                            'name': translateService.getFieldName(name),
+                            stype: fields[name].stype,
+                            isArray: isArray,
+                            'value': value,
+                            formattedValue: formattedValue,
+                            formattedValues: formattedValues,
+                            order: _displayFieldsOrder[name],
+                            editable: _editable[name],
+                            key: name,
+                            style: _styles[name],
+                            isHtml: isHtml
+                        });
+                    }
+                }
+<span class="cstat-no" title="statement not covered" >                if (name === 'abstract' &amp;&amp; !_.isEmpty(doc.abstract)) {</span>
+<span class="cstat-no" title="statement not covered" >                    doc.displayDescription = _.last(prettyFields); </span>// jshint ignore:line
+                } else <span class="cstat-no" title="statement not covered" >if (name === 'description' &amp;&amp; !_.isEmpty(doc.description)) {</span>
+<span class="cstat-no" title="statement not covered" >                    doc.displayDescription = _.last(prettyFields);</span>
+                }
+&nbsp;
+            });
+&nbsp;
+            //fields without values aren't returned in the query results, display those that are editable
+<span class="cstat-no" title="statement not covered" >            $.each(emptyFields, <span class="fstat-no" title="function not covered" >function (name) {</span></span>
+<span class="cstat-no" title="statement not covered" >                if(_editable[name] === true) {</span>
+<span class="cstat-no" title="statement not covered" >                    prettyFields.push({name: translateService.getFieldName(name), value: '', formattedValue: '', order:_displayFieldsOrder[name], editable: true, key:name});</span>
+                }
+            });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            return _.sortBy(prettyFields, 'order');</span>
+        }
+&nbsp;
+<span class="fstat-no" title="function not covered" >        function _getSummaryFields(doc, fields) {</span>
+<span class="cstat-no" title="statement not covered" >            var prettyFields = [];</span>
+&nbsp;
+            //var exclusions = {'id':true, 'name':true,'format':true,'path':true,'thumb':true,'preview':true,'download':true,'bbox':true,'title':true};
+<span class="cstat-no" title="statement not covered" >            var formattedValue = '';</span>
+<span class="cstat-no" title="statement not covered" >            $.each(doc, <span class="fstat-no" title="function not covered" >function (name, value) {</span></span>
+<span class="cstat-no" title="statement not covered" >                if (_summaryInclusions[name] &amp;&amp; fields[name].displayable === true) {</span>
+<span class="cstat-no" title="statement not covered" >                    if(_.isArray(value)) {</span>
+<span class="cstat-no" title="statement not covered" >                        value = value.join(', ');</span>
+                    }
+<span class="cstat-no" title="statement not covered" >                    formattedValue = value;</span>
+<span class="cstat-no" title="statement not covered" >                    if(name === 'format') {</span>
+<span class="cstat-no" title="statement not covered" >                        formattedValue = translateService.getType(value);</span>
+                    }
+<span class="cstat-no" title="statement not covered" >                    if(name === 'contains_mime') {</span>
+<span class="cstat-no" title="statement not covered" >                        if(_.isArray(value)) {</span>
+<span class="cstat-no" title="statement not covered" >                            var formattedValues = [];</span>
+<span class="cstat-no" title="statement not covered" >                            _.each(value, <span class="fstat-no" title="function not covered" >function(val) {</span></span>
+<span class="cstat-no" title="statement not covered" >                                formattedValues.push(translateService.getType(val));</span>
+                            });
+<span class="cstat-no" title="statement not covered" >                            formattedValue = formattedValues.join();</span>
+                        } else {
+<span class="cstat-no" title="statement not covered" >                            formattedValue = translateService.getType(value);</span>
+                        }
+                    }
+<span class="cstat-no" title="statement not covered" >                    if(_summaryStyles[name] === 'STRIP_HTML') {</span>
+<span class="cstat-no" title="statement not covered" >                        formattedValue = $('&lt;p&gt;' + value + '&lt;/p&gt;').text();</span>
+                    }
+<span class="cstat-no" title="statement not covered" >                    var isHtml = false;</span>
+<span class="cstat-no" title="statement not covered" >                    if(_styles[name] === 'HTML') {</span>
+<span class="cstat-no" title="statement not covered" >                        isHtml = true;</span>
+                    }
+<span class="cstat-no" title="statement not covered" >                    prettyFields.push({'name': translateService.getFieldName(name), 'value': value, formattedValue: formattedValue, order:_summaryFieldsOrder[name], key:name, style: _summaryStyles[name], isHtml: isHtml});</span>
+                }
+            });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            return _.sortBy(prettyFields, 'order');</span>
+        }
+&nbsp;
+        return {
+            load: _load,
+&nbsp;
+            showPath: function() {return _showPath;},
+&nbsp;
+            showFormat: function() {return _showFormat;},
+&nbsp;
+            getFields: _getFields,
+&nbsp;
+            getSummaryFields: _getSummaryFields
+        };
+&nbsp;
+    });
+&nbsp;</pre></td></tr>
+</table></pre>
+
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Aug 03 2015 16:37:56 GMT-0400 (Eastern Daylight Time)</div>
+</div>
+<script src="../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../sorter.js"></script>
+</body>
+</html>

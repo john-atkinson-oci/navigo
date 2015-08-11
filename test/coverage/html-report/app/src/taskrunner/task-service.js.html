@@ -1,0 +1,522 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for ./app/src/taskrunner/task-service.js</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../../../prettify.css">
+    <link rel="stylesheet" href="../../../base.css">
+    <style type='text/css'>
+        div.coverage-summary .sorter {
+            background-image: url(../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class="header low">
+    <h1>Code coverage report for <span class="entity">./app/src/taskrunner/task-service.js</span></h1>
+    <h2>
+        Statements: <span class="metric">6.35% <small>(4 / 63)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Branches: <span class="metric">0% <small>(0 / 32)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Functions: <span class="metric">0% <small>(0 / 29)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">6.35% <small>(4 / 63)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../../../index.html">All files</a> &#187; <a href="index.html">./app/src/taskrunner/</a> &#187; task-service.js</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/*global angular, $ */
+&nbsp;
+angular.module('taskRunner').
+    factory('taskService', <span class="fstat-no" title="function not covered" >function ($http, config, $q) {</span>
+        'use strict';
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        var _items = [];</span>
+&nbsp;
+<span class="fstat-no" title="function not covered" >        function _buildQuery(isAdmin) {</span>
+<span class="cstat-no" title="statement not covered" >            var filter = '&amp;fq=available:true';</span>
+<span class="cstat-no" title="statement not covered" >            if (isAdmin) {</span>
+<span class="cstat-no" title="statement not covered" >                filter = '';</span>
+            }
+<span class="cstat-no" title="statement not covered" >            return config.root + 'solr/tasks/select?q=*:*' + filter + '&amp;rows=1000&amp;sort=display_sort+asc&amp;wt=json&amp;json.wrf=JSON_CALLBACK';</span>
+        }
+&nbsp;
+<span class="fstat-no" title="function not covered" >        function _post(request, validate) {</span>
+<span class="cstat-no" title="statement not covered" >            return $http({</span>
+                method: 'POST',
+                url: config.root + 'api/rest/process/task?validate=' + validate,
+                data: request,
+                headers: {'Content-Type': 'application/json'}
+            });
+        }
+&nbsp;
+<span class="fstat-no" title="function not covered" >        function _decorator(data) {</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            var groups = {};</span>
+<span class="cstat-no" title="statement not covered" >            _.each(data, <span class="fstat-no" title="function not covered" >function(item){</span></span>
+<span class="cstat-no" title="statement not covered" >                _.each(item.category, <span class="fstat-no" title="function not covered" >function(cat) {</span></span>
+<span class="cstat-no" title="statement not covered" >                    if (typeof(groups[cat]) === 'undefined') {</span>
+<span class="cstat-no" title="statement not covered" >                        groups[cat] = [];</span>
+<span class="cstat-no" title="statement not covered" >                        groups[cat].push(item);</span>
+                    }
+                    else {
+<span class="cstat-no" title="statement not covered" >                        groups[cat].push(item);</span>
+                    }
+                });
+            });
+<span class="cstat-no" title="statement not covered" >            return groups;</span>
+        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        return {</span>
+&nbsp;
+            findAllTasks: <span class="fstat-no" title="function not covered" >function (isAdmin) {</span>
+<span class="cstat-no" title="statement not covered" >                return $http.jsonp(_buildQuery(isAdmin)).then(<span class="fstat-no" title="function not covered" >function(data){</span></span>
+<span class="cstat-no" title="statement not covered" >                    return _decorator(data.data.response.docs);</span>
+                }, <span class="fstat-no" title="function not covered" >function(error) {</span>
+<span class="cstat-no" title="statement not covered" >                    return error;</span>
+                });
+            },
+&nbsp;
+            lookupTaskType: <span class="fstat-no" title="function not covered" >function(type) {</span>
+<span class="cstat-no" title="statement not covered" >                var taskPromise =  $http.get(config.root + 'api/rest/process/task/' + type + '/init.json');</span>
+<span class="cstat-no" title="statement not covered" >                var taskDisplayPromise = $http.get(config.root + 'api/rest/process/task/' + type + '/display.json?lang=en');</span>
+<span class="cstat-no" title="statement not covered" >                return $q.all([taskPromise,taskDisplayPromise]);</span>
+            },
+&nbsp;
+            lookupTaskDisplay: <span class="fstat-no" title="function not covered" >function(type) {</span>
+<span class="cstat-no" title="statement not covered" >                return $http.get(config.root + 'api/rest/process/task/' + type + '/display.json?lang=en');</span>
+            },
+&nbsp;
+            execute: <span class="fstat-no" title="function not covered" >function (request) {</span>
+<span class="cstat-no" title="statement not covered" >                return _post(request, false);</span>
+            },
+&nbsp;
+            validate: <span class="fstat-no" title="function not covered" >function (request) {</span>
+<span class="cstat-no" title="statement not covered" >                return _post(request, true);</span>
+            },
+&nbsp;
+            checkStatus: <span class="fstat-no" title="function not covered" >function (id) {</span>
+<span class="cstat-no" title="statement not covered" >                return $http.get(config.root + 'api/rest/process/job/' + id + '.json');</span>
+            },
+&nbsp;
+            checkProgress: <span class="fstat-no" title="function not covered" >function (id) {</span>
+<span class="cstat-no" title="statement not covered" >                return $http.get(config.root + 'api/rest/process/job/' + id + '/status.json');</span>
+            },
+&nbsp;
+            cancel: <span class="fstat-no" title="function not covered" >function (id) {</span>
+<span class="cstat-no" title="statement not covered" >                return $http['delete'](config.root + 'api/rest/process/job/' + id + '.json');</span>
+            },
+&nbsp;
+            notify: <span class="fstat-no" title="function not covered" >function (id, email) {</span>
+<span class="cstat-no" title="statement not covered" >                return $http.put(config.root + 'api/rest/process/job/' + id + '/callback.json?email=' + email);</span>
+            },
+&nbsp;
+            cancelNotify: <span class="fstat-no" title="function not covered" >function (id, email) {</span>
+<span class="cstat-no" title="statement not covered" >                return $http['delete'](config.root + 'api/rest/process/job/' + id + '/callback.json?email=' + email);</span>
+            },
+&nbsp;
+            getFileUrl: <span class="fstat-no" title="function not covered" >function (id, name) {</span>
+<span class="cstat-no" title="statement not covered" >                return config.root + 'api/rest/process/job/' + id + '/output/' + name;</span>
+            },
+&nbsp;
+            getFileDisplayName: <span class="fstat-no" title="function not covered" >function(name) {</span>
+<span class="cstat-no" title="statement not covered" >                if (name.indexOf('stdout') &gt; 0) {</span>
+<span class="cstat-no" title="statement not covered" >                    return 'Processing Output';</span>
+                }
+<span class="cstat-no" title="statement not covered" >                if (name.indexOf('stderr') &gt; 0) {</span>
+<span class="cstat-no" title="statement not covered" >                    return 'Processing Error Log';</span>
+                }
+<span class="cstat-no" title="statement not covered" >                return name;</span>
+            },
+&nbsp;
+            refresh: <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >                return $http.post(config.root + 'api/rest/process/tasks/refresh.json');</span>
+            },
+&nbsp;
+            getFileData: <span class="fstat-no" title="function not covered" >function(file, withoutMime) {</span>
+<span class="cstat-no" title="statement not covered" >                withoutMime = withoutMime || false;</span>
+<span class="cstat-no" title="statement not covered" >                return $http.get(file.downloadUrl + (withoutMime ? '' : '?mime=application/json'));</span>
+            },
+&nbsp;
+            setItems: <span class="fstat-no" title="function not covered" >function(items) {</span>
+<span class="cstat-no" title="statement not covered" >                _items = items;</span>
+            },
+&nbsp;
+            getItems: <span class="fstat-no" title="function not covered" >function() {</span>
+<span class="cstat-no" title="statement not covered" >                return _items;</span>
+            },
+&nbsp;
+            getFiles: <span class="fstat-no" title="function not covered" >function (statusResponse) {</span>
+<span class="cstat-no" title="statement not covered" >                var _self = this;</span>
+<span class="cstat-no" title="statement not covered" >                var files = [];</span>
+<span class="cstat-no" title="statement not covered" >                if(statusResponse.data.output &amp;&amp; statusResponse.data.output.children) {</span>
+<span class="cstat-no" title="statement not covered" >                    $.each(statusResponse.data.output.children, <span class="fstat-no" title="function not covered" >function (index, file) {</span></span>
+<span class="cstat-no" title="statement not covered" >                        if (file.format &amp;&amp; file.name.lastIndexOf('_', 0) !== 0) {</span>
+<span class="cstat-no" title="statement not covered" >                            file.downloadUrl = _self.getFileUrl(statusResponse.data.id, file.name);</span>
+<span class="cstat-no" title="statement not covered" >                            files.push(file);</span>
+                        }
+                    });
+                }
+<span class="cstat-no" title="statement not covered" >                return files;</span>
+            },
+&nbsp;
+            getLogFiles: <span class="fstat-no" title="function not covered" >function (statusResponse) {</span>
+<span class="cstat-no" title="statement not covered" >                var _self = this;</span>
+<span class="cstat-no" title="statement not covered" >                var files = [];</span>
+<span class="cstat-no" title="statement not covered" >                if(statusResponse.data.output &amp;&amp; statusResponse.data.output.children) {</span>
+<span class="cstat-no" title="statement not covered" >                    $.each(statusResponse.data.output.children, <span class="fstat-no" title="function not covered" >function (index, file) {</span></span>
+<span class="cstat-no" title="statement not covered" >                        if (file.format &amp;&amp; file.name.lastIndexOf('_', 0) === 0) {</span>
+<span class="cstat-no" title="statement not covered" >                            if (file.name.indexOf('stderr') &gt; -1 || file.name.indexOf('stdout') &gt; -1) {</span>
+<span class="cstat-no" title="statement not covered" >                                file.downloadUrl = _self.getFileUrl(statusResponse.data.id, file.name);</span>
+<span class="cstat-no" title="statement not covered" >                                file.displayName = _self.getFileDisplayName(file.name);</span>
+<span class="cstat-no" title="statement not covered" >                                files.push(file);</span>
+                            }
+                        }
+                    });
+                }
+<span class="cstat-no" title="statement not covered" >                return files;</span>
+            },
+&nbsp;
+            getCopyUrl: <span class="fstat-no" title="function not covered" >function(id) {</span>
+<span class="cstat-no" title="statement not covered" >                return config.root + 'api/rest/process/job/' + id + '/run.json';</span>
+            }
+&nbsp;
+        };
+&nbsp;
+    });
+&nbsp;</pre></td></tr>
+</table></pre>
+
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Aug 03 2015 16:37:56 GMT-0400 (Eastern Daylight Time)</div>
+</div>
+<script src="../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../sorter.js"></script>
+</body>
+</html>

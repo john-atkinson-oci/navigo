@@ -1,0 +1,109 @@
+.bottom_popover_arrow {
+	&:before, &:after {
+		content: '';
+		border-style: solid;
+		position: absolute;
+		bottom: -7px;
+		left: 20px;
+		top: 100%;
+	}
+
+	&:before {
+		@include triDown(7px, 6px, $borderColor);
+	}
+
+	&:after {
+		margin-top: -1px;
+		bottom: -6px;
+		@include triDown(6px, 6px, $white);
+	}
+}
+
+#mainContainer {
+	.bottom .arrow {
+		top: 100%;
+		@extend .bottom_popover_arrow;
+	}
+}
+
+//flyout style
+.flyout {
+	position: absolute;
+	z-index: 3;
+	padding-top: 14px;
+	display: none;
+
+	.flyout_inner {
+		background-color: $white;
+		position: relative;
+		@include boxShadow(0, 1px, 3px, 1px, rgba(0, 0, 0, 0.11));
+		border: 1px solid $borderColor;
+
+		> ul > li {
+			border-bottom: 1px solid $ddHoverBg;
+
+			> a {
+				display: block;
+				color: $defaultTextColor;
+				font-family: $semiStrongFont;
+				font-size: $smallSize;
+				padding: 10px 20px;
+        		white-space: nowrap;
+				@extend .animate_bg_txt;
+
+				&:hover, &:active {
+					@extend .animate_bg_txt;
+				}
+
+				&:hover {
+					background-color: $lightestGrey;
+					color: $hoverLinkColor;
+				}
+
+				&:active {
+					background-color: $activeLinkBgColor;
+					color: $activeLinkColor;
+				}
+			}
+
+			&:last-child {
+				border: none;
+			}
+		}
+	}
+}
+
+.hover_flyout {
+	position: relative;
+
+	&.opened {
+		.flyout {
+			display: block !important;
+			@extend .animate_fadein;
+		}
+	}
+
+	&.bottom {
+		.flyout {
+			bottom: 30px;
+
+			.flyout_inner {
+				li:last-child {
+					@extend .bottom_popover_arrow;
+
+					&:hover {
+						&:after {
+							@include triDown(6px, 6px, $ddHoverBg);
+						}
+					}
+				}
+
+				li:first-child {
+					&:before, &:after {
+						display: none;
+					}
+				}
+			}
+		}
+	}
+}

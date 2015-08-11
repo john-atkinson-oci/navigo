@@ -1,0 +1,840 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for ./app/src/cart/cart-items-query.js</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../../../prettify.css">
+    <link rel="stylesheet" href="../../../base.css">
+    <style type='text/css'>
+        div.coverage-summary .sorter {
+            background-image: url(../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class="header low">
+    <h1>Code coverage report for <span class="entity">./app/src/cart/cart-items-query.js</span></h1>
+    <h2>
+        Statements: <span class="metric">10.74% <small>(16 / 149)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Branches: <span class="metric">0% <small>(0 / 81)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Functions: <span class="metric">3.85% <small>(1 / 26)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">10.74% <small>(16 / 149)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../../../index.html">All files</a> &#187; <a href="index.html">./app/src/cart/</a> &#187; cart-items-query.js</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">'use strict';
+angular.module('cart').
+    factory('cartItemsQuery', function (config, filterService, configService, sugar, $http, translateService) {
+&nbsp;
+<span class="fstat-no" title="function not covered" >        function _cleanFilters(filters) {</span>
+<span class="cstat-no" title="statement not covered" >            var cleanFilters = _.clone(filters), pos;</span>
+<span class="cstat-no" title="statement not covered" >            _.each(cleanFilters, <span class="fstat-no" title="function not covered" >function(filter, index) {</span></span>
+<span class="cstat-no" title="statement not covered" >                pos = filter.indexOf('{!tag');</span>
+<span class="cstat-no" title="statement not covered" >                if(pos !== -1) {</span>
+<span class="cstat-no" title="statement not covered" >                    pos = filter.indexOf('}');</span>
+<span class="cstat-no" title="statement not covered" >                    cleanFilters[index] = filter.substring(pos+1);</span>
+                }
+            });
+<span class="cstat-no" title="statement not covered" >            return cleanFilters.join(' AND ');</span>
+        }
+&nbsp;
+        //function _getPlaceFilter(queryCriteria, start) {
+        //    var filters = '', sep = ' AND ';
+        //    if(start) {
+        //        sep = '';
+        //    }
+        //    if(angular.isDefined(queryCriteria.params.place)) {
+        //        filters += sep + 'place:' + queryCriteria.params.place;
+        //        if(angular.isDefined(queryCriteria.params['place.id'])) {
+        //            filters += ' AND place.id:' + queryCriteria.params['place.id'];
+        //        }
+        //        if(angular.isDefined(queryCriteria.params['place.op'])) {
+        //            filters += ' AND place.op:' + queryCriteria.params['place.op'];
+        //        }
+        //    }
+        //    //delete - these are now part of the q param
+        //    delete queryCriteria.params.place;
+        //    delete queryCriteria.params['place.id'];
+        //    delete queryCriteria.params['place.op'];
+        //
+        //    return filters;
+        //}
+&nbsp;
+<span class="fstat-no" title="function not covered" >        function _applyItems(queryCriteria, items) {</span>
+<span class="cstat-no" title="statement not covered" >            var itemsStr = '', sep = '', hasItems = false, filters, bounds;</span>
+<span class="cstat-no" title="statement not covered" >            if (items &amp;&amp; items.length &gt; 0) {</span>
+<span class="cstat-no" title="statement not covered" >                itemsStr = 'id:(' + items.join(' ') + ')';</span>
+<span class="cstat-no" title="statement not covered" >                sep = ' OR ';</span>
+<span class="cstat-no" title="statement not covered" >                hasItems = true;</span>
+            }
+            //TODO don't think we need this
+            //if(queryCriteria.hasQuery !== false &amp;&amp; angular.isUndefined(queryCriteria.params.q) &amp;&amp; hasItems) {
+            //    queryCriteria.params.q = '*';  //has items and query is defined but keyword empty, default to *
+            //}
+<span class="cstat-no" title="statement not covered" >            if(angular.isDefined(queryCriteria.params.q) &amp;&amp; !queryCriteria.solrFilters) { //no filters</span>
+<span class="cstat-no" title="statement not covered" >                queryCriteria.params.q = itemsStr + sep + queryCriteria.params.q;</span>
+            } else <span class="cstat-no" title="statement not covered" >if (hasItems &amp;&amp; queryCriteria.solrFilters &amp;&amp; angular.isDefined(queryCriteria.params.q)) { //has items and filters, do an OR</span>
+<span class="cstat-no" title="statement not covered" >                filters = _cleanFilters(queryCriteria.solrFilters); </span>//filters are AND (within OR below)
+<span class="cstat-no" title="statement not covered" >                if(angular.isDefined(queryCriteria.bounds) &amp;&amp; !_.isEmpty(queryCriteria.bounds)) {</span>
+<span class="cstat-no" title="statement not covered" >                    bounds = queryCriteria.bounds.replace('&amp;fq=','');</span>
+<span class="cstat-no" title="statement not covered" >                    filters += ' AND ' + bounds;</span>
+                }
+                //TODO place isn't working as q param
+                //filters += _getPlaceFilter(queryCriteria);
+<span class="cstat-no" title="statement not covered" >                queryCriteria.params.q = itemsStr + sep + '(' + queryCriteria.params.q + ' AND ' + filters + ')';</span>
+            } else <span class="cstat-no" title="statement not covered" >if (hasItems &amp;&amp; queryCriteria.solrFilters) { //has items and filters, do an OR</span>
+<span class="cstat-no" title="statement not covered" >                filters = _cleanFilters(queryCriteria.solrFilters); </span>//filters are AND (within OR below)
+<span class="cstat-no" title="statement not covered" >                if(angular.isDefined(queryCriteria.bounds) &amp;&amp; !_.isEmpty(queryCriteria.bounds)) {</span>
+<span class="cstat-no" title="statement not covered" >                    bounds = queryCriteria.bounds.replace('&amp;fq=','');</span>
+<span class="cstat-no" title="statement not covered" >                    filters += ' AND ' + bounds;</span>
+                }
+                //TODO place isn't working as q param
+                //filters += _getPlaceFilter(queryCriteria);
+<span class="cstat-no" title="statement not covered" >                queryCriteria.params.q = itemsStr + sep + '(' + filters + ')';</span>
+            } else <span class="cstat-no" title="statement not covered" >if (hasItems &amp;&amp; angular.isDefined(queryCriteria.bounds) &amp;&amp; !_.isEmpty(queryCriteria.bounds)) { //has items and bounds, do an OR</span>
+<span class="cstat-no" title="statement not covered" >                bounds = queryCriteria.bounds.replace('&amp;fq=','');</span>
+<span class="cstat-no" title="statement not covered" >                queryCriteria.params.q = itemsStr + sep + '(' + bounds + ')';</span>
+                //TODO place isn't working a q param
+            //} else if (hasItems &amp;&amp; angular.isDefined(queryCriteria.params.place)) { //has items and place, do an OR
+            //    filters = _getPlaceFilter(queryCriteria, true);
+            //    queryCriteria.params.q = itemsStr + sep + '(' + filters + ')';
+            } else {
+<span class="cstat-no" title="statement not covered" >                queryCriteria.params.q = itemsStr;</span>
+            }
+        }
+&nbsp;
+<span class="fstat-no" title="function not covered" >        function _setParams(queryCriteria, items) {</span>
+<span class="cstat-no" title="statement not covered" >            var queryString = '';</span>
+<span class="cstat-no" title="statement not covered" >            if(!queryCriteria) {</span>
+<span class="cstat-no" title="statement not covered" >                queryCriteria = {params:{}, hasQuery:false};</span>
+            }
+<span class="cstat-no" title="statement not covered" >            if(items) {</span>
+<span class="cstat-no" title="statement not covered" >                _applyItems(queryCriteria, items);</span>
+            }
+<span class="cstat-no" title="statement not covered" >            queryString += '?' + sugar.toQueryString(queryCriteria.params);</span>
+<span class="cstat-no" title="statement not covered" >            return queryString;</span>
+        }
+&nbsp;
+<span class="fstat-no" title="function not covered" >        function _addRow(results, add, item) {</span>
+<span class="cstat-no" title="statement not covered" >            if(add) {</span>
+<span class="cstat-no" title="statement not covered" >                results.push({'key':item, displayFormat:translateService.getType(item)});</span>
+            } else {
+<span class="cstat-no" title="statement not covered" >                results[results.length - 1].count = item;</span>
+            }
+<span class="cstat-no" title="statement not covered" >            return !add;</span>
+        }
+&nbsp;
+<span class="fstat-no" title="function not covered" >        function _buildRows(items) {</span>
+<span class="cstat-no" title="statement not covered" >            var isKey = true, results = [], count = 0;</span>
+<span class="cstat-no" title="statement not covered" >            $.each(items, <span class="fstat-no" title="function not covered" >function (index, item) {</span></span>
+<span class="cstat-no" title="statement not covered" >                isKey = _addRow(results, isKey, item);</span>
+<span class="cstat-no" title="statement not covered" >                if(isKey) {</span>
+<span class="cstat-no" title="statement not covered" >                    count += item;</span>
+                }
+            });
+<span class="cstat-no" title="statement not covered" >            return {results:results, count:count};</span>
+        }
+&nbsp;
+<span class="fstat-no" title="function not covered" >        function _getSummaryQueryString(queryCriteria, items) {</span>
+<span class="cstat-no" title="statement not covered" >            var queryString = config.root + 'solr/v0/select';</span>
+<span class="cstat-no" title="statement not covered" >            queryString += _setParams(queryCriteria, items);</span>
+<span class="cstat-no" title="statement not covered" >            queryString += '&amp;fl=id,name:[name],format&amp;extent.bbox=true';</span>
+<span class="cstat-no" title="statement not covered" >            queryString += '&amp;facet=true&amp;stats=true&amp;stats.field=bytes&amp;facet.field=format&amp;facet.mincount=1&amp;rows=0';</span>
+<span class="cstat-no" title="statement not covered" >            if(queryCriteria &amp;&amp; (angular.isUndefined(items) || items.length === 0)) { //setParams will apply filters</span>
+<span class="cstat-no" title="statement not covered" >                if(angular.isDefined(queryCriteria.filters)) {</span>
+<span class="cstat-no" title="statement not covered" >                    queryString += queryCriteria.filters;</span>
+                }
+<span class="cstat-no" title="statement not covered" >                queryString += queryCriteria.bounds;</span>
+            }
+<span class="cstat-no" title="statement not covered" >            queryString += '&amp;wt=json&amp;json.wrf=JSON_CALLBACK';</span>
+<span class="cstat-no" title="statement not covered" >            console.log('Cart summary queryString: ' + queryString);</span>
+<span class="cstat-no" title="statement not covered" >            return queryString;</span>
+        }
+&nbsp;
+<span class="fstat-no" title="function not covered" >        function _getQueryString(queryCriteria, items) {</span>
+<span class="cstat-no" title="statement not covered" >            var queryString = config.root + 'solr/v0/select';</span>
+<span class="cstat-no" title="statement not covered" >            queryString += _setParams(queryCriteria, items);</span>
+<span class="cstat-no" title="statement not covered" >            queryString += '&amp;fl=id,title, name:[name],format,thumb:[thumbURL]';</span>
+<span class="cstat-no" title="statement not covered" >            queryString += '&amp;rows=100&amp;extent.bbox=true';</span>
+<span class="cstat-no" title="statement not covered" >            if(queryCriteria &amp;&amp; (angular.isUndefined(items) || items.length === 0)) { //setParams will apply filters</span>
+<span class="cstat-no" title="statement not covered" >                if(angular.isDefined(queryCriteria.filters)) {</span>
+<span class="cstat-no" title="statement not covered" >                    queryString += queryCriteria.filters;</span>
+                }
+<span class="cstat-no" title="statement not covered" >                queryString += queryCriteria.bounds;</span>
+            }
+<span class="cstat-no" title="statement not covered" >            queryString += '&amp;rand=' + Math.random(); </span>// avoid browser caching?
+<span class="cstat-no" title="statement not covered" >            queryString += '&amp;wt=json&amp;json.wrf=JSON_CALLBACK';</span>
+<span class="cstat-no" title="statement not covered" >            console.log('Cart queryString: ' + queryString);</span>
+<span class="cstat-no" title="statement not covered" >            return queryString;</span>
+        }
+&nbsp;
+<span class="fstat-no" title="function not covered" >        function _getQueuedQueryString(queryCriteria, items, queued) {</span>
+<span class="cstat-no" title="statement not covered" >            var queryString = config.root + 'solr/v0/select';</span>
+<span class="cstat-no" title="statement not covered" >            if(!queryCriteria) {</span>
+<span class="cstat-no" title="statement not covered" >                queryCriteria = {params:{}, hasQuery:false};</span>
+            }
+<span class="cstat-no" title="statement not covered" >            if(queued &amp;&amp; queued.length &gt; 0) {</span>
+<span class="cstat-no" title="statement not covered" >                var ids = _.pluck(queued, 'id');</span>
+<span class="cstat-no" title="statement not covered" >                if (queryCriteria.params.fq) {</span>
+<span class="cstat-no" title="statement not covered" >                    queryCriteria.params.fq.push('id:(' + ids.join(' ') + ')');</span>
+                } else {
+<span class="cstat-no" title="statement not covered" >                    queryCriteria.params.fq = 'id:(' + ids.join(' ') + ')';</span>
+                }
+            }
+<span class="cstat-no" title="statement not covered" >            queryString += _setParams(queryCriteria, items);</span>
+<span class="cstat-no" title="statement not covered" >            queryString += '&amp;fl=id';</span>
+<span class="cstat-no" title="statement not covered" >            queryString += '&amp;rows=100&amp;extent.bbox=true&amp;block=false';</span>
+<span class="cstat-no" title="statement not covered" >            if(queryCriteria &amp;&amp; (angular.isUndefined(items) || items.length === 0)) { //setParams will apply filters</span>
+<span class="cstat-no" title="statement not covered" >                if(angular.isDefined(queryCriteria.filters)) {</span>
+<span class="cstat-no" title="statement not covered" >                    queryString += queryCriteria.filters;</span>
+                }
+<span class="cstat-no" title="statement not covered" >                if(angular.isDefined(queryCriteria.bounds)) {</span>
+<span class="cstat-no" title="statement not covered" >                    queryString += queryCriteria.bounds;</span>
+                }
+            }
+<span class="cstat-no" title="statement not covered" >            queryString += '&amp;rand=' + Math.random(); </span>// avoid browser caching?
+<span class="cstat-no" title="statement not covered" >            queryString += '&amp;wt=json&amp;json.wrf=JSON_CALLBACK';</span>
+<span class="cstat-no" title="statement not covered" >            console.log('Cart queued queryString: ' + queryString);</span>
+<span class="cstat-no" title="statement not covered" >            return queryString;</span>
+        }
+&nbsp;
+<span class="fstat-no" title="function not covered" >        function _getQueryCriteria(solrParams) {</span>
+<span class="cstat-no" title="statement not covered" >            var params = _.clone(solrParams);</span>
+<span class="cstat-no" title="statement not covered" >            var solrFilters = filterService.getSolrList();</span>
+<span class="cstat-no" title="statement not covered" >            delete params.fq; </span>//filter service will apply filter params below
+<span class="cstat-no" title="statement not covered" >            delete params.sort;</span>
+<span class="cstat-no" title="statement not covered" >            delete params.view;</span>
+<span class="cstat-no" title="statement not covered" >            delete params.vw;</span>
+<span class="cstat-no" title="statement not covered" >            delete params.disp;</span>
+<span class="cstat-no" title="statement not covered" >            if(params.q === '*:*') {</span>
+<span class="cstat-no" title="statement not covered" >                delete params.q;</span>
+            }
+<span class="cstat-no" title="statement not covered" >            return {params:params, filters: filterService.getFilterParams(), bounds: filterService.getBoundsParams(), solrFilters: solrFilters};</span>
+        }
+&nbsp;
+<span class="fstat-no" title="function not covered" >        function _decorate(items) {</span>
+<span class="cstat-no" title="statement not covered" >            $.each(items, <span class="fstat-no" title="function not covered" >function(index, item) {</span></span>
+<span class="cstat-no" title="statement not covered" >                if(angular.isDefined(item.format)) {</span>
+<span class="cstat-no" title="statement not covered" >                    item.displayFormat = translateService.getType(item.format);</span>
+                } else {
+<span class="cstat-no" title="statement not covered" >                    item.displayFormat = 'Unknown';</span>
+                }
+            });
+        }
+&nbsp;
+<span class="fstat-no" title="function not covered" >        function _fetchItems(queryCriteria, items) {</span>
+<span class="cstat-no" title="statement not covered" >            return $http.jsonp(_getQueryString(queryCriteria, items)).then(<span class="fstat-no" title="function not covered" >function(res) {</span></span>
+<span class="cstat-no" title="statement not covered" >                var docs = res.data.response.docs;</span>
+<span class="cstat-no" title="statement not covered" >                _decorate(docs);</span>
+<span class="cstat-no" title="statement not covered" >                return {'docs': docs, 'bbox':res.data['extent.bbox'], count:res.data.response.numFound};</span>
+            });
+        }
+&nbsp;
+<span class="fstat-no" title="function not covered" >        function _fetchQueued(queryCriteria, items, queued) {</span>
+<span class="cstat-no" title="statement not covered" >            return $http.jsonp(_getQueuedQueryString(queryCriteria, items, queued)).then(<span class="fstat-no" title="function not covered" >function(res) {</span></span>
+<span class="cstat-no" title="statement not covered" >                return res.data.response.docs;</span>
+            });
+        }
+&nbsp;
+<span class="fstat-no" title="function not covered" >        function _fetchSummary(queryCriteria, items) {</span>
+<span class="cstat-no" title="statement not covered" >            return $http.jsonp(_getSummaryQueryString(queryCriteria, items)).then(<span class="fstat-no" title="function not covered" >function(res) {</span></span>
+<span class="cstat-no" title="statement not covered" >                var rows = _buildRows(res.data.facet_counts.facet_fields.format);</span>
+<span class="cstat-no" title="statement not covered" >                return {'docs': rows.results, 'bbox':res.data['extent.bbox'], count:res.data.response.numFound};</span>
+            });
+        }
+&nbsp;
+<span class="fstat-no" title="function not covered" >        function _fetchItemsOnly(query) {</span>
+<span class="cstat-no" title="statement not covered" >            return $http.jsonp(query).then(<span class="fstat-no" title="function not covered" >function(res) {</span></span>
+<span class="cstat-no" title="statement not covered" >                return res.data.response.docs;</span>
+            });
+        }
+&nbsp;
+        return {
+&nbsp;
+            getQueryCriteria: <span class="fstat-no" title="function not covered" >function (params) {</span>
+<span class="cstat-no" title="statement not covered" >                return _getQueryCriteria(params);</span>
+            },
+&nbsp;
+            execute: <span class="fstat-no" title="function not covered" >function (queryCriteria, items) {</span>
+<span class="cstat-no" title="statement not covered" >                var count = 1;</span>
+<span class="cstat-no" title="statement not covered" >                if (queryCriteria) {</span>
+<span class="cstat-no" title="statement not covered" >                    count = queryCriteria.count;</span>
+<span class="cstat-no" title="statement not covered" >                    delete queryCriteria.params.sort;</span>
+                }
+<span class="cstat-no" title="statement not covered" >                if(count &lt;= 100) {</span>
+<span class="cstat-no" title="statement not covered" >                    return _fetchItems(_.clone(queryCriteria), items);</span>
+                } else {
+<span class="cstat-no" title="statement not covered" >                    return _fetchSummary(_.clone(queryCriteria), items);</span>
+                }
+            },
+&nbsp;
+            fetchQueued: <span class="fstat-no" title="function not covered" >function(queryCriteria, items, queued) {</span>
+<span class="cstat-no" title="statement not covered" >                return _fetchQueued(_.clone(queryCriteria), items, queued);</span>
+            },
+&nbsp;
+            fetchItemsOnly: <span class="fstat-no" title="function not covered" >function(items) {</span>
+<span class="cstat-no" title="statement not covered" >                var queryString = config.root + 'solr/v0/select';</span>
+<span class="cstat-no" title="statement not covered" >                if(items) {</span>
+<span class="cstat-no" title="statement not covered" >                    var ids = _.keys(items);</span>
+<span class="cstat-no" title="statement not covered" >                    queryString += '?fq=id:(' + ids.join(' ') + ')';</span>
+&nbsp;
+                }
+<span class="cstat-no" title="statement not covered" >                queryString += '&amp;fl=id';</span>
+<span class="cstat-no" title="statement not covered" >                queryString += '&amp;rows=100';</span>
+<span class="cstat-no" title="statement not covered" >                queryString += '&amp;rand=' + Math.random(); </span>// avoid browser caching?
+<span class="cstat-no" title="statement not covered" >                queryString += '&amp;wt=json&amp;json.wrf=JSON_CALLBACK';</span>
+<span class="cstat-no" title="statement not covered" >                return _fetchItemsOnly(queryString);</span>
+            }
+        };
+    });
+&nbsp;</pre></td></tr>
+</table></pre>
+
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Aug 03 2015 16:37:56 GMT-0400 (Eastern Daylight Time)</div>
+</div>
+<script src="../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../sorter.js"></script>
+</body>
+</html>

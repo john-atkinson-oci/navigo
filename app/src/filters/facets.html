@@ -1,0 +1,27 @@
+<div>
+    <div>
+        <span us-spinner spinner-key="facets-spinner" spinner-start-active="1"></span>
+        <div class="modal-header">
+            <button class="btn btn-sm pull-right" ng-click="cancel()"><span class="glyphicon glyphicon-remove"></span></button>
+             <h3>{{selectedFilter}} </h3>
+         </div>
+         <div class="modal-body">
+          <table class="table table-condensed table-hover table-bordered table-striped">
+            <thead>
+            <tr>
+                <th><a href="" ng-click="predicate = 'count'; reverse=!reverse">Count</a></th>
+                <th><a href="" ng-click="predicate = 'humanized'; reverse=!reverse">Value</a></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="facet in facets | orderBy:predicate:reverse" ng-click="filterResults(facet)" style="cursor:pointer">
+                <td>{{facet.count}}</td><td>{{facet.humanized}}</td>
+            </tr>
+            </tbody>
+          </table>
+         </div>
+         <div class="modal-footer">
+             <button class="btn btn-warning" ng-click="cancel()">Close</button>
+         </div>
+     </div>
+</div>

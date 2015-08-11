@@ -1,0 +1,23 @@
+<div class="modal-header">
+	<h3>Flag Items <span class="highlight" ng-if="resultTotalCount">{{resultTotalCount | number}}</span></h3>
+ </div>
+ <div class="alert alert-danger icon-error" style="margin-left:25px" ng-show="hasError()">{{error}}</div>
+ <div class="modal-body">
+	<form class="form-bulk-updater" role="form">
+		<p>Flags appear as a small graphic with text description on search results. Flags can be used to visually call attention to an item and can also be used to boost the relevancy of items in your index.</p>
+		<p>NOTE: An item can only have one flag, and that flag cannot be longer than 25 characters.</p>
+		<fieldset>
+			<div us-spinner spinner-key="task-spinner"></div>
+			<div ng-show="successMessage">{{successMessage}}</div>
+			<label for="flagText" aria-label="Enter a label for your featured content"><span class="sr-only">Enter a label for your featured content</span></label>
+			<input placeholder="Enter a label for your featured content" typeahead="tag for tag in select2Options.tags | filter:$viewValue | limitTo: 5" ng-keyup="handleEnter($event)" maxlength="25" id="flagText" ng-model="flag" style="width: 100%;" autocomplete="off" class="typeahead_input" />
+		</fieldset>
+	</form>
+</div>
+<div class="modal-footer">
+	<div class="cta_row">
+		<button class="btn btn-primary" ng-click="saveFlag()" ng-disabled="overLimit">Save Changes</button>
+		<a href="javascript:;" class="link_secondary" ng-click="cancel()">Cancel</a>
+	</div>
+</div>
+<a href="javascript:;" class="modal-close icon-x" ng-click="cancel()"></a>

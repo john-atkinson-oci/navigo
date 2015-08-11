@@ -1,0 +1,20 @@
+<article>
+	<div class="article_inner">
+		<div id="previewLoading" class="loading semi" ng-show="previewLoading" aria-label="Loading"></div>
+		<div ng-if="!previewLoading">
+			<h1 class="semi" ng-bind="node.name"></h1>
+			<a href="javascript:;" class="format" ng-bind="node.displayFormat"></a>
+			<div ng-repeat="data in previewNodeData">
+				<div ng-if="!data.isArray">
+					<span class="semi" ng-bind="data.name + ':'"></span>
+					<span ng-bind="data.value"></span>
+				</div>
+
+				<div class="data_list" ng-if="data.isArray">
+					<span class="semi" ng-bind="data.name + ':&nbsp;'"></span><a href="javascript:;" ng-repeat="item in data.value" ng-bind="item"></a>
+				</div>
+			</div>
+		</div>
+	</div>
+</article>
+

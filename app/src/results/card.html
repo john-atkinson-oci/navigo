@@ -1,0 +1,45 @@
+<div class="card_inner" ng-mouseenter="hover(true)" ng-mouseleave="hover(false)">
+	<div class="img" ng-if="::doc.thumb"><a ng-href="{{::doc.detailLink}}"><img src="assets/img/s.png" style="background-image: url({{::doc.thumb}})" alt="{{::doc.name}}" /></a></div>
+
+	<div class="tag" ng-if="::doc.tag_flags"><a href="javascript:;" ng-click="applyTag(doc.tag_flags)" ng-bind="::doc.tag_flags"></a></div>
+
+	<div class="detail_wrap">
+		<div class="detail">
+			<a href="{{::doc.detailLink}}" class="underline">
+				<div class="title"><span ng-if="doc.hasMissingData" class="icon-error"></span><span class="txt" ng-bind="::doc.name"></span></div>
+			</a>
+            <div class="format" ng-bind-html="::doc.formatValue" ng-show="::doc.formatValue"></div>
+            <div class="description" vg-bind-html="::doc.htmlValue"></div>
+		</div>
+	</div>
+	<!--
+	<div class="rating_wrap {{::doc.rating.count && 'hover_flyout' || ''}}">
+		<a href="javascript:;" class="star_wrap flyout_trigger"><span class="star{{::doc.rating.star}}">({{::doc.rating.count || 'not rated'}})</span></a>
+		<div class="flyout rating_breakdown">
+			<div class="arrow"></div>
+			<div class="flyout_inner">
+				<div class="title">Rating breakdown</div>
+				<div class="star_wrap"><span class="star3">({{::doc.rating.breakdown.star1 || '0'}})</span></div>
+				<div class="star_wrap"><span class="star2">({{::doc.rating.breakdown.star2 || '0'}})</span></div>
+				<div class="star_wrap"><span class="star1">({{::doc.rating.breakdown.star3 || '0'}})</span></div>
+			</div>
+		</div>
+	</div>
+	-->
+
+	<div class="cta">
+		<a href="javascript:;" class="underline {{default.icon}}" ng-click="default.do()" ng-if="default.visible"><span class="txt" ng-bind="default.display"></span></a>
+		<div class="hover_flyout{{!link.visible && !actions.length && ' invisible' || ''}}">
+			<a href="javascript:;" class="icon-arrow underline flyout_trigger"><span class="txt">Tools</span></a>
+			<div class="flyout">
+				<div class="arrow"></div>
+				<div class="flyout_inner">
+					<ul role="menu">
+						<li><a ng-show="link.visible" ng-click="link.do()" target="_self" style="cursor:pointer">{{link.text}}</a></li>
+						<li ng-repeat="action in ::actions"><a href="javascript:;" ng-click="action.do()" target="_self">{{::action.text}}</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

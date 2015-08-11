@@ -1,0 +1,660 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for ./app/src/taskrunner/params/param-service.js</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../../../../prettify.css">
+    <link rel="stylesheet" href="../../../../base.css">
+    <style type='text/css'>
+        div.coverage-summary .sorter {
+            background-image: url(../../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class="header low">
+    <h1>Code coverage report for <span class="entity">./app/src/taskrunner/params/param-service.js</span></h1>
+    <h2>
+        Statements: <span class="metric">6.36% <small>(7 / 110)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Branches: <span class="metric">0% <small>(0 / 46)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Functions: <span class="metric">0% <small>(0 / 25)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">6.36% <small>(7 / 110)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../../../../index.html">All files</a> &#187; <a href="index.html">./app/src/taskrunner/params/</a> &#187; param-service.js</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/*global angular, $, _ */
+&nbsp;
+angular.module('taskRunner').
+    factory('paramService', <span class="fstat-no" title="function not covered" >function (localStorageService, $http) {</span>
+        'use strict';
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        var _params = {};</span>
+<span class="cstat-no" title="statement not covered" >        var _projections = [];</span>
+<span class="cstat-no" title="statement not covered" >        var _groups = {};</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        $http.get('projections.json').then(<span class="fstat-no" title="function not covered" >function(response) {</span></span>
+<span class="cstat-no" title="statement not covered" >            $.each(response.data, <span class="fstat-no" title="function not covered" >function(name, value) {</span></span>
+<span class="cstat-no" title="statement not covered" >                var info = name.split('/');</span>
+<span class="cstat-no" title="statement not covered" >                var group = info[1];</span>
+<span class="cstat-no" title="statement not covered" >                if (_groups[group]) {</span>
+<span class="cstat-no" title="statement not covered" >                    _groups[group].children.push({name:info[info.length-1],value:value, group:info[1]});</span>
+                } else {
+<span class="cstat-no" title="statement not covered" >                    _groups[group] = {children:[{name:info[info.length-1],value:value, group:info[1]}], text:group};</span>
+                }
+<span class="cstat-no" title="statement not covered" >                _projections.push({name:info[info.length-1],value:value, group:info[1]});</span>
+            });
+        });
+&nbsp;
+<span class="fstat-no" title="function not covered" >        function _getParamDisplay(param, displayData) {</span>
+<span class="cstat-no" title="statement not covered" >            var paramData = displayData.params[param.name];</span>
+<span class="cstat-no" title="statement not covered" >            if(_.isUndefined(paramData)) {</span>
+<span class="cstat-no" title="statement not covered" >                paramData = {'display':'', 'description':''};</span>
+<span class="cstat-no" title="statement not covered" >                paramData.display = _.str.humanize(param.name);</span>
+<span class="cstat-no" title="statement not covered" >                paramData.display = _.str.titleize();</span>
+            }
+<span class="cstat-no" title="statement not covered" >            return paramData;</span>
+        }
+&nbsp;
+<span class="fstat-no" title="function not covered" >        function _decorate(param, displayData) {</span>
+<span class="cstat-no" title="statement not covered" >            var paramDisplay = _getParamDisplay(param, displayData);</span>
+<span class="cstat-no" title="statement not covered" >            param.label = paramDisplay.display;</span>
+<span class="cstat-no" title="statement not covered" >            param.desc = paramDisplay.description;</span>
+<span class="cstat-no" title="statement not covered" >            param.readOnly = true;</span>
+        }
+&nbsp;
+<span class="fstat-no" title="function not covered" >        function _initReadOnly(response, displayData) {</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            var readOnlyParams = {'params':[], 'inputItems':[], hasMap:false};</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            $.each(response.data.params, <span class="fstat-no" title="function not covered" >function (index, param) {</span></span>
+<span class="cstat-no" title="statement not covered" >                if (param.type === 'Projection') {</span>
+<span class="cstat-no" title="statement not covered" >                    param.value = param.code;</span>
+                }
+<span class="cstat-no" title="statement not covered" >                if (param.type === 'Geometry' || param.type === 'MapView') {</span>
+<span class="cstat-no" title="statement not covered" >                    readOnlyParams.hasMap = true;</span>
+<span class="cstat-no" title="statement not covered" >                    param.hasMap = true;</span>
+                }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                _decorate(param, displayData);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                if(param.name === 'input_items') {</span>
+<span class="cstat-no" title="statement not covered" >                    readOnlyParams.inputItems.push(param);</span>
+                } else {
+<span class="cstat-no" title="statement not covered" >                    readOnlyParams.params.push(param);</span>
+                }
+            });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            return readOnlyParams;</span>
+        }
+&nbsp;
+<span class="fstat-no" title="function not covered" >        function _applyChoicesAsValues(param) {</span>
+<span class="cstat-no" title="statement not covered" >            if (_.isUndefined(param.values) &amp;&amp; !_.isUndefined(param.choices)) {</span>
+<span class="cstat-no" title="statement not covered" >                param.values = {};</span>
+<span class="cstat-no" title="statement not covered" >                $.each(param.choices, <span class="fstat-no" title="function not covered" >function( index, value ) {</span></span>
+<span class="cstat-no" title="statement not covered" >                    param.values[value] = value;</span>
+                });
+            }
+        }
+&nbsp;
+<span class="fstat-no" title="function not covered" >        function _initParam(param) {</span>
+<span class="cstat-no" title="statement not covered" >            if (param.type === 'StringChoice') {</span>
+<span class="cstat-no" title="statement not covered" >                if (!param.value) {</span>
+<span class="cstat-no" title="statement not covered" >                    param.value = param.choices[0];</span>
+                }
+            }
+<span class="cstat-no" title="statement not covered" >            if (param.type === 'Geometry' || param.type === 'MapView') {</span>
+<span class="cstat-no" title="statement not covered" >                param.hasMap = true;</span>
+            }
+<span class="cstat-no" title="statement not covered" >            param.readOnly = false;</span>
+        }
+&nbsp;
+<span class="fstat-no" title="function not covered" >        function _initParams(response, reload) {</span>
+<span class="cstat-no" title="statement not covered" >            var params = [];</span>
+<span class="cstat-no" title="statement not covered" >            var mapParams = [];</span>
+<span class="cstat-no" title="statement not covered" >            _params.hasMap = false;</span>
+<span class="cstat-no" title="statement not covered" >            _params.hasAdvanced = false;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            $.each(response[0].data.params, <span class="fstat-no" title="function not covered" >function (index, param) {</span></span>
+<span class="cstat-no" title="statement not covered" >                _initParam(param);</span>
+<span class="cstat-no" title="statement not covered" >                if (param.hasMap) {</span>
+<span class="cstat-no" title="statement not covered" >                    _params.hasMap = true;</span>
+<span class="cstat-no" title="statement not covered" >                    param.reload = reload;</span>
+<span class="cstat-no" title="statement not covered" >                    mapParams.push(param);</span>
+                } else {
+<span class="cstat-no" title="statement not covered" >                    params.push(param);</span>
+                }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                _decorate(param, response[1].data);</span>
+<span class="cstat-no" title="statement not covered" >                _applyChoicesAsValues(param);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                if (param.advanced) {</span>
+<span class="cstat-no" title="statement not covered" >                    _params.hasAdvanced = true;</span>
+                }
+<span class="cstat-no" title="statement not covered" >                param.readOnly = false;</span>
+&nbsp;
+            });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            _params.params = params;</span>
+<span class="cstat-no" title="statement not covered" >            _params.mapParams = mapParams;</span>
+        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        return {</span>
+&nbsp;
+            initParams: <span class="fstat-no" title="function not covered" >function (response, reload) {</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                var lastRanParams = localStorageService.get(response[0].data.task);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                if (lastRanParams === null) {</span>
+<span class="cstat-no" title="statement not covered" >                    _initParams(response, reload);</span>
+                } else {
+<span class="cstat-no" title="statement not covered" >                    _params = lastRanParams;</span>
+<span class="cstat-no" title="statement not covered" >                    if(_params.mapParams.length &gt; 0) {</span>
+<span class="cstat-no" title="statement not covered" >                        _params.mapParams[0].reload = reload;</span>
+                        //don't remember
+<span class="cstat-no" title="statement not covered" >                        delete _params.mapParams[0].wkt;</span>
+                    }
+                }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                return _params;</span>
+            },
+&nbsp;
+            initReadOnly: <span class="fstat-no" title="function not covered" >function(response, displayData) {</span>
+<span class="cstat-no" title="statement not covered" >                return _initReadOnly(response,displayData);</span>
+            },
+&nbsp;
+            getParams: <span class="fstat-no" title="function not covered" >function() {</span>
+<span class="cstat-no" title="statement not covered" >                return _params;</span>
+            },
+&nbsp;
+            getAllParams: <span class="fstat-no" title="function not covered" >function() {</span>
+<span class="cstat-no" title="statement not covered" >                $.each(_params.params, <span class="fstat-no" title="function not covered" >function(index, value) {</span></span>
+<span class="cstat-no" title="statement not covered" >                    if (value.type === 'Projection') {</span>
+<span class="cstat-no" title="statement not covered" >                        if(angular.isDefined(value.code.id)) {</span>
+<span class="cstat-no" title="statement not covered" >                            value.code = value.code.id;</span>
+                        }
+                    }
+                });
+<span class="cstat-no" title="statement not covered" >                var all = _params.params;</span>
+<span class="cstat-no" title="statement not covered" >                if (!_.isUndefined(_params.mapParams)) {</span>
+<span class="cstat-no" title="statement not covered" >                    all = all.concat(_params.mapParams);</span>
+                }
+<span class="cstat-no" title="statement not covered" >                return JSON.parse(JSON.stringify(all));</span>
+            },
+&nbsp;
+            setParams: <span class="fstat-no" title="function not covered" >function(params) {</span>
+<span class="cstat-no" title="statement not covered" >                _params = params;</span>
+            },
+&nbsp;
+            getStorable: <span class="fstat-no" title="function not covered" >function() {</span>
+<span class="cstat-no" title="statement not covered" >                var params = $.extend(true, {},_params); </span>//create copy so we don't change _params
+<span class="cstat-no" title="statement not covered" >                params.reload = false; </span>//force to false before saving
+<span class="cstat-no" title="statement not covered" >                $.each(params.params, <span class="fstat-no" title="function not covered" >function (index, param) {</span></span>
+<span class="cstat-no" title="statement not covered" >                    if(param.name === 'input_items') {</span>
+<span class="cstat-no" title="statement not covered" >                        delete param.query;</span>
+<span class="cstat-no" title="statement not covered" >                        delete param.ids;</span>
+                    }
+<span class="cstat-no" title="statement not covered" >                    delete param.error;</span>
+                });
+<span class="cstat-no" title="statement not covered" >                if (angular.isDefined(params.mapParams)) {</span>
+<span class="cstat-no" title="statement not covered" >                    $.each(params.mapParams, <span class="fstat-no" title="function not covered" >function (index, param) {</span></span>
+<span class="cstat-no" title="statement not covered" >                        delete param.wkt;</span>
+<span class="cstat-no" title="statement not covered" >                        delete param.extent;</span>
+<span class="cstat-no" title="statement not covered" >                        delete param.center;</span>
+<span class="cstat-no" title="statement not covered" >                        delete param.zoom;</span>
+<span class="cstat-no" title="statement not covered" >                        delete param.error;</span>
+                    });
+                }
+<span class="cstat-no" title="statement not covered" >                return params;</span>
+            },
+&nbsp;
+            getProjections: <span class="fstat-no" title="function not covered" >function() {</span>
+<span class="cstat-no" title="statement not covered" >                return _groups;</span>
+            },
+&nbsp;
+            applyErrors: <span class="fstat-no" title="function not covered" >function(params, validations) {</span>
+<span class="cstat-no" title="statement not covered" >                $.each(validations, <span class="fstat-no" title="function not covered" >function (index, validated) {</span></span>
+<span class="cstat-no" title="statement not covered" >                    if (validated.error) {</span>
+<span class="cstat-no" title="statement not covered" >                        $.each(params, <span class="fstat-no" title="function not covered" >function (index, param) {</span></span>
+<span class="cstat-no" title="statement not covered" >                            if (param.name === validated.name) {</span>
+<span class="cstat-no" title="statement not covered" >                                param.error = validated.error;</span>
+<span class="cstat-no" title="statement not covered" >                                return;</span>
+                            }
+                        });
+                    }
+                });
+            }
+&nbsp;
+        };
+&nbsp;
+    });
+&nbsp;</pre></td></tr>
+</table></pre>
+
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Aug 03 2015 16:37:56 GMT-0400 (Eastern Daylight Time)</div>
+</div>
+<script src="../../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../../sorter.js"></script>
+</body>
+</html>

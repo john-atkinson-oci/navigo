@@ -1,0 +1,326 @@
+.home {
+	min-width: $minWidth;
+
+	> .col-md-12 {
+		.inner {
+			max-width: $containerWidth;
+			text-align: left;
+		}
+	}
+
+	section > header {
+		h1 {
+			font-family: $lightFont;
+			font-size: $xlSize;
+			margin-bottom: 30px;
+		}
+	}
+
+	fieldset {
+		@extend .animate;
+	}
+
+	.cards {
+		.list {
+			article {
+				padding: 0 15px;
+			}
+		}
+	}
+
+	.list > .row {
+		margin-left: -15px;
+		margin-right: -15px;
+	}
+
+	.select_wrap {
+		.select2-container .select2-choice {
+			padding: 9px 5px 9px 15px;
+			width: 105px;
+
+			&:before {
+				right: 13px;
+			}
+		}
+	}
+}
+
+
+#searchContainer {
+	position: relative;
+	height: 512px;
+	margin-bottom: 50px;
+
+	#map {
+		position: absolute;
+		z-index: 1;
+		background-color: $white;
+		width: 100%;
+		height: 100%;
+	}
+
+	> .inner {
+		position: relative;
+		z-index: 2;
+		overflow: hidden;
+		max-width: $containerWidth;
+		width: calc(100% - 20px);
+		top: 100px;
+		@include borderRadius(3px 3px 3px 3px);
+		@include boxShadow(0, 1px, 3px, 0px, rgba(0, 0, 0, 0.11));
+
+		fieldset.focused {
+			label:before {
+				color: $mapControlColor;
+			}
+		}
+
+		.location_fieldset {
+			border: 2px solid transparent;
+
+			label:before {
+				position: relative;
+				color: $borderColor;
+				font-size: 18px !important;
+				top: 20px;
+				width: 30px;
+			}
+		}
+
+		.location_wrap {
+			padding-left: 130px;
+		}
+
+		&.short_format {
+			.location_fieldset.focused {
+				@extend fieldset.focused;
+				border: 2px dashed #4695ce;
+
+				.select2-container {
+					.select2-choice {
+						border-color: #82abc9;
+					}
+				}
+			}
+		}
+
+		.search_form {
+			input {
+				&[name="query"], &[name="location"] {
+					font-size: $mediumSize;
+					height: 60px;
+				}
+
+				&[name="query"] {
+					padding: 0 50px;
+				}
+
+				&[name="location"] {
+					padding: 0 68px 0 36px;
+				}
+
+			}
+			button {
+				position: absolute;
+				right: 0;
+				top: 0;
+				z-index: 3;
+				width: 68px;
+				height: 60px;
+				padding-left: 0;
+				padding-right: 0;
+				border-radius: 0 5px 5px 0;
+			}
+		}
+	}
+}
+
+.search_wrap {
+	background: $darkerBlue;
+	background: rgba(51, 60, 78, 0.95);
+	height: 120px;
+	padding: 30px 40px 25px;
+	@include borderRadius(5px 5px 0 0);
+
+	.col-md-12 {
+		padding-right: 68px;
+		border-sizing: border-box;
+
+		.col-md-6 {
+			height: $formHeight;
+		}
+
+		.search_fieldset {
+			@include borderRadius(5px 0 0 5px);
+		}
+	}
+
+	form {
+		height: $formHeight;
+		position: relative;
+		background: $white;
+		@include borderRadius(5px 5px 5px 5px);
+
+		.select_wrap {
+			width: 100px;
+			margin-top: 10px;
+			margin-left: 20px;
+			position: absolute;
+			left: 0;
+		}
+
+		.location_wrap {
+			padding-left: 130px;
+            line-height: 60px;
+		}
+	}
+}
+
+#searchHistory {
+	background: $backgroundColor;
+	background: rgba(236, 240, 241, 0.88);
+	min-height: 50px;
+	overflow: hidden;
+	padding: 23px 40px 40px;
+	@include borderRadius(0 0 3px 3px);
+
+	.action_row {;
+		padding: 20px auto 0;
+		text-align: center;
+	}
+
+	article {
+		margin-top: 7px;
+		overflow: hidden;
+
+		ul {
+			li {
+				width: 46%;
+				float: left;
+				margin-top: 15px;
+				padding-right: 4%;
+				position: relative;
+
+				em {
+					font-family: $semiStrongFont;
+					font-style: normal;
+				}
+
+				a {
+					color: $darkerBlue;
+					line-height: 1.3em;
+				}
+
+				[class*="icon-"] {
+					&:before {
+						color: $lightGrey;
+						font-size: 12px;
+						padding-right: 10px;
+					}
+				}
+
+				[class="icon-heart_filled"]:before {
+					color: $savedIconColor;
+				}
+
+				.favorite_link {
+					display: block;
+					position: absolute;
+					top: 0;
+
+					+ a {
+						margin-left: 25px;
+					}
+				}
+			}
+		}
+	}
+}
+
+.collections {
+	ul {
+		li {
+			background: $white;
+			border-bottom: 1px solid $borderColor;
+
+			&:last-child {
+				border-bottom: 2px solid $borderColor;
+			}
+
+			a {
+				display: block;
+				color: $defaultTextColor;
+				font-family: $semiStrongFont;
+				font-size: $mediumSize;
+				line-height: 1em;
+				padding: 20px 30px 15px 60px;
+				position: relative;
+
+				&:before {
+					position: absolute;
+					top: 20px;
+					left: 20px;
+					font-size: 28px;
+				}
+
+				span {
+					display: block;
+					color: $darkGrey;
+					font-size: $smallerSize;
+				}
+
+				&:hover {
+					color: $hoverLinkColor;
+				}
+			}
+		}
+	}
+}
+
+
+@media (max-width: 1000px) {
+	.home {
+		.cards {
+			&.col-md-9 {
+				.list {
+					article {
+						width: 50%;
+					}
+				}
+			}
+
+			&.col-md-12 {
+				.list {
+					article {
+						width: 33.33%;
+					}
+				}
+			}
+		}
+	}
+}
+
+
+@media (min-width: 1001px) {
+	.home {
+		.cards {
+			&.col-md-9 {
+				.list {
+					article {
+						width: 33.33%
+					}
+				}
+			}
+
+			&.col-md-12 {
+				.list {
+					article {
+						width: 25%;
+					}
+				}
+			}
+		}
+	}
+}
+
+

@@ -1,0 +1,21 @@
+<div class="modal-header">
+	<h3>Remove Flag Items <span class="highlight" ng-if="resultTotalCount">{{resultTotalCount | number}}</span></h3>
+</div>
+<div class="alert alert-danger icon-error" style="margin-left:25px" ng-show="error">{{error}}</div>
+<div class="modal-body">
+	<form class="form-bulk-updater" role="form">
+		<p>Are you sure you want to remove all flags?</p>
+		<fieldset>
+			<div us-spinner spinner-key="task-spinner"></div>
+			<div class="alert alert-danger icon-error" ng-show="hasError()">{{error}}</div>
+			<div ng-show="successMessage">{{successMessage}}</div>
+		</fieldset>
+	</form>
+</div>
+<div class="modal-footer">
+	<div class="cta_row">
+		<button class="btn btn-primary" ng-click="removeFlag()" ng-disabled="overLimit" >Confirm</button>
+		<a href="javascript:;" class="link_secondary" ng-click="cancel()">Cancel</a>
+	</div>
+</div>
+<a href="javascript:;" class="modal-close icon-x" ng-click="cancel()"></a>

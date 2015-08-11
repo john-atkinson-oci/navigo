@@ -1,0 +1,15 @@
+<div class="row" ng-cloak ng-show="!hasResults()">
+	<p>Sorry, your search found no results.</p>
+	<p>Try broadening your search results:</p>
+	<ul>
+		<li>Removing filters</li>
+		<li>Expanding your search</li>
+		<li>Modifying or removing keywords</li>
+		<li>Checking the spelling of keywords</li>
+        <li ng-if="esriGeocodeServiceError">
+            Esri Geocoding Service is unavailable. Make sure you have network access, then check the 
+            <a href="{{placefinderLink}}" target="_blank">Placefinder Settings</a>.
+        </li>
+	</ul>
+	<a href="javascript:;" class="btn btn-secondary" ng-click="clearSearch()">See all results</a>
+ </div>

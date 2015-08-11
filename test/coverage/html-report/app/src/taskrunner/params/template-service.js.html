@@ -1,0 +1,348 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for ./app/src/taskrunner/params/template-service.js</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../../../../prettify.css">
+    <link rel="stylesheet" href="../../../../base.css">
+    <style type='text/css'>
+        div.coverage-summary .sorter {
+            background-image: url(../../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class="header low">
+    <h1>Code coverage report for <span class="entity">./app/src/taskrunner/params/template-service.js</span></h1>
+    <h2>
+        Statements: <span class="metric">2.56% <small>(1 / 39)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Branches: <span class="metric">0% <small>(0 / 4)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Functions: <span class="metric">0% <small>(0 / 2)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">2.56% <small>(1 / 39)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../../../../index.html">All files</a> &#187; <a href="index.html">./app/src/taskrunner/params/</a> &#187; template-service.js</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/*global angular */
+&nbsp;
+angular.module('taskRunner').
+    factory('templateService', <span class="fstat-no" title="function not covered" >function () {</span>
+        'use strict';
+<span class="cstat-no" title="statement not covered" >        var advancedIcon = '&lt;i ng-show="param.advanced" class="fa fa-gear" title="Advanced"&gt;&lt;/i&gt;';</span>
+<span class="cstat-no" title="statement not covered" >        var requiredIcon = '&lt;i ng-show="param.required" class="fa fa-asterisk" title="Required" style="margin-left: 2px; color: darkred; font-size: x-small"&gt;&lt;/i&gt;';</span>
+<span class="cstat-no" title="statement not covered" >        var errorTpl = '&lt;div  class="process-control alert alert-danger" style="color:red" ng-show="param.error"&gt;&lt;span class="glyphicon glyphicon-arrow-up"/&gt; {{param.error}}&lt;/div&gt;';</span>
+<span class="cstat-no" title="statement not covered" >        var labelTpl = '&lt;dl style="margin-bottom: 5px"&gt;&lt;dt&gt;' + advancedIcon + '{{param.label}}' + requiredIcon + '&lt;dt&gt;&lt;dd&gt;{{param.desc}}&lt;/dd&gt;&lt;/dl&gt;';</span>
+<span class="cstat-no" title="statement not covered" >        var selectTpl = '&lt;select ui-select2="{dropdownAutoWidth: \'true\', minimumResultsForSearch: 5}" ng-model="param.value"&gt; &lt;option ng-repeat="option in param.choices" value="{{option}}"&gt;{{param.values[option]}}&lt;/option&gt;&lt;/select&gt;';</span>
+<span class="cstat-no" title="statement not covered" >        var projectionSelect = '&lt;input type="hidden" ui-select2="select2Options" ng-model="param.selected"&gt;';</span>
+<span class="cstat-no" title="statement not covered" >        var textInputTpl = '&lt;input type="text" ng-model="param.value"&gt;';</span>
+<span class="cstat-no" title="statement not covered" >        var intInputTpl = '&lt;input type="number" ng-model="param.value" style="width: 30%"&gt;';</span>
+<span class="cstat-no" title="statement not covered" >        var pwdInputTpl = '&lt;input type="password" ng-model="param.value"&gt;';</span>
+<span class="cstat-no" title="statement not covered" >        var fieldList = '&lt;input vs-field-param param="param"&gt;';</span>
+<span class="cstat-no" title="statement not covered" >        var fieldListTpl = '&lt;div ng-hide="param.advanced &amp;&amp; !show"&gt;' + labelTpl + fieldList + errorTpl + '&lt;/div&gt;';</span>
+<span class="cstat-no" title="statement not covered" >        var field = '&lt;input vs-field-param param="param" multi="false"&gt;';</span>
+<span class="cstat-no" title="statement not covered" >        var fieldTpl = '&lt;div ng-hide="param.advanced &amp;&amp; !show"&gt;' + labelTpl + field + errorTpl + '&lt;/div&gt;';</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        var projection = '&lt;div ng-hide="param.advanced &amp;&amp; !show" class="process-control"&gt;' + labelTpl + projectionSelect + errorTpl + '&lt;/div&gt;';</span>
+<span class="cstat-no" title="statement not covered" >        var stringChoice = '&lt;div ng-hide="param.advanced &amp;&amp; !show" class="process-control"&gt;' + labelTpl + selectTpl + errorTpl + '&lt;/div&gt;';</span>
+<span class="cstat-no" title="statement not covered" >        var textArea = '&lt;div ng-hide="param.advanced &amp;&amp; !show" class="process-control"&gt;' + labelTpl + '&lt;textarea ng-model="param.value" style="width: 96%"&gt;&lt;/textarea&gt;' + errorTpl + '&lt;/div&gt;';</span>
+<span class="cstat-no" title="statement not covered" >        var stringTpl = '&lt;div ng-hide="param.advanced &amp;&amp; !show" class="process-control"&gt;' + labelTpl + textInputTpl + errorTpl + '&lt;/div&gt;';</span>
+<span class="cstat-no" title="statement not covered" >        var checkBox = '&lt;div ng-hide="param.advanced &amp;&amp; !show" class="process-control"&gt;' + '&lt;dl style="margin-bottom: 5px"&gt;&lt;dt&gt;' + advancedIcon + '{{param.label}}&lt;dt&gt;&lt;dd&gt;&lt;label style="font-weight: normal"&gt;&lt;input type="checkbox" ng-model="param.value"&gt; {{param.desc}}&lt;/label&gt;&lt;/dd&gt;&lt;/dl&gt;' + errorTpl + '&lt;/div&gt;';</span>
+<span class="cstat-no" title="statement not covered" >        var missing = '&lt;div class="process-control" style="color:red"&gt;Missing {{param.name}} template&lt;/div&gt;';</span>
+<span class="cstat-no" title="statement not covered" >        var intTpl = '&lt;div ng-hide="param.advanced &amp;&amp; !show" class="process-control"&gt;' + labelTpl + intInputTpl + errorTpl + '&lt;/div&gt;';</span>
+<span class="cstat-no" title="statement not covered" >        var pwdTpl = '&lt;div ng-hide="param.advanced &amp;&amp; !show" class="process-control"&gt;' + labelTpl + pwdInputTpl + errorTpl + '&lt;/div&gt;';</span>
+<span class="cstat-no" title="statement not covered" >        var readOnlyLabelTpl = '&lt;label style="width:100%; padding-left: 5px; margin-bottom: 0px; border-color: #eeeeee; border-bottom-style: solid; border-width: 1px;color:#999999"&gt;{{param.label}} &lt;/label&gt;';</span>
+<span class="cstat-no" title="statement not covered" >        var readOnlyTpl = '&lt;div class="process-control" style&gt;' + readOnlyLabelTpl + '&lt;div style="padding-left: 5px;"&gt;{{param.value}}&lt;/div&gt;&lt;/div&gt;';</span>
+<span class="cstat-no" title="statement not covered" >        var readOnlyListTpl = '&lt;div class="process-control" style&gt;' + readOnlyLabelTpl + '&lt;div style="padding-left: 5px;"&gt;{{param.value.join()}}&lt;/div&gt;&lt;/div&gt;';</span>
+<span class="cstat-no" title="statement not covered" >        var pwdReadOnlyTpl = '&lt;div class="process-control" style&gt;' + readOnlyLabelTpl + '&lt;input type="password" ng-model="param.value" ng-disabled="true" style="padding-left: 5px;"&gt;&lt;/div&gt;';</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        var browseTpl = '&lt;div class="input-group" style="width: 100%"&gt;' +</span>
+            '&lt;input type="text" class="form-control" ng-model="param.value"&gt;' +
+            '&lt;span class="input-group-btn"&gt;' +
+                '&lt;button class="btn btn-default" type="button" ng-click="open(\'lg\')"&gt; Browse&lt;/button&gt;' +
+            '&lt;/span&gt;&lt;/div&gt;';
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        var searchInput = '&lt;div class="input-group" style="width: 100%"&gt;' +</span>
+            '&lt;input type="text" class="form-control" ng-model="param.display"&gt;' +
+            '&lt;span class="input-group-btn"&gt;' +
+            '&lt;button class="btn btn-default" type="button" ng-click="search(\'lg\')"&gt; Search&lt;/button&gt;' +
+            '&lt;/span&gt;&lt;/div&gt;';
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        var locationTpl = '&lt;div class="process-control"&gt;' + labelTpl + browseTpl + errorTpl +  '&lt;/div&gt;';</span>
+<span class="cstat-no" title="statement not covered" >        var searchTpl = '&lt;div class="process-control"&gt;' + labelTpl + searchInput + errorTpl +  '&lt;/div&gt;';</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        var templates = {</span>
+            //'VoyagerResults':'&lt;div ng-show="false"&gt;' + labelTpl + '&lt;div vs-results-control class="process-control" style="width:96%; float:left"&gt;&lt;/div&gt;' + requiredIcon + errorTpl + '&lt;/div&gt;',
+            'VoyagerResults':'&lt;div vs-ghost-items&gt;&lt;/div&gt;',
+            'Projection':projection,
+            'StringChoice':stringChoice,
+            'Geometry':'&lt;div style="height:100%; width:100%; max-width: 800px; display: inline-block" class="map"&gt;' + labelTpl + '&lt;div vs-clip-map class="clip-map" /&gt;' + errorTpl + '&lt;/div&gt;',
+            'MapView':'&lt;div style="height:100%; width:100%; max-width: 800px; display: inline-block" class="map"&gt;' + labelTpl + '&lt;div vs-view-map class="clip-map" /&gt;' + errorTpl + '&lt;/div&gt;',
+            'TextArea':textArea,
+            'String':stringTpl,
+            'CheckBox':checkBox,
+            'CatalogPath':locationTpl,
+            'FolderLocation':locationTpl,
+            'Integer':intTpl,
+            'Password':pwdTpl,
+            'FieldList':fieldListTpl,
+            'Field':fieldTpl,
+            'IndexItem':searchTpl,
+            'QueryIndex':searchTpl,
+&nbsp;
+            //'VoyagerResults-readOnly':'&lt;div&gt;' + readOnlyLabelTpl + '&lt;div vs-results-control readonly="true" class="process-control" style="width:100%; float:left; margin-bottom: 0px"&gt;&lt;/div&gt;&lt;/div&gt;',
+            'VoyagerResults-readOnly':'&lt;div&gt;' + readOnlyLabelTpl + '&lt;div vs-view-items&gt;&lt;/div&gt;&lt;/div&gt;',
+&nbsp;
+            'Projection-readOnly':readOnlyTpl,
+            'StringChoice-readOnly':readOnlyTpl,
+            'Geometry-readOnly':'&lt;div class="read-only-map"&gt;' + readOnlyLabelTpl + '&lt;div vs-read-only-map class="clip-map" /&gt;&lt;/div&gt;',
+            'MapView-readOnly':'&lt;div class="read-only-map"&gt;' + readOnlyLabelTpl + '&lt;div vs-read-only-map class="clip-map" /&gt;&lt;/div&gt;',
+            'TextArea-readOnly':readOnlyTpl,
+            'String-readOnly':readOnlyTpl,
+            'CheckBox-readOnly':readOnlyTpl,
+            'CatalogPath-readOnly':readOnlyTpl,
+            'FolderLocation-readOnly':readOnlyTpl,
+            'Integer-readOnly':readOnlyTpl,
+            'Password-readOnly':pwdReadOnlyTpl,
+            'FieldList-readOnly':readOnlyListTpl,
+            'Field-readOnly':readOnlyTpl,
+            'QueryIndex-readOnly':readOnlyTpl
+        };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        return {</span>
+&nbsp;
+            get: <span class="fstat-no" title="function not covered" >function (type, readOnly) {</span>
+<span class="cstat-no" title="statement not covered" >                var suffix = '';</span>
+<span class="cstat-no" title="statement not covered" >                if(readOnly === true) {</span>
+<span class="cstat-no" title="statement not covered" >                    suffix = '-readOnly';</span>
+                }
+<span class="cstat-no" title="statement not covered" >                var template = templates[type + suffix];</span>
+<span class="cstat-no" title="statement not covered" >                if (!template) {</span>
+<span class="cstat-no" title="statement not covered" >                    template = missing;</span>
+                }
+<span class="cstat-no" title="statement not covered" >                return template;</span>
+            }
+        };
+&nbsp;
+    });
+&nbsp;</pre></td></tr>
+</table></pre>
+
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Aug 03 2015 16:37:56 GMT-0400 (Eastern Daylight Time)</div>
+</div>
+<script src="../../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../../sorter.js"></script>
+</body>
+</html>

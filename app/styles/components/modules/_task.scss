@@ -1,0 +1,85 @@
+.task_header {
+	position: relative;
+
+	h3, p {
+		padding-right: 200px;
+	}
+
+	p {
+		color: #868c92;
+		font-size: $mediumSize;
+	}
+
+	.btn_secondary {
+		.icon_arrow:before {
+			color: #868c92;
+		}
+	}
+
+	.pull-right {
+		position: absolute;
+		right: 40px;
+		top: 50px;
+
+		.flyout {
+			width: 250px;
+
+			.flyout_inner {
+				max-height: 300px;
+				overflow: hidden;
+				overflow-y: auto;
+			}
+		}
+	}
+}
+
+.select2-search-field > input {
+  border: none !important;
+}
+
+.task_list_modal_body .modal_inner {
+	background-color: $white;
+	padding: 30px 15px;
+
+	dt {
+		font-family: $semiStrongFont;
+		font-size: $mediumSize;
+	}
+
+	dd {
+		color: #868c92;
+		font-size: $smallSize;
+	}
+
+	input[type=text], input[type=number], input[type=password] {
+		border-radius: 5px;
+		border: 1px solid $borderColor;
+		padding: 9px 10px;
+		font-size: $smallSize;
+	}
+
+	.clip-map {
+		height: 250px;
+		width: 100%;
+	}
+
+	.process-control {
+		margin-bottom: 15px;
+		.form-control {
+			height: auto;
+		}
+	}
+
+	#task-details {
+		margin-left: 0;
+		margin-right: 0;
+
+		.advanced_wrap {
+			margin-bottom: 10px;
+		}
+
+		.small {
+			font-size: $smallSize;
+		}
+	}
+}

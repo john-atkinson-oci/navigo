@@ -1,0 +1,309 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for ./app/src/results/relationship.js</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../../../prettify.css">
+    <link rel="stylesheet" href="../../../base.css">
+    <style type='text/css'>
+        div.coverage-summary .sorter {
+            background-image: url(../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class="header low">
+    <h1>Code coverage report for <span class="entity">./app/src/results/relationship.js</span></h1>
+    <h2>
+        Statements: <span class="metric">4.17% <small>(2 / 48)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Branches: <span class="metric">0% <small>(0 / 10)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Functions: <span class="metric">0% <small>(0 / 9)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">4.17% <small>(2 / 48)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../../../index.html">All files</a> &#187; <a href="index.html">./app/src/results/</a> &#187; relationship.js</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/*global angular, $ */
+&nbsp;
+angular.module('voyager.results')
+    .directive('vsRelationship', <span class="fstat-no" title="function not covered" >function (authService, cartService, config, $window, $analytics, $modal, actionManager, sugar) {</span>
+        'use strict';
+&nbsp;
+<span class="fstat-no" title="function not covered" >        function _initActions(scope){</span>
+<span class="cstat-no" title="statement not covered" >            var actionMap = {}, defaultAction = null, displayActions = [], actions = sugar.copy(config.docActions); </span> //copy so we don't change config and every card has separate instance of actions
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            $.each(actions, <span class="fstat-no" title="function not covered" >function(index, action) {</span></span>
+<span class="cstat-no" title="statement not covered" >                action.buttonType = 'btn-primary';</span>
+<span class="cstat-no" title="statement not covered" >                actionManager.setAction(action, scope);</span>
+<span class="cstat-no" title="statement not covered" >                actionMap[action.action] = action;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                if(action.visible) {</span>
+<span class="cstat-no" title="statement not covered" >                    if(defaultAction === null) {</span>
+<span class="cstat-no" title="statement not covered" >                        defaultAction = action;</span>
+                    } else {
+<span class="cstat-no" title="statement not covered" >                        displayActions.push(action);</span>
+                    }
+                }
+            });
+<span class="cstat-no" title="statement not covered" >            return {display:displayActions, defaultAction: defaultAction, types: actionMap};</span>
+        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        return {</span>
+            templateUrl: 'src/results/relationship.html',
+            controller: <span class="fstat-no" title="function not covered" >function ($scope) {</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                $scope.imagePrefix = config.root + 'meta/';</span>
+<span class="cstat-no" title="statement not covered" >                $scope.link = sugar.copy(config.docLink); </span> //copy so we don't change config
+<span class="cstat-no" title="statement not covered" >                actionManager.setAction($scope.link, $scope);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                $scope.toggleCart = <span class="fstat-no" title="function not covered" >function(doc) {</span></span>
+<span class="cstat-no" title="statement not covered" >                    if(cartService.isInCart(doc.id)) {</span>
+<span class="cstat-no" title="statement not covered" >                        cartService.remove(doc.id);</span>
+<span class="cstat-no" title="statement not covered" >                        $scope.cartAction = 'Add';</span>
+<span class="cstat-no" title="statement not covered" >                        $scope.btnType = 'btn-primary';</span>
+<span class="cstat-no" title="statement not covered" >                        doc.inCart = false;</span>
+<span class="cstat-no" title="statement not covered" >                        $analytics.eventTrack('removeFromList', {</span>
+                            category: 'results', label: 'card'  // jshint ignore:line
+                        });
+                    } else {
+<span class="cstat-no" title="statement not covered" >                        cartService.addItem(doc);</span>
+<span class="cstat-no" title="statement not covered" >                        $scope.cartAction = 'Remove';</span>
+<span class="cstat-no" title="statement not covered" >                        $scope.btnType = 'btn-default';</span>
+<span class="cstat-no" title="statement not covered" >                        doc.inCart = true;</span>
+<span class="cstat-no" title="statement not covered" >                        $analytics.eventTrack('addToList', {</span>
+                            category: 'results', label: 'card'  // jshint ignore:line
+                        });
+                    }
+                };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                $scope.canCart = <span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >                    return authService.hasPermission('process');</span>
+                };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                $scope.getDetailsLink = <span class="fstat-no" title="function not covered" >function(doc) {</span></span>
+<span class="cstat-no" title="statement not covered" >                    var link = '#/show/' + doc.id + '?disp=default';</span>
+<span class="cstat-no" title="statement not covered" >                    if(angular.isDefined(doc.shard) &amp;&amp; doc.shard !== '[not a shard request]') {</span>
+<span class="cstat-no" title="statement not covered" >                        link += '&amp;shard=' + doc.shard;</span>
+                    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                    return link;</span>
+                };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                var actions = _initActions($scope);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                $scope.actions = actions.display;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                $scope.default = actions.defaultAction;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                $scope.$on('addAllToCart', <span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >                    $scope.cartAction = 'Remove';</span>
+<span class="cstat-no" title="statement not covered" >                    $scope.btnType = 'btn-default';</span>
+<span class="cstat-no" title="statement not covered" >                    $scope.doc.inCart = true;</span>
+<span class="cstat-no" title="statement not covered" >                    actionManager.toggleDisplay(actions.types.add, $scope);</span>
+                });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                $scope.$on('removeAllCart', <span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >                    $scope.cartAction = 'Add';</span>
+<span class="cstat-no" title="statement not covered" >                    $scope.btnType = 'btn-primary';</span>
+<span class="cstat-no" title="statement not covered" >                    $scope.doc.inCart = false;</span>
+<span class="cstat-no" title="statement not covered" >                    actionManager.toggleDisplay(actions.types.add, $scope);</span>
+                });
+&nbsp;
+            }
+        };
+    });</pre></td></tr>
+</table></pre>
+
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Aug 03 2015 16:37:56 GMT-0400 (Eastern Daylight Time)</div>
+</div>
+<script src="../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../sorter.js"></script>
+</body>
+</html>

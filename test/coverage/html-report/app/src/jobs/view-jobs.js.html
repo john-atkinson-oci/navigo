@@ -1,0 +1,351 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for ./app/src/jobs/view-jobs.js</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../../../prettify.css">
+    <link rel="stylesheet" href="../../../base.css">
+    <style type='text/css'>
+        div.coverage-summary .sorter {
+            background-image: url(../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class="header low">
+    <h1>Code coverage report for <span class="entity">./app/src/jobs/view-jobs.js</span></h1>
+    <h2>
+        Statements: <span class="metric">7.02% <small>(4 / 57)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Branches: <span class="metric">0% <small>(0 / 18)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Functions: <span class="metric">0% <small>(0 / 17)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">7.27% <small>(4 / 55)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../../../index.html">All files</a> &#187; <a href="index.html">./app/src/jobs/</a> &#187; view-jobs.js</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/*global angular, $, _, Sugar */
+&nbsp;
+angular.module('taskRunner')
+    .controller('JobsCtrl', <span class="fstat-no" title="function not covered" >function ($scope, jobService, $stateParams, config, $window, taskService, sugar, usSpinnerService, urlUtil, $location) {</span>
+        'use strict';
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        $scope.display = $location.search().disp || 'default';</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        $scope.goBack = <span class="fstat-no" title="function not covered" >function() {</span></span>
+<span class="cstat-no" title="statement not covered" >            var params = Sugar.retroParams($stateParams);</span>
+<span class="cstat-no" title="statement not covered" >            $window.location.href = config.root + config.explorePath + '/#/' + params;</span>
+        };
+&nbsp;
+<span class="fstat-no" title="function not covered" >        function getIcon(status) {</span>
+<span class="cstat-no" title="statement not covered" >            switch(status)</span>
+            {
+                case 'PENDING':
+<span class="cstat-no" title="statement not covered" >                    return {'icon':'icon-queue_status_waiting','color':'black'};</span>
+                case 'RUNNING':
+<span class="cstat-no" title="statement not covered" >                    return {'icon':'fa fa-cog fa-spin','color':'#337ab7'};</span>
+                case 'FAILED':
+<span class="cstat-no" title="statement not covered" >                    return {'icon':'icon-queue_status_error','color':'red'};</span>
+                case 'CANCELED':
+<span class="cstat-no" title="statement not covered" >                    return {'icon':'icon-queue_status_cancled','color':'black'};</span>
+                case 'WARNING':
+<span class="cstat-no" title="statement not covered" >                    return {'icon':'icon-queue_status_complete','color':'orange'};</span>
+                default:
+<span class="cstat-no" title="statement not covered" >                    return {'icon':'icon-queue_status_complete','color':'green'};</span>
+            }
+        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        jobService.fetchJobs().then(<span class="fstat-no" title="function not covered" >function (response) {</span></span>
+<span class="cstat-no" title="statement not covered" >            var jobs = response[0].data.response.docs;</span>
+<span class="cstat-no" title="statement not covered" >            var jobsDisplay = _.indexBy(response[1].data.response.docs, 'name');</span>
+<span class="cstat-no" title="statement not covered" >            $.each(jobs, <span class="fstat-no" title="function not covered" >function (index, job) {</span></span>
+<span class="cstat-no" title="statement not covered" >                job.statusIcon = getIcon(job.state);</span>
+<span class="cstat-no" title="statement not covered" >                if (!angular.isUndefined(job.output_name)) {</span>
+<span class="cstat-no" title="statement not covered" >                    $.each(job.output_name, <span class="fstat-no" title="function not covered" >function( index, value ) {</span></span>
+<span class="cstat-no" title="statement not covered" >                        if(value.indexOf('_') === -1) {</span>
+<span class="cstat-no" title="statement not covered" >                            job.hasDownload = true;</span>
+                        }
+                    });
+                }
+<span class="cstat-no" title="statement not covered" >                var jobDisplay = jobsDisplay[job.task];</span>
+<span class="cstat-no" title="statement not covered" >                if (angular.isUndefined(jobDisplay)) {</span>
+<span class="cstat-no" title="statement not covered" >                    job.displayName = _(job.task).chain().humanize().titleize().value();</span>
+                } else {
+<span class="cstat-no" title="statement not covered" >                    job.displayName = jobDisplay.display;</span>
+                }
+            });
+<span class="cstat-no" title="statement not covered" >            $scope.jobs = jobs;</span>
+<span class="cstat-no" title="statement not covered" >            usSpinnerService.stop('job-spinner');</span>
+        });
+&nbsp;
+<span class="fstat-no" title="function not covered" >        function _getItems(list) {</span>
+<span class="cstat-no" title="statement not covered" >            return _.find(list, <span class="fstat-no" title="function not covered" >function(item){</span> <span class="cstat-no" title="statement not covered" >return item.type === 'VoyagerResults'; </span>});</span>
+        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        $scope.viewItems = <span class="fstat-no" title="function not covered" >function(job) {</span></span>
+<span class="cstat-no" title="statement not covered" >            var data = JSON.parse(job.json);</span>
+<span class="cstat-no" title="statement not covered" >            var resultsParam = _getItems(data.params);</span>
+<span class="cstat-no" title="statement not covered" >            var params = $location.search();</span>
+&nbsp;
+            //bbox is being included twice
+<span class="cstat-no" title="statement not covered" >            resultsParam.query.fq = _.reject(resultsParam.query.fq, <span class="fstat-no" title="function not covered" >function(param){</span></span>
+<span class="cstat-no" title="statement not covered" >                return param.indexOf('bbox:') &gt; -1;</span>
+            });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            $window.location = '#/search?disp=' + params.disp + '&amp;' + sugar.toQueryString(resultsParam.query);</span>
+        };
+&nbsp;
+<span class="fstat-no" title="function not covered" >        function _getFiles(output) {</span>
+<span class="cstat-no" title="statement not covered" >            var files = sugar.toArray(output);</span>
+<span class="cstat-no" title="statement not covered" >            return _.filter(files, <span class="fstat-no" title="function not covered" >function(file){</span> <span class="cstat-no" title="statement not covered" >return file.indexOf('_') === -1; </span>});</span>
+        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        $scope.download = <span class="fstat-no" title="function not covered" >function(job) {</span></span>
+<span class="cstat-no" title="statement not covered" >            var files = _getFiles(job.output_name);</span>
+<span class="cstat-no" title="statement not covered" >            if(files.length === 1) {</span>
+<span class="cstat-no" title="statement not covered" >                var file = files[0];</span>
+<span class="cstat-no" title="statement not covered" >                var downloadUrl = taskService.getFileUrl(job.id, file);</span>
+<span class="cstat-no" title="statement not covered" >                $window.location.href = downloadUrl;</span>
+            } else {
+<span class="cstat-no" title="statement not covered" >                $window.location.href = '#/status/' + job.id;</span>
+            }
+        };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        $scope.isDone = <span class="fstat-no" title="function not covered" >function(job) {</span></span>
+<span class="cstat-no" title="statement not covered" >            return job !== 'PENDING' &amp;&amp; job !== 'RUNNING';</span>
+        };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        $scope.run = <span class="fstat-no" title="function not covered" >function(job) {</span></span>
+<span class="cstat-no" title="statement not covered" >            usSpinnerService.spin('job-spinner');</span>
+<span class="cstat-no" title="statement not covered" >            jobService.execute(job).then(<span class="fstat-no" title="function not covered" >function(response) {</span></span>
+<span class="cstat-no" title="statement not covered" >                var newJobId = response.data.id;</span>
+<span class="cstat-no" title="statement not covered" >                $window.location.href = '#/status/' + newJobId;</span>
+            },
+<span class="fstat-no" title="function not covered" >            function() {</span>
+<span class="cstat-no" title="statement not covered" >                usSpinnerService.stop('job-spinner');</span>
+            });
+        };
+    });
+&nbsp;</pre></td></tr>
+</table></pre>
+
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Aug 03 2015 16:37:56 GMT-0400 (Eastern Daylight Time)</div>
+</div>
+<script src="../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../sorter.js"></script>
+</body>
+</html>

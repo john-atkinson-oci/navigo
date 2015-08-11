@@ -1,0 +1,864 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for ./app/src/app.js</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../../prettify.css">
+    <link rel="stylesheet" href="../../base.css">
+    <style type='text/css'>
+        div.coverage-summary .sorter {
+            background-image: url(../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class="header low">
+    <h1>Code coverage report for <span class="entity">./app/src/app.js</span></h1>
+    <h2>
+        Statements: <span class="metric">43.9% <small>(36 / 82)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Branches: <span class="metric">15% <small>(3 / 20)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Functions: <span class="metric">9.09% <small>(3 / 33)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">43.9% <small>(36 / 82)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../../index.html">All files</a> &#187; <a href="index.html">./app/src/</a> &#187; app.js</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/*global angular, L, config */
+&nbsp;
+angular.module('portalApp', [
+        'ngResource',
+		'ngSanitize',
+        'ngTable',
+        'ngTableResizableColumns',
+        'ngAria',
+        'angularSpinner',
+        'ui.router',
+        'pascalprecht.translate',
+        'ui.bootstrap',
+        'ui.select2',
+        'ui.sortable',
+		'LocalStorageModule',
+		'cart',
+		'taskRunner',
+        'clipFactory',
+		'voyager.config',
+		'voyager.security',
+		'voyager.filters',
+		'voyager.map',
+		'voyager.util',
+		'voyager.layout',
+		'voyager.home',
+		'voyager.search',
+        'voyager.results',
+        'voyager.details',
+        'voyager.tagging',
+		'voyager.component',
+        'tree.directive',
+        'angulartics',
+        'angulartics.google.analytics',
+        'voyager.common.featured'
+    ])
+    .factory('httpRequestInterceptor', function ($analytics, $q) {
+        'use strict';
+        return {
+            responseError: <span class="fstat-no" title="function not covered" >function(rejection) {</span>
+<span class="cstat-no" title="statement not covered" >                var url = 'unknown';</span>
+<span class="cstat-no" title="statement not covered" >                if(rejection.config) {</span>
+<span class="cstat-no" title="statement not covered" >                    url = rejection.config.url;</span>
+                }
+<span class="cstat-no" title="statement not covered" >                $analytics.eventTrack('error', {</span>
+                    category: 'http', label: url, value:rejection.status  // jshint ignore:line
+                });
+<span class="cstat-no" title="statement not covered" >                return $q.reject(rejection);</span>
+            }
+        };
+    })
+    .config(function ($stateProvider, $httpProvider, $urlRouterProvider) {
+        'use strict';
+&nbsp;
+<span class="fstat-no" title="function not covered" >        function _loadIfAllowed(authService, $q, configLoader, $location) {</span>
+<span class="cstat-no" title="statement not covered" >            return authService.getPrivileges().then(<span class="fstat-no" title="function not covered" >function() {</span></span>
+<span class="cstat-no" title="statement not covered" >                if(!authService.hasPermission('view')) {</span>
+<span class="cstat-no" title="statement not covered" >                    return $q.reject('Not Authorized');</span>
+                } else {
+<span class="cstat-no" title="statement not covered" >                    return configLoader.load($location.search().disp);</span>
+                }
+            });
+        }
+&nbsp;
+<span class="fstat-no" title="function not covered" >        function _canProcess(authService, $q) {</span>
+<span class="cstat-no" title="statement not covered" >            return authService.getPrivileges().then(<span class="fstat-no" title="function not covered" >function() {</span></span>
+<span class="cstat-no" title="statement not covered" >                if(!authService.hasPermission('process')) {</span>
+<span class="cstat-no" title="statement not covered" >                    return $q.reject('Not Authorized');</span>
+                } else {
+<span class="cstat-no" title="statement not covered" >                    return $q.when({});</span>
+                }
+            });
+        }
+&nbsp;
+        $stateProvider
+            .state('search', {
+                url: '/search?fq&amp;q&amp;vw&amp;place',
+                reloadOnSearch: false,
+                views: {
+                    '' : {
+                        templateUrl: 'src/search/search.html'
+                    },
+                    'filters@search': {
+                        'templateUrl':'src/filters/filters.html',
+                        'controller':'FiltersCtrl'
+                    },
+                    'card-results@search': {
+                        'templateUrl':'src/results/card-results.html'
+                    },
+                    'table-results@search': {
+                        'templateUrl':'src/results/table-results.html'
+                    },
+                    'selected-filters@search': {
+                        'templateUrl':'src/filters/selected-filters.html',
+                        'controller':'SelectedFiltersCtrl'
+                    }
+                },
+                resolve: {
+                    load: <span class="fstat-no" title="function not covered" >function (configLoader, $location, $q, authService) {</span>
+<span class="cstat-no" title="statement not covered" >                        return _loadIfAllowed(authService, $q, configLoader, $location);</span>
+                    }
+                }
+            })
+            .state('home', {
+                url: '/home',
+                templateUrl: 'src/home/home.html',
+                resolve: {
+                    load: <span class="fstat-no" title="function not covered" >function (configLoader, $location, $q, authService) {</span>
+<span class="cstat-no" title="statement not covered" >                        if(config.homepage.showHomepage === true) {</span>
+<span class="cstat-no" title="statement not covered" >                            return _loadIfAllowed(authService, $q, configLoader, $location);</span>
+                        } else {
+<span class="cstat-no" title="statement not covered" >                            return $q.reject('Not Visible');</span>
+                        }
+                    }
+                }
+            })
+            .state('details', {
+                url: '/show/:id?disp&amp;shard',
+                views: {
+                    '': {
+                        templateUrl: 'src/details/details.html'
+                    },
+                    'preview@details': {
+                        templateUrl: 'src/preview/preview.html'
+                    }
+                },
+                resolve: {
+                    load: <span class="fstat-no" title="function not covered" >function (detailConfig, $location, $q, authService) {</span>
+<span class="cstat-no" title="statement not covered" >                        return _loadIfAllowed(authService, $q, detailConfig, $location);</span>
+                    }
+                }
+            })
+            .state('login', {
+                url: '/login',
+                templateUrl: 'common/security/login.html',
+                controller: 'AuthPageCtrl'
+            })
+            .state('queue', {
+                url: '/queue',
+                templateUrl: 'src/cart/cart.html',
+                resolve: {
+                    load: <span class="fstat-no" title="function not covered" >function ($q, authService) {</span>
+<span class="cstat-no" title="statement not covered" >                        return _canProcess(authService, $q);</span>
+                    }
+                }
+            })
+            .state('history', {
+                url: '/history',
+                templateUrl: 'src/jobs/view-jobs.html',
+                resolve: {
+                    load: <span class="fstat-no" title="function not covered" >function ($q, authService) {</span>
+<span class="cstat-no" title="statement not covered" >                        return _canProcess(authService, $q);</span>
+                    }
+                }
+            })
+            .state('status', {
+                url: '/status/:id',
+                templateUrl: 'src/taskrunner/status.html',
+                resolve: {
+                    load: <span class="fstat-no" title="function not covered" >function ($q, authService) {</span>
+<span class="cstat-no" title="statement not covered" >                        return _canProcess(authService, $q);</span>
+                    }
+                }
+            })
+            .state('chart', {
+                url: '/chart',
+                templateUrl: 'src/chart/chart.html'
+            });
+&nbsp;
+        $urlRouterProvider.otherwise(<span class="fstat-no" title="function not covered" >function($injector){</span>
+<span class="cstat-no" title="statement not covered" >            $injector.invoke(<span class="fstat-no" title="function not covered" >function($state, config) {</span></span>
+<span class="cstat-no" title="statement not covered" >                if (config.homepage.showHomepage === true) {</span>
+<span class="cstat-no" title="statement not covered" >                    $state.go('home');</span>
+                } else {
+<span class="cstat-no" title="statement not covered" >                    $state.go('search');</span>
+                }
+            });
+        });
+&nbsp;
+        //maintain session state
+        $httpProvider.defaults.withCredentials = true;
+        //cors
+//        $httpProvider.defaults.useXDomain = true;
+//        delete $httpProvider.defaults.headers.common['X-Requested-With'];
+&nbsp;
+        //disable rest calls caching
+        <span class="missing-if-branch" title="else path not taken" >E</span>if (!$httpProvider.defaults.headers.get) {
+            $httpProvider.defaults.headers.get = {};
+        }
+//        //$httpProvider.defaults.headers.get['If-Modified-Since'] = '0';
+        $httpProvider.defaults.headers.get['Cache-Control'] = 'no-cache';  // jshint ignore:line
+        $httpProvider.defaults.headers.get['Pragma'] = 'no-cache';  // jshint ignore:line
+        $httpProvider.interceptors.push('httpRequestInterceptor');
+&nbsp;
+    }).run(function ($rootScope, $location, authService, $state, config) { // instance-injector
+        'use strict';
+&nbsp;
+        <span class="missing-if-branch" title="if path not taken" >I</span>if($location.search().widget === 'true') {
+<span class="cstat-no" title="statement not covered" >            $rootScope.isWidget = true;</span>
+        }
+&nbsp;
+        _.mixin(_.str.exports());
+&nbsp;
+        $rootScope.title = config.title;
+&nbsp;
+        $rootScope.footer = config.homepage.footerHTML;
+        <span class="missing-if-branch" title="else path not taken" >E</span>if($rootScope.footer.indexOf('&lt;li&gt;') !== 0) {
+            $rootScope.footer = '&lt;li&gt;' + $rootScope.footer + '&lt;/li&gt;';
+        }
+&nbsp;
+        $rootScope.$on('searchEvent', <span class="fstat-no" title="function not covered" >function (event, args) {</span>
+<span class="cstat-no" title="statement not covered" >            $rootScope.$broadcast('doSearch', args);</span>
+        });
+        $rootScope.$on('bboxChangeEvent', <span class="fstat-no" title="function not covered" >function(event, args){</span>
+<span class="cstat-no" title="statement not covered" >            $rootScope.$broadcast('updateBBox', args);</span>
+        });
+        $rootScope.$on('saveSearchSuccess', <span class="fstat-no" title="function not covered" >function(event, args){</span>
+<span class="cstat-no" title="statement not covered" >            $rootScope.$broadcast('updateSearchSaveStatus', args);</span>
+        });
+        $rootScope.$on('filterEvent', <span class="fstat-no" title="function not covered" >function (event, args) {</span>
+<span class="cstat-no" title="statement not covered" >            $rootScope.$broadcast('filterChanged', args);</span>
+        });
+        $rootScope.$on('removeFilterEvent', <span class="fstat-no" title="function not covered" >function (event, args) {</span>
+<span class="cstat-no" title="statement not covered" >            $rootScope.$broadcast('removeFilter', args);</span>
+        });
+        $rootScope.$on('clearSearchEvent', <span class="fstat-no" title="function not covered" >function (event, args) {</span>
+            //$rootScope.$broadcast('clearBbox', args);
+<span class="cstat-no" title="statement not covered" >            $rootScope.$broadcast('clearSearch', args);</span>
+        });
+        $rootScope.$on('clearBboxEvent', <span class="fstat-no" title="function not covered" >function (event, args) {</span>
+<span class="cstat-no" title="statement not covered" >            $rootScope.$broadcast('clearBbox', args);</span>
+        });
+        $rootScope.$on('addBboxEvent', <span class="fstat-no" title="function not covered" >function (event, args) {</span>
+<span class="cstat-no" title="statement not covered" >            $rootScope.$broadcast('addBbox', args);</span>
+        });
+        $rootScope.$on('changeViewEvent', <span class="fstat-no" title="function not covered" >function (event, args) {</span>
+<span class="cstat-no" title="statement not covered" >            $rootScope.$broadcast('changeView', args);</span>
+        });
+        $rootScope.$on('searchComplete', <span class="fstat-no" title="function not covered" >function (event, args) {</span>
+<span class="cstat-no" title="statement not covered" >            $rootScope.$broadcast('searchResults', args);</span>
+        });
+        $rootScope.$on('addAllToCartEvent', <span class="fstat-no" title="function not covered" >function (event, args) {</span>
+<span class="cstat-no" title="statement not covered" >            $rootScope.$broadcast('addAllToCart', args);</span>
+        });
+        $rootScope.$on('removeAllCartEvent', <span class="fstat-no" title="function not covered" >function (event, args) {</span>
+<span class="cstat-no" title="statement not covered" >            $rootScope.$broadcast('removeAllCart', args);</span>
+        });
+        $rootScope.$on('resultHoverEvent', <span class="fstat-no" title="function not covered" >function (event, args) {</span>
+<span class="cstat-no" title="statement not covered" >            $rootScope.$broadcast('resultHover', args);</span>
+        });
+&nbsp;
+        $rootScope.$on('searchDrawingTypeChanged', <span class="fstat-no" title="function not covered" >function(event, args) {</span>
+<span class="cstat-no" title="statement not covered" >            $rootScope.$broadcast('updateDrawingTool', args);</span>
+        });
+&nbsp;
+        $rootScope.$on('drawingToolChanged', <span class="fstat-no" title="function not covered" >function(event, args) {</span>
+<span class="cstat-no" title="statement not covered" >            $rootScope.$broadcast('updateSearchDrawingType', args);</span>
+        });
+&nbsp;
+        $rootScope.$on('searchTypeChanged', <span class="fstat-no" title="function not covered" >function(event, args) {</span>
+<span class="cstat-no" title="statement not covered" >            $rootScope.$broadcast('updateSearchType', args);</span>
+        });
+&nbsp;
+        $rootScope.$on('$stateChangeError', <span class="fstat-no" title="function not covered" >function(e, toState, toParams, fromState, fromParams, error) {</span>
+<span class="cstat-no" title="statement not covered" >            if (error === 'Not Authorized') {</span>
+<span class="cstat-no" title="statement not covered" >                $state.go('login');</span>
+            } else <span class="cstat-no" title="statement not covered" >if (error === 'Not Visible') {</span>
+<span class="cstat-no" title="statement not covered" >                $state.go('search');</span>
+            }
+        });
+&nbsp;
+        L.Icon.Default.imagePath = 'assets/img';
+&nbsp;
+    }).constant('config',config);
+&nbsp;</pre></td></tr>
+</table></pre>
+
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Aug 03 2015 16:37:56 GMT-0400 (Eastern Daylight Time)</div>
+</div>
+<script src="../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../sorter.js"></script>
+</body>
+</html>

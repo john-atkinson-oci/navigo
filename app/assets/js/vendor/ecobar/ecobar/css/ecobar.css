@@ -1,0 +1,1479 @@
+/*!
+ *  NGA Ecosystem Bar version 3.7
+ *  By NGA- Interactive Design (XDI)
+ *  http://webcop.nga.mil
+ */
+
+
+/* -- Global
+ * ----------------------------- */
+body, html {
+	font-size: 100%;
+	height: 100%;
+	padding: 0;
+	margin: 0;}
+
+.header--fixed {
+    position: fixed;
+    z-index: 1005;
+    right: 0px;
+    left: 0px;
+    top: 0px;
+	height: 75px;
+}
+
+.content-header-padding {
+	height: 75px;
+}
+
+.ecobar_left_nav_spacer {
+	height: 80px;
+	}
+
+
+/* Classification Top and Bottom
+ * ----------------------------- */
+
+
+.NGA_Bar_Top_Classification {
+	padding: 3px;
+	background: #EDEDED;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	text-align:center;
+	vertical-align:middle;
+	}
+
+.NGA_Bar_Bottom_Classification {
+	padding: 3px;
+	background: #EDEDED;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	text-align:center;
+	vertical-align:middle;
+	}
+
+
+/* Classification Top Responsive
+ * ----------------------------- */
+
+@media (max-width: 1001px) {
+
+#ecobar_classification_1, #ecobar_classification_2, #ecobar_classification_3 {
+	display: inline;
+	}
+}
+
+@media (max-width: 1000px)  {
+#ecobar_classification_1, #ecobar_classification_2{
+	display: inline;
+	}
+
+#ecobar_classification_3 {
+	display: none;
+	}
+
+}
+@media (max-width: 600px) {
+#ecobar_classification_1,  {
+	display: inline;
+	}
+
+#ecobar_classification_2, #ecobar_classification_3 {
+	display: none;
+	}
+}
+
+
+ /* Ecobar Container
+ * ----------------------------- */
+
+.ecobar_container {
+	padding: 0px;
+	background: #fff;
+	 height: 55px;
+	}
+
+.ecobar_bottom_shadow {
+	height: 5px;
+	width: 100%;
+	background: url(../images/eco-sprite.png) -0px -492px;
+}
+
+
+ /* Ecobar 5 Icon Set
+ * ----------------------------- */
+
+
+@media (max-width: 2100px) {
+.ecobar_logo {
+	height: 60px;
+	width: 545px;
+	background: url(../images/eco-sprite.png) -1195px -583px;
+	float:left;
+	}
+}
+@media (max-width: 1100px) {
+.ecobar_logo {
+	height: 60px;
+	width: 180px;
+	background: url(../images/eco-sprite.png) -1195px -583px;
+	float:left;
+	}
+}
+
+
+
+@media (max-width: 768px) {
+.ecobar_logo {
+	height: 60px;
+	width: 55px;
+	background: url(../images/eco-sprite.png) -1195px -583px;
+	float:left;
+	}
+}
+
+
+.ecobar_icons_menu {
+	height: 55px;
+	width: 70px;
+	padding: 0px 5px 0px 5px;
+	float: left;
+	border-bottom: 5px #FFFFFF solid;
+	background:url(../images/eco-sprite.png) -45px -60px;
+	border-right: 1px #E5E5E5 solid;
+	}
+
+.ecobar_icons_menu:hover {
+	background:url(../images/eco-sprite.png) -45px -360px;
+	border-bottom: 5px #8CC640 solid;
+	cursor: pointer;
+	}
+
+
+
+.ecobar_icon_container_large {
+}
+
+
+@media (max-width: 768px) {
+.ecobar_icon_container_large {
+	display: none;
+}
+}
+
+.ecobar_icons_feedback{
+	height: 55px;
+	width: 70px;
+	padding: 0px 5px 0px 5px;
+	float:right;
+	border-bottom: 5px #FFFFFF solid;
+	background:url(../images/eco-sprite.png) -329px -60px;
+	border-right: 1px #E5E5E5 solid;
+	margin-right: 40px;
+	}
+
+.ecobar_icons_feedback:hover {
+	background:url(../images/eco-sprite.png) -329px -360px;
+	border-bottom: 5px #8CC640 solid;
+	cursor: pointer;
+	}
+
+
+.ecobar_icons_apps {
+	height: 55px;
+	width: 70px;
+	padding: 0px 5px 0px 5px;
+	float:right;
+	border-bottom: 5px #FFFFFF solid;
+	background:url(../images/eco-sprite.png) -255px -60px;
+	border-right: 1px #E5E5E5 solid;
+	}
+
+.ecobar_icons_apps:hover {
+	background:url(../images/eco-sprite.png) -255px -360px;
+	border-bottom: 5px #8CC640 solid;
+	cursor: pointer;
+	}
+
+
+.ecobar_icons_profile {
+	height: 55px;
+	width: 70px;
+	padding: 0px 5px 0px 5px;
+	float:right;
+	border-bottom: 5px #FFFFFF solid;
+	background:url(../images/eco-sprite.png) -113px -60px;
+	border-right: 1px #E5E5E5 solid;
+	}
+
+.ecobar_icons_profile:hover {
+	background:url(../images/eco-sprite.png) -113px -360px;
+	border-bottom: 5px #8CC640 solid;
+	cursor: pointer;
+	}
+
+
+.ecobar_icons_profile_indicator {
+	position: relative;
+	left: 43px;
+	width: 20px;
+	height: 20px;
+	background: #32A6AD;
+	-moz-border-radius: 50px;
+	-webkit-border-radius: 50px;
+	border-radius: 50px;
+	font-family:Verdana, Geneva, sans-serif;
+	font-size: 9px;
+	padding: 2px;
+	color:#FFFFFF;
+	}
+
+
+.ecobar_icons_map {
+	height: 55px;
+	width: 70px;
+	padding: 0px 5px 0px 5px;
+	float:right;
+	border-bottom: 5px #FFFFFF solid;
+	background:url(../images/eco-sprite.png) -185px -60px;
+	border-right: 1px #E5E5E5 solid;
+	}
+
+.ecobar_icons_map:hover {
+	background:url(../images/eco-sprite.png) -185px -360px;
+	border-bottom: 5px #8CC640 solid;
+	cursor: pointer;
+	}
+
+.ecobar_icons_search {
+	height: 55px;
+	width: 70px;
+	padding: 0px 5px 0px 5px;
+	float:right;
+	border-bottom: 5px #FFFFFF solid;
+	background:url(../images/eco-sprite.png) -403px 437px;
+	border-right: 1px #E5E5E5 solid;
+	border-left: 1px #E5E5E5 solid;
+	}
+
+.ecobar_icons_search:hover {
+	background:url(../images/eco-sprite.png) -403px 137px;
+	border-bottom: 5px #8CC640 solid;
+	cursor: pointer;
+	}
+
+/* App Launcher
+ * ----------------------------- */
+
+.app_launcher_container {
+	width: 340px;
+	display: table;
+	}
+
+
+.app_launcher_blocks {
+	display: inline-block;
+	width:  30%;
+	 height: 100px;
+	 width: 100px;
+	color: #000;
+	font-size: 26px;
+	text-align: center;
+	/*margin: 5px;*/
+	padding: 5px 5px 5px 5px;
+	margin-bottom: 0px;
+	border: #FFF 1px solid;
+
+	}
+
+.app_launcher_blocks:hover {
+	border: #80C3D4 1px solid;
+	}
+
+.app_launcher_blocks_text{
+	position: relative;
+	top: -30px;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:11px;
+	font-weight: bold;
+
+	}
+
+#app_launcher_row  {
+    display: table-row;
+    }
+
+  #app_launcher_left, #app_launcher_right, #app_launcher_middle {
+    display: table-cell;
+	width: 33%;
+    }
+
+
+.block0 {
+	background:url(../images/eco-sprite.png) -653px 0px;
+	height: 60px;
+	width: 60px;
+	margin-right: 15px;
+	float:right
+
+}
+.block0:hover {
+
+}
+
+.block1 {
+	background:url(../images/eco-sprite.png) -772px 0px;
+	height: 60px;
+	width: 60px;
+	margin-left: 17px;
+
+}
+.block1:hover {
+	background:url(../images/eco-sprite.png) -772px -120px;
+}
+.block2 {
+	background:url(../images/eco-sprite.png) -1012px 0px;
+	height: 60px;
+	width: 60px;
+	margin-left: 17px;
+
+}
+.block2:hover {
+	background:url(../images/eco-sprite.png) -1012px -120px;
+}
+.block3 {
+	background:url(../images/eco-sprite.png) -1078px 0px;
+	height: 60px;
+	width: 60px;
+	margin-left: 17px;
+
+}
+.block3:hover {
+	background:url(../images/eco-sprite.png) -1078px -120px;
+}
+
+.block4 {
+	background:url(../images/eco-sprite.png) -592px 0px;
+	height: 60px;
+	width: 60px;
+	margin-left: 17px;
+}
+.block4:hover {
+	background:url(../images/eco-sprite.png) -591px -120px;
+}
+
+.block5 {
+	background:url(../images/eco-sprite.png) -952px 0px;
+	height: 60px;
+	width: 60px;
+	margin-left: 17px;
+
+}
+.block5:hover {
+	background:url(../images/eco-sprite.png) -952px -119px;
+}
+.block6 {
+	background:url(../images/eco-sprite.png) -892px 0px;
+	height: 60px;
+	width: 60px;
+	margin-left: 17px;
+
+}
+.block6:hover {
+	background:url(../images/eco-sprite.png) -892px -120px;
+}
+.block7 {
+	background:url(../images/eco-sprite.png) -712px 0px;
+	height: 60px;
+	width: 60px;
+	margin-left: 17px;
+
+}
+.block7:hover {
+	background:url(../images/eco-sprite.png) -712px -120px;
+}
+.block8 {
+	background:url(../images/eco-sprite.png) -832px 0px;
+	height: 60px;
+	width: 60px;
+	margin-left: 17px;
+
+}
+.block8:hover {
+	background:url(../images/eco-sprite.png) -832px -121px;
+}
+.block9 {
+	background:url(../images/eco-sprite.png) -532px 0px;
+	height: 60px;
+	width: 60px;
+	margin-left: 17px;
+
+}
+.block9:hover {
+	background:url(../images/eco-sprite.png) -533px -118px;
+}
+
+
+/* Profile
+ * ----------------------------- */
+
+.ecobar_profile_name {
+	font-family:Arial, Helvetica, sans-serif;
+
+	}
+
+.ecobar_profile_messages {
+	font-family:Arial, Helvetica, sans-serif;
+	display:inline;
+	}
+
+
+.ecobar_profile_alerts {
+	font-family:Arial, Helvetica, sans-serif;
+	display:inline;
+
+	}
+
+
+/* Popover
+ * ----------------------------- */
+
+.ecobar_popover_container {
+	position:relative;
+	float: right;
+
+}
+
+.ecobar_popover {
+   position: absolute;
+ /*top: 0;
+  left: 0;*/
+  z-index: 1010;
+display: none;
+   /* max-width: 300px;
+  /*max-width: 276px;*/
+  padding: 1px;
+  text-align: left;
+  white-space: normal;
+  background-color: #ffffff;
+  border: 1px solid #ccc;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+   -webkit-border-radius: 3px;
+     -moz-border-radius: 3px;
+          border-radius: 3px;
+ /* -webkit-border-radius: 6px;
+     -moz-border-radius: 6px;
+          border-radius: 6px;*/
+  -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+     -moz-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+          box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  -webkit-background-clip: padding-box;
+     -moz-background-clip: padding;
+          background-clip: padding-box;
+/* Drew's code to animate - not working yet */
+-o-transition: transform .3s linear;
+	-moz-transition: transform .3s linear;
+	-webkit-transition: transform .3s linear;
+	-ms-transition: transform .3s linear;
+}
+
+.ecobar_popover.top {
+  margin-top: -10px;
+}
+
+.ecobar_popover.right {
+  margin-left: 10px;
+}
+
+.ecobar_popover.bottom {
+  margin-top: 10px;
+}
+
+.ecobar_popover.left {
+  margin-left: -10px;
+}
+
+.ecobar_popover-title {
+  padding: 8px 14px;
+  margin: 0;
+  font-family:Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 18px;
+  background-color: #f7f7f7;
+  border-bottom: 1px solid #ebebeb;
+  -webkit-border-radius: 5px 5px 0 0;
+     -moz-border-radius: 5px 5px 0 0;
+          border-radius: 5px 5px 0 0;
+}
+
+.ecobar_popover-title:empty {
+  display: none;
+}
+
+.ecobar_popover-content {
+  padding: 9px 14px;
+}
+
+.ecobar_popover .arrow,
+.ecobar_popover .arrow:after {
+  position: absolute;
+  display: block;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+}
+
+.ecobar_popover .arrow:before {
+	display: none;
+}
+
+.ecobar_popover .arrow {
+  border-width: 11px;
+}
+
+.ecobar_popover .arrow:after {
+  border-width: 10px;
+  content: "";
+}
+
+.ecobar_popover.top .arrow {
+  bottom: -11px;
+  left: 50%;
+  margin-left: -11px;
+  border-top-color: #999;
+  border-top-color: rgba(0, 0, 0, 0.25);
+  border-bottom-width: 0;
+}
+
+.ecobar_popover.top .arrow:after {
+  bottom: 1px;
+  margin-left: -10px;
+  border-top-color: #ffffff;
+  border-bottom-width: 0;
+}
+
+.ecobar_popover.right .arrow {
+  top: 50%;
+  left: -11px;
+  margin-top: -11px;
+  border-right-color: #999;
+  border-right-color: rgba(0, 0, 0, 0.25);
+  border-left-width: 0;
+}
+
+.ecobar_popover.right .arrow:after {
+  bottom: -10px;
+  left: 1px;
+  border-right-color: #ffffff;
+  border-left-width: 0;
+}
+
+.ecobar_popover.bottom .arrow {
+  top: -11px;
+  left: 50%;
+  margin-left: -11px;
+  border-bottom-color: #999;
+  border-bottom-color: rgba(0, 0, 0, 0.25);
+  border-top-width: 0;
+}
+
+.ecobar_popover.bottom .arrow:after {
+  top: 1px;
+  margin-left: -30px;
+  border-bottom-color: #ffffff;
+  border-top-width: 0;
+}
+
+.ecobar_popover.left .arrow {
+  top: 50%;
+  right: -11px;
+  margin-top: -11px;
+  border-left-color: #999;
+  border-left-color: rgba(0, 0, 0, 0.25);
+  border-right-width: 0;
+}
+
+.ecobar_popover.left .arrow:after {
+  right: 1px;
+  bottom: -10px;
+  border-left-color: #ffffff;
+  border-right-width: 0;
+}
+
+
+
+/* Sidebar Menu
+ * ----------------------------- */
+
+ .EcobarSlideReveal {
+	top: 0;
+	left: 0;
+	position:fixed;
+    background-color: #FFF;
+	border-right: #CCC 1px solid;
+	height: 100%;
+	width: 250px;
+	display: none;
+	z-index: 1004;
+	overflow:auto;
+}
+
+
+@media screen and (max-width: 55.1875em){
+
+ .EcobarSlideReveal {
+	width: 250px;
+}
+}
+
+@media screen and (max-height: 26.375em){
+
+ .EcobarSlideReveal {
+	width: 250px;
+}
+}
+
+
+/* Jquery Accordian Menu Wrapper
+ * ----------------------------- */
+.jquery-accordion-menu,
+.jquery-accordion-menu *{
+	font-family: 'Open Sans', sans-serif;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	outline: 0;
+}
+.jquery-accordion-menu{
+	min-width: 240px;
+	float: left;
+	position: relative;
+	/*box-shadow: 0 20px 50px #333;*/
+}
+
+.span_icon {
+	margin-right: 19px;
+
+}
+
+/* Header and Footer
+ * ----------------------------- */
+.jquery-accordion-menu .jquery-accordion-menu-header,
+.jquery-accordion-menu .jquery-accordion-menu-footer{
+	width: 100%;
+	height: 50px;
+	padding-left: 22px;
+	float: left;
+	line-height: 50px;
+	font-weight: 600;
+	color: #f0f0f0;
+	background: #414956;
+}
+
+/* Menu
+ * ----------------------------- */
+.jquery-accordion-menu ul{
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+.jquery-accordion-menu ul li{
+	width: 100%;
+	display: block;
+	float: left;
+	position: relative;
+}
+.jquery-accordion-menu ul li a{
+	width: 100%;
+	padding: 14px 22px;
+	float: left;
+	text-decoration: none;
+	color: #f0f0f0;
+	font-size: 13px;
+	background: #414956;
+	white-space: nowrap;
+	position: relative;
+	overflow: hidden;
+	-o-transition: color .2s linear, background .2s linear;
+	-moz-transition: color .2s linear, background .2s linear;
+	-webkit-transition: color .2s linear, background .2s linear;
+	transition: color .2s linear, background .2s linear;
+}
+.jquery-accordion-menu > ul > li:hover > a,
+.jquery-accordion-menu > ul > li.active > a{
+	color: #fff;
+	background: #3b424d;
+}
+.jquery-accordion-menu > ul > li > a{
+	border-bottom: solid 1px #3b424d;
+}
+.jquery-accordion-menu ul li a i{
+	width: 34px;
+	float: left;
+	line-height: 18px;
+	font-size: 16px;
+	text-align: left;
+}
+
+/* Submenu indicators
+ * ----------------------------- */
+.jquery-accordion-menu .submenu-indicator{
+	float: right;
+	right: 22px;
+	position: absolute;
+	line-height: 19px;
+	font-size: 20px;
+	-o-transition: transform .3s linear;
+	-moz-transition: transform .3s linear;
+	-webkit-transition: transform .3s linear;
+	-ms-transition: transform .3s linear;
+}
+.jquery-accordion-menu ul ul.submenu .submenu-indicator{
+	line-height: 16px;
+}
+.jquery-accordion-menu .submenu-indicator-minus > .submenu-indicator{
+	-ms-transform: rotate(45deg);
+	-moz-transform: rotate(45deg);
+	-webkit-transform: rotate(45deg);
+	transform: rotate(45deg);
+}
+
+/* Submenu
+ * ----------------------------- */
+.jquery-accordion-menu ul ul.submenu,
+.jquery-accordion-menu ul ul.submenu li ul.submenu{
+	width: 100%;
+	display: none;
+	position: static;
+}
+.jquery-accordion-menu ul ul.submenu li{
+	clear: both;
+	width: 100%;
+}
+.jquery-accordion-menu ul ul.submenu li a{
+	width: 100%;
+	float: left;
+	font-size: 12px;
+	background: #192F43;
+	border-top: none;
+	position: relative;
+	border-right: solid 6px transparent;
+	-o-transition: border .2s linear;
+	-moz-transition: border .2s linear;
+	-webkit-transition: border .2s linear;
+	transition: border .2s linear;
+}
+.jquery-accordion-menu ul ul.submenu li:hover > a{
+	border-left-color: #414956;
+}
+.jquery-accordion-menu ul ul.submenu > li > a{
+	padding-left: 30px;
+}
+.jquery-accordion-menu ul ul.submenu > li > ul.submenu > li > a{
+	padding-left: 45px;
+}
+.jquery-accordion-menu ul ul.submenu > li > ul.submenu > li > ul.submenu > li > a{
+	padding-left: 60px;
+}
+
+/* labels
+ * ----------------------------- */
+.jquery-accordion-menu ul li .jquery-accordion-menu-label,
+.jquery-accordion-menu ul ul.submenu li .jquery-accordion-menu-label{
+	min-width: 20px;
+	padding: 1px 2px 1px 1px;
+	position: absolute;
+	right: 18px;
+	top: 14px;
+	font-size: 11px;
+	font-weight: 800;
+	color: #555;
+	text-align: center;
+	line-height: 18px;
+	background: #f0f0f0;
+	border-radius: 100%;
+}
+.jquery-accordion-menu ul ul.submenu li .jquery-accordion-menu-label{
+	top: 12px;
+}
+
+/* click effect
+ * ----------------------------- */
+.ink{
+	display: block;
+	position: absolute;
+	background: rgba(255, 255, 255, 0.3);
+	border-radius: 100%;
+	-webkit-transform: scale(0);
+	-moz-transform: scale(0);
+	-ms-transform: scale(0);
+   -o-transform: scale(0);
+   transform: scale(0);
+}
+
+.animate-ink{
+	-webkit-animation: ripple 0.5s linear;
+   -moz-animation: ripple 0.5s linear;
+   -ms-animation: ripple 0.5s linear;
+   -o-animation: ripple 0.5s linear;
+   animation: ripple 0.5s linear;
+}
+
+@-webkit-keyframes ripple {
+   100% {opacity: 0; -webkit-transform: scale(2.5);}
+}
+@-moz-keyframes ripple {
+   100% {opacity: 0; -moz-transform: scale(2.5);}
+}
+@-o-keyframes ripple {
+   100% {opacity: 0; -o-transform: scale(2.5);}
+}
+@keyframes ripple {
+   100% {opacity: 0; transform: scale(2.5);}
+}
+
+/* White Color For Menu
+ * ----------------------------- */
+
+.white.jquery-accordion-menu .jquery-accordion-menu-header,
+.white.jquery-accordion-menu .jquery-accordion-menu-footer,
+.white.jquery-accordion-menu ul li a{
+	background: #fff;
+	color: #555;
+}
+.white.jquery-accordion-menu > ul > li:hover > a,
+.white.jquery-accordion-menu > ul > li.active > a{
+	background: #f0f0f0;
+
+}
+.white.jquery-accordion-menu > ul > li > a{
+	border-bottom-color: #f0f0f0;
+}
+.white.jquery-accordion-menu ul ul.submenu li:hover > a{
+	border-right-color: #f0f0f0;
+}
+.white.jquery-accordion-menu ul ul.submenu li a{
+	color: #f0f0f0;
+
+}
+.white.jquery-accordion-menu > ul > li > a > .ink{
+	background: rgba(0, 0, 0, 0.1);
+
+}
+
+
+/*  Modal Window
+ * ----------------------------- */
+
+.tbox {position:absolute; display:none; padding:14px 17px; z-index:1003}
+.tinner {padding:0; -moz-border-radius:5px; border-radius:5px; background:#fff url(../images/preload.gif) no-repeat 50% 50%; border-right:1px solid #333; border-bottom:1px solid #333}
+.tmask {position:absolute; display:none; top:0px; left:0px; height:100%; width:100%; background:#000; z-index:1002}
+.tclose {position:absolute; top:0px; right:0px; width:30px; height:30px; cursor:pointer; background:url(../images/close.png) no-repeat}
+.tclose:hover {background-position:0 -30px}
+
+#error {background:#ff6969; color:#fff; text-shadow:1px 1px #cf5454; border-right:1px solid #000; border-bottom:1px solid #000; padding:0}
+#error .tcontent {padding:10px 14px 11px; border:1px solid #ffb8b8; -moz-border-radius:5px; border-radius:5px}
+#success {background:#2ea125; color:#fff; text-shadow:1px 1px #1b6116; border-right:1px solid #000; border-bottom:1px solid #000; padding:10; -moz-border-radius:0; border-radius:0}
+#bluemask {background:#4195aa}
+#frameless {padding:0}
+#frameless .tclose {left:6px}
+
+
+.handcursor{
+cursor:hand;
+cursor:pointer;
+}
+
+
+/* Unique Ecobar Icon Set
+ * ----------------------------- */
+[class^="eco-icon-"],
+[class*=" eco-icon-"] {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  margin-top: 1px;
+  *margin-right: .3em;
+  line-height: 14px;
+  vertical-align: text-top;
+  background-image: url("../images/eco-icons-halflings.png");
+  background-position: 14px 14px;
+  background-repeat: no-repeat;
+}
+
+/* White eco-icons with optional class, or on hover/focus/active states of certain elements */
+
+.eco-icon-white {
+  background-image: url("../images/eco-icons-halflings-white.png");
+}
+
+.eco-icon-glass {
+  background-position: 0      0;
+}
+
+.eco-icon-music {
+  background-position: -24px 0;
+}
+
+.eco-icon-search {
+  background-position: -48px 0;
+}
+
+.eco-icon-envelope {
+  background-position: -72px 0;
+}
+
+.eco-icon-heart {
+  background-position: -96px 0;
+}
+
+.eco-icon-star {
+  background-position: -120px 0;
+}
+
+.eco-icon-star-empty {
+  background-position: -144px 0;
+}
+
+.eco-icon-user {
+  background-position: -168px 0;
+}
+
+.eco-icon-film {
+  background-position: -192px 0;
+}
+
+.eco-icon-th-large {
+  background-position: -216px 0;
+}
+
+.eco-icon-th {
+  background-position: -240px 0;
+}
+
+.eco-icon-th-list {
+  background-position: -264px 0;
+}
+
+.eco-icon-ok {
+  background-position: -288px 0;
+}
+
+.eco-icon-remove {
+  background-position: -312px 0;
+}
+
+.eco-icon-zoom-in {
+  background-position: -336px 0;
+}
+
+.eco-icon-zoom-out {
+  background-position: -360px 0;
+}
+
+.eco-icon-off {
+  background-position: -384px 0;
+}
+
+.eco-icon-signal {
+  background-position: -408px 0;
+}
+
+.eco-icon-cog {
+  background-position: -432px 0;
+}
+
+.eco-icon-trash {
+  background-position: -456px 0;
+}
+
+.eco-icon-home {
+  background-position: 0 -24px;
+}
+
+.eco-icon-file {
+  background-position: -24px -24px;
+}
+
+.eco-icon-time {
+  background-position: -48px -24px;
+}
+
+.eco-icon-road {
+  background-position: -72px -24px;
+}
+
+.eco-icon-download-alt {
+  background-position: -96px -24px;
+}
+
+.eco-icon-download {
+  background-position: -120px -24px;
+}
+
+.eco-icon-upload {
+  background-position: -144px -24px;
+}
+
+.eco-icon-inbox {
+  background-position: -168px -24px;
+}
+
+.eco-icon-play-circle {
+  background-position: -192px -24px;
+}
+
+.eco-icon-repeat {
+  background-position: -216px -24px;
+}
+
+.eco-icon-refresh {
+  background-position: -240px -24px;
+}
+
+.eco-icon-list-alt {
+  background-position: -264px -24px;
+}
+
+.eco-icon-lock {
+  background-position: -287px -24px;
+}
+
+.eco-icon-flag {
+  background-position: -312px -24px;
+}
+
+.eco-icon-headphones {
+  background-position: -336px -24px;
+}
+
+.eco-icon-volume-off {
+  background-position: -360px -24px;
+}
+
+.eco-icon-volume-down {
+  background-position: -384px -24px;
+}
+
+.eco-icon-volume-up {
+  background-position: -408px -24px;
+}
+
+.eco-icon-qrcode {
+  background-position: -432px -24px;
+}
+
+.eco-icon-barcode {
+  background-position: -456px -24px;
+}
+
+.eco-icon-tag {
+  background-position: 0 -48px;
+}
+
+.eco-icon-tags {
+  background-position: -25px -48px;
+}
+
+.eco-icon-book {
+  background-position: -48px -48px;
+}
+
+.eco-icon-bookmark {
+  background-position: -72px -48px;
+}
+
+.eco-icon-print {
+  background-position: -96px -48px;
+}
+
+.eco-icon-camera {
+  background-position: -120px -48px;
+}
+
+.eco-icon-font {
+  background-position: -144px -48px;
+}
+
+.eco-icon-bold {
+  background-position: -167px -48px;
+}
+
+.eco-icon-italic {
+  background-position: -192px -48px;
+}
+
+.eco-icon-text-height {
+  background-position: -216px -48px;
+}
+
+.eco-icon-text-width {
+  background-position: -240px -48px;
+}
+
+.eco-icon-align-left {
+  background-position: -264px -48px;
+}
+
+.eco-icon-align-center {
+  background-position: -288px -48px;
+}
+
+.eco-icon-align-right {
+  background-position: -312px -48px;
+}
+
+.eco-icon-align-justify {
+  background-position: -336px -48px;
+}
+
+.eco-icon-list {
+  background-position: -360px -48px;
+}
+
+.eco-icon-indent-left {
+  background-position: -384px -48px;
+}
+
+.eco-icon-indent-right {
+  background-position: -408px -48px;
+}
+
+.eco-icon-facetime-video {
+  background-position: -432px -48px;
+}
+
+.eco-icon-picture {
+  background-position: -456px -48px;
+}
+
+.eco-icon-pencil {
+  background-position: 0 -72px;
+}
+
+.eco-icon-map-marker {
+  background-position: -24px -72px;
+}
+
+.eco-icon-adjust {
+  background-position: -48px -72px;
+}
+
+.eco-icon-tint {
+  background-position: -72px -72px;
+}
+
+.eco-icon-edit {
+  background-position: -96px -72px;
+}
+
+.eco-icon-share {
+  background-position: -120px -72px;
+}
+
+.eco-icon-check {
+  background-position: -144px -72px;
+}
+
+.eco-icon-move {
+  background-position: -168px -72px;
+}
+
+.eco-icon-step-backward {
+  background-position: -192px -72px;
+}
+
+.eco-icon-fast-backward {
+  background-position: -216px -72px;
+}
+
+.eco-icon-backward {
+  background-position: -240px -72px;
+}
+
+.eco-icon-play {
+  background-position: -264px -72px;
+}
+
+.eco-icon-pause {
+  background-position: -288px -72px;
+}
+
+.eco-icon-stop {
+  background-position: -312px -72px;
+}
+
+.eco-icon-forward {
+  background-position: -336px -72px;
+}
+
+.eco-icon-fast-forward {
+  background-position: -360px -72px;
+}
+
+.eco-icon-step-forward {
+  background-position: -384px -72px;
+}
+
+.eco-icon-eject {
+  background-position: -408px -72px;
+}
+
+.eco-icon-chevron-left {
+  background-position: -432px -72px;
+}
+
+.eco-icon-chevron-right {
+  background-position: -456px -72px;
+}
+
+.eco-icon-plus-sign {
+  background-position: 0 -96px;
+}
+
+.eco-icon-minus-sign {
+  background-position: -24px -96px;
+}
+
+.eco-icon-remove-sign {
+  background-position: -48px -96px;
+}
+
+.eco-icon-ok-sign {
+  background-position: -72px -96px;
+}
+
+.eco-icon-question-sign {
+  background-position: -96px -96px;
+}
+
+.eco-icon-info-sign {
+  background-position: -120px -96px;
+}
+
+.eco-icon-screenshot {
+  background-position: -144px -96px;
+}
+
+.eco-icon-remove-circle {
+  background-position: -168px -96px;
+}
+
+.eco-icon-ok-circle {
+  background-position: -192px -96px;
+}
+
+.eco-icon-ban-circle {
+  background-position: -216px -96px;
+}
+
+.eco-icon-arrow-left {
+  background-position: -240px -96px;
+}
+
+.eco-icon-arrow-right {
+  background-position: -264px -96px;
+}
+
+.eco-icon-arrow-up {
+  background-position: -289px -96px;
+}
+
+.eco-icon-arrow-down {
+  background-position: -312px -96px;
+}
+
+.eco-icon-share-alt {
+  background-position: -336px -96px;
+}
+
+.eco-icon-resize-full {
+  background-position: -360px -96px;
+}
+
+.eco-icon-resize-small {
+  background-position: -384px -96px;
+}
+
+.eco-icon-plus {
+  background-position: -408px -96px;
+}
+
+.eco-icon-minus {
+  background-position: -433px -96px;
+}
+
+.eco-icon-asterisk {
+  background-position: -456px -96px;
+}
+
+.eco-icon-exclamation-sign {
+  background-position: 0 -120px;
+}
+
+.eco-icon-gift {
+  background-position: -24px -120px;
+}
+
+.eco-icon-leaf {
+  background-position: -48px -120px;
+}
+
+.eco-icon-fire {
+  background-position: -72px -120px;
+}
+
+.eco-icon-eye-open {
+  background-position: -96px -120px;
+}
+
+.eco-icon-eye-close {
+  background-position: -120px -120px;
+}
+
+.eco-icon-warning-sign {
+  background-position: -144px -120px;
+}
+
+.eco-icon-plane {
+  background-position: -168px -120px;
+}
+
+.eco-icon-calendar {
+  background-position: -192px -120px;
+}
+
+.eco-icon-random {
+  width: 16px;
+  background-position: -216px -120px;
+}
+
+.eco-icon-comment {
+  background-position: -240px -120px;
+}
+
+.eco-icon-magnet {
+  background-position: -264px -120px;
+}
+
+.eco-icon-chevron-up {
+  background-position: -288px -120px;
+}
+
+.eco-icon-chevron-down {
+  background-position: -313px -119px;
+}
+
+.eco-icon-retweet {
+  background-position: -336px -120px;
+}
+
+.eco-icon-shopping-cart {
+  background-position: -360px -120px;
+}
+
+.eco-icon-folder-close {
+  width: 16px;
+  background-position: -384px -120px;
+}
+
+.eco-icon-folder-open {
+  width: 16px;
+  background-position: -408px -120px;
+}
+
+.eco-icon-resize-vertical {
+  background-position: -432px -119px;
+}
+
+.eco-icon-resize-horizontal {
+  background-position: -456px -118px;
+}
+
+.eco-icon-hdd {
+  background-position: 0 -144px;
+}
+
+.eco-icon-bullhorn {
+  background-position: -24px -144px;
+}
+
+.eco-icon-bell {
+  background-position: -48px -144px;
+}
+
+.eco-icon-certificate {
+  background-position: -72px -144px;
+}
+
+.eco-icon-thumbs-up {
+  background-position: -96px -144px;
+}
+
+.eco-icon-thumbs-down {
+  background-position: -120px -144px;
+}
+
+.eco-icon-hand-right {
+  background-position: -144px -144px;
+}
+
+.eco-icon-hand-left {
+  background-position: -168px -144px;
+}
+
+.eco-icon-hand-up {
+  background-position: -192px -144px;
+}
+
+.eco-icon-hand-down {
+  background-position: -216px -144px;
+}
+
+.eco-icon-circle-arrow-right {
+  background-position: -240px -144px;
+}
+
+.eco-icon-circle-arrow-left {
+  background-position: -264px -144px;
+}
+
+.eco-icon-circle-arrow-up {
+  background-position: -288px -144px;
+}
+
+.eco-icon-circle-arrow-down {
+  background-position: -312px -144px;
+}
+
+.eco-icon-globe {
+  background-position: -336px -144px;
+}
+
+.eco-icon-wrench {
+  background-position: -360px -144px;
+}
+
+.eco-icon-tasks {
+  background-position: -384px -144px;
+}
+
+.eco-icon-filter {
+  background-position: -408px -144px;
+}
+
+.eco-icon-briefcase {
+  background-position: -432px -144px;
+}
+
+.eco-icon-fullscreen {
+  background-position: -456px -144px;
+}
+
+
+
+
+

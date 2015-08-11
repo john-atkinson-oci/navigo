@@ -1,0 +1,354 @@
+// Queue Styles
+
+.mr15 {
+	margin-right: 15px;
+}
+
+.ml15 {
+	margin-left: 15px;
+}
+
+.mt10 {
+	margin-top: 10px;
+}
+
+// layout
+.page.queue {
+	padding-top: 0px;
+	background: $white;
+	.top_area {
+		padding-top: 30px;
+		padding-left: 20px;
+		padding-right: 20px;
+
+		h1 {
+			margin-bottom: 20px;
+		}
+
+		nav {
+			padding-bottom: 40px;
+		}
+
+		.btn-primary {
+			font-size: $smallSize;
+			padding: 8px 20px 10px;
+			border-top-width: 2px;
+			border-bottom-width: 2px;
+		}
+	}
+
+	.task_flyout {
+		width: 250px;
+		.arrow {
+			&:after {
+				border-color: transparent transparent $white transparent;
+			}
+		}
+
+		&.task_flyout_reload .arrow {
+			&:after {
+				border-color: transparent transparent $ddHoverBg transparent;
+			}
+		}
+
+		.flyout_inner {
+			max-height: 100%;
+			overflow: hidden;
+			overflow-y: auto;
+
+			.reload_task {
+				background-color: $ddHoverBg;
+			}
+		}
+	}
+}
+
+.task_group {
+	a {
+		display: block;
+		padding: 10px 20px;
+		color: $defaultTextColor;
+		&:hover, &:active {
+			@extend .animate_bg_txt;
+		}
+
+		&:hover {
+			background-color: $lightestGrey;
+			color: $hoverLinkColor;
+		}
+
+		&:active {
+			background-color: $activeLinkBgColor;
+			color: $activeLinkColor;
+		}
+	}
+
+	.subcat_trigger {
+		border-bottom: 1px solid $borderColor;
+		text-transform: capitalize;
+
+		&:before {
+			top: 40%;
+			right: 20px;
+		}
+	}
+
+	.subcat {
+		display: none;
+		li {
+			border-bottom: 1px solid $white;
+
+			&:last-child {
+				border-bottom: 0;
+			}
+
+			a {
+				padding-left: 36px;
+				background-color: #eef1f2;
+			}
+		}
+	}
+
+	&.opened {
+		.subcat_trigger {
+			border-bottom: 0;
+			&:before {
+				-ms-transform: rotate(180deg); /* IE 9 */
+			    -webkit-transform: rotate(180deg); /* Chrome, Safari, Opera */
+			    transform: rotate(180deg);
+			}
+		}
+
+		.subcat {
+			display: block;
+		}
+	}
+}
+
+.queue-secondary {
+	border-top: 1px solid $borderColor;
+	background: $likewhite;
+	padding-left: 20px;
+	padding-right: 20px;
+}
+
+// back to search
+.back-to-search {
+	font-size: $smallSize;
+
+	span {
+		position: relative;
+		top: 0px;
+		font-size: 20px;
+		padding-right: 2px;
+	}
+}
+
+// clear queue
+.clear-queue {
+	font-size: $smallSize;
+	margin-top: 20px;
+	position: relative;
+	left: 90%;
+	top: 20px;
+}
+
+.queue-content {
+	.table > thead > tr {
+		> th {
+		  font-size: $smallSize;
+		  padding-left: 20px !important;
+		  padding-bottom: 15px;
+		  border-bottom: 0 !important;
+		}
+	}
+
+	.table > tbody > tr {
+		> td {
+			padding-left: 20px;
+			border-top: 0 !important;
+			border-bottom: 1px solid #ECF0F1 !important;
+			vertical-align: middle;
+			padding-top: 15px;
+			padding-bottom: 15px;
+
+			&.thumbnail_col {
+				height: 53px;
+				padding: 0;
+				width: 92px;
+
+				a {
+					display: block;
+					width: 100%;
+				}
+
+				img {
+					display: block;
+					width: 100%;
+					height: auto;
+					max-height: 53px;
+					background-position: 50% 50%;
+				}
+			}
+		}
+	}
+
+	.table {
+		a {
+			color: black;
+			font-size: $smallSize;
+		}
+
+		.icon-x {
+			color: #424a53;
+		}
+	}
+
+
+	.icon-x {
+		top: 3px !important;
+		font-size: $xsmallSize;
+	}
+
+	a {
+		.icon-x {
+			margin-right: 5px;
+		}
+	}
+
+	.name_col {
+		width: 340px;
+	}
+
+	.action_col {
+		width: 32px;
+		padding-right: 20px;
+	}
+
+	.format_col {
+		width: 450px;
+	}
+
+}
+
+#historyTable {
+	a {
+		color: $linkColor;
+	}
+
+	.actions {
+		padding-left: 5px;
+		text-align: right;
+		padding-right: 20px;
+
+		a {
+			padding-left: 10px;
+		}
+	}
+}
+
+.modal_log_body {
+	padding-bottom: 25px;
+	pre {
+		padding: 40px 30px;
+		border-radius: 0;
+		border: 0;
+		border-bottom: 2px solid $borderColor;
+		margin-bottom: 0;
+		background-color: $white;
+	}
+}
+
+
+.task_status {
+	background-color: $white;
+	border-bottom: 2px solid $borderColor;
+
+  	header {
+		overflow: hidden;
+		border-bottom: 1px solid $likewhite;
+		padding: 10px 30px;
+
+		h4 {
+			text-transform: uppercase;
+			font-size: $smallSize;
+
+			i, .fa {
+				margin-right: 5px;
+			}
+
+			.fa {
+				font-size: 18px;
+
+				&.fa-cog {
+				  position: relative;
+				  top: 2px;
+				}
+			}
+		}
+
+		.pull-right {
+			color: $lightDarkGrey;
+			font-size: $smallerSize;
+			margin-top: 10px;
+			text-align: right;
+		}
+	}
+
+	.task_detail {
+		padding: 20px 30px;
+
+		h1 {
+			margin-top: 0;
+			font-size: $mediumSize;
+		}
+	}
+
+	footer {
+		margin: 0 30px;
+		box-sizing: border-box;
+		border-top: 1px solid $likewhite;
+		padding: 20px 0;
+
+		ul {
+			li {
+				display: inline-block;
+				font-size: $smallSize;
+				padding-right: 60px;
+
+				&:last-child {
+					padding-right: 0;
+				}
+			}
+		}
+	}
+}
+
+.modal-body {
+	.input-group-btn .btn {
+		margin-left: -5px;
+		border-top-left-radius: 0;
+		border-bottom-left-radius: 0;
+		padding-top: 9px;
+		padding-bottom: 9px;
+		position: relative;
+		z-index: 2;
+	}
+
+	.ngGrid {
+		min-height: 250px;
+		padding-bottom: 20px;
+		background: transparent;
+	}
+}
+
+.copy_flyout {
+	.flyout_inner {
+		width: 550px;
+		padding: 10px;
+
+		input {
+			width: 100%;
+		}
+	}
+}

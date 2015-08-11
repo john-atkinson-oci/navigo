@@ -1,0 +1,21 @@
+<section>
+    <div class="panel-group">
+        <div class="panel panel-primary" ng-repeat="filter in filters" ng-show="hasFacets(filter)">
+            <div class="panel-heading" ng-class="filter.displayState == 'in' ? 'selected' : ''">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" target="_self" href="#{{filter.field}}" ng-click="toggleDisplayState(filter)">
+                        {{filter.value}} <i class="fa" ng-class="filter.displayState == 'in' ? 'fa-angle-up' : 'fa-angle-down'"></i>
+                    </a>
+                </h4>
+            </div>
+            <div id="{{filter.field}}" class="panel-collapse collapse facet-types {{filter.displayState}}">
+                <div class="panel-body">
+                    <div ng-repeat="facet in filter.values">
+                        <div vs-filter></div>
+                    </div>
+                    <a href="javascript:;" ng-click="showAllFacets(filter)" ng-show="hasMoreFacets(filter)" class="underline"><span class="text">Show All</span></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
