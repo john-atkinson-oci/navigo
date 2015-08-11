@@ -17,4 +17,5 @@ before_script:
   - 'npm install -g bower grunt-cli karma jshint'
   - 'bower install'
 
-script: grunt
+script: 
+  - grunt ci
