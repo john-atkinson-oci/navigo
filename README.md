@@ -12,7 +12,17 @@ Local Setup:
   * npm install
   * bower update
 
-Running the app:  grunt serve
+* Running the app
+  * grunt serve
 
+* Building for distrubution
+  * grunt build
+
+* Unit tests
+  * grunt test
+
+* Functional tests
+  * grunt protractor
+  
 Configuration:
 * config.js - root - change the voyager instance
