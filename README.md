@@ -3,7 +3,7 @@
 
 Local Setup:
 
-* Prerequisites
+* Prerequisites for running locally
   * node.js
   * ruby
 
