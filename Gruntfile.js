@@ -31,7 +31,6 @@ module.exports = function (grunt) {
             //'concurrent:server',
             'autoprefixer',
             'connect:livereload',
-            'delete_sync',
             'watch'
         ]);
     });
