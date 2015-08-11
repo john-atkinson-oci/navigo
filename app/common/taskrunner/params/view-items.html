@@ -1,0 +1,12 @@
+<table class="table table-striped">
+    <tr>
+        <th>Thumbnail</th>
+        <th>Name</th>
+    </tr>
+    <tr ng:repeat="item in items">
+        <td><img ng-src="{{item['[thumbURL]']}}" alt="..." class="img-thumbnail" style="height:50px; width:50px"></td>
+        <td>
+            <a href="#/show/{{item.id}}">{{item.name}}</a>
+        </td>
+    </tr>
+</table>

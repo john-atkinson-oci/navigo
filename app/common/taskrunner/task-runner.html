@@ -1,0 +1,16 @@
+<div ng-controller="TaskRunnerCtrl">
+    <div us-spinner spinner-key="task-spinner"></div>
+    <div>
+        <div ng-show="hasError" class="alert alert-danger">{{errorMessage}}</div>
+    </div>
+
+    <div tabset>
+        <div tab ng-repeat="tab in tabs" active="tab.active" disabled="tab.disabled" ng-click="tabSelected($index)">
+            <div tab-heading>
+                <span class="badge badge-{{tab.disabled?'':'primary'}}" style="margin-right:5px">{{tab.index + 1}}</span> {{tab.title}}
+            </div>
+            <div ng-include="tab.contentUrl" style="margin-top:10px">
+            </div>
+        </div>
+    </div>
+</div>

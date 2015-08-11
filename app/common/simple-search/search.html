@@ -1,0 +1,77 @@
+<div ng-controller="SimpleSearchCtrl">
+    <span us-spinner spinner-key="simple-spinner"></span>
+    <div style="position:absolute; right: 0px; margin-right: 20px; margin-top: 10px; width: 25%; z-index: 3000" ng-show="facetFields">
+        <div style="width: 100%; margin-bottom: 10px; height: 30px">
+            <button class="btn btn-default pull-right" ng-click="toggleFilters()">{{filterState}} Filters <span class="glyphicon glyphicon-filter" aria-hidden="true"></span></button>
+        </div>
+        <div ng-show="showFilters" style="background-color: white;">
+            <div class="panel-group">
+                <div class="panel panel-primary" ng-repeat="filter in facetFields">
+                    <div class="panel-heading" ng-class="filter.displayState == 'in' ? 'selected' : ''">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" target="_self" href="#{{filter.field}}" ng-click="toggleDisplayState(filter)">
+                                {{filter.display}} <i class="pull-right fa" ng-class="filter.displayState == 'in' ? 'fa-angle-up' : 'fa-angle-down'"></i>
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="{{filter.field}}" class="panel-collapse collapse facet-types {{filter.displayState}}">
+                        <div class="panel-body">
+                            <div ng-repeat="facet in filter.facets">
+                                <div vs-filter></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-header" ng-show="isModal">
+        <h3 class="modal-title">Search Index</h3>
+    </div>
+    <div class="panel panel-default" ng-class="{'modal-body':isModal}" style="border: none; border-radius: 0px; margin-bottom: 0px">
+        <div class="panel-heading">
+            <div class="input-group">
+                <input type="text" class="form-control" ng-model="searchInput" ng-keypress="handleEnter($event)" style="height: 40px">
+                <a href="javascript:;" class="icon-x" aria-label="clear" ng-click="clearSearch()" tabindex="0" style="outline: 0;position: absolute;z-index: 5;cursor: pointer;color: #d3d7d8;right: 100px;top: 13px;font-size: .75rem;">
+                    <span class="sr-only">clear</span>
+                </a>
+                  <span class="input-group-btn">
+                    <button class="btn btn-default" type="button" ng-click="searchClick()" style="margin-left: -1px">
+                        <span class="glyphicon glyphicon-search"></span> Search
+                    </button>
+                  </span>
+            </div>
+        </div>
+        <div class="panel-body" ng-if="!isModal">
+            <table class="table table-hover">
+                <thead>
+                <th>Name</th> <th>Type</th> <th>Size</th>
+                </thead>
+                <tbody>
+                <tr ng-repeat="doc in docs">
+                    <td width="50%"><a href="javascript:;" ng-click="setItem(doc)">{{doc.name}}</a></td>
+                    <td width="40%">{{doc.format}}</td>
+                    <td width="10%">{{doc.size}}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="panel-body" style="max-height: 300px; overflow: auto" ng-if="isModal" id="simple-search-results" vg-scroll>
+            <table class="table table-hover">
+                <thead>
+                <th ng-repeat="field in displayFields">{{field}}</th>
+                </thead>
+                <tbody>
+                <tr ng-repeat="doc in docs" style="cursor: pointer" ng-click="setItem(doc)">
+                    <td ng-repeat="field in fields" width="{{fieldWidth}}%">{{doc[field]}}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="modal-footer" ng-show="isModal" style="padding-bottom: 20px; padding-top: 10px">
+        <div class="pull-right" style="margin-top: 10px;">
+            <button class="btn btn-warning" ng-click="closeBrowser()">Cancel</button>
+        </div>
+    </div>
+</div>

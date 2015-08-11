@@ -1,0 +1,129 @@
+<div style="padding-left: 0px; padding-right: 0px; margin-top: -10px" ng-controller="StatusCtrl">
+    <div us-spinner spinner-key="status-spinner"></div>
+    <div style="margin-left: 10px; padding-top: 5px">
+        <div class="row">
+            <div>
+                <h4>The {{type}} Task {{statusMessage}} <i class="fa {{spin}}"></i></h4>
+                <ul class="list-inline">
+                    <li>
+                        Your Task ID is: <b>{{id}}</b> &nbsp;
+                        <button ng-show="isRunning" class="btn btn-link" ng-click="cancelClick()" style="margin-left: 10px; color: red;">Cancel</button>
+                    </li>
+                    <li style="width: 65%">
+                        <button class="btn btn-link" ng-click="showUrl()">Copy URL</button> <input ng-show="showCopyUrl" id="copy-url" type="text" readonly value="{{copyUrl}}" onClick="javascript:this.select();" style="width:85%">
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-7">
+                <div ng-show="!isRunning">
+                    <div>{{statusDetail}}</div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-7">
+                <div ng-show="hasError" class="alert alert-danger" style="padding-top: 10px; margin-top: 10px;">
+                    <h4 style="margin-top: 0px; margin-bottom: 0px"><b>Error! </b> {{errorMessage}}</h4>
+
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div id="accordion" class="col-sm-7">
+                <div ng-repeat="message in messages">
+                    <div>
+                        <h4 class="panel-title" style="margin-bottom: 10px; color:#b94a48">
+                            <a data-toggle="collapse" target="_self" href="#{{$index}}">
+                                {{message.message}} <span class="glyphicon glyphicon-chevron-down"></span>
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="{{$index}}" class="panel-collapse collapse">
+                        <div>
+                            <ul class="nav nav-pills nav-stacked">
+                                <li>
+                                    <pre>{{message.trace}}</pre>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-7">
+                <div ng-show="hasWarning" class="alert alert-warning" style="padding-top: 10px; margin-top: 10px">
+                    <h4 style="margin-top: 0px;"><b>Warning! </b></h4>
+                    <ul>
+                        <li ng-repeat="warning in warnings track by $index">
+                            {{warning}}
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div style="margin-bottom: 10px;">
+                <a ng-repeat="file in files" href="{{file.downloadUrl}}" class="btn btn-primary" style="margin-right: 5px"><span class="glyphicon glyphicon-download-alt"></span> {{file.name}}</a>
+            </div>
+            <div style="margin-bottom: 10px;" ng-show="logFiles.length > 0">
+                <h4>Log Files</h4>
+                <hr style="margin-top: 0px; margin-bottom: 0px">
+                <button ng-repeat="file in logFiles" href="{{file.downloadUrl}}" class="btn btn-link" style="margin-right: 5px" ng-click="getData(file)">{{file.displayName}}</button>
+                <div><pre ng-show="showFile">{{logFileData}}</pre></div>
+            </div>
+            <div ng-show="isRunning">
+                <div ng-show="allowNotify" class="email-notify">
+                    <form class="form-inline" style="margin-bottom: 15px" role="form">
+                      <div class="alert alert-warning alert-dismissable" style="padding-top: 5px">
+                            <button type="button" ng-click="hideEmail()" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                            Tired of waiting? You can get back to work. Just enter your email address below and we'll let you know when it's done.<br>
+                            <div class="form-group">
+                                <label class="sr-only" for="email">Email address</label>
+                                <input type="email" class="form-control" id="email" ng-model="email" placeholder="Enter email address..." style="width:300px">
+                            </div>
+                            <button class="btn btn-primary btn-sm" type="button" ng-click="emailClick()">  <span class="glyphicon glyphicon-envelope"></span> Submit</button>
+                            <button class="btn btn-link btn-sm" type="button" ng-click="hideEmail()">  That's OK. I'll wait.</button>
+                      </div>
+                    </form>
+                </div>
+
+                <div style="margin-bottom: 10px; margin-top: 10px">
+                    <div class="row" ng-show="hasProgressMessage">
+                        <div class="col-sm-12">
+                            <div class="pull-left" style="line-height: 34px"><h4>Task Status: <b>{{progressMessage}}</b></h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <div ng-repeat="p in progress track by $index" class="row col-sm-12">
+                        <h4><b>{{p.name}}</b></h4>
+                        <div>{{p.text}}</div>
+                        <div class="col-sm-8 row">
+                        <progressbar style="margin-bottom: 0px" class="active progress-striped" max="100" value="p.percent * 100" type="info"></progressbar>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="showDetailsContainer" style="margin-top: 10px">
+                    <a ng-click="showDetails()" style="cursor: pointer;">Show Details <span class="glyphicon glyphicon-chevron-down"></span></a>
+                </div>
+                <div collapse="isDetailsCollapsed" style="border: 1px solid #e3e3e3;padding-top: 10px;padding-bottom: 10px" class="clearfix">
+                    <div id="input_items" class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                        <vs-param ng-repeat="p in inputItems" param="p"></vs-param>
+                    </div>
+                    <div id="params" class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                        <vs-param ng-repeat="p in params" param="p"></vs-param>
+                    </div>
+                    <br class="clearfix">
+                </div>
+
+                <hr>
+            </div>
+        </div>
+    </div>
+</div>

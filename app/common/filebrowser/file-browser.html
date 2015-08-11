@@ -1,0 +1,23 @@
+<div ng-controller="FileBrowserCtrl" id="fileBrowser">
+    <div us-spinner spinner-key="browser-spinner" spinner-start-active="1"></div>
+    <div class="modal-header" ng-hide="isInline">
+        <h3 class="modal-title">Browse</h3>
+    </div>
+    <div ng-class="{'modal-body':!isInline}">
+        <div class="alert alert-danger" role="alert" ng-show="hasError">{{error.message}}</div>
+        <div ng-show="editPath">
+            <input id="pathInput" type="text" ng-model="path" ng-enter="browse()" ng-blur="movedAway()" style="width: 100%">
+        </div>
+        <div ng-hide="editPath" style="border: 1px solid darkgray; height: 26px;" ng-click="pathContainerClick()">
+            <a ng-click="pathClick('', 0)" style="cursor: pointer; margin-left: 5px"> <i class="fa fa-hdd-o"></i> <i class="fa fa-caret-right"></i></a>
+            <a ng-repeat="link in pathLinks track by $index" ng-click="pathClick(link, $index)" style="cursor: pointer;"> {{link}} <i class="fa fa-caret-right"></i></a>
+        </div>
+        <div class="gridStyle" ng-grid="gridOptions">
+        </div>
+    </div>
+    <div class="modal-footer" ng-hide="isInline">
+        <button class="btn btn-primary" ng-click="setPath()">OK</button>
+        <a href="javascript:;" class="link_secondary" ng-click="closeBrowser()"><span class="txt">Cancel</span></a>
+    </div>
+</div>
+

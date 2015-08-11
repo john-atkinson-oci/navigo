@@ -1,0 +1,51 @@
+<div ng-class="authPage ? 'col-xs-6 col-xs-offset-2 col-sm-offset-3':''">
+    <div class="modal-header">
+        <h3>Login to Voyager</h3>
+     </div>
+     <div class="modal-body">
+        <form class="form-signin" role="form">
+            <div class="alert alert-danger icon-error" ng-show="hasError()">{{error}}</div>
+            <div ng-if="methods.external">
+                <div class="row" ng-repeat="method in methods.external">
+                    <div class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+                        <button class="btn btn-lg btn-default" style="width:100%; padding: 10px 16px; font-size: 18px; margin-bottom: 10px;" ng-click="goExternal(method)">Sign in with {{method.displayName}}</button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-10 col-sm-offset-2">
+                        <ul class="list-inline">
+                            <li style="width: 35%">
+                                <hr style="margin-bottom: 5px">
+                            </li>
+                            <li style="width: 30px">
+                                <p style="color:gray">OR</p>
+                            </li>
+                            <li style="width: 38%">
+                                <hr style="margin-bottom: 5px">
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <fieldset>
+                <input type="text" class="form-control focus_field" name="username" placeholder="Your username" ng-model="$parent.user" ng-keypress="handleEnter($event)" required autofocus />
+                <label for="username" class="icon-header_account" aria-label="Your username"><span class="sr-only">Your username</span></label>
+            </fieldset>
+            <fieldset>
+                <input type="password" class="form-control focus_field" name="password" placeholder="Your password" ng-model="$parent.pass"  ng-keypress="handleEnter($event)" required>
+                <label for="password" class="icon-lock" aria-label="What are you looking for?"><span class="sr-only">What are you looking for?</span></label>
+            </fieldset>
+            <a href="javascript:;" class="underline" ng-hide="true">Forgot your password?</a>
+            <input style="margin-top: 10px" type="checkbox" ng-model="$parent.keepLoggedIn" id="keepLoggedInCheck">
+            <label for="keepLoggedInCheck" aria-label="Keep me logged in">Keep me logged in</label>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <div class="cta_row">
+            <button class="btn btn-primary" ng-click="ok()">Login</button>
+            <a href="javascript:;" class="link_secondary" ng-click="cancel()" ng-hide="authPage">Cancel</a>
+        </div>
+    </div>
+</div>
+<a href="javascript:;" class="modal-close icon-x" ng-click="cancel()"></a>
