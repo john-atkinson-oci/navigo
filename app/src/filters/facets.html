@@ -15,7 +15,7 @@
             </thead>
             <tbody>
             <tr ng-repeat="facet in facets | orderBy:predicate:reverse" ng-click="filterResults(facet)" style="cursor:pointer">
-                <td>{{facet.count}}</td><td>{{facet.humanized}}</td>
+                <td>{{facet.count}}</td><td><div style="max-width: 450px; overflow: hidden; -ms-text-overflow: ellipsis; text-overflow: ellipsis;">{{facet.humanized}}</div></td>
             </tr>
             </tbody>
           </table>
