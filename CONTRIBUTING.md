@@ -8,7 +8,7 @@ General Guidelines
 * Limit jQuery use - only inside directives and only if necessary
 * Prefer directives over controllers - controllers are obsolete in Angular 2
 * Performance is important - avoid bottlenecks like nested loops
-* All files contributed require a test spec with 100% coverage
+* All javascript files contributed (controller, service, directive, etc) require a test spec with 100% coverage
 * Customizations should be easy enable/disable (modular).
   * Directives are a good start so they can be easily added/removed from a tag without breaking things.
   * Use local scope in directives - don't rely on outer scope, it could change
