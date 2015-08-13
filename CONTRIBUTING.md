@@ -41,8 +41,9 @@ First, make sure you have npm and grunt-cli installed globally. Let's install th
 $ npm install
 
 And we must install the client libraries dependencies with _bower_ too:
-```
+
 $ bower install
+```
 
 Once you have the development dependencies installed, we can use our predefined grunt tasks. For example:
 
