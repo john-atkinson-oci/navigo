@@ -55,6 +55,7 @@ Once you have the development dependencies installed, we can use our predefined 
 ```
 
 After a successful build, a new library distribution file will be generated inside the "dist" folder, which will be ready to distribute:
+```
 
 **IMPORTANT**: By submitting a patch, you agree to allow the project owners to
 license your work under the the terms of the [MIT License](LICENSE.md).
