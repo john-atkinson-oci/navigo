@@ -28,6 +28,7 @@ Code style
 Commit Messages
 ----------
 * We use the [AngularJS Git Commit Guidelines](https://github.com/angular/angular.js/blob/master/CONTRIBUTING.md#-git-commit-guidelines) - please adhere to these in all commit messages
+* Prefix with a Jira # (if accessible)
 
 Software development life-cycle
 -------------------------------
