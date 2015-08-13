@@ -58,4 +58,4 @@ After a successful build, a new library distribution file will be generated insi
 ```
 
 **IMPORTANT**: By submitting a patch, you agree to allow the project owners to
-license your work under the the terms of the [MIT License](LICENSE.md).
+license your work under the the terms of the [Apache License](LICENSE.md).
