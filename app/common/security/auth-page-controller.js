@@ -41,7 +41,7 @@ angular.module('voyager.security')
         $scope.ok = function () {
             if (!_.isEmpty($scope.user) && !_.isEmpty($scope.pass)) {
                 error = false;
-                authService.doLogin($scope, undefined, authFail).then(authSuccess);
+                authService.doLogin($scope, authSuccess, authFail);
             } else {
                 error = true;
                 $scope.error = 'Please enter your username and password';
