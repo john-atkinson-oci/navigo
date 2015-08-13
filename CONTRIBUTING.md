@@ -4,14 +4,14 @@ Contributing
 General Guidelines
 ------------------
 
-Keep directives small and applicable to the tag - don't put a directive on the body tag
-Limit jQuery use - only inside directives and only if necessary
-Prefer directives over controllers - controllers are obsolete in Angular 2
-Performance is important - avoid bottlenecks like nested loops
-All files contributed require a test spec with 100% coverage
-Customizations should be easy enable/disable.
-* Directives are a good start so they can be easily added/removed from a tag without breaking things.
-* Use local scope in directives - don't rely on outer scope, it could change
+* Keep directives small and applicable to the tag - don't put a directive on the body tag
+* Limit jQuery use - only inside directives and only if necessary
+* Prefer directives over controllers - controllers are obsolete in Angular 2
+* Performance is important - avoid bottlenecks like nested loops
+* All files contributed require a test spec with 100% coverage
+* Customizations should be easy enable/disable.
+  * Directives are a good start so they can be easily added/removed from a tag without breaking things.
+  * Use local scope in directives - don't rely on outer scope, it could change
 
 Issues
 ------
