@@ -1,5 +1,9 @@
 # navigo
-![travis](https://travis-ci.org/voyagersearch/navigo.svg)
+
+[![Build](https://travis-ci.org/voyagersearch/navigo.svg)](https://travis-ci.org/voyagersearch/navigo)
+[![Dependencies](https://david-dm.org/voyagersearch/navigo.svg)](https://david-dm.org/voyagersearch/navigo)
+
+
 
 Local Setup:
 
