@@ -15,7 +15,7 @@ General Guidelines
 
 Issues
 ------
-If you have a bug or enhancement request: if Voyager Jira system is accessible use that, otherwise please file a Github issue.
+If you have a bug or enhancement request: if Voyager Jira system is accessible use that, otherwise please file a Zendesk issue: https://voyagersearch.zendesk.com/hc/en-us
 
 When submitting an issue please include context from your test and
 your application. If there's an error, please include the error text.
