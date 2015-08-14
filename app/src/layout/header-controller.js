@@ -146,6 +146,7 @@ angular.module('voyager.layout')
 			if ($location.path().indexOf('/search') === -1) {
 				baseUrl += $location.path().replace('/show/', 'id=')  + '/';
 			}
+
 			$window.open(baseUrl + params, '_blank');
 		};
 
