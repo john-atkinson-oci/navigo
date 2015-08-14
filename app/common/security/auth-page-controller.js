@@ -13,6 +13,7 @@ angular.module('voyager.security')
             }
             error = null;
             $scope.error = error;
+
             $state.go('search');
         }
 

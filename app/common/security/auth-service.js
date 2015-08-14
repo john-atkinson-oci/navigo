@@ -12,7 +12,7 @@ angular.module('voyager.security').
         var _groups = [];
         var _sso = true;
         var _isAnonymous = true;
-        var _PERMISSIONS_LIST = 'check=manage&check=download&check=process&check=configure_view&check=save_searches&check=share_saved_search&check=view&check=tag&check=edit_fields&check=flag';
+        var _PERMISSIONS_LIST = 'check=manage&check=download&check=process&check=configure_view&check=save_search&check=share_saved_search&check=view&check=tag&check=edit_fields&check=flag';
         var _methods;
 
         function _setLoginState(response) {
@@ -25,6 +25,7 @@ angular.module('voyager.security').
                 });
                 if (authCallback) {
                     authCallback(response);
+                    authCallback = null;
                 }
                 //console.log(response);
                 if(response.data.user) {

@@ -35,7 +35,7 @@ angular.module('voyager.search')
         function _getPrivileges() {
             authService.getPrivileges().then(function() {
                 $scope.canAdmin = authService.hasPermission('manage');
-                $scope.canSave = authService.hasPermission('save_searches');
+                $scope.canSave = authService.hasPermission('save_search');
                 $scope.canShare = authService.hasPermission('share_saved_search');
 
                 _loadGroups();

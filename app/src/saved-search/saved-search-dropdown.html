@@ -3,7 +3,7 @@
         Saved Searches <span class="caret"></span>
     </button>
     <ul class="dropdown-menu" role="menu" style="z-index: 2000">
-        <li ng-show="hasPermission('save_searches')"><a ng-click="createSavedSearch()" style="cursor: pointer;">Create Saved Search</a></li>
+        <li ng-show="hasPermission('save_search')"><a ng-click="createSavedSearch()" style="cursor: pointer;">Create Saved Search</a></li>
         <li ng-show="hasPermission('configure_view')" class="divider"></li>
         <li ng-if="personalSavedSearches.length > 0 && !isAnonymous">
             <table class="table table-condensed" style="margin-bottom: 0px">

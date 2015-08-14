@@ -42,7 +42,7 @@
 					<p ng-show="!recentSearches.length">You have no recent searches.</p>
 					<ul class="clearfix">
 						<li ng-repeat="search in recentSearches">
-							<a href="javascript:;" ng-if="hasPermission('save_searches')" ng-click="toggleSave(search)" class="favorite_link">
+							<a href="javascript:;" ng-if="hasPermission('save_search')" ng-click="toggleSave(search)" class="favorite_link">
 								<span class="{{search.saved == true ? 'icon-heart_filled' : 'icon-heart_empty'}}"></span>
 							</a>
 							<a href="javascript:;" ng-click="applyRecentSearch(search)" class="underline">
@@ -58,7 +58,7 @@
 				<article ng-hide="showRecent" ng-controller="HomeSavedSearchCtrl">
 					<ul ng-show="personalSavedSearches.length">
 						<li ng-repeat="search in personalSavedSearches">
-							<a href="javascript:;" ng-if="hasPermission('save_searches')" ng-click="deleteSearch(search.id)" class="favorite_link">
+							<a href="javascript:;" ng-if="hasPermission('save_search')" ng-click="deleteSearch(search.id)" class="favorite_link">
 								<span class="icon-heart_filled"></span>
 							</a>
 							<a href="javascript:;" class="underline" ng-click="applySavedSearch(search)"><em class="txt" ng-bind="::search.title"></em></a>
