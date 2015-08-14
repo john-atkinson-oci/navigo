@@ -1,6 +1,7 @@
 # from: http://willmendesneto.github.io/2015/02/16/using-travis-ci-for-run-angularjs-unit-tests/
 
 language: node_js
+sudo: false
 
 before_install:
   - 'export CHROME_BIN=chromium-browser'
@@ -19,3 +20,6 @@ before_script:
 
 script: 
   - grunt ci
+
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
