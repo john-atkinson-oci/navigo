@@ -1,8 +1,8 @@
 # navigo
 
-[![Build](https://travis-ci.org/voyagersearch/navigo.svg)](https://travis-ci.org/voyagersearch/navigo)
-[![Dependencies](https://david-dm.org/voyagersearch/navigo.svg)](https://david-dm.org/voyagersearch/navigo)
-
+[![Build Status][travis-image]][travis-url] [![codecov.io](https://codecov.io/github/voyagersearch/navigo/coverage.svg)](https://codecov.io/github/voyagersearch/navigo)
+[![Dependency Status][depstat-image]][depstat-url]
+[![Dev Dependency Status][devdepstat-image]][devdepstat-url]
 
 
 Local Setup:
