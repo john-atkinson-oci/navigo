@@ -29,7 +29,13 @@ angular.module('voyager.search').
                 _sortField = _defaultSortField;
             }
             if(angular.isDefined(params.sort)) {
-                _sortField = params.sort;
+                if(params.sort.indexOf(' ') !== -1) {
+                    var sortInfo = params.sort.split(' ');
+                    _sortField = sortInfo[0];
+                    _sortDirection = sortInfo[1];
+                } else {
+                    _sortField = params.sort;
+                }
             }
             if(angular.isDefined(params.sortdir)) {
                 _sortDirection = params.sortdir;

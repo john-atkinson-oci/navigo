@@ -97,9 +97,13 @@ angular.module('voyager.search')
 
         function _setSortField() {
             if (!_.isEmpty(_params.sort)) {
-                $scope.sortField = _params.sort;
+                if(_params.sort.indexOf(' ') !== 0) {
+                    $scope.sortField = _params.sort.split(' ')[0];
+                } else {
+                    $scope.sortField = _params.sort;
+                }
                 for (var field in $scope.sortable) {
-                    if ($scope.sortable[field].key === _params.sort) {
+                    if ($scope.sortable[field].key === $scope.sortField) {
                         $scope.displaySortField = $scope.sortable[field].value;
                         break;
                     }
@@ -477,7 +481,15 @@ angular.module('voyager.search')
         $scope.changeSortDirection = function (direction) {
             if (searchService.getSort() !== direction && !_initializing) {
                 searchScroll.setPosition(0);
-                $location.search('sortdir',direction);
+                // if sort param has sort direction, use it instead of sortdir
+                var currentSort = $location.search().sort;
+                if(angular.isDefined(currentSort) && currentSort.indexOf(' ') !== -1) {
+                    var sortInfo = currentSort.split(' ');
+                    sortInfo[1] = direction;
+                    $location.search('sort', sortInfo.join(' '));
+                } else {
+                    $location.search('sortdir',direction);
+                }
                 searchService.setSort(direction);
                 _page = 1;
                 _doSearch();
