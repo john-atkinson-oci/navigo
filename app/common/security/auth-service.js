@@ -68,7 +68,7 @@ angular.module('voyager.security').
         }
 
         function _getPrivileges() {
-            return $http.get(_getInfoUrl()).then(_setLoginState, defaultErrorCallback);
+            return $http.get(_getInfoUrl(),{cache: false, headers: {'Cache-Control' : 'no-cache'}}).then(_setLoginState, defaultErrorCallback);
         }
 
         _getPrivileges();
