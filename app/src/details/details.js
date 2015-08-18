@@ -474,14 +474,15 @@ angular.module('voyager.details')
 
         function _getId() {
             var temp = $location.path().split('/');
-            return temp[temp.length-1];
+            return decodeURIComponent(temp[temp.length-1]);
         }
 
         function _move(direction, id) {
             var flag = 'no' + direction;
             if(id !== null) {
                 $scope[flag] = false;
-                var detailsUrl = '#/show/' + id.id + '?disp=' + configService.getConfigId();
+                var encodedId = encodeURIComponent(encodeURIComponent(id.id));  // TODO it doesn't work with just 1 encode
+                var detailsUrl = '#/show/' + encodedId + '?disp=' + configService.getConfigId();
                 if (angular.isDefined(id.shard) && id.shard !== '[not a shard request]') {
                     detailsUrl += '&shard=' + id.shard;
                 }
