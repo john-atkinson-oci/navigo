@@ -60,7 +60,7 @@ angular.module('voyager.security').
         };
 
         function _getInfoUrl() {
-            var url = config.root + 'api/rest/auth/info.json?' + _PERMISSIONS_LIST;
+            var url = config.root + 'api/rest/auth/info.json?' + _PERMISSIONS_LIST + '&r=' + new Date().getTime();
             if(_sso === false) {
                 url += '&sso=false';
             }
