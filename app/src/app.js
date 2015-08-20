@@ -196,8 +196,12 @@ angular.module('portalApp', [
         $httpProvider.defaults.headers.get['Pragma'] = 'no-cache';  // jshint ignore:line
         $httpProvider.interceptors.push('httpRequestInterceptor');
 
-    }).run(function ($rootScope, $location, authService, $state, config) { // instance-injector
+    }).run(function ($rootScope, $location, authService, $state, config, $http) { // instance-injector
         'use strict';
+
+        authService.addObserver(function(response) {
+            $http.defaults.headers.common['x-access-token'] = response.token;
+        });
 
         if($location.search().widget === 'true') {
             $rootScope.isWidget = true;
