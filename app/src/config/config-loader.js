@@ -1,6 +1,6 @@
 'use strict';
 angular.module('voyager.config').
-    factory('configLoader', function ($http, $q, config, configService, savedSearchQuery, $location, $timeout, translateService) {
+    factory('configLoader', function ($http, $q, config, configService, savedSearchQuery, $location, $timeout, translateService, savedSearchService) {
 
         var _configId;
         var _prepared = false;
@@ -86,7 +86,8 @@ angular.module('voyager.config').
                             }
                             return configService.setFilterConfig(defaultSearch.config).then(function(config) {
                                 $timeout(function() { //apply after digest and route is complete
-                                    $location.search('disp', config.configId);
+                                    var params = savedSearchService.getParams(defaultSearch);
+                                    $location.search(params);
                                 });
                             });
                         });

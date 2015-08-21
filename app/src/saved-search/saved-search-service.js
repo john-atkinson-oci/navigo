@@ -19,8 +19,11 @@ angular.module('voyager.search').
 
         function _getView(voyagerParams) {
             var view = {'type':'card'};
-            if (voyagerParams.view ==='TABLE') {
-                view.type = 'table';
+            if(angular.isDefined(voyagerParams.view)) {
+                voyagerParams.view = voyagerParams.view.toLowerCase();
+                if(voyagerParams.view === 'table' || voyagerParams.view === 'map') {
+                    view.type = voyagerParams.view;
+                }
             }
             return view;
         }
