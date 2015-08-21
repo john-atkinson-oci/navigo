@@ -86,7 +86,11 @@ angular.module('voyager.config').
                             }
                             return configService.setFilterConfig(defaultSearch.config).then(function(config) {
                                 $timeout(function() { //apply after digest and route is complete
-                                    var params = savedSearchService.getParams(defaultSearch);
+                                    var params = {};
+                                    if(defaultSearch) {
+                                        params = savedSearchService.getParams(defaultSearch);
+                                    }
+                                    params.disp = config;
                                     $location.search(params);
                                 });
                             });
