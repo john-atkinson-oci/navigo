@@ -21,7 +21,7 @@
     "angular-translate": "~2.2.0",
     "angular-spinner": "~0.5.0",
     "underscore-contrib": "0.3.0",
-    "angulartics": "~0.17.1",
+    "angulartics": "0.17.2",
     "angular-ui-router": "~0.2.13",
     "proj4": "~2.3.3",
     "leaflet-dist": "~0.7.2",
