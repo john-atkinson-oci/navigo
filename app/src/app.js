@@ -200,7 +200,9 @@ angular.module('portalApp', [
         'use strict';
 
         authService.addObserver(function(response) {
-            $http.defaults.headers.common['x-access-token'] = response.token;
+            if(response.user) {
+                $http.defaults.headers.common['x-access-token'] = response.user.token;
+            }
         });
 
         if($location.search().widget === 'true') {
