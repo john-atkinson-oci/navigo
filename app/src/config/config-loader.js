@@ -90,7 +90,7 @@ angular.module('voyager.config').
                                     if(defaultSearch) {
                                         params = savedSearchService.getParams(defaultSearch);
                                     }
-                                    params.disp = config;
+                                    params.disp = config.configId;
                                     $location.search(params);
                                 });
                             });
