@@ -33,18 +33,30 @@ angular.module('portalApp', [
         'angulartics.google.analytics',
         'voyager.common.featured'
     ])
-    .factory('httpRequestInterceptor', function ($analytics, $q) {
+    .factory('httpRequestInterceptor', function ($analytics, $q, $injector) {
         'use strict';
         return {
-            responseError: function(rejection) {
-                var url = 'unknown';
-                if(rejection.config) {
-                    url = rejection.config.url;
+            responseError: function(response) {
+                if (response.status === 419) {  // TODO get new token somehow
+                    //return authService.getPrivileges().then(function() {
+                    //
+                    //});
+                    //var $http = $injector.get('$http');
+                    //return $http(response.config); //retry original call
+
+                    var $state = $injector.get('$state');
+                    $state.go('login');
+                    return $q.reject(response);
+                } else {  // call analytics and reject
+                    var url = 'unknown';
+                    if(response.config) {
+                        url = response.config.url;
+                    }
+                    $analytics.eventTrack('error', {
+                        category: 'http', label: url, value:response.status  // jshint ignore:line
+                    });
+                    return $q.reject(response);
                 }
-                $analytics.eventTrack('error', {
-                    category: 'http', label: url, value:rejection.status  // jshint ignore:line
-                });
-                return $q.reject(rejection);
             }
         };
     })
