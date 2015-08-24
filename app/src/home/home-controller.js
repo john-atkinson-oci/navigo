@@ -103,6 +103,10 @@ angular.module('voyager.home')
 			$scope.$on('updateSearchType', function (e, type) {
 				$scope.selectedMapType = type;
 			});
+
+			$scope.$on('updateSearchDrawingType', function(event, args){
+				$scope.selectedDrawingType = args;
+			});
 		}
 
 		/**
