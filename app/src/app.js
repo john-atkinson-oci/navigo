@@ -42,6 +42,7 @@ angular.module('portalApp', [
                     var $http = $injector.get('$http');
                     $http.defaults.headers.common['x-access-token'] = newToken;
                 }
+                return response;
             },
             responseError: function(response) {
                 if (response.status === 419) { // token timed out
