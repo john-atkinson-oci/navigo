@@ -36,6 +36,12 @@ angular.module('portalApp', [
     .factory('httpRequestInterceptor', function ($analytics, $q, $injector) {
         'use strict';
         return {
+            response: function(response) {
+                var newToken = response.headers('x-access-token-exchange');
+                if(newToken) {
+                    $http.defaults.headers.common['x-access-token'] = newToken;
+                }
+            },
             responseError: function(response) {
                 if (response.status === 419) {  // TODO get new token somehow
                     //return authService.getPrivileges().then(function() {
