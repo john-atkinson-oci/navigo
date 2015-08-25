@@ -39,17 +39,12 @@ angular.module('portalApp', [
             response: function(response) {
                 var newToken = response.headers('x-access-token-exchange');
                 if(newToken) {
+                    var $http = $injector.get('$http');
                     $http.defaults.headers.common['x-access-token'] = newToken;
                 }
             },
             responseError: function(response) {
-                if (response.status === 419) {  // TODO get new token somehow
-                    //return authService.getPrivileges().then(function() {
-                    //
-                    //});
-                    //var $http = $injector.get('$http');
-                    //return $http(response.config); //retry original call
-
+                if (response.status === 419) { // token timed out
                     var $state = $injector.get('$state');
                     $state.go('login');
                     return $q.reject(response);
