@@ -212,8 +212,8 @@ angular.module('portalApp', [
         'use strict';
 
         authService.addObserver(function(response) {
-            if(response.user) {
-                $http.defaults.headers.common['x-access-token'] = response.user.token;
+            if(response.user && response.user.token) {
+                $http.defaults.headers.common['x-access-token'] = response.user.token.encoding;
             }
         });
 

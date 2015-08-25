@@ -39,7 +39,7 @@ angular.module('voyager.security').
                     _methods = response.data.methods;
                 }
             }
-            return;
+            return response;
         }
 
         var defaultErrorCallback = function (response) {
