@@ -33,7 +33,7 @@ angular.module('portalApp', [
         'angulartics.google.analytics',
         'voyager.common.featured'
     ])
-    .factory('httpRequestInterceptor', function ($analytics, $q, $injector) {
+    .factory('httpRequestInterceptor', function ($analytics, $injector) {
         'use strict';
         return {
             response: function(response) {
@@ -48,7 +48,6 @@ angular.module('portalApp', [
                 if (response.status === 419) { // token timed out
                     var $state = $injector.get('$state');
                     $state.go('login');
-                    return $q.reject(response);
                 } else {  // call analytics and reject
                     var url = 'unknown';
                     if(response.config) {
@@ -57,8 +56,8 @@ angular.module('portalApp', [
                     $analytics.eventTrack('error', {
                         category: 'http', label: url, value:response.status  // jshint ignore:line
                     });
-                    return $q.reject(response);
                 }
+                return response;
             }
         };
     })
