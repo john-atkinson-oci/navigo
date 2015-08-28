@@ -25,6 +25,10 @@ angular.module('voyager.results')
                 actionManager.setAction(action, scope);
                 actionMap[action.action] = action;
 
+                if(action.action === 'preview' && $location.path() === '/home') {
+                    action.visible = false;
+                }
+
                 if(action.visible) {
                     if(defaultAction === null) {
                         defaultAction = action;
@@ -68,11 +72,13 @@ angular.module('voyager.results')
                 }
 
             },
-            controller: function ($scope, filterService, translateService, $timeout) {
+            controller: function ($scope, filterService, translateService, $timeout, $location) {
 
                 $scope.link = sugar.copy(config.docLink);  //copy so we don't change config
                 actionManager.setAction($scope.link, $scope);
-
+                if($scope.link.action === 'preview' && $location.path() === '/home') {
+                    $scope.link.visible = false;
+                }
                 $scope.toggleCart = function(doc) {
                     if(doc.inCart) {
                         cartService.remove(doc.id);
