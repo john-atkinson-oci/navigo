@@ -4,7 +4,7 @@
     angular.module('voyager.results')
         .factory('actionManager', actionManager);
 
-    function actionManager($window, $analytics, config, $modal) {
+    function actionManager($window, $analytics, $modal) {
 
         function _isVisible(action, scope) {
             if (action.visible === true) {
