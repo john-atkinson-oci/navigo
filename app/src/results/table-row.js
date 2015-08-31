@@ -1,6 +1,6 @@
 'use strict';
 angular.module('voyager.results')
-    .directive('vsTableRow', function (inView, $document, sugar, actionManager) {
+    .directive('vsTableRow', function (inView, $document, sugar, actionManager, config, $location) {
 
         function _initActions(scope){
             var actionMap = {}, defaultAction = null, displayActions = [], actions = sugar.copy(config.docActions);  //copy so we don't change config and every card has separate instance of actions
