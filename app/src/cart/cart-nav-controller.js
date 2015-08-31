@@ -43,7 +43,16 @@ angular.module('cart')
                 var task = _getTask();
                 if(!_.isEmpty(task)) {
                     $timeout(function() {
-                        var defaultTask = _.find($scope.taskList, {name:task});
+                        var defaultTask;
+                        if(_.isArray($scope.taskList)) {
+                            defaultTask = _.find($scope.taskList, {name:task});
+                        } else {
+                            _.each($scope.taskList, function(category) {
+                                if(!defaultTask) {
+                                    defaultTask = _.find(category, {name:task});
+                                }
+                            });
+                        }
                         if(defaultTask && defaultTask.available === true) {
                             $scope.selectTask(defaultTask);
                         }
