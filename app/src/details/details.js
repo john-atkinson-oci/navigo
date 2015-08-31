@@ -463,6 +463,13 @@ angular.module('voyager.details')
         };
 
         $scope.doSave = function(field) {
+            if(field.isArray && !_.isArray(field.value)) {
+                var values = field.value.split(','), edits = [];
+                _.each(values, function(val) {
+                    edits.push(val.trim());
+                });
+                field.value = edits;
+            }
             tagService.replace($scope.doc.id, field.key, field.value).then(function (response) {
                 field.editing = false;
                 var updatedValue = response.data[field.key];
