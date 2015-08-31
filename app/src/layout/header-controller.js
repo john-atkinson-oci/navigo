@@ -135,7 +135,7 @@ angular.module('voyager.layout')
 		$scope.goToClassic = function() {
 
 			var params = $location.search();
-			var baseUrl = config.root + 'voyager' + '/#/';
+			var baseUrl = config.root + config.explorePath + '/#/';
 
 			if (params.view === 'card') {
 				delete params.view;
