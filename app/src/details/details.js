@@ -405,6 +405,8 @@ angular.module('voyager.details')
 
         $scope.edit = function(field) {
             field.editing = true;
+            field.originalValue = field.value;
+            field.originalFormatted = field.formattedValue;
         };
 
         $scope.append = function(field) {
@@ -414,7 +416,8 @@ angular.module('voyager.details')
         $scope.cancel = function(field) {
             field.editing = false;
             field.appending = false;
-            //field.value = field.formattedValue;
+            field.value = field.originalValue;
+            field.formattedValue = field.originalFormatted;
         };
 
         $scope.isArray = function(data) {
