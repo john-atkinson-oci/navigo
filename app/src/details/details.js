@@ -120,6 +120,25 @@ angular.module('voyager.details')
             }
         }
 
+        function _doSyncFields(id) {
+            detailService.lookup(id, ',*', $stateParams.shard, $stateParams.disp).then(function (data) {
+                var doc = data.data.response.docs[0];
+                //if (!_.isEqual(doc[key], value)) {
+                //    attempts += 1;
+                //    if(attempts < 5) {
+                //        $timeout(function() {
+                //            _doSyncFields(id, key, value, attempts);
+                //        }, 1000);
+                //    } else {
+                //        console.log('failed to sync');
+                //    }
+                //} else {
+                    $scope.displayFields = detailConfig.getFields(doc, detailService.getFields());
+                    $scope.summaryFields = detailConfig.getSummaryFields(doc, detailService.getFields());
+                //}
+            });
+        }
+
         function _doLookup(id) {
             detailService.lookup(id, ',*', $stateParams.shard, $stateParams.disp).then(function (data) {
                 var doc = data.data.response.docs[0];
@@ -470,15 +489,22 @@ angular.module('voyager.details')
                 });
                 field.value = edits;
             }
-            tagService.replace($scope.doc.id, field.key, field.value).then(function (response) {
+            tagService.replace($scope.doc.id, field.key, field.value).then(function () {
                 field.editing = false;
-                var updatedValue = response.data[field.key];
+
+                // TODO solr call no longer returns this???
+                // var updatedValue = response.data[field.key];
 //                if(_.isArray(updatedValue)) {
 //                    updatedValue = updatedValue.join();
 //                }
-                field.formattedValue = updatedValue;
-                field.value = updatedValue;
-                field.isArray = _.isArray(updatedValue);
+//                field.formattedValue = updatedValue;
+//                field.value = updatedValue;
+//                field.isArray = _.isArray(updatedValue);
+
+                // workaround since update no longer returns updated doc
+                $timeout(function() {
+                    _doSyncFields($scope.doc.id);
+                }, 200);
             });
         };
 
