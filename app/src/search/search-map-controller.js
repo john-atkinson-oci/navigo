@@ -8,6 +8,7 @@ angular.module('voyager.search')
         var _searchBoundary;
         var _searchBoundaryLayer;
         var _resultsBoundary;
+        var _heatmapLayer;
         var loaded = false;
         var layersControl = null;
         var layers = {};
@@ -56,12 +57,36 @@ angular.module('voyager.search')
             addedLayer = true;
             layers[mapInfo.mapKey] = layer;
             if (layersControl === null) {
-                layersControl = L.control.layers(null, null).addTo(map);
+                // hack to enable layers control to be toggleable by 
+                // click, first extend it and disable the default behaviour
+                var LayersControl = L.Control.Layers.extend({
+                    _expand: function() {
+                    },
+                    _collapse: function() {
+                    }
+                });
+                layersControl = new LayersControl(null, null, {
+                    collapsed: true
+                }).addTo(map);
+
+                // latch onto click event of layers control container
+                $(layersControl._container)
+                    .click(function(e) {
+                        // we don't want to intercept the checkbox click
+                        if ($(e.target).attr('type') != 'checkbox') {
+                            e.preventDefault();
+                            $(this).toggleClass('leaflet-control-layers-expanded');    
+                        }
+                    });
             }
 
             var template = ' <a class="btn btn-xs" style="cursor: pointer;" ng-click="removeLayer(\'' + mapInfo.mapKey + '\')">X</a>';
             if(permanent) {
                 template = '';
+            }
+
+            if (!_.isEmpty(mapInfo.extra)) {
+                template += ' ' + mapInfo.extra;
             }
             layersControl.addOverlay(layer, mapInfo.mapKey + template);
             $timeout(function() {  //wait for scope to digest so control is added to leaflet
@@ -331,10 +356,24 @@ angular.module('voyager.search')
 
             // set up the heatmap layer, but first check there is actual data to
             // render (ie. the geo field is configured and populated)
+            $scope.heatmapOpts = {opacity: 100};
+            $scope.$watch('heatmapOpts.opacity', function(newVal) {
+                if (angular.isDefined(newVal) && angular.isDefined(_heatmapLayer)) {
+                    heatmapService.opacity(newVal);
+                    _heatmapLayer.render();
+                }
+            });
+            $scope.heatmapOpacityClick = function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+            };
             heatmapService.fetch('-180,-90,180,90', 1).then(function(hm) {
                 if (!_.isEmpty(hm.counts_ints2D)) {
-                    var heatmapLayer = heatmapService.init($scope.map);
-                    _addToLayerControl(heatmapLayer, $scope.map, {mapKey: 'Heatmap'}, true);
+                    _heatmapLayer = heatmapService.init($scope.map);
+                    _addToLayerControl(_heatmapLayer, $scope.map, {
+                            mapKey: 'Heatmap',
+                            extra: '<slider floor="0" ceiling="100" step="1" ng-model="heatmapOpts.opacity" class="heatmap-opacity-control" ng-click="heatmapOpacityClick($event)"></slider>'
+                        }, true);
                 }
             });
         });
