@@ -39,6 +39,7 @@ angular.module('portalApp', [
             response: function(response) {
                 var newToken = response.headers('x-access-token-exchange');
                 if(newToken) {
+                    console.log('exchanging tokens');
                     var $http = $injector.get('$http');
                     $http.defaults.headers.common['x-access-token'] = newToken;
                 }
@@ -46,6 +47,7 @@ angular.module('portalApp', [
             },
             responseError: function(response) {
                 if (response.status === 419) { // token timed out
+                    console.log('token timed out');
                     var $state = $injector.get('$state');
                     $state.go('login');
                 } else {  // call analytics and reject
@@ -214,8 +216,8 @@ angular.module('portalApp', [
 
         authService.addObserver(function(response) {
             var user = response.data.user;
-            if(user && user.token) {
-                $http.defaults.headers.common['x-access-token'] = user.token.encoding;
+            if(user && angular.isDefined(user.token)) {
+                $http.defaults.headers.common['x-access-token'] = user.token;
             }
         });
 
