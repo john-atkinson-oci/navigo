@@ -297,15 +297,27 @@ angular.module('voyager.search')
         };
 
         $scope.hasOnePermission = function() {
-            return $scope.hasPermission('edit_fields') || $scope.hasPermission('tag') || $scope.hasPermission('process') || $scope.hasPermission('flag');
+            return $scope.canEditPermission() || $scope.flagPermission() || $scope.hasPermission('process');
         };
 
+        function hasRemoteShard() {
+            var shards = $location.search().shards;
+            if (angular.isDefined(shards)) {
+                if (shards.indexOf(',') !== -1) {
+                    return true;
+                } else if (shards.toLowerCase() !== 'local') {
+                    return true;
+                }
+            }
+            return false;
+        }
+
         $scope.canEditPermission = function() {
-            return $scope.hasPermission('manage') || $scope.hasPermission('edit_fields');
+            return !hasRemoteShard() && ($scope.hasPermission('manage') || $scope.hasPermission('edit_fields'));
         };
 
         $scope.flagPermission = function() {
-            return $scope.hasPermission('flag');
+            return !hasRemoteShard() && $scope.hasPermission('flag');
         };
 
         $scope.canCart = function () {

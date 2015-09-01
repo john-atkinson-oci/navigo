@@ -1,8 +1,8 @@
-/*global angular, $, _, alert */
+'use strict';
 
 angular.module('voyager.security').
     factory('authService', function ($http, config, $q) {
-        'use strict';
+
         var observers = [];
         var errorCallback;
         var authCallback;
@@ -46,7 +46,7 @@ angular.module('voyager.security').
             if (response.error) {
                 console.log(response.error);
             } else {
-                console.log("failed");
+                console.log('failed');
             }
         };
 
@@ -76,10 +76,12 @@ angular.module('voyager.security').
             doLogin: function ($scope, successHandler, errorHandler) {
                 errorCallback = errorHandler;
                 authCallback = successHandler;
-                var request = 'user=' + encodeURIComponent($scope.user) + "&pass=" + encodeURIComponent($scope.pass) + "&" + _PERMISSIONS_LIST;
+                var request = 'user=' + encodeURIComponent($scope.user) + '&pass=' + encodeURIComponent($scope.pass) + '&' + _PERMISSIONS_LIST;
                 if($scope.keepLoggedIn === true) {
                     request += '&rememberMe=true';
                 }
+                // remove so we don't get a 419 here, we'll get a new one
+                delete $http.defaults.headers.common['x-access-token'];
                 return doPost(request, 'login');
             },
             doLogout: function () {
