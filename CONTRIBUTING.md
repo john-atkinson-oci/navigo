@@ -8,11 +8,16 @@ General Guidelines
 * Limit jQuery use - only inside directives and only if necessary
 * Prefer directives over controllers - controllers are obsolete in Angular 2
 * Performance is important - avoid bottlenecks like nested loops
-* All javascript files contributed (controller, service, directive, etc) require a test spec with 100% coverage
 * Customizations should be easy to enable/disable (modular).
   * Directives are a good start so they can be easily added/removed from a tag without breaking things.
   * Use local scope in directives - don't rely on outer scope, it could change
 
+Testing Requirements
+--------------------
+* All javascript files contributed (controller, service, directive, etc) require a test spec with 100% coverage
+* A protractor test should exercise the functionality in the UI
+  * Follow Guideline:  https://github.com/CarmenPopoviciu/protractor-testing-guidelines
+ 
 Issues
 ------
 If you have a bug or enhancement request: if Voyager Jira system is accessible use that, otherwise please file a Zendesk issue: https://voyagersearch.zendesk.com/hc/en-us
