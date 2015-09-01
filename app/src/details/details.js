@@ -123,19 +123,8 @@ angular.module('voyager.details')
         function _doSyncFields(id) {
             detailService.lookup(id, ',*', $stateParams.shard, $stateParams.disp).then(function (data) {
                 var doc = data.data.response.docs[0];
-                //if (!_.isEqual(doc[key], value)) {
-                //    attempts += 1;
-                //    if(attempts < 5) {
-                //        $timeout(function() {
-                //            _doSyncFields(id, key, value, attempts);
-                //        }, 1000);
-                //    } else {
-                //        console.log('failed to sync');
-                //    }
-                //} else {
-                    $scope.displayFields = detailConfig.getFields(doc, detailService.getFields());
-                    $scope.summaryFields = detailConfig.getSummaryFields(doc, detailService.getFields());
-                //}
+                $scope.displayFields = detailConfig.getFields(doc, detailService.getFields());
+                $scope.summaryFields = detailConfig.getSummaryFields(doc, detailService.getFields());
             });
         }
 
