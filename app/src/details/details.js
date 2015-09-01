@@ -40,6 +40,10 @@ angular.module('voyager.details')
         }
 
         function _activate() {
+            var shard = $location.search().shard;
+            if (angular.isDefined(shard) && shard.toLowerCase() !== 'local') {
+                $scope.isRemote = true;
+            }
             _doLookup($stateParams.id);
             _setPermissions();
 
@@ -131,6 +135,15 @@ angular.module('voyager.details')
         function _doLookup(id) {
             detailService.lookup(id, ',*', $stateParams.shard, $stateParams.disp).then(function (data) {
                 var doc = data.data.response.docs[0];
+
+                var shardInfo = data.data['shards.info'];
+                if(shardInfo) {
+                    _.each(shardInfo, function(shard) {
+                        doc.remoteDetails = shard.shardAddress;
+                        doc.remoteDetails = doc.remoteDetails.substring(0,doc.remoteDetails.indexOf('/solr'));
+                        doc.remoteDetails += '/#/show/' + doc.id + '?disp=default';
+                    });
+                }
                 $scope.doc = doc;
                 $scope.image = doc.thumb;
                 $scope.preview = doc.preview;
@@ -208,6 +221,8 @@ angular.module('voyager.details')
                 $timeout(function() {
                     $scope.loading = false;
                     if($scope.doc.isMappable) {
+                        // TODO this can cause the page to lock up for large services - example below
+                        // https://services1.arcgis.com/IAQQkLXctKHrf8Av/arcgis/rest/services/Designated_Wilderness/FeatureServer/0/query?returnGeometry=true&where=1%3D1&outSr=4326&outFields=*&inSr=4326&geometry=%7B%22xmin%22%3A-180%2C%22ymin%22%3A-85.05112877980659%2C%22xmax%22%3A180%2C%22ymax%22%3A85.0511287798066%2C%22spatialReference%22%3A%7B%22wkid%22%3A4326%7D%7D&geometryType=esriGeometryEnvelope&spatialRel=esriSpatialRelIntersects&geometryPrecision=6&f=geojson
                         $scope.addToMap();
                     }
                 },100);
@@ -229,6 +244,12 @@ angular.module('voyager.details')
                 $scope.metadataUrl = root + 'content/' + $scope.doc.id + '/meta.xml?style=' + $scope.theme.selected;
             });
         }
+
+        $scope.openOnRemote = function() {
+            // TODO what to do here to authenticate to the remote?
+            // TODO what about display config?
+            $window.open($scope.doc.remoteDetails, '_blank');
+        };
 
         $scope.canCart = function () {
             return authService.hasPermission('process');
