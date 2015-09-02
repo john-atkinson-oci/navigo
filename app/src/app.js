@@ -37,11 +37,10 @@ angular.module('portalApp', [
         'use strict';
         return {
             response: function(response) {
-                var newToken = response.headers('x-access-token-exchange');
-                if(newToken) {
-                    console.log('exchanging tokens');
-                    var $http = $injector.get('$http');
-                    $http.defaults.headers.common['x-access-token'] = newToken;
+                var err = response.headers('x-access-token-error');
+                if(err) {
+                    console.log('Error with JWT Token', err);
+                    alert('TODO, this should redirect to login page');
                 }
                 return response;
             },
@@ -213,13 +212,6 @@ angular.module('portalApp', [
 
     }).run(function ($rootScope, $location, authService, $state, config, $http) { // instance-injector
         'use strict';
-
-        authService.addObserver(function(response) {
-            var user = response.data.user;
-            if(user && angular.isDefined(user.token)) {
-                $http.defaults.headers.common['x-access-token'] = user.token;
-            }
-        });
 
         if($location.search().widget === 'true') {
             $rootScope.isWidget = true;
