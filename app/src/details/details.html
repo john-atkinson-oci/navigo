@@ -1,8 +1,8 @@
 <div class="page" id="detailPage" ng-controller="DetailsCtrl">
     <div class="container-fluid">
-        <div class="inner" id="working" ng-if="loading"></div>
-        <div class="inner" ng-if="!loading">
-            <div class="row">
+        <div id="working" ng-if="loading"></div>
+        <div ng-if="!loading">
+            <div class="row detail-content-wrap">
                 <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
                     <ul class="navbar">
                         <li class="first" ng-show="::hasRecords"><a href="javascript:;" ng-disabled="noPrevious" ng-click="getPrevious()" class="underline"><span class="fa fa-angle-left"></span>&nbsp; <span class="txt">Previous</span></a></li>
@@ -17,7 +17,7 @@
                                 <span ng-bind="::doc.displayFormat" ng-class="formatClass"></span><span ng-show="::doc.modified" class="bullet" ng-if="showFormat">&bull;</span><span ng-show="::doc.modified">Last index {{::doc.modified | date:'M/d/yyyy, hh:mma' }}</span>
                             </div>
                             <div ng-if="showPath" class="field">
-                                <a href="{{doc.fullpath}}" ng-show="isURL" target="_blank">{{doc.fullpath}}</a>
+                                <a href="{{::doc.fullpath}}" ng-show="isURL" target="_blank">{{::doc.fullpath}}</a>
                                 <div ng-hide="isURL" vs-highlight>
                                     <span id="locationPathWrap"></span><span id="locationPathNotHighlight"><a href="{{::doc_path.url}}" id="locationPath0">{{::doc_path.path}}</a><a href="{{::sub_path.url}}" ng-repeat="sub_path in sub_paths" id="locationPath{{$index + 1}}">{{::sub_path.path}}</a></span>
                                 </div>
@@ -120,7 +120,7 @@
                                     </div>
                                     <div class="formatted_value" ng-if="!field.editing && field.isHtml" ng-bind-html="field.formattedValue"></div>
                                     <div class="formatted_value" ng-if="!field.editing && field.style === 'STRING'" ng-bind="field.formattedValue"></div>
-                
+
                                     <input ng-show="field.editing && !field.isHtml" ng-model="field.value" type="text" class="input_field" />
                                     <textarea ng-show="field.editing && field.isHtml" ng-model="field.value" class="input_field"></textarea>
 
@@ -236,19 +236,18 @@
                     <div ng-if="showMap">
                         <div class="detail_map" vs-details-map></div>
                     </div>
+                    <section class="recent" ng-show="recent.length">
+                        <header>
+                            <h1>Recently viewed</h1>
+                        </header>
+                        <div class="list alt_list_view clearfix">
+                            <div class="row">
+                                <article ng-repeat="doc in recent" vs-card-recent></article>
+                            </div>
+                        </div>
+                    </section>
                 </div>
             </div>
-
-            <section class="recent" ng-show="recent.length">
-                <header>
-                    <h1>Recently Viewed</h1>
-                </header>
-                <div class="list clearfix">
-                    <div class="row">
-                        <article ng-repeat="doc in recent" vs-card style="width: 25%"></article>
-                    </div>
-                </div>
-            </section>
         </div>
     </div>
 </div>
