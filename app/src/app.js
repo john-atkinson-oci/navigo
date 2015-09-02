@@ -211,7 +211,7 @@ angular.module('portalApp', [
         $httpProvider.defaults.headers.get['Pragma'] = 'no-cache';  // jshint ignore:line
         $httpProvider.interceptors.push('httpRequestInterceptor');
 
-    }).run(function ($rootScope, $location, authService, $state, config, $http) { // instance-injector
+    }).run(function ($rootScope, $location, authService, $state, config) { // instance-injector
         'use strict';
 
         if($location.search().widget === 'true') {
