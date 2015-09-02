@@ -89,6 +89,7 @@
 			position: relative;
 			padding: 10px 35px;
 			margin-bottom: 0;
+			cursor: pointer;
 
 			.leaflet-control-layers-selector {
 				position: absolute;
@@ -103,7 +104,6 @@
 			span {
 				margin-left: 5px;
 				max-width: 350px;
-				overflow: hidden;
 				display: block;
 			}
 
@@ -128,3 +128,32 @@
 .leaflet-touch .leaflet-draw-actions {
 	left: 32px;
 }
+
+.leaflet-control-container {
+   .heatmap-opacity-control {
+       margin: 0px;
+       width: 50px;
+
+       .bar {
+           height: 4px;
+           margin-top: 2px;
+           background-color: $lightGrey;
+       }
+
+       .handle {
+           background-color: transparent;
+           border-color: transparent;
+           width: 0;
+           height: 0x;
+
+           &:after {
+               width: 12px;
+               height: 12px;
+               left: 0px;
+               top: 5px;
+               background-color: $defaultTextColor;
+           }
+       }
+   }
+}
+
