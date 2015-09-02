@@ -96,11 +96,11 @@ angular.module('portalApp', [
                         'templateUrl':'src/filters/filters.html',
                         'controller':'FiltersCtrl'
                     },
-                    'card-results@search': {
-                        'templateUrl':'src/results/card-results.html'
-                    },
                     'table-results@search': {
                         'templateUrl':'src/results/table-results.html'
+                    },
+                    'card-results@search': {
+                        'templateUrl':'src/results/card-results.html'
                     },
                     'selected-filters@search': {
                         'templateUrl':'src/filters/selected-filters.html',

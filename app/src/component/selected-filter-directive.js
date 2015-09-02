@@ -3,13 +3,15 @@
 angular.module('voyager.component')
 	.directive('vsSelectedFilter', function($timeout, $window) {
 		'use strict';
+
 		return {
 			restrict: 'A',
-			link: function(scope, element) {
+			link: function(scope, element, attr) {
 
 				var _adjustSelectedFilterContainer = function() {
 					$timeout(function() {
-						var selectedFilterEl = $('#selectedFilters');
+						var searchResultMapContainer = angular.element('#searchResultMapContainer');
+						var selectedFilterEl = angular.element('#selectedFilters');
 						var selectedFilterContainer = selectedFilterEl.find('.overtop');
 						var filterContainerHeight = 0;
 
@@ -18,7 +20,13 @@ angular.module('voyager.component')
 							selectedFilterContainer.css('width', (selectedFilterEl.parent().outerWidth()) + 'px');
 						}
 
-						selectedFilterEl.next('.list_wrap').css('padding-top', filterContainerHeight + 'px');
+						selectedFilterEl.next('.list_wrap').css({'padding-top': filterContainerHeight + 'px', 'margin-top': 0});
+
+						if (attr.view === 'table') {
+							searchResultMapContainer.css('top', (118 + filterContainerHeight) + 'px');
+						} else {
+							searchResultMapContainer.css({'top': '', 'height': '100%', 'visibility': 'visible'});
+						}
 					}, 10);
 				};
 
@@ -29,6 +37,11 @@ angular.module('voyager.component')
 					});
 
 					scope.$watch('$parent.filterVisible', function(){
+						_adjustSelectedFilterContainer();
+					});
+
+					scope.$watch('$parent.view', function(){
+						console.log('view changed');
 						_adjustSelectedFilterContainer();
 					});
 				});

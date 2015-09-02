@@ -152,7 +152,7 @@ angular.module('voyager.search')
 					$scope.controls.custom.push(sizeControl);
 				}
 
-				//TODO where does map spinner go?  When adding map service layer etc
+				// @TODO where does map spinner go?  When adding map service layer etc
 				//var spinControl = L.control();
 				//spinControl.setPosition('topright');
 				//spinControl.onAdd = function () {
@@ -162,7 +162,7 @@ angular.module('voyager.search')
 				//	return $compile($(template))($scope)[0];
 				//};
 
-				//@TODO: add search on map move feature
+				// @TODO: add search on map move feature
 				// var moveMapOption = L.control();
 				// moveMapOption.setPosition('bottomleft');
 				// moveMapOption.onAdd = function () {

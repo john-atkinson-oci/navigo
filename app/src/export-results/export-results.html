@@ -1,0 +1,22 @@
+<div class="modal-header">
+	<h3>Export results list</h3>
+ </div>
+<div class="modal-body">
+	<div class="alert alert-danger icon-error" ng-show="error">{{error}}</div>
+	<form class="form-export-results" role="form">
+		<div us-spinner spinner-key="task-spinner"></div>
+		<div ng-if="success">{{successMessage}}</div>
+		<div class="field">
+			<label class="form-label">Creat a CSV file</label>
+			<input type="text" class="form-control form-control-short" data-placeholder="Name the CSV file" max-length="200" ng-model="CSVFileName" style="width: 100%" />
+		</div>
+
+	</form>
+</div>
+<div class="modal-footer">
+	<div class="cta_row">
+		<input type="submit" class="btn btn-primary" ng-click="save()" value="Export" />
+		<a href="javascript:;" class="link_secondary" ng-click="cancel()">Cancel</a>
+	</div>
+</div>
+<a href="javascript:;" class="modal-close icon-x" ng-click="cancel()"></a>
