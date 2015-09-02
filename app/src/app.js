@@ -40,7 +40,8 @@ angular.module('portalApp', [
                 var err = response.headers('x-access-token-error');
                 if(err) {
                     console.log('Error with JWT Token', err);
-                    alert('TODO, this should redirect to login page');
+                    var $state = $injector.get('$state');
+                    $state.go('login');
                 }
                 return response;
             },
