@@ -73,9 +73,9 @@ angular.module('voyager.search')
                 $(layersControl._container)
                     .click(function(e) {
                         // we don't want to intercept the checkbox click
-                        if ($(e.target).attr('type') != 'checkbox') {
+                        if ($(e.target).attr('type') !== 'checkbox') {
                             e.preventDefault();
-                            $(this).toggleClass('leaflet-control-layers-expanded');    
+                            $(this).toggleClass('leaflet-control-layers-expanded');
                         }
                     });
             }
