@@ -80,8 +80,6 @@ angular.module('voyager.security').
                 if($scope.keepLoggedIn === true) {
                     request += '&rememberMe=true';
                 }
-                // remove so we don't get a 419 here, we'll get a new one
-                delete $http.defaults.headers.common['x-access-token'];
                 return doPost(request, 'login');
             },
             doLogout: function () {
