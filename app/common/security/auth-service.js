@@ -17,7 +17,7 @@ angular.module('voyager.security').
 
         function _setLoginState(response) {
             if (response) {
-                _isAnonymous = response.data.state === 'anonymous';
+                _isAnonymous = angular.isUndefined(response.data.state) || response.data.state === 'anonymous';
                 _user = response.data.user;
                 permissions = response.data.permissions;
                 observers.forEach(function (entry) {
