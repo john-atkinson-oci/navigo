@@ -68,7 +68,7 @@ angular.module('voyager.home')
 		function _getQueryString() {
 			var rows = 12;  //TODO set to what we really want
 			var queryString = config.root + 'solr/v0/select?';
-			queryString += 'fl=id,title, name:[name],format,abstract,path:[absolute],thumb:[thumbURL], path_to_thumb, subject,download:[downloadURL],format_type,bytes,modified,shard:[shard],bbox,format_category, component_files, tag_flags';
+			queryString += 'fl=id,title, name:[name],format,abstract,fullpath:[absolute],thumb:[thumbURL], path_to_thumb, subject,download:[downloadURL],format_type,bytes,modified,shard:[shard],bbox,format_category, component_files, tag_flags';
 			queryString += configService.getSolrFields();
             //queryString += '&fq=tag_featured:[* TO *]';  //TODO don't filter out those not tagged
 			queryString += '&rows=' + rows;
