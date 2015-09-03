@@ -53,31 +53,29 @@ angular.module('voyager.search')
             }
         };
 
+        // hack to enable layers control to be toggleable by
+        // click, first extend it and disable the default behaviour
+        function _addClickToggleLayersControl(map) {
+            var LayersControl = L.Control.Layers.extend({
+                _expand: function() {
+                },
+                _collapse: function() {
+                }
+            });
+            layersControl = new LayersControl(null, null, {
+                collapsed: true
+            }).addTo(map);
+
+            $('.leaflet-control-layers-toggle').click(function() {
+                $('.leaflet-control-layers').toggleClass('leaflet-control-layers-expanded');
+            });
+        }
+
         function _addToLayerControl(layer, map, mapInfo, permanent) {
             addedLayer = true;
             layers[mapInfo.mapKey] = layer;
             if (layersControl === null) {
-                // hack to enable layers control to be toggleable by 
-                // click, first extend it and disable the default behaviour
-                var LayersControl = L.Control.Layers.extend({
-                    _expand: function() {
-                    },
-                    _collapse: function() {
-                    }
-                });
-                layersControl = new LayersControl(null, null, {
-                    collapsed: true
-                }).addTo(map);
-
-                // latch onto click event of layers control container
-                $(layersControl._container)
-                    .click(function(e) {
-                        // we don't want to intercept the checkbox click
-                        if ($(e.target).attr('type') !== 'checkbox') {
-                            e.preventDefault();
-                            $(this).toggleClass('leaflet-control-layers-expanded');
-                        }
-                    });
+                _addClickToggleLayersControl(map);
             }
 
             var template = ' <a class="btn btn-xs" style="cursor: pointer;" ng-click="removeLayer(\'' + mapInfo.mapKey + '\')">X</a>';
