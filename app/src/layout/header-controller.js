@@ -88,6 +88,7 @@ angular.module('voyager.layout')
 		}
 
 		function _updateUserInfo() {
+			$scope.isAnonymous = authService.isAnonymous();
 			$scope.user = authService.getUser();
 			$scope.canCart = authService.hasPermission('process');
 			$scope.canManage = authService.hasPermission('manage');

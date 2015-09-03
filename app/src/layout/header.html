@@ -23,7 +23,7 @@
 				</div>
 			</div>
 		</li>
-		<li class="hover_flyout" ng-show="user">
+		<li class="hover_flyout" ng-hide="isAnonymous">
 			<a href="javascript:;" class="icon-arrow underline flyout_trigger"><span class="icon-header_account"></span><span class="txt" ng-bind="user.name"></span></a>
 			<div class="flyout user_flyout">
 				<div class="arrow"></div>
@@ -37,9 +37,9 @@
 				</div>
 			</div>
 		</li>
-		<li ng-hide="user">
+		<li ng-show="isAnonymous">
 			<a href="javascript:;" ng-click="login()" class="underline icon-header_account"><span class="txt">Login</span></a>
 		</li>
-		<li ng-hide="user"><a href="http://voyagersearch.zendesk.com/hc" target="_blank"><i class="fa fa-question-circle" aria-label="Help and Support"></i></a></li>
+		<li ng-show="isAnonymous"><a href="http://voyagersearch.zendesk.com/hc" target="_blank"><i class="fa fa-question-circle" aria-label="Help and Support"></i></a></li>
 	</ul>
 </div>
