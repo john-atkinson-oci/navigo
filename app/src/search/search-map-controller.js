@@ -65,9 +65,17 @@ angular.module('voyager.search')
             layersControl = new LayersControl(null, null, {
                 collapsed: true
             }).addTo(map);
-
-            $('.leaflet-control-layers-toggle').click(function() {
-                $('.leaflet-control-layers').toggleClass('leaflet-control-layers-expanded');
+            $timeout(function() { // wait for scope to digest and render layers control before adding click events
+                $('.leaflet-control-layers-toggle').click(function() {
+                    $('.leaflet-control-layers').toggleClass('leaflet-control-layers-expanded');
+                });
+                $('.leaflet-control-layers-list').click(function(e) {
+                    var tagClicked = e.target.tagName;
+                    if(tagClicked !== 'INPUT' && tagClicked !== 'SPAN') { // don't remove for checkbox or label click
+                        e.preventDefault(); // stop the checkbox from getting set by leaflet
+                        $('.leaflet-control-layers').removeClass('leaflet-control-layers-expanded');
+                    }
+                });
             });
         }
 
