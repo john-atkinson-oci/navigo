@@ -20,18 +20,18 @@ angular.module('voyager.component')
 							selectedFilterContainer.css('width', (selectedFilterEl.parent().outerWidth()) + 'px');
 						}
 
-						selectedFilterEl.next('.list_wrap').css({'padding-top': filterContainerHeight + 'px', 'margin-top': 0});
+						selectedFilterEl.next('.list_wrap').css({'padding-top': filterContainerHeight + 'px'});
 
 						if (attr.view === 'table') {
 							searchResultMapContainer.css('top', (118 + filterContainerHeight) + 'px');
 						} else {
+							selectedFilterEl.next('.list_wrap').css({'margin-top' : 0});
 							searchResultMapContainer.css({'top': '', 'height': '100%', 'visibility': 'visible'});
 						}
-					}, 10);
+					}, 200);
 				};
 
 				element.ready(function(){
-
 					scope.$watch('filters', function(){
 						_adjustSelectedFilterContainer();
 					});
@@ -41,7 +41,6 @@ angular.module('voyager.component')
 					});
 
 					scope.$watch('$parent.view', function(){
-						console.log('view changed');
 						_adjustSelectedFilterContainer();
 					});
 				});
