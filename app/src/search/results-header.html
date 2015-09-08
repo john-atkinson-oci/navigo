@@ -36,9 +36,9 @@
 <div id="searchViewList" ng-show="view == 'table'" ng-include="'src/search/search-view-list.html'"></div>
 
 <ul class="option_list pull-right" ng-show="hasResults()">
-    <li ng-if="view == 'table'">
-        <div class="hover_flyout top_only">
-            <a href="javascript:;" class="flyout_trigger"><span class="icon-search_map"></span></a>
+    <li id="noMapMapsizeDropDown" ng-if="tableViewMapSize === 'no'">
+        <div class="hover_flyout">
+            <a href="javascript:;" class="icon-arrow flyout_trigger"><span class="icon-search_map"></span></a>
             <div class="flyout">
                 <div class="arrow"></div>
                 <div class="flyout_inner">
