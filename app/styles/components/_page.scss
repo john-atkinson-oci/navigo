@@ -1,6 +1,16 @@
 #searchPage {
 	padding-bottom: 30px;
 
+	#searchResultMapContainer {
+		.alert-warning {
+			background-color: $likewhite;
+			position: absolute;
+			z-index: 50;
+			height: 62px;
+			width: 100%;
+		}
+	}
+
 	.move-map-option {
 		background-color: $white;
 		padding: 10px 15px 5px;
@@ -125,7 +135,7 @@
 
 		&.open_filter {
 			.container-fluid {
-				padding-right: 300px;
+				padding-right: 290px;
 
 				.list {
 					&.single {

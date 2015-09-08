@@ -152,6 +152,25 @@ angular.module('voyager.search')
 					$scope.controls.custom.push(sizeControl);
 				}
 
+				if ($attrs.control) {
+					var mapSizeControl = L.control();
+					mapSizeControl.setPosition('bottomright');
+					mapSizeControl.onAdd = function () {
+						var mapSizeTemplate = '<div class="leaflet-control-map-size-toggle leaflet-bar leaflet-control">';
+						mapSizeTemplate += '<div class="map-size-drop-down">';
+						mapSizeTemplate += '<div class="icon-arrow flyout-trigger" ng-click="toggleMapSizeDropDown()"><span class="icon-search_map"></span></div>';
+						mapSizeTemplate += '<div class="flyout"><div class="arrow"></div><div class="flyout_inner">';
+						mapSizeTemplate += '<ul><li><a href="javascript:;" ng-click="switchMap(\'large\')">Large map</a></li>';
+						mapSizeTemplate += '<li><a href="javascript:;" ng-click="switchMap(\'small\')">Small map</a></li>';
+						mapSizeTemplate += '<li><a href="javascript:;" ng-click="switchMap(\'no\')">No map</a></li>';
+						mapSizeTemplate += '</ul></div></div></div></div>';
+
+						return $compile($(mapSizeTemplate))($scope)[0];
+					};
+
+					$scope.controls.custom.push(mapSizeControl);
+				}
+
 				// @TODO where does map spinner go?  When adding map service layer etc
 				//var spinControl = L.control();
 				//spinControl.setPosition('topright');
@@ -213,6 +232,20 @@ angular.module('voyager.search')
 						_drawRectangle('intersects', $('#intersects'));
 					}
 				});
+
+				$scope.switchMap = function(size) {
+					$scope.$emit('mapSizechanged', size);
+				};
+
+				$scope.toggleMapSizeDropDown = function() {
+					var dropDownEl = $('.map-size-drop-down');
+
+					if (!dropDownEl.hasClass('opened')) {
+						dropDownEl.addClass('hover_flyout bottom opened');
+					} else {
+						dropDownEl.removeClass('hover_flyout bottom opened');
+					}
+				};
 
 				function _triggerDrawingTool() {
 					$timeout(function(){
