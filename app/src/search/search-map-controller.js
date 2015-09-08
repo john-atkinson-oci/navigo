@@ -66,8 +66,9 @@ angular.module('voyager.search')
                 collapsed: true
             }).addTo(map);
             $timeout(function() { // wait for scope to digest and render layers control before adding click events
-                $('.leaflet-control-layers-toggle').click(function() {
+                $('.leaflet-control-layers-toggle').click(function(e) {
                     $('.leaflet-control-layers').toggleClass('leaflet-control-layers-expanded');
+                    e.preventDefault();
                 });
                 $('.leaflet-control-layers-list').click(function(e) {
                     var tagClicked = e.target.tagName;
