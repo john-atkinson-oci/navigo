@@ -395,9 +395,9 @@ angular.module('voyager.search')
 
 			$scope.exportResultsList = function() {
 				$modal.open({
-					templateUrl: 'src/export-results/export-results.html',
+					templateUrl: 'src/export-results/export-results-modal.html',
 					size: 'md',
-					controller: 'ExportResultsCtrl'
+					controller: 'ExportResultsModalController'
 				});
 			};
 
@@ -612,7 +612,7 @@ angular.module('voyager.search')
 				}
 			});
 
-			$scope.$watch('view', function () {
+			$scope.$watch('view', function() {
 				_params = $location.search();
 				_setView(_params.view, _initializing);
 			});
@@ -622,6 +622,10 @@ angular.module('voyager.search')
 					$scope.tableViewMapSize = size;
 				}
 			};
+
+			$scope.$on('mapSizechanged', function(event, size){
+				$scope.switchMap(size);
+			});
 
 			$scope.getDetailsLink = function(doc) {
 				var link = '#/show/' + doc.id + '?disp=' + _params.disp;
