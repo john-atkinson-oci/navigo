@@ -12,6 +12,14 @@ angular.module('voyager.component')
 			});
 		}
 
+		function _minHeight(availableHeight) {
+			if (availableHeight < 250) {
+				availableHeight = 250;
+			}
+
+			return availableHeight;
+		}
+
 		return {
 			restrict: 'A',
 			link: function(scope, element, attr) {
@@ -27,9 +35,9 @@ angular.module('voyager.component')
 					var mapTopPosition = angular.element('.search-map').offset().top;
 					var availableHeight = windowHeight - mapTopPosition;
 
-
 					if (attr.size === 'small') {
 						availableHeight -= 600;
+						availableHeight = _minHeight(availableHeight);
 						_animate(searchContainerEl, {height: availableHeight});
 					}
 					else if (attr.size === 'no') {
@@ -39,6 +47,7 @@ angular.module('voyager.component')
 						});
 					} else {
 						availableHeight -= 280;
+						availableHeight = _minHeight(availableHeight);
 						_animate(searchContainerEl, {height: availableHeight});
 					}
 
