@@ -242,23 +242,26 @@
 	}
 }
 
-#noMapMapsizeDropDown {
-	.icon-arrow {
-		display: block;
-		background-color: $white;
-		border: 1px solid $borderColor;
-		color: #404859;
-		padding: 8px 30px 7px 10px;
+#searchPage {
+	#noMapMapsizeDropDown {
+		.icon-arrow {
+			display: block;
+			background-color: $white;
+			border: 1px solid $borderColor;
+			color: #404859;
+			padding: 8px 30px 5px 10px;
+			margin-top: 2px;
 
-		&:before {
-			right: 10px;
+			&:before {
+				right: 10px;
+			}
 		}
-	}
 
-	.hover_flyout {
-		.flyout {
-			.flyout_inner {
-				width: 120px;
+		.hover_flyout {
+			.flyout {
+				.flyout_inner {
+					width: 120px;
+				}
 			}
 		}
 	}

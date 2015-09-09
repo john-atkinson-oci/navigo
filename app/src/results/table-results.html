@@ -1,5 +1,5 @@
 <div ng-controller="TableCtrl">
-    <table ng-table="tableParams" class="table ng-table-resizable-columns ng-table-rowselected table-condensed table-striped" data-resizable-columns-id="searchTable" id="resultsTable">
+    <table ng-table="tableParams" class="table ng-table-resizable-columns ng-table-rowselected table-condensed table-striped" data-resizable-columns-id="resultsTable" id="resultsTable">
         <thead>
             <tr>
                 <th class="semi img" style="width:92px;">
@@ -14,7 +14,6 @@
                             </div>
                         </div>
                     </div>
-
                 </th>
                 <th style="width:{{field.width}}" ng-repeat="field in tableFields" data-resizable-column-id="{{field.field}}" class="semi sortable" ng-class="{
                             'sort-asc': tableParams.isSortBy(field.field, 'asc'),

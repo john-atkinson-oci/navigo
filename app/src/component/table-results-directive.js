@@ -1,11 +1,11 @@
 /*global angular */
 
 angular.module('voyager.component')
-	.directive('vsTableResults', function($window) {
+	.directive('vsTableResults', function($window, $document) {
 		'use strict';
 
 		function _animate(el, animateParams, callback) {
-			el.stop().css('visibility', 'visible').animate(animateParams, 500, 'linear', function(){
+			el.stop().css('visibility', 'visible').animate(animateParams, 250, 'linear', function(){
 				if (callback) {
 					callback();
 				}
@@ -25,10 +25,14 @@ angular.module('voyager.component')
 			link: function(scope, element, attr) {
 
 				var windowEl = angular.element($window);
+				var windowWidth = windowEl.width();
+				var windowHeight = windowEl.height();
 				var searchContainerEl = angular.element('#searchResultMapContainer');
 				var listWrapEl = angular.element('.list_wrap');
 
-				_resizeContent();
+				$document.ready(function(){
+					_resizeContent();
+				});
 
 				function _resizeContent() {
 					var windowHeight = windowEl.outerHeight();
@@ -54,7 +58,14 @@ angular.module('voyager.component')
 					_animate(listWrapEl, {marginTop: availableHeight});
 				}
 
-				windowEl.on('resize', _resizeContent);
+				// make sure that window height and window width actually change
+				windowEl.on('resize', function() {
+					if (windowWidth !== windowEl.width() || windowHeight !== windowEl.height()) {
+						windowWidth = windowEl.width();
+						windowHeight = windowEl.height();
+						_resizeContent();
+					}
+				});
 
 				scope.$on('destroy', function(){
 					windowEl.unbind('resize', _resizeContent);
