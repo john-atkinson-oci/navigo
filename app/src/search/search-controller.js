@@ -38,6 +38,13 @@ angular.module('voyager.search')
 					$scope.disp = _params.disp;
 				}
 
+				if (!_.isEmpty(_params.mapsize)) {
+					$scope.tableViewMapSize = _params.mapsize;
+				}
+				else {
+					$scope.tableViewMapSize = 'large';
+				}
+
 				$scope.count = 0;
 				$scope.maxSize = 5;
 				$scope.totalItems = 1; //default so no results message doesn't display when loading
@@ -620,6 +627,7 @@ angular.module('voyager.search')
 			$scope.switchMap = function(size) {
 				if ($scope.tableViewMapSize !== size) {
 					$scope.tableViewMapSize = size;
+					$location.search('mapsize', size);
 				}
 			};
 
