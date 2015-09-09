@@ -10,6 +10,7 @@ angular.module('portalApp', [
         'ui.router',
         'pascalprecht.translate',
         'ui.bootstrap',
+        'ui.slider',
         'ui.select2',
         'ui.sortable',
 		'LocalStorageModule',
