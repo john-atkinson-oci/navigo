@@ -98,6 +98,9 @@
 							<li ng-if="!isRunning">
 								<a href="javascript:;" ng-click="showDetails()"><span class="fa fa-info"></span>&nbsp;Show task details</a>
 							</li>
+							<li ng-if="!isRunning && report">
+								<a href="javascript:;" ng-click="showReport()"><span class="fa fa-file-text-o"></span>&nbsp;Show Report</a>
+							</li>
 							<li ng-show="isRunning && allowNotify">
 								<div class="hover_flyout keep_open">
 									<a href="javascript:" class="flyout_trigger"><i class="fa fa-bell"></i>&nbsp;Notify when complete</a>

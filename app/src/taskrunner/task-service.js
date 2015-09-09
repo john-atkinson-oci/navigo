@@ -150,6 +150,34 @@ angular.module('taskRunner').
                 return files;
             },
 
+            getReport: function(statusResponse) {
+                var file = this.getReportFile(statusResponse);
+                if(file) {
+                    return $http.get(file.downloadUrl).then(function(response) {
+                        return response.data;
+                    });
+                } else {
+                    return $q.reject();
+                }
+            },
+
+            getReportFile: function (statusResponse) {
+                var _self = this;
+                var _file;
+                if(statusResponse.data.output && statusResponse.data.output.children) {
+                    $.each(statusResponse.data.output.children, function (index, file) {
+                        if (file.format && file.name.lastIndexOf('_', 0) === 0) {
+                            if (file.name.indexOf('report') > -1) {
+                                file.downloadUrl = _self.getFileUrl(statusResponse.data.id, file.name);
+                                file.displayName = _self.getFileDisplayName(file.name);
+                                _file = file;
+                            }
+                        }
+                    });
+                }
+                return _file;
+            },
+
             getCopyUrl: function(id) {
                 return config.root + 'api/rest/process/job/' + id + '/run.json';
             }

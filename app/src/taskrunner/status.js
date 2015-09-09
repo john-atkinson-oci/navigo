@@ -93,8 +93,16 @@ angular.module('taskRunner')
 
                     $scope.params = readOnlyParams.params;
                     $scope.inputItems = readOnlyParams.inputItems;
-                    _applyBbox(readOnlyParams.inputItems[0].query);
-                    $scope.searchItemURL = '#/search?disp=' + searchParams.disp + '&' + sugar.toNavigoQueryString(readOnlyParams.inputItems[0].query);
+                    var query = readOnlyParams.inputItems[0].query;
+                    if(query) {
+                        _applyBbox(query);
+                        $scope.searchItemURL = '#/search?disp=' + searchParams.disp + '&' + sugar.toNavigoQueryString(query);
+                    } else {
+                        var ids = readOnlyParams.inputItems[0].ids;
+                        var idParams = ids.join('&fq=id:');
+                        $scope.searchItemURL = '#/search?disp=' + searchParams.disp + '&fq=id:' + idParams;
+                    }
+
                     $scope.hasMap = readOnlyParams.hasMap;
                     $scope.taskItems = readOnlyParams.inputItems[0].response.docs;
                     $scope.itemCount = readOnlyParams.inputItems[0].response.numFound;
@@ -109,6 +117,9 @@ angular.module('taskRunner')
                     $scope.messages = statusResponse.data.errors;
                     $scope.files = taskService.getFiles(statusResponse);
                     $scope.logFiles = taskService.getLogFiles(statusResponse);
+                    taskService.getReport(statusResponse).then(function(report) {
+                        $scope.report = report;
+                    });
                     $scope.warnings = statusResponse.data.warnings;
                     if (!angular.isUndefined($scope.warnings) && $scope.warnings.length > 0) {
                         $scope.hasWarning = true;
@@ -162,6 +173,9 @@ angular.module('taskRunner')
         function _showSuccessInfo(data, statusResponse) {
             $scope.files = taskService.getFiles(statusResponse);
             $scope.logFiles = taskService.getLogFiles(statusResponse);
+            taskService.getReport(statusResponse).then(function(report) {
+                $scope.report = report;
+            });
             $scope.statusMessage = 'Completed';
             if(data.state === 'WARNING') {
                 $scope.statusMessage += ' With Warnings';
@@ -401,6 +415,19 @@ angular.module('taskRunner')
             $timeout(function() {
                 document.getElementById('copy-url').select();
             }, 0);
+        };
+
+        $scope.showReport = function() {
+            $modal.open({
+                templateUrl: 'src/taskrunner/task-report.html',
+                controller: 'TaskReportCtrl',
+                size: 'lg',
+                resolve: {
+                    data: function () {
+                        return $scope.report;
+                    }
+                }
+            });
         };
 
     });
