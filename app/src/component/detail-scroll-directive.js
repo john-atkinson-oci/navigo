@@ -47,7 +47,7 @@ angular.module('voyager.component')
 
 				function _destroy() {
 					windowEl.unbind('scroll', _scroll);
-					windowEl.unbine('resize', _resize);
+					windowEl.unbind('resize', _resize);
 				}
 
 				function _scroll() {
@@ -58,21 +58,23 @@ angular.module('voyager.component')
 					}
 
 					var scrollTop = $document.scrollTop();
+					var windowHeight = windowEl.height();
 
-					if (!tipped && scrollTop >= detailTabContentNavTipPoint) {
-						tipped = true;
-						_setContentNavStyle();
-					}
-					else if (tipped && scrollTop < detailTabContentNavTipPoint) {
-						tipped = false;
-						detailTabContentNav.removeClass('sticky').css('top', 0).next().css('padding-top', '0px');
+					if (mainContentHeight > windowHeight) {
+						if (!tipped && scrollTop >= detailTabContentNavTipPoint) {
+							tipped = true;
+							_setContentNavStyle();
+						}
+						else if (tipped && scrollTop < detailTabContentNavTipPoint) {
+							tipped = false;
+							detailTabContentNav.removeClass('sticky').css('top', 0).next().css('padding-top', '0px');
+						}
 					}
 
 					_setSecondaryContentStyle(scrollTop);
 				}
 
-				function _setSecondaryContentStyle(scrollTop) {
-					var windowHeight = windowEl.height();
+				function _setSecondaryContentStyle(scrollTop, windowHeight) {
 
 					if (detailSecondaryColumnHeight >= mainContentHeight || detailSecondaryColumnHeight < windowHeight) {
 						// do nothing
@@ -110,10 +112,9 @@ angular.module('voyager.component')
 						detailTopStickyContent.addClass('sticky').next().css('margin-top',  detailTopStickyContentHeight + 'px');
 
 						detailSecondaryColumnHeight = detailSecondaryColumn.height() + 128;
-						detailSecondaryColumn.addClass('sticky').css('width', '365px');
 
-						if (detailSecondaryColumnHeight < windowEl.height()) {
-							detailSecondaryColumn.addClass('sticky').css('margin-top', 0);
+						if (mainContentHeight > windowEl.height() && detailSecondaryColumnHeight < mainContentHeight && detailSecondaryColumnHeight < windowEl.height()) {
+							detailSecondaryColumn.addClass('sticky').css({'margin-top': 0, 'width': '365px'});
 						} else {
 							detailSecondaryColumn.removeClass('sticky');
 							_setSecondaryContentStyle($document.scrollTop());
