@@ -189,6 +189,17 @@ angular.module('voyager.security').
                     if (windowsAuth.enableNtlm === true || windowsAuth.enableNegotiate === true) {
                         show = !windowsAuth.hideLogout;
                     }
+                } else if (methods.length > 1) {  // if there are multiple methods and sso, show logout for admin only
+                    var self = this;
+                    _.each(methods, function(method) {
+                        // hide if they aren't an admin (let admin see multiple methods)
+                        if(method.name === 'windows' && !self.hasPermission('manage')) {
+                            // only enforce if some sso is enabled
+                            if (method.enableNtlm === true || method.enableNegotiate === true) {
+                                show = !method.hideLogout;
+                            }
+                        }
+                    });
                 }
                 return show;
             }
