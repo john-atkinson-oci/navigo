@@ -20,13 +20,7 @@ angular.module('voyager.security').
                 _isAnonymous = angular.isUndefined(response.data.state) || response.data.state === 'anonymous';
                 _user = response.data.user;
                 permissions = response.data.permissions;
-                observers.forEach(function (entry) {
-                    entry(response);
-                });
-                if (authCallback) {
-                    authCallback(response);
-                    authCallback = null;
-                }
+
                 //console.log(response);
                 if(response.data.user) {
                     loggedIn = true;
@@ -37,6 +31,14 @@ angular.module('voyager.security').
                 }
                 if(response.data.methods) {
                     _methods = response.data.methods;
+                }
+
+                observers.forEach(function (entry) {
+                    entry(response);
+                });
+                if (authCallback) {
+                    authCallback(response);
+                    authCallback = null;
                 }
             }
             return response;
@@ -175,6 +177,20 @@ angular.module('voyager.security').
                     delete methods.external;
                 }
                 return methods;
+            },
+
+            showLogout: function() {
+                var show = true;
+                var methods = this.getMethods().all;
+                // only enforce if windows is the only method enabled
+                if (methods.length === 1 && methods[0].name === 'windows') {
+                    var windowsAuth = methods[0];
+                    // only enforce if some sso is enabled
+                    if (windowsAuth.enableNtlm === true || windowsAuth.enableNegotiate === true) {
+                        show = !windowsAuth.hideLogout;
+                    }
+                }
+                return show;
             }
         };
 

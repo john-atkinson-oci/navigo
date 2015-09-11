@@ -30,7 +30,7 @@
 				<div class="flyout_inner">
 					<ul>
 						<li ng-if="canManage"><a href="{{manageLink}}">Manage Voyager</a></li>
-						<li><a href="javascript:;" ng-click="logout()">Logout</a></li>
+						<li ng-if="showLogout"><a href="javascript:;" ng-click="logout()">Logout</a></li>
 						<li ng-if="showClassicLink"><a href="javascript:;" ng-click="goToClassic()">View in Classic</a></li>
 						<li><a href="http://voyagersearch.zendesk.com/hc" target="_blank">Help and Support</a></li>
 					</ul>

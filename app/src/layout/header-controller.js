@@ -92,7 +92,7 @@ angular.module('voyager.layout')
 			$scope.user = authService.getUser();
 			$scope.canCart = authService.hasPermission('process');
 			$scope.canManage = authService.hasPermission('manage');
-
+			$scope.showLogout = authService.showLogout();
 			_updateClassicLink();
 
 			if ($scope.canCart) {
