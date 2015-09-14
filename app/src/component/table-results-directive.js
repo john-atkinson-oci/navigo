@@ -4,75 +4,89 @@ angular.module('voyager.component')
 	.directive('vsTableResults', function($window, $document) {
 		'use strict';
 
-		function _animate(el, animateParams, callback) {
-			el.stop().css('visibility', 'visible').animate(animateParams, 250, 'linear', function(){
-				if (callback) {
-					callback();
-				}
-			});
-		}
-
-		function _minHeight(availableHeight) {
-			if (availableHeight < 250) {
-				availableHeight = 250;
-			}
-
-			return availableHeight;
-		}
-
 		return {
 			restrict: 'A',
 			link: function(scope, element, attr) {
 
-				var windowEl = angular.element($window);
-				var windowWidth = windowEl.width();
-				var windowHeight = windowEl.height();
-				var searchContainerEl = angular.element('#searchResultMapContainer');
+				scope.windowEl = angular.element($window);
+				scope.windowWidth = scope.windowEl.width();
+				scope.windowHeight = scope.windowEl.height();
+
+				var searchResultMapContainerEl = angular.element('#searchResultMapContainer');
 				var listWrapEl = angular.element('.list_wrap');
 
-				$document.ready(function(){
-					_resizeContent();
-				});
 
-				function _resizeContent() {
-					var windowHeight = windowEl.outerHeight();
+				scope.getAvailableHeight = function(size, availableHeight) {
+					if (size === 'small') {
+						return scope.minHeight(availableHeight - 600);
+					} else if (size === 'large') {
+						return scope.minHeight(availableHeight - 280);
+					}
+
+					return 0;
+				};
+
+				scope.minHeight = function(availableHeight) {
+					if (availableHeight < 250) {
+						availableHeight = 250;
+					}
+
+					return availableHeight;
+				};
+
+				scope.animate = function(el, animateParams, callback) {
+					el.stop().css('visibility', 'visible').animate(animateParams, 250, 'linear', function(){
+						if (callback) {
+							callback();
+						}
+					});
+				};
+
+				scope.hideElement = function(el){
+					el.css('visibility', 'hidden');
+				};
+
+				scope.resizeContent = function() {
 					var mapTopPosition = angular.element('.search-map').offset().top;
-					var availableHeight = windowHeight - mapTopPosition;
+					var availableHeight = scope.windowHeight - mapTopPosition;
 
 					if (attr.size === 'small') {
-						availableHeight -= 600;
-						availableHeight = _minHeight(availableHeight);
-						_animate(searchContainerEl, {height: availableHeight});
+						availableHeight = scope.getAvailableHeight('small', availableHeight);
+						scope.animate(searchResultMapContainerEl, {height: availableHeight});
 					}
 					else if (attr.size === 'no') {
 						availableHeight = 0;
-						_animate(searchContainerEl, 0, function(){
-							searchContainerEl.css('visibility', 'hidden');
+						scope.animate(searchResultMapContainerEl, 0, function(){
+							scope.hideElement(searchResultMapContainerEl);
 						});
 					} else {
-						availableHeight -= 280;
-						availableHeight = _minHeight(availableHeight);
-						_animate(searchContainerEl, {height: availableHeight});
+						availableHeight = scope.getAvailableHeight('large', availableHeight);
+						scope.animate(searchResultMapContainerEl, {height: availableHeight});
 					}
 
-					_animate(listWrapEl, {marginTop: availableHeight});
-				}
+					scope.animate(listWrapEl, {marginTop: availableHeight});
+				};
 
-				// make sure that window height and window width actually change
-				windowEl.on('resize', function() {
-					if (windowWidth !== windowEl.width() || windowHeight !== windowEl.height()) {
-						windowWidth = windowEl.width();
-						windowHeight = windowEl.height();
-						_resizeContent();
+				scope.resize = function() {
+					if (scope.windowWidth !== scope.windowEl.width() || scope.windowHeight !== scope.windowEl.height()) {
+						scope.windowWidth = scope.windowEl.width();
+						scope.windowHeight = scope.windowEl.height();
+						scope.resizeContent();
 					}
+				};
+
+
+				$document.ready(function(){
+
+					scope.resizeContent();
+
+					scope.windowEl.on('resize', scope.resize);
+
+					scope.$watch('tableViewMapSize', scope.resizeContent);
 				});
 
-				scope.$on('destroy', function(){
-					windowEl.unbind('resize', _resizeContent);
-				});
-
-				scope.$watch('tableViewMapSize', function(){
-					_resizeContent();
+				scope.$on('$destroy', function(){
+					scope.windowEl.unbind('resize', scope.resize);
 				});
 
 			} //link
