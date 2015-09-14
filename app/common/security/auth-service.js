@@ -71,7 +71,9 @@ angular.module('voyager.security').
             return $http.get(_getInfoUrl(),{cache: false, headers: {'Cache-Control' : 'no-cache'}}).then(_setLoginState, defaultErrorCallback);
         }
 
-        _getPrivileges();
+        // comment out by mayshi on 9/11/2015 because _getPrivileges is being fired twice
+        // _getPrivileges();
+
         return {
             doLogin: function ($scope, successHandler, errorHandler) {
                 errorCallback = errorHandler;
