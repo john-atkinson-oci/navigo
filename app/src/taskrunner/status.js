@@ -1,7 +1,7 @@
 /*global angular, $, _, document */
 
 angular.module('taskRunner')
-    .controller('StatusCtrl', function ($scope, taskService, $stateParams, $timeout, config, leafletData, $location, paramService, $window, usSpinnerService, $analytics, $modal, sugar) {
+    .controller('StatusCtrl', function ($scope, taskService, $stateParams, $timeout, config, $location, paramService, $window, usSpinnerService, $analytics, $modal, sugar) {
 
         'use strict';
 
