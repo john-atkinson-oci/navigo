@@ -1,4 +1,4 @@
-/*global describe, beforeEach, module, it, inject, config, EZSpy */
+/*global describe, beforeEach, module, it, inject, config */
 
 describe('StatusCtrl', function () {
 
@@ -20,7 +20,7 @@ describe('StatusCtrl', function () {
     var scope, controllerService, q, location, timeout, _leafletData, httpMock;
 
     //spies
-    var $s = {'configService':{}};
+   // var $s = {'configService':{}};
 
     beforeEach(inject(function ($rootScope, $controller, $q, $location, $timeout, $httpBackend) {
         scope = $rootScope.$new();
@@ -38,7 +38,7 @@ describe('StatusCtrl', function () {
 
         it('should load status', function () {
 
-            var response = {docs:[], numFound:0}, sort = {key:'key', value:'value'};
+            //var response = {docs:[], numFound:0}, sort = {key:'key', value:'value'};
 
             spyOn(location,'path').and.returnValue('status');
 
