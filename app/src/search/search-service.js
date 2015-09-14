@@ -3,6 +3,7 @@
 angular.module('voyager.search').
     factory('searchService', function ($http, translateService, filterService, urlUtil, config, queryBuilder, sugar, $q, configService, solrGrunt, cartService, $analytics, authService, resultsDecorator) {
         'use strict';
+
         var _page = 1;
         var _idsPage = _page;
         var _itemsPerPage = 24;
@@ -72,6 +73,7 @@ angular.module('voyager.search').
                 var solrPage = service.substring(service.indexOf('solr')-1);
                 urlUtil.buildSearchUrl2(_searchParams, _page, getMapView(params.vw), params.view, _sortField); //keeps the url in sync
                 var startTime = Date.now();
+
                 return $http.jsonp(service).success(function (data) {
                     var endTime = Date.now() - startTime;
                     _lastResult = data;
@@ -82,6 +84,17 @@ angular.module('voyager.search').
                     //var visitor = _.partial(_featureGroupVisitor,featuredService.getFeatures());
                     resultsDecorator.decorate(data.response.docs, _recordIds);
                     _track(solrPage, data, endTime);
+                });
+            },
+
+            getCSV: function (params, rowCount) {
+                _setParams(params);
+
+                var service = queryBuilder.doBuild2(_searchParams, 1, rowCount, _sortDirection, _sortField, 'csv');
+                return $http.get(service).then(function(data) {
+                    return data;
+                }, function(data){
+                    return data;
                 });
             },
 

@@ -152,7 +152,7 @@ angular.module('voyager.search')
 					$scope.controls.custom.push(sizeControl);
 				}
 
-				if ($attrs.control) {
+				$scope.addMapSizeToggleControl = function() {
 					var mapSizeControl = L.control();
 					mapSizeControl.setPosition('bottomright');
 					mapSizeControl.onAdd = function () {
@@ -169,6 +169,10 @@ angular.module('voyager.search')
 					};
 
 					$scope.controls.custom.push(mapSizeControl);
+				};
+
+				if ($attrs.control) {
+					$scope.addMapSizeToggleControl();
 				}
 
 				// @TODO where does map spinner go?  When adding map service layer etc
@@ -234,11 +238,11 @@ angular.module('voyager.search')
 				});
 
 				$scope.switchMap = function(size) {
-					$scope.$emit('mapSizechanged', size);
+					$scope.$emit('mapSizeChanged', size);
 				};
 
 				$scope.toggleMapSizeDropDown = function() {
-					var dropDownEl = $('.map-size-drop-down');
+					var dropDownEl = angular.element('.map-size-drop-down');
 
 					if (!dropDownEl.hasClass('opened')) {
 						dropDownEl.addClass('hover_flyout bottom opened');

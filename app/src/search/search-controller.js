@@ -402,9 +402,9 @@ angular.module('voyager.search')
 
 			$scope.exportResultsList = function() {
 				$modal.open({
-					templateUrl: 'src/export-results/export-results-modal.html',
+					template: '<div><vs-export-results /></div>',
 					size: 'md',
-					controller: 'ExportResultsModalController'
+					scope: $scope
 				});
 			};
 
@@ -631,7 +631,7 @@ angular.module('voyager.search')
 				}
 			};
 
-			$scope.$on('mapSizechanged', function(event, size){
+			$scope.$on('mapSizeChanged', function(event, size){
 				$scope.switchMap(size);
 			});
 
