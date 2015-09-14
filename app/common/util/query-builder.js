@@ -48,7 +48,7 @@ angular.module('voyager.util').
             return input;
         };
 
-        function build2(solrParams, page, itemsPerPage, sortDirection, sortField) {
+        function build2(solrParams, page, itemsPerPage, sortDirection, sortField, format) {
             delete solrParams.fq; //filter service will apply filter params below
             //solrParams.q = getInput(solrParams.q); //default to all if no input filter  //TODO do we need to convert empty to *:* seems to work without it
             var queryString = config.root + selectPath;
@@ -80,8 +80,12 @@ angular.module('voyager.util').
                 queryString += '&sort=' + sortField + ' ' + sortDirection;
             }
             queryString += '&rand=' + Math.random(); // avoid browser caching?
-            queryString += '&wt=json&json.wrf=JSON_CALLBACK';
 
+            if (angular.isUndefined(format)) {
+                queryString += '&wt=json&json.wrf=JSON_CALLBACK';
+            } else {
+                queryString += '&wt=' + format;
+            }
             return queryString;
         }
 
@@ -126,8 +130,8 @@ angular.module('voyager.util').
 
         return {
 
-            doBuild2: function (params, page, itemsPerPage, sortDirection, sortField) {
-                return build2(params, page, itemsPerPage, sortDirection, sortField);
+            doBuild2: function (params, page, itemsPerPage, sortDirection, sortField, format) {
+                return build2(params, page, itemsPerPage, sortDirection, sortField, format);
             },
 
             doByIds: function (ids) {
