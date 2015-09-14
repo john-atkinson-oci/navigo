@@ -19,40 +19,42 @@ angular.module('voyager.component')
 				var mainContentHeight;
 				var tipped = false;
 
-				scope.$watch('loading', _init);
-
-				function _init() {
-					if (!scope.loading) {
-						$document.ready(function(){
-							$timeout(function() {
-								detailTopStickyContent = angular.element('#detailTopStickyContent');
-								detailTabContentNav = angular.element('#detailTabContentNav');
-								detailSecondaryColumn = angular.element('#detailSecondaryColumn');
-								detailTabContentNavHeight = detailTabContentNav.outerHeight();
-								_setStickyContent();
-								windowEl.on('scroll', _scroll);
-								windowEl.on('resize', _resize);
-							}, 50);
-						});
+				scope.$watch('loading', function(){
+					if (scope.loading === false) {
+						scope.initialize();
 					}
-				}
+				});
 
-				var resizeTimer;
-				function _resize() {
-					$timeout.cancel(resizeTimer);
-					resizeTimer = $timeout(function(){
-						_setStickyContent();
+				scope.initialize = function() {
+					$timeout(function() {
+						detailTopStickyContent = angular.element('#detailTopStickyContent');
+						detailTabContentNav = angular.element('#detailTabContentNav');
+						detailSecondaryColumn = angular.element('#detailSecondaryColumn');
+						detailTabContentNavHeight = detailTabContentNav.outerHeight();
+						scope.setStickyContent();
+
+						windowEl.on('scroll', _scroll);
+						windowEl.on('resize', scope.resize);
+
+						scope.$on('$destroy', function(){
+							scope.destroy();
+						});
+					}, 150);
+				};
+
+				scope.resize = function() {
+					$timeout.cancel(scope.resizeTimer);
+					scope.resizeTimer = $timeout(function(){
+						scope.setStickyContent();
 					}, 100);
-				}
+				};
 
-				function _destroy() {
+				scope.destroy = function() {
 					windowEl.unbind('scroll', _scroll);
-					windowEl.unbind('resize', _resize);
-				}
+					windowEl.unbind('resize', scope.resize);
+				};
 
 				function _scroll() {
-					//console.log($document.scrollTop());
-
 					if (windowEl.width() <= 767) {
 						return;
 					}
@@ -60,7 +62,9 @@ angular.module('voyager.component')
 					var scrollTop = $document.scrollTop();
 					var windowHeight = windowEl.height();
 
-					if (mainContentHeight > windowHeight) {
+					console.log(mainContentHeight, detailSecondaryColumnHeight, windowHeight);
+
+					if (mainContentHeight > windowHeight || detailSecondaryColumnHeight > windowHeight) {
 						if (!tipped && scrollTop >= detailTabContentNavTipPoint) {
 							tipped = true;
 							_setContentNavStyle();
@@ -99,7 +103,7 @@ angular.module('voyager.component')
 					detailSecondaryColumn.removeClass('sticky').css('margin-top', '0px');
 				}
 
-				function _setStickyContent() {
+				scope.setStickyContent = function() {
 					if (windowEl.width() <= 767) { // smaller screen, remove sticky class
 						_removeStyleForSmallScreen();
 					} else {
@@ -108,6 +112,7 @@ angular.module('voyager.component')
 						mainContentHeight = angular.element('#itemDetailContent').height();
 						detailTopStickyContentHeight = detailTopStickyContent.outerHeight();
 						detailTabContentNavTipPoint = detailTabContentNav.offset().top - detailTopStickyContentHeight - 90;
+
 
 						detailTopStickyContent.addClass('sticky').next().css('margin-top',  detailTopStickyContentHeight + 'px');
 
@@ -124,12 +129,7 @@ angular.module('voyager.component')
 							_setContentNavStyle();
 						}
 					}
-				}
-
-
-				scope.$on('$destroy', function(){
-					_destroy();
-				});
+				};
 
 			} //link
 		};
