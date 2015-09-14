@@ -1,4 +1,4 @@
-<div vs-export-results>
+<div>
 	<div class="modal-header">
 		<h3>Export results list</h3>
 	</div>
@@ -9,8 +9,9 @@
 			<div ng-if="success">{{successMessage}}</div>
 			<div class="field">
 				<label class="form-label">Creat a CSV file</label>
-				<input type="text" class="form-control form-control-short" data-placeholder="Name the CSV file" max-length="200" ng-model="CSVFileName" style="width: 100%" />
+				<input id="CSVFileName" type="text" class="form-control form-control-short" data-placeholder="Name the CSV file" max-length="200" ng-model="CSVFileName" style="width: 100%" />
 			</div>
+			<div ui-spinner spinner-key="task-spinner"></div>
 		</form>
 	</div>
 	<div class="modal-footer">
