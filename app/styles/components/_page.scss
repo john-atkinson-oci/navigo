@@ -11,6 +11,10 @@
 		}
 	}
 
+	#itemDetailContent {
+		z-index: 1;
+	}
+
 	.move-map-option {
 		background-color: $white;
 		padding: 10px 15px 5px;
