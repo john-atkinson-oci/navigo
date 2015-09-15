@@ -6,9 +6,9 @@ angular.module('voyager.component')
 
 		return {
 			restrict: 'A',
-			link: function(scope) {
+			link: function(scope, element) {
 
-				var windowEl = angular.element($window);
+				var windowEl;
 				var detailTopStickyContent;
 				var detailTopStickyContentHeight;
 				var detailTabContentNav;
@@ -16,31 +16,35 @@ angular.module('voyager.component')
 				var detailTabContentNavHeight;
 				var detailSecondaryColumn;
 				var detailSecondaryColumnHeight;
-				var mainContentHeight;
+				var itemDetailEl;
 				var tipped = false;
 
+				scope.initialize = function() {
+					element.ready(function(){
+						$timeout(function() {
+							detailTopStickyContent = angular.element('#detailTopStickyContent');
+							detailTabContentNav = angular.element('#detailTabContentNav');
+							detailSecondaryColumn = angular.element('#detailSecondaryColumn');
+							detailTabContentNavHeight = detailTabContentNav.outerHeight();
+							itemDetailEl = angular.element('#itemDetailContent');
+							scope.setStickyContent();
+
+							windowEl.on('scroll', _scroll);
+							windowEl.on('resize', scope.resize);
+
+							scope.$on('$destroy', function(){
+								scope.destroy();
+							});
+						}, 250);
+					});
+				};
+
+				windowEl = angular.element($window);
 				scope.$watch('loading', function(){
 					if (scope.loading === false) {
 						scope.initialize();
 					}
 				});
-
-				scope.initialize = function() {
-					$timeout(function() {
-						detailTopStickyContent = angular.element('#detailTopStickyContent');
-						detailTabContentNav = angular.element('#detailTabContentNav');
-						detailSecondaryColumn = angular.element('#detailSecondaryColumn');
-						detailTabContentNavHeight = detailTabContentNav.outerHeight();
-						scope.setStickyContent();
-
-						windowEl.on('scroll', _scroll);
-						windowEl.on('resize', scope.resize);
-
-						scope.$on('$destroy', function(){
-							scope.destroy();
-						});
-					}, 150);
-				};
 
 				scope.resize = function() {
 					$timeout.cancel(scope.resizeTimer);
@@ -61,8 +65,7 @@ angular.module('voyager.component')
 
 					var scrollTop = $document.scrollTop();
 					var windowHeight = windowEl.height();
-
-					console.log(mainContentHeight, detailSecondaryColumnHeight, windowHeight);
+					var mainContentHeight = itemDetailEl.outerHeight() + 80;
 
 					if (mainContentHeight > windowHeight || detailSecondaryColumnHeight > windowHeight) {
 						if (!tipped && scrollTop >= detailTabContentNavTipPoint) {
@@ -75,10 +78,12 @@ angular.module('voyager.component')
 						}
 					}
 
-					_setSecondaryContentStyle(scrollTop);
+					_setSecondaryContentStyle(scrollTop, mainContentHeight);
 				}
 
-				function _setSecondaryContentStyle(scrollTop, windowHeight) {
+				function _setSecondaryContentStyle(scrollTop, mainContentHeight) {
+
+					var windowHeight = windowEl.height();
 
 					if (detailSecondaryColumnHeight >= mainContentHeight || detailSecondaryColumnHeight < windowHeight) {
 						// do nothing
@@ -88,7 +93,7 @@ angular.module('voyager.component')
 					if (scrollTop === 0) {
 						detailSecondaryColumn.removeClass('sticky').css('margin-top', 0);
 					} else if ((scrollTop + windowHeight) >= detailSecondaryColumnHeight) {
-						detailSecondaryColumn.addClass('sticky').css('margin-top', -(detailSecondaryColumnHeight - windowHeight) + 'px');
+						detailSecondaryColumn.addClass('sticky').css('width', '365px').css('margin-top', -(detailSecondaryColumnHeight - windowHeight) + 'px');
 					}
 				}
 
@@ -109,20 +114,18 @@ angular.module('voyager.component')
 					} else {
 						detailTopStickyContent.removeClass('sticky').next().css('margin-top', 0);
 						detailTabContentNav.removeClass('sticky');
-						mainContentHeight = angular.element('#itemDetailContent').height();
 						detailTopStickyContentHeight = detailTopStickyContent.outerHeight();
-						detailTabContentNavTipPoint = detailTabContentNav.offset().top - detailTopStickyContentHeight - 90;
+						detailTabContentNavTipPoint = detailTabContentNav.offset().top - detailTopStickyContentHeight - 100;
 
-
+						var mainContentHeight = itemDetailEl.outerHeight();
 						detailTopStickyContent.addClass('sticky').next().css('margin-top',  detailTopStickyContentHeight + 'px');
-
-						detailSecondaryColumnHeight = detailSecondaryColumn.height() + 128;
+						detailSecondaryColumnHeight = detailSecondaryColumn.height() + 138;
 
 						if (mainContentHeight > windowEl.height() && detailSecondaryColumnHeight < mainContentHeight && detailSecondaryColumnHeight < windowEl.height()) {
 							detailSecondaryColumn.addClass('sticky').css({'margin-top': 0, 'width': '365px'});
 						} else {
 							detailSecondaryColumn.removeClass('sticky');
-							_setSecondaryContentStyle($document.scrollTop());
+							_setSecondaryContentStyle($document.scrollTop(), mainContentHeight);
 						}
 
 						if (tipped) {
