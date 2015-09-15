@@ -90,7 +90,7 @@ angular.module('voyager.search').
             getCSV: function (params, rowCount) {
                 _setParams(params);
 
-                var service = queryBuilder.doBuild2(_searchParams, 1, rowCount, _sortDirection, _sortField, 'csv');
+                var service = queryBuilder.doBuildCSV(_searchParams, rowCount, _sortDirection, _sortField);
                 return $http.get(service).then(function(data) {
                     return data;
                 }, function(data){
