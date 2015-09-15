@@ -238,7 +238,6 @@ angular.module('voyager.map').
             getBounds: function(bbox) {
                 return _getBounds(bbox);
             },
-
             isBbox: function(value) {
                 var isBbox = false;
                 if (_.isString(value) && !_.isEmpty(value)) {
@@ -251,6 +250,11 @@ angular.module('voyager.map').
                     }
                 }
                 return isBbox;
+            },
+            formatWkt: function(latlngs) {
+                var wkt = new Wkt.Wkt();
+                wkt.fromObject(latlngs);
+                return wkt.write();
             }
         };
 
