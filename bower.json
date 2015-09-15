@@ -23,7 +23,7 @@
     "angulartics": "0.17.2",
     "bootstrap": "3.3.1",
     "es5-shim": "~2.1.0",
-    "esri-leaflet": "1.0.0-rc.5",
+    "esri-leaflet": "1.0.0",
     "font-awesome": "~4.3.x",
     "jquery": "1.9.1",
     "json3": "~3.3.2",

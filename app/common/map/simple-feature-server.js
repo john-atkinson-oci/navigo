@@ -12,11 +12,11 @@ angular.module('voyager.map').
                 layerCount = mapInfo.linkcount__children;
             }
             if (mapInfo.isLayer) {
-                layer = new L.esri.FeatureLayer(mapInfo.path).addTo(map);
+                layer = new L.esri.Services.featureLayerService({url:mapInfo.path}).addTo(map);
             } else {  //add each layer to map
                 $.each(new Array(layerCount), function (index, value) {
                     var url = mapInfo.path + "/" + index;
-                    layer = new L.esri.FeatureLayer(url).addTo(map);
+                    layer = new L.esri.FeatureLayer({url:url}).addTo(map);
                 });
             }
             //move to last layer TODO replace with zoom to provided bbox?

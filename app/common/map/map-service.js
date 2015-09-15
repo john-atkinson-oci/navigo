@@ -8,11 +8,11 @@ angular.module('voyager.map').
         var mappable = {'application/x-arcgis-image-server': true, 'application/x-arcgis-feature-server': true, 'application/x-arcgis-feature-server-layer': true, 'application/x-arcgis-map-server': true, 'application/x-arcgis-map-server-layer': true, 'application/vnd.ogc.wms_xml': true, 'application/vnd.ogc.wms_layer_xml': true};
 
         function _createDynamicLayer(map, mapInfo, spatialReference) {
-            var options = {};
+            var options = {url: mapInfo.root};
             if (mapInfo.isLayer) {
                 options.layers = [mapInfo.layer];
             }
-            var layer = L.esri.dynamicMapLayer(mapInfo.root, options);
+            var layer = L.esri.dynamicMapLayer(options);
             layer.addTo(map);
 
             if (spatialReference.wkid !== 102100 && spatialReference.wkid !== 102113) {
@@ -25,11 +25,11 @@ angular.module('voyager.map').
         }
 
         function _createTiledLayer(map, mapInfo, spatialReference) {
-            var options = {};
+            var options = {url: mapInfo.root};
             if (mapInfo.isLayer) {
                 options.layers = [mapInfo.layer];
             }
-            var layer = L.esri.tiledMapLayer(mapInfo.root, options);
+            var layer = L.esri.tiledMapLayer(options);
             layer.addTo(map);
 
 //            if (spatialReference.wkid !== 102100) {
@@ -43,11 +43,11 @@ angular.module('voyager.map').
 
         function _createCustomTiledLayer(map, mapInfo, spatialReference) {
 
-            var options = {};
+            var options = {url: mapInfo.root};
             if (mapInfo.isLayer) {
                 options.layers = [mapInfo.layer];
             }
-            var layer = L.esri.tiledMapLayer(mapInfo.root, options);
+            var layer = L.esri.tiledMapLayer(options);
             layer.addTo(map);
 
 //            if (spatialReference.wkid !== 102100) {
@@ -60,10 +60,7 @@ angular.module('voyager.map').
         }
 
         function _createImageLayer(map, mapInfo, spatialReference) {
-            var layer = new L.AgsImageLayer(mapInfo.path, {
-                format: 'image/png',
-                transparent: true
-            });
+            var layer = new L.esri.imageMapLayer({url:mapInfo.path});
             map.addLayer(layer);
             return layer;
         }
@@ -267,11 +264,11 @@ angular.module('voyager.map').
                 //add each layer to map
                 var layer = null;
                 if (mapInfo.isLayer) {
-                    layer = new L.esri.FeatureLayer(mapInfo.path).addTo(map);
+                    layer = new L.esri.FeatureLayer({url:mapInfo.path}).addTo(map);
                 } else {
                     $.each(data.layers, function (index, value) {
                         var url = mapInfo.path + "/" + value.id;
-                        layer = new L.esri.FeatureLayer(url).addTo(map);
+                        layer = new L.esri.FeatureLayer({url:url}).addTo(map);
                     });
                 }
                 //move to last layer TODO replace with zoom to extent like above

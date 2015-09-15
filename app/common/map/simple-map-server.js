@@ -7,6 +7,7 @@ angular.module('voyager.map').
 
         function _getOptions(mapInfo) {
             var options = {};
+            options.url = mapInfo.root;
             if (mapInfo.isLayer) {
                 options.layers = [mapInfo.layer];
             }
@@ -14,7 +15,7 @@ angular.module('voyager.map').
         }
 
         function _createDynamicLayer(map, mapInfo, spatialReference) {
-            var layer = L.esri.dynamicMapLayer(mapInfo.root, _getOptions(mapInfo));
+            var layer = L.esri.dynamicMapLayer(_getOptions(mapInfo));
             layer.addTo(map);
 
 //            if (spatialReference.wkid !== 102100 && spatialReference.wkid !== 102113) {
@@ -27,15 +28,14 @@ angular.module('voyager.map').
         }
 
         function _createTiledLayer(map, mapInfo) {
-            var layer = L.esri.tiledMapLayer(mapInfo.root, _getOptions(mapInfo));
+            var layer = L.esri.tiledMapLayer(_getOptions(mapInfo));
             layer.addTo(map);
             return layer;
         }
 
         function _createImageLayer(map, mapInfo, spatialReference) {
-            var layer = new L.AgsImageLayer(mapInfo.path, {
-                format: 'image/png',
-                transparent: true
+            var layer = new L.esri.imageMapLayer({
+                url: mapInfo.path
             });
             map.addLayer(layer);
             return layer;
