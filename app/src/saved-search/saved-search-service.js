@@ -238,9 +238,9 @@ angular.module('voyager.search').
 
             showSearchModal: function(tab) {
                 var modalInstance = $modal.open({
-                        templateUrl: 'src/saved-search/saved-search-modal.html',
+                        templateUrl: 'src/saved-content/saved-content-modal.html',
                         size:'lg',
-                        controller: 'SavedSearchModalCtrl',
+                        controller: 'SavedContentModalCtrl',
                         resolve: {
                             tab: function() {
                                 return tab;
@@ -254,6 +254,7 @@ angular.module('voyager.search').
                     //$log.info('Modal dismissed at: ' + new Date());
                 });
             },
+
             applySavedSearch: function(saved, $scope) {
                 var solrParams = this.getParams(saved);
                 //solrParams.id = saved.id;  TODO why are we setting this?

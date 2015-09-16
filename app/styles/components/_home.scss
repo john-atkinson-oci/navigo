@@ -172,6 +172,28 @@
 		.location_wrap {
 			padding-left: 130px;
             line-height: 60px;
+
+            a {
+            	display: none;
+            	position: absolute;
+            	z-index: 5;
+            	right: 5px;
+            	color: #9097a0;
+
+            	& + a {
+            		right: 30px;
+            	}
+            }
+
+            &:hover {
+            	a {
+					display: block;
+            	}
+            }
+
+            a:hover {
+            	color: $darkerBlue;
+            }
 		}
 	}
 }

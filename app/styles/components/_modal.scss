@@ -56,11 +56,15 @@
 	padding-bottom: 0;
 	background-color: $likewhite;
 
+	.search_list_space {
+		padding-top: 15px;
+	}
+
 	form {
 		background-color: $white;
 		padding: 15px 30px 25px;
 
-		&[name=savedSearchForm] {
+		&[name=savedForm] {
 			position: relative;
 			background: none;
 			padding: 0 0 20px;
@@ -128,7 +132,7 @@
 	}
 }
 
-.saved-search-modal {
+.saved-modal {
 	padding-top: 10px;
 }
 
@@ -251,7 +255,6 @@
 
 .saved_primary_nav {
 	font-size: 24px;
-	color: #424a53;
 	overflow: hidden;
 	margin-bottom: 30px;
 
@@ -267,6 +270,10 @@
 
 		&:last-child {
 			border-right: 0;
+		}
+
+		&.selected a {
+			color: #424a53;
 		}
 	}
 
