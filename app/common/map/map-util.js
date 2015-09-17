@@ -251,10 +251,36 @@ angular.module('voyager.map').
                 }
                 return isBbox;
             },
-            formatWkt: function(latlngs) {
+            convertToWkt: function(latlngs) {
                 var wkt = new Wkt.Wkt();
                 wkt.fromObject(latlngs);
                 return wkt.write();
+            },
+            formatWktForDisplay: function(wkt) {
+                var wktArray = wkt.split(' ');
+                var firstPartWkt = wktArray[0].split('.');
+                var lastPartWkt = wktArray.pop().split('.');
+
+                var shortWkt = firstPartWkt[0];
+
+                if (firstPartWkt[1]) {
+                    shortWkt += '.' + firstPartWkt[1].substring(0, (firstPartWkt[1].length > 1) ? 2 : 1);
+                }
+
+                shortWkt += ' ... ' + lastPartWkt[0];
+
+                if (lastPartWkt[1]) {
+                    var endLastPartArray = lastPartWkt[1].split(')');
+                    if (endLastPartArray[0].length > 2) {
+                        endLastPartArray[0] = endLastPartArray[0].substring(0, 2);
+                    }
+                    shortWkt += '.' + endLastPartArray.join(')');
+                }
+
+                return shortWkt;
+            },
+            currentColor: function(type) {
+                return (type === 'Within') ? '#f06eaa' : '#1771b4';
             }
         };
 
