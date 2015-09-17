@@ -59,5 +59,27 @@
 		height: 30px;
 		border-radius: 3px;
 	}
+}
 
+.leaflet-top {
+	.leaflet-draw-section {
+		.voyager-draw-rect {
+			position: relative;
+			&:after {
+				position: absolute;
+				bottom: 2px;
+				right: 2px;
+				content: '';
+				width: 0;
+				height: 0;
+				border-style: solid;
+				border-width: 0 0 5px 5px;
+				border-color: transparent transparent #666d7a transparent;
+			}
+
+			i:before {
+				margin-top: 1px;
+			}
+		}
+	}
 }
