@@ -1,7 +1,7 @@
 /*global angular, _ */
 
 angular.module('voyager.search')
-	.controller('SearchInputCtrl', function ($scope, config, $location, searchService, $timeout, filterService, mapUtil, sugar) {
+	.controller('SearchInputCtrl', function ($scope, $rootScope, config, $location, searchService, $timeout, filterService, mapUtil, sugar) {
 		'use strict';
 
 		var placeChanged = false;
@@ -14,10 +14,6 @@ angular.module('voyager.search')
 		$scope.drawingTypes = ['Within', 'Intersects'];
 		$scope.selectedDrawingType = ($location.search())['place.op'] === 'intersects' ? 'Intersects' : 'Within';
 
-		$scope.placeOpChange = function(type) {
-			$scope.selectedDrawingType = type;
-		};
-
 		_init();
 
 		// listen to stateChangeSuccess event to toggle search form
@@ -25,6 +21,13 @@ angular.module('voyager.search')
 		$scope.$on('updateBBox', function(event, args){
 			_updatePlaceToBbox(args);
 		});
+
+		$scope.placeOpChange = function(type) {
+			if ($scope.selectedDrawingType !== type) {
+				$scope.selectedDrawingType = type;
+			}
+			$rootScope.$broadcast('SELECTED_DRAWING_TYPE_CHANGED', type);
+		};
 
 		$scope.$on('clearSearch', _clearAllField);
 
@@ -75,6 +78,11 @@ angular.module('voyager.search')
 		}
 
 		function _updatePlaceToBbox(params) {
+
+			if (params.place === null) {
+				return;
+			}
+
 			$scope.search.place = null;
 			$location.search('place', params.place);
             $location.search('place.id', null);
