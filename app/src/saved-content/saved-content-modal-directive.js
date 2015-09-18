@@ -28,7 +28,7 @@ angular.module('voyager.search').directive('savedContent', function(authService)
 				}
 			};
 
-			scope.cancel = function () {
+			scope.cancel = function() {
 				scope.$dismiss();
 			};
 
