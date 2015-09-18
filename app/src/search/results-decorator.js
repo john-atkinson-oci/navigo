@@ -92,6 +92,10 @@
             //var link = '#/show/' +  doc.id + '?disp=' + disp;
             if(angular.isDefined(doc.shard) && doc.shard !== '[not a shard request]') {
                 link += '&shard=' + doc.shard;
+                if(doc.shard.toLowerCase().indexOf('local') > -1) {
+                    doc.isRemote = true;
+                    doc.canCart = false;
+                }
             }
             return link;
         }
@@ -140,7 +144,10 @@
                 doc.htmlValue = _removeLongTextFieldNames(htmlified);
                 doc.detailLink = _getDetailsLink(doc, disp);
                 doc.inCart = cartService.isInCart(doc.id);
-                doc.canCart = authService.hasPermission('process');
+
+                if (doc.isRemote !== true) {
+                    doc.canCart = authService.hasPermission('process');
+                }
 
                 if(visitor) {
                     visitor(doc);

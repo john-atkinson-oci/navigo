@@ -252,7 +252,7 @@ angular.module('voyager.details')
         };
 
         $scope.canCart = function () {
-            return authService.hasPermission('process');
+            return authService.hasPermission('process') && !$scope.isRemote;
         };
 
         $scope.addToCart = function () {

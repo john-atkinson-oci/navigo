@@ -297,7 +297,7 @@ angular.module('voyager.search')
         };
 
         $scope.hasOnePermission = function() {
-            return $scope.canEditPermission() || $scope.flagPermission() || $scope.hasPermission('process');
+            return $scope.canEditPermission() || $scope.flagPermission() || $scope.canCart();
         };
 
         function hasRemoteShard() {
@@ -321,7 +321,7 @@ angular.module('voyager.search')
         };
 
         $scope.canCart = function () {
-            return $scope.hasPermission('process');
+            return !hasRemoteShard() && $scope.hasPermission('process');
         };
 
         $scope.addToCart = function (item) {
