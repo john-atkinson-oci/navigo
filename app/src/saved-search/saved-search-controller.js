@@ -22,8 +22,6 @@ angular.module('voyager.search')
 			$scope.savedSearches = global;
 			$scope.personalSavedSearches = personal;
 		});
-
-		$scope.isAnonymous = authService.isAnonymous();
 	}
 
 	_loadSavedSearches();
@@ -44,6 +42,25 @@ angular.module('voyager.search')
 			});
 		});
 	};
+
+	$scope.search = function() {
+		if (_.isEmpty($scope.savedTerm)) {
+			_loadSavedSearches();
+			return;
+		}
+
+		savedSearchService.searchByTerm($scope.savedTerm).then(function(savedSearches){
+			var personal = [], permissions, all = '_EVERYONE';
+			$.each(savedSearches, function(index, saved) {
+				permissions = _.indexBy(saved.share);
+				if(!angular.isDefined(permissions[all])) {
+					personal.push(saved);
+				}
+			});
+			$scope.personalSavedSearches = personal;
+		});
+	};
+
 
 	$scope.dragControlListeners = {
 		enabled: true,

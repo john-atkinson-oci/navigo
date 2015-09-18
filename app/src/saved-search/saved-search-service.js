@@ -136,8 +136,19 @@ angular.module('voyager.search').
             return queryString;
         }
 
-        function _execute() {
-            return $http.jsonp(_getQueryString()).then(function (data) {
+        function _getSearchResult(term) {
+            var rows = 150;  //TODO set to what we really want
+            var queryString = config.root + 'solr/ssearch/select?';
+            queryString += 'fq=title:' + term;
+            queryString += '&fl=title';
+            queryString += '&rows=' + rows + '&rand=' + Math.random();
+            queryString += '&wt=json&json.wrf=JSON_CALLBACK';
+            return queryString;
+        }
+
+
+        function _execute(url) {
+            return $http.jsonp(url).then(function (data) {
                 return data.data.response.docs;
             }, function(error) {
                 //@TODO: handle error
@@ -155,7 +166,11 @@ angular.module('voyager.search').
         //public methods - client interface
         return {
             getSavedSearches: function() {
-                return _execute();
+                return _execute(_getQueryString());
+            },
+
+            searchByTerm: function(term) {
+                return _execute(_getSearchResult(term));
             },
 
             getParams: function(saved) {
