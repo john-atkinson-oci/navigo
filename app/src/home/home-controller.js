@@ -110,25 +110,10 @@ angular.module('voyager.home')
 		}
 
 		$scope.saveLocation = function() {
-			var params = {};
-
-			if ($scope.selectedMapType === 'Place') {
-				if (!_.isEmpty($scope.search.location)) {
-					params.place = $scope.search.location;
-					var placeId = $location.search()['place.id'];
-					if(angular.isDefined(placeId)) {
-						params['place.id'] = placeId;
-					}
-					params['place.op'] = $scope.selectedDrawingType.toLowerCase();
-				}
-			} else if ($scope.search.place !== undefined) {
-				params.place = $scope.search.place;
-				params['place.op'] = $scope.selectedDrawingType.toLowerCase();
-			}
-
 			$modal.open({
-                template: '<save-location-dialog />',
-                size: 'md'
+                template: '<vs-save-location-dialog />',
+                size: 'md',
+                scope: $scope
             });
 		};
 
