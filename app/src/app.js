@@ -34,7 +34,7 @@ angular.module('portalApp', [
         'angulartics.google.analytics',
         'voyager.common.featured'
     ])
-    .factory('httpRequestInterceptor', function ($analytics, $injector) {
+    .factory('httpRequestInterceptor', function ($analytics, $injector, $q) {
         'use strict';
         return {
             response: function(response) {
@@ -60,7 +60,7 @@ angular.module('portalApp', [
                         category: 'http', label: url, value:response.status  // jshint ignore:line
                     });
                 }
-                return response;
+                return $q.reject(response);
             }
         };
     })
