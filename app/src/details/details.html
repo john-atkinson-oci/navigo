@@ -8,7 +8,6 @@
                         <li class="first" ng-show="::hasRecords"><a href="javascript:;" ng-disabled="noPrevious" ng-click="getPrevious()" class="underline"><span class="fa fa-angle-left"></span>&nbsp; <span class="txt">Previous</span></a></li>
                         <li class="{{!hasRecords && 'first' || ''}}"><a href="{{lastSearch}}" class="underline"><span class="txt">Return to Search</span></a></li>
                         <li ng-show="::hasRecords"><a href="javascript:;" ng-disabled="noNext" ng-click="getNext()" class="underline"><span class="txt">Next</span>&nbsp; <span class="fa fa-angle-right"></span></a></li>
-                        <li ng-if="isRemote" ng-click="openOnRemote()" class="pull-right" style="border-left: none;"><button>Open on Remote Server</button></li>
                     </ul>
                     <section>
                         <header class="result_title">
@@ -58,6 +57,7 @@
                             </li>
                             <li ng-show="!inCart(doc.id) && canCart()"><a href="javascript:;" class="btn btn-util" role="button" ng-click="addToCart()"><span class="icon-plus"></span>{{uiText.add.text}}</span></a></li>
                             <li ng-show="inCart(doc.id)"><a href="javascript:;" class="btn btn-util" role="button" ng-click="removeFromCart()"><span class="icon-x"></span> Remove</a></li>
+                            <li ng-if="isRemote"><a href="javascript:;" class="btn btn-util" role="button" ng-click="openOnRemote()">Open on Remote Server</a></li>
                             <!--
                             <li>
                                 <div class="hover_flyout">
@@ -78,7 +78,7 @@
                         <h4>Tags:</h4>
                         <ul class="tag_list">
                             <li ng-repeat="label in labels"><a href="javascript:;" ng-click="searchTag(label)" ng-bind="label"></a><span ng-if="!$last">,</span></li>
-                            <li ng-show="canTag">
+                            <li ng-show="canTag && !isRemote">
                                 <a href="javascript:;" class="edit_link" ng-click="toggleEditTag()" ng-show="labels.length"><span class="icon-edit"></span>{{showEditTag && 'Hide' || 'Edit'}}</a>
                                 <a href="javascript:;" class="edit_link" ng-show="!labels.length" ng-click="toggleEditTag()"><span class="icon-edit"></span>{{showEditTag && 'Hide' || 'Add'}}</a>
                             </li>
