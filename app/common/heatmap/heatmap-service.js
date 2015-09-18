@@ -11,7 +11,7 @@ angular.module('voyager.heatmap')
             render: []
         };
         var stats = false;
-        var opacity = 1;
+        var opacity = config.searchMap.heatmapOpacity;
         var color1 = colorizer.rgb(config.searchMap.heatmapColor1);
         var color2 = colorizer.rgb(config.searchMap.heatmapColor2);
         var self = this;
@@ -262,12 +262,12 @@ angular.module('voyager.heatmap')
         /**
          * Sets the overall opacity of the heatmap layer.
          *
-         * @param {number} o Opacity value between 0 (transparent) and 100 (opaque).
+         * @param {number} o Opacity value between 0 (transparent) and 1 (opaque).
          *
          * @return {object} This service.
          */
         this.opacity = function(o) {
-            opacity = o/100.0;
+            opacity = o;
             return self;
         };
     });

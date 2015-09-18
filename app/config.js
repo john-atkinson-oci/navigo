@@ -70,8 +70,9 @@ var config = {
     "searchMap": {
        "footprintColor": "#0000ff",
         "footprintWidth": 5,
-        "heatmapColor1": "#00FF0040",
-        "heatmapColor2": "#FF0000cc",
+        "heatmapColor1": "#00FF00",
+        "heatmapColor2": "#FF0000",
+        "heatmapOpacity": 0.75,
         "heatmapBlurRadius": 4
     },
     excludeDetails : ['_', 'allow_', 'deny_', 'http_header', 'tree', 'links', 'geo', 'path_to_', 'debug_properties', 'linkcount_', 'hasThumb', 'hasPreview', 'hasMetadata', 'md5', 'worker', 'extractor', 'hasLayerFile'],
