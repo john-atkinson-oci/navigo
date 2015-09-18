@@ -363,10 +363,10 @@ angular.module('voyager.search')
 
             // set up the heatmap layer, but first check there is actual data to
             // render (ie. the geo field is configured and populated)
-            $scope.heatmapOpts = {opacity: 100};
+            $scope.heatmapOpts = {opacity: config.searchMap.heatmapOpacity*100.0};
             $scope.$watch('heatmapOpts.opacity', function(newVal) {
                 if (angular.isDefined(newVal) && angular.isDefined(_heatmapLayer)) {
-                    heatmapService.opacity(newVal);
+                    heatmapService.opacity(newVal/100.0);
                     _heatmapLayer.render();
                 }
             });
