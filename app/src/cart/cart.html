@@ -15,7 +15,11 @@
 					</thead>
 					<tbody>
 						<tr ng-repeat="item in cartItems">
-							<td class="thumbnail_col"><a href="#/show/{{item.id}}?disp={{disp}}"><img src="assets/img/s.png" style="background-image: url({{item.thumb}})" alt="{{item.name}}" /></a></td>
+							<td class="thumbnail_col">
+								<a href="#/show/{{item.id}}?disp={{disp}}">
+									<img src="assets/img/s.png" ng-class="item.defaultThumb ? 'default-thumb-queue':''" style="background-image: url({{item.thumb}})" alt="{{item.name}}" />
+								</a>
+							</td>
 							<td class="name_col">
 								<a href="#/show/{{item.id}}?disp={{disp}}" class="underline semi"><span class="txt">{{item.name}}</span></a>
 							</td>

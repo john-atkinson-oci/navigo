@@ -149,6 +149,10 @@
                     doc.canCart = authService.hasPermission('process');
                 }
 
+                if(angular.isDefined(doc.thumb) && doc.thumb.indexOf('vres/mime') !== -1) {
+                    doc.defaultThumb = true;
+                }
+
                 if(visitor) {
                     visitor(doc);
                 }

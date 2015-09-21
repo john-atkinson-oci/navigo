@@ -195,6 +195,9 @@ angular.module('cart').
                 } else {
                     item.displayFormat = 'Unknown';
                 }
+                if(angular.isDefined(item.thumb) && item.thumb.indexOf('vres/mime') !== -1) {
+                    item.defaultThumb = true;
+                }
             });
         }
 

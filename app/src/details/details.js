@@ -226,6 +226,10 @@ angular.module('voyager.details')
                         $scope.addToMap();
                     }
                 },100);
+
+                if(angular.isDefined($scope.doc.thumb) && $scope.doc.thumb.indexOf('vres/mime') !== -1) {
+                    doc.defaultThumb = true;
+                }
             });
         }
 

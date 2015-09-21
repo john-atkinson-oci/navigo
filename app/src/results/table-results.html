@@ -18,7 +18,7 @@
                 <td class="img">
                     <div ng-if="doc.hasMissingData" class="icon-error"></div>
                     <div class="tag" ng-if="::doc.tag_flags"><a href="javascript:;" ng-click="applyTag(doc.tag_flags)" ng-bind="::doc.tag_flags"></a></div>
-                    <a href="{{doc.detailLink}}" ng-if="::doc.thumb"><img src="assets/img/s.png" style="background-image: url({{doc.thumb}})" /></a></td>
+                    <a href="{{doc.detailLink}}" ng-if="::doc.thumb"><img src="assets/img/s.png" style="background-image: url({{doc.thumb}})" ng-class="doc.defaultThumb ? 'default-table-thumb' : ''"/></a></td>
                 <td ng-repeat="field in tableFields" sortable="{{field.field}}" ng-class="{'semi' : field.field == 'name'}">
                     <div class="field_wrap" style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap">
                         <a href="{{doc.detailLink}}" class="underline" ng-if="field.field == 'name'"><span class="txt">{{doc[field.field]}}</span></a>
