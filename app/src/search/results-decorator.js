@@ -92,7 +92,7 @@
             //var link = '#/show/' +  doc.id + '?disp=' + disp;
             if(angular.isDefined(doc.shard) && doc.shard !== '[not a shard request]') {
                 link += '&shard=' + doc.shard;
-                if(doc.shard.toLowerCase().indexOf('local') > -1) {
+                if(doc.shard.toLowerCase().indexOf('local') === -1) {
                     doc.isRemote = true;
                     doc.canCart = false;
                 }
