@@ -1,6 +1,6 @@
 'use strict';
 angular.module('voyager.filters')
-    .controller('FiltersCtrl', function ($scope, filterService, $location, $modal, $timeout, statsService, treeService, configService, filterQuery, translateService, filterStyle, calendarFilter) {
+    .controller('FiltersCtrl', function ($scope, filterService, $location, $modal, $timeout, statsService, treeService, configService, filterQuery, translateService, filterStyle, calendarFilter, $document) {
 
         var _busy = false;
         var _notifyFilter = false;
@@ -180,6 +180,16 @@ angular.module('voyager.filters')
             return filter.values.length > $scope.maxFacets;
         };
 
+        function _scrollIntoView(filter) { // TODO create a directive for this
+            $timeout(function() {  // let scope digest and render
+                var clientHeight = $document[0].documentElement.clientHeight;
+                var element = $('#' + filter.field);
+                if (element[0].getBoundingClientRect().bottom > clientHeight) {
+                    $('body').animate({scrollTop: element.offset().top}, 'slow');
+                }
+            }, 250);
+        }
+
         $scope.toggleDisplayState = function (filter) {
             //timeout allows the directive to fire first
             $timeout(function() {
@@ -189,6 +199,11 @@ angular.module('voyager.filters')
                     filter.displayState = '';
                 }
                 filterService.setFilterState(filter,filter.displayState);
+
+                if(filter.displayState === 'in') {
+                    _scrollIntoView(filter);
+                }
+
             }, 0);
         };
 
