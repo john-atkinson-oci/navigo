@@ -1,33 +1,10 @@
 /*global angular, $, querystring, config */
 
 angular.module('voyager.search').
-    factory('savedLocationService', function (sugar, $http, configService, $q, authService, $modal, $location, $analytics) {
+    factory('savedLocationService', function (sugar, $http, configService, $q, authService, $modal, $location, $analytics, filterService) {
         'use strict';
 
         var observers = [];
-
-        function _getView(voyagerParams) {
-            var view = {'type':'card'};
-            if(angular.isDefined(voyagerParams.view)) {
-                voyagerParams.view = voyagerParams.view.toLowerCase();
-                if(voyagerParams.view === 'table' || voyagerParams.view === 'map') {
-                    view.type = voyagerParams.view;
-                }
-            }
-            return view;
-        }
-
-        function _decode(params) {
-            $.each(params, function(index, param) {
-                if( typeof param === 'string' ) {
-                    params[index] = decodeURIComponent(param);
-                } else {  //array
-                    $.each(param, function(index, value) {
-                        param[index] = decodeURIComponent(value);
-                    });
-                }
-            });
-        }
 
         function _doPost(request, action) {
             return $http({
@@ -161,33 +138,7 @@ angular.module('voyager.search').
                 return _execute(_getSearchResult(term));
             },
             getParams: function(saved) {
-                var solrParams = querystring.parse(sugar.trim(saved.query,'&'));
-                _decode(solrParams);  //workaround - seems the params get encoded twice
-
-                var voyagerParams;
-
-                //@TODO: need to change in the back end to use path instead query
-                if (saved.path === undefined) {
-                    voyagerParams = querystring.parse(sugar.trim(saved.query.replace(/\//g,'&'),'&'));
-                } else {
-                    voyagerParams = querystring.parse(sugar.trim(saved.path.replace(/\//g,'&'),'&'));
-                }
-
-
-                if(angular.isDefined(voyagerParams.disp)) {
-                    solrParams.disp = voyagerParams.disp;
-                }
-
-                var view = _getView(voyagerParams);
-                solrParams.view = view.type;
-                if (angular.isDefined(solrParams.sort)) {
-                    var sort = solrParams.sort.split(' ');
-                    solrParams.sort = sort[0].replace('_sort','');  //TODO workaround, bug with saved search?
-                    solrParams.sortdir = sort[1];
-                } else {
-                    solrParams.sortdir = 'desc';
-                }
-                return solrParams;
+                return querystring.parse(sugar.trim(saved.value.replace(/\//g,'&'),'&'));
             },
 
             addObserver: function (obs) {
@@ -210,19 +161,22 @@ angular.module('voyager.search').
 
             applySavedLocation: function(saved, $scope) {
                 var solrParams = this.getParams(saved);
-                //solrParams.id = saved.id;  TODO why are we setting this?
 
                 $scope.$emit('clearSearchEvent');
 
                 $location.path('search').search(solrParams);
-                // filterService.applyFromUrl($location.search()).then(function() {
-                //     $scope.$emit('addBboxEvent', {});  //updates map with bbox from url
-                //     $scope.$emit('filterEvent', {});
+
+                filterService.applyFromUrl($location.search()).then(function() {
+                    $scope.$emit('addBboxEvent', {});  //updates map with bbox from url
+                    $scope.$emit('filterEvent', {});
+                });
+
+                // $analytics.eventTrack('saved-location', {
+                //     category: 'run'
                 // });
 
-                $analytics.eventTrack('saved-search', {
-                    category: 'run'
-                });
+                //$scope.$emit('searchEvent');  //TODO remove - filterEvent will fire a search
+                this.addToRecent(saved);
 
             },
 

@@ -1,7 +1,7 @@
 <div class="modal-header">
     <ul class="saved_primary_nav">
-        <li ng-class="{'selected' : showSearch}"><a href="#" ng-click="showCategory('search')">Searches</a></li>
-        <li ng-class="{'selected' : !showSearch}"><a href="#" ng-click="showCategory('location')">Locations</a></li>
+        <li ng-class="{'selected' : showSearch}"><a href="javascript:;" ng-click="showCategory($event, 'search')">Searches</a></li>
+        <li ng-class="{'selected' : !showSearch}"><a href="javascript:;" ng-click="showCategory($event, 'location')">Locations</a></li>
     </ul>
 
     <nav class="tab tab_border clearfix" ng-if="!showSearch">
