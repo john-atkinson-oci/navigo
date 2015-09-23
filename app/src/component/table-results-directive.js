@@ -47,6 +47,13 @@ angular.module('voyager.component')
 				};
 
 				scope.resizeContent = function() {
+
+					if (scope.windowWidth < 768) {
+						searchResultMapContainerEl.css({visibility: 'hidden', height: 0});
+						listWrapEl.css('margin-top', scope.windowWidth < 640 ? '155px' : '110px');
+						return;
+					}
+
 					var mapTopPosition = angular.element('.search-map').offset().top;
 					var availableHeight = scope.windowHeight - mapTopPosition;
 
