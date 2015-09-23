@@ -63,7 +63,7 @@ angular.module('voyager.search')
 		accept: function() {
 			return $scope.dragLocationControlListeners.enabled;
 		},
-	    orderChanged: function(eventObj) {
+		orderChanged: function(eventObj) {
 			var list = $scope.personalSavedLocations,
 				index = eventObj.dest.index,
 				beforeId = null,
@@ -81,6 +81,6 @@ angular.module('voyager.search')
 			savedLocationService.order(list[index].id, beforeId, afterId).then(function(){
 				$scope.dragLocationControlListeners.enabled = true;
 			});
-	    }
+		}
 	};
 });

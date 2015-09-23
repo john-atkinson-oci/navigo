@@ -9,6 +9,7 @@ angular.module('voyager.search')
             templateUrl: 'src/saved-location/save-location-dialog.html',
             link: function(scope) {
                 scope.savedLocation = {};
+                scope.error = false;
 
                 var _shareGroups = [];
                 var _coreRoles = [{id:'_EVERYONE',text:'EVERYONE'},{id:'_LOGGEDIN',text:'LOGGEDIN'},{id:'_ANONYMOUS',text:'ANONYMOUS'}];
@@ -19,6 +20,10 @@ angular.module('voyager.search')
                     data: function() {
                         return {results:_shareGroups};
                     }
+                };
+
+                scope.hasError = function() {
+                    return scope.error !== false;
                 };
 
                 function _loadGroups() {
@@ -75,11 +80,15 @@ angular.module('voyager.search')
                     }
 
                     savedLocationService.saveLocation(scope.savedLocation, params).then(function(response) {
-                        scope.$dismiss();
-                        scope.$emit('saveLocationSuccess', response.data);
-
-                    }, function(error) {
-                        console.log(error.data);
+                        if (!angular.isDefined(response.data.error)) {
+                            scope.$dismiss();
+                            scope.error = false;
+                            // scope.$emit('saveLocationSuccess', response.data);
+                        } else {
+                            scope.error = response.data.error;
+                        }
+                    }, function() {
+                        scope.error = 'please try again later';
                     });
                 };
 
