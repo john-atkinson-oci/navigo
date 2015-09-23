@@ -41,9 +41,14 @@ angular.module('voyager.details')
 
         function _activate() {
             var shard = $location.search().shard;
-            if (angular.isDefined(shard) && shard.toLowerCase() !== 'local') {
-                $scope.isRemote = true;
+            if (angular.isDefined(shard)) {
+                var local = config.root;
+                local = local.replace('http://','').replace('https://','');
+                if (shard.toLowerCase().indexOf('local') === -1 && shard.indexOf(local) === -1) {
+                    $scope.isRemote = true;
+                }
             }
+
             _doLookup($stateParams.id);
             _setPermissions();
 

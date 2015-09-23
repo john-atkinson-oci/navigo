@@ -6,7 +6,7 @@
     angular.module('voyager.search')
         .factory('resultsDecorator', resultsDecorator);
 
-    function resultsDecorator(configService, sugar, translateService, cartService, authService, $location) {
+    function resultsDecorator(configService, sugar, translateService, cartService, authService, $location, config) {
         var _mappable = {'application/x-arcgis-image-server':true,'application/x-arcgis-feature-server':true,'application/x-arcgis-feature-server-layer':true,'application/x-arcgis-map-server':true,'application/x-arcgis-map-server-layer':true,'application/vnd.ogc.wms_xml':true, 'application/vnd.ogc.wms_layer_xml':true};
 
         function _setFormatProperties(doc) {
@@ -92,9 +92,10 @@
             //var link = '#/show/' +  doc.id + '?disp=' + disp;
             if(angular.isDefined(doc.shard) && doc.shard !== '[not a shard request]') {
                 link += '&shard=' + doc.shard;
-                if(doc.shard.toLowerCase().indexOf('local') === -1 && doc.shard.indexOf($location.host()) === -1) {
+                var local = config.root;
+                local = local.replace('http://','').replace('https://','');
+                if (doc.shard.toLowerCase().indexOf('local') === -1 && doc.shard.indexOf(local) === -1) {
                     doc.isRemote = true;
-                    doc.canCart = false;
                 }
             }
             return link;
