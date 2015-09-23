@@ -11,23 +11,8 @@
 </div>
 
 <div id="results-header">
-    <div class="result_actions{{totalItems > 0 && hasOnePermission() ? ' hover_flyout' : ''}}">
-        <a href="javascript:;" class="total flyout_trigger" style="white-space: nowrap">{{totalItems | number}} Results<span class="icon-arrow"></span></a>
-        <div class="flyout">
-            <div class="arrow"></div>
-            <div class="flyout_inner">
-                <ul role="menu">
-                    <li ng-if="canCart()"><a href="javascript:;" ng-click="addAllToCart()">Add all results to {{uiText.name}}</a></li>
-                    <!--
-                    <li><a href="javascript:;">Rate all results</a></li>
-                    -->
-                    <li ng-if="flagPermission()"><a href="javascript:;" ng-click="flagAllResults()">Flag All</a></li>
-                    <li ng-if="flagPermission()"><a href="javascript:;" ng-click="removeAllFlags()">Remove All Flags</a></li>
-                    <li ng-if="canEditPermission()"><a href="javascript:;" ng-click="editAllPresentation()">Edit Fields for All</a></li>
-                    <li><a href="javascript:;" ng-click="exportResultsList()">Export results list</a></li>
-                </ul>
-            </div>
-        </div>
+    <div class="result_actions">
+        <a href="javascript:;" class="total" style="white-space: nowrap">{{totalItems | number}} Results</a>
     </div>
     <!--<div class="result_range" ng-show="results.length">showing <span ng-bind="startItem"></span><span ng-if="endItem" ng-bind="'-' + endItem"></span></div>-->
     <div id="working"></div>
@@ -36,7 +21,7 @@
 <div id="searchViewList" ng-show="view == 'table'" ng-include="'src/search/search-view-list.html'"></div>
 
 <ul class="option_list pull-right" ng-show="hasResults()">
-    <li id="noMapMapsizeDropDown" ng-if="tableViewMapSize === 'no'">
+    <li id="noMapMapsizeDropDown" ng-if="view == 'table' && tableViewMapSize === 'no'">
         <div class="hover_flyout">
             <a href="javascript:;" class="icon-arrow flyout_trigger"><span class="icon-search_map"></span></a>
             <div class="flyout">
@@ -52,9 +37,27 @@
         </div>
     </li>
     <li ng-if="hasPermission('save_search')"><a href="javascript:;" ng-click="toggleSave()" class="btn btn-action icon-heart_empty"><span>Save search</span></a></li>
+    <li ng-if="totalItems > 0 && hasOnePermission()">
+        <div class="result_actions hover_flyout">
+            <a href="javascript:;" class="btn btn-secondary icon-tools flyout_trigger"><span class="small_hide">Tools<span class="icon-arrow"></span></span></a>
+            <div class="flyout">
+                <div class="arrow"></div>
+                <div class="flyout_inner">
+                    <ul role="menu">
+                        <li ng-if="canCart()"><a href="javascript:;" ng-click="addAllToCart()">Add all results to {{uiText.name}}</a></li>
+                        <li ng-if="flagPermission()"><a href="javascript:;" ng-click="flagAllResults()">Flag All</a></li>
+                        <li ng-if="flagPermission()"><a href="javascript:;" ng-click="removeAllFlags()">Remove All Flags</a></li>
+                        <li ng-if="canEditPermission()"><a href="javascript:;" ng-click="editAllPresentation()">Edit Fields for All</a></li>
+                        <li><a href="javascript:;" ng-click="exportResultsList()">Export results list</a></li>
+                        <li><a href="javascript:;" ng-click="submitWebServices()">Submit Web Services</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </li>
     <li ng-show="view != 'table'">
         <div class="hover_flyout top_only">
-            <a href="javascript:;" class="btn btn-secondary flyout_trigger"><span class="sort_label">{{view == 'map' && 'Sort' || displaySortField}}</span><span class="icon-arrow"></span></a>
+            <a href="javascript:;" class="btn btn-secondary icon-tools flyout_trigger"><span class="small_hide"><span class="sort_label">{{view == 'map' && 'Sort' || displaySortField}}</span><span class="icon-arrow"></span></span></a>
             <div class="flyout">
                 <div class="arrow"></div>
                 <div class="flyout_inner">
@@ -85,7 +88,7 @@
             </div>
         </div>
     </li>
-    <li ng-if="!filterVisible"><a href="javascript:;" ng-click="toggleFilter()" class="btn btn-secondary icon-filters"><span>Filter</span></a></li>
+    <li ng-if="!filterVisible"><a href="javascript:;" ng-click="toggleFilter()" class="btn btn-secondary icon-filters"><span class="small_hide">Filter</span></a></li>
     <li class="filter_header" ng-if="filterVisible">
         <a href="javascript:;" ng-click="toggleFilter()" class="semi">Filter your search<i class="icon-x"></i></a>
     </li>
