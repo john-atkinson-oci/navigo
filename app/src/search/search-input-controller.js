@@ -1,7 +1,7 @@
 /*global angular, _ */
 
 angular.module('voyager.search')
-	.controller('SearchInputCtrl', function ($scope, $rootScope, config, $location, searchService, $timeout, filterService, mapUtil, sugar) {
+	.controller('SearchInputCtrl', function ($scope, $rootScope, config, $location, searchService, $timeout, filterService, mapUtil, sugar, $modal) {
 		'use strict';
 
 		var placeChanged = false;
@@ -37,6 +37,14 @@ angular.module('voyager.search')
             }
 			_init();
 		});
+
+		$scope.saveLocation = function() {
+			$modal.open({
+                template: '<vs-save-location-dialog />',
+                size: 'md',
+                scope: $scope
+            });
+		};
 
 		/**
 		 * @function Populate query and location fields based on querystring

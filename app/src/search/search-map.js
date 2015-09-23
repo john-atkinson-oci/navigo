@@ -168,7 +168,6 @@ angular.module('voyager.search')
 				};
 
 				function currentColor() {
-					console.log($scope.selectedDrawingType);
 					return mapUtil.currentColor($scope.selectedDrawingType);
 				}
 

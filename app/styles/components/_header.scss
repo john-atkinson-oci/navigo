@@ -92,7 +92,7 @@
 	}
 
 	fieldset:hover {
-		.icon-x {
+		.icon-x, .icon-heart_filled {
 			display: block;
 		}
 	}
@@ -119,7 +119,7 @@
 
 	}
 
-	.icon-x {
+	.icon-x, .icon-heart_filled {
 		display: none;
 		outline: none;
 		position: absolute;
@@ -131,11 +131,21 @@
 		font-size: $smallestSize;
 	}
 
+	.icon-heart_filled {
+		right: 30px;
+	}
+
 	.location_wrap .input_field {
 		padding-left: 120px;
 
 		+ .suggest-container + label:before {
 			left: 90px;
+		}
+
+		&:focus {
+			+ .suggest-container + label + a + a {
+				color: $black;
+			}
 		}
 	}
 
