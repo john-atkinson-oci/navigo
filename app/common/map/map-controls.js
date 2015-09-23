@@ -13,7 +13,7 @@ angular.module('voyager.map').
         var zoomIn = '<a class="leaflet-control-zoom-in {{zoomInClass}}" href="#" ng-click="zoomIn($event)" ng-dblClick="preventDoubleClick($event)" title="Zoom in" style="cursor: pointer;">+</a>';
         var pan = '<a class="voyager-pan" ng-click="cancelDraw($event)" title="Pan"><span class="icon-map_pan"><span class="path1"></span><span class="path2"></span></span></a>';
         var zoomOut = '<a class="leaflet-control-zoom-out {{zoomOutClass}}" href="#" ng-click="zoomOut($event)" ng-dblClick="preventDoubleClick($event)" title="Zoom out" style="cursor: pointer;">-</a>';
-        var defaultExtent = '<a class="voyager-default-extent" id="default-extent" ng-click="defaultExtent($event)" title="Default Extent" style="cursor: pointer;"><span class="glyphicon glyphicon-home"></span></a>';
+        var defaultExtent = '<a class="voyager-default-extent" id="default-extent" ng-click="defaultExtent($event)" title="Default Extent" style="cursor: pointer;"><span class="icon-map_home"></span></a>';
 
         var _bbox;
         var _bounds;
