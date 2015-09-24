@@ -317,6 +317,29 @@
 	}
 }
 
+.modal-simple {
+	&.modal {
+		.form-desc {
+			margin-bottom: 15px;
+		}
+
+		form {
+			background: transparent;
+			padding-top: 0;
+		}
+
+		.modal-body {
+			padding: 30px 0 10px;
+		}
+
+		.modal-footer {
+			padding-left: 0;
+			padding-right: 0;
+			padding-bottom: 0;
+		}
+	}
+}
+
 @media (min-width: 980px) {
 	.modal-lg {
 		width: 900px;
