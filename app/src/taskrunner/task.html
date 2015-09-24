@@ -28,11 +28,12 @@
             </div>
             <div id="params" ng-class="hasMap ? 'col-sm-6' : 'col-lg-12 col-md-12'">
                 <vs-param ng-repeat="p in params" param="p" ng-if="!p.advanced"></vs-param>
-                <div class="advanced-option-divider">
+                <div class="advanced-option-divider" ng-if="hasAdvanced">
                     <hr />
                     <a href="javascript:;" class="underline small icon-arrow semi" ng-click="showAdvanced = !showAdvanced"><span class="txt">{{showAdvanced ? 'Hide':'Show'}} Advanced Options</span></a>
                 </div>
                 <vs-param ng-repeat="p in params" param="p" ng-if="p.advanced" show="showAdvanced"></vs-param>
+                <!--
                 <div ng-show="showAdvanced" class="process-control">
                     <dl>
                         <dt>Schedule task</dt>
@@ -43,6 +44,7 @@
                         <option ng-repeat="trigger in schedulTriggers">{{trigger}}</option>
                     </select>
                 </div>
+                -->
                 <div class="process-control alert alert-danger" ng-repeat="error in errors" ng-show="hasError"><span class="icon_warning"/> {{error.message}}</div>
             </div>
         </div>

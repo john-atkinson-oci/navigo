@@ -1,7 +1,7 @@
 /*global angular, $, _, Sugar */
 
 angular.module('taskRunner')
-    .controller('JobsCtrl', function ($scope, jobService, $stateParams, config, $window, taskService, sugar, usSpinnerService, urlUtil, $location) {
+    .controller('JobsCtrl', function ($scope, jobService, $stateParams, config, $window, taskService, sugar, usSpinnerService, urlUtil, $location, $modal) {
         'use strict';
 
         $scope.display = $location.search().disp || 'default';
@@ -97,6 +97,16 @@ angular.module('taskRunner')
             },
             function() {
                 usSpinnerService.stop('job-spinner');
+            });
+        };
+
+        $scope.schedule = function(job) {
+            $scope.currentJobId = job.id;
+            $modal.open({
+                template: '<div><vs-schedule-task /></div>',
+                size: 'md',
+                scope: $scope,
+                windowClass: 'modal-simple'
             });
         };
     });

@@ -28,6 +28,7 @@
 							<!--<td><a href="#/status/{{job.id}}" class="underline"><span class="txt">View Items</span></a></td>-->
 							<td class="actions">
 								<a href="javascript:;" ng-click="download(job)" class="{{!job.hasDownload && 'invisible' || ''}}" title="Download"><span class="icon-queue_download"></span></a>
+								<a href="javascript:;" ng-click="schedule(job)" title="Schedule"><span class="icon-task_schedule"></span></a>
 								<a href="javascript:;" ng-click="run(job)" ng-show="isDone(job)" title="Run Again"><span class="icon-queue_rerun"></span></a>
 							</td>
 						</tr>
