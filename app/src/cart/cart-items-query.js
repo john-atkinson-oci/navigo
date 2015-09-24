@@ -47,9 +47,9 @@ angular.module('cart').
             //if(queryCriteria.hasQuery !== false && angular.isUndefined(queryCriteria.params.q) && hasItems) {
             //    queryCriteria.params.q = '*';  //has items and query is defined but keyword empty, default to *
             //}
-            if(angular.isDefined(queryCriteria.params.q) && !queryCriteria.solrFilters) { //no filters
+            if(angular.isDefined(queryCriteria.params.q) && _.isEmpty(queryCriteria.solrFilters)) { //no filters
                 queryCriteria.params.q = itemsStr + sep + queryCriteria.params.q;
-            } else if (hasItems && queryCriteria.solrFilters && angular.isDefined(queryCriteria.params.q)) { //has items and filters, do an OR
+            } else if (hasItems && !_.isEmpty(queryCriteria.solrFilters) && angular.isDefined(queryCriteria.params.q)) { //has items and filters, do an OR
                 filters = _cleanFilters(queryCriteria.solrFilters); //filters are AND (within OR below)
                 if(angular.isDefined(queryCriteria.bounds) && !_.isEmpty(queryCriteria.bounds)) {
                     bounds = queryCriteria.bounds.replace('&fq=','');
@@ -58,7 +58,7 @@ angular.module('cart').
                 //TODO place isn't working as q param
                 //filters += _getPlaceFilter(queryCriteria);
                 queryCriteria.params.q = itemsStr + sep + '(' + queryCriteria.params.q + ' AND ' + filters + ')';
-            } else if (hasItems && queryCriteria.solrFilters) { //has items and filters, do an OR
+            } else if (hasItems && !_.isEmpty(queryCriteria.solrFilters)) { //has items and filters, do an OR
                 filters = _cleanFilters(queryCriteria.solrFilters); //filters are AND (within OR below)
                 if(angular.isDefined(queryCriteria.bounds) && !_.isEmpty(queryCriteria.bounds)) {
                     bounds = queryCriteria.bounds.replace('&fq=','');
@@ -84,7 +84,7 @@ angular.module('cart').
             if(!queryCriteria) {
                 queryCriteria = {params:{}, hasQuery:false};
             }
-            if(items) {
+            if(!_.isEmpty(items)) {
                 _applyItems(queryCriteria, items);
             }
             queryString += '?' + sugar.toQueryString(queryCriteria.params);

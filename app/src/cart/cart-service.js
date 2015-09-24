@@ -182,11 +182,13 @@ angular.module('cart')
                 this.addQuery(query);
             },
             addQuery: function(query) {
-                var items = _getItems();
-                var length = _.keys(items).length;
-                if(length > 0 && query.actualCount !== true) {
-                    query.count += length;
-                }
+                // don't try to merge, just replace TODO remove merge stuff
+                //var items = _getItems();
+                //var length = _.keys(items).length;
+                //if(length > 0 && query.actualCount !== true) {
+                //    query.count += length;
+                //}
+                localStorageService.remove(CART_STORAGE_NAME);  // just clear the items
                 query.actualCount = true;
                 localStorageService.add('cart-query', query);
                 _notifyCount(query.count);
