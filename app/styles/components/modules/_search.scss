@@ -245,12 +245,9 @@
 
       .field_wrap {
         width: 100%;
-
-        .field_wrap_ellipsis {
-          overflow: hidden;
-          text-overflow: ellipsis;
-          white-space: nowrap;
-        }
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
 
         .underline {
           display: inline;
@@ -392,3 +389,4 @@
 .suggest-placeholder {
   color: gray
 }
+

@@ -1,0 +1,85 @@
+.leaflet-popup-content-wrapper {
+	border-radius: 0;
+
+	form[name=bufferOption] {
+		position: relative;
+		padding-bottom: 95px;
+
+		&:after {
+			position: absolute;
+			z-index: 5;
+			content: '';
+			width: 17px;
+			height: 17px;
+			transform: rotate(45deg);
+			bottom: -22px;
+			background-color: #d2d6d7;
+			left: 50%;
+			margin-left: -8px;
+		}
+
+		input[type=submit] {
+			padding-top: 5px;
+			padding-bottom: 5px;
+			margin-right: 20px;
+		}
+
+		.link_secondary {
+			color: #8f9497;
+			font-size: $defaultSize;
+		}
+	}
+
+	.buffer-label {
+		font-size: $smallSize;
+		margin-bottom: 3px;
+	}
+
+	input[type=text] {
+		border-radius: 3px;
+		width: 75px;
+		border: 1px solid $borderColor;
+		margin-right: 10px;
+		padding: 4px 5px 5px;
+		font-size: $smallSize;
+	}
+
+	.buffer-footer {
+		background-color: #d2d6d7;
+		position: absolute;
+		bottom: -14px;
+		left: -20px;
+		right: -20px;
+		padding: 20px;
+	}
+
+	.select2-choice {
+		padding-top: 3px;
+		padding-bottom: 3px;
+		height: 30px;
+		border-radius: 3px;
+	}
+}
+
+.leaflet-top {
+	.leaflet-draw-section {
+		.voyager-draw-rect {
+			position: relative;
+			&:after {
+				position: absolute;
+				bottom: 2px;
+				right: 2px;
+				content: '';
+				width: 0;
+				height: 0;
+				border-style: solid;
+				border-width: 0 0 5px 5px;
+				border-color: transparent transparent #666d7a transparent;
+			}
+
+			i:before {
+				margin-top: 1px;
+			}
+		}
+	}
+}

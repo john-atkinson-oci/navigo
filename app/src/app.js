@@ -2,7 +2,7 @@
 
 angular.module('portalApp', [
         'ngResource',
-		'ngSanitize',
+        'ngSanitize',
         'ngTable',
         'ngTableResizableColumns',
         'ngAria',
@@ -12,22 +12,22 @@ angular.module('portalApp', [
         'ui.bootstrap',
         'ui.select2',
         'ui.sortable',
-		'LocalStorageModule',
-		'cart',
-		'taskRunner',
+        'LocalStorageModule',
+        'cart',
+        'taskRunner',
         'clipFactory',
-		'voyager.config',
-		'voyager.security',
-		'voyager.filters',
-		'voyager.map',
-		'voyager.util',
-		'voyager.layout',
-		'voyager.home',
-		'voyager.search',
+        'voyager.config',
+        'voyager.security',
+        'voyager.filters',
+        'voyager.map',
+        'voyager.util',
+        'voyager.layout',
+        'voyager.home',
+        'voyager.search',
         'voyager.results',
         'voyager.details',
         'voyager.tagging',
-		'voyager.component',
+        'voyager.component',
         'tree.directive',
         'angulartics',
         'angulartics.google.analytics',
@@ -96,11 +96,11 @@ angular.module('portalApp', [
                         'templateUrl':'src/filters/filters.html',
                         'controller':'FiltersCtrl'
                     },
-                    'table-results@search': {
-                        'templateUrl':'src/results/table-results.html'
-                    },
                     'card-results@search': {
                         'templateUrl':'src/results/card-results.html'
+                    },
+                    'table-results@search': {
+                        'templateUrl':'src/results/table-results.html'
                     },
                     'selected-filters@search': {
                         'templateUrl':'src/filters/selected-filters.html',

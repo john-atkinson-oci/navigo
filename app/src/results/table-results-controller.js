@@ -57,12 +57,6 @@ angular.module('voyager.results')
             }
         }
 
-        $scope.hideThumbnails = false;
-
-        $scope.toggleThumbnails = function() {
-            $scope.hideThumbnails = !$scope.hideThumbnails;
-        };
-
         $scope.applyTag = function(tag) {
             filterService.clear();
             $location.search('q', null);
