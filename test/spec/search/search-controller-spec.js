@@ -20,14 +20,14 @@ describe('SearchCtrl', function () {
     //spies
     var $s = {'configService':{}, 'cartService':{}, searchService:{}};
 
-    beforeEach(inject(function ($rootScope, $controller, $q, $location, $timeout, searchService, cartService, configService) {
+    beforeEach(inject(function ($rootScope, $controller, $q, $location, $timeout, searchService, cartService, configService, searchModalService) {
         scope = $rootScope.$new();
         q = $q;
         controllerService = $controller;
         location = $location;
         timeout = $timeout;
 
-        EZSpy.spyOnAll($s, [{searchService:searchService}, {cartService:cartService}, {configService:configService}]);
+        EZSpy.spyOnAll($s, [{searchService:searchService}, {cartService:cartService}, {configService:configService}, {searchModalService:searchModalService}]);
         $s.searchService.getPageIds.and.returnValue([1]);
         $s.searchService.testEsriGeocodeService.and.returnValue(q.when({}));
     }));
@@ -170,18 +170,11 @@ describe('SearchCtrl', function () {
             $s.configService.getSortable.and.returnValue([sort]);
             $s.searchService.doSearch2.and.returnValue(q.when({data:{response:response}}));
 
-            var bodyEl = angular.element('body');
-            var modalMock = {
-                open: function() {
-                    bodyEl.addClass('modal-open');
-                }
-            };
-
-            controllerService('SearchCtrl', {$scope: scope, 'cartService': $s.cartService, 'searchService': $s.searchService, 'translateService': translateServiceMock, 'authService': authServiceMock, 'detailService': detailServiceMock, 'configService':$s.configService, 'tagService':tagServiceMock, '$modal':modalMock});
+            controllerService('SearchCtrl', {$scope: scope, 'cartService': $s.cartService, 'searchService': $s.searchService, 'translateService': translateServiceMock, 'authService': authServiceMock, 'detailService': detailServiceMock, 'configService':$s.configService, 'tagService':tagServiceMock, 'searchModalService':$s.searchModalService});
             scope.$apply();
 
             scope.exportResultsList();
-            expect(bodyEl.hasClass('modal-open')).toBe(true);
+            expect($s.searchModalService.exportResultsList).toHaveBeenCalled();
         });
 
     });

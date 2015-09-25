@@ -1,11 +1,11 @@
-/*global angular, $, _ */
+/*global angular */
 
 angular.module('voyager.search').
-    factory('searchModalService', function ($modal) {
-        'use strict';
+	factory('searchModalService', function ($modal) {
+		'use strict';
 
-        return {
-        	exportResultsList: function(scope) {
+		return {
+			exportResultsList: function(scope) {
 				$modal.open({
 					template: '<div><vs-export-results /></div>',
 					size: 'md',
@@ -53,6 +53,6 @@ angular.module('voyager.search').
 				});
 			}
 
-        };
+		};
 
-    });
+	});

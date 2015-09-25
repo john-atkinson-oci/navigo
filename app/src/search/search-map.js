@@ -1,18 +1,18 @@
 /*global angular, $, L */
 
 angular.module('voyager.search')
-	.directive('vsSearchMap', function ($compile, config, mapUtil, $timeout, mapControls, configService, $window, $templateRequest) {
+	.directive('vsSearchMap', function ($compile, config, mapUtil, $timeout, mapControls, configService, $window) {
 		'use strict';
 
 		function getMapSizeTemplate() {
 			var mapSizeTemplate = '<div class="leaflet-control-map-size-toggle leaflet-bar leaflet-control">';
-				mapSizeTemplate += '<div class="map-size-drop-down">';
-				mapSizeTemplate += '<div class="icon-arrow flyout-trigger" ng-click="toggleMapSizeDropDown()"><span class="icon-search_map"></span></div>';
-				mapSizeTemplate += '<div class="flyout"><div class="arrow"></div><div class="flyout_inner">';
-				mapSizeTemplate += '<ul><li><a href="javascript:;" ng-click="switchMap(\'large\')">Large map</a></li>';
-				mapSizeTemplate += '<li><a href="javascript:;" ng-click="switchMap(\'small\')">Small map</a></li>';
-				mapSizeTemplate += '<li><a href="javascript:;" ng-click="switchMap(\'no\')">No map</a></li>';
-				mapSizeTemplate += '</ul></div></div></div></div>';
+			mapSizeTemplate += '<div class="map-size-drop-down">';
+			mapSizeTemplate += '<div class="icon-arrow flyout-trigger" ng-click="toggleMapSizeDropDown()"><span class="icon-search_map"></span></div>';
+			mapSizeTemplate += '<div class="flyout"><div class="arrow"></div><div class="flyout_inner">';
+			mapSizeTemplate += '<ul><li><a href="javascript:;" ng-click="switchMap(\'large\')">Large map</a></li>';
+			mapSizeTemplate += '<li><a href="javascript:;" ng-click="switchMap(\'small\')">Small map</a></li>';
+			mapSizeTemplate += '<li><a href="javascript:;" ng-click="switchMap(\'no\')">No map</a></li>';
+			mapSizeTemplate += '</ul></div></div></div></div>';
 
 			return mapSizeTemplate;
 		}
