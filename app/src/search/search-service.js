@@ -85,17 +85,6 @@ angular.module('voyager.search').
                 });
             },
 
-            getCSV: function (params, rowCount) {
-                _setParams(params);
-
-                var service = queryBuilder.doBuildCSV(_searchParams, rowCount, _sortDirection, _sortField);
-                return $http.get(service).then(function(data) {
-                    return data;
-                }, function(data){
-                    return data;
-                });
-            },
-
             setPage: function (value) {
                 _page = value;
             },

@@ -1,7 +1,7 @@
 /*global angular, _ */
 'use strict';
 angular.module('voyager.search')
-	.directive('vsExportResults', function(usSpinnerService, searchService, $location) {
+	.directive('vsExportResults', function(usSpinnerService, searchService, $location, exportService) {
 
 	return {
 		restrict: 'E',
@@ -87,7 +87,7 @@ angular.module('voyager.search')
 
 			// @function Make API call to get content for CSV file
 			scope.getCSVFile = function(params, rowCount) {
-				searchService.getCSV(params, rowCount).then(function(response) {
+				exportService.getCSV(params, rowCount).then(function(response) {
 					scope.successHandler(response, scope.getFileName());
 				}, function(response){
 					scope.errorHandler(response);
