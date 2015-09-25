@@ -1,11 +1,11 @@
 /*global angular */
 
 angular.module('voyager.details').
-	factory('detailService', function($http, config, $q, resultsDecorator) {
+    factory('detailService', function($http, config, $q, resultsDecorator) {
 
-		'use strict';
+        'use strict';
 
-		var _type = '&wt=json&json.wrf=JSON_CALLBACK&block=false';
+        var _type = '&wt=json&json.wrf=JSON_CALLBACK&block=false';
         var _translation = {};
         var _recentViews = [];
         var _fields = {};
@@ -22,18 +22,18 @@ angular.module('voyager.details').
             return service + fields + shards + _type + '&rand=' + Math.random() + '&disp=' + disp; // avoid browser caching?;
         };
 
-		function _buildTreeRequest(id, shard) {
-			var service = config.root + 'solr/v0/select?q=id:' + id;
-			var fields = '&fl=tree, format, id';
-			var shards = '';
-			if (angular.isDefined(shard)) {
-				shards = '&shards.info=true&shards.tolerant=true&shards=' + shard;
-			}
-			return service + fields + shards + _type;
-		}
+        function _buildTreeRequest(id, shard) {
+            var service = config.root + 'solr/v0/select?q=id:' + id;
+            var fields = '&fl=tree, format, id';
+            var shards = '';
+            if (angular.isDefined(shard)) {
+                shards = '&shards.info=true&shards.tolerant=true&shards=' + shard;
+            }
+            return service + fields + shards + _type;
+        }
 
-		function _buildRelationshipRequest(id, shard, type, direction, displayFields) {
-			var service = config.root + 'solr/v0/select?links.' + direction + '=' + id + ':' + type;
+        function _buildRelationshipRequest(id, shard, type, direction, displayFields) {
+            var service = config.root + 'solr/v0/select?links.' + direction + '=' + id + ':' + type;
             var fields = '&fl=id,name:[name],path:[absolute],thumb:[thumbURL],preview:[previewURL],download:[downloadURL],bbox, format, hasMetadata, root, tree, tag_tags, links, hasMissingData';
             fields += displayFields;
             var shards = '';
@@ -41,7 +41,7 @@ angular.module('voyager.details').
                 shards = '&shards.info=true&shards.tolerant=true&shards=' + shard;
             }
             return service + fields + shards + _type;
-		}
+        }
 
         function _fetchTranslation() {
             if (_.isEmpty(_translation)) {
@@ -116,8 +116,8 @@ angular.module('voyager.details').
             }
         }
 
-		return {
-			lookup: function(id, fields, shard, disp) {
+        return {
+            lookup: function(id, fields, shard, disp) {
                 var promises = [];
                 promises.push(_getFields());
                 var request = buildRequest(id, fields, shard, disp);
@@ -125,20 +125,20 @@ angular.module('voyager.details').
                 return $q.all(promises).then(function(result) {
                     return result[1];
                 });
-			},
-			fetchTree: function(id, shard) {
-				var deferred = $q.defer();
-				var request = _buildTreeRequest(id, shard);
-				$http.jsonp(request).then(function(res) {
-					var docs = res.data.response.docs;
-					if(angular.isDefined(docs) && docs.length > 0) {
-						deferred.resolve(docs[0]);
-					} else {
-						deferred.reject(id + ' not found');
-					}
-				});
-				return deferred.promise;
-			},
+            },
+            fetchTree: function(id, shard) {
+                var deferred = $q.defer();
+                var request = _buildTreeRequest(id, shard);
+                $http.jsonp(request).then(function(res) {
+                    var docs = res.data.response.docs;
+                    if(angular.isDefined(docs) && docs.length > 0) {
+                        deferred.resolve(docs[0]);
+                    } else {
+                        deferred.reject(id + ' not found');
+                    }
+                });
+                return deferred.promise;
+            },
 
             fetchToRelationships: function(id, fields, shard) {
                 var relationships = {}, promises = [], deferred = $q.defer();
@@ -181,7 +181,7 @@ angular.module('voyager.details').
                 if (!exists) {
                     _recentViews.push(doc);
                 }
-                if (_recentViews.length > 5) {
+                if (_recentViews.length > 4) {
                     _recentViews.splice(0, 1);
                 }
             },
@@ -193,6 +193,6 @@ angular.module('voyager.details').
             getFields: function() {
                 return _fields;
             }
-		};
+        };
 
-	});
+    });

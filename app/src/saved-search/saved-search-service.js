@@ -136,19 +136,8 @@ angular.module('voyager.search').
             return queryString;
         }
 
-        function _getSearchResult(term) {
-            var rows = 150;  //TODO set to what we really want
-            var queryString = config.root + 'solr/ssearch/select?';
-            queryString += 'fq=title:' + term;
-            queryString += '&fl=title';
-            queryString += '&rows=' + rows + '&rand=' + Math.random();
-            queryString += '&wt=json&json.wrf=JSON_CALLBACK';
-            return queryString;
-        }
-
-
-        function _execute(url) {
-            return $http.jsonp(url).then(function (data) {
+        function _execute() {
+            return $http.jsonp(_getQueryString()).then(function (data) {
                 return data.data.response.docs;
             }, function(error) {
                 //@TODO: handle error
@@ -166,11 +155,7 @@ angular.module('voyager.search').
         //public methods - client interface
         return {
             getSavedSearches: function() {
-                return _execute(_getQueryString());
-            },
-
-            searchByTerm: function(term) {
-                return _execute(_getSearchResult(term));
+                return _execute();
             },
 
             getParams: function(saved) {
@@ -253,9 +238,9 @@ angular.module('voyager.search').
 
             showSearchModal: function(tab) {
                 var modalInstance = $modal.open({
-                        templateUrl: 'src/saved-content/saved-content-modal.html',
+                        templateUrl: 'src/saved-search/saved-search-modal.html',
                         size:'lg',
-                        controller: 'SavedContentModalCtrl',
+                        controller: 'SavedSearchModalCtrl',
                         resolve: {
                             tab: function() {
                                 return tab;
@@ -269,7 +254,6 @@ angular.module('voyager.search').
                     //$log.info('Modal dismissed at: ' + new Date());
                 });
             },
-
             applySavedSearch: function(saved, $scope) {
                 var solrParams = this.getParams(saved);
                 //solrParams.id = saved.id;  TODO why are we setting this?

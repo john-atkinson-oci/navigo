@@ -1,7 +1,7 @@
 /*global angular, $, L */
 
 angular.module('voyager.search')
-	.directive('vsSearchMap', function ($compile, config, mapUtil, $timeout, mapControls, configService, $window, $http, sugar) {
+	.directive('vsSearchMap', function ($compile, config, mapUtil, $timeout, mapControls, configService, $window) {
 		'use strict';
 
 		function getExtent(params) {
@@ -51,18 +51,10 @@ angular.module('voyager.search')
 			},
 			controller: function ($scope, $element, $attrs, leafletData, $stateParams) {
 
-				var _drawedShape;
+				var _rectangle;
 				var _cancelledDraw = false;
-				var _searchBoundaryLayer;
-				var _searchBoundary;
-				var _remove;
-				var _closeMarker;
-				var _editMarker;
-				var _bufferBoundaryLayer;
+				var _drawing = false;
 
-
-				$scope._drawing = false;
-				$scope.toolType = 'rectangle';
 				$scope.clientDefault = getExtent($stateParams, config);
 				$scope.defaults = mapUtil.getDefaultConfig();
 				$scope.layers = mapUtil.getLayers($attrs.origin);
@@ -72,14 +64,14 @@ angular.module('voyager.search')
 
 				mapControls.init($scope, 'search-map');
 
-
 				function _cancelDraw() {
 					$scope.$emit('cancelledDraw');
-					$scope._drawing = false;
+					_drawing = false;
 					_cancelledDraw = true;
-					if(_drawedShape) {
-						_drawedShape.disable();
+					if(_rectangle) {
+						_rectangle.disable();
 					}
+					$('.voyager-draw-intersect').removeClass('selected');
 				}
 
 				$scope.$on('removeFilter', function() {
@@ -121,357 +113,15 @@ angular.module('voyager.search')
 				};
 
 				var searchControls = L.control();
-
-				$scope.addDrawingTool = function() {
-					searchControls.setPosition('topleft');
-					searchControls.onAdd = function () {
-						var template = '<div class="leaflet-draw-section"><div class="leaflet-bar">';
-						template += '<a class="voyager-draw-rect" ng-class="{\'selected\': _drawing}" ng-mousedown="toggleDrawingOption($event)" ng-mouseup="releaseDrawingOption($event)"><i class="icon-map_draw_{{toolType}}"></i></a>';
-						template += '</div>';
-						template += '<div class="leaflet-bar drawing-option-cont" ng-if="showDrawingTools">';
-						template += '<ul id="drawingTools">';
-						template += '<li><a ng-click="selectDrawingTool($event, \'rectangle\')" title="Rectangle"><i class="icon-map_draw_rectangle"></i></a></li>';
-						template += '<li><a ng-click="selectDrawingTool($event, \'polygon\')" title="Polygon"><i class="icon-map_draw_polygon"></i></a></li>';
-						template += '<li><a ng-click="selectDrawingTool($event, \'polyline\')" title="Line"><i class="icon-map_draw_polyline"></i></a></li>';
-						template += '<li><a ng-click="selectDrawingTool($event, \'point\')" title="Marker"><i class="icon-map_draw_point"></i></a></li>';
-						template += '</ul>';
-						template += '</div></div>';
-
-						return $compile($(template))($scope)[0];
-					};
-				};
-
-				$scope.addDrawingTool();
-
-				var clickTime;
-				$scope.toggleDrawingOption = function($event) {
-					clickTime = (new Date());
-					$event.preventDefault();
-					$event.stopPropagation();
-					return false;
-				};
-
-				$scope.releaseDrawingOption = function($event) {
-					var newTime = (new Date());
-
-					$event.preventDefault();
-					$event.stopPropagation();
-
-					if (clickTime.getSeconds() !== newTime.getSeconds()) {
-						_cancelDraw();
-						$scope.showDrawingTools = true;
-					} else {
-						$scope.selectDrawingTool($event, $scope.toolType);
-					}
-
-					return false;
-				};
-
-				function currentColor() {
-					return mapUtil.currentColor($scope.selectedDrawingType);
-				}
-
-				$scope.selectDrawingTool = function($event, toolType) {
-					$event.preventDefault();
-					var color = currentColor();
-
-					$scope.toolType = toolType;
-					$scope.showDrawingTools = false;
-
-					if($scope._drawing) {
-						_cancelDraw();
-					}
-
-					$scope._drawing = true;
-
-					switch (toolType) {
-						case 'polyline':
-							$scope.drawLine(color);
-							break;
-						case 'polygon':
-							$scope.drawPloygon(color);
-							break;
-						case 'point':
-							$scope.drawPoint(color);
-							break;
-						default:
-							$scope.drawRectangle(color);
-							break;
-					}
-				};
-
-				var _map;
-				var markerIcon = L.icon({
-					iconUrl: 'assets/img/marker-icon.png',
-					iconSize: [14, 14]
-				});
-
-				leafletData.getMap('search-map').then(function (map){
-					_map = map;
-
-					map.on('draw:created', function (e) {
-						_searchBoundary = e;
-					});
-
-					_mapEvents(map);
-				});
-
-				$scope.drawLine = function(color) {
-
-					leafletData.getMap('search-map').then(function (map) {
-						map.vsSearchType = $scope.selectedDrawingType;
-
-						$timeout(function() {
-							if(_drawedShape) {
-								_drawedShape.disable();
-							}
-							_drawedShape = new L.Draw.Polyline(map,{shapeOptions: _shapeOptions(color), repeatMode:false, showArea: false});
-							_drawedShape.enable();
-						});
-					});
-				};
-
-				$scope.drawPloygon = function(color) {
-
-					leafletData.getMap('search-map').then(function (map) {
-						map.vsSearchType = $scope.selectedDrawingType;
-
-						$timeout(function() {
-							if(_drawedShape) {
-								_drawedShape.disable();
-							}
-							_drawedShape = new L.Draw.Polygon(map,{shapeOptions: _shapeOptions(color), repeatMode:false, showArea: true});
-							_drawedShape.enable();
-						});
-					});
-				};
-
-				$scope.drawPoint = function() {
-
-					leafletData.getMap('search-map').then(function (map) {
-						map.vsSearchType = $scope.selectedDrawingType;
-
-						$timeout(function() {
-							if(_drawedShape) {
-								_drawedShape.disable();
-							}
-
-							_drawedShape = new L.Draw.Marker(map,{icon: markerIcon});
-							_drawedShape.enable();
-						});
-					});
-				};
-
-				$scope.drawRectangle = function(color) {
-					leafletData.getMap('search-map').then(function (map) {
-						map.vsSearchType = $scope.selectedDrawingType;
-
-						$timeout(function() {
-							if(_drawedShape) {
-								_drawedShape.disable();
-							}
-							_drawedShape = new L.Draw.Rectangle(map,{shapeOptions: _shapeOptions(color), repeatMode:false, showArea: false});
-							_drawedShape.enable();
-						});
-					});
-				};
-
-				function _shapeOptions(color) {
-					return {color: color, fillColor: color, strokeOpacity: 0.8, fillOpacity: 0.0};
-				}
-
-
-				function _option() {
-					var color = currentColor();
-					return {color: color, weight: 4, 'stroke-color': color, 'stoke-opacity': 0.8, fill: false};
-				}
-
-
-				function convertBuffer(geoJSON) {
-					$http.post(config.root + 'api/rest/spatial/buffer?diff=true&distance=' + $scope.buffer.distance, geoJSON.geometry).then(function(response){
-
-						geoJSON.geometry = response.data;
-						if (_bufferBoundaryLayer) {
-							_map.removeLayer(_bufferBoundaryLayer);
-						}
-
-						_bufferBoundaryLayer = L.geoJson(geoJSON, {
-						    style: {color: currentColor(), weight: 0, fill: true, opacity: 0.8}
-						}).addTo(_map);
-
-						$scope.search.place = mapUtil.convertToWkt(geoJSON.geometry);
-					});
-				}
-
-				function _mapEvents(map) {
-
-					map.on('draw:drawstop', function () {
-						if (_.isEmpty(map.vsSearchType) || _searchBoundary === undefined || _remove) {
-							_remove = false;
-							return;
-						}
-
-						var placeType = map.vsSearchType;
-						var latLngs;
-						var pointInx = 0;
-
-						if (angular.isUndefined($scope.search)) {
-							$scope.search = {};
-						}
-
-						$scope.search['place.op'] = placeType;
-
-						if (angular.isDefined(_searchBoundaryLayer)) {
-							_removeLayers();
-						}
-
-						if ($scope.toolType === 'rectangle') {
-							latLngs = _searchBoundary.layer.getLatLngs();
-							_searchBoundaryLayer = L.rectangle(_searchBoundary.layer.getBounds(), _option());
-							pointInx = 2;
-
-							$scope._bbox = _searchBoundary.layer.getBounds().toBBoxString().replace(/,/g, ' ');
-							$scope.search.displayBBox = sugar.formatBBox($scope._bbox);
-
-						} else if ($scope.toolType === 'polyline') {
-							latLngs = _searchBoundary.layer.getLatLngs();
-							_searchBoundaryLayer = L.polyline(latLngs, _option());
-							pointInx = 1;
-						} else if ($scope.toolType === 'polygon') {
-							latLngs = _searchBoundary.layer.getLatLngs();
-							_searchBoundaryLayer = L.polygon(latLngs, _option());
-
-						} else if ($scope.toolType === 'point') {
-							latLngs = _searchBoundary.layer.getLatLng();
-							_searchBoundaryLayer = L.marker(latLngs, {icon: markerIcon});
-						}
-
-						if ($scope.toolType !== 'rectangle') {
-							$scope._bbox = mapUtil.convertToWkt(_searchBoundaryLayer);
-							$scope.search.displayBBox = mapUtil.formatWktForDisplay($scope._bbox);
-						}
-
-						_searchBoundaryLayer.addTo(map);
-						$scope.search.place = $scope._bbox;
-
-						if ($scope.toolType !== 'point') {
-							_addEditBufferMarker(map, _searchBoundaryLayer.getLatLngs()[pointInx]);
-							_addClearBoundaryMarker(map, _searchBoundaryLayer.getLatLngs()[pointInx]);
-						} else {
-							_addEditBufferMarker(map, _searchBoundaryLayer.getLatLng());
-							_addClearBoundaryMarker(map, _searchBoundaryLayer.getLatLng());
-						}
-
-						$scope._drawing = false;
-					});
-				}
-
-				function getGeoJSONType() {
-					if ($scope.toolType === 'polyline') {
-						return 'LineString';
-					} else if ($scope.toolType === 'point') {
-						return 'Point';
-					}
-
-					return 'Polygon';
-				}
-
-
-				function _addEditBufferMarker(map, pointPosition) {
-
-					var anchor = [0, 0];
-					if ($scope.toolType === 'rectangle') {
-						anchor = [-2, 2];
-					} else if ($scope.toolType === 'point') {
-						anchor = [0, 25];
-					}
-
-					var editIcon = L.icon({
-						iconUrl: 'assets/img/icon_edit.png',
-						iconSize:     [20, 20], // size of the icon
-						iconAnchor:   anchor // point of the icon which will correspond to marker's location
-					});
-
-					_editMarker = L.marker(pointPosition, {icon:editIcon}).addTo(map).bindPopup(addBufferOption());
-					_editMarker.on('click', function () {
-						_editMarker.openPopup();
-					});
-				}
-
-				function _addClearBoundaryMarker(map, pointPosition) {
-
-					if ($attrs.cancel !== false) {
-						return;
-					}
-
-					var anchor = [-20, 0];
-					if ($scope.toolType === 'rectangle') {
-						anchor = [-22, 2];
-					} else if ($scope.toolType === 'point') {
-						anchor = [-20, 25];
-					}
-
-					var closeIcon = L.icon({
-						iconUrl: 'assets/img/icon_x.png',
-						iconSize:     [20, 20], // size of the icon
-						iconAnchor:   anchor // point of the icon which will correspond to marker's location
-					});
-
-					_closeMarker = L.marker(pointPosition, {icon:closeIcon}).addTo(map);
-					_closeMarker.on('mousedown', function () {
-						_removeLayers();
-						_remove = true;
-					});
-				}
-
-				$scope.bufferMeasures = ['miles'];
-
-				function _removeLayers() {
-					_map.removeLayer(_searchBoundaryLayer);
-					_map.removeLayer(_editMarker);
-					if (angular.isDefined(_closeMarker)) {
-						_map.removeLayer(_closeMarker);
-					}
-					$scope.search.displayBBox = null;
-					$scope.search.place = null;
-					if (angular.isDefined(_bufferBoundaryLayer)) {
-						_map.removeLayer(_bufferBoundaryLayer);
-					}
-				}
-
-				function addBufferOption() {
-					var markup;
-
-					markup = '<div class="buffer-option">';
-					markup += '<form name="bufferOption">';
-					markup += '<div class="buffer-content"><div class="buffer-label semi">Buffer distance</div>';
-					markup += '<input type="text" ng-model="buffer.distance" />';
-					markup += '<select ui-select2="{dropdownAutoWidth: \'true\', minimumResultsForSearch: -1}" ng-model="buffer.measure">';
-					markup += '<option ng-repeat="type in ::bufferMeasures">{{::type}}</option>';
-					markup += '</select></div>';
-					markup += '<div class="buffer-footer">';
-					markup += '<input type="submit" value="Done" class="btn btn-primary" ng-click="addBuffer()" />';
-					markup += '<a href="#" ng-click="bufferCancel($event)" class="link_secondary">Cancel</a>';
-					markup += '</div>';
-					markup += '</form>';
-					markup += '</div>';
-
-					return $compile($(markup))($scope)[0];
-				}
-
-				addBufferOption();
-
-				$scope.addBuffer = function() {
-					if (!isNaN($scope.buffer.distance)) {
-						angular.element('.leaflet-popup-close-button')[0].click();
-						convertBuffer(_searchBoundaryLayer.toGeoJSON(), getGeoJSONType());
-					}
-				};
-
-				$scope.bufferCancel = function($event) {
-					$event.preventDefault();
-					$scope.buffer = {};
-					angular.element('.leaflet-popup-close-button')[0].click();
+				searchControls.setPosition('topleft');
+				searchControls.onAdd = function () {
+					var template = '<div class="leaflet-draw-section"><div class="leaflet-bar">';
+					template += '<a class="voyager-draw-intersect" id="is-within" ng-click="drawRectangle(\'within\', $event)" title="Search Within"><i class="svg_map_icon svg_map_contain"></i> </a>';
+					template += '<a class="voyager-draw-intersect" id="intersects" ng-click="drawRectangle(\'intersects\', $event)" title="Intersect"><i class="svg_map_icon svg_map_intersect"></i></a>';
+					template += '</div>';
+					template += '</div>';
+
+					return $compile($(template))($scope)[0];
 				};
 
 				var mapTypeToggleControls = L.control();
@@ -502,26 +152,7 @@ angular.module('voyager.search')
 					$scope.controls.custom.push(sizeControl);
 				}
 
-				$scope.addMapSizeToggleControl = function() {
-					var mapSizeControl = L.control();
-					mapSizeControl.setPosition('bottomright');
-					mapSizeControl.onAdd = function () {
-						var mapSizeTemplate = '<div class="leaflet-control-map-size-toggle leaflet-bar leaflet-control">';
-						mapSizeTemplate += '<div class="map-size-drop-down">';
-						mapSizeTemplate += '<div class="icon-arrow flyout-trigger" ng-click="toggleMapSizeDropDown()"><span class="icon-search_map"></span></div>';
-						mapSizeTemplate += '<div class="flyout"><div class="arrow"></div><div class="flyout_inner">';
-						mapSizeTemplate += '<ul><li><a href="javascript:;" ng-click="switchMap(\'large\')">Large map</a></li>';
-						mapSizeTemplate += '<li><a href="javascript:;" ng-click="switchMap(\'small\')">Small map</a></li>';
-						mapSizeTemplate += '<li><a href="javascript:;" ng-click="switchMap(\'no\')">No map</a></li>';
-						mapSizeTemplate += '</ul></div></div></div></div>';
-
-						return $compile($(mapSizeTemplate))($scope)[0];
-					};
-
-					$scope.controls.custom.push(mapSizeControl);
-				};
-
-				// @TODO where does map spinner go?  When adding map service layer etc
+				//TODO where does map spinner go?  When adding map service layer etc
 				//var spinControl = L.control();
 				//spinControl.setPosition('topright');
 				//spinControl.onAdd = function () {
@@ -531,7 +162,7 @@ angular.module('voyager.search')
 				//	return $compile($(template))($scope)[0];
 				//};
 
-				// @TODO: add search on map move feature
+				//@TODO: add search on map move feature
 				// var moveMapOption = L.control();
 				// moveMapOption.setPosition('bottomleft');
 				// moveMapOption.onAdd = function () {
@@ -541,10 +172,6 @@ angular.module('voyager.search')
 				// 	return $compile($(template))($scope)[0];
 				// };
 				//$scope.controls.custom.push(moveMapOption);
-
-				if ($attrs.control) {
-					$scope.addMapSizeToggleControl();
-				}
 
 				if ($scope.displayFormat) {
 					$scope.controls.custom.push(mapTypeToggleControls);
@@ -571,8 +198,33 @@ angular.module('voyager.search')
 				$scope.$watch('displayFormat', function(){
 					if (angular.isDefined($scope.displayFormat)) {
 						toggleMapMode($element, $scope, leafletData);
+						_triggerDrawingTool();
 					}
 				});
+
+				$scope.$watch('selectedDrawingType', function(){
+					_triggerDrawingTool();
+				});
+
+				$scope.$on('updateDrawingTool', function(event, args){
+					if (args === 'Within') {
+						_drawRectangle('within', $('#is-within'));
+					} else {
+						_drawRectangle('intersects', $('#intersects'));
+					}
+				});
+
+				function _triggerDrawingTool() {
+					$timeout(function(){
+						if ($scope.displayFormat === 'short_format') {
+							if ($scope.selectedDrawingType === 'Within') {
+								$('#is-within').trigger('click');
+							} else {
+								$('#intersects').trigger('click');
+							}
+						}
+					}, 10);
+				}
 
 				$scope.$watch('view', function(view){
 					_cancelDraw();
@@ -594,21 +246,6 @@ angular.module('voyager.search')
 					});
 				});
 
-
-		        $scope.switchMap = function(size) {
-		            $scope.$emit('mapSizeChanged', size);
-		        };
-
-		        $scope.toggleMapSizeDropDown = function() {
-		            var dropDownEl = angular.element('.map-size-drop-down');
-
-		            if (!dropDownEl.hasClass('opened')) {
-		                dropDownEl.addClass('hover_flyout bottom opened');
-		            } else {
-		                dropDownEl.removeClass('hover_flyout bottom opened');
-		            }
-		        };
-
 				$scope.preventDoubleClick = function(event) {
 					event.stopPropagation();
 				};
@@ -618,6 +255,45 @@ angular.module('voyager.search')
 					event.preventDefault();
 					$('.voyager-pan').addClass('selected').parents('.leaflet-control').siblings().find('a').not('#searchByMap').removeClass('selected');
 				};
+
+				$scope.drawRectangle = function(type, $event) {
+					var selectedType = (type === 'within') ? 'Within' : 'Intersects';
+					if (angular.isDefined($scope.displayFormat) && $scope.selectedDrawingType !== selectedType) {
+						$scope.selectedDrawingType = selectedType;
+						$scope.$emit('drawingToolChanged', $scope.selectedDrawingType);
+					}
+					_drawRectangle(type, $($event.currentTarget));
+				};
+
+				function _drawRectangle(type, drawingToolEl) {
+					if(_drawing) {
+						_cancelDraw();
+					}
+
+					_drawing = true;
+
+					drawingToolEl.addClass('selected').siblings().removeClass('selected');
+					drawingToolEl.parents('.leaflet-control').siblings().find('a').not('#searchByMap').removeClass('selected');
+
+					var searchForm = $element.next('.short_format');
+					if (searchForm.length) {
+						searchForm.find('.location_fieldset').addClass('focused').siblings().removeClass('focused');
+					}
+
+					leafletData.getMap('search-map').then(function (map) {
+						map.vsSearchType = type;
+
+						var color = (type === 'within') ? '#f06eaa' : '#1771b4';
+						$timeout(function() {
+							if(_rectangle) {
+								_rectangle.disable();
+							}
+							_rectangle = new L.Draw.Rectangle(map,{shapeOptions: {color: color, fillColor: color, strokeOpacity: 0.8, fillOpacity: 0.0}, repeatMode:true, showArea: false});
+							_rectangle.enable();
+							map.searchRectangle = _rectangle;
+						});
+					});
+				}
 
 				$scope.resize = function() {
 					var zoom = 10;

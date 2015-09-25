@@ -18,10 +18,7 @@ angular.module('voyager.filters')
 
                 if(mapUtil.isBbox(params.place)) {
                     formattedPlace = sugar.formatBBox(params.place);
-                } else {
-                    formattedPlace = mapUtil.formatWktForDisplay(params.place);
                 }
-
                 humanized = (params['place.op'] === 'within' ? 'Within' : 'Intersects') + ': ' + formattedPlace;
                 $scope.filters.push({'isInput': true, 'name': 'place', 'humanized': humanized});
             }

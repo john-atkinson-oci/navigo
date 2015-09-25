@@ -1,20 +1,6 @@
 #searchPage {
 	padding-bottom: 30px;
 
-	#searchResultMapContainer {
-		.alert-warning {
-			background-color: $likewhite;
-			position: absolute;
-			z-index: 50;
-			height: 62px;
-			width: 100%;
-		}
-	}
-
-	#itemDetailContent {
-		z-index: 1;
-	}
-
 	.move-map-option {
 		background-color: $white;
 		padding: 10px 15px 5px;
@@ -139,7 +125,7 @@
 
 		&.open_filter {
 			.container-fluid {
-				padding-right: 290px;
+				padding-right: 300px;
 
 				.list {
 					&.single {
@@ -170,7 +156,7 @@
 	}
 
 
-	.list.table_list, .list.list_list {
+	.list.table_list {
 		> .row {
 			margin-left: 0;
 			margin-right: 0;
@@ -195,12 +181,6 @@
 
 	.option_list {
 		position: relative;
-
-		li a.btn {
-			span:before {
-				opacity: 0.5 !important;
-			}
-		}
 
 		.sort_label {
 			display: inline-block;
@@ -295,14 +275,14 @@
 				}
 
 				> li {
-					.btn {
+					> a.btn-action {
 						width: 40px;
 						padding-left: 14px;
-					}
 
-					span.small_hide {
-						position: absolute;
-						text-indent: -999em;
+						span {
+							position: absolute;
+							text-indent: -999em;
+						}
 					}
 				}
 			}
@@ -397,42 +377,6 @@
 }
 
 #detailPage {
-
-	#detailTopStickyContent, #detailTabContentNav {
-		background: $likewhite;
-	}
-
-	#detailTopStickyContent {
-		padding-bottom: 30px;
-		overflow: hidden;
-	}
-
-	#detailTabContentNav.sticky, #detailTopStickyContent.sticky {
-		width: calc(100% - 435px);
-	}
-
-	#detailTopStickyContent.sticky, #detailSecondaryColumn.sticky {
-		top: 64px;
-		padding-top: 30px;
-		overflow: hidden;
-	}
-
-	#detailTabContentNav {
-		clear: both;
-		overflow: hidden;
-		padding-bottom: 40px;
-	}
-
-	.detail-content-wrap {
-		> .col-lg-8 {
-			width: calc(100% - 395px);
-		}
-
-		> .col-lg-4 {
-			width: 395px;
-		}
-	}
-
 	.result_title {
 		h1 {
 			font-family: $lightFont;
@@ -505,8 +449,9 @@
 
 	.tag_wrap {
 		margin-bottom: 20px;
-  	margin-top: 10px;
-  	width: 100%;
+	  	margin-top: 10px;
+	  	width: 100%;
+	  	float: left;
 		h4 {
 			font-size: $defaultSize;
 			font-family: $semiStrongFont;
@@ -537,17 +482,15 @@
 		border-bottom: 2px solid $borderColor;
 
 		th {
-			width: 25%;
+			width: 125px;
+			padding-left: 25px;
+			padding-right: 10px;
 			font-family: $semiStrongFont;
-			border-right: 1px solid $borderColor;
-		}
-
-		td {
-			width: 75%;
 		}
 
 		th, td {
-			padding: 10px 10px 10px 25px;
+			padding-top: 20px;
+			padding-bottom: 20px;
 			border-top: 0;
 			border-bottom: 1px solid $borderColor;
 		}
@@ -571,7 +514,7 @@
 	}
 
 	.edit_link {
-		margin-right: 10px;
+		margin-left: 5px;
 	}
 
 	.input_field {
@@ -605,31 +548,7 @@
 		h1 {
 			font-size: $xlSize;
 			font-family: $lightFont;
-			margin: 40px 0 10px;
-		}
-
-		.alt_list_view {
-			article {
-				margin-bottom: 10px;
-			}
-
-			.card_inner {
-				padding: 10px;
-				min-height: 60px;
-
-				.detail_wrap {
-					margin-bottom: 0;
-					min-height: 30px;
-
-					.detail {
-						height: auto;
-
-						.format {
-							margin-bottom: 0;
-						}
-					}
-				}
-			}
+			margin-bottom: 40px;
 		}
 	}
 
@@ -638,7 +557,7 @@
 	}
 
 	.tab_content {
-		margin: 0 0 20px;
+		margin: 20px 0;
 
 		header {
 			padding: 8px 30px;
@@ -696,13 +615,11 @@
 
 
 .util_list {
-	overflow: hidden;
 	> li {
 		float: left;
 		margin-right: 20px;
 	}
 }
-
 
 @media (min-width: 1501px) {
 	#searchPage {
@@ -749,6 +666,20 @@
 
 @media (max-width: 768px) {
 	#searchPage {
+		/*.map_fixed {
+			position: relative;
+			width: 100%;
+			height: 500px;
+		}
+		header.sticky {
+			position: relative;
+			width: 100%;
+
+			+ .container-fluid {
+				padding-top: 20px !important;
+			}
+		}*/
+
 		.result_container {
 			width: 100%;
 			float: none;
@@ -761,14 +692,6 @@
 						width: 33.333%;
 					}
 				}
-			}
-		}
-	}
-
-	#detailPage {
-		.detail-content-wrap {
-			> .col-lg-8, > .col-lg-4 {
-				width: 100%;
 			}
 		}
 	}
