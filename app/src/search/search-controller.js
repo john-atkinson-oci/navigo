@@ -38,6 +38,13 @@ angular.module('voyager.search')
                 $scope.disp = _params.disp;
             }
 
+            if (!_.isEmpty(_params.mapsize)) {
+                $scope.tableViewMapSize = _params.mapsize;
+            }
+            else {
+                $scope.tableViewMapSize = 'large';
+            }
+
             $scope.count = 0;
             $scope.maxSize = 5;
             $scope.totalItems = 1; //default so no results message doesn't display when loading
@@ -392,6 +399,15 @@ angular.module('voyager.search')
             });
         };
 
+        $scope.exportResultsList = function() {
+            $modal.open({
+                template: '<div><vs-export-results /></div>',
+                size: 'md',
+                scope: $scope
+            });
+        };
+
+
         //Handle search result with error
         $scope.hideResultErrorMessage = function($event) {
             $event.preventDefault();
@@ -452,43 +468,51 @@ angular.module('voyager.search')
 
         function _setPageClass() {
 
-            var isMapFilterVisible = $scope.filterVisible && ($scope.view === 'map');
+                var isMapFilterVisible = $scope.filterVisible && ($scope.view === 'map');
 
-            if (!$scope.showMap) {
-                //TODO why if no map is this 8 cols? the div covers the buttons to the right so you can't click them
-                //$scope.mapWrapperClass = 'col-lg-8 col-md-8 col-sm-12';
-                $scope.mapWrapperClass = '';
-                $scope.mapContentClass = 'col-lg-12 col-md-12 no_float';
-                $scope.headerClass = 'col-lg-12 col-md-12 col-sm-12 col-xs-12 no_float';
-                $scope.listViewClass = '';
-            } else if ($scope.view !== 'map') {
-                $scope.mapContentClass = 'col-lg-8 col-md-8 col-sm-8 col-xs-6 col-lg-push-4 col-md-push-4 col-sm-push-4 col-xs-push-6 no_float';
-                $scope.headerClass = 'col-lg-8 col-md-8 col-sm-12 col-xs-12';
-                $scope.listViewClass = '';
+                if (!$scope.showMap) {
+                    $scope.mapWrapperClass = 'tab_center';
+                    $scope.mapContentClass = 'col-lg-12 col-md-12 no_float';
+                    $scope.headerClass = 'col-lg-12 col-md-12 col-sm-12 col-xs-12 no_float';
+                    $scope.listViewClass = '';
+                } else if ($scope.view === 'card' || $scope.view === 'list') {
+                    $scope.mapContentClass = 'col-lg-8 col-md-8 col-sm-8 col-xs-6 col-lg-push-4 col-md-push-4 col-sm-push-4 col-xs-push-6 no_float';
+                    $scope.headerClass = 'col-lg-8 col-md-8 col-sm-12 col-xs-12';
+                    $scope.listViewClass = '';
 
-                if ($scope.filterVisible) {
-                    $scope.mapWrapperClass = 'col-lg-4 col-md-4 col-sm-4 col-xs-6 filter_opened';
+                    if ($scope.filterVisible) {
+                        $scope.mapWrapperClass = 'map_fixed col-lg-4 col-md-4 col-sm-4 col-xs-6 filter_opened';
+                    } else {
+                        $scope.mapWrapperClass = 'map_fixed col-lg-4 col-md-4 col-sm-4 col-xs-6';
+                    }
+                } else if ($scope.view === 'table') {
+                    $scope.mapContentClass = 'col-lg-12 col-md-12 col-sm-12 col-xs-12 no_float';
+                    $scope.headerClass = 'col-lg-12 col-md-12 col-sm-12 col-xs-12';
+                    $scope.listViewClass = '';
+
+                    if ($scope.filterVisible) {
+                        $scope.mapWrapperClass = 'map_fixed tab_center filter_opened';
+                    } else {
+                        $scope.mapWrapperClass = 'map_fixed tab_center col-lg-12 col-md-12 col-sm-12 col-xs-12';
+                    }
                 } else {
-                    $scope.mapWrapperClass = 'col-lg-4 col-md-4 col-sm-4 col-xs-6';
+                    if (isMapFilterVisible) {
+                        $scope.mapWrapperClass = 'map_fixed col-lg-6 col-md-6 col-sm-5 col-xs-5 filter_opened';
+                        $scope.mapContentClass = 'map_view_content col-lg-6 col-md-6 col-sm-7 col-xs-7 col-lg-push-6 col-md-push-6 col-sm-push-5 col-xs-push-5';
+                        $scope.headerClass = 'col-lg-6 col-md-6 col-sm-12 col-xs-12';
+                        //$scope.listViewClass = 'single';
+                    } else {
+                        $scope.mapWrapperClass = 'map_fixed col-lg-8 col-md-8 col-sm-6 col-xs-6';
+                        $scope.mapContentClass = 'map_view_content col-lg-4 col-md-4 col-sm-6 col-xs-6 col-lg-push-8 col-md-push-8 col-sm-push-6 col-xs-push-6';
+                        $scope.headerClass = 'col-lg-4 col-md-4 col-sm-12 col-xs-12';
+                        $scope.listViewClass = 'alt_list_view';
+                    }
                 }
-            } else {
-                if (isMapFilterVisible) {
-                    $scope.mapWrapperClass = 'col-lg-6 col-md-6 col-sm-5 col-xs-5 filter_opened';
-                    $scope.mapContentClass = 'map_view_content col-lg-6 col-md-6 col-sm-7 col-xs-7 col-lg-push-6 col-md-push-6 col-sm-push-5 col-xs-push-5';
-                    $scope.headerClass = 'col-lg-6 col-md-6 col-sm-12 col-xs-12';
-                    //$scope.listViewClass = 'single';
-                } else {
-                    $scope.mapWrapperClass = 'col-lg-8 col-md-8 col-sm-6 col-xs-6';
-                    $scope.mapContentClass = 'map_view_content col-lg-4 col-md-4 col-sm-6 col-xs-6 col-lg-push-8 col-md-push-8 col-sm-push-6 col-xs-push-6';
-                    $scope.headerClass = 'col-lg-4 col-md-4 col-sm-12 col-xs-12';
-                    $scope.listViewClass = 'alt_list_view';
+
+                if ($scope.searchError || $scope.resultError) {
+                    $scope.mapContentClass += ' extra_height';
                 }
             }
-
-            if ($scope.searchError || $scope.resultError) {
-                $scope.mapContentClass += ' extra_height';
-            }
-        }
 
         $scope.changeSortDirection = function (direction) {
             if (searchService.getSort() !== direction && !_initializing) {
@@ -598,6 +622,17 @@ angular.module('voyager.search')
         $scope.$watch('view', function () {
             _params = $location.search();
             _setView(_params.view, _initializing);
+        });
+
+        $scope.switchMap = function(size) {
+            if ($scope.tableViewMapSize !== size) {
+                $scope.tableViewMapSize = size;
+                $location.search('mapsize', size);
+            }
+        };
+
+        $scope.$on('mapSizeChanged', function(event, size){
+            $scope.switchMap(size);
         });
 
         $scope.getDetailsLink = function(doc) {

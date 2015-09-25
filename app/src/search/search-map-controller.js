@@ -25,7 +25,7 @@ angular.module('voyager.search')
         function _compileLayersControl() {
             var elem = $('.leaflet-control-layers-overlays');
             $compile(elem.contents())($scope);
-            $('.leaflet-control-layers .leaflet-control-layers-toggle').addClass('icon-map_layers');
+            $('.leaflet-control-layers .leaflet-control-layers-toggle').addClass('icon-map_layers').parents('.leaflet-right').removeClass('leaflet-top').addClass('leaflet-bottom leaflet-bottom-search');
         }
 
         $scope.removeLayer = function (layerName) {
