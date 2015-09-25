@@ -1,7 +1,7 @@
 /*global angular, _ */
 
 angular.module('voyager.search')
-	.controller('SearchInputCtrl', function ($scope, config, $location, searchService, $timeout, filterService, mapUtil, sugar) {
+	.controller('SearchInputCtrl', function ($scope, $rootScope, config, $location, searchService, $timeout, filterService, mapUtil, sugar) {
 		'use strict';
 
 		var placeChanged = false;
@@ -15,7 +15,10 @@ angular.module('voyager.search')
 		$scope.selectedDrawingType = ($location.search())['place.op'] === 'intersects' ? 'Intersects' : 'Within';
 
 		$scope.placeOpChange = function(type) {
-			$scope.selectedDrawingType = type;
+			if ($scope.selectedDrawingType !== type) {
+				$scope.selectedDrawingType = type;
+			}
+			$rootScope.$broadcast('SELECTED_DRAWING_TYPE_CHANGED', type);
 		};
 
 		_init();
@@ -60,6 +63,7 @@ angular.module('voyager.search')
 				if(mapUtil.isBbox(initParams.place)) {
 					$scope.search.place = sugar.formatBBox(initParams.place);
 				}
+
 				var placeType = initParams['place.op'];
 				if(angular.isDefined(placeType)) {
 					$scope.search['place.op'] = placeType;
@@ -68,6 +72,7 @@ angular.module('voyager.search')
 				_setBBoxNull();
 			}
 			else if (!_.isEmpty(initParams.bbox)) {
+				console.log(initParams);
 				_updatePlaceToBbox(initParams);
 			} else {
 				$scope.search.place = '';
@@ -75,6 +80,11 @@ angular.module('voyager.search')
 		}
 
 		function _updatePlaceToBbox(params) {
+
+			if (params.place === null || _.isEmpty(params.place)) {
+				return;
+			}
+
 			$scope.search.place = null;
 			$location.search('place', params.place);
             $location.search('place.id', null);
@@ -139,6 +149,9 @@ angular.module('voyager.search')
             $location.search('block', null);
 			if (isPlace) {
 				eventArgs.isBbox = mapUtil.isBbox($scope.search.place);
+				if (!eventArgs.isBbox) {
+					eventArgs.isWkt = mapUtil.isWkt($scope.search.place);
+				}
 				$scope.search.place = '';
                 $location.search('place.id', null);
 				$location.search('place.op', null);

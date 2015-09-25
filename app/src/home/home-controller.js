@@ -3,13 +3,7 @@
 'use strict';
 
 angular.module('voyager.home')
-	.controller('HomeCtrl', function(config, $scope, $window, $location, homeService, authService, leafletData, filterService, searchService, savedSearchService, sugar, configService, savedSearchQuery) {
-
-        var _points;
-        var _searchBoundaryLayer;
-        var _searchBoundary;
-        var _closeMarker;
-        var _remove;
+	.controller('HomeCtrl', function(config, $scope, $window, $location, homeService, authService, leafletData, filterService, searchService, savedSearchService, sugar, configService, savedSearchQuery, $modal) {
 
 		$scope.search = {};
 		$scope.mapTypes = ['Place', 'Map'];
@@ -79,8 +73,6 @@ angular.module('voyager.home')
 		 */
 		function _init() {
 
-			_createMap();
-
 			//fetch for featured items and collections
 			homeService.fetchCollections().then(function(respond) {
 				$scope.collections = respond;
@@ -108,6 +100,37 @@ angular.module('voyager.home')
 				$scope.selectedDrawingType = args;
 			});
 		}
+
+		$scope.saveLocation = function() {
+			var params = {};
+
+			if ($scope.selectedMapType === 'Place') {
+				if (!_.isEmpty($scope.search.location)) {
+					params.place = $scope.search.location;
+					var placeId = $location.search()['place.id'];
+					if(angular.isDefined(placeId)) {
+						params['place.id'] = placeId;
+					}
+					params['place.op'] = $scope.selectedDrawingType.toLowerCase();
+				}
+			} else if ($scope.search.place !== undefined) {
+				params.place = $scope.search.place;
+				params['place.op'] = $scope.selectedDrawingType.toLowerCase();
+			}
+
+			$modal.open({
+                template: '<save-location-dialog />',
+                size: 'md'
+            });
+		};
+
+		$scope.clearField = function() {
+			if ($scope.showMap) {
+				delete $scope.search.displayBBox;
+			} else {
+				$scope.search.location = '';
+			}
+		};
 
 		/**
 		 * @function - toggle between recent and saved search list
@@ -158,64 +181,6 @@ angular.module('voyager.home')
 			});
 
 			return false;
-		}
-
-		function _addClearBoundaryMarker(map) {
-            var closeIcon = L.icon({
-                iconUrl: 'assets/img/close.png',
-                iconSize:     [20, 20], // size of the icon
-                iconAnchor:   [20, 0] // point of the icon which will correspond to marker's location
-            });
-
-            _closeMarker = L.marker(_points[2], {icon:closeIcon}).addTo(map);
-            _closeMarker.on('mousedown', function () {
-				map.removeLayer(_searchBoundaryLayer);
-				map.removeLayer(_closeMarker);
-				_remove = true;
-            });
-        }
-
-		/*
-		 * @function - add map to the page and bind draw events
-		 */
-		function _createMap() {
-
-			leafletData.getMap('search-map').then(function (map) {
-
-				//TODO isn't this already done in the search map directive?
-				map.on('draw:drawstop', function () {
-					if (_.isEmpty(map.vsSearchType) || _searchBoundary === undefined || _remove) {
-						_remove = false;
-						return;
-					}
-
-					var placeType = map.vsSearchType;
-					var bbox = _searchBoundary.replace(/,/g, ' ');
-
-					$scope.search.displayBBox = sugar.formatBBox(bbox);
-					$scope.search.place = bbox;
-					$scope.search['place.op'] = placeType;
-
-					var bounds = bbox.split(' ');
-
-					if (angular.isDefined(_searchBoundaryLayer)) {
-						map.removeLayer(_searchBoundaryLayer);
-						map.removeLayer(_closeMarker);
-					}
-
-					//TODO use map util
-					var color = (placeType === 'within') ? '#f06eaa' : '#1771b4';
-
-					_searchBoundaryLayer = L.rectangle([[bounds[1], bounds[0]], [bounds[3], bounds[2]]], {color: color, weight: 4, 'stroke-color': color, 'stoke-opacity': 0.8, fill:false});
-					_searchBoundaryLayer.addTo(map);
-					_points = _searchBoundaryLayer.getLatLngs();
-					_addClearBoundaryMarker(map);
-				});
-
-				map.on('draw:created', function (e) {
-					_searchBoundary = e.layer.getBounds().toBBoxString();
-				});
-			});
 		}
 
 		/**

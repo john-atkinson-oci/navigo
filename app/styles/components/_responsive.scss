@@ -95,6 +95,15 @@
 			label {
 				left: 8px;
 			}
+
+			a {
+				right: 75px;
+
+				& + a {
+					right: 100px;
+				}
+			}
+
 		}
 
 		input[name="query"], input[name="location"] {
