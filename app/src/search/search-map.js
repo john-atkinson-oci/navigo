@@ -310,7 +310,11 @@ angular.module('voyager.search')
 						}).addTo(_map);
 
 						$scope.search.place = mapUtil.convertToWkt(geoJSON.geometry);
-						$rootScope.$broadcast('bboxChangeEvent', {place: $scope.search.place});
+						$scope.search.displayBBox = mapUtil.formatWktForDisplay($scope.search.place);
+
+						if ($attrs.cancel === 'false') {
+							$rootScope.$broadcast('bboxChangeEvent', {place: $scope.search.place});
+						}
 					});
 				}
 
