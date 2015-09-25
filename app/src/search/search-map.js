@@ -1,8 +1,21 @@
 /*global angular, $, L */
 
 angular.module('voyager.search')
-	.directive('vsSearchMap', function ($compile, config, mapUtil, $timeout, mapControls, configService, $window) {
+	.directive('vsSearchMap', function ($compile, config, mapUtil, $timeout, mapControls, configService, $window, $templateRequest) {
 		'use strict';
+
+		function getMapSizeTemplate() {
+			var mapSizeTemplate = '<div class="leaflet-control-map-size-toggle leaflet-bar leaflet-control">';
+				mapSizeTemplate += '<div class="map-size-drop-down">';
+				mapSizeTemplate += '<div class="icon-arrow flyout-trigger" ng-click="toggleMapSizeDropDown()"><span class="icon-search_map"></span></div>';
+				mapSizeTemplate += '<div class="flyout"><div class="arrow"></div><div class="flyout_inner">';
+				mapSizeTemplate += '<ul><li><a href="javascript:;" ng-click="switchMap(\'large\')">Large map</a></li>';
+				mapSizeTemplate += '<li><a href="javascript:;" ng-click="switchMap(\'small\')">Small map</a></li>';
+				mapSizeTemplate += '<li><a href="javascript:;" ng-click="switchMap(\'no\')">No map</a></li>';
+				mapSizeTemplate += '</ul></div></div></div></div>';
+
+			return mapSizeTemplate;
+		}
 
 		function getExtent(params) {
 			//copy mapDefault so it doesn't get modified
@@ -153,19 +166,12 @@ angular.module('voyager.search')
 				}
 
 				$scope.addMapSizeToggleControl = function() {
+
 					var mapSizeControl = L.control();
+
 					mapSizeControl.setPosition('bottomright');
 					mapSizeControl.onAdd = function () {
-						var mapSizeTemplate = '<div class="leaflet-control-map-size-toggle leaflet-bar leaflet-control">';
-						mapSizeTemplate += '<div class="map-size-drop-down">';
-						mapSizeTemplate += '<div class="icon-arrow flyout-trigger" ng-click="toggleMapSizeDropDown()"><span class="icon-search_map"></span></div>';
-						mapSizeTemplate += '<div class="flyout"><div class="arrow"></div><div class="flyout_inner">';
-						mapSizeTemplate += '<ul><li><a href="javascript:;" ng-click="switchMap(\'large\')">Large map</a></li>';
-						mapSizeTemplate += '<li><a href="javascript:;" ng-click="switchMap(\'small\')">Small map</a></li>';
-						mapSizeTemplate += '<li><a href="javascript:;" ng-click="switchMap(\'no\')">No map</a></li>';
-						mapSizeTemplate += '</ul></div></div></div></div>';
-
-						return $compile($(mapSizeTemplate))($scope)[0];
+						return $compile(getMapSizeTemplate())($scope)[0];
 					};
 
 					$scope.controls.custom.push(mapSizeControl);
