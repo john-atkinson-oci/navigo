@@ -21,8 +21,8 @@ angular.module('voyager.map')
 
                 mapControls.init($scope, 'view-map');
 
-                $scope.defaults = $.extend({zoomControl: false}, mapUtil.defaultConfig);
-                $scope.layers = mapUtil.layers;
+                $scope.defaults = $.extend({zoomControl: false}, mapUtil.getDefaultConfig());
+                $scope.layers = mapUtil.getLayers();
 
                 $scope.controls = {
                     custom: [mapControls.getZoomControls($scope)]

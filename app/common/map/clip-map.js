@@ -39,8 +39,8 @@ angular.module('voyager.map')
 
                 mapControls.init($scope, 'clip-map');
 
-                $scope.defaults = $.extend({zoomControl:false}, mapUtil.defaultConfig);
-                $scope.layers = mapUtil.layers;
+                $scope.defaults = $.extend({zoomControl:false}, mapUtil.getDefaultConfig());
+                $scope.layers = mapUtil.getLayers();
 
                 var withPolygon = $scope.param && $scope.param.extentParam !== true;
                 $scope.controls = {

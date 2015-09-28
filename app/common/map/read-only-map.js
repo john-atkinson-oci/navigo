@@ -35,11 +35,11 @@ angular.module('voyager.map')
             },
             controller: function ($scope, leafletData) {
 
-                var config = $.extend({}, mapUtil.defaultConfig); //copy config so it doesn't get modified
+                var config = $.extend({}, mapUtil.getDefaultConfig()); //copy config so it doesn't get modified
                 //config.zoomControl = false;
 
                 $scope.defaults = config;
-                $scope.layers = mapUtil.layers;
+                $scope.layers = mapUtil.getLayers();
 
                 if($scope.param.wkt) {
                     leafletData.getMap("read-only-map").then(function (map) {
