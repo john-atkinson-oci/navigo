@@ -397,6 +397,13 @@
 		overflow: hidden;
 	}
 
+	#detailSecondaryColumn.sticky {
+		.thumbnail_wrap .tag {
+			top: 40px;
+			left: 15px;
+		}
+	}
+
 	#detailTabContentNav {
 		clear: both;
 		overflow: hidden;

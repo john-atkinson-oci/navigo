@@ -35,7 +35,7 @@ angular.module('voyager.component')
 							scope.$on('$destroy', function(){
 								scope.destroy();
 							});
-						}, 250);
+						}, 350);
 					});
 				};
 
@@ -121,7 +121,7 @@ angular.module('voyager.component')
 						detailTopStickyContent.addClass('sticky').next().css('margin-top',  detailTopStickyContentHeight + 'px');
 						detailSecondaryColumnHeight = detailSecondaryColumn.height() + 138;
 
-						if (mainContentHeight > windowEl.height() && detailSecondaryColumnHeight < mainContentHeight && detailSecondaryColumnHeight < windowEl.height()) {
+						if (detailSecondaryColumnHeight < windowEl.height()) {
 							detailSecondaryColumn.addClass('sticky').css({'margin-top': 0, 'width': '365px'});
 						} else {
 							detailSecondaryColumn.removeClass('sticky');
