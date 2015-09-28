@@ -12,7 +12,6 @@ angular.module('taskRunner')
 
         $scope.params = [];
         $scope.hasMap = true;
-        $scope.showAdvanced = false;
 
         function _applyExtentToMapParams() {
             if (!_.isEmpty($scope.extent)) {
@@ -28,7 +27,6 @@ angular.module('taskRunner')
             $scope.hasError = false;
             $scope.errors = {};
             $scope.hasAdvanced = false;
-            $scope.showAdvanced = false;
             usSpinnerService.spin('tasks-spinner');
             taskService.lookupTaskType($scope.task.name).then(function (response) {
                 $scope.task.display = response[1].data.display;
