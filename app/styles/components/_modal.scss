@@ -198,6 +198,38 @@
 	}
 }
 
+.form-web-service-submission {
+	label.semi {
+		font-size: $mediumSize;
+	}
+
+	.form-control, textarea {
+		padding-left: 10px;
+		padding-right: 10px;
+		font-size: 15px;
+	}
+
+	textarea {
+		display: block;
+		height: 100px;
+		width: 100%;
+	}
+
+	.fieldset-inline {
+		margin-top: 20px;
+		label {
+			position: absolute;
+			top: 7px;
+		}
+	}
+
+	.form-control-inline {
+		width: 50%;
+		float: right;
+	}
+}
+
+
 @media (min-width: 980px) {
 	.modal-lg {
 		width: 900px;
