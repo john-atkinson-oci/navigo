@@ -20,14 +20,14 @@ describe('SearchCtrl', function () {
     //spies
     var $s = {'configService':{}, 'cartService':{}, searchService:{}};
 
-    beforeEach(inject(function ($rootScope, $controller, $q, $location, $timeout, searchService, cartService, configService) {
+    beforeEach(inject(function ($rootScope, $controller, $q, $location, $timeout, searchService, cartService, configService, searchModalService) {
         scope = $rootScope.$new();
         q = $q;
         controllerService = $controller;
         location = $location;
         timeout = $timeout;
 
-        EZSpy.spyOnAll($s, [{searchService:searchService}, {cartService:cartService}, {configService:configService}]);
+        EZSpy.spyOnAll($s, [{searchService:searchService}, {cartService:cartService}, {configService:configService}, {searchModalService:searchModalService}]);
         $s.searchService.getPageIds.and.returnValue([1]);
         $s.searchService.testEsriGeocodeService.and.returnValue(q.when({}));
     }));
@@ -96,6 +96,7 @@ describe('SearchCtrl', function () {
     });
 
     describe('Events', function () {
+
         it('should handle doSearch', function () {
 
             var response = {docs:[], numFound:0}, sort = {key:'key', value:'value'};
@@ -109,6 +110,8 @@ describe('SearchCtrl', function () {
             scope.$apply();
 
             scope.$emit('doSearch');
+
+            timeout.flush();
 
             expect(scope.results).toBe(response.docs);
             expect(scope.totalItems).toBe(response.numFound);
@@ -140,5 +143,40 @@ describe('SearchCtrl', function () {
             expect($s.searchService.doSearch2).toHaveBeenCalled();
 
         });
+
+
+        it('should change map size to small', function () {
+
+            var response = {docs:[], numFound:0}, sort = {key:'key', value:'value'};
+
+            $s.configService.getSortable.and.returnValue([sort]);
+            $s.searchService.doSearch2.and.returnValue(q.when({data:{response:response}}));
+
+            controllerService('SearchCtrl', {$scope: scope, 'cartService': $s.cartService, 'searchService': $s.searchService, 'translateService': translateServiceMock, 'authService': authServiceMock, 'detailService': detailServiceMock, 'configService':$s.configService, 'tagService':tagServiceMock});
+            scope.$apply();
+            spyOn(scope, 'switchMap').and.callThrough();
+
+            scope.$emit('mapSizeChanged', 'small');
+
+            timeout.flush();
+
+            expect(scope.switchMap).toHaveBeenCalledWith('small');
+            expect(scope.tableViewMapSize).toBe('small');
+        });
+
+        it('should open export CSV modal', function () {
+            var response = {docs:[], numFound:0}, sort = {key:'key', value:'value'};
+
+            $s.configService.getSortable.and.returnValue([sort]);
+            $s.searchService.doSearch2.and.returnValue(q.when({data:{response:response}}));
+
+            controllerService('SearchCtrl', {$scope: scope, 'cartService': $s.cartService, 'searchService': $s.searchService, 'translateService': translateServiceMock, 'authService': authServiceMock, 'detailService': detailServiceMock, 'configService':$s.configService, 'tagService':tagServiceMock, 'searchModalService':$s.searchModalService});
+            scope.$apply();
+
+            scope.exportResultsList();
+            expect($s.searchModalService.exportResultsList).toHaveBeenCalled();
+        });
+
     });
+
 });
