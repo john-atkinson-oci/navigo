@@ -10,6 +10,7 @@
                             <li class="{{!hasRecords && 'first' || ''}}"><a href="{{lastSearch}}" class="underline"><span class="txt">Return to Search</span></a></li>
                             <li ng-show="::hasRecords"><a href="javascript:;" ng-disabled="noNext" ng-click="getNext()" class="underline"><span class="txt">Next</span>&nbsp; <span class="fa fa-angle-right"></span></a></li>
                         </ul>
+
                         <section>
                             <header class="result_title">
                                 <h3 class="label label-danger icon-error missing_data" ng-show="doc.hasMissingData">Missing Data</h3>
