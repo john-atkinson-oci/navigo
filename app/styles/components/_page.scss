@@ -1,6 +1,20 @@
 #searchPage {
 	padding-bottom: 30px;
 
+	#searchResultMapContainer {
+		.search-map-container-inner {
+			height: 100%;
+		}
+
+		.alert-warning {
+			background-color: $likewhite;
+			position: absolute;
+			z-index: 50;
+			height: 62px;
+			width: 100%;
+		}
+	}
+
 	.move-map-option {
 		background-color: $white;
 		padding: 10px 15px 5px;
@@ -156,7 +170,7 @@
 	}
 
 
-	.list.table_list {
+	.list.table_list, .list.list_list {
 		> .row {
 			margin-left: 0;
 			margin-right: 0;
