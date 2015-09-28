@@ -69,7 +69,6 @@ angular.module('voyager.map').
                         }
                     });
                     $('.leaflet-draw-actions').hide();
-                    $('.voyager-draw-intersect').removeClass('selected');
                 };
 
                 $scope.zoomOut = function(e) {
@@ -82,7 +81,6 @@ angular.module('voyager.map').
                         }
                     });
                     $('.leaflet-draw-actions').hide();
-                    $('.voyager-draw-intersect').removeClass('selected');
                 };
 
                 $scope.defaultExtent = function (e) {
