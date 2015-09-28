@@ -18,6 +18,8 @@
     <div id="working"></div>
 </div>
 
+<div id="searchViewList" ng-show="view == 'table'" ng-include="'src/search/search-view-list.html'"></div>
+
 <ul class="option_list pull-right" ng-show="hasResults()">
     <li ng-if="hasPermission('save_search')"><a href="javascript:;" ng-click="toggleSave()" class="btn btn-action icon-heart_empty"><span class="small_hide">Save search</span></a></li>
     <li ng-if="totalItems > 0 && hasOnePermission()">
