@@ -1,9 +1,9 @@
-/*global angular, _, L */
+/*global angular, _ */
 
 'use strict';
 
 angular.module('voyager.home')
-	.controller('HomeCtrl', function(config, $scope, $window, $location, homeService, authService, leafletData, filterService, searchService, savedSearchService, sugar, configService, savedSearchQuery, $modal) {
+	.controller('HomeCtrl', function(config, $scope, $window, $location, homeService, authService, leafletData, filterService, searchService, savedSearchService, sugar, configService, savedSearchQuery) {
 
 		$scope.search = {};
 		$scope.mapTypes = ['Place', 'Map'];

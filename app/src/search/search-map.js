@@ -1,7 +1,7 @@
 /*global angular, $, L */
 
 angular.module('voyager.search')
-	.directive('vsSearchMap', function ($compile, config, mapUtil, $timeout, mapControls, configService, $window, $http, sugar, $rootScope) {
+	.directive('vsSearchMap', function ($compile, config, mapUtil, $timeout, mapControls, configService, $window, $http, sugar, $rootScope, mapCustomControls) {
 		'use strict';
 
 		function getExtent(params) {
@@ -135,19 +135,7 @@ angular.module('voyager.search')
 				$scope.addDrawingTool = function() {
 					searchControls.setPosition('topleft');
 					searchControls.onAdd = function () {
-						var template = '<div class="leaflet-draw-section"><div class="leaflet-bar">';
-						template += '<a class="voyager-draw-rect" ng-class="{\'selected\': _drawing}" ng-mousedown="toggleDrawingOption($event)" ng-mouseup="releaseDrawingOption($event)"><i class="icon-map_draw_{{toolType}}"></i></a>';
-						template += '</div>';
-						template += '<div class="leaflet-bar drawing-option-cont" ng-if="showDrawingTools">';
-						template += '<ul id="drawingTools">';
-						template += '<li><a ng-click="selectDrawingTool($event, \'rectangle\')" title="Rectangle"><i class="icon-map_draw_rectangle"></i></a></li>';
-						template += '<li><a ng-click="selectDrawingTool($event, \'polygon\')" title="Polygon"><i class="icon-map_draw_polygon"></i></a></li>';
-						template += '<li><a ng-click="selectDrawingTool($event, \'polyline\')" title="Line"><i class="icon-map_draw_polyline"></i></a></li>';
-						template += '<li><a ng-click="selectDrawingTool($event, \'point\')" title="Marker"><i class="icon-map_draw_point"></i></a></li>';
-						template += '</ul>';
-						template += '</div></div>';
-
-						return $compile($(template))($scope)[0];
+						return $compile($(mapCustomControls.getDrawingToolTemplate()))($scope)[0];
 					};
 				};
 
@@ -167,7 +155,7 @@ angular.module('voyager.search')
 					$event.preventDefault();
 					$event.stopPropagation();
 
-					if (clickTime.getSeconds() !== newTime.getSeconds()) {
+					if (angular.isDefined(clickTime) || clickTime.getSeconds() !== newTime.getSeconds()) {
 						_cancelDraw();
 						$scope.showDrawingTools = true;
 					} else {
@@ -183,7 +171,6 @@ angular.module('voyager.search')
 
 				$scope.selectDrawingTool = function($event, toolType) {
 					$event.preventDefault();
-					var color = currentColor();
 
 					$scope.toolType = toolType;
 					$scope.showDrawingTools = false;
@@ -193,21 +180,7 @@ angular.module('voyager.search')
 					}
 
 					$scope._drawing = true;
-
-					switch (toolType) {
-						case 'polyline':
-							$scope.drawLine(color);
-							break;
-						case 'polygon':
-							$scope.drawPloygon(color);
-							break;
-						case 'point':
-							$scope.drawPoint(color);
-							break;
-						default:
-							$scope.drawRectangle(color);
-							break;
-					}
+					_createShape(currentColor());
 				};
 
 				var _map;
@@ -226,8 +199,8 @@ angular.module('voyager.search')
 					_mapEvents(map);
 				});
 
-				$scope.drawLine = function(color) {
 
+				function _createShape(color) {
 					leafletData.getMap('search-map').then(function (map) {
 						map.vsSearchType = $scope.selectedDrawingType;
 
@@ -235,71 +208,34 @@ angular.module('voyager.search')
 							if(_drawedShape) {
 								_drawedShape.disable();
 							}
-							_drawedShape = new L.Draw.Polyline(map,{shapeOptions: _shapeOptions(color), repeatMode:false, showArea: false});
-							_drawedShape.enable();
-						});
-					});
-				};
-
-				$scope.drawPloygon = function(color) {
-
-					leafletData.getMap('search-map').then(function (map) {
-						map.vsSearchType = $scope.selectedDrawingType;
-
-						$timeout(function() {
-							if(_drawedShape) {
-								_drawedShape.disable();
+							if ($scope.toolType === 'polyline') {
+								_drawedShape = new L.Draw.Polyline(map, {shapeOptions: _shapeOptions(color), repeatMode:false, showArea: false});
 							}
-							_drawedShape = new L.Draw.Polygon(map,{shapeOptions: _shapeOptions(color), repeatMode:false, showArea: true});
-							_drawedShape.enable();
-						});
-					});
-				};
-
-				$scope.drawPoint = function() {
-
-					leafletData.getMap('search-map').then(function (map) {
-						map.vsSearchType = $scope.selectedDrawingType;
-
-						$timeout(function() {
-							if(_drawedShape) {
-								_drawedShape.disable();
+							else if ($scope.toolType === 'polygon') {
+								_drawedShape = new L.Draw.Polygon(map,{shapeOptions: _shapeOptions(color), repeatMode:false, showArea: true});
 							}
-
-							_drawedShape = new L.Draw.Marker(map,{icon: markerIcon});
-							_drawedShape.enable();
-						});
-					});
-				};
-
-				$scope.drawRectangle = function(color) {
-					leafletData.getMap('search-map').then(function (map) {
-						map.vsSearchType = $scope.selectedDrawingType;
-
-						$timeout(function() {
-							if(_drawedShape) {
-								_drawedShape.disable();
+							else if ($scope.toolType === 'point') {
+								_drawedShape = new L.Draw.Marker(map,{icon: markerIcon});
 							}
-							_drawedShape = new L.Draw.Rectangle(map,{shapeOptions: _shapeOptions(color), repeatMode:false, showArea: false});
+							else {
+								_drawedShape = new L.Draw.Rectangle(map,{shapeOptions: _shapeOptions(color), repeatMode:false, showArea: false});
+							}
 							_drawedShape.enable();
 						});
 					});
-				};
+				}
 
 				function _shapeOptions(color) {
 					return {color: color, fillColor: color, strokeOpacity: 0.8, fillOpacity: 0.0};
 				}
-
 
 				function _option() {
 					var color = currentColor();
 					return {color: color, weight: 4, 'stroke-color': color, 'stoke-opacity': 0.8, fill: false};
 				}
 
-
-				function convertBuffer(geoJSON) {
-					$http.post(config.root + 'api/rest/spatial/buffer?diff=true&distance=' + $scope.buffer.distance, geoJSON.geometry).then(function(response){
-
+				function _convertBuffer(geoJSON) {
+					mapCustomControls.convertBuffer($scope.buffer.distance, geoJSON.geometry).then(function(response){
 						geoJSON.geometry = response.data;
 						if (_bufferBoundaryLayer) {
 							_map.removeLayer(_bufferBoundaryLayer);
@@ -369,26 +305,20 @@ angular.module('voyager.search')
 						_searchBoundaryLayer.addTo(map);
 						$scope.search.place = $scope._bbox;
 
-						if ($scope.toolType !== 'point') {
-							_addEditBufferMarker(map, _searchBoundaryLayer.getLatLngs()[pointInx]);
-							_addClearBoundaryMarker(map, _searchBoundaryLayer.getLatLngs()[pointInx]);
-						} else {
-							_addEditBufferMarker(map, _searchBoundaryLayer.getLatLng());
-							_addClearBoundaryMarker(map, _searchBoundaryLayer.getLatLng());
-						}
+						_addLayerMarkers(map, pointInx);
 
 						$scope._drawing = false;
 					});
 				}
 
-				function getGeoJSONType() {
-					if ($scope.toolType === 'polyline') {
-						return 'LineString';
-					} else if ($scope.toolType === 'point') {
-						return 'Point';
+				function _addLayerMarkers(map, pointInx) {
+					if ($scope.toolType !== 'point') {
+						_addEditBufferMarker(map, _searchBoundaryLayer.getLatLngs()[pointInx]);
+						_addClearBoundaryMarker(map, _searchBoundaryLayer.getLatLngs()[pointInx]);
+					} else {
+						_addEditBufferMarker(map, _searchBoundaryLayer.getLatLng());
+						_addClearBoundaryMarker(map, _searchBoundaryLayer.getLatLng());
 					}
-
-					return 'Polygon';
 				}
 
 
@@ -457,23 +387,7 @@ angular.module('voyager.search')
 				}
 
 				function addBufferOption() {
-					var markup;
-
-					markup = '<div class="buffer-option">';
-					markup += '<form name="bufferOption">';
-					markup += '<div class="buffer-content"><div class="buffer-label semi">Buffer distance</div>';
-					markup += '<input type="text" ng-model="buffer.distance" />';
-					markup += '<select ui-select2="{dropdownAutoWidth: \'true\', minimumResultsForSearch: -1}" ng-model="buffer.measure">';
-					markup += '<option ng-repeat="type in ::bufferMeasures">{{::type}}</option>';
-					markup += '</select></div>';
-					markup += '<div class="buffer-footer">';
-					markup += '<input type="submit" value="Done" class="btn btn-primary" ng-click="addBuffer()" />';
-					markup += '<a href="#" ng-click="bufferCancel($event)" class="link_secondary">Cancel</a>';
-					markup += '</div>';
-					markup += '</form>';
-					markup += '</div>';
-
-					return $compile($(markup))($scope)[0];
+					return $compile($(mapCustomControls.getBufferTemplate()))($scope)[0];
 				}
 
 				addBufferOption();
@@ -481,7 +395,7 @@ angular.module('voyager.search')
 				$scope.addBuffer = function() {
 					if (!isNaN($scope.buffer.distance)) {
 						angular.element('.leaflet-popup-close-button')[0].click();
-						convertBuffer(_searchBoundaryLayer.toGeoJSON(), getGeoJSONType());
+						_convertBuffer(_searchBoundaryLayer.toGeoJSON());
 					}
 				};
 
