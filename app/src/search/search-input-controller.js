@@ -18,7 +18,7 @@ angular.module('voyager.search')
 			if ($scope.selectedDrawingType !== type) {
 				$scope.selectedDrawingType = type;
 			}
-			$rootScope.$broadcast('SELECTED_DRAWING_TYPE_CHANGED', type);
+			$scope.$emit('selectedDrawingTypeChanged', type);
 		};
 
 		_init();

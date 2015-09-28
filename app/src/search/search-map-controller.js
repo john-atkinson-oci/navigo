@@ -1,7 +1,7 @@
 /*global angular, _, L, $ */
 // this controller wraps the search map directive - TODO: refactor - its confusing since the direcive has its own controller method
 angular.module('voyager.search')
-    .controller('SearchMapCtrl', function ($scope, filterService, $location, searchService, $stateParams, mapUtil, usSpinnerService, $compile, $timeout, dialogs, config, leafletData, $analytics, mapServiceFactory, inView, heatmapService, $rootScope) {
+    .controller('SearchMapCtrl', function ($scope, filterService, $location, searchService, $stateParams, mapUtil, usSpinnerService, $compile, $timeout, dialogs, config, leafletData, $analytics, mapServiceFactory, inView, heatmapService) {
 
         'use strict';
         var _points;
@@ -18,9 +18,10 @@ angular.module('voyager.search')
 
 
         $scope.hasMapError = config.hasMapError;
-        $rootScope.$on('SELECTED_DRAWING_TYPE_CHANGED', function(event, args){
+        $scope.$on('drawingTypeChanged', function(event, args){
             $scope.selectedDrawingType = args;
         });
+
         $scope.selectedDrawingType = ($location.search())['place.op'] === 'intersects' ? 'Intersects' : 'Within';
 
         leafletData.getMap('search-map').then(function(map) {
