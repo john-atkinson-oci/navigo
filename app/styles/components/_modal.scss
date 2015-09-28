@@ -243,6 +243,7 @@
 	}
 }
 
+
 .saved_primary_nav {
 	font-size: 24px;
 	overflow: hidden;
@@ -273,6 +274,17 @@
 		&:hover {
 			color: #424a53;
 		}
+	}
+}
+
+.modal-body {
+	.form-export-results {
+		padding-top: 30px;
+		padding-bottom: 30px;
+	}
+	.form-control.form-control-short {
+		height: 40px;
+		padding-left: 20px;
 	}
 }
 

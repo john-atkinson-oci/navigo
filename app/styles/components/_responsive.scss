@@ -398,7 +398,7 @@
 	}
 }
 
-@media (max-width: 980px) {
+@media (max-width: 1000px) {
 	#searchPage .result_container {
 		&.open_filter {
 			.container-fluid {
@@ -416,6 +416,15 @@
 		padding-right: 20px;
 	}
 
+	.table_view .map_content #searchViewList {
+		margin-left: -85px !important;
+	}
+
+	.tab {
+		width: 170px;
+	}
+
+
 	.tab ul li a {
 		padding: 5px 12px;
 	}
@@ -428,6 +437,12 @@
 	#detailPage .list {
 		article {
 			width: 33.333%;
+		}
+	}
+
+	.card_view, .map_view {
+		#searchViewList {
+			margin-top: 70px;
 		}
 	}
 
@@ -611,6 +626,19 @@
 		-webkit-overflow-scrolling: touch;
 	}
 
+}
+
+@media (max-width: 768px) {
+	#searchViewList {
+		margin-top: 20px !important;
+		margin-bottom: 20px;
+	}
+
+	.result_container {
+		#searchViewList {
+			margin-top: 78px !important;
+		}
+	}
 }
 
 //iPad In Landscape

@@ -181,7 +181,7 @@ angular.module('voyager.details').
                 if (!exists) {
                     _recentViews.push(doc);
                 }
-                if (_recentViews.length > 4) {
+                if (_recentViews.length > 5) {
                     _recentViews.splice(0, 1);
                 }
             },

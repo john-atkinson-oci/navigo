@@ -1,81 +1,80 @@
-<div id="searchPage" ng-controller="SearchCtrl" ng-class="{{view + '_view'}}">
-	<div class="{{showMap ? 'map_fixed' : 'tab_center'}} {{mapWrapperClass}} no_padding">
-		<div class="tab">
-			<ul>
-				<li ng-if="showMap" ng-class="view == 'map' && 'selected' || ''"><a href="javascript:;" ng-click="switchView('map')">Map</a></li>
-				<li ng-class="view == 'card' && 'selected' || ''"><a href="javascript:;" ng-click="switchView('card')">Card</a></li>
-				<li ng-class="view == 'table' && 'selected' || ''"><a href="javascript:;" ng-click="switchView('table')">List</a></li>
-			</ul>
-		</div>
+<div id="searchPage" ng-controller="SearchCtrl" class="{{view + '_view'}}" ng-class="{'has_selected_filter' : selectedFilters.length}">
+	<div id="searchResultMapContainer" class="{{mapWrapperClass}} no_padding">
+		<div class="search-map-container-inner">
+			<div id="searchViewList" ng-hide="view == 'table'" ng-include="'src/search/search-view-list.html'"></div>
 
-        <div ng-controller="SearchMapCtrl" style="height: 100%" ng-if="showMap">
-            <div class="alert alert-warning alert-dismissible" role="alert" ng-show="hasMapError">
-	            <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-	            <strong>Warning!</strong> Your base map is not supported!
-            </div>
-            <div class="search-map" vs-search-map resize="false" cancel="false"></div>
-        </div>
+			<div ng-controller="SearchMapCtrl" style="height: 100%" ng-if="showMap">
+				<div class="alert alert-warning alert-dismissible" role="alert" ng-show="hasMapError">
+				 	<button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+					<strong>Warning!</strong> Your base map is not supported!
+				</div>
+				<div class="search-map" vs-search-map resize="false" control="true" cancel="false"></div>
+			</div>
+		</div>
     </div>
 
 	<div class="map_content {{mapContentClass}}">
 		<div class="row">
 			<!-- search results section -->
-			<div ng-class="'result_container no_padding' + (filterVisible && totalItems && ' open_filter' || '')">
-                <header class="sticky clearfix {{headerClass}}" ng-include="'src/search/results-header.html'">
-                </header>
+			<div class="result_container no_padding" ng-class="{'open_filter' : (filterVisible && hasResults())}">
+		<header class="sticky clearfix {{headerClass}}" ng-include="'src/search/results-header.html'">
+		</header>
 				<div class="container-fluid clearfix">
-			    	<div id="selectedFilters" ng-controller="SelectedFiltersCtrl" vs-selected-filter>
-			    		<div class="overtop" ng-if="filters.length">
-			    			<div class="hover_flyout">
-			    				<a href="javascript:;" class="semi icon-arrow flyout_trigger">Filters</a>
-			    				<div class="flyout">
-			    					<div class="arrow"></div>
-			    					<div class="flyout_inner">
-			    						<ul>
-			    							<li><a href="javascript:;" ng-click="clearAllFilter()">Clear All</a></li>
-			    						</ul>
-			    					</div>
-			    				</div>
-			    			</div>
-			    			<ul class="selected_list">
-			    				<li ng-repeat="selected in filters"><a href="javascript:;" ng-click="removeFilter(selected)">{{selected.humanized}}<span class="icon-x"></span></a></li>
-			    			</ul>
-			    		</div>
-		    		</div>
+				<div id="selectedFilters" ng-controller="SelectedFiltersCtrl" vs-selected-filter data-view="{{view}}">
+					<div class="overtop" ng-if="filters.length">
+						<div class="hover_flyout">
+							<a href="javascript:;" class="semi icon-arrow flyout_trigger">Filters</a>
+							<div class="flyout">
+								<div class="arrow"></div>
+								<div class="flyout_inner">
+									<ul>
+										<li><a href="javascript:;" ng-click="clearAllFilter()">Clear All</a></li>
+									</ul>
+								</div>
+							</div>
+						</div>
+						<ul class="selected_list">
+							<li ng-repeat="selected in filters"><a href="javascript:;" ng-click="removeFilter(selected)">{{selected.humanized}}<span class="icon-x"></span></a></li>
+						</ul>
+					</div>
+				</div>
 
-		    		<div class="list_wrap">
+				<div class="list_wrap">
 
-			            <!--card results-->
-						<div class="list card_list {{listViewClass}}" ng-if="view != 'table'">
+					<div class="list table_list" ng-if="view == 'table'">
+						<div class="row" ui-view="table-results" vs-table-results data-size="{{tableViewMapSize}}"></div>
+					</div>
+
+			  <!--card results-->
+						<div class="list card_list {{listViewClass}}" ng-if="view != 'table' && view != 'list'">
 							<div class="row" ui-view="card-results"></div>
 						</div>
 
-			            <!--table results-->
-			            <div class="list table_list" ng-if="view == 'table'">
-			            	<div class="row" ui-view="table-results"></div>
-			            </div>
+			  <!--table results-->
+			  <div class="list list_list" ng-if="view == 'list'">
+				<div class="row" ui-view="table-results"></div>
+			  </div>
 
-	                    <div class="list">
-	                        <div class="row">
-	                            <div class="col-xs-12 label" ng-if="eof" style="background-color: #ecf0f1; color: black; border: 1px solid #d2d6d7; margin-left: 10px; width:98%">
-	                                <h4><span>End of Results</span></h4>
-	                            </div>
-	                        </div>
-	                    </div>
-	                </div>
+			  <div class="list">
+				<div class="row">
+				  <div class="col-xs-12 label" ng-if="eof" style="background-color: #ecf0f1; color: black; border: 1px solid #d2d6d7; margin-left: 10px; width:98%">
+					  <h4><span>End of Results</span></h4>
+				  </div>
+				</div>
+			  </div>
+			</div>
 
-		        </div>
-		        <span us-spinner="{top:'100%',left:'48%',radius:6, width:3, length: 5}" spinner-key="scroll-spinner"></span>
+		</div>
+			<span us-spinner="{top:'100%',left:'48%',radius:6, width:3, length: 5}" spinner-key="scroll-spinner"></span>
 				<div class="no_result" ng-include="'src/results/no-results.html'"></div>
 			</div>
 
 			<!-- filters on right -->
-            <!--TODO ng-if not working here why? - using ng-show-->
-	        <div id="filterContainer" class="col-lg-3 col-md-3 col-sm-5 col-xs-5" ng-show="filterVisible && totalItems">
-	        	<div ui-view="filters" vs-filters></div>
-    			<div class="filter_background"></div>
-	        </div>
-
+		<!--TODO ng-if not working here why? - using ng-show-->
+	  	<div id="filterContainer" class="col-lg-3 col-md-3 col-sm-5 col-xs-5" ng-show="filterVisible && totalItems">
+			<div ui-view="filters" vs-filters></div>
+				<div class="filter_background"></div>
+	  		</div>
 		</div>
 	</div>
 </div>
