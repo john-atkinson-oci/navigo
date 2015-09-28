@@ -46,6 +46,12 @@ angular.module('voyager.component')
 					}
 				});
 
+				scope.$watch('showTab', function(){
+					if (angular.isDefined(scope.showTab)) {
+						$document.scrollTop(detailTabContentNavTipPoint);
+					}
+				});
+
 				scope.resize = function() {
 					$timeout.cancel(scope.resizeTimer);
 					scope.resizeTimer = $timeout(function(){
@@ -65,7 +71,7 @@ angular.module('voyager.component')
 
 					var scrollTop = $document.scrollTop();
 					var windowHeight = windowEl.height();
-					var mainContentHeight = itemDetailEl.outerHeight() + 80;
+					var mainContentHeight = $document.outerHeight();
 
 					if (mainContentHeight > windowHeight || detailSecondaryColumnHeight > windowHeight) {
 						if (!tipped && scrollTop >= detailTabContentNavTipPoint) {
