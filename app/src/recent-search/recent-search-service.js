@@ -169,8 +169,6 @@ angular.module('voyager.search')
                 for (; i<totalItemMapLength; i++) {
                     if (mapUtil.isBbox(itemMap[i].place)) {
                         itemMap[i].displayBBox = sugar.formatBBox(itemMap[i].place);
-                    } else if (!_.isEmpty(itemMap[i].place)) {
-                        itemMap[i].displayBBox = mapUtil.formatWktForDisplay(itemMap[i].place);
                     }
                     itemMap[i].displayPlaceOP = itemMap[i]['place.op'];
                 }
