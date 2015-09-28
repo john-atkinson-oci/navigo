@@ -198,6 +198,39 @@
 	}
 }
 
+.saved_primary_nav {
+	font-size: 24px;
+	overflow: hidden;
+	margin-bottom: 30px;
+
+	li {
+		float: left;
+		border-right: 1px solid $borderColor;
+		margin: 0 0 0 30px;
+		padding-right: 30px;
+
+		&:first-child {
+			margin-left: 0;
+		}
+
+		&:last-child {
+			border-right: 0;
+		}
+
+		&.selected a {
+			color: #424a53;
+		}
+	}
+
+	a {
+		color: #8e9194;
+
+		&:hover {
+			color: #424a53;
+		}
+	}
+}
+
 @media (min-width: 980px) {
 	.modal-lg {
 		width: 900px;

@@ -1,7 +1,7 @@
 /*global angular, _ */
 
 angular.module('voyager.search')
-	.controller('SearchInputCtrl', function ($scope, config, $location, searchService, $timeout, filterService, mapUtil, sugar) {
+	.controller('SearchInputCtrl', function ($scope, config, $location, searchService, $timeout, filterService, mapUtil, sugar, $modal) {
 		'use strict';
 
 		var placeChanged = false;
@@ -16,6 +16,14 @@ angular.module('voyager.search')
 
 		$scope.placeOpChange = function(type) {
 			$scope.selectedDrawingType = type;
+		};
+
+		$scope.saveLocation = function() {
+			$modal.open({
+                template: '<vs-save-location-dialog />',
+                size: 'md',
+                scope: $scope
+            });
 		};
 
 		_init();
