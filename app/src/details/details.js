@@ -1,7 +1,7 @@
 /*global angular, $, _, window, document */
 'use strict';
 angular.module('voyager.details')
-    .controller('DetailsCtrl', function ($scope, $stateParams, cartService, translateService, authService, config, detailService, mapServiceFactory, leafletData, usSpinnerService, dialogs, $sce, $q, configService, $timeout, tagService, searchService, $location, $window, urlUtil, resultsDecorator, loading, detailConfig, $analytics, $modal, filterService) {
+    .controller('DetailsCtrl', function ($scope, $stateParams, cartService, translateService, authService, config, detailService, mapServiceFactory, leafletData, usSpinnerService, dialogs, $sce, $q, configService, $timeout, tagService, searchService, $location, $window, urlUtil, resultsDecorator, loading, detailConfig, $analytics, $modal, filterService, detailsActions) {
 
         var displayParams = '';
         var _layer;
@@ -184,6 +184,7 @@ angular.module('voyager.details')
                 }
 
                 $scope.doc.isMappable = mapServiceFactory.isMappable(doc.format);
+                $scope.doc.isService = $scope.doc.isMappable;
 
                 $scope.showMap = $scope.hasBbox || $scope.doc.isMappable;
 
@@ -235,6 +236,8 @@ angular.module('voyager.details')
                 if(angular.isDefined($scope.doc.thumb) && $scope.doc.thumb.indexOf('vres/mime') !== -1) {
                     doc.defaultThumb = true;
                 }
+
+                $scope.actions = detailsActions.getActions($scope.doc);
             });
         }
 
@@ -567,26 +570,6 @@ angular.module('voyager.details')
                 }
                 usSpinnerService.stop('nav-spinner');
             });
-        };
-
-        $scope.doDownload = function() {
-            var doc = $scope.doc;
-            $analytics.eventTrack('download', {
-                category: 'results', label: doc.format // jshint ignore:line
-            });
-            //TODO not sure if we need category of GIS but we don't want to do this with general images
-            //TODO remove - doc.download should now have the stream url
-            //if(doc.format_category === 'GIS' && doc.component_files && doc.component_files.length > 0) { // jshint ignore:line
-            //    var url = config.root + 'stream/' + doc.id + '.zip';
-            //    $window.location.href = url;
-            //} else {
-            $window.location.href = doc.download;
-            //}
-        };
-
-        $scope.doOpen = function() {
-            var action = _.find(config.docActions,{action:'open'});
-            $window.open(action.url + '?url=' + encodeURIComponent($scope.doc.fullpath));
         };
 
         $scope.showFlagModal = function() {

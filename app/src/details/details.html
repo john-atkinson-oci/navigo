@@ -46,10 +46,10 @@
                                         <div class="arrow"></div>
                                         <div class="flyout_inner">
                                             <ul>
-                                                <li ng-show="doc.hasDownload"><a href="javascript:;" ng-click="doDownload()">{{getAction}} Now</a></li>
-                                                <li ng-show="doc.isMappable"><a href="javascript:;" ng-click="doOpen()">Open with Map App</a></li>
+                                                <li ng-repeat="action in actions" ng-if="action.visible">
+                                                    <a href="javascript:;" ng-click="action.do()">{{action.text}}</a>
+                                                </li>
                                                 <li ng-show="canFlag && !isRemote"><a href="javascript:;" ng-click="showFlagModal()">Flag This</a></li>
-                                                <li ng-show="doc.isEsriLayer"><a href="{{doc.layerURL}}">Open in ArcMap</a></li>
                                             </ul>
                                         </div>
                                     </div>
