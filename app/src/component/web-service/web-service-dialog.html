@@ -1,0 +1,39 @@
+<div class="modal-header">
+	<h3>Web Service Submission</h3>
+</div>
+<div class="modal-body">
+	<form class="form-web-service-submission" role="form">
+		<div class="alert alert-danger" ng-show="hasError()">{{error}}</div>
+		<fieldset>
+			<label class="semi" for="wsURL" aria-label="Web Service URL">Web Service URL</label>
+			<input id="wsURL" type="text" class="form-control form-control-short" placeholder="Enter URL" ng-model="webService.url" required autofocus />
+		</fieldset>
+		<fieldset>
+			<label class="semi" for="wsDescription" aria-label="Web Service Description">Web Service Description</label>
+			<textarea id="wsDescription" placeholder="Enter description" ng-model="webService.description"></textarea>
+		</fieldset>
+		<fieldset>
+			<label class="semi" or="wsName" aria-label="Enter full name">Enter full name</label>
+			<input id="wsName" type="text" class="form-control form-control-short" placeholder="Enter full name" ng-model="webService.name" />
+		</fieldset>
+		<fieldset>
+			<label class="semi" for="wsOrganization" aria-label="Organization">Organization</label>
+			<input id="wsOrganization" type="text" class="form-control form-control-short" placeholder="Enter Organization" ng-model="webService.organization" />
+		</fieldset>
+		<fieldset>
+			<label class="semi" for="wsEmail" aria-label="Email">Email</label>
+			<input id="wsEmail" type="email" class="form-control form-control-short" placeholder="Enter Oemail" ng-model="webService.email" />
+		</fieldset>
+		<fieldset class="fieldset-inline">
+			<label class="semi" for="wsContactByPhone"><input type="checkbox" id="wsContactByPhone" ng-model="webService.contactByPhone" /> &nbsp;Contact me by phone</label>
+			<input type="text" class="form-control form-control-short form-control-inline" placeholder="Enter phone #" />
+		</fieldset>
+	</form>
+</div>
+<div class="modal-footer">
+	<div class="cta_row">
+		<button class="btn btn-primary" ng-click="ok()">Submit</button>
+		<a href="javascript:;" class="link_secondary" ng-click="cancel()">Cancel</a>
+	</div>
+</div>
+<a href="javascript:;" class="modal-close icon-x" ng-click="cancel()"></a>

@@ -1,8 +1,20 @@
 <div ng-controller="TableCtrl">
-    <table ng-table="tableParams" class="table ng-table-resizable-columns ng-table-rowselected table-condensed table-striped" data-resizable-columns-id="searchTable" id="resultsTable">
+    <table ng-table="tableParams" class="table ng-table-resizable-columns ng-table-rowselected table-condensed table-striped" data-resizable-columns-id="resultsTable" id="resultsTable">
         <thead>
             <tr>
-                <th class="semi img" style="width:92px;">Image</th>
+                <th class="semi img" style="width:92px;">
+                    <div class="hover_flyout">
+                        <a href="javascript:;" class="semi icon-arrow flyout_trigger">Image</a>
+                        <div class="flyout">
+                            <div class="arrow"></div>
+                            <div class="flyout_inner">
+                                <ul>
+                                    <li><a href="javascript:;" ng-click="toggleThumbnails()">{{hideThumbnails ? 'Show' : 'Hide'}} Thumbnails</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </th>
                 <th style="width:{{field.width}}" ng-repeat="field in tableFields" data-resizable-column-id="{{field.field}}" class="semi sortable" ng-class="{
                             'sort-asc': tableParams.isSortBy(field.field, 'asc'),
                             'sort-desc': tableParams.isSortBy(field.field, 'desc')
@@ -15,12 +27,12 @@
         </thead>
         <tbody>
             <tr ng-repeat="doc in $data" ng-class="{'active': doc.$selected}" ng-mouseenter="hover(doc)" ng-mouseleave="hover(null)" vs-table-row>
-                <td class="img">
+                <td class="img" ng-hide="hideThumbnails">
                     <div ng-if="doc.hasMissingData" class="icon-error"></div>
                     <div class="tag" ng-if="::doc.tag_flags"><a href="javascript:;" ng-click="applyTag(doc.tag_flags)" ng-bind="::doc.tag_flags"></a></div>
                     <a href="{{doc.detailLink}}" ng-if="::doc.thumb"><img src="assets/img/s.png" style="background-image: url({{doc.thumb}})" /></a></td>
-                <td ng-repeat="field in tableFields" sortable="{{field.field}}" ng-class="{'semi' : field.field == 'name'}">
-                    <div class="field_wrap" style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap">
+                <td colspan="{{$first && hideThumbnails ? 2 : ''}}" ng-repeat="field in tableFields" sortable="{{field.field}}" ng-class="{'semi' : field.field == 'name'}">
+                    <div class="field_wrap">
                         <a href="{{doc.detailLink}}" class="underline" ng-if="field.field == 'name'"><span class="txt">{{doc[field.field]}}</span></a>
                         <span ng-if="field.field != 'name'">{{formatField(doc, field)}}</span>
                     </div>

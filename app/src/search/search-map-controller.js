@@ -16,7 +16,13 @@ angular.module('voyager.search')
         var _cancelledDraw = false;
         var _geoHighlightLayer;
 
+
         $scope.hasMapError = config.hasMapError;
+        $scope.$on('drawingTypeChanged', function(event, args){
+            $scope.selectedDrawingType = args;
+        });
+
+        $scope.selectedDrawingType = ($location.search())['place.op'] === 'intersects' ? 'Intersects' : 'Within';
 
         leafletData.getMap('search-map').then(function(map) {
             $scope.map = map;
@@ -25,7 +31,7 @@ angular.module('voyager.search')
         function _compileLayersControl() {
             var elem = $('.leaflet-control-layers-overlays');
             $compile(elem.contents())($scope);
-            $('.leaflet-control-layers .leaflet-control-layers-toggle').addClass('icon-map_layers');
+            $('.leaflet-control-layers .leaflet-control-layers-toggle').addClass('icon-map_layers').parents('.leaflet-right').removeClass('leaflet-top').addClass('leaflet-bottom leaflet-bottom-search');
         }
 
         $scope.removeLayer = function (layerName) {
@@ -258,17 +264,10 @@ angular.module('voyager.search')
                         if (_searchBoundaryLayer) {  //remove existing
                             _removeSearchBoundary();
                         }
-                        //TODO use map util
-                        var type = $scope.map.vsSearchType;
-                        var color = (type === 'within') ? '#f06eaa' : '#1771b4';
-                        _searchBoundaryLayer = L.rectangle(_points, {color: color, width: 1, fill:false, className:'drawn-extent'});
-                        $scope.map.addLayer(_searchBoundaryLayer);
-
-                        var bbox = _searchBoundary.replace(/,/g, ' ');
 
                         //update url params
-                        $location.search('place', bbox);
-                        var placeType = type.toLowerCase();
+                        $location.search('place', $scope._bbox);
+                        var placeType = $scope.selectedDrawingType.toLowerCase();
                         $location.search('place.op', placeType);
                         var point = $scope.map.getCenter();
                         var vw = point.lng + ' ' + point.lat + ' ' + $scope.map.getZoom();
@@ -276,7 +275,7 @@ angular.module('voyager.search')
                         searchService.setMapView(vw);
 
                         //search controller will capture this event and fire a search
-                        $scope.$emit('bboxChangeEvent', {'bbox': bbox, 'bboxt': placeType, 'vw': vw, 'place':bbox, 'place.op':placeType});
+                        $scope.$emit('bboxChangeEvent', {'bbox': $scope._bbox, 'bboxt': placeType, 'vw': vw, 'place':$scope._bbox, 'place.op':placeType});
                     }
                 });
 
@@ -288,8 +287,14 @@ angular.module('voyager.search')
 
             $scope.map.on('draw:created', function (e) {
                 _cancelledDraw = false;
-                _points = e.layer.getLatLngs();
-                _searchBoundary = e.layer.getBounds().toBBoxString();
+                if ($scope.toolType === 'point') {
+                    _points = e.layer.getLatLng();
+                    _searchBoundary = e.layer.getLatLng();
+                }
+                else {
+                    _points = e.layer.getLatLngs();
+                    _searchBoundary = e.layer.getBounds().toBBoxString();
+                }
             });
 
             //@TODO: add search on map move feature

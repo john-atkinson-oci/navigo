@@ -1,7 +1,7 @@
 /*global angular,$ */
 
 angular.module('voyager.util').
-    factory('converter', function($q, config) {
+    factory('converter', function($q, config, sugar) {
 
         'use strict';
 
@@ -44,6 +44,37 @@ angular.module('voyager.util').
                 name = name.replace(/[\s\/\+\-!\(\){}\^"~*?:]|&&|\|\|/g, "\\$&");
             }
             return name;
+        }
+
+        function _toClassic(params, from, to) {
+            var converted = '';
+            if(angular.isDefined(params[from])) {
+                var pArr = sugar.toArray(params[from]), f, filter, filterValue;
+                $.each(pArr, function(index, value) {
+                    if (value.indexOf(':') !== -1) {
+                        f = value.split(':');
+                        filter = f[0];
+                        filterValue = f[1];
+                        if(f.length > 2) {
+                            f.splice(0,1);
+                            filterValue = f.join(':');
+                        }
+                        filterValue = filterValue.replace(/\\/g, ''); //remove escape characters
+                        //TODO encoding twice so classic ui works - seems like classic ui needs to be fixed?
+                        converted += '/' + to + '.' + filter + '=' + encodeURIComponent(encodeURIComponent(filterValue));
+                    } else {
+                        if(to === 'bbox.mode') {
+                            if (value === 'w') {
+                                value = 'WITHIN';
+                            } else {
+                                value = 'INTERSECTS';
+                            }
+                        }
+                        converted += '/' + to + '=' + value;
+                    }
+                });
+            }
+            return converted;
         }
 
         return {
@@ -180,6 +211,28 @@ angular.module('voyager.util').
                     filterQuery.push('{!tag=' + name + '}' + name + ":(" + orFilter.join(" ") + ")");
                 });
                 return filterQuery;
+            },
+
+            toClassicParams: function(params) {
+                var voyagerParams = '';
+                voyagerParams += _toClassic(params, 'q', 'q');
+                voyagerParams += _toClassic(params, 'fq', 'f');
+
+                voyagerParams += _toClassic(params, 'place', 'place');
+                voyagerParams += _toClassic(params, 'place.op', 'place.op');
+
+                voyagerParams += _toClassic(params, 'voyager.list', 'voyager.list');
+                if(params.view === 'table') {
+                    voyagerParams += '/view=TABLE';
+                }
+                if(angular.isDefined(params.sort)) {
+                    voyagerParams += '/sort=' + params.sort;
+                }
+                if(angular.isDefined(params.sortdir) && params.sortdir === 'desc') {
+                    voyagerParams += '/sort.reverse=true';
+                }
+
+                return voyagerParams;
             }
         };
 
