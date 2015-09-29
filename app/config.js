@@ -36,7 +36,7 @@ var config = {
     docActions: [
         {text:'Add to Queue', action:'add', visible:'canCart', toggle:'inCart', off:'Remove', onIcon:'icon-plus', offIcon:'icon-x'},
         {text:'Download', action:'download', visible:'hasDownload', alt:'Open'},
-        {text:'Open in Voyager Map', action:'open', visible:'isService', url:'http://voyagerdemo.com/voyagerwidget/'},
+        {text:'Open in Map Viewer', action:'open', visible:'isService', url:'http://voyagerdemo.com/voyagerwidget/'},
         {text:'Open in ArcMap', action:'openArcMap', visible:'isEsriLayer'}
     ],
     docLink: {text:'Preview', action:'preview', visible:'isService'},
