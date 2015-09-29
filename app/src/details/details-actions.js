@@ -54,7 +54,7 @@
         }
 
         function _getActions(doc) {
-            var actions = _.clone(config.docActions);
+            var actions = _.cloneDeep(config.docActions);
             _.each(actions, function(action) {
                 _setAction(action, doc);
             });
