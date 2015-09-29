@@ -10,12 +10,12 @@ angular.module('voyager.search').
 
             if(configService.hasChanges()) {
                 var deferred = $q.defer();
-                sugar.postJson(configService.getUpdatedSettings(), 'config', 'display').then(function(response) {
+                sugar.postJson(configService.getUpdatedSettings(), 'display', 'config').then(function(response) {
                     request.config = response.data.id;
                     /* jshint ignore:start */
                     request.query += '/disp=' + request.config;
                     request.path = request.query;
-                    sugar.postJson(request, 'slocation', 'display').then(function(savedResponse) {
+                    sugar.postJson(request, 'display', 'slocation').then(function(savedResponse) {
                         deferred.resolve();
                     }, function(error) {
                         deferred.reject(error);
@@ -28,7 +28,7 @@ angular.module('voyager.search').
             } else {
                 request.query += '/disp=' + request.config;
                 request.path = request.query;
-                return sugar.postJson(request, 'slocation', 'display');
+                return sugar.postJson(request, 'display', 'slocation');
             }
         }
 
