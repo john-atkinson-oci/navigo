@@ -3,7 +3,7 @@
 'use strict';
 
 angular.module('voyager.home')
-	.controller('HomeCtrl', function(config, $scope, $window, $location, homeService, authService, leafletData, filterService, searchService, savedSearchService, sugar, configService, savedSearchQuery) {
+	.controller('HomeCtrl', function(config, $scope, $window, $location, homeService, authService, leafletData, filterService, searchService, savedSearchService, sugar, configService, savedSearchQuery, $modal) {
 
 		$scope.search = {};
 		$scope.mapTypes = ['Place', 'Map'];
@@ -22,6 +22,7 @@ angular.module('voyager.home')
         $scope.collectionsTitle = 'Collections';
 		$scope.searchInputClass = 'col-md-6 col-xs-6';
 		$scope.showSpatialInput = true;
+
 
 		$scope.showAll = function() {
 			var search = homeService.getFeaturedQuery();
@@ -100,6 +101,14 @@ angular.module('voyager.home')
 				$scope.selectedDrawingType = args;
 			});
 		}
+
+		$scope.saveLocation = function() {
+			$modal.open({
+                template: '<vs-save-location-dialog />',
+                size: 'md',
+                scope: $scope
+            });
+		};
 
 		$scope.clearField = function() {
 			if ($scope.showMap) {
