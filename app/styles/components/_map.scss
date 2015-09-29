@@ -142,6 +142,63 @@
 	left: 32px;
 }
 
+.leaflet-draw-section {
+	.drawing-option-trigger {
+		width: 26px;
+	}
+
+	.drawing-option-cont {
+		position: absolute;
+		top: 0;
+		left: 40px;
+
+		&:after, &:before {
+			position: absolute;
+			content: '';
+			width: 0;
+			height: 0;
+			border-style: solid;
+		}
+
+		&:before {
+			z-index: 2;
+			left: -6px;
+			top: 6px;
+			border-width: 6px 7px 6px 0;
+			border-color: transparent #ffffff transparent transparent;
+		}
+
+		&:after {
+			z-index: 1;
+			left: -7px;
+			top: 5px;
+			border-width: 7px 7px 7px 0;
+			border-color: transparent #ecf0f1 transparent transparent;
+		}
+	}
+
+	ul {
+		width: 105px;
+		li {
+			float: left;
+			width: 26px;
+			height: 26px;
+			position: relative;
+			z-index: 3;
+
+			a {
+				border-right: 1px solid #ecf0f1;
+			}
+
+			&:last-child {
+				a {
+					border-right: 0;
+				}
+			}
+		}
+	}
+}
+
 .leaflet-control-map-size-toggle {
   background-color: #ffffff;
   width: 60px;
@@ -170,30 +227,30 @@
 }
 
 .leaflet-bottom {
-  &.leaflet-bottom-search {
-    right: 72px;
+  	&.leaflet-bottom-search {
+    	right: 72px;
 
-    .leaflet-control-layers {
-      box-shadow: none;
-    }
-  }
+    	.leaflet-control-layers {
+      		box-shadow: none;
+    	}
+  	}
 
-  .leaflet-control-map-size-toggle.leaflet-control {
-    box-shadow: none;
-    margin-right: 20px;
-    border-left: 1px solid $borderColor;
+  	.leaflet-control-map-size-toggle.leaflet-control {
+	    box-shadow: none;
+	    margin-right: 20px;
+	    border-left: 1px solid $borderColor;
 
-    a.flyout_trigger {
-    	height: 30px;
-    	width: 60px;
-    	border-bottom: 0;
+    	a.flyout_trigger {
+	    	height: 30px;
+	    	width: 60px;
+	    	border-bottom: 0;
 
-    	.icon-search_map {
-    		position: relative;
-    		top: 3px;
+	    	.icon-search_map {
+	    		position: relative;
+	    		top: 3px;
+	    	}
     	}
     }
-  }
 }
 
 .leaflet-control-map-size-toggle {
@@ -206,7 +263,6 @@
 				left: 70px;
 			}
 		}
-
 
 		.flyout_inner {
 			ul {
@@ -241,6 +297,7 @@
 		left: 13px;
 	}
 }
+
 #noMapMapsizeDropDown {
 	.icon-arrow {
 		display: block;
