@@ -1,7 +1,7 @@
 /*global angular, _ */
 
 angular.module('voyager.search')
-	.controller('SearchInputCtrl', function ($scope, config, $location, searchService, $timeout, filterService, mapUtil, sugar, $modal) {
+	.controller('SearchInputCtrl', function ($scope, config, $location, searchService, $timeout, filterService, mapUtil, sugar, $modal, authService) {
 		'use strict';
 
 		var placeChanged = false;
@@ -13,6 +13,7 @@ angular.module('voyager.search')
         $scope.showLocation = config.homepage && config.homepage.showPlaceQuery !== false;
 		$scope.drawingTypes = ['Within', 'Intersects'];
 		$scope.selectedDrawingType = ($location.search())['place.op'] === 'intersects' ? 'Intersects' : 'Within';
+
 
 		$scope.placeOpChange = function(type) {
 			if ($scope.selectedDrawingType !== type) {
@@ -50,6 +51,8 @@ angular.module('voyager.search')
 		 * @function Populate query and location fields based on querystring
 		 */
 		function _init() {
+
+			$scope.canAdmin = authService.hasPermission('manage');
 
 			if ($location.path() !== '/search') {
 				$scope.showSearch = false;

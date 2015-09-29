@@ -23,6 +23,7 @@ angular.module('voyager.home')
 		$scope.searchInputClass = 'col-md-6 col-xs-6';
 		$scope.showSpatialInput = true;
 
+
 		$scope.showAll = function() {
 			var search = homeService.getFeaturedQuery();
 			if (angular.isDefined(search)) {
@@ -72,6 +73,8 @@ angular.module('voyager.home')
 		 * @function - on page load, fetch data
 		 */
 		function _init() {
+
+			$scope.canAdmin = $scope.hasPermission('manage');
 
 			//fetch for featured items and collections
 			homeService.fetchCollections().then(function(respond) {
