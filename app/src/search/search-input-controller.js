@@ -1,7 +1,7 @@
 /*global angular, _ */
 
 angular.module('voyager.search')
-	.controller('SearchInputCtrl', function ($scope, config, $location, searchService, $timeout, filterService, mapUtil, sugar, $modal) {
+	.controller('SearchInputCtrl', function ($scope, config, $location, searchService, $timeout, filterService, mapUtil, sugar, $modal, authService) {
 		'use strict';
 
 		var placeChanged = false;

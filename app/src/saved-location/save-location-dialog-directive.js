@@ -32,21 +32,12 @@ angular.module('voyager.search')
                         authService.fetchGroups().then(function(groups) {
                             $.merge(_shareGroups, groups);
                         });
-                    } else if (scope.canShare) {  // use user's groups
-                        authService.getUserInfo().then(function(user) {
-                            var groups = [];
-                            _(user.groups).forEach(function(n) {groups.push({id:n,text:n});});
-                            $.merge(_shareGroups, groups);
-                        });
                     }
                 }
 
                 function _getPrivileges() {
                     authService.getPrivileges().then(function() {
                         scope.canAdmin = authService.hasPermission('manage');
-                        scope.canSave = authService.hasPermission('save_search');
-                        scope.canShare = authService.hasPermission('share_saved_search');
-
                         _loadGroups();
                     });
                 }

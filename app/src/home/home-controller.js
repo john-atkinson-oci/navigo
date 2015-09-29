@@ -23,6 +23,7 @@ angular.module('voyager.home')
 		$scope.searchInputClass = 'col-md-6 col-xs-6';
 		$scope.showSpatialInput = true;
 
+
 		$scope.showAll = function() {
 			var search = homeService.getFeaturedQuery();
 			if (angular.isDefined(search)) {
