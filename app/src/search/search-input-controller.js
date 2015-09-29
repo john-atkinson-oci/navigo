@@ -14,7 +14,6 @@ angular.module('voyager.search')
 		$scope.drawingTypes = ['Within', 'Intersects'];
 		$scope.selectedDrawingType = ($location.search())['place.op'] === 'intersects' ? 'Intersects' : 'Within';
 
-
 		$scope.placeOpChange = function(type) {
 			if ($scope.selectedDrawingType !== type) {
 				$scope.selectedDrawingType = type;
@@ -51,8 +50,6 @@ angular.module('voyager.search')
 		 * @function Populate query and location fields based on querystring
 		 */
 		function _init() {
-
-			$scope.canAdmin = authService.hasPermission('manage');
 
 			if ($location.path() !== '/search') {
 				$scope.showSearch = false;

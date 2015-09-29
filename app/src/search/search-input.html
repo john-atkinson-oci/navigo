@@ -11,7 +11,7 @@
 					<input style="padding-right: 0px" vs-suggest type="text" class="input_field focus_field" ng-model="search.place" name="location" maxlength="256" placeholder="Where is it located?" autocomplete="off" ng-keypress="locationChange()" tabindex="2" />
 					<label for="location" class="icon-input_location" aria-label="Where is it located?"><span class="sr-only">Where is it located?</span></label>
 					<a href="javascript:;" class="icon-x" aria-label="clear" ng-click="clearField('location', true)"><span class="sr-only">clear</span></a>
-					<a href="javascript:;" ng-click="saveLocation($event)" aria-label="save locaiton" ng-if="canAdmin && search.place" class="icon icon-heart_filled"><span class="sr-only">save</span></a>
+					<a href="javascript:;" ng-click="saveLocation($event)" aria-label="save locaiton" ng-if="search.place" class="icon icon-heart_filled"><span class="sr-only">save</span></a>
 				</div>
 				<div class="select_wrap">
 					<label class="icon-arrow sr-only" for="locationSelect" aria-label="Select location type"><span class="sr-only">Select location type</span></label>

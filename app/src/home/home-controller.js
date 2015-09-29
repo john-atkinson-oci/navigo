@@ -74,8 +74,6 @@ angular.module('voyager.home')
 		 */
 		function _init() {
 
-			$scope.canAdmin = $scope.hasPermission('manage');
-
 			//fetch for featured items and collections
 			homeService.fetchCollections().then(function(respond) {
 				$scope.collections = respond;
