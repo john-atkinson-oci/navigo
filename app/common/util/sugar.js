@@ -1,7 +1,7 @@
-/*global angular, $, _ */
+/*global angular, $, _, config */
 
 angular.module('voyager.util').
-    factory('sugar', function () {
+    factory('sugar', function ($http) {
         'use strict';
 
         function _convertExtent(val) {
@@ -206,6 +206,21 @@ angular.module('voyager.util').
                 });
 
                 return bboxRange.join(' ');
+            },
+
+            postJson: function(request, action) {
+                return $http({
+                    method: 'POST',
+                    url: config.root + 'api/rest/display/' + action + '.json',
+                    data: request,
+                    headers: {'Content-Type': 'application/json'}
+                });
+            },
+
+            postForm: function(url, data) {
+                var service = config.root + url;
+                var headerConfig = {headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'}};
+                return $http.post(service, data, headerConfig);
             }
 
         };

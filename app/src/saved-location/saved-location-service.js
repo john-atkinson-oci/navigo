@@ -1,30 +1,21 @@
-/*global angular, $, querystring, config */
+/*global angular, querystring, config */
 
 angular.module('voyager.search').
-    factory('savedLocationService', function (sugar, $http, configService, $q, authService, $modal, $location, $analytics, filterService) {
+    factory('savedLocationService', function (sugar, $http, configService, $q, authService, $modal, $location, $analytics, filterService, converter) {
         'use strict';
 
         var observers = [];
-
-        function _doPost(request, action) {
-            return $http({
-                method: 'POST',
-                url: config.root + 'api/rest/display/' + action + '.json',
-                data: request,
-                headers: {'Content-Type': 'application/json'}
-            });
-        }
 
         function _doSave(request) {
 
             if(configService.hasChanges()) {
                 var deferred = $q.defer();
-                _doPost(configService.getUpdatedSettings(), 'config').then(function(response) {
+                sugar.postJson(configService.getUpdatedSettings(), 'config').then(function(response) {
                     request.config = response.data.id;
                     /* jshint ignore:start */
                     request.query += '/disp=' + request.config;
                     request.path = request.query;
-                    _doPost(request, 'slocation').then(function(savedResponse) {
+                    sugar.postJson(request, 'slocation').then(function(savedResponse) {
                         deferred.resolve();
                     }, function(error) {
                         deferred.reject(error);
@@ -37,61 +28,8 @@ angular.module('voyager.search').
             } else {
                 request.query += '/disp=' + request.config;
                 request.path = request.query;
-                return _doPost(request, 'slocation');
+                return sugar.postJson(request, 'slocation');
             }
-        }
-
-        function _convert(params, from, to) {
-            var converted = '';
-            if(angular.isDefined(params[from])) {
-                var pArr = sugar.toArray(params[from]), f, filter, filterValue;
-                $.each(pArr, function(index, value) {
-                    if (value.indexOf(':') !== -1) {
-                        f = value.split(':');
-                        filter = f[0];
-                        filterValue = f[1];
-                        if(f.length > 2) {
-                            f.splice(0,1);
-                            filterValue = f.join(':');
-                        }
-                        filterValue = filterValue.replace(/\\/g, ''); //remove escape characters
-                        //TODO encoding twice so classic ui works - seems like classic ui needs to be fixed?
-                        converted += '/' + to + '.' + filter + '=' + encodeURIComponent(encodeURIComponent(filterValue));
-                    } else {
-                        if(to === 'bbox.mode') {
-                            if (value === 'w') {
-                                value = 'WITHIN';
-                            } else {
-                                value = 'INTERSECTS';
-                            }
-                        }
-                        converted += '/' + to + '=' + value;
-                    }
-                });
-            }
-            return converted;
-        }
-
-        function _toVoyagerParams(params) {
-            var voyagerParams = '';
-            voyagerParams += _convert(params, 'q', 'q');
-            voyagerParams += _convert(params, 'fq', 'f');
-
-            voyagerParams += _convert(params, 'place', 'place');
-            voyagerParams += _convert(params, 'place.op', 'place.op');
-
-            voyagerParams += _convert(params, 'voyager.list', 'voyager.list');
-            if(params.view === 'table') {
-                voyagerParams += '/view=TABLE';
-            }
-            if(angular.isDefined(params.sort)) {
-                voyagerParams += '/sort=' + params.sort;
-            }
-            if(angular.isDefined(params.sortdir) && params.sortdir === 'desc') {
-                voyagerParams += '/sort.reverse=true';
-            }
-
-            return voyagerParams;
         }
 
         function _getQueryString() {
@@ -114,12 +52,6 @@ angular.module('voyager.search').
                 console.log(error);
                 return error;
             });
-        }
-
-        function _postForm(url, data) {
-            var service = config.root + url;
-            var headerConfig = {headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'}};
-            return $http.post(service, data, headerConfig);
         }
 
         function _getSearchResult(term) {
@@ -159,7 +91,7 @@ angular.module('voyager.search').
 
             saveLocation: function(SavedLocation, params) {
                 SavedLocation.config = configService.getConfigId();
-                SavedLocation.value = _toVoyagerParams(params);
+                SavedLocation.value = converter.toClassicParams(params);
                 return _doSave(SavedLocation);
             },
 
@@ -203,7 +135,7 @@ angular.module('voyager.search').
                 if(afterId !== null) {
                     data += 'after=' + afterId;
                 }
-                return _postForm('api/rest/display/slocation/' + id + '/order', data);
+                return sugar.postForm('api/rest/display/slocation/' + id + '/order', data);
             }
 
         };
