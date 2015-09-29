@@ -15,18 +15,7 @@ angular.module('voyager.component')
                 };
 
                 scope.ok = function () {
-
-                    // savedLocationService.saveLocation(scope.savedLocation, params).then(function(response) {
-                    //     if (!angular.isDefined(response.data.error)) {
-                    //         scope.$dismiss();
-                    //         scope.error = false;
-                    //         // scope.$emit('saveLocationSuccess', response.data);
-                    //     } else {
-                    //         scope.error = response.data.error;
-                    //     }
-                    // }, function() {
-                    //     scope.error = 'please try again later';
-                    // });
+                    // @TODO: integrate with back end api
                 };
 
                 scope.cancel = function () {
