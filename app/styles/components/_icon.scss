@@ -135,6 +135,9 @@
 .icon-queue_status_waiting:before {
 	content: "\e623";
 }
+.icon-map_pan:before {
+	content: "\e624";
+}
 .icon-managecontrols_discover:before {
 	content: "\e60a";
 }
@@ -167,6 +170,36 @@
 }
 .icon-sort:before {
 	content: "\e632";
+}
+.icon-task_schedule:before {
+	content: "\e628";
+}
+.icon-map_draw_point:before {
+	content: "\e629";
+}
+.icon-map_draw_polyline:before {
+	content: "\e62a";
+}
+.icon-map_draw_polygon:before {
+	content: "\e62b";
+}
+.icon-map_draw_rectangle:before {
+	content: "\e62c";
+}
+.icon-content_file_system:before {
+	content: "\e62d";
+}
+.icon-content_other:before {
+	content: "\e62e";
+}
+.icon-content_cms:before {
+	content: "\e62f";
+}
+.icon-content_web_service:before {
+	content: "\e630";
+}
+.icon-content_database:before {
+	content: "\e631";
 }
 
 .icon-map_pan:before {

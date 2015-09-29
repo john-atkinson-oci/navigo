@@ -1,7 +1,7 @@
-/*global angular, $, _, querystring, config */
+/*global angular, $, querystring, config */
 
 angular.module('voyager.search').
-    factory('savedSearchService', function (sugar, $http, configService, $q, authService, $modal, recentSearchService, $location, filterService, $analytics) {
+    factory('savedSearchService', function (sugar, $http, configService, $q, authService, $modal, recentSearchService, $location, filterService, $analytics, converter) {
         'use strict';
 
         var observers = [];
@@ -40,25 +40,16 @@ angular.module('voyager.search').
             });
         }
 
-        function _doPost(request, action) {
-            return $http({
-                method: 'POST',
-                url: config.root + 'api/rest/display/' + action + '.json',
-                data: request,
-                headers: {'Content-Type': 'application/json'}
-            });
-        }
-
         function _doSave(request) {
 
             if(configService.hasChanges()) {
                 var deferred = $q.defer();
-                _doPost(configService.getUpdatedSettings(), 'config').then(function(response) {
+                sugar.postJson(configService.getUpdatedSettings(), 'display', 'config').then(function(response) {
                     request.config = response.data.id;
                     /* jshint ignore:start */
                     request.query += '/disp=' + request.config;
                     request.path = request.query;
-                    _doPost(request, 'ssearch').then(function(savedResponse) {
+                    sugar.postJson(request, 'display', 'ssearch').then(function(savedResponse) {
                         deferred.resolve();
                     }, function(error) {
                         deferred.reject(error);
@@ -71,61 +62,8 @@ angular.module('voyager.search').
             } else {
                 request.query += '/disp=' + request.config;
                 request.path = request.query;
-                return _doPost(request, 'ssearch');
+                return sugar.postJson(request, 'display', 'ssearch');
             }
-        }
-
-        function _convert(params, from, to) {
-            var converted = '';
-            if(angular.isDefined(params[from])) {
-                var pArr = sugar.toArray(params[from]), f, filter, filterValue;
-                $.each(pArr, function(index, value) {
-                    if (value.indexOf(':') !== -1) {
-                        f = value.split(':');
-                        filter = f[0];
-                        filterValue = f[1];
-                        if(f.length > 2) {
-                            f.splice(0,1);
-                            filterValue = f.join(':');
-                        }
-                        filterValue = filterValue.replace(/\\/g, ''); //remove escape characters
-                        //TODO encoding twice so classic ui works - seems like classic ui needs to be fixed?
-                        converted += '/' + to + '.' + filter + '=' + encodeURIComponent(encodeURIComponent(filterValue));
-                    } else {
-                        if(to === 'bbox.mode') {
-                            if (value === 'w') {
-                                value = 'WITHIN';
-                            } else {
-                                value = 'INTERSECTS';
-                            }
-                        }
-                        converted += '/' + to + '=' + value;
-                    }
-                });
-            }
-            return converted;
-        }
-
-        function _toVoyagerParams(params) {
-            var voyagerParams = '';
-            voyagerParams += _convert(params, 'q', 'q');
-            voyagerParams += _convert(params, 'fq', 'f');
-
-            voyagerParams += _convert(params, 'place', 'place');
-            voyagerParams += _convert(params, 'place.op', 'place.op');
-
-            voyagerParams += _convert(params, 'voyager.list', 'voyager.list');
-            if(params.view === 'table') {
-                voyagerParams += '/view=TABLE';
-            }
-            if(angular.isDefined(params.sort)) {
-                voyagerParams += '/sort=' + params.sort;
-            }
-            if(angular.isDefined(params.sortdir) && params.sortdir === 'desc') {
-                voyagerParams += '/sort.reverse=true';
-            }
-
-            return voyagerParams;
         }
 
         function _getQueryString() {
@@ -144,12 +82,6 @@ angular.module('voyager.search').
                 console.log(error);
                 return error;
             });
-        }
-
-        function _postForm(url, data) {
-            var service = config.root + url;
-            var headerConfig = {headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'}};
-            return $http.post(service, data, headerConfig);
         }
 
         //public methods - client interface
@@ -205,7 +137,7 @@ angular.module('voyager.search').
 
             saveSearch: function(savedSearch, params) {
                 savedSearch.config = configService.getConfigId();
-                savedSearch.query = _toVoyagerParams(params);
+                savedSearch.query = converter.toClassicParams(params);
                 return _doSave(savedSearch);
             },
 
@@ -293,7 +225,7 @@ angular.module('voyager.search').
                 if(afterId !== null) {
                     data += 'after=' + afterId;
                 }
-                return _postForm('api/rest/display/ssearch/' + id + '/order', data);
+                return sugar.postForm('api/rest/display/ssearch/' + id + '/order', data);
             }
         };
     });

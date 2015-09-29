@@ -1,6 +1,9 @@
 #searchPage {
 	padding-bottom: 30px;
 
+	#itemDetailContent {
+		z-index: 1;
+	}
 	#searchResultMapContainer {
 		.search-map-container-inner {
 			height: 100%;

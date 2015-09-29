@@ -56,9 +56,50 @@
 	padding-bottom: 0;
 	background-color: $likewhite;
 
+	.search_list_space {
+		padding-top: 15px;
+	}
+
 	form {
 		background-color: $white;
 		padding: 15px 30px 25px;
+
+
+		&[name=savedForm] {
+			position: relative;
+			background: none;
+			padding: 0 0 20px;
+			margin-bottom: 35px;
+
+			.form-control {
+				height: 40px;
+				padding: 13px 20px 12px 50px;
+
+				& + label:before {
+					top: 12px;
+				}
+			}
+
+			&:before {
+				position: absolute;
+				content: '';
+				left: -40px;
+				right: -40px;
+				height: 1px;
+				bottom: 0;
+				background-color: $borderColor;
+			}
+
+			a.icon-x {
+				display: none;
+				position: absolute;
+				z-index: 5;
+				cursor: pointer;
+				color: #d3d7d8;
+				right: 10px;
+				top: 13px;
+			}
+		}
 	}
 
 	fieldset {
@@ -90,6 +131,10 @@
 		padding: 12px 20px;
 		height: 40px;
 	}
+}
+
+.saved-modal {
+	padding-top: 10px;
 }
 
 .modal-footer {
@@ -229,6 +274,38 @@
 	}
 }
 
+.saved_primary_nav {
+	font-size: 24px;
+	overflow: hidden;
+	margin-bottom: 30px;
+
+	li {
+		float: left;
+		border-right: 1px solid $borderColor;
+		margin: 0 0 0 30px;
+		padding-right: 30px;
+
+		&:first-child {
+			margin-left: 0;
+		}
+
+		&:last-child {
+			border-right: 0;
+		}
+
+		&.selected a {
+			color: #424a53;
+		}
+	}
+
+	a {
+		color: #8e9194;
+
+		&:hover {
+			color: #424a53;
+		}
+	}
+}
 
 .modal-body {
 	.form-export-results {

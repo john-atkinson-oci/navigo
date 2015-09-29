@@ -180,6 +180,22 @@ angular.module('voyager.map').
                 map.fitBounds(_getBounds(bbox));
             },
 
+            isWkt: function (args) {
+                var wkt = new Wkt.Wkt();
+
+                try {
+                    wkt.read(args);
+                } catch (e1) {
+                    try {
+                        wkt.read(args.replace('\n', '').replace('\r', '').replace('\t', ''));
+                    } catch(e2) {
+                        return false;
+                    }
+                }
+
+                return true;
+            },
+
             getWkt: function (args) {
                 var wkt = new Wkt.Wkt();
                 try { // Catch any malformed WKT strings
@@ -251,6 +267,42 @@ angular.module('voyager.map').
                     }
                 }
                 return isBbox;
+            },
+            convertToWkt: function(latlngs) {
+                var wkt = new Wkt.Wkt();
+                wkt.fromObject(latlngs);
+                return wkt.write();
+            },
+            formatWktForDisplay: function(wkt) {
+
+                if (!this.isWkt(wkt)) {
+                    return wkt;
+                }
+
+                var wktArray = wkt.split(' ');
+                var firstPartWkt = wktArray[0].split('.');
+                var lastPartWkt = wktArray.pop().split('.');
+
+                var shortWkt = firstPartWkt[0];
+
+                if (firstPartWkt[1]) {
+                    shortWkt += '.' + firstPartWkt[1].substring(0, (firstPartWkt[1].length > 1) ? 2 : 1);
+                }
+
+                shortWkt += ' ... ' + lastPartWkt[0];
+
+                if (lastPartWkt[1]) {
+                    var endLastPartArray = lastPartWkt[1].split(')');
+                    if (endLastPartArray[0].length > 2) {
+                        endLastPartArray[0] = endLastPartArray[0].substring(0, 2);
+                    }
+                    shortWkt += '.' + endLastPartArray.join(')');
+                }
+
+                return shortWkt;
+            },
+            currentColor: function(type) {
+                return (type === 'Within') ? '#f06eaa' : '#1771b4';
             }
         };
 
