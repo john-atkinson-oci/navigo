@@ -369,6 +369,14 @@ angular.module('voyager.search')
 			searchModalService.exportResultsList($scope);
 		};
 
+        $scope.submitWebServices = function() {
+            $modal.open({
+                template: '<div><vs-web-service-dialog /></div>',
+                size: 'md',
+                scope: $scope
+            });
+        };
+
 		//Handle search result with error
 		$scope.hideResultErrorMessage = function($event) {
 			$event.preventDefault();

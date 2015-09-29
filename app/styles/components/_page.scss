@@ -199,6 +199,12 @@
 	.option_list {
 		position: relative;
 
+		li a.btn {
+			span:before {
+				opacity: 0.5 !important;
+			}
+		}
+
 		.sort_label {
 			display: inline-block;
 			position: relative;
@@ -292,11 +298,11 @@
 				}
 
 				> li {
-					> a.btn-action {
+					.btn {
 						width: 40px;
 						padding-left: 14px;
 
-						span {
+						span.small_hide {
 							position: absolute;
 							text-indent: -999em;
 						}
