@@ -4,19 +4,6 @@ angular.module('voyager.search')
 	.directive('vsSearchMap', function ($compile, config, mapUtil, $timeout, mapControls, configService, $window) {
 		'use strict';
 
-		function getMapSizeTemplate() {
-			var mapSizeTemplate = '<div class="leaflet-control-map-size-toggle leaflet-bar leaflet-control">';
-			mapSizeTemplate += '<div class="map-size-drop-down">';
-			mapSizeTemplate += '<div class="icon-arrow flyout-trigger" ng-click="toggleMapSizeDropDown()"><span class="icon-search_map"></span></div>';
-			mapSizeTemplate += '<div class="flyout"><div class="arrow"></div><div class="flyout_inner">';
-			mapSizeTemplate += '<ul><li><a href="javascript:;" ng-click="switchMap(\'large\')">Large map</a></li>';
-			mapSizeTemplate += '<li><a href="javascript:;" ng-click="switchMap(\'small\')">Small map</a></li>';
-			mapSizeTemplate += '<li><a href="javascript:;" ng-click="switchMap(\'no\')">No map</a></li>';
-			mapSizeTemplate += '</ul></div></div></div></div>';
-
-			return mapSizeTemplate;
-		}
-
 		function getExtent(params) {
 			//copy mapDefault so it doesn't get modified
 			var extent = $.extend({}, configService.getDefaultMapView());
@@ -165,19 +152,7 @@ angular.module('voyager.search')
 					$scope.controls.custom.push(sizeControl);
 				}
 
-				$scope.addMapSizeToggleControl = function() {
-
-					var mapSizeControl = L.control();
-
-					mapSizeControl.setPosition('bottomright');
-					mapSizeControl.onAdd = function () {
-						return $compile(getMapSizeTemplate())($scope)[0];
-					};
-
-					$scope.controls.custom.push(mapSizeControl);
-				};
-
-				// @TODO where does map spinner go?  When adding map service layer etc
+				//TODO where does map spinner go?  When adding map service layer etc
 				//var spinControl = L.control();
 				//spinControl.setPosition('topright');
 				//spinControl.onAdd = function () {
@@ -187,7 +162,7 @@ angular.module('voyager.search')
 				//	return $compile($(template))($scope)[0];
 				//};
 
-				// @TODO: add search on map move feature
+				//@TODO: add search on map move feature
 				// var moveMapOption = L.control();
 				// moveMapOption.setPosition('bottomleft');
 				// moveMapOption.onAdd = function () {
@@ -197,10 +172,6 @@ angular.module('voyager.search')
 				// 	return $compile($(template))($scope)[0];
 				// };
 				//$scope.controls.custom.push(moveMapOption);
-
-				if ($attrs.control) {
-					$scope.addMapSizeToggleControl();
-				}
 
 				if ($scope.displayFormat) {
 					$scope.controls.custom.push(mapTypeToggleControls);
@@ -274,20 +245,6 @@ angular.module('voyager.search')
 						}, 200);
 					});
 				});
-
-		        $scope.switchMap = function(size) {
-		            $scope.$emit('mapSizeChanged', size);
-		        };
-
-		        $scope.toggleMapSizeDropDown = function() {
-		            var dropDownEl = angular.element('.map-size-drop-down');
-
-		            if (!dropDownEl.hasClass('opened')) {
-		                dropDownEl.addClass('hover_flyout bottom opened');
-		            } else {
-		                dropDownEl.removeClass('hover_flyout bottom opened');
-		            }
-		        };
 
 				$scope.preventDoubleClick = function(event) {
 					event.stopPropagation();
