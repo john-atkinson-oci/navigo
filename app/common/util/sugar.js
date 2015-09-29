@@ -208,10 +208,10 @@ angular.module('voyager.util').
                 return bboxRange.join(' ');
             },
 
-            postJson: function(request, action) {
+            postJson: function(request, action, api) {
                 return $http({
                     method: 'POST',
-                    url: config.root + 'api/rest/display/' + action + '.json',
+                    url: config.root + 'api/rest/' + api  + '/' + action + '.json',
                     data: request,
                     headers: {'Content-Type': 'application/json'}
                 });
