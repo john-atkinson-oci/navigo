@@ -95,6 +95,14 @@
 			label {
 				left: 8px;
 			}
+
+			a {
+				right: 75px;
+
+				& + a {
+					right: 100px;
+				}
+			}
 		}
 
 		input[name="query"], input[name="location"] {
@@ -107,14 +115,13 @@
 		}
 
 		.search_fieldset {
-	    	&.focused {
+			&.focused {
 				&:after {
 					display: none;
 				}
 			}
 		}
 	}
-
 
 	.open_filter {
 		header {
@@ -268,7 +275,7 @@
 	}
 }
 
-@media (min-width:980px) and (max-width: 1200px) {
+@media (min-width: 980px) and (max-width: 1200px) {
 	#detailPage {
 		.list {
 			article {
@@ -313,7 +320,7 @@
 	}
 }
 
-@media (min-width: 1501px) and (max-width: 1750px){
+@media (min-width: 1501px) and (max-width: 1750px) {
 	.list {
 		article {
 			width: 25%;
@@ -350,7 +357,7 @@
 	}
 }
 
-@media (min-width: 1750px){
+@media (min-width: 1750px) {
 	.home {
 		.wrapper {
 			max-width: 1900px;
@@ -389,22 +396,36 @@
 	}
 }
 
-@media (max-width: 980px) {
-	#searchPage .result_container {
-		&.open_filter {
-			.container-fluid {
-				.list {
-					article {
-						width: 100%;
+@media (max-width: 1000px) {
+
+	#searchPage {
+		.result_container {
+			&.open_filter {
+				.container-fluid {
+					.list {
+						article {
+							width: 100%;
+						}
 					}
 				}
 			}
+		}
+		.map_fixed {
+			height: calc(100% - 134px);
+			bottom: 0;
+		}
+		.tab {
+			width: 170px;
 		}
 	}
 
 	#header {
 		padding-left: 20px;
 		padding-right: 20px;
+	}
+
+	.table_view .map_content #searchViewList {
+		margin-left: -85px !important;
 	}
 
 	.tab ul li a {
@@ -419,6 +440,12 @@
 	#detailPage .list {
 		article {
 			width: 33.333%;
+		}
+	}
+
+	.card_view, .map_view {
+		#searchViewList {
+			margin-top: 70px;
 		}
 	}
 
@@ -558,7 +585,7 @@
 }
 
 //iPad In Portrait & Landscape
-@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) {
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
 	body, #header, .home {
 		min-width: 1024px;
 	}
@@ -604,13 +631,26 @@
 
 }
 
+@media (max-width: 768px) {
+	#searchViewList {
+		margin-top: 20px !important;
+		margin-bottom: 20px;
+	}
+
+	.result_container {
+		#searchViewList {
+			margin-top: 78px !important;
+		}
+	}
+}
+
 //iPad In Landscape
-@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : landscape) {
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) {
 
 }
 
 //iPad In Portrait
-@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : portrait) {
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) {
 	body, #header, .home {
 		min-width: 768px;
 	}
