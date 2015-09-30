@@ -5,7 +5,6 @@
 [![Dependencies](https://david-dm.org/voyagersearch/navigo.svg)](https://david-dm.org/voyagersearch/navigo)
 [![DevDependencies](https://david-dm.org/voyagersearch/navigo/dev-status.svg)](https://david-dm.org/voyagersearch/navigo#info=devDependencies)
 
-
 Local Setup:
 
 * Prerequisites for running locally
@@ -31,3 +30,5 @@ Local Setup:
   
 Configuration:
 * config.js - root - change the voyager instance
+
+<a href="https://www.browserstack.com/">QA Tested With <img src="https://upload.wikimedia.org/wikipedia/en/thumb/6/6e/BrowserStack_logo.svg/1280px-BrowserStack_logo.svg.png" height="40" width="120" ></a>
