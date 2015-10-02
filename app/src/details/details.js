@@ -137,6 +137,12 @@ angular.module('voyager.details')
             });
         }
 
+        //function _refreshDoc(id) {
+        //    detailService.lookup(id, ',*', $stateParams.shard, $stateParams.disp).then(function (data) {
+        //        $scope.doc = data.data.response.docs[0];
+        //    });
+        //}
+
         function _doLookup(id) {
             detailService.lookup(id, ',*', $stateParams.shard, $stateParams.disp).then(function (data) {
                 var doc = data.data.response.docs[0];
@@ -588,6 +594,15 @@ angular.module('voyager.details')
 
             modal.result.then(function() {
                 _doLookup($stateParams.id);
+            });
+        };
+
+        $scope.removeFlag = function() {
+            tagService.deleteByField($scope.doc.id, 'tag_flags').then(function(res) {
+                if(res.documents > 0) {
+                    delete $scope.doc.tag_flags;
+                }
+                //_refreshDoc($scope.doc.id); // tagging is async through the pipeline, we need a push notification when it's done
             });
         };
 
