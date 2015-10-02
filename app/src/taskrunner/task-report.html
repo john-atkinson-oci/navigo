@@ -2,10 +2,55 @@
     <h3>Task Report</h3>
 </div>
 <div class="modal-body modal_log_body" style="padding-top: 10px;">
-    <div marked="data">
+    <div class="col-xs-12">
+        <section ng-class="hasDetails? 'col-md-6':'col-sm-12'">
+            <h3>Summary</h3>
+            <table class="table">
+                <tbody style="background-color: white">
+                <div>
+                    <tr ng-repeat="row in data.Summary">
+                        <td>{{row.Action}}</td>
+                        <td><div class="pull-right">{{row.Count}}</div></td>
+                        <!--<hr>-->
+                    </tr>
+                </div>
+                </tbody>
+            </table>
+        </section>
+        <section class="col-sm-12" ng-if="data.Skipped">
+            <h3 class="report-sub-head">Skipped</h3>
+            <table class="table">
+                <thead>
+                <th>Item</th><th>Reason</th>
+                </thead>
+                <tbody style="background-color: white">
+                <div>
+                    <tr ng-repeat="row in data.Skipped">
+                        <td class="report-item-col"><a href="{{row.Item}}" target="_blank">{{row.Item}}</a></td>
+                        <td class="report-reason-col"><div class="pull-right">{{row.Reason}}</div></td>
+                    </tr>
+                </div>
+                </tbody>
+            </table>
+        </section>
+        <section class="col-sm-12" ng-if="data.Errors">
+            <h3 class="report-sub-head">Errors</h3>
+            <table class="table">
+                <thead>
+                <th>Item</th><th>Reason</th>
+                </thead>
+                <tbody style="background-color: white">
+                <div>
+                    <tr ng-repeat="row in data.Errors">
+                        <td class="report-item-col"><a href="{{row.Item}}" target="_blank">{{row.Item}}</a></td>
+                        <td class="report-reason-col"><div class="pull-right">{{row.Reason}}</div></td>
+                    </tr>
+                </div>
+                </tbody>
+            </table>
+        </section>
     </div>
 </div>
 <div class="modal-footer">
-    <a href="javascript:;" class="link_secondary pull-right" ng-click="cancel()">Close</a>
 </div>
 <a href="javascript:;" class="modal-close icon-x" ng-click="cancel()"></a>

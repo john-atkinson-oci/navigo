@@ -418,13 +418,17 @@ angular.module('taskRunner')
         };
 
         $scope.showReport = function() {
+            var size = 'sm';
+            if($scope.report.Skipped || $scope.report.Errors) {
+                size = 'lg';
+            }
             $modal.open({
                 templateUrl: 'src/taskrunner/task-report.html',
                 controller: 'TaskReportCtrl',
-                size: 'lg',
+                size: size,
                 resolve: {
                     data: function () {
-                        return $scope.report;
+                        return {'report':$scope.report, size: size};
                     }
                 }
             });

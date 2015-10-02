@@ -83,3 +83,27 @@
 		}
 	}
 }
+
+.report-sub-head {
+	border-bottom-color: lightgray;
+	border-bottom-style: solid;
+	border-bottom-width: thin;
+	margin-bottom: 5px;
+	padding-bottom: 5px;
+}
+
+.report-item-col {
+	white-space: nowrap;
+	-ms-text-overflow: ellipsis;
+	text-overflow: ellipsis;
+	max-width: 0;
+	overflow: hidden;
+	width: 30%;
+	border-right: 1px solid #ddd;
+}
+
+.report-reason-col {
+	word-break: break-all;
+	word-wrap: break-word;
+	width: 70%;
+}

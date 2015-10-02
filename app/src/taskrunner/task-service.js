@@ -168,7 +168,7 @@ angular.module('taskRunner').
                     $.each(statusResponse.data.output.children, function (index, file) {
                         if (file.format && file.name.lastIndexOf('_', 0) === 0) {
                             if (file.name.indexOf('report') > -1) {
-                                file.downloadUrl = _self.getFileUrl(statusResponse.data.id, file.name);
+                                file.downloadUrl = _self.getFileUrl(statusResponse.data.id, file.name) + '/';
                                 file.displayName = _self.getFileDisplayName(file.name);
                                 _file = file;
                             }
