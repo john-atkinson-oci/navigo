@@ -171,6 +171,9 @@ angular.module('voyager.home')
             _closeMarker.on('mousedown', function () {
 				map.removeLayer(_searchBoundaryLayer);
 				map.removeLayer(_closeMarker);
+				delete $scope.search.displayBBox;
+				delete $scope.search.place;
+				delete $scope.search['place.op'];
 				_remove = true;
             });
         }
