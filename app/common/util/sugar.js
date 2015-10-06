@@ -65,8 +65,10 @@ angular.module('voyager.util').
                 //params = params.replace(/%5C/g, '');
                 retro = retro.replace(/%5C%2F/g, '%252F');
                 retro = retro.replace(/fq=/g, 'f.');
-                retro = retro.replace('f.path', 'path');
-                retro = retro.replace('f.bbox', 'bbox');
+                retro = retro.replace(/path_path/g, 'path');
+                // TODO these 2 seem backwards
+                //retro = retro.replace('f.path', 'path');
+                //retro = retro.replace('f.bbox', 'bbox');
                 retro = retro.replace(/:/g, '=');
                 return retro;
             },
