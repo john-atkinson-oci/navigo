@@ -27,7 +27,7 @@
                 <div>
                     <tr ng-repeat="row in data.Skipped">
                         <td class="report-item-col"><a href="{{row.Item}}" target="_blank">{{row.Item}}</a></td>
-                        <td class="report-reason-col"><div class="pull-right">{{row.Reason}}</div></td>
+                        <td class="report-reason-col"><div>{{row.Reason}}</div></td>
                     </tr>
                 </div>
                 </tbody>
@@ -43,7 +43,7 @@
                 <div>
                     <tr ng-repeat="row in data.Errors">
                         <td class="report-item-col"><a href="{{row.Item}}" target="_blank">{{row.Item}}</a></td>
-                        <td class="report-reason-col"><div class="pull-right">{{row.Reason}}</div></td>
+                        <td class="report-reason-col"><div>{{row.Reason}}</div></td>
                     </tr>
                 </div>
                 </tbody>
