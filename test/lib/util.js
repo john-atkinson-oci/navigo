@@ -11,6 +11,10 @@ var Util = (function () {
                 });
             }, 30000);
             return block;
+        },
+
+        getServer: function() {
+            return 'http://voyagerdemo.com/daily/navigo/';
         }
     };
 })();  // jshint ignore:line

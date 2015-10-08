@@ -4,8 +4,10 @@ describe('Search', function() {
 
     var Util = require('../lib/util.js');
 
+    var server = Util.getServer();
+
     it('should load search page', function() {
-        browser.get('http://127.0.0.1:9000/#/search');
+        browser.get(server + '#/search');
 
         var totalAnchor = element(by.css('.total'));
 
@@ -25,7 +27,7 @@ describe('Search', function() {
     });
 
     it('should load search page with filter', function() {
-        browser.get('http://127.0.0.1:9000/#/search?fq=format_type:File');
+        browser.get(server + '#/search?fq=format_type:File');
 
         var selectedFilters = element.all(by.repeater('selected in filters'));
         expect(selectedFilters.count()).toEqual(1);
@@ -33,7 +35,7 @@ describe('Search', function() {
     });
 
     it('should show filters', function() {
-        browser.get('http://127.0.0.1:9000/#/search');
+        browser.get(server + '#/search');
 
         Util.waitForSpinner();
 
@@ -44,7 +46,7 @@ describe('Search', function() {
     });
 
     it('should show facets and select facet', function() {
-        browser.get('http://127.0.0.1:9000/#/search');
+        browser.get(server + '#/search');
 
         Util.waitForSpinner();
 
@@ -99,7 +101,7 @@ describe('Search', function() {
     });
 
     it('should show table view', function() {
-        browser.get('http://127.0.0.1:9000/#/search?view=table');
+        browser.get(server + '#/search?view=table');
 
         //workaround - this test times out for some reason
         browser.sleep(10000);
@@ -114,7 +116,7 @@ describe('Search', function() {
     });
 
     it('should show map view', function() {
-        browser.get('http://127.0.0.1:9000/#/search?view=map');
+        browser.get(server + '#/search?view=map');
 
         expect(element(by.css('.alt_list_view')).isPresent()).toBeTruthy();
 

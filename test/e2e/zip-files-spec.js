@@ -4,8 +4,10 @@ describe('Zip Files Task', function() {
 
     var Util = require('../lib/util.js');
 
+    var server = Util.getServer();
+
     function _addFileTypeToQueue() {
-        browser.get('http://voyagerdemo.com/daily/navigo/#/search?fq=format_type:File');
+        browser.get(server + '#/search?fq=format_type:File');
 
         Util.waitForSpinner();
 
@@ -16,7 +18,7 @@ describe('Zip Files Task', function() {
     it('should load zip_files task', function() {
         _addFileTypeToQueue();
 
-        browser.get('http://voyagerdemo.com/daily/navigo/#/queue?disp=default&task=zip_files');
+        browser.get(server + '#/queue?disp=default&task=zip_files');
 
         var paramList = element.all(by.repeater('p in params'));
 
