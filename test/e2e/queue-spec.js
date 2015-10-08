@@ -15,7 +15,7 @@ describe('Queue', function() {
     //need to add an item to the queue first
     it('should add to queue', function() {
         browser.get(server + '#/search');
-
+        Util.waitForSpinner();
         var addToQueueAnchor = element(by.css('.underline.icon-plus'));
         addToQueueAnchor.click();
     });
@@ -35,7 +35,9 @@ describe('Queue', function() {
 
         _showTasks();
 
-        var taskList = element.all(by.repeater('task in taskList'));
+        Util.waitForSpinner();
+
+        var taskList = element.all(by.repeater('(name, group) in taskList'));
         expect(taskList.count()).toBeGreaterThan(0);
     });
 

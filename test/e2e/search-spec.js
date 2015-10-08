@@ -27,7 +27,7 @@ describe('Search', function() {
     });
 
     it('should load search page with filter', function() {
-        browser.get(server + '#/search?fq=format_type:File');
+        browser.get(server + '#/search?disp=default&fq=format_type:File');
 
         var selectedFilters = element.all(by.repeater('selected in filters'));
         expect(selectedFilters.count()).toEqual(1);
@@ -101,7 +101,7 @@ describe('Search', function() {
     });
 
     it('should show table view', function() {
-        browser.get(server + '#/search?view=table');
+        browser.get(server + '#/search?view=table&disp=default');
 
         //workaround - this test times out for some reason
         browser.sleep(10000);
@@ -116,7 +116,7 @@ describe('Search', function() {
     });
 
     it('should show map view', function() {
-        browser.get(server + '#/search?view=map');
+        browser.get(server + '#/search?view=map&disp=default');
 
         expect(element(by.css('.alt_list_view')).isPresent()).toBeTruthy();
 
