@@ -244,6 +244,10 @@ angular.module('voyager.details')
                 }
 
                 $scope.actions = detailsActions.getActions($scope.doc);
+
+                cartService.fetchQueued([{id:doc.id}]).then(function(items) {
+                    doc.inCart = items.length > 0;
+                });
             });
         }
 
@@ -274,10 +278,12 @@ angular.module('voyager.details')
         };
 
         $scope.addToCart = function () {
+            $scope.doc.inCart = true;
             cartService.addItem($scope.doc);
         };
 
         $scope.removeFromCart = function () {
+            $scope.doc.inCart = false;
             cartService.remove($scope.doc.id);
         };
 

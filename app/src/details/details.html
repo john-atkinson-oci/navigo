@@ -56,8 +56,8 @@
                                     </div>
                                 </div>
                             </li>
-                            <li ng-show="!inCart(doc.id) && canCart()"><a href="javascript:;" class="btn btn-util" role="button" ng-click="addToCart()"><span class="icon-plus"></span>{{uiText.add.text}}</span></a></li>
-                            <li ng-show="inCart(doc.id)"><a href="javascript:;" class="btn btn-util" role="button" ng-click="removeFromCart()"><span class="icon-x"></span> Remove</a></li>
+                            <li ng-show="!doc.inCart && canCart()"><a href="javascript:;" class="btn btn-util" role="button" ng-click="addToCart()"><span class="icon-plus"></span>{{uiText.add.text}}</span></a></li>
+                            <li ng-show="doc.inCart"><a href="javascript:;" class="btn btn-util" role="button" ng-click="removeFromCart()"><span class="icon-x"></span> Remove</a></li>
                             <li ng-if="isRemote"><a href="javascript:;" class="btn btn-util" role="button" ng-click="openOnRemote()">Open on Remote Server</a></li>
                             <!--
                             <li>
