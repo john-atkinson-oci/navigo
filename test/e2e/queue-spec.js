@@ -34,6 +34,7 @@ describe('Queue', function() {
         expect(items.count()).toBe(1);
 
         Util.waitForSpinner();
+        Util.waitForSpinner();
 
         _showTasks();
 

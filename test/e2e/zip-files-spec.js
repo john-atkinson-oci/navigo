@@ -26,6 +26,7 @@ describe('Zip Files Task', function() {
         expect(paramList.count()).toBe(2);
 
         Util.waitForSpinner();  //can't click until spinner is gone
+        Util.waitForSpinner();  //can't click until spinner is gone
 
         element(by.css('[ng-click="execTask()"]')).click();
 
