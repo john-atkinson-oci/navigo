@@ -33,6 +33,8 @@ describe('Queue', function() {
         var items = element.all(by.repeater('item in cartItems'));
         expect(items.count()).toBe(1);
 
+        Util.waitForSpinner();
+
         _showTasks();
 
         Util.waitForSpinner();
