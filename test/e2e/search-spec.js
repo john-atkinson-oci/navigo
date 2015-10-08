@@ -37,6 +37,8 @@ describe('Search', function() {
     it('should show filters', function() {
         browser.get(server + '#/search');
 
+        // block ui will be shown a couple times here as different ajax calls are made
+        Util.waitForSpinner();
         Util.waitForSpinner();
 
         element(by.css('.icon-filters')).click();
