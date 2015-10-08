@@ -9,7 +9,7 @@ var Util = (function () {
                 return block.isDisplayed().then(function (result) {
                     return !result;
                 });
-            }, 30000);
+            }, 60000);
             return block;
         },
 
