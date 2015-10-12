@@ -33,13 +33,15 @@ describe('Zip Files Task', function() {
         // Add all items to the cart
         addToQueueAnchor.click();
         element(by.css('[ng-click="addAllToCart()"]')).click();
+        Util.waitForSpinner();
     }
 
     // Load and run Zip Files task
     it('should load zip_files task', function() {
 
         _addFileTypeToQueue();
-        browser.get('http://voyagerdemo.com/daily/navigo/#/queue?disp=default&task=zip_files')
+        browser.get(server + '#/queue?disp=default&task=zip_files');
+        Util.waitForSpinner();
 
         // Verify items got added to the queue.
         var queueCountElement = element(by.css('[ng-if="cartItemCount"]'));
@@ -48,7 +50,6 @@ describe('Zip Files Task', function() {
             var result_text = text;
             queue_count = parseInt(result_text);
             expect(parseInt(queue_count) > 0).toBeTruthy();
-            console.log("Queue Count: " + result_text);
             return text;
         });
 
