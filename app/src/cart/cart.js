@@ -1,4 +1,4 @@
-/*global angular, $, _, window */
+/*global angular, _*/
 
 angular.module('cart')
     .controller('CartCtrl', function ($scope, cartService, searchService, $location, config) {
