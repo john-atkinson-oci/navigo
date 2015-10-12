@@ -313,7 +313,7 @@ angular.module('voyager.search')
         }
 
         $scope.canEditPermission = function() {
-            return !hasRemoteShard() && ($scope.hasPermission('manage') || $scope.hasPermission('edit_fields'));
+            return !hasRemoteShard() && $scope.hasPermission('edit_fields');
         };
 
         $scope.flagPermission = function() {

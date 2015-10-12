@@ -16,7 +16,6 @@ angular.module('portalApp', [
 		'LocalStorageModule',
 		'cart',
 		'taskRunner',
-        'clipFactory',
 		'voyager.config',
 		'voyager.security',
 		'voyager.filters',
