@@ -613,23 +613,19 @@ angular.module('voyager.details')
         };
 
         $scope.searchFlag = function(tag) {
-            $location.path('search');
-            $location.search('fq', 'tag_flags:'+tag);
-            filterService.setFilters({'fq' : 'tag_flags:'+tag});
-            $scope.$emit('filterEvent');
-            //$scope.$emit('searchEvent');
-
-            return false;
+            return _searchTag('tag_flags', tag);
         };
 
         $scope.searchTag = function(tag) {
-            $location.path('search');
-            $location.search('fq', 'tag_tags:'+tag);
-            filterService.setFilters({'fq' : 'tag_tags:'+tag});
-            $scope.$emit('filterEvent');
-            //$scope.$emit('searchEvent');
-
-            return false;
+            return _searchTag('tag_tags', tag);
         };
+
+        function _searchTag(tagField, value) {
+            $location.path('search');
+            $location.search('fq', tagField + ':' + value);
+            filterService.setFilters({'fq' : tagField + ':' + value});
+            $scope.$emit('filterEvent');
+            return false;
+        }
 
     });

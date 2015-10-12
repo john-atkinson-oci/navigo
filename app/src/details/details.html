@@ -76,20 +76,18 @@
                         </ul>
                     </section>
                     <div class="tag_wrap">
-                        <span ng-show="canTag">
-                            <h4>Tags:</h4>
-                            <ul class="tag_list">
-                                <li ng-repeat="label in labels"><a href="javascript:;" ng-click="searchTag(label)" ng-bind="label"></a><span ng-if="!$last">,</span></li>
-                                <li ng-show="canTag && !isRemote">
-                                    <a href="javascript:;" class="edit_link" ng-click="toggleEditTag()" ng-show="labels.length"><span class="icon-edit"></span>{{showEditTag && 'Hide' || 'Edit'}}</a>
-                                    <a href="javascript:;" class="edit_link" ng-show="!labels.length" ng-click="toggleEditTag()"><span class="icon-edit"></span>{{showEditTag && 'Hide' || 'Add'}}</a>
-                                </li>
-                            </ul>
+                        <h4>Tags:</h4>
+                        <ul class="tag_list">
+                            <li ng-repeat="label in labels"><a href="javascript:;" ng-click="searchTag(label)" ng-bind="label"></a><span ng-if="!$last">,</span></li>
+                            <li ng-show="canTag && !isRemote">
+                                <a href="javascript:;" class="edit_link" ng-click="toggleEditTag()" ng-show="labels.length"><span class="icon-edit"></span>{{showEditTag && 'Hide' || 'Edit'}}</a>
+                                <a href="javascript:;" class="edit_link" ng-show="!labels.length" ng-click="toggleEditTag()"><span class="icon-edit"></span>{{showEditTag && 'Hide' || 'Add'}}</a>
+                            </li>
+                        </ul>
 
-                            <div ng-show="showEditTag">
-                                <input id="labels" type="hidden" ui-select2="select2Options" ng-model="labels" style="width: 100%" vg-tags>
-                            </div>
-                        </span>
+                        <div ng-show="showEditTag">
+                            <input id="labels" type="hidden" ui-select2="select2Options" ng-model="labels" style="width: 100%" vg-tags>
+                        </div>
                     </div>
                     <nav class="tab tab_border clearfix">
                         <ul>
