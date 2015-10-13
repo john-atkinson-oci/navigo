@@ -32,7 +32,9 @@ angular.module('voyager.search')
 					map.doubleClickZoom.enable();
 					map.scrollWheelZoom.disable();
 					$element.removeClass('dragging_disabled');
-					$scope.resizeMap(true);
+					if (!$scope.isHome) {
+						$scope.resizeMap(true);
+					}
 				});
 
 				$('#searchByMap').addClass('selected').siblings().removeClass('selected');
@@ -55,7 +57,13 @@ angular.module('voyager.search')
 				var _cancelledDraw = false;
 				var _drawing = false;
 
+				$scope.isHome = $attrs.origin === 'home';
+
 				$scope.clientDefault = getExtent($stateParams, config);
+				if($scope.isHome && $scope.clientDefault.zoom < 2) {
+					// TODO make responsive
+					$scope.clientDefault.zoom = 2; // don't allow zooming to far out on home map
+				}
 				$scope.defaults = mapUtil.getDefaultConfig();
 				$scope.layers = mapUtil.getLayers($attrs.origin);
 				$scope.controls = {
@@ -230,7 +238,7 @@ angular.module('voyager.search')
 					_cancelDraw();
 
 					leafletData.getMap('search-map').then(function (map) {
-						if(view === 'map') {
+						if(view === 'map' || $scope.isHome) {
 							map.options.minZoom = 2;  //keep from zooming out too far when the map is big
 						} else {
 							map.options.minZoom = 1;
@@ -239,7 +247,7 @@ angular.module('voyager.search')
 						$timeout(function () {  //workaround for leaflet bug:  https://github.com/Leaflet/Leaflet/issues/2021
 							map.invalidateSize();  //workaround when initially hidden
 							// console.log('view change - moving');
-							if(!angular.isDefined(map.currentBounds)) {
+							if(!angular.isDefined(map.currentBounds) && !$scope.isHome) {
 								$scope.resizeMap();
 							}
 						}, 200);
