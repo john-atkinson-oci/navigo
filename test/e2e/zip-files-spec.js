@@ -7,16 +7,14 @@ describe('Zip Files Task', function() {
     var server = Util.getServer();
 
     function _addFileTypeToQueue() {
+
+        // Search for some Text files by keyword.
         browser.get(server + '#/search?disp=b67872f7&view=card&filter=true&q=csv&fq=format:text%5C%2Fplain');
         Util.waitForSpinner();
 
         // Login into Voyager
         Util.loginToVoyager('admin', 'admin')
         browser.waitForAngular();
-
-        // Search for some Text files by keyword.
-        browser.get(server + '#/search?disp=b67872f7&view=card&filter=true&q=csv&fq=format:text%5C%2Fplain');
-        Util.waitForSpinner();
 
         // Get the Add to Queue element
         var addToQueueAnchor = element(by.css('.total.flyout_trigger.ng-binding'));
