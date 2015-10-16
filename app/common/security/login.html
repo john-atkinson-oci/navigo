@@ -28,13 +28,27 @@
                 </div>
             </div>
 
+            <div ng-hide="hideDefault" class="alert alert-warning" style="background-color: #faebcc; color: #8a6d3b">
+                <div>
+                    Login using the default credentials, but we recommend that you set a personalized username and password before your next login. <a href="https://voyagersearch.zendesk.com/hc/en-us/articles/205267058-Managing-Security">More on Security</a>
+                </div>
+                <br>
+                <div>
+                    <b>Default Credentials</b> <span ng-click="setDefaultCred()" class="well well-sm" style="margin-left: 10px; cursor: pointer;"> Username: <b>admin</b>  Password: <b>admin</b> </span>
+                </div>
+                <br>
+                <div style="padding-bottom: 15px">
+                    <label class="pull-right" style="font-weight: normal"><input type="checkbox" ng-click="removeDefault()"> Don't show this message again</label>
+                </div>
+            </div>
+
             <fieldset>
                 <input type="text" class="form-control focus_field" name="username" placeholder="Your username" ng-model="$parent.user" ng-keypress="handleEnter($event)" required autofocus />
                 <label for="username" class="icon-header_account" aria-label="Your username"><span class="sr-only">Your username</span></label>
             </fieldset>
             <fieldset>
                 <input type="password" class="form-control focus_field" name="password" placeholder="Your password" ng-model="$parent.pass"  ng-keypress="handleEnter($event)" required>
-                <label for="password" class="icon-lock" aria-label="What are you looking for?"><span class="sr-only">What are you looking for?</span></label>
+                <label for="password" class="icon-lock" aria-label="Your password"><span class="sr-only">Your password</span></label>
             </fieldset>
             <a href="javascript:;" class="underline" ng-hide="true">Forgot your password?</a>
             <div ng-show="canRemember">

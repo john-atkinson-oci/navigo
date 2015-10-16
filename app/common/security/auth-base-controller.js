@@ -1,10 +1,21 @@
 /*global angular, _, ga */
 angular.module('voyager.security')
-    .controller('AuthBaseCtrl', function ($scope, authService, $window, config) {
+    .controller('AuthBaseCtrl', function ($scope, authService, $window, config, localStorageService) {
         'use strict';
         var error;
 
         $scope.canRemember = config.rememberMe;
+        $scope.hideDefault = localStorageService.get('default-cred') === 'true';
+
+        $scope.setDefaultCred = function () {
+            $scope.$parent.user = 'default';
+            $scope.$parent.pass = 'default';
+        };
+
+        $scope.removeDefault = function() {
+            localStorageService.add('default-cred','true');
+            $scope.hideDefault = true;
+        };
 
         $scope.authSuccess = function() {
             //TODO abstraction here so it works for more analytics providers
@@ -13,7 +24,7 @@ angular.module('voyager.security')
             }
             error = null;
             $scope.error = error;
-        }
+        };
 
         function authFail(response) {
             error = response.data.error;
