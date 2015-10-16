@@ -37,8 +37,10 @@
                 <label for="password" class="icon-lock" aria-label="What are you looking for?"><span class="sr-only">What are you looking for?</span></label>
             </fieldset>
             <a href="javascript:;" class="underline" ng-hide="true">Forgot your password?</a>
-            <input style="margin-top: 10px" type="checkbox" ng-model="$parent.keepLoggedIn" id="keepLoggedInCheck">
-            <label for="keepLoggedInCheck" aria-label="Keep me logged in">Keep me logged in</label>
+            <div ng-show="canRemember">
+                <input style="margin-top: 10px" type="checkbox" ng-model="$parent.keepLoggedIn" id="keepLoggedInCheck">
+                <label for="keepLoggedInCheck" aria-label="Keep me logged in">Keep me logged in</label>
+            </div>
         </form>
     </div>
     <div class="modal-footer">

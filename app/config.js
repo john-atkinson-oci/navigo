@@ -2,7 +2,7 @@
 /* jshint ignore:start */
 var config = {
     'root': 'http://voyagerdemo.com/daily/',
-    //'root': 'http://localhost:8888/',
+   // 'root': 'http://localhost:8888/',
     'explorePath': 'voyager',
     'enableEmail': true,
     'title' : 'Voyager Search',
@@ -27,7 +27,7 @@ var config = {
             'url': 'http://services.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/',
             'cached': true,
             'selected': true,
-            'defaultView': '0, 0, 0'
+            'defaultView': '-98, 40.5, 3'
         }
     },
     mapApp:'http://www.arcgis.com/home/webmap/viewer.html',
@@ -76,6 +76,7 @@ var config = {
         "heatmapBlurRadius": 4
     },
     excludeDetails : ['_', 'allow_', 'deny_', 'http_header', 'tree', 'links', 'geo', 'path_to_', 'debug_properties', 'linkcount_', 'hasThumb', 'hasPreview', 'hasMetadata', 'md5', 'worker', 'extractor', 'hasLayerFile'],
-    chartData: 'http://voyagerdemo.com/sql/solr/v0/select?q=*:*&fl=name,meta_Field_Name,meta_Operator,meta_Producing,fl_Well_Depth,meta_Well_Statu,%20meta_Well_Type&wt=json&rows=1000&json.wrf=JSON_CALLBACK'
+    chartData: 'http://voyagerdemo.com/sql/solr/v0/select?q=*:*&fl=name,meta_Field_Name,meta_Operator,meta_Producing,fl_Well_Depth,meta_Well_Statu,%20meta_Well_Type&wt=json&rows=1000&json.wrf=JSON_CALLBACK',
+    rememberMe: true
 };
 /* jshint ignore:end */

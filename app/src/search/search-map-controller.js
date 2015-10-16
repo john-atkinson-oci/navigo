@@ -1,7 +1,7 @@
 /*global angular, _, L, $ */
 // this controller wraps the search map directive - TODO: refactor - its confusing since the direcive has its own controller method
 angular.module('voyager.search')
-    .controller('SearchMapCtrl', function ($scope, filterService, $location, searchService, $stateParams, mapUtil, usSpinnerService, $compile, $timeout, dialogs, config, leafletData, $analytics, mapServiceFactory, inView, heatmapService) {
+    .controller('SearchMapCtrl', function ($scope, filterService, $location, searchService, $stateParams, mapUtil, usSpinnerService, $compile, $timeout, dialogs, config, leafletData, $analytics, mapServiceFactory, inView, heatmapService, configService) {
 
         'use strict';
         var _points;
@@ -129,6 +129,15 @@ angular.module('voyager.search')
             $scope.map.currentBounds = null;
         }
 
+        function _getDefaultExtent(params) {
+            //copy mapDefault so it doesn't get modified
+            var extent = $.extend({}, configService.getDefaultMapView());
+            if (params.vw) {  //use query string if on url
+                extent = configService.parseMapViewString(params.vw, ' ');
+            }
+            return extent;
+        }
+
         $scope.$on('clearBbox', function () {
             if(_searchBoundaryLayer) {
                 _removeSearchBoundary();
@@ -177,6 +186,11 @@ angular.module('voyager.search')
 
         inView.setViewObserver(_addGeoJson);
 
+        function _moveToDefaultExtent() {
+            var defaultExtent = _getDefaultExtent($stateParams);
+            $scope.map.setView([defaultExtent.lat, defaultExtent.lng], defaultExtent.zoom);
+        }
+
         $scope.$on('searchResults', function (event, results) {
             if (results.scrolled === true) {  //ignore when scrolling
                 return;
@@ -195,6 +209,8 @@ angular.module('voyager.search')
                 if (angular.isDefined(results['extent.bbox'])) {
                     _resultsBoundary = results['extent.bbox'];
                     mapUtil.fitToBBox($scope.map, _resultsBoundary);
+                } else {
+                    _moveToDefaultExtent();
                 }
             } else if (angular.isDefined(results['extent.bbox'])) {
                 _resultsBoundary = results['extent.bbox'];
@@ -202,6 +218,7 @@ angular.module('voyager.search')
             } else {
                 _searchBoundary = null;
                 _resultsBoundary = null;
+                _moveToDefaultExtent();
             }
 
             //TODO only show what is in the viewport?

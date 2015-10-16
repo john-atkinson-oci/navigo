@@ -53,7 +53,9 @@ angular.module('voyager.search')
             if (_.isEmpty($scope.savedSearch.title)) {
                 return;
             }
-
+            if($scope.savedSearch.makeDefault) {
+                $scope.savedSearch.order = new Date().getTime();
+            }
             savedSearchService.saveSearch($scope.savedSearch, searchItem).then(function(response) {
 
                 $modalInstance.close();
