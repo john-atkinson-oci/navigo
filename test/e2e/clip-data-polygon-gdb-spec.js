@@ -1,19 +1,19 @@
 'use strict';
 
-
-describe('Zip Files Task', function() {
+describe('Clip Data by Polygon Task with default parameter values', function() {
 
     var Util = require('../lib/util.js');
     var server = Util.getServer();
 
+
     function _addFileTypeToQueue() {
 
-        // Search for some Text files by keyword.
+        // Search for CA OZONE feature classes.
         browser.get(server + '#/search?q=name:ca_ozone_pts&disp=71f42f58&view=card');
         Util.waitForSpinner();
 
         // Login into Voyager
-        Util.loginToVoyager('admin', 'admin')
+        Util.loginToVoyager('admin', 'admin');
         browser.waitForAngular();
 
         // Get the Add to Queue element
@@ -34,36 +34,37 @@ describe('Zip Files Task', function() {
         browser.waitForAngular();
     }
 
-    // Load and run Zip Files task
-    it('should load zip_files task', function() {
+    it('should load clip_data_by_polygon task using default parameter values', function() {
 
+        // Search for results and add to queue
         _addFileTypeToQueue();
-        browser.get(server + '#/queue?disp=default&task=zip_files');
+
+        // Open Clip Data by Polygon task UI
+        browser.get(server + '#/queue?disp=default&task=clip_data');
         Util.waitForSpinner();
 
-        // Verify items got added to the queue.
-        var queueCountElement = element(by.css('[ng-if="cartItemCount"]'));
-        var queue_count = 0;
-        queueCountElement.getText().then(function(text) {
-            var result_text = text;
-            queue_count = parseInt(result_text);
-            expect(parseInt(queue_count) > 0).toBeTruthy();
-            return text;
-        });
-
-        // Get list of parameters
+        // Get the task parameter elements.
         var paramList = element.all(by.repeater('p in params'));
 
         // Verify we have the correct number of params
-        expect(paramList.count()).toBe(2);
-        Util.waitForSpinner();  //can't click until spinner is gone
+        expect(paramList.count()).toBe(4);
 
-        // Execute the task with default parameter values
+        // Verify default values for output format and projection
+        var expectedValues = ['', 'FileGDB', 'Same As Input'];
+        var selectChoiceElements = element.all(by.css('.select2-choice')).all(by.css('.select2-chosen'));
+        for (var i = 0; i < expectedValues.length; ++i) {
+            expect(selectChoiceElements.get(i).getText()).toEqual(expectedValues[i]);
+        }
+
+        // Execute the task
+        Util.waitForSpinner();
         element(by.css('[ng-click="execTask()"]')).click();
+        browser.sleep(15000); // Sleep required to avoid timeout
         browser.waitForAngular();
 
-        // Check the status and expect no errors
+        // Verify there are no errors or warnings (warnings may be possible bug and to be investigated)
         expect(browser.getCurrentUrl()).toMatch(/\/#\/status/);
         expect(element(by.css('.alert-error')).isPresent()).toBeFalsy();
+        expect(element(by.css('.alert-warning')).isPresent()).toBeFalsy();
     });
 });
