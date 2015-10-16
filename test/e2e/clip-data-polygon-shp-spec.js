@@ -13,7 +13,7 @@ describe('Clip Data by Polygon Task where output format is SHP', function() {
         Util.waitForSpinner();
 
         // Login into Voyager
-        Util.loginToVoyager('admin', 'admin')
+        Util.loginToVoyager('admin', 'admin');
         browser.waitForAngular();
 
         // Get the Add to Queue element
