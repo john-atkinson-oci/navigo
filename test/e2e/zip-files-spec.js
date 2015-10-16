@@ -31,7 +31,7 @@ describe('Zip Files Task', function() {
         // Add all items to the cart
         addToQueueAnchor.click();
         element(by.css('[ng-click="addAllToCart()"]')).click();
-        Util.waitForSpinner();
+        browser.waitForAngular();
     }
 
     // Load and run Zip Files task
