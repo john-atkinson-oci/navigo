@@ -31,7 +31,7 @@ describe('Clip Data by Polygon Task where output format is SHP', function() {
         // Add all items to the cart
         addToQueueAnchor.click();
         element(by.css('[ng-click="addAllToCart()"]')).click();
-        Util.waitForSpinner();
+        browser.waitForAngular();
     }
 
     it('should load clip_data_by_polygon task and set output format to SHP', function() {
