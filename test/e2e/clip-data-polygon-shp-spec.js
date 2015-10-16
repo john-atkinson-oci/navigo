@@ -9,7 +9,7 @@ describe('Clip Data by Polygon Task where output format is SHP', function() {
     function _addFileTypeToQueue() {
 
         // Search for CA OZONE feature classes.
-        browser.get(server + '#/search?q=ca_ozone_pts&disp=b67872f7&view=card&filter=true&fq=format:application%5C%2Fvnd.esri.shapefile');
+        browser.get(server + '#/search?q=name:ca_ozone_pts&disp=71f42f58&view=card');
         Util.waitForSpinner();
 
         // Login into Voyager

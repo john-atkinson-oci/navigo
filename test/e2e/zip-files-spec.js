@@ -9,7 +9,7 @@ describe('Zip Files Task', function() {
     function _addFileTypeToQueue() {
 
         // Search for some Text files by keyword.
-        browser.get(server + '#/search?disp=b67872f7&view=card&filter=true&q=csv&fq=format:text%5C%2Fplain');
+        browser.get(server + '#/search?q=name:ca_ozone_pts&disp=71f42f58&view=card');
         Util.waitForSpinner();
 
         // Login into Voyager
