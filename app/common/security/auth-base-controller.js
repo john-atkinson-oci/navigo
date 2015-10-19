@@ -8,8 +8,8 @@ angular.module('voyager.security')
         $scope.hideDefault = localStorageService.get('default-cred') === 'true';
 
         $scope.setDefaultCred = function () {
-            $scope.$parent.user = 'default';
-            $scope.$parent.pass = 'default';
+            $scope.$parent.user = 'admin';
+            $scope.$parent.pass = 'admin';
         };
 
         $scope.removeDefault = function() {
