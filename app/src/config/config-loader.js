@@ -1,6 +1,6 @@
 'use strict';
 angular.module('voyager.config').
-    factory('configLoader', function ($http, $q, config, configService, savedSearchQuery, $location, $timeout, translateService, savedSearchService) {
+    factory('configLoader', function ($http, $q, config, configService, savedSearchQuery, $location, $timeout, translateService, savedSearchService, catalogService) {
 
         var _configId;
         var _prepared = false;
@@ -60,9 +60,10 @@ angular.module('voyager.config').
                 _setConfigRoot(hostname);
                 _setProxy(hostname);
                 return _loadDependencies($q,$http);
+            } else {
+                _prepared = true;
+                return $q.when({});
             }
-            _prepared = true;
-            return $q.when({});
         }
 
         //public methods - client interface

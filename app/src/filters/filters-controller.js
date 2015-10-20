@@ -1,6 +1,6 @@
 'use strict';
 angular.module('voyager.filters')
-    .controller('FiltersCtrl', function ($scope, filterService, $location, $modal, $timeout, statsService, treeService, configService, filterQuery, translateService, filterStyle, calendarFilter, $document) {
+    .controller('FiltersCtrl', function ($scope, filterService, $location, $modal, $timeout, statsService, treeService, configService, filterQuery, translateService, filterStyle, calendarFilter, $document, catalogService) {
 
         var _busy = false;
         var _notifyFilter = false;
@@ -243,25 +243,27 @@ angular.module('voyager.filters')
                     $scope.$emit('filterEvent', {from:'filtersController'});
                 }
 
-                filterQuery.execute($location.search(), filterService.getFilterParams(), filterService.getBoundsParams(), filterService.getSelectedFilters()).then(function(res) {
-                    $scope.filters = filterStyle.apply(res.filters);
-                    if(!_.isEmpty(res.badShards)) {
-                        configService.getCatalogs().then(function() { //catalog facets are built
-                            var catalogFilter = _.find($scope.filters, {field:'shards'}), shardUrl;
-                            //flag the bad shards
-                            _.each(catalogFilter.values, function(catalogFacet) {
-                                if(angular.isDefined(catalogFacet.raw)) { //local shard won't have this
-                                    shardUrl = catalogFacet.raw;
-                                    shardUrl = shardUrl.substring(shardUrl.indexOf('://')+3);
-                                    shardUrl = shardUrl + 'solr/v0';
-                                    catalogFacet.hasError = angular.isDefined(res.badShards[shardUrl]);
-                                }
+                catalogService.loadRemoteLocations().then(function() {
+                    filterQuery.execute($location.search(), filterService.getFilterParams(), filterService.getBoundsParams(), filterService.getSelectedFilters()).then(function(res) {
+                        $scope.filters = filterStyle.apply(res.filters);
+                        if(!_.isEmpty(res.badShards)) {
+                            configService.getCatalogs().then(function() { //catalog facets are built
+                                var catalogFilter = _.find($scope.filters, {field:'shards'}), shardUrl;
+                                //flag the bad shards
+                                _.each(catalogFilter.values, function(catalogFacet) {
+                                    if(angular.isDefined(catalogFacet.raw)) { //local shard won't have this
+                                        shardUrl = catalogFacet.raw;
+                                        shardUrl = shardUrl.substring(shardUrl.indexOf('://')+3);
+                                        shardUrl = shardUrl + 'solr/v0';
+                                        catalogFacet.hasError = angular.isDefined(res.badShards[shardUrl]);
+                                    }
+                                });
                             });
-                        });
-                    }
-                    _showMissingSelectedFacets();
-                    statsService.updateStats($location.search(), filterService.getFilterParams(), filterService.getBoundsParams(), $scope.filters);
-                    treeService.updateTree($location.search(), filterService.getFilterParams(), filterService.getBoundsParams(), $scope.filters);
+                        }
+                        _showMissingSelectedFacets();
+                        statsService.updateStats($location.search(), filterService.getFilterParams(), filterService.getBoundsParams(), $scope.filters);
+                        treeService.updateTree($location.search(), filterService.getFilterParams(), filterService.getBoundsParams(), $scope.filters);
+                    });
                 });
             });
         }
