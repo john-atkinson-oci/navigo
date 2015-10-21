@@ -28,13 +28,16 @@
                 </div>
             </div>
 
-            <div ng-hide="hideDefault" class="alert alert-info">
+            <div ng-hide="hideDefault" class="alert alert-warn">
                 <div>
                     Login using the default credentials, but we recommend that you set a personalized username and password before your next login. <a href="https://voyagersearch.zendesk.com/hc/en-us/articles/205267058-Managing-Security">More on Security</a>
                 </div>
                 <br>
                 <div>
-                    <b>Default Credentials</b> <a href="javascript:;" ng-click="setDefaultCred()" style="margin-left: 10px; cursor: pointer;"> Username: <b>admin</b>  Password: <b>admin</b> </a>
+                    <b>Default Credentials</b>
+                </div>
+                <div>
+                    <a href="javascript:;" ng-click="setDefaultCred()"> Username: <b>admin</b>  Password: <b>admin</b> </a>
                 </div>
                 <br>
                 <div style="padding-bottom: 15px">
