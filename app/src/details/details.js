@@ -37,6 +37,7 @@ angular.module('voyager.details')
             $scope.canTag = authService.hasPermission('tag');
             $scope.canAdmin = authService.hasPermission('manage');
             $scope.canFlag = authService.hasPermission('flag');
+            $scope.canViewTags = authService.hasPermission('view_tags');
         }
 
         function _activate() {

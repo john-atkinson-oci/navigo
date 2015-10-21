@@ -12,7 +12,8 @@ angular.module('voyager.security').
         var _groups = [];
         var _sso = true;
         var _isAnonymous = true;
-        var _PERMISSIONS_LIST = 'check=manage&check=download&check=process&check=configure_view&check=save_search&check=share_saved_search&check=view&check=tag&check=edit_fields&check=flag';
+        var _PERMISSIONS = ['manage','download','process','configure_view','save_search','share_saved_search','view','tag','edit_fields','flag','view_tags'];
+        var _PERMISSIONS_LIST = 'check=' + _PERMISSIONS.join('&check=');
         var _methods;
 
         function _setLoginState(response) {
