@@ -2,10 +2,10 @@
 
 describe('Run Clip Data by Polygon Task', function() {
 
-    var Util = require('../lib/util.js');
-    var s2Util = require('../lib/s2-util.js');
-    var searchPage = require('../pages/search-page.js');
-    var taskPage = require('../pages/task-page.js');
+    var Util = require('../../lib/util.js');
+    var s2Util = require('../../lib/s2-util.js');
+    var searchPage = require('../../pages/search-page.js');
+    var taskPage = require('../../pages/task-page.js');
     var server = Util.getServer();
 
     beforeEach(function() {

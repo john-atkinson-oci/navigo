@@ -24,7 +24,7 @@ exports.config = {
 
     // Spec patterns are relative to the current working directly when
     // protractor is called.
-    specs: ['test/e2e/*'],
+    specs: ['test/e2e/*/*'],
 
     onPrepare: function() {
         jasmine.getEnv().addReporter(reporter);
