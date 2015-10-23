@@ -7,6 +7,8 @@ describe('Search', function() {
 
     var server = Util.getServer();
 
+    browser.manage().window().setSize(2000, 1000);
+
     it('should load search page', function() {
         browser.get(server + '#/search');
 
