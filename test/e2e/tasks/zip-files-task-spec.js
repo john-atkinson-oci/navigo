@@ -3,9 +3,9 @@
 
 describe('Zip Files Task', function() {
 
-    var Util = require('../lib/util.js');
-    var searchPage = require('../pages/search-page.js');
-    var taskPage = require('../pages/task-page.js');
+    var Util = require('../../lib/util.js');
+    var searchPage = require('../../pages/search-page.js');
+    var taskPage = require('../../pages/task-page.js');
     var server = Util.getServer();
 
     // Load and run Zip Files task
