@@ -7,7 +7,7 @@ describe('Search', function() {
 
     var server = Util.getServer();
 
-    browser.manage().window().setSize(2000, 1000);
+   // browser.manage().window().setSize(1280, 1024);
 
     it('should load search page', function() {
         browser.get(server + '#/search');
@@ -89,7 +89,10 @@ describe('Search', function() {
 
         var linkFacet = facets.first().element(by.tagName('a'));  //assumes check box style for first filter
         linkFacet.isPresent().then(function(present) {
-            if(present) {linkFacet.click();}
+            if(present) {
+                browser.executeScript('window.scrollTo(0,0);'); // if filters have lots of items it will scroll down so scroll back up
+                linkFacet.click();
+            }
         });
 
         var selectedFilters = element.all(by.repeater('selected in filters'));
