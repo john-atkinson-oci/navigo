@@ -46,16 +46,16 @@
             </div>
 
             <fieldset>
-                <input type="text" class="form-control focus_field" name="username" placeholder="Your username" ng-model="$parent.user" ng-keypress="handleEnter($event)" required autofocus />
+                <input type="text" class="form-control focus_field" name="username" placeholder="Your username" ng-model="user" ng-keypress="handleEnter($event)" required autofocus />
                 <label for="username" class="icon-header_account" aria-label="Your username"><span class="sr-only">Your username</span></label>
             </fieldset>
             <fieldset>
-                <input type="password" class="form-control focus_field" name="password" placeholder="Your password" ng-model="$parent.pass"  ng-keypress="handleEnter($event)" required>
+                <input type="password" class="form-control focus_field" name="password" placeholder="Your password" ng-model="pass"  ng-keypress="handleEnter($event)" required>
                 <label for="password" class="icon-lock" aria-label="Your password"><span class="sr-only">Your password</span></label>
             </fieldset>
             <a href="javascript:;" class="underline" ng-hide="true">Forgot your password?</a>
             <div ng-show="canRemember">
-                <input style="margin-top: 10px" type="checkbox" ng-model="$parent.keepLoggedIn" id="keepLoggedInCheck">
+                <input style="margin-top: 10px" type="checkbox" ng-model="keepLoggedIn" id="keepLoggedInCheck">
                 <label for="keepLoggedInCheck" aria-label="Keep me logged in">Keep me logged in</label>
             </div>
         </form>

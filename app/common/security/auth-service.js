@@ -20,7 +20,9 @@ angular.module('voyager.security').
             if (response) {
                 _isAnonymous = angular.isUndefined(response.data.state) || response.data.state === 'anonymous';
                 _user = response.data.user;
-                permissions = response.data.permissions;
+                if(response.data.permissions) {
+                    permissions = response.data.permissions;
+                }
 
                 //console.log(response);
                 if(response.data.user) {
