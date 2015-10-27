@@ -12,19 +12,14 @@ describe('Search', function() {
     it('should load search page', function() {
         browser.get(server + '#/search');
 
-        var totalAnchor = element(by.css('.total'));
+        var totalAnchor = searchPage.getTotalLink();
 
-        var anchorText = totalAnchor.getText().then(function(text) {
-            var anchorVals = text.split(' ');
-            expect(parseInt(anchorVals[0]) > 0).toBeTruthy();
-            return text;
-        });
+        expect(searchPage.getTotalValue()).toBeGreaterThan(0);
 
         var resultList = element.all(by.repeater('doc in results'));
         expect(resultList.count()).toEqual(24);
 
         expect(totalAnchor.getAttribute('href')).not.toBeNull();
-        expect(anchorText).toContain('Results');
         expect($('#filterContainer').isDisplayed()).toBeFalsy();
         expect(element(by.css('.leaflet-map-pane')).isPresent()).toBeTruthy();
     });
@@ -56,15 +51,13 @@ describe('Search', function() {
         Util.waitForSpinner();
 
         var startTotal = 0;
-        var totalAnchor = element(by.css('.total'));
 
-        //set the result total after load
-        totalAnchor.getText().then(function(text) {
-            var anchorVals = text.split(' ');
-            startTotal = parseInt(anchorVals[0]);
-            expect(parseInt(anchorVals[0]) > 0).toBeTruthy();
-            return text;
+        var total = searchPage.getTotalValue().then(function(val) {
+            startTotal = val;
+            return val;
         });
+
+        expect(total).toBeGreaterThan(0);
 
         element(by.css('.icon-filters')).click();
 
@@ -99,11 +92,8 @@ describe('Search', function() {
         expect(selectedFilters.count()).toEqual(1);
 
         //check that the total is lower after applying filter
-        totalAnchor.getText().then(function(text) {
-            var anchorVals = text.split(' ');
-            var newTotal = parseInt(anchorVals[0]);
-            expect(startTotal > newTotal);
-            return text;
+        searchPage.getTotalValue().then(function(val) {
+            expect(val < startTotal).toBeTruthy();
         });
 
     });

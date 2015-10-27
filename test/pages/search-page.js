@@ -5,6 +5,17 @@ var searchPage = (function () {
 
     return {
 
+        getTotalLink: function () {
+            return element(by.css('.total'));
+        },
+
+        getTotalValue: function() {
+            return this.getTotalLink().getText().then(function(text) {
+                var anchorVals = text.split(' ');
+                return parseInt(anchorVals[0]);
+            });
+        },
+
         getAddToQueueLink: function() {
             return element(by.css('.total.flyout_trigger'));
         },
