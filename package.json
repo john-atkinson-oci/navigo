@@ -1,6 +1,6 @@
 {
-  "name": "dev",
-  "version": "0.0.0",
+  "name": "navigo",
+  "version": "1.9.7",
   "dependencies": {},
   "devDependencies": {
     "bower": "~1.4.1",
