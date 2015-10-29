@@ -1,7 +1,6 @@
-/*global angular, _, ga */
+'use strict';
 angular.module('voyager.search')
     .controller('BaseUpdateCtrl', function ($scope, $modalInstance, tagService, resultTotalCount, $timeout, usSpinnerService, config) {
-        'use strict';
 
         var _loading = false;
 
