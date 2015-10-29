@@ -77,4 +77,4 @@ angular.module('portalApp')
         });
 
         L.Icon.Default.imagePath = 'assets/img';
-});
+    });
