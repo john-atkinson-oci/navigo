@@ -341,8 +341,8 @@ angular.module('voyager.search')
 
         $scope.flagAllResults = function() {
             var modal = $modal.open({
-                templateUrl: 'src/bulk-updater/flag-all.html',
-                controller: 'BulkUpdaterCtrl',
+                templateUrl: 'src/bulk-update/flag-all.html',
+                controller: 'FlagAllCtrl',
                 resolve: {
                     resultData: function () {
                         return {
@@ -359,7 +359,7 @@ angular.module('voyager.search')
 
         $scope.removeAllFlags = function() {
             var modal = $modal.open({
-                templateUrl: 'src/bulk-updater/remove-flag-all.html',
+                templateUrl: 'src/bulk-update/remove-flag-all.html',
                 controller: 'RemoveAllFlagsCtrl',
                 resolve: {
                     resultData: function () {
@@ -377,8 +377,8 @@ angular.module('voyager.search')
 
         $scope.editAllPresentation = function() {
             var modal = $modal.open({
-                templateUrl: 'src/bulk-updater/edit-presentation.html',
-                controller: 'EditPresentationCtrl',
+                templateUrl: 'src/bulk-update/edit-all.html',
+                controller: 'EditAllCtrl',
                 size: 'lg',
                 resolve: {
                     resultTotalCount: function() {

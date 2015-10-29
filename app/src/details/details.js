@@ -587,8 +587,8 @@ angular.module('voyager.details')
 
         $scope.showFlagModal = function() {
             var modal = $modal.open({
-                templateUrl: 'src/bulk-updater/flag-all.html',
-                controller: 'BulkUpdaterCtrl',
+                templateUrl: 'src/bulk-update/flag-all.html',
+                controller: 'FlagAllCtrl',
                 resolve: {
                     resultData: function () {
                         return {
