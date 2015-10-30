@@ -31,7 +31,7 @@ describe('Factory: cartService', function () {
 	it('should add item to cart', function () {
 
 		function observer() {}
-		observer.do = function(length, itemMap, action) {
+		observer.do = function(length, itemMap) {
 			expect(length).toBe(1);
 			expect(itemMap.junk).toBeDefined();
 		};
