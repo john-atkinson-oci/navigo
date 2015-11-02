@@ -71,7 +71,7 @@ angular.module('voyager.layout')
 		function _updateClassicLink() {
 			if (authService.hasPermission('manage')) {
 				var path = $location.path();
-				$scope.showClassicLink = (path.indexOf('/search') > -1 || path.indexOf('/show') > -1);
+				$scope.showClassicLink = (path.indexOf('/search') > -1 || path.indexOf('/show') > -1 || path.indexOf('/home') > -1);
 			} else {
 				$scope.showClassicLink = false;
 			}
@@ -144,8 +144,11 @@ angular.module('voyager.layout')
 
 			params = sugar.retroParams(params);
 
-			if ($location.path().indexOf('/search') === -1) {
-				baseUrl += $location.path().replace('/show/', 'id=')  + '/';
+			var path = $location.path();
+			if (path.indexOf('/show') !== -1) {
+				baseUrl += path.replace('/show/', 'id=')  + '/';
+			} else if(path.indexOf('/home') !== -1) {
+				params = ''; // just show default search in classic for home page
 			}
 
 			$window.open(baseUrl + params, '_blank');
