@@ -1,7 +1,10 @@
 {
   "name": "navigo",
   "version": "1.9.7",
-  "dependencies": {},
+  "dependencies": {
+    "jasmine-core": "^2.3.4",
+    "sinon": "^1.17.2"
+  },
   "devDependencies": {
     "bower": "~1.4.1",
     "grunt": "^0.4.5",
