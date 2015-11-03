@@ -62,13 +62,14 @@ angular.module('voyager.details')
 
         _activate();
 
-        $scope.$watch('rate.user_rating', function(){
-            if ($scope.rate.user_rating && !$scope.rate.user_rated) {
-                $scope.rate.user_rated = true;
-                $scope.rate.total_user += 1;
-                $scope.rate.current_rating = Math.round(($scope.rate.current_rating + $scope.rate.user_rating) / ($scope.rate.total_user));
-            }
-        });
+        // TODO ratings
+        //$scope.$watch('rate.user_rating', function(){
+        //    if ($scope.rate.user_rating && !$scope.rate.user_rated) {
+        //        $scope.rate.user_rated = true;
+        //        $scope.rate.total_user += 1;
+        //        $scope.rate.current_rating = Math.round(($scope.rate.current_rating + $scope.rate.user_rating) / ($scope.rate.total_user));
+        //    }
+        //});
 
         function createFolderLinks(doc, url) {
             $scope.doc_path = {
@@ -478,44 +479,6 @@ angular.module('voyager.details')
             return _.isArray(data);
         };
 
-        function _mergeValues(field) {
-            var value = [];
-            if (angular.isDefined(field.value)) {
-                value.push(field.value);
-                if (field.value.indexOf(',') !== -1) {
-                    value = field.value.split(',');
-                    $.each(value, function(index, val) {
-                        value[index] = val.trim();
-                    });
-                }
-            }
-            value.push(field.appendValue);
-            return value;
-        }
-
-        $scope.doAppend = function(field) {
-            if(!_.isEmpty(field.appendValue)) {
-                var value = field.appendValue;
-                if(field.key.indexOf('tag_') !== -1) {  //tag fields seem to behave different, append just overwrites so merge current value with new
-                    value = _mergeValues(field);
-                }
-                tagService.save($scope.doc.id, field.key, value).then(function (response) {
-                    field.appending = false;
-                    var updatedValue = response.data[field.key];
-                    if(_.isArray(updatedValue)) {
-                        updatedValue = updatedValue.join();
-                    }
-                    field.formattedValue = updatedValue;
-                    if(field.key.indexOf('tag_') !== -1) {
-                        value = updatedValue;
-                    }
-                    field.appendValue = '';
-                });
-            } else {
-                field.appending = false;
-            }
-        };
-
         $scope.doSave = function(field) {
             if(field.isArray && !_.isArray(field.value)) {
                 var values = field.value.split(','), edits = [];
@@ -527,16 +490,6 @@ angular.module('voyager.details')
             tagService.replace($scope.doc.id, field.key, field.value).then(function () {
                 field.editing = false;
 
-                // TODO solr call no longer returns this???
-                // var updatedValue = response.data[field.key];
-//                if(_.isArray(updatedValue)) {
-//                    updatedValue = updatedValue.join();
-//                }
-//                field.formattedValue = updatedValue;
-//                field.value = updatedValue;
-//                field.isArray = _.isArray(updatedValue);
-
-                // workaround since update no longer returns updated doc
                 $timeout(function() {
                     _doSyncFields($scope.doc.id);
                 }, 200);
