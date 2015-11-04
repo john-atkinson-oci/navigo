@@ -49,7 +49,11 @@ angular.module('voyager.util').
         };
 
         function build2(solrParams, page, itemsPerPage, sortDirection, sortField) {
-            delete solrParams.fq; //filter service will apply filter params below
+            if(solrParams) {
+                delete solrParams.fq; //filter service will apply filter params below
+            } else {
+                solrParams = {};
+            }
             //solrParams.q = getInput(solrParams.q); //default to all if no input filter  //TODO do we need to convert empty to *:* seems to work without it
             var queryString = config.root + selectPath;
             queryString += '?' + sugar.toQueryString(solrParams);
