@@ -29,20 +29,20 @@
             </div>
 
             <div ng-hide="hideDefault" class="alert alert-warn">
-                <div style="padding-bottom: 10px">
-                    Welcome to Voyager!
-                </div>
                 <div>
                     <span>The default login credentials are:</span>
                 </div>
                 <div style="padding-bottom: 10px">
-                    <a href="javascript:;" ng-click="setDefaultCred()"> Username: <b>admin</b>  Password: <b>admin</b> </a>
+                    <a href="javascript:;" ng-click="setDefaultCred()"> Username=<b>admin</b>  Password=<b>admin</b> </a>
                 </div>
                 <div>
-                    To keep your information secure, you should change the admin password immediately after you log in.
+                    You should change these credentials after you log in.
                 </div>
                 <div style="padding-bottom: 15px">
-                    <label class="pull-right" style="font-weight: normal"><input type="checkbox" ng-click="removeDefault()"> Don't show this message again</label>
+                    <label class="pull-right" style="font-weight: normal">
+                        <input type="checkbox" ng-click="removeDefault()">
+                        <span style="margin-left: 2px;">Hide this message</span>
+                    </label>
                 </div>
             </div>
 
@@ -56,8 +56,10 @@
             </fieldset>
             <a href="javascript:;" class="underline" ng-hide="true">Forgot your password?</a>
             <div ng-show="canRemember">
-                <input style="margin-top: 10px" type="checkbox" ng-model="keepLoggedIn" id="keepLoggedInCheck">
-                <label for="keepLoggedInCheck" aria-label="Keep me logged in">Keep me logged in</label>
+                <label for="keepLoggedInCheck" aria-label="Keep me logged in">
+                    <input style="margin-top: 10px;" type="checkbox" ng-model="keepLoggedIn" id="keepLoggedInCheck">
+                    <span style="margin-left: 2px;">Keep me logged in</span>
+                </label>
             </div>
         </form>
     </div>
