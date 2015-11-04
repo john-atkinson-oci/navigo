@@ -26,21 +26,25 @@ describe('DetailsCtrl', function () {
         $timeout = _$timeout_;
     }));
 
-    var doc = {id:'doc1', format: 'application/x-arcgis-map-server', fullpath:'z:/x/y', folder: 'x/y', bbox:'1 2 3 4', schema:'{"hash":"hash"}', download:'file://junk', layerURL:'bunk', hasMetadata:true, tree:'{"children":[{"mime":"mime"}]}'};
-    var lookupResponse = {data:{response: {docs:[doc]},'shards.info':[{shardAddress:'localhost/solr'}]}};
+    var doc = {id:'doc1', format: 'application/x-arcgis-map-server', fullpath:'z:/x/y', folder: 'x/y', bbox:'1 2 3 4', schema:'{"hash":"hash"}', download:'file://junk', layerURL:'bunk', hasMetadata:true, tree:'{"children":[{"mime":"mime"}]}', links:'{"links":[{"relation":"rel"}]}'};
+    var lookupResponse = {data:{response: {docs:[doc]}, 'shards.info':[{shardAddress:'localhost/solr'}], to:['to_type'], from: ['from_type']}};
 
     beforeEach(function() {
+        // order of http calls (not mocking services here yet)
+
         $http.expectGET(new RegExp('auth')).respond({response: {docs:[]}});  // auth call
         $http.expectJSONP(new RegExp('solr\/fields')).respond({response: {docs:[]}}); // fields call
         $http.expectJSONP(new RegExp('solr\/v0')).respond(lookupResponse.data); // lookup call
         $http.expectJSONP(new RegExp('solr\/usertags')).respond({facet_counts: {facet_fields:{fss_tag_tags:[]}}}); // tags call
 
         $http.expectJSONP(new RegExp('tree')).respond(lookupResponse.data); // tree call
-        $http.expectGET(new RegExp('links')).respond(lookupResponse.data); // links to call
+
+        $http.expectGET(new RegExp('links')).respond(lookupResponse.data); // link types call
+        $http.expectJSONP(new RegExp('links\.from')).respond(lookupResponse.data); // links from call
 
         $http.expectJSONP(new RegExp('fq=id')).respond(lookupResponse.data); // queue call
 
-        $http.expectGET(new RegExp('links')).respond(lookupResponse.data); // links from call
+        $http.expectJSONP(new RegExp('links\.to')).respond(lookupResponse.data); // links to call
     });
 
     describe('Load', function () {
