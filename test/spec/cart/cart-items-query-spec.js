@@ -98,4 +98,131 @@ describe('Factory: cartItemsQuery', function () {
 		$http.flush();
 	});
 
+	it('should execute and fetch items with OR text search', function () {
+		var queryCriteria = {count: 1, params:{q:'junk'}};
+		var items = ['item1','item2'];
+		var docs = [{id:'junk', name:'name'},{id:'2', name:'name2', format:'junk',thumb:'vres/mime'}];
+
+		// verifies the url contains the items
+		var urlPattern = escapeRegExp('q=id:(item1 item2) OR junk');
+		var expr = new RegExp(urlPattern);
+
+		$http.expectJSONP(expr).respond({response: {docs:docs}});
+
+		cartItemsQuery.execute(queryCriteria, items);
+
+		$http.flush();
+	});
+
+	it('should execute and fetch items with OR text search and apply filters', function () {
+		var queryCriteria = {count: 1, params:{q:'junk'}, solrFilters:['name:joe']};
+		var items = ['item1','item2'];
+		var docs = [{id:'junk', name:'name'},{id:'2', name:'name2', format:'junk',thumb:'vres/mime'}];
+
+		// verifies the url contains the items
+		var urlPattern = escapeRegExp('q=id:(item1 item2) OR (junk AND name:joe)');
+		var expr = new RegExp(urlPattern);
+
+		$http.expectJSONP(expr).respond({response: {docs:docs}});
+
+		cartItemsQuery.execute(queryCriteria, items);
+
+		$http.flush();
+	});
+
+	it('should execute and fetch items with OR text search and apply filters and bounds', function () {
+		var queryCriteria = {count: 1, params:{q:'junk'}, solrFilters:['name:joe'], bounds:'&fq=bbox:1234'};
+		var items = ['item1','item2'];
+		var docs = [{id:'junk', name:'name'},{id:'2', name:'name2', format:'junk',thumb:'vres/mime'}];
+
+		// verifies the url contains the items
+		var urlPattern = escapeRegExp('q=id:(item1 item2) OR (junk AND name:joe AND bbox:1234)');
+		var expr = new RegExp(urlPattern);
+
+		$http.expectJSONP(expr).respond({response: {docs:docs}});
+
+		cartItemsQuery.execute(queryCriteria, items);
+		$http.flush();
+	});
+
+	it('should execute and fetch items with no text search and apply filters and bounds', function () {
+		var queryCriteria = {count: 1, params:{}, solrFilters:['name:joe'], bounds:'&fq=bbox:1234'};
+		var items = ['item1','item2'];
+		var docs = [{id:'junk', name:'name'},{id:'2', name:'name2', format:'junk',thumb:'vres/mime'}];
+
+		// verifies the url contains the items
+		var urlPattern = escapeRegExp('q=id:(item1 item2) OR (name:joe AND bbox:1234)');
+		var expr = new RegExp(urlPattern);
+
+		$http.expectJSONP(expr).respond({response: {docs:docs}});
+
+		cartItemsQuery.execute(queryCriteria, items);
+		$http.flush();
+	});
+
+	it('should execute and fetch items and clean filters', function () {
+		var queryCriteria = {count: 1, params:{}, solrFilters:['{!tag}name:joe']};
+		var items = ['item1','item2'];
+		var docs = [{id:'junk', name:'name'},{id:'2', name:'name2', format:'junk',thumb:'vres/mime'}];
+
+		// verifies the url contains the items
+		var urlPattern = escapeRegExp('q=id:(item1 item2) OR (name:joe)');
+		var expr = new RegExp(urlPattern);
+
+		$http.expectJSONP(expr).respond({response: {docs:docs}});
+
+		cartItemsQuery.execute(queryCriteria, items);
+		$http.flush();
+	});
+
+	it('should execute and fetch items with bounds', function () {
+		var queryCriteria = {count: 1, params:{}, bounds:'&fq=bbox:1234'};
+		var items = ['item1','item2'];
+		var docs = [{id:'junk', name:'name'},{id:'2', name:'name2', format:'junk',thumb:'vres/mime'}];
+
+		// verifies the url contains the items
+		var urlPattern = escapeRegExp('q=id:(item1 item2) OR (bbox:1234)');
+		var expr = new RegExp(urlPattern);
+
+		$http.expectJSONP(expr).respond({response: {docs:docs}});
+
+		cartItemsQuery.execute(queryCriteria, items);
+		$http.flush();
+	});
+
+	it('should fetch queued', function () {
+		var queryCriteria = {count: 1, params:{}};
+		var docs = [{id:'junk', name:'name'},{id:'2', name:'name2', format:'junk',thumb:'vres/mime'}];
+		var queued = [{id:'item'}];
+		// verifies the url contains the items
+		var urlPattern = escapeRegExp('fq=id:(item)');
+		var expr = new RegExp(urlPattern);
+
+		$http.expectJSONP(expr).respond({response: {docs:docs}});
+
+		cartItemsQuery.fetchQueued(queryCriteria, undefined, queued);
+		$http.flush();
+	});
+
+	it('should fetch queued with items', function () {
+		var queryCriteria = {count: 1, params:{}};
+		var items = ['item1','item2'];
+		var docs = [{id:'junk', name:'name'},{id:'2', name:'name2', format:'junk',thumb:'vres/mime'}];
+		var queued = [{id:'item'}];
+		// verifies the url contains the items
+		var urlPattern = escapeRegExp('fq=id:(item)&q=id:(item1 item2)');
+		var expr = new RegExp(urlPattern);
+
+		$http.expectJSONP(expr).respond({response: {docs:docs}});
+
+		cartItemsQuery.fetchQueued(queryCriteria, items, queued);
+		$http.flush();
+	});
+
+	it('should get query criteria', function () {
+		var solrParams = {};
+
+		var qc = cartItemsQuery.getQueryCriteria(solrParams);
+		expect(qc.params).toEqual(solrParams);
+	});
 });

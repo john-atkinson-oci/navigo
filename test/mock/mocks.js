@@ -9,4 +9,4 @@ config.settings.data.filters = [];
 config.root = 'root/';
 config.require = [];
 config.rawFields = {};
-config.ui = {details:{}};
+config.ui = {details:{}, list:{name:'Queue'}};
