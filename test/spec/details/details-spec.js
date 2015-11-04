@@ -40,11 +40,11 @@ describe('DetailsCtrl', function () {
         $http.expectJSONP(new RegExp('tree')).respond(lookupResponse.data); // tree call
 
         $http.expectGET(new RegExp('links')).respond(lookupResponse.data); // link types call
-        $http.expectJSONP(new RegExp('links\.from')).respond(lookupResponse.data); // links from call
+        $http.expectJSONP(new RegExp('links.from')).respond(lookupResponse.data); // links from call
 
         $http.expectJSONP(new RegExp('fq=id')).respond(lookupResponse.data); // queue call
 
-        $http.expectJSONP(new RegExp('links\.to')).respond(lookupResponse.data); // links to call
+        $http.expectJSONP(new RegExp('links.to')).respond(lookupResponse.data); // links to call
     });
 
     describe('Load', function () {
