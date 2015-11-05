@@ -11,10 +11,7 @@ angular.module('voyager.search')
 
         $scope.sharedOptions = {
             'multiple': true,
-            'simple_tags': true,
-            data: function() {
-                return {results:_shareGroups};
-            }
+            'tags': _shareGroups
         };
 
         function _loadGroups() {
@@ -56,7 +53,11 @@ angular.module('voyager.search')
             if($scope.savedSearch.makeDefault) {
                 $scope.savedSearch.order = new Date().getTime();
             }
-            savedSearchService.saveSearch($scope.savedSearch, searchItem).then(function(response) {
+
+            var savedSearchCopy = _.cloneDeep($scope.savedSearch);  //copy so not to alter binding
+            savedSearchCopy.share = _.pluck(savedSearchCopy.share,'id');
+
+            savedSearchService.saveSearch(savedSearchCopy, searchItem).then(function(response) {
 
                 $modalInstance.close();
                 $analytics.eventTrack('saved-search', {
