@@ -86,7 +86,6 @@ angular.module('voyager.details').
             //var exclusions = {'id':true, 'name':true,'format':true,'path':true,'thumb':true,'preview':true,'download':true,'bbox':true,'title':true};
             var formattedValue = '';
             $.each(doc, function (name, value) {
-
                 if ((inclusions[name] || _showAllFields === true) && angular.isDefined(fields[name]) && fields[name].displayable === true) {
                     delete emptyFields[name];
                     if (!_exclude(name)) {
@@ -166,20 +165,23 @@ angular.module('voyager.details').
             var prettyFields = [];
 
             //var exclusions = {'id':true, 'name':true,'format':true,'path':true,'thumb':true,'preview':true,'download':true,'bbox':true,'title':true};
-            var formattedValue = '';
+            var formattedValue = '', isArray = false;
             $.each(doc, function (name, value) {
                 if (_summaryInclusions[name] && fields[name].displayable === true) {
+                    isArray = false;
                     if(_.isArray(value)) {
                         value = value.join(', ');
+                        isArray = true;
                     }
                     formattedValue = value;
                     if(name === 'format') {
                         formattedValue = translateService.getType(value);
                     }
                     if(name === 'contains_mime') {
-                        if(_.isArray(value)) {
+                        if(isArray) {
                             var formattedValues = [];
-                            _.each(value, function(val) {
+                            var arrValue = value.split(', ');
+                            _.each(arrValue, function(val) {
                                 formattedValues.push(translateService.getType(val));
                             });
                             formattedValue = formattedValues.join();
