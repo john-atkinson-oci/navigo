@@ -28,8 +28,8 @@ describe('Zip Files Task', function() {
         browser.waitForAngular();
 
         // Check the status; expect no errors; expect download link
-        expect(browser.getCurrentUrl()).toMatch(/\/#\/status/);
-        expect(taskStatusPage.getSuccess().isPresent()).toBeTruthy();
-        expect(taskStatusPage.getDownloadLink().isPresent()).toBeTruthy();
+        taskStatusPage.verifyStatus();
+        taskStatusPage.verifySuccess();
+        taskStatusPage.verifyDownloadLink();
     });
 });
