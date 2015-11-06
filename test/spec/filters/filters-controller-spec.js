@@ -255,20 +255,6 @@ describe('Filters:', function () {
 
     describe('filtersController misc functions', function () {
 
-        var facet = {isSelected: false, model: [1, 2], name: 'name', display: 'display', path: 'path'};
-        var url = new RegExp(escapeRegExp('root/solr/v0/select'));
-        var res = {facet_counts: {facet_fields: {}}};
-
-        // set up controller and add a filter
-        function initControllerAndFilter(facet) {
-            controllerService('FiltersCtrl', {$scope: scope, filterService: _filterService});
-
-            scope.filterResults(facet);
-
-            httpMock.expectJSONP(url).respond(res);  // solr filter query
-            _flushHttp(httpMock);
-        }
-
         it('should toggle display state', function () {
             controllerService('FiltersCtrl', {$scope: scope, filterService: _filterService});
             var filter = {displayState: '', field:'field'};
