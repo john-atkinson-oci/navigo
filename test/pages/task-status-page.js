@@ -7,25 +7,20 @@ var taskStatusPage = (function () {
 
     return {
 
-        verifyStatus: function() {
-            /** Verify the task completed. */
-            expect(browser.getCurrentUrl()).toMatch(/\/#\/status/);
+        getSuccess: function() {
+            return element(by.css('.alert-success'));
         },
 
-        verifyDownloadLink: function() {
-            expect(element(by.css('.btn.btn-secondary.pull-right.ml15.ng-scope')).isPresent()).toBeTruthy();
+        getDownloadLink: function() {
+            return element(by.css('.btn.btn-secondary.pull-right.ml15.ng-scope'));
         },
 
-        verifySuccess: function() {
-            expect(element(by.css('.alert-success')).isPresent()).toBeTruthy();
+        getError: function() {
+            return element(by.css('.alert-error'));
         },
 
-        verifyErrors: function() {
-            expect(element(by.css('.alert-error')).isPresent()).toBeTruthy();
-        },
-
-        verifyWarnings: function() {
-            expect(element(by.css('.alert-warning')).isPresent()).toBeTruthy();
+        getWarning: function() {
+            return element(by.css('.alert-warning'));
         }
 
     }

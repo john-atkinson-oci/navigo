@@ -87,8 +87,8 @@ describe('Run Clip Data by Polygon Task', function() {
 
     function verifyStatus() {
         // Verify there are no errors or warnings (warnings may be possible bug and to be investigated)
-        taskStatusPage.verifyStatus();
-        taskStatusPage.verifySuccess();
-        taskStatusPage.verifyDownloadLink();
+        expect(browser.getCurrentUrl()).toMatch(/\/#\/status/);
+        expect(taskStatusPage.getSuccess().isPresent()).toBeTruthy();
+        expect(taskStatusPage.getDownloadLink().isPresent()).toBeTruthy();
     }
 });
