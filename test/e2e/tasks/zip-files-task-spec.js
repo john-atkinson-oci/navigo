@@ -6,6 +6,7 @@ describe('Zip Files Task', function() {
     var Util = require('../../lib/util.js');
     var searchPage = require('../../pages/search-page.js');
     var taskPage = require('../../pages/task-page.js');
+    var taskStatusPage = require('../../pages/task-status-page.js');
     var server = Util.getServer();
 
     // Load and run Zip Files task
@@ -26,8 +27,9 @@ describe('Zip Files Task', function() {
         taskPage.getTaskButton().click();
         browser.waitForAngular();
 
-        // Check the status and expect no errors
-        expect(browser.getCurrentUrl()).toMatch(/\/#\/status/);
-        expect(element(by.css('.alert-error')).isPresent()).toBeFalsy();
+        // Check the status; expect no errors; expect download link
+        taskStatusPage.verifyStatus();
+        taskStatusPage.verifySuccess();
+        taskStatusPage.verifyDownloadLink();
     });
 });

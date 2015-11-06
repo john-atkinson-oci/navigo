@@ -6,6 +6,7 @@ describe('Run Convert to KML Task', function() {
     var Util = require('../../lib/util.js');
     var searchPage = require('../../pages/search-page.js');
     var taskPage = require('../../pages/task-page.js');
+    var taskStatusPage = require('../../pages/task-status-page.js');
     var server = Util.getServer();
 
     // Load and run Convert to KML task
@@ -27,10 +28,10 @@ describe('Run Convert to KML Task', function() {
         browser.waitForAngular();
 
         // Check the status and expect no errors
-        expect(browser.getCurrentUrl()).toMatch(/\/#\/status/);
-        expect(element(by.css('.alert-error')).isPresent()).toBeFalsy();
+        taskStatusPage.verifyStatus();
+        taskStatusPage.verifySuccess();
 
         // Expect download link
-        expect(element(by.css('.btn.btn-secondary.pull-right.ml15.ng-scope')).isPresent()).toBeTruthy();
+        taskStatusPage.verifyDownloadLink();
     });
 });
