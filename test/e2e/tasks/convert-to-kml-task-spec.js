@@ -28,10 +28,10 @@ describe('Run Convert to KML Task', function() {
         browser.waitForAngular();
 
         // Check the status and expect no errors
-        taskStatusPage.verifyStatus();
-        taskStatusPage.verifySuccess();
+        expect(browser.getCurrentUrl()).toMatch(/\/#\/status/);
+        expect(taskStatusPage.getSuccess().isPresent()).toBeTruthy();
 
         // Expect download link
-        taskStatusPage.verifyDownloadLink();
+        expect(taskStatusPage.getDownloadLink().isPresent()).toBeTruthy();
     });
 });
