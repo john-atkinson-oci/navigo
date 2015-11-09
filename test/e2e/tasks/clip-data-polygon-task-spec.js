@@ -6,6 +6,7 @@ describe('Run Clip Data by Polygon Task', function() {
     var s2Util = require('../../lib/s2-util.js');
     var searchPage = require('../../pages/search-page.js');
     var taskPage = require('../../pages/task-page.js');
+    var taskStatusPage = require('../../pages/task-status-page.js');
     var server = Util.getServer();
 
     beforeEach(function() {
@@ -87,7 +88,7 @@ describe('Run Clip Data by Polygon Task', function() {
     function verifyStatus() {
         // Verify there are no errors or warnings (warnings may be possible bug and to be investigated)
         expect(browser.getCurrentUrl()).toMatch(/\/#\/status/);
-        expect(element(by.css('.alert-error')).isPresent()).toBeFalsy();
-        expect(element(by.css('.alert-warning')).isPresent()).toBeFalsy();
+        expect(taskStatusPage.getSuccess().isPresent()).toBeTruthy();
+        expect(taskStatusPage.getDownloadLink().isPresent()).toBeTruthy();
     }
 });
