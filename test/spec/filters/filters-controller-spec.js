@@ -132,7 +132,7 @@ describe('Filters:', function () {
 
             var res = {facet_counts:{facet_fields:{}}};
 
-            var url = new RegExp(escapeRegExp('root/solr/v0/select?&rows=0&facet=true'));
+            var url = new RegExp(escapeRegExp('root/solr/v0/select?voyager.config.id=default&rows=0&facet=true'));
             httpMock.expectJSONP(url).respond(res);  // solr filter query
             _flushHttp(httpMock);
 
@@ -148,7 +148,7 @@ describe('Filters:', function () {
 
             var res = {facet_counts:{facet_fields:{}}};
 
-            var url = new RegExp(escapeRegExp('root/solr/v0/select?shards=shard,shard&rows=0&facet=true'));
+            var url = new RegExp(escapeRegExp('root/solr/v0/select?shards=shard,shard&voyager.config.id=default&rows=0&facet=true'));
             httpMock.expectJSONP(url).respond(res);  // solr filter query
             _flushHttp(httpMock);
 
@@ -164,7 +164,7 @@ describe('Filters:', function () {
 
             var res = {facet_counts:{facet_fields:{}}};
 
-            var url = new RegExp(escapeRegExp('root/solr/v0/select?&rows=0&facet=true'));
+            var url = new RegExp(escapeRegExp('root/solr/v0/select?voyager.config.id=default&rows=0&facet=true'));
             httpMock.expectJSONP(url).respond(res);  // solr filter query
             _flushHttp(httpMock);
         });
@@ -176,7 +176,7 @@ describe('Filters:', function () {
 
             var res = {facet_counts:{facet_fields:{}}};
 
-            var url = new RegExp(escapeRegExp('root/solr/v0/select?&rows=0&facet=true'));
+            var url = new RegExp(escapeRegExp('root/solr/v0/select?voyager.config.id=default&rows=0&facet=true'));
             httpMock.expectJSONP(url).respond(res);  // solr filter query
             _flushHttp(httpMock);
         });
@@ -188,7 +188,7 @@ describe('Filters:', function () {
 
             var res = {facet_counts:{facet_fields:{}}};
 
-            var url = new RegExp(escapeRegExp('root/solr/v0/select?&rows=0&facet=true'));
+            var url = new RegExp(escapeRegExp('root/solr/v0/select?voyager.config.id=default&rows=0&facet=true'));
             httpMock.expectJSONP(url).respond(res);  // solr filter query
             _flushHttp(httpMock);
         });
