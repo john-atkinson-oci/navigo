@@ -50,6 +50,11 @@ angular.module('voyager.filters').
         function _getQueryString(params, filters, bounds) {
             delete params.fq; //use filter params
             delete params.sort; //don't sort
+            if(angular.isDefined(params.disp) && angular.isUndefined(params['voyager.config.id'])) {
+                params['voyager.config.id'] = params.disp;
+            } else if (angular.isUndefined(params.disp) && angular.isDefined(configService.getConfigId())) {
+                params['voyager.config.id'] = configService.getConfigId();
+            }
             //params.q = getInput(params.q); //default to all if no input filter
             var queryString = config.root + 'solr/v0/select';
             queryString += '?' + sugar.toQueryString(params);
