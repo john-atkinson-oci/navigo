@@ -100,4 +100,170 @@ describe('Filters:', function () {
             expect(actualFilter.name).toBe(displayFilter.name);
         });
     });
+
+    function escapeRegExp(str) {
+        return str.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, '\\$&');
+    }
+
+    describe('filtersController functions', function () {
+
+        it('should open min date picker', function () {
+            controllerService('FiltersCtrl', {$scope: scope, filterService: _filterService});
+            var facet = {};
+            scope.openMinDatePicker($.Event('click'), facet);
+            expect(facet.isMinOpened).toBeTruthy();
+            expect(facet.isMaxOpened).toBeFalsy();
+        });
+
+        it('should open max date picker', function () {
+            controllerService('FiltersCtrl', {$scope: scope, filterService: _filterService});
+            var facet = {};
+            scope.openMaxDatePicker($.Event('click'), facet);
+            expect(facet.isMaxOpened).toBeTruthy();
+            expect(facet.isMinOpened).toBeFalsy();
+        });
+
+        it('should filter selected', function () {
+            controllerService('FiltersCtrl', {$scope: scope, filterService: _filterService});
+            var facet = {isSelected: true};
+            scope.filterResults(facet);
+
+            var res = {facet_counts:{facet_fields:{}}};
+
+            var url = new RegExp(escapeRegExp('root/solr/v0/select?voyager.config.id=default&rows=0&facet=true'));
+            httpMock.expectJSONP(url).respond(res);  // solr filter query
+            _flushHttp(httpMock);
+
+            // TODO need assertions on scope.filters
+            //console.log(JSON.stringify(scope.filters));
+        });
+
+        it('should filter results', function () {
+            $location.search('shards','shard');
+            controllerService('FiltersCtrl', {$scope: scope, filterService: _filterService});
+            var facet = {isSelected: false, field:'shard', id:'shard'};
+            scope.filterResults(facet);
+
+            var res = {facet_counts:{facet_fields:{}}};
+
+            var url = new RegExp(escapeRegExp('root/solr/v0/select?shards=shard,shard&voyager.config.id=default&rows=0&facet=true'));
+            httpMock.expectJSONP(url).respond(res);  // solr filter query
+            _flushHttp(httpMock);
+
+            expect($location.search().shards).toEqual('shard,shard');
+            // TODO need assertions on scope.filters
+            //console.log(JSON.stringify(scope.filters));
+        });
+
+        it('should add range filter', function () {
+            controllerService('FiltersCtrl', {$scope: scope, filterService: _filterService});
+            var facet = {isSelected: false, model:[1,2], name:'name', display:'display'};
+            scope.addRangeFilter(facet);
+
+            var res = {facet_counts:{facet_fields:{}}};
+
+            var url = new RegExp(escapeRegExp('root/solr/v0/select?voyager.config.id=default&rows=0&facet=true'));
+            httpMock.expectJSONP(url).respond(res);  // solr filter query
+            _flushHttp(httpMock);
+        });
+
+        it('should add calendar filter', function () {
+            controllerService('FiltersCtrl', {$scope: scope, filterService: _filterService});
+            var facet = {isSelected: false, model:[1,2], name:'name', display:'display'};
+            scope.addCalendarFilter(facet);
+
+            var res = {facet_counts:{facet_fields:{}}};
+
+            var url = new RegExp(escapeRegExp('root/solr/v0/select?voyager.config.id=default&rows=0&facet=true'));
+            httpMock.expectJSONP(url).respond(res);  // solr filter query
+            _flushHttp(httpMock);
+        });
+
+        it('should add folder filter', function () {
+            controllerService('FiltersCtrl', {$scope: scope, filterService: _filterService});
+            var facet = {isSelected: false, model:[1,2], name:'name', display:'display', path:'path'};
+            scope.addFolderFilter(facet);
+
+            var res = {facet_counts:{facet_fields:{}}};
+
+            var url = new RegExp(escapeRegExp('root/solr/v0/select?voyager.config.id=default&rows=0&facet=true'));
+            httpMock.expectJSONP(url).respond(res);  // solr filter query
+            _flushHttp(httpMock);
+        });
+
+    });
+
+    describe('filtersController remove filter functions', function () {
+
+        var facet = {isSelected: false, model: [1, 2], name: 'name', display: 'display', path: 'path'};
+        var url = new RegExp(escapeRegExp('root/solr/v0/select'));
+        var res = {facet_counts: {facet_fields: {}}};
+
+        // set up controller and add a filter
+        function initControllerAndFilter(facet) {
+            controllerService('FiltersCtrl', {$scope: scope, filterService: _filterService});
+
+            scope.filterResults(facet);
+
+            httpMock.expectJSONP(url).respond(res);  // solr filter query
+            _flushHttp(httpMock);
+        }
+
+        it('should remove filter', function () {
+            initControllerAndFilter(facet);
+            scope.removeFilter(facet);
+
+            httpMock.expectJSONP(url).respond(res);  // solr filter query
+            _flushHttp(httpMock);
+        });
+
+        it('should remove filter', function () {
+            initControllerAndFilter(facet);
+            scope.removeFilter(facet);
+
+            httpMock.expectJSONP(url).respond(res);  // solr filter query
+            _flushHttp(httpMock);
+        });
+
+        it('should remove shard filter', function () {
+            $location.search('shards', 'shard');
+            facet.field = 'shard';
+            initControllerAndFilter(facet);
+            scope.removeFilter(facet);
+
+            httpMock.expectJSONP(url).respond(res);  // solr filter query
+            _flushHttp(httpMock);
+            //TODO should remove comma
+            expect($location.search().shards).toEqual('shard,');
+        });
+
+        it('should remove input filter', function () {
+            facet.isInput = true;
+            facet.field = 'field';
+            $location.search('q','q');
+            initControllerAndFilter(facet);
+            scope.removeFilter(facet);
+
+            httpMock.expectJSONP(url).respond(res);  // solr filter query
+            _flushHttp(httpMock);
+
+            expect($location.search().q).toBeUndefined();
+        });
+    });
+
+    describe('filtersController misc functions', function () {
+
+        it('should toggle display state', function () {
+            controllerService('FiltersCtrl', {$scope: scope, filterService: _filterService});
+            var filter = {displayState: '', field:'field'};
+            scope.toggleDisplayState(filter);
+
+            var filterElem = $('<div id="field"/>');
+            $(document.body).append(filterElem);
+
+            $timeout.flush();
+            $timeout.flush();
+        });
+
+    });
 });
