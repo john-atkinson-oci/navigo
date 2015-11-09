@@ -100,5 +100,4 @@ describe('Filters:', function () {
             expect(actualFilter.name).toBe(displayFilter.name);
         });
     });
-
 });
