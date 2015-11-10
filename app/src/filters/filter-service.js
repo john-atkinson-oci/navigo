@@ -51,6 +51,7 @@ angular.module('voyager.filters').
 
             var selectedFilter = {'filter': filterKeyValue.name, 'name': filterKeyValue.value, 'humanized': humanized, isSelected: true, 'style': style, 'displayState': 'in'};
 
+            // TODO add STATS and DATE styles here to decorateSelected?
             if(style === 'RANGE') {
                 rangeService.decorateSelected(selectedFilter, filterKeyValue);
             }

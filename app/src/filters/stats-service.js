@@ -101,19 +101,20 @@ angular.module('voyager.filters').
 
             setStatsFields: function(statsFields) {
                 _statsFields = statsFields;
-            },
+            }
 
             // TODO - what was this for
             //getStats: function(filter) {
             //    return _stats[filter];
             //},
 
-            decorateSelected: function(selectedFilter, filterKeyValue) {
-                var range = filterKeyValue.value.replace('TO',',');
-                selectedFilter.name = filterKeyValue.name;
-                selectedFilter.model = JSON.parse(range);
-                selectedFilter.humanized = translateService.getFieldName(filterKeyValue.name) + ': ' + filterKeyValue.value;
-            }
+            // TODO - why isn't this referenced - range service is - test this scenario
+            //decorateSelected: function(selectedFilter, filterKeyValue) {
+            //    var range = filterKeyValue.value.replace('TO',',');
+            //    selectedFilter.name = filterKeyValue.name;
+            //    selectedFilter.model = JSON.parse(range);
+            //    selectedFilter.humanized = translateService.getFieldName(filterKeyValue.name) + ': ' + filterKeyValue.value;
+            //}
         };
 
     });
