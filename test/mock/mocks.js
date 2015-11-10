@@ -10,3 +10,4 @@ config.root = 'root/';
 config.require = {locations:'api/rest/i18n/field/location.json'};
 config.rawFields = {};
 config.ui = {details:{}, list:{name:'Queue'}};
+//config.settings.data.showFederatedSerach = true;

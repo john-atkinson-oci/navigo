@@ -100,13 +100,6 @@ angular.module('voyager.filters').
                 selectedFilter.name = filterKeyValue.name;
                 selectedFilter.model = JSON.parse(range);
                 selectedFilter.humanized = translateService.getFieldName(filterKeyValue.name) + ': ' + filterKeyValue.value;
-            },
-
-            decorateCalendarSelected: function(selectedFilter, filterKeyValue) {
-                var calendar = filterKeyValue.value.replace(/[\[\]]/g,'').split(' TO ');
-                selectedFilter.name = filterKeyValue.value;
-                selectedFilter.model = calendar;
-                selectedFilter.humanized = translateService.getFieldName(filterKeyValue.name) + ': ' + filterKeyValue.value;
             }
         };
 

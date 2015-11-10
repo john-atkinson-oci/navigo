@@ -6,7 +6,7 @@ angular.module('voyager.util').
         var selectPath = 'solr/v0/select';
 
         var getFacetParams = function (field) {
-            var facetParams = '', stats = false;
+            var facetParams = '';
             if (field && field !== 'shards') {
                 var fieldConfig = _.find(config.settings.data.filters, function(filter) {return filter.field === field;});
                 if(angular.isDefined(fieldConfig.minCount)) {
@@ -192,6 +192,10 @@ angular.module('voyager.util').
                     place: 'california',
                     'place.finder': 'esri'
                 });
+            },
+
+            buildFacetParams: function(field) {
+                return getFacetParams(field);
             }
 
         };

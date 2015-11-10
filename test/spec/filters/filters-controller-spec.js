@@ -175,27 +175,41 @@ describe('Filters:', function () {
         });
 
         it('should add range filter', function () {
+            cfg.settings.data.filters = [{field: 'rangeField', style: 'RANGE', minCount: 0}];
+
             controllerService('FiltersCtrl', {$scope: scope, filterService: _filterService});
-            var facet = {isSelected: false, model:[1,2], name:'name', display:'display'};
+            var facet = {isSelected: true, model:[1,2], name:'name', display:'display', style:'RANGE', filter:'rangeField', field:'rangeField'};
             scope.addRangeFilter(facet);
 
-            var res = {facet_counts:{facet_fields:{}}};
+            httpMock.expectJSONP(new RegExp(escapeRegExp('stats=true'))).respond({stats:{stats_fields:{rangeField:{min:0, max:5}}}});  // stats query for range values
 
+            var res = {facet_counts:{facet_fields:{rangeField:['facet',1]}}};
             var url = new RegExp(escapeRegExp('root/solr/v0/select?voyager.config.id=default&rows=0&facet=true'));
             httpMock.expectJSONP(url).respond(res);  // solr filter query
             _flushHttp(httpMock);
+
+            cfg.settings.data.filters = [];
+
+            console.log('location search ' + JSON.stringify($location.search()));
         });
 
         it('should add calendar filter', function () {
+            cfg.settings.data.filters = [{field: 'calendarField', style: 'RANGE', minCount: 0, stype:'date'}];
+
             controllerService('FiltersCtrl', {$scope: scope, filterService: _filterService});
-            var facet = {isSelected: false, model:[1,2], name:'name', display:'display'};
+
+            var facet = {isSelected: true, model:[1,2], name:'name', display:'display', style:'RANGE', stype:'date', filter:'calendarField'};
             scope.addCalendarFilter(facet);
 
-            var res = {facet_counts:{facet_fields:{}}};
+            httpMock.expectJSONP(new RegExp(escapeRegExp('stats=true'))).respond({stats:{stats_fields:{calendarField:{min:0, max:5}}}});  // stats query for range values
+
+            var res = {facet_counts:{facet_fields:{calendarField:['facet',1]}}};
 
             var url = new RegExp(escapeRegExp('root/solr/v0/select?voyager.config.id=default&rows=0&facet=true'));
             httpMock.expectJSONP(url).respond(res);  // solr filter query
             _flushHttp(httpMock);
+
+            cfg.settings.data.filters = [];
         });
 
         it('should add folder filter', function () {

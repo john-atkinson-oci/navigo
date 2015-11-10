@@ -97,27 +97,32 @@ angular.module('voyager.filters')
             _fetchFilter();
         };
 
+        function _addFilter(facet) {
+            filterService.removeExisting(facet);
+            filterService.addFilter(facet);
+            $location.search('fq', filterService.getFilterAsLocationParams());  //apply new filter param to url
+            _notifyFilter = true;
+            _fetchFilter();
+        }
+
         $scope.addRangeFilter = function (facet) {
             //facet.isSelected = true;
             var range = facet.model;
             facet.humanized = facet.display + ': [' + range[0] + ' TO ' + range[1] + ']';
-            filterService.removeExisting(facet);
-            this.filterResults(facet);
+            _addFilter(facet);
         };
 
         $scope.addCalendarFilter = function (facet) {
             var calendarFacet = calendarFilter.decorate(facet);
             if(calendarFacet) {
-                filterService.removeExisting(facet);
-                this.filterResults(facet);
+                _addFilter(facet);
             }
         };
 
         $scope.addFolderFilter = function (node) {
             //facet.isSelected = true;
             var facet = {field:'path_path', filter:'path_path', humanized : 'Path: ' + node.path, name:node.path};
-            filterService.removeExisting(facet);
-            this.filterResults(facet);
+            _addFilter(facet);
         };
 
         $scope.loadNode = function (node) {
