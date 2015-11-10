@@ -140,13 +140,18 @@ describe('Filters:', function () {
             //console.log(JSON.stringify(scope.filters));
         });
 
-        it('should filter results', function () {
+        it('should filter results with shards', function () {
             $location.search('shards','shard');
+            $location.path('/search');
             controllerService('FiltersCtrl', {$scope: scope, filterService: _filterService});
             var facet = {isSelected: false, field:'shard', id:'shard'};
             scope.filterResults(facet);
 
             var res = {facet_counts:{facet_fields:{}}};
+
+            httpMock.expectGET(new RegExp(escapeRegExp('root/api/rest/index/config/federation.json'))).respond({servers:[{url:'url/'}]}); // catalogs call
+
+            httpMock.expectGET(new RegExp(escapeRegExp('url/api/rest/i18n/field/location.json'))).respond({VALUE:{location:'location'}}); // remote catalog locations call
 
             var url = new RegExp(escapeRegExp('root/solr/v0/select?shards=shard,shard&voyager.config.id=default&rows=0&facet=true'));
             httpMock.expectJSONP(url).respond(res);  // solr filter query
