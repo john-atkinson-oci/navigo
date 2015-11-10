@@ -141,13 +141,19 @@ describe('Filters:', function () {
         });
 
         it('should filter results with shards', function () {
+
+            cfg.settings.data.showFederatedSerach = true;
+
             $location.search('shards','shard');
             $location.path('/search');
             controllerService('FiltersCtrl', {$scope: scope, filterService: _filterService});
             var facet = {isSelected: false, field:'shard', id:'shard'};
+
+            spyOn(_configService,'getCatalogs').and.returnValue(q.when());
+
             scope.filterResults(facet);
 
-            var res = {facet_counts:{facet_fields:{}}};
+            var res = {facet_counts:{facet_fields:{}},'shards.info':{'shard-key':{error:'error'}}};
 
             httpMock.expectGET(new RegExp(escapeRegExp('root/api/rest/index/config/federation.json'))).respond({servers:[{url:'url/'}]}); // catalogs call
 
@@ -155,7 +161,13 @@ describe('Filters:', function () {
 
             var url = new RegExp(escapeRegExp('root/solr/v0/select?shards=shard,shard&voyager.config.id=default&rows=0&facet=true'));
             httpMock.expectJSONP(url).respond(res);  // solr filter query
+
+            // TODO why called again?
+            httpMock.expectGET(new RegExp(escapeRegExp('root/api/rest/index/config/federation.json'))).respond({servers:[{url:'url/'}]}); // catalogs call
+
             _flushHttp(httpMock);
+
+            cfg.settings.data.showFederatedSerach = false; // set false so it doesn't affect other tests
 
             expect($location.search().shards).toEqual('shard,shard');
             // TODO need assertions on scope.filters

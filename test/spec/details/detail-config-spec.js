@@ -36,7 +36,7 @@ describe('Factory: detailConfig', function () {
 
 	beforeEach(function() {
 		$http.expectGET(new RegExp('auth')).respond({permissions:{manage:true, process:true}});  // auth call
-		$http.expectGET(new RegExp('root\/api\/rest\/i18n\/field\/location\.json')).respond({VALUE:{location:'location'}}); // location call
+		$http.expectGET(new RegExp('root\/api\/rest\/i18n\/field\/location.json')).respond({VALUE:{location:'location'}}); // location call
 
 		$http.expectGET(new RegExp('root\/api\/rest\/display\/config\/config.json')).respond(res);  // display call
 
