@@ -77,9 +77,11 @@ angular.module('voyager.filters').
         }
         //public methods - client interface
         return {
-            fetchStats: function() {
-                return _setStats();
-            },
+
+            // TODO - what was this for
+            //fetchStats: function() {
+            //    return _setStats();
+            //},
 
             updateStats: function(params, filterParams, bboxParams, filters) {
                 _setStats(params, filterParams, bboxParams).then(function(stats) {
@@ -101,9 +103,10 @@ angular.module('voyager.filters').
                 _statsFields = statsFields;
             },
 
-            getStats: function(filter) {
-                return _stats[filter];
-            },
+            // TODO - what was this for
+            //getStats: function(filter) {
+            //    return _stats[filter];
+            //},
 
             decorateSelected: function(selectedFilter, filterKeyValue) {
                 var range = filterKeyValue.value.replace('TO',',');
