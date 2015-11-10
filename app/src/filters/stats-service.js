@@ -28,16 +28,17 @@ angular.module('voyager.filters').
             return hasStats;
         }
 
-        /* jshint ignore:start */
-        function _getAllStatsQuery() {
-            var queryString = config.root + 'solr/v0/select?rows=0&block=false&stats=true' + _getStatsParams();
-            if(angular.isDefined(configService.getConfigId())) {
-                queryString += '&voyager.config.id=' + configService.getConfigId();
-            }
-            queryString += '&wt=json&json.wrf=JSON_CALLBACK';
-            return queryString;
-        }
-        /* jshint ignore:end */
+        // TODO remove this?
+        ///* jshint ignore:start */
+        //function _getAllStatsQuery() {
+        //    var queryString = config.root + 'solr/v0/select?rows=0&block=false&stats=true' + _getStatsParams();
+        //    if(angular.isDefined(configService.getConfigId())) {
+        //        queryString += '&voyager.config.id=' + configService.getConfigId();
+        //    }
+        //    queryString += '&wt=json&json.wrf=JSON_CALLBACK';
+        //    return queryString;
+        //}
+        ///* jshint ignore:end */
 
         function _getQueryString(params, filterParams, bboxParams) {
             var solrParams = solrGrunt.getSolrParams(params);

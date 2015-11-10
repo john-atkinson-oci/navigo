@@ -191,6 +191,26 @@ describe('Filters:', function () {
             cfg.settings.data.filters = [];
         });
 
+        it('should add stats filter', function () {
+            cfg.settings.data.filters = [{field: 'statsField', style: 'STATS', minCount: 0}];
+
+            controllerService('FiltersCtrl', {$scope: scope, filterService: _filterService});
+            var facet = {isSelected: true, model:[1,2], name:'name', display:'display', style:'STATS', filter:'statsField', field:'statsField'};
+            scope.addRangeFilter(facet);
+
+            httpMock.expectJSONP(new RegExp(escapeRegExp('stats=true'))).respond({stats:{stats_fields:{statsField:{min:0, max:5}}}});  // stats query for range values
+
+            var res = {facet_counts:{facet_fields:{statsField:['facet',1]}}};
+            var url = new RegExp(escapeRegExp('root/solr/v0/select?voyager.config.id=default&rows=0&facet=true'));
+            httpMock.expectJSONP(url).respond(res);  // solr filter query
+
+            httpMock.expectJSONP(new RegExp(escapeRegExp('stats=true'))).respond({stats:{stats_fields:{statsField:{min:0, max:5}}}});  // stats query for range values
+
+            _flushHttp(httpMock);
+
+            cfg.settings.data.filters = [];
+        });
+
         it('should add calendar filter', function () {
             cfg.settings.data.filters = [{field: 'calendarField', style: 'RANGE', minCount: 0, stype:'date'}];
 
