@@ -1,7 +1,7 @@
 /*global angular, $, _, window, document */
 'use strict';
 angular.module('voyager.details')
-    .controller('DetailsCtrl', function ($scope, $stateParams, cartService, translateService, authService, config, detailService, mapServiceFactory, leafletData, usSpinnerService, dialogs, $sce, $q, configService, $timeout, tagService, searchService, $location, $window, urlUtil, resultsDecorator, loading, detailConfig, $analytics, $modal, filterService, detailsActions) {
+    .controller('DetailsCtrl', function ($scope, $stateParams, cartService, translateService, authService, config, detailService, mapServiceFactory, leafletData, usSpinnerService, dialogs, $sce, $q, configService, $timeout, tagService, searchService, $location, $window, urlUtil, resultsDecorator, loading, detailConfig, $analytics, $modal, filterService, detailsActions, $log) {
 
         var displayParams = '';
         var _layer;
@@ -409,7 +409,7 @@ angular.module('voyager.details')
                         }
                     });
                 } else {
-                    console.log('no result');
+                    $log.log('no result');
                 }
             });
 
@@ -419,7 +419,7 @@ angular.module('voyager.details')
                     $scope.hasRelationships = true;
                     _setSelectedTab();
                 } else {
-                    console.log('no result');
+                    $log.log('no result');
                 }
             });
         };

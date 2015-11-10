@@ -1,6 +1,6 @@
 'use strict';
 angular.module('cart').
-    factory('cartItemsQuery', function (config, filterService, configService, sugar, $http, translateService) {
+    factory('cartItemsQuery', function (config, filterService, configService, sugar, $http, translateService, $log) {
 
         function _cleanFilters(filters) {
             var cleanFilters = _.clone(filters), pos;
@@ -123,7 +123,7 @@ angular.module('cart').
                 queryString += queryCriteria.bounds;
             }
             queryString += '&wt=json&json.wrf=JSON_CALLBACK';
-            console.log('Cart summary queryString: ' + queryString);
+            $log.log('Cart summary queryString: ' + queryString);
             return queryString;
         }
 
@@ -140,7 +140,7 @@ angular.module('cart').
             }
             queryString += '&rand=' + Math.random(); // avoid browser caching?
             queryString += '&wt=json&json.wrf=JSON_CALLBACK';
-            console.log('Cart queryString: ' + queryString);
+            $log.log('Cart queryString: ' + queryString);
             return queryString;
         }
 
@@ -170,7 +170,7 @@ angular.module('cart').
             }
             queryString += '&rand=' + Math.random(); // avoid browser caching?
             queryString += '&wt=json&json.wrf=JSON_CALLBACK';
-            console.log('Cart queued queryString: ' + queryString);
+            $log.log('Cart queued queryString: ' + queryString);
             return queryString;
         }
 

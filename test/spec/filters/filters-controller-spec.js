@@ -189,8 +189,6 @@ describe('Filters:', function () {
             _flushHttp(httpMock);
 
             cfg.settings.data.filters = [];
-
-            console.log('location search ' + JSON.stringify($location.search()));
         });
 
         it('should add calendar filter', function () {

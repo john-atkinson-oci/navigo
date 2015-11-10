@@ -1,7 +1,7 @@
 /*global angular, _*/
 
 angular.module('cart')
-    .controller('CartCtrl', function ($scope, cartService, searchService, $location, config) {
+    .controller('CartCtrl', function ($scope, cartService, searchService, $location, config, $log) {
 
         'use strict';
         $scope.hasError = false;
@@ -54,7 +54,7 @@ angular.module('cart')
                 $scope.cartItems = data.docs;
                 $scope.loading = false;
             }, function(error) {
-                console.log(error);
+                $log.error(error);
             });
 
         };
