@@ -23,7 +23,11 @@ angular.module('voyager.filters')
                             catalogPromises.push(catalogPromise);
                         }
                     });
-                    return $q.all(catalogPromises);
+                    return $q.all(catalogPromises).then(function(res) {
+                        return res;
+                    }, function(error) {
+                        return error; // failure means the remote catalogs are offline, allow to continue, the search should show an error
+                    });
                 });
             } else {
                 return $q.when({});  // don't need to load
