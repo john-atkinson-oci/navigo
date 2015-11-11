@@ -31,7 +31,7 @@ module.exports = function(config) {
             'app/bower_components/angular-spinner/angular-spinner.js',
             'app/bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
             'app/bower_components/lodash/dist/lodash.js',
-            'app/bower_components/lodash-contrib/dist/lodash-contrib.js',
+            'app/bower_components/lodash-brass/dist/lodash-contrib.js',
             'app/bower_components/underscore.string/dist/underscore.string.min.js',
             'app/bower_components/angular-grid/build/ng-grid.js',
             'app/bower_components/ng-table/ng-table.min.js',
