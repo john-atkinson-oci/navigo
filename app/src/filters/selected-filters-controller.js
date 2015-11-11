@@ -24,6 +24,13 @@ angular.module('voyager.filters')
             }
         }
 
+        function clearPlace(params) {
+            delete params.place;
+            delete params['place.op'];
+            delete params['place.id'];
+            return params;
+        }
+
         $scope.removeFilter = function(facet) {
             if (facet.name === 'search') {
                 $location.search('q', null);
@@ -33,9 +40,7 @@ angular.module('voyager.filters')
                 var filterHumanized = facet.humanized.split(': ');
                 filterHumanized.splice(0, 1);
                 var args = {isBbox:mapUtil.isBbox(filterHumanized.join(': '))};
-                $location.search('place', null);
-                $location.search('place.op', null);
-                $location.search('place.id', null);
+                $location.search(clearPlace($location.search()));
                 $scope.$emit('removeFilterEvent', args);
             }
             else {
@@ -48,9 +53,11 @@ angular.module('voyager.filters')
         };
 
         $scope.clearAllFilter = function() {
-            $location.search('q', null);
-            $location.search('place', null);
-            $location.search('place.op', null);
+            var params = $location.search();
+            delete params.q;
+            delete params.fq;
+            $location.search(clearPlace(params));
+
             filterService.clear();
             $scope.$emit('removeFilterEvent', {});  //fire filter event
             _setSelectedFilters();
