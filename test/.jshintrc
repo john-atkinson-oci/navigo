@@ -37,7 +37,8 @@
     "sinon": false,
     "element": false,
     "by": false,
-    "$":false
+    "$":false,
+    "LeafletMapMock":false
   }
 }
 

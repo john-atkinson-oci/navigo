@@ -1,6 +1,6 @@
 'use strict';
 
-describe('Controller: CartNavCtrl', function () {
+describe('Controller: EditAllCtrl', function () {
 
     var $scope, $timeout, $modal, usSpinnerService, $location, $http, $controller;
     var cfg = _.clone(config);

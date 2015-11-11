@@ -185,6 +185,10 @@ angular.module('voyager.home')
 
 			leafletData.getMap('search-map').then(function (map) {
 
+				map.on('draw:created', function (e) {
+					_searchBoundary = e.layer.getBounds().toBBoxString();
+				});
+
 				//TODO isn't this already done in the search map directive?
 				map.on('draw:drawstop', function () {
 					if (_.isEmpty(map.vsSearchType) || _searchBoundary === undefined || _remove) {
@@ -213,10 +217,6 @@ angular.module('voyager.home')
 					_searchBoundaryLayer.addTo(map);
 					_points = _searchBoundaryLayer.getLatLngs();
 					_addClearBoundaryMarker(map);
-				});
-
-				map.on('draw:created', function (e) {
-					_searchBoundary = e.layer.getBounds().toBBoxString();
 				});
 			});
 		}
