@@ -123,13 +123,12 @@ angular.module('cart')
                     delete itemMap[id];
                     localStorageService.add(CART_STORAGE_NAME, itemMap);
                     _notify(itemMap);
-                } else {  //add fq param to query to filter out item
+                }
+                if(query) {
                     if(angular.isUndefined(query.filters)) {
                         query.filters = '';
                     }
                     query.filters += '&fq=-id:' + id;
-                }
-                if(query) {
                     query.count = query.count - 1;
                     this.addQuery(query);
                 }
@@ -174,12 +173,14 @@ angular.module('cart')
             },
             removeByFormat: function(format) {
                 var query = localStorageService.get('cart-query');
-                if(angular.isUndefined(query.filters)) {
-                    query.filters = '';
+                if(query) {
+                    if(angular.isUndefined(query.filters)) {
+                        query.filters = '';
+                    }
+                    query.filters += '&fq=-format:' + format;
+                    query.actualCount = false;
+                    this.addQuery(query);
                 }
-                query.filters += '&fq=-format:' + format;
-                query.actualCount = false;
-                this.addQuery(query);
             },
             addQuery: function(query) {
                 var items = _getItems();

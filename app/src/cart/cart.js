@@ -25,8 +25,6 @@ angular.module('cart')
 
         $scope.removeItemByFormat = function(item) {
             cartService.removeByFormat(item.key);
-            $scope.cartItems = cartService.getItems();
-            $scope.cartItemCount = $scope.cartItems.length;
             init();
         };
 
