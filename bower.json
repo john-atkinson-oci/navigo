@@ -29,7 +29,7 @@
     "leaflet-dist": "~0.7.2",
     "leaflet.draw": "0.2.4",
     "lodash": "~2.4.1",
-    "lodash-contrib": "~241.4.15",
+    "lodash-brass": "241.4.15",
     "modernizr": "~2.8.3",
     "ng-sortable": "~1.1.9",
     "ng-table": "~0.3.3",
