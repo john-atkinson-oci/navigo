@@ -37,9 +37,7 @@ describe('Controller: JobsCtrl', function () {
     jobs.push({id:'id6', task:'task6', state:'COMPLETE'});
 
     function initJobsCtrl() {
-        $controller('JobsCtrl', {
-            $scope: $scope, $window: $window, $stateParams:{q:'text'}
-        });
+        $controller('JobsCtrl', {$scope: $scope, $window: $window, $stateParams: {q: 'text'}});
 
         $http.expectJSONP(new RegExp('jobs')).respond({response: {docs: jobs}}); //jobs call
         $http.expectJSONP(new RegExp('tasks')).respond({response: {docs: [{id:'id', name:'task', task:'task', display:'taskDisplay'}]}});  //tasks call

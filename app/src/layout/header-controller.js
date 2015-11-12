@@ -4,52 +4,54 @@
 angular.module('voyager.layout')
 	.controller('HeaderCtrl', function(config, $rootScope, $scope, $modal, $window, $location, $stateParams, sugar, cartService, authService, savedSearchService, $state) {
 
-		$scope.queue = {};
-		$scope.login = _login;
-		$scope.logout = _logout;
-		$scope.showSavedSearch = _showSavedSearch;
-		$scope.manageLink = config.root + 'manage';
-		$scope.showClassicLink = false;
-        $scope.showNav = $location.path() !== '/login';
-        $scope.buildRev = '@build.revision@';
-        $scope.mobileToggleClass = 'fa fa-bars';
-		$scope.logo = config.root + 'pub/header.png';
+		var vm = this;
 
-		$scope.uiText = config.ui.navbar;
+		vm.queue = {};
+		vm.login = _login;
+		vm.logout = _logout;
+		vm.showSavedSearch = _showSavedSearch;
+		vm.manageLink = config.root + 'manage';
+		vm.showClassicLink = false;
+		vm.showNav = $location.path() !== '/login';
+		vm.buildRev = '@build.revision@';
+		vm.mobileToggleClass = 'fa fa-bars';
+		vm.logo = config.root + 'pub/header.png';
+
+		vm.uiText = config.ui.navbar;
 
 		if(angular.isDefined($location.search().disp)) {
-			$scope.disp = '?disp=' + $location.search().disp;
+			vm.disp = '?disp=' + $location.search().disp;
 		}
 
 
 		$scope.$on('filterChanged', function () {
 			if(angular.isDefined($location.search().disp)) {
-				$scope.disp = '?disp=' + $location.search().disp;
+				vm.disp = '?disp=' + $location.search().disp;
 			}
 		});
 
         $rootScope.$on('$stateChangeStart', function(event, toState){
-                $scope.showNav = toState.name !== 'login';
-            });
+			vm.showNav = toState.name !== 'login';
+		});
 
-		$scope.gotoPage = function(route) {
+		vm.gotoPage = function(route) {
 			$window.location.hash = route + '?disp=' + ($location.search().disp || 'default');
-			$scope.toggleMobileNav();
+			vm.toggleMobileNav();
 		};
 
-		$scope.clearQueue = function() {
+		vm.clearQueue = function() {
 			cartService.clear();
 			$scope.$emit('removeAllCartEvent',{});
-			$scope.toggleMobileNav();
+			vm.toggleMobileNav();
 		};
 
-		$scope.toggleMobileNav = function() {
-			if ($scope.navClass === '' || $scope.navClass === undefined) {
-				$scope.navClass = 'full_width';
-				$scope.mobileToggleClass = 'icon-x';
+		vm.toggleMobileNav = function() {
+			if (vm.navClass === '' || vm.navClass === undefined) {
+				vm.navClass = 'full_width';
+				vm.mobileToggleClass = 'icon-x';
 			} else {
-				$scope.navClass = '';
-				$scope.mobileToggleClass = 'fa fa-bars';
+				vm.navClass = '';
+				vm.mobileToggleClass = 'fa fa-bars';
 			}
 		};
 
@@ -71,9 +73,9 @@ angular.module('voyager.layout')
 		function _updateClassicLink() {
 			if (authService.hasPermission('manage')) {
 				var path = $location.path();
-				$scope.showClassicLink = (path.indexOf('/search') > -1 || path.indexOf('/show') > -1 || path.indexOf('/home') > -1);
+				vm.showClassicLink = (path.indexOf('/search') > -1 || path.indexOf('/show') > -1 || path.indexOf('/home') > -1);
 			} else {
-				$scope.showClassicLink = false;
+				vm.showClassicLink = false;
 			}
 		}
 
@@ -84,18 +86,18 @@ angular.module('voyager.layout')
 		}
 
 		function _updateQueueTotal() {
-			$scope.queueTotal = cartService.getCount() || '0';
+			vm.queueTotal = cartService.getCount() || '0';
 		}
 
 		function _updateUserInfo() {
-			$scope.isAnonymous = authService.isAnonymous();
-			$scope.user = authService.getUser();
-			$scope.canCart = authService.hasPermission('process');
-			$scope.canManage = authService.hasPermission('manage');
-			$scope.showLogout = authService.showLogout();
+			vm.isAnonymous = authService.isAnonymous();
+			vm.user = authService.getUser();
+			vm.canCart = authService.hasPermission('process');
+			vm.canManage = authService.hasPermission('manage');
+			vm.showLogout = authService.showLogout();
 			_updateClassicLink();
 
-			if ($scope.canCart) {
+			if (vm.canCart) {
 				_updateQueueTotal(); //on initial load, update queue item
 			}
 		}
@@ -113,27 +115,27 @@ angular.module('voyager.layout')
 				//$log.info('Modal dismissed at: ' + new Date());
 			});
 
-			$scope.toggleMobileNav();
+			vm.toggleMobileNav();
 		}
 
 		function _login() {
-			if (!$scope.loggedIn) {
+			if (!vm.loggedIn) {
 				authService.checkAccess().then(function(hasAccess) {
 					if(!hasAccess) {
 						_showLoginDialog();
 					}
 				});
 			} else {
-				authService.doLogout($scope);
+				authService.doLogout();
 			}
 		}
 
 		function _showSavedSearch() {
 			savedSearchService.showSearchModal('saved');
-			$scope.toggleMobileNav();
+			vm.toggleMobileNav();
 		}
 
-		$scope.goToClassic = function() {
+		vm.goToClassic = function() {
 
 			var params = $location.search();
 			var baseUrl = config.root + config.explorePath + '/#/';
