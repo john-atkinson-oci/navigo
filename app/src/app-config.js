@@ -72,7 +72,7 @@ angular.module('portalApp')
                         templateUrl: 'src/details/details.html'
                     },
                     'preview@details': {
-                        templateUrl: 'src/preview/preview.html'
+                        templateUrl: 'src/details/preview.html'
                     }
                 },
                 resolve: {
