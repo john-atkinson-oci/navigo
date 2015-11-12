@@ -37,6 +37,7 @@ angular.module('voyager.home')
 					$(event.currentTarget).parents('fieldset').removeClass('focused');
 				});
 
+				// TODO inefficient to have 2 watchers watching the same value!
 				scope.$watch('displayFormat', function(){
 					if (scope.displayFormat === 'short_format') {
 						element.find('.location_fieldset').addClass('focused');
