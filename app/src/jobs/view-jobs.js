@@ -1,5 +1,3 @@
-/*global angular, $, _, Sugar */
-
 angular.module('taskRunner')
     .controller('JobsCtrl', function ($scope, jobService, $stateParams, config, $window, taskService, sugar, usSpinnerService, urlUtil, $location) {
         'use strict';
