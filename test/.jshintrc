@@ -38,7 +38,8 @@
     "element": false,
     "by": false,
     "$":false,
-    "LeafletMapMock":false
+    "LeafletMapMock":false,
+    "escapeRegExp":false
   }
 }
 

@@ -6,8 +6,9 @@ angular.module('taskRunner')
 
         $scope.display = $location.search().disp || 'default';
 
+        // TODO appears this will only go back to classic?
         $scope.goBack = function() {
-            var params = Sugar.retroParams($stateParams);
+            var params = sugar.retroParams($stateParams);
             $window.location.href = config.root + config.explorePath + '/#/' + params;
         };
 
