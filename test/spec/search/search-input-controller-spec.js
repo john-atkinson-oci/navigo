@@ -43,7 +43,7 @@ describe('Controller: SearchInpuCtrl', function () {
     it('should init', function () {
 
         $location.path('/search');
-        $location.search({place:'0 0 0 0', 'place.op':'within'})
+        $location.search({place:'0 0 0 0', 'place.op':'within'});
         initController();
 
         expect($scope.search.place).toEqual('0.00 0.00 0.00 0.00');
