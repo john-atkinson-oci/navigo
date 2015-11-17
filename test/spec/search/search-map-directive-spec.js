@@ -12,7 +12,7 @@ describe('Search Map Directive:', function () {
         });
     });
 
-    var scope, element, controller, compiled, timeout, httpMock, rootScope, compile, leafletData, $q;
+    var scope, element, controller, compiled, $timeout, httpMock, rootScope, compile, leafletData, $q;
 
     $(document.body).append('<div id="search-map"></div>');
     var map = L.map('search-map');
@@ -24,9 +24,9 @@ describe('Search Map Directive:', function () {
         controller = element.controller(scope);
     }
 
-    beforeEach(inject(function ($compile, $rootScope, $timeout, $httpBackend, _leafletData_, _$q_) {
+    beforeEach(inject(function ($compile, $rootScope, _$timeout_, $httpBackend, _leafletData_, _$q_) {
         scope = $rootScope.$new();
-        timeout = $timeout;
+        $timeout = _$timeout_;
         httpMock = $httpBackend;
         rootScope = $rootScope;
         compile = $compile;
@@ -45,7 +45,7 @@ describe('Search Map Directive:', function () {
 
             console.log('trigger timeout');
 
-            timeout.flush();
+            $timeout.flush();
 
             expect(element.html()).toContain('leaflet');
         });
