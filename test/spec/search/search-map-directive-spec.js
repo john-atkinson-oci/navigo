@@ -12,7 +12,7 @@ describe('Search Map Directive:', function () {
         });
     });
 
-    var scope, element, controller, compiled, $timeout, httpMock, rootScope, compile, leafletData, $q;
+    var scope, $timeout, httpMock, rootScope, compile, leafletData, $q;
 
     $(document.body).append('<div id="search-map"></div>');
     var map = L.map('search-map');
