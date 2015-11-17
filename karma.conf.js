@@ -113,6 +113,10 @@ module.exports = function(config) {
                 {type: 'html', dir:'test/coverage/', subdir: 'html-report'},
                 {type: 'cobertura', dir:'test/coverage/', subdir: 'cobertura-report'}
             ]
+        },
+
+        client: {
+            captureConsole: true
         }
     });
 };
