@@ -312,6 +312,7 @@ angular.module('voyager.search')
 						$scope.sizeIcon = 'glyphicon-resize-full';
 					}
 
+					//TODO this is referencing outer scope, fix me
 					$scope.toggleMap();
 					leafletData.getMap('search-map').then(function (map) {
 						//have to wait for angular to refresh scope
