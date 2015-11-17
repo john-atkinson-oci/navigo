@@ -11,7 +11,7 @@ describe('Zip Files Task', function() {
 
     // Load and run Zip Files task
     it('should load zip_files task', function() {
-        searchPage.addAllToQueue('title:ca_ozone_pts');
+        searchPage.addAllToQueue('title:Hydrography_Lines');
 
         browser.get(server + '#/queue?disp=default&task=zip_files');
         Util.waitForSpinner();
