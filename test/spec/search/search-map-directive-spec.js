@@ -41,21 +41,23 @@ describe('Search Map Directive:', function () {
 
             expect(element.html()).toContain('leaflet');
         });
+
+        it('should toggle map mode', function () {
+            rootScope.displayFormat = 'detail_format';
+            initDirective(rootScope, compile);
+            expect(element.hasClass('dragging_disabled')).toBeTruthy();
+
+            rootScope.displayFormat = 'short_format';
+            rootScope.$apply();
+
+            $timeout.flush();
+
+            expect(element.hasClass('dragging_disabled')).toBeFalsy();
+        });
     });
 
 
-    //it('should toggle map mode', function () {
-    //    rootScope.displayFormat = 'detail_format';
-    //    initDirective(rootScope, compile);
-    //    expect(element.hasClass('dragging_disabled')).toBeTruthy();
-    //
-    //    rootScope.displayFormat = 'short_format';
-    //    rootScope.$apply();
-    //
-    //    $timeout.flush();
-    //
-    //    expect(element.hasClass('dragging_disabled')).toBeFalsy();
-    //});
+
     //
     //
     //describe('Functions', function () {
