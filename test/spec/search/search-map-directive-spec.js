@@ -43,7 +43,7 @@ describe('Search Map Directive:', function () {
         it('should render leaflet map', function () {
             initDirective(rootScope, compile);
 
-            timeout.flush();
+            //timeout.flush();
 
             expect(element.html()).toContain('leaflet');
         });
