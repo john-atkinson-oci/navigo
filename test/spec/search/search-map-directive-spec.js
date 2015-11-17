@@ -62,6 +62,52 @@ describe('Search Map Directive:', function () {
 
             scope.zoomOut($.Event( 'click' ));
         });
+
+        it('should toggle display format', function () {
+            initDirective(rootScope, compile);
+
+            scope.toggleDisplayFormat('Card', $.Event('click'));
+
+            expect(scope.selectedMapType).toBe('Card');
+        });
+
+        it('should draw rectangle', function () {
+            rootScope.selectedDrawingType = 'Intersects';
+            rootScope.displayFormat = 'detail_format';
+
+            spyOn(leafletData,'getMap').and.callThrough();
+
+            initDirective(rootScope, compile);
+
+            scope.drawRectangle('within', $.Event('click'));
+
+            scope.$apply();
+            $timeout.flush();
+
+            expect(scope.selectedDrawingType).toBe('Within');
+            expect(leafletData.getMap).toHaveBeenCalled();
+
+        });
+
+        it('should resize', function () {
+            rootScope.selectedDrawingType = 'Intersects';
+            rootScope.displayFormat = 'detail_format';
+
+            spyOn(leafletData,'getMap').and.callThrough();
+
+            // TODO function in outer scope, fix this
+            rootScope.toggleMap = function(){};
+
+            initDirective(rootScope, compile);
+
+            scope.resize();
+
+            scope.$apply();
+            $timeout.flush();
+
+            expect(scope.selectedDrawingType).toBe('Intersects');
+            expect(leafletData.getMap).toHaveBeenCalled();
+        });
     });
 
     //describe('Functions', function () {
