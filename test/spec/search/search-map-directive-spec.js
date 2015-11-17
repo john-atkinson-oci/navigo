@@ -12,17 +12,17 @@ describe('Search Map Directive:', function () {
         });
     });
 
-    var scope, $timeout, httpMock, rootScope, compile, leafletData, $q;
+    var scope, $timeout, httpMock, rootScope, compile, leafletData, $q, element, compiled, controller;
 
-    $(document.body).append('<div id="search-map"></div>');
-    var map = L.map('search-map');
+    //$(document.body).append('<div id="search-map"></div>');
+    //var map = L.map('search-map');
 
-    //function initDirective($rootScope, $compile) {
-    //    element = angular.element('<div type="text" vs-search-map></div>');
-    //    compiled = $compile(element)($rootScope);
-    //    element.scope().$apply();
-    //    controller = element.controller(scope);
-    //}
+    function initDirective($rootScope, $compile) {
+        element = angular.element('<div type="text" vs-search-map></div>');
+        compiled = $compile(element)($rootScope);
+        element.scope().$apply();
+        controller = element.controller(scope);
+    }
 
     beforeEach(inject(function ($compile, $rootScope, _$timeout_, $httpBackend, _leafletData_, _$q_) {
         scope = $rootScope.$new();
@@ -32,16 +32,16 @@ describe('Search Map Directive:', function () {
         compile = $compile;
         leafletData = _leafletData_;
         $q = _$q_;
-        spyOn(leafletData,'getMap').and.callFake(function() {
-            return $q.when(map);
-        });
+        //spyOn(leafletData,'getMap').and.callFake(function() {
+        //    return $q.when(map);
+        //});
     }));
 
 
     describe('Render', function () {
 
         it('should render leaflet map', function () {
-            //initDirective(rootScope, compile);
+            initDirective(rootScope, compile);
             //
             ////console.log('trigger timeout');
             //
