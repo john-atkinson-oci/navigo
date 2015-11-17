@@ -1,6 +1,6 @@
 /*global describe, beforeEach, module, it, inject, expect, angular, config */
 
-describe('Suggest:', function () {
+describe('Search Map Directive:', function () {
     'use strict';
 
     beforeEach(function () {
