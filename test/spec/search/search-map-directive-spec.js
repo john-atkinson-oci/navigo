@@ -18,7 +18,7 @@ describe('Search Map Directive:', function () {
     //var map = L.map('search-map');
 
     function initDirective($rootScope, $compile) {
-        element = angular.element('<div type="text" vs-search-map></div>');
+        element = angular.element('<div vs-search-map></div>');
         compiled = $compile(element)($rootScope);
         element.scope().$apply();
         controller = element.controller(scope);
