@@ -12,42 +12,43 @@ describe('Search Map Directive:', function () {
         });
     });
 
-    //var scope, element, controller, compiled, timeout, httpMock, rootScope, compile, leafletData, $q;
+    var scope, element, controller, compiled, timeout, httpMock, rootScope, compile, leafletData, $q;
 
     $(document.body).append('<div id="search-map"></div>');
     var map = L.map('search-map');
 
-    console.log('createed map' + map.id);
-    //function initDirective($rootScope, $compile) {
-    //    element = angular.element('<div type="text" vs-search-map></div>');
-    //    compiled = $compile(element)($rootScope);
-    //    element.scope().$apply();
-    //    controller = element.controller(scope);
-    //}
-    //
-    //beforeEach(inject(function ($compile, $rootScope, $timeout, $httpBackend, _leafletData_, _$q_) {
-    //    scope = $rootScope.$new();
-    //    timeout = $timeout;
-    //    httpMock = $httpBackend;
-    //    rootScope = $rootScope;
-    //    compile = $compile;
-    //    leafletData = _leafletData_;
-    //    $q = _$q_;
-    //    spyOn(leafletData,'getMap').and.callFake(function() {
-    //        return $q.when(map);
-    //    });
-    //}));
-    //
-    //
-    //describe('Render', function () {
-    //
-    //    it('should render leaflet map', function () {
-    //        initDirective(rootScope, compile);
-    //
-    //        timeout.flush();
-    //
-    //        expect(element.html()).toContain('leaflet');
-    //    });
+    function initDirective($rootScope, $compile) {
+        element = angular.element('<div type="text" vs-search-map></div>');
+        compiled = $compile(element)($rootScope);
+        element.scope().$apply();
+        controller = element.controller(scope);
+    }
+
+    beforeEach(inject(function ($compile, $rootScope, $timeout, $httpBackend, _leafletData_, _$q_) {
+        scope = $rootScope.$new();
+        timeout = $timeout;
+        httpMock = $httpBackend;
+        rootScope = $rootScope;
+        compile = $compile;
+        leafletData = _leafletData_;
+        $q = _$q_;
+        spyOn(leafletData,'getMap').and.callFake(function() {
+            return $q.when(map);
+        });
+    }));
+
+
+    describe('Render', function () {
+
+        it('should render leaflet map', function () {
+            initDirective(rootScope, compile);
+
+            timeout.flush();
+
+            expect(element.html()).toContain('leaflet');
+        });
+    });
+
     //
     //    it('should toggle map mode', function () {
     //        rootScope.displayFormat = 'detail_format';
