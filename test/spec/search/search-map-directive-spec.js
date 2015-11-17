@@ -14,9 +14,6 @@ describe('Search Map Directive:', function () {
 
     var scope, $timeout, httpMock, rootScope, compile, leafletData, $q, element, compiled, controller;
 
-    //$(document.body).append('<div id="search-map"></div>');
-    //var map = L.map('search-map');
-
     function initDirective($rootScope, $compile) {
         element = angular.element('<div vs-search-map></div>');
         compiled = $compile(element)($rootScope);
@@ -32,9 +29,6 @@ describe('Search Map Directive:', function () {
         compile = $compile;
         leafletData = _leafletData_;
         $q = _$q_;
-        //spyOn(leafletData,'getMap').and.callFake(function() {
-        //    return $q.when(map);
-        //});
     }));
 
 
@@ -49,73 +43,76 @@ describe('Search Map Directive:', function () {
         });
     });
 
-    //
-    //    it('should toggle map mode', function () {
-    //        rootScope.displayFormat = 'detail_format';
-    //        initDirective(rootScope, compile);
-    //        expect(element.hasClass('dragging_disabled')).toBeTruthy();
-    //
-    //        rootScope.displayFormat = 'short_format';
-    //        rootScope.$apply();
-    //
-    //        timeout.flush();
-    //
-    //        expect(element.hasClass('dragging_disabled')).toBeFalsy();
-    //    });
-    //
-    //});
-    //
-    //describe('Functions', function () {
-    //
-    //    it('should zoom', function () {
-    //        initDirective(rootScope, compile);
-    //
-    //        scope.zoomIn($.Event( 'click' ));
-    //
-    //        scope.zoomOut($.Event( 'click' ));
-    //    });
-    //
-    //    it('should toggle display format', function () {
-    //        initDirective(rootScope, compile);
-    //
-    //        scope.toggleDisplayFormat('Card', $.Event('click'));
-    //
-    //        expect(scope.selectedMapType).toBe('Card');
-    //    });
-    //
-    //    it('should draw rectangle', function () {
-    //        rootScope.selectedDrawingType = 'Intersects';
-    //        rootScope.displayFormat = 'detail_format';
-    //
-    //        initDirective(rootScope, compile);
-    //
-    //        scope.drawRectangle('within', $.Event('click'));
-    //
-    //        scope.$apply();
-    //        timeout.flush();
-    //
-    //        expect(scope.selectedDrawingType).toBe('Within');
-    //        expect(leafletData.getMap).toHaveBeenCalled();
-    //
-    //    });
-    //
-    //    it('should resize', function () {
-    //        rootScope.selectedDrawingType = 'Intersects';
-    //        rootScope.displayFormat = 'detail_format';
-    //
-    //        // TODO function in outer scope, fix this
-    //        rootScope.toggleMap = function(){};
-    //
-    //        initDirective(rootScope, compile);
-    //
-    //        scope.resize();
-    //
-    //        scope.$apply();
-    //        timeout.flush();
-    //
-    //        expect(scope.selectedDrawingType).toBe('Intersects');
-    //        expect(leafletData.getMap).toHaveBeenCalled();
-    //    });
-    //
-    //});
+
+    it('should toggle map mode', function () {
+        rootScope.displayFormat = 'detail_format';
+        initDirective(rootScope, compile);
+        expect(element.hasClass('dragging_disabled')).toBeTruthy();
+
+        rootScope.displayFormat = 'short_format';
+        rootScope.$apply();
+
+        $timeout.flush();
+
+        expect(element.hasClass('dragging_disabled')).toBeFalsy();
+    });
+
+
+    describe('Functions', function () {
+
+        it('should zoom', function () {
+            initDirective(rootScope, compile);
+
+            scope.zoomIn($.Event( 'click' ));
+
+            scope.zoomOut($.Event( 'click' ));
+        });
+
+        it('should toggle display format', function () {
+            initDirective(rootScope, compile);
+
+            scope.toggleDisplayFormat('Card', $.Event('click'));
+
+            expect(scope.selectedMapType).toBe('Card');
+        });
+
+        it('should draw rectangle', function () {
+            rootScope.selectedDrawingType = 'Intersects';
+            rootScope.displayFormat = 'detail_format';
+
+            spyOn(leafletData,'getMap').and.callThrough();
+
+            initDirective(rootScope, compile);
+
+            scope.drawRectangle('within', $.Event('click'));
+
+            scope.$apply();
+            $timeout.flush();
+
+            expect(scope.selectedDrawingType).toBe('Within');
+            expect(leafletData.getMap).toHaveBeenCalled();
+
+        });
+
+        it('should resize', function () {
+            rootScope.selectedDrawingType = 'Intersects';
+            rootScope.displayFormat = 'detail_format';
+
+            spyOn(leafletData,'getMap').and.callThrough();
+
+            // TODO function in outer scope, fix this
+            rootScope.toggleMap = function(){};
+
+            initDirective(rootScope, compile);
+
+            scope.resize();
+
+            scope.$apply();
+            $timeout.flush();
+
+            expect(scope.selectedDrawingType).toBe('Intersects');
+            expect(leafletData.getMap).toHaveBeenCalled();
+        });
+
+    });
 });
