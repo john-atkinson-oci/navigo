@@ -12,11 +12,11 @@ describe('Search Map Directive:', function () {
         });
     });
 
-    var scope, $timeout, httpMock, rootScope, compile, leafletData, $q, element, compiled, controller;
+    var scope, $timeout, httpMock, compile, leafletData, $q, element, compiled, controller;
 
-    function initDirective($rootScope, $compile) {
+    function initDirective() {
         element = angular.element('<div vs-search-map></div>');
-        compiled = $compile(element)($rootScope);
+        compiled = compile(element)(scope);
         element.scope().$apply();
         controller = element.controller(scope);
     }
@@ -25,7 +25,6 @@ describe('Search Map Directive:', function () {
         scope = $rootScope.$new();
         $timeout = _$timeout_;
         httpMock = $httpBackend;
-        rootScope = $rootScope;
         compile = $compile;
         leafletData = _leafletData_;
         $q = _$q_;
@@ -35,7 +34,7 @@ describe('Search Map Directive:', function () {
     describe('Render', function () {
 
         it('should render leaflet map', function () {
-            initDirective(rootScope, compile);
+            initDirective();
 
             $timeout.flush();
 
@@ -43,12 +42,12 @@ describe('Search Map Directive:', function () {
         });
 
         it('should toggle map mode', function () {
-            rootScope.displayFormat = 'detail_format';
-            initDirective(rootScope, compile);
+            scope.displayFormat = 'detail_format';
+            initDirective();
             expect(element.hasClass('dragging_disabled')).toBeTruthy();
 
-            rootScope.displayFormat = 'short_format';
-            rootScope.$apply();
+            scope.displayFormat = 'short_format';
+            scope.$apply();
 
             $timeout.flush();
 
@@ -56,7 +55,7 @@ describe('Search Map Directive:', function () {
         });
 
         it('should zoom', function () {
-            initDirective(rootScope, compile);
+            initDirective();
 
             scope.zoomIn($.Event( 'click' ));
 
@@ -64,7 +63,7 @@ describe('Search Map Directive:', function () {
         });
 
         it('should toggle display format', function () {
-            initDirective(rootScope, compile);
+            initDirective();
 
             scope.toggleDisplayFormat('Card', $.Event('click'));
 
@@ -72,12 +71,12 @@ describe('Search Map Directive:', function () {
         });
 
         it('should draw rectangle', function () {
-            rootScope.selectedDrawingType = 'Intersects';
-            rootScope.displayFormat = 'detail_format';
+            scope.selectedDrawingType = 'Intersects';
+            scope.displayFormat = 'detail_format';
 
             spyOn(leafletData,'getMap').and.callThrough();
 
-            initDirective(rootScope, compile);
+            initDirective();
 
             scope.drawRectangle('within', $.Event('click'));
 
@@ -90,15 +89,15 @@ describe('Search Map Directive:', function () {
         });
 
         it('should resize', function () {
-            rootScope.selectedDrawingType = 'Intersects';
-            rootScope.displayFormat = 'detail_format';
+            scope.selectedDrawingType = 'Intersects';
+            scope.displayFormat = 'detail_format';
 
             spyOn(leafletData,'getMap').and.callThrough();
 
             // TODO function in outer scope, fix this
-            rootScope.toggleMap = function(){};
+            scope.toggleMap = function(){};
 
-            initDirective(rootScope, compile);
+            initDirective();
 
             scope.resize();
 
