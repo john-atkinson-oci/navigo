@@ -17,12 +17,12 @@ describe('Search Map Directive:', function () {
     $(document.body).append('<div id="search-map"></div>');
     var map = L.map('search-map');
 
-    function initDirective($rootScope, $compile) {
-        element = angular.element('<div type="text" vs-search-map></div>');
-        compiled = $compile(element)($rootScope);
-        element.scope().$apply();
-        controller = element.controller(scope);
-    }
+    //function initDirective($rootScope, $compile) {
+    //    element = angular.element('<div type="text" vs-search-map></div>');
+    //    compiled = $compile(element)($rootScope);
+    //    element.scope().$apply();
+    //    controller = element.controller(scope);
+    //}
 
     beforeEach(inject(function ($compile, $rootScope, _$timeout_, $httpBackend, _leafletData_, _$q_) {
         scope = $rootScope.$new();
