@@ -45,7 +45,7 @@ describe('Search Map Directive:', function () {
 
             console.log('trigger timeout');
 
-            $timeout.flush();
+            //$timeout.flush();
 
             expect(element.html()).toContain('leaflet');
         });
