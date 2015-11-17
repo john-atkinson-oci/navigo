@@ -103,15 +103,6 @@ angular.module('voyager.results')
                     return authService.hasPermission('process');
                 };
 
-                $scope.getDetailsLink = function(doc) {
-                    var link = '#/show/' + doc.id + '?disp=default';
-                    if(angular.isDefined(doc.shard) && doc.shard !== '[not a shard request]') {
-                        link += '&shard=' + doc.shard;
-                    }
-
-                    return link;
-                };
-
                 $scope.applyTag = function(tag) {
                     if ($location.path().indexOf('/search') > -1) {
                         filterService.clear();
@@ -165,14 +156,15 @@ angular.module('voyager.results')
                     actionManager.toggleDisplay(actions.types.add, $scope);
                 });
 
-                $scope.applyFilter = function(filter, value) {
-                    var facet = {field:value, filter:filter, humanized : translateService.getFieldName(filter) + ':' + value, name:value};
-                    filterService.addFilter(facet);
-                    $location.search('fq', filterService.getFilterAsLocationParams());
-                    $timeout(function() {  //let scope digest and add url params
-                        $scope.$emit('filterEvent',{});
-                    });
-                };
+                // TODO check usage and remove
+                //$scope.applyFilter = function(filter, value) {
+                //    var facet = {field:value, filter:filter, humanized : translateService.getFieldName(filter) + ':' + value, name:value};
+                //    filterService.addFilter(facet);
+                //    $location.search('fq', filterService.getFilterAsLocationParams());
+                //    $timeout(function() {  //let scope digest and add url params
+                //        $scope.$emit('filterEvent',{});
+                //    });
+                //};
 
             }
         };

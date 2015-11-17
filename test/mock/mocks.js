@@ -10,6 +10,12 @@ config.root = 'root/';
 config.require = {locations:'api/rest/i18n/field/location.json'};
 config.rawFields = {};
 config.ui = {details:{}, list:{name:'Queue'}};
+config.docActions = [
+    {text:'Add to Queue', action:'add', visible:'canCart', toggle:'inCart', off:'Remove', onIcon:'icon-plus', offIcon:'icon-x'},
+    {text:'Download', action:'download', visible:'hasDownload', alt:'Open'},
+    {text:'Open in Map Viewer', action:'open', visible:'isService', url:'http://voyagerdemo.com/voyagerwidget/'},
+    {text:'Open in ArcMap', action:'openArcMap', visible:'isEsriLayer'}
+]
 //config.settings.data.showFederatedSerach = true;
 
 var bounds = {};
