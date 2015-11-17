@@ -14,7 +14,8 @@ var Util = (function () {
         },
 
         getServer: function() {
-            return 'http://voyagerdemo.com/daily/navigo/';
+            //return 'http://localhost:8888/navigo/';
+            return 'http://voyagerdemo.com/protractor/navigo/';
         },
 
         loginToVoyager: function(username, password) {
@@ -22,7 +23,7 @@ var Util = (function () {
             // check if already logged in
             //element(by.css('[ng-click="toggleMobileNav()"]')).click();
             //browser.waitForAngular();
-            var loginLink = element(by.css('[ng-click="login()"]'));
+            var loginLink = element(by.css('[ng-click="vm.login()"]'));
             return loginLink.isDisplayed().then(function(isVisible) {
                 if(isVisible) {
                     loginLink.click();

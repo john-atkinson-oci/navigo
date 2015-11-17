@@ -11,7 +11,7 @@ describe('Run Convert to KML Task', function() {
 
     // Load and run Convert to KML task
     it('should run convert_to_kml using default parameter values', function() {
-        searchPage.addAllToQueue('title:ca_ozone_pts');
+        searchPage.addAllToQueue('title:Hydrography_Lines');
 
         browser.get(server + '#/queue?disp=default&task=convert_to_kml');
         Util.waitForSpinner();
@@ -30,7 +30,6 @@ describe('Run Convert to KML Task', function() {
         // Check the status and expect no errors
         expect(browser.getCurrentUrl()).toMatch(/\/#\/status/);
         expect(taskStatusPage.getSuccess().isPresent()).toBeTruthy();
-
         // Expect download link
         expect(taskStatusPage.getDownloadLink().isPresent()).toBeTruthy();
     });
