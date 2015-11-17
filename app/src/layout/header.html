@@ -1,45 +1,49 @@
-<div class="inner" ng-controller="HeaderCtrl">
-	<h1 title="{{buildRev}}"><a href="#/home{{disp}}"><img class="logo" src="{{logo}}" alt="" /></a></h1>
+<div class="inner" ng-controller="HeaderCtrl as vm">
+	<h1 title="{{vm.buildRev}}"><a href="#/home{{vm.disp}}"><img class="logo" src="{{vm.logo}}" alt="" /></a></h1>
 	<ng-include src="'src/search/search-input.html'"></ng-include>
 
-	<div id="hamburger" class="tablet_only" ng-show="showNav">
-		<a href="javascript:;" ng-class="mobileToggleClass" ng-click="toggleMobileNav()"><span class="sr-only">toggle mobile nav</span></a>
+	<div id="hamburger" class="tablet_only" ng-show="vm.showNav">
+		<a href="javascript:;" ng-class="vm.mobileToggleClass" ng-click="vm.toggleMobileNav()"><span class="sr-only">toggle mobile nav</span></a>
 	</div>
 
-	<ul role="navigation" ng-show="showNav" ng-class="navClass">
+	<ul role="navigation" ng-show="vm.showNav" ng-class="vm.navClass">
 		<li>
-			<a href="javascript:;" ng-click="showSavedSearch()" class="underline"><span class="icon-heart_filled"></span><span class="txt">Saved Searches</span></a>
+			<a href="javascript:;" ng-click="vm.showSavedSearch()" class="underline"><span class="icon-heart_filled"></span><span class="txt">Saved Searches</span></a>
 		</li>
-		<li class="hover_flyout" ng-if="canCart">
-			<a href="javascript:;" ng-click="gotoPage('queue')" class="underline"><span class="{{uiText.add.icon}}"></span><span class="txt">{{uiText.add.text}}</span> <span class="highlight queue_count" ng-bind="queueTotal | number"></span></a><a href="javascript:;" class="icon-arrow flyout_trigger"></a>
+		<li class="hover_flyout" ng-if="vm.canCart">
+			<a href="javascript:;" ng-click="vm.gotoPage('queue')" class="underline">
+				<span class="{{vm.uiText.add.icon}}"></span>
+				<span class="txt">{{vm.uiText.add.text}}</span>
+				<span class="highlight queue_count" ng-bind="vm.queueTotal | number"></span>
+			</a><a href="javascript:;" class="icon-arrow flyout_trigger"></a>
 			<div class="flyout queue_flyout">
 				<div class="arrow"></div>
 				<div class="flyout_inner">
 					<ul>
-						<li><a href="javascript:;" ng-click="gotoPage('queue')">New task</a></li>
-						<li><a href="javascript:;" ng-click="gotoPage('history')">Task history</a></li>
-						<li><a href="javascript:;" ng-click="clearQueue()">Clear All</a></li>
+						<li><a href="javascript:;" ng-click="vm.gotoPage('queue')">New task</a></li>
+						<li><a href="javascript:;" ng-click="vm.gotoPage('history')">Task history</a></li>
+						<li><a href="javascript:;" ng-click="vm.clearQueue()">Clear All</a></li>
 					</ul>
 				</div>
 			</div>
 		</li>
-		<li class="hover_flyout" ng-hide="isAnonymous">
-			<a href="javascript:;" class="icon-arrow underline flyout_trigger"><span class="icon-header_account"></span><span class="txt" ng-bind="user.name"></span></a>
+		<li class="hover_flyout" ng-hide="vm.isAnonymous">
+			<a href="javascript:;" class="icon-arrow underline flyout_trigger"><span class="icon-header_account"></span><span class="txt" ng-bind="vm.user.name"></span></a>
 			<div class="flyout user_flyout">
 				<div class="arrow"></div>
 				<div class="flyout_inner">
 					<ul>
-						<li ng-if="canManage"><a href="{{manageLink}}">Manage Voyager</a></li>
-						<li ng-if="showLogout"><a href="javascript:;" ng-click="logout()">Logout</a></li>
-						<li ng-if="showClassicLink"><a href="javascript:;" ng-click="goToClassic()">View Classic</a></li>
+						<li ng-if="vm.canManage"><a href="{{vm.manageLink}}">Manage Voyager</a></li>
+						<li ng-if="vm.showLogout"><a href="javascript:;" ng-click="vm.logout()">Logout</a></li>
+						<li ng-if="vm.showClassicLink"><a href="javascript:;" ng-click="vm.goToClassic()">View Classic</a></li>
 						<li><a href="http://voyagersearch.zendesk.com/hc" target="_blank">Help and Support</a></li>
 					</ul>
 				</div>
 			</div>
 		</li>
-		<li ng-show="isAnonymous">
-			<a href="javascript:;" ng-click="login()" class="underline icon-header_account"><span class="txt">Login</span></a>
+		<li ng-show="vm.isAnonymous">
+			<a href="javascript:;" ng-click="vm.login()" class="underline icon-header_account"><span class="txt">Login</span></a>
 		</li>
-		<li ng-show="isAnonymous"><a href="http://voyagersearch.zendesk.com/hc" target="_blank"><i class="fa fa-question-circle" aria-label="Help and Support"></i></a></li>
+		<li ng-show="vm.isAnonymous"><a href="http://voyagersearch.zendesk.com/hc" target="_blank"><i class="fa fa-question-circle" aria-label="Help and Support"></i></a></li>
 	</ul>
 </div>

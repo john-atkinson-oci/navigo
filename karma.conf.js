@@ -59,7 +59,8 @@ module.exports = function(config) {
             //'app/scripts/**/*.js',
             'test/mock/**/*.js',
             'test/spec/**/*.js',
-            'app/src/**/*.html'
+            'app/src/**/*.html',
+            'app/common/**/*.html'
         ],
 
         // list of files / patterns to exclude

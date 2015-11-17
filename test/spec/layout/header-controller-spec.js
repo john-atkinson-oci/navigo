@@ -1,0 +1,162 @@
+'use strict';
+
+describe('Controller: HeaderCtrl', function () {
+
+    var $scope, $timeout, $modal, usSpinnerService, $location, $http, $controller, q, authService, sut, $window, $state;
+    var cfg = _.clone(config);
+
+    beforeEach(function () {
+        module('templates');
+        module('voyager.layout');
+        module('voyager.search');
+        module('voyager.tagging');
+        module('ui.bootstrap');
+        module('ui.router');
+        module('voyager.config');
+        module(function ($provide) {
+            $provide.constant('config', cfg);
+        });
+
+        inject(function (_$controller_, _$timeout_, _$modal_, _usSpinnerService_, _$location_, $httpBackend , $rootScope, _$q_, _authService_, _$window_, _$state_) {
+            $scope = $rootScope.$new();
+            $timeout = _$timeout_;
+            $modal = _$modal_;
+            usSpinnerService = _usSpinnerService_;
+            $location = _$location_;
+            $http = $httpBackend;
+            $controller = _$controller_;
+            q = _$q_;
+            authService = _authService_;
+            $window = _$window_;
+            $state = _$state_;
+        });
+
+        cfg.settings.data.display.showMap = true;
+    });
+
+    // Specs here
+
+    function initController() {
+        $location.search().disp = 'disp';
+        sut = $controller('HeaderCtrl', {$scope: $scope, $authService: authService});
+
+        $http.expectGET(new RegExp('auth')).respond({}); // transitive auth call
+        $http.flush();
+    }
+
+    it('should init as admin', function () {
+        spyOn(authService,'hasPermission').and.returnValue(true);
+
+        $location.path('/home');
+
+        initController();
+
+        expect(sut.canManage).toBeTruthy();
+        expect(sut.canCart).toBeTruthy();
+        expect(sut.showClassicLink).toBeTruthy();
+    });
+
+    it('should init as user', function () {
+        spyOn(authService,'hasPermission').and.returnValue(false);
+
+        initController();
+
+        expect(sut.canManage).toBeFalsy();
+        expect(sut.canCart).toBeFalsy();
+        expect(sut.showClassicLink).toBeFalsy();
+    });
+
+    it('should login', function () {
+
+        initController();
+
+        sut.login();
+
+        $http.expectGET(new RegExp('auth')).respond({permissions:{use_voyager:false}});
+
+        $http.flush();
+    });
+
+    it('should logout', function () {
+
+        initController();
+
+        spyOn($state,'go');
+
+        sut.logout();
+
+        $http.expectPOST(new RegExp('logout')).respond({permissions:{use_voyager:false}});
+
+        $http.flush();
+
+        expect($state.go).toHaveBeenCalledWith('login');
+    });
+
+    it('should show saved search', function () {
+        initController();
+
+        sut.showSavedSearch();
+
+        expect(sut.navClass).toEqual('full_width');
+    });
+
+    it('should goto page', function () {
+        $location.search().disp = 'disp';
+        initController();
+
+        sut.gotoPage('junk');
+
+        expect($window.location.hash).toEqual('#junk?disp=disp');
+    });
+
+    it('should clear queue', function () {
+        $location.search().disp = 'disp';
+        initController();
+
+        sut.navClass = 'full_width';
+
+        sut.clearQueue('junk');
+
+        expect(sut.navClass).toEqual('');
+    });
+
+    it('should goto classic details from details', function () {
+        $location.search().view = 'card';
+        $location.path('/show/12345');
+
+        initController();
+
+        spyOn($window, 'open');
+
+        sut.goToClassic();
+
+        expect($window.open).toHaveBeenCalledWith('root/voyager/#/id=12345/disp=disp', '_blank');
+    });
+
+    it('should goto classic default search from home', function () {
+        $location.search().view = 'card';
+        $location.path('/home/');
+
+        initController();
+
+        spyOn($window, 'open');
+
+        sut.goToClassic();
+
+        expect($window.open).toHaveBeenCalledWith('root/voyager/#/', '_blank');
+    });
+
+    it('should goto classic search from search', function () {
+        $location.path('/search/');
+
+        $location.search().q = 'text';
+
+        initController();
+
+        spyOn($window, 'open');
+
+        sut.goToClassic();
+
+        expect($window.open).toHaveBeenCalledWith('root/voyager/#/q=text/disp=disp', '_blank');
+    });
+});

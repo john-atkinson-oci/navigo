@@ -62,3 +62,7 @@ function LeafletMapMock() {
 $(document.body).append('<div id="map" />');  //so we can trigger events wired
 var map = $('#map');
 map = $.extend(map,new LeafletMapMock());
+
+function escapeRegExp(str) {
+    return str.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, '\\$&');
+}

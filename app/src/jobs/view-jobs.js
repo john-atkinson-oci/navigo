@@ -1,13 +1,12 @@
-/*global angular, $, _, Sugar */
-
 angular.module('taskRunner')
     .controller('JobsCtrl', function ($scope, jobService, $stateParams, config, $window, taskService, sugar, usSpinnerService, urlUtil, $location) {
         'use strict';
 
         $scope.display = $location.search().disp || 'default';
 
+        // TODO appears this will only go back to classic?
         $scope.goBack = function() {
-            var params = Sugar.retroParams($stateParams);
+            var params = sugar.retroParams($stateParams);
             $window.location.href = config.root + config.explorePath + '/#/' + params;
         };
 

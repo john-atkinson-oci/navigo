@@ -97,7 +97,7 @@ angular.module('voyager.search')
 
         function _setSortField() {
             if (!_.isEmpty(_params.sort)) {
-                if(_params.sort.indexOf(' ') !== 0) {
+                if(_params.sort.indexOf(' ') !== -1) {
                     $scope.sortField = _params.sort.split(' ')[0];
                 } else {
                     $scope.sortField = _params.sort;
@@ -600,30 +600,10 @@ angular.module('voyager.search')
             _setView(_params.view, _initializing);
         });
 
-        $scope.getDetailsLink = function(doc) {
-            var link = '#/show/' + doc.id + '?disp=' + _params.disp;
-            if(angular.isDefined(doc.shard) && doc.shard !== '[not a shard request]') {
-                link += '&shard=' + doc.shard;
-            }
-            return link;
-        };
-
         $scope.clearSearch = function() {
             filterService.clear();
             $location.search('');
             _page = 1;
-            _doSearch();
-        };
-
-        $scope.getNext = function() {
-            _page += 1;
-            $location.search('pg', _page);
-            _doSearch();
-        };
-
-        $scope.getPrevious = function() {
-            _page -= 1;
-            $location.search('pg', _page);
             _doSearch();
         };
 
@@ -662,7 +642,7 @@ angular.module('voyager.search')
             if ($location.path().indexOf('/search') !== -1) {  //only do on search page
                 //if ($scope.view !== 'table') {
                 var windowEl = angular.element($window);
-                //console.log ('scrolltop + height ' + (windowEl.scrollTop() + windowEl.height()) + ' doc height ' + $document.height());
+                //console.log ('scrolltop + height ' + (windowEl.scrollTop() + windowEl.height()) + ' doc height ' + $document.height() + ' eof '+ $scope.eof);
                 if ((windowEl.scrollTop() + windowEl.height() >= $document.height() - 200) && _busy === false && !$scope.eof) {
                     //fire when nearly reached bottom (-200) some browser seem to never reach absolute bottom (scrolltop + height)
                     usSpinnerService.spin('scroll-spinner');

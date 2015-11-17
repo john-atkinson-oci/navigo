@@ -134,26 +134,35 @@ angular.module('voyager.search')
 			placeChanged = true;
 		}
 
+		function _clearPlace(args) {
+			delete args.place;
+			delete args['place.id'];
+			delete args['place.iop'];
+			delete args.block;
+		}
+
 		function _clearField(field, isPlace) {
             var eventArgs = {};
-            $location.search('block', null);
+			var args = $location.search(); //TODO does this need to be cloned?
 			if (isPlace) {
 				eventArgs.isBbox = mapUtil.isBbox($scope.search.place);
 				$scope.search.place = '';
-                $location.search('place.id', null);
-				$location.search('place.op', null);
-                $location.search('place', null);
+
+				_clearPlace(args);
+
 				_locationChange();
 			} else {
-                $location.search(field, null);
+				delete args[field];
 				$scope.search[field] = '';
 			}
+			$location.search(args); //reset args
             $scope.$emit('removeFilterEvent', eventArgs); //TODO: this event is captured above, pass arg to ignore it
 		}
 
 		function _clearAllField(event, args) {
-            $location.search('place.id', null);
-            $location.search('block', null);
+			var params = $location.search(); //TODO does this need to be cloned?
+			_clearPlace(params);
+			$location.search(params); //reset args
 			$scope.search = {};
 			filterService.clear();
             if(args && args.filter === true) {
