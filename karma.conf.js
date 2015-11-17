@@ -117,6 +117,10 @@ module.exports = function(config) {
 
         client: {
             captureConsole: true
-        }
+        },
+
+        browserDisconnectTimeout: 5000,
+        browserNoActivityTimeout: 30000,
+        browserDisconnectTolerance: 10
     });
 };
