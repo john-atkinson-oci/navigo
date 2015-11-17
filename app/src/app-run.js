@@ -37,9 +37,6 @@ angular.module('portalApp')
         $rootScope.$on('clearBboxEvent', function (event, args) {
             $rootScope.$broadcast('clearBbox', args);
         });
-        $rootScope.$on('addBboxEvent', function (event, args) {
-            $rootScope.$broadcast('addBbox', args);
-        });
         $rootScope.$on('changeViewEvent', function (event, args) {
             $rootScope.$broadcast('changeView', args);
         });

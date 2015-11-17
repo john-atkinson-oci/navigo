@@ -262,7 +262,6 @@ angular.module('voyager.search').
 
                 $location.path('search').search(solrParams);
                 filterService.applyFromUrl($location.search()).then(function() {
-                    $scope.$emit('addBboxEvent', {});  //updates map with bbox from url
                     $scope.$emit('filterEvent', {});
                 });
 

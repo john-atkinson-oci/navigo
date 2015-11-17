@@ -13,11 +13,10 @@ config.ui = {details:{}, list:{name:'Queue'}};
 //config.settings.data.showFederatedSerach = true;
 
 var bounds = {};
-bounds.toBBoxString = function() {'use strict';return "0,0,0,0";};
-bounds.getCenter = function() {'use strict'; return {'lat':0,'lng':0};};
+bounds.toBBoxString = function() {return '0,0,0,0';};
+bounds.getCenter = function() {return {'lat':0,'lng':0};};
 
 function LeafletMapMock() {
-    'use strict';
 
     return {
         fitBounds: function() {
@@ -54,6 +53,18 @@ function LeafletMapMock() {
         },
 
         invalidateSize : function() {
+
+        },
+
+        setView: function() {
+
+        },
+
+        getCenter: function() {
+            return 0;
+        },
+
+        removeControl: function() {
 
         }
     };

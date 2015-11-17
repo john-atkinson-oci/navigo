@@ -39,7 +39,8 @@
     "by": false,
     "$":false,
     "LeafletMapMock":false,
-    "escapeRegExp":false
+    "escapeRegExp":false,
+    "L":false
   }
 }
 

@@ -101,16 +101,6 @@ angular.module('voyager.search')
             });
         }
 
-        function _addBbox(map, bbox, type) {
-            _searchBoundaryLayer = mapUtil.drawBBox(map, bbox, false, type);
-            _points = _searchBoundaryLayer.getLatLngs();
-            if(angular.isUndefined($stateParams.vw)) {
-                $timeout(function () {  //workaround for leaflet bug:  https://github.com/Leaflet/Leaflet/issues/2021
-                    mapUtil.fitToBBox(map,bbox, true);
-                }, 200);
-            }
-        }
-
         function _removeSearchBoundary() {
             if(layersControl) {
                 delete layers.Place;
@@ -150,20 +140,6 @@ angular.module('voyager.search')
             }
             usSpinnerService.spin('map-spinner');
             $scope.addToMap();
-        });
-
-        $scope.$on('addBbox', function () {
-            if (_searchBoundaryLayer) {  //remove existing
-                _removeSearchBoundary();
-            }
-            _searchBoundary = filterService.getBounds();
-            var searchBoundaryType = filterService.getBoundsType();
-            //console.log(_searchBoundary);
-            if(angular.isDefined(_searchBoundary) && _searchBoundary !== null) {
-                _addBbox($scope.map, _searchBoundary, searchBoundaryType);
-            } else {
-                $scope.map.setView([config.mapDefault.lat, config.mapDefault.lng], config.mapDefault.zoom);
-            }
         });
 
         function _addGeoJson(docs) {

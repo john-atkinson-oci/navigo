@@ -187,7 +187,6 @@ angular.module('voyager.search')
                 $scope.$emit('clearSearchEvent');
                 $location.path('search').search(query).search('recent', 'true');
                 filterService.applyFromUrl($location.search()).then(function() {
-                    $scope.$emit('addBboxEvent', {});  //updates map with bbox from url
                     $scope.$emit('filterEvent', {});
                 });
             }
