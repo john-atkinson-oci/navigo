@@ -1,5 +1,3 @@
-/*global describe, beforeEach, module, it, inject, config, EZSpy */
-
 describe('SearchCtrl', function () {
 
     'use strict';
