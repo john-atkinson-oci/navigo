@@ -31,8 +31,6 @@ describe('Controller: SavedSearchDialogCtrl', function () {
     });
 
     // Specs here
-    var item = {id: 'id', place: '0 0 0 0'};
-
     function initCtrl(permission) {
         $controller('SaveSearchDialog', {
             $scope: $scope,
