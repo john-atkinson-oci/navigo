@@ -1,4 +1,4 @@
-/*global angular */
+//TODO duplication with SavedSearchCtrl - add base class
 'use strict';
 
 angular.module('voyager.search')
