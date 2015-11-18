@@ -65,6 +65,8 @@ angular.module('voyager.search')
                 });
 
                 recentSearchService.updateSearchID(searchItem, response.data);
+
+                //TODO this should not submit event, just return success to controller using it
                 $scope.$emit('saveSearchSuccess', response.data);
 
             }, function(error) {
