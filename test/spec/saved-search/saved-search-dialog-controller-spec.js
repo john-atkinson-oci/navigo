@@ -75,40 +75,4 @@ describe('Controller: SavedSearchDialogCtrl', function () {
         $http.flush();
 
     });
-
-    //it('should apply saved search', function () {
-    //    //cartService.addItems([{id:'id'}]);
-    //    initCtrl();
-    //
-    //    spyOn(savedSearchService,'applySavedSearch').and.callThrough();
-    //
-    //    var saved = {id: 'id', query:'query'};
-    //    $scope.applySavedSearch(saved);
-    //
-    //    expect(savedSearchService.applySavedSearch).toHaveBeenCalledWith(saved, $scope);
-    //
-    //    //TODO problem here, why are there 3 recent???
-    //    recentSearchService.deleteSearch(0); //so thi doesn't bleed over to other specs
-    //    recentSearchService.deleteSearch(0); //so thi doesn't bleed over to other specs
-    //    recentSearchService.deleteSearch(0); //so thi doesn't bleed over to other specs
-    //});
-    //
-    //it('should delete saved search', function () {
-    //    //cartService.addItems([{id:'id'}]);
-    //    initCtrl();
-    //
-    //    spyOn(savedSearchService,'deleteSearch').and.callThrough();
-    //
-    //    var saved = {id: 'id', query:'query'};
-    //    $http.expectDELETE(new RegExp('ssearch')).respond({response: {docs: [item]}});
-    //    $http.expectJSONP(new RegExp('ssearch')).respond({response: {docs: [item]}}); //reload
-    //    $http.expectJSONP(new RegExp('ssearch')).respond({response: {docs: [item]}}); //TODO firing too many?
-    //
-    //    $scope.deleteSearch(saved.id);
-    //
-    //    $http.flush();
-    //
-    //    expect(savedSearchService.deleteSearch).toHaveBeenCalledWith(saved.id);
-    //});
-
 });

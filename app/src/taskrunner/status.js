@@ -85,6 +85,7 @@ angular.module('taskRunner')
             $scope.copyUrl = taskService.getCopyUrl($scope.id);
             //$scope.task = response.data.task;
             taskService.lookupTaskDisplay(response.data.task).then(function(res) {
+
                 $scope.type = res.data.display;
 
                 if(!_.isUndefined(response.data.params)) {
@@ -289,16 +290,6 @@ angular.module('taskRunner')
             }
         }
 
-        $scope.$on('doTask', function (event, args) {
-            canNotify = true;
-            if (timer) {
-                $timeout.cancel(timer);
-            }
-            $scope.id = args;
-            _reset(true);
-            taskService.checkStatus($scope.id).then(_self.startCheckStatus, _self.statusError);
-        });
-
         if($location.path().indexOf('status') > -1) {  //standalone
             $scope.id = $stateParams.id;
             taskService.checkStatus($scope.id).then(_self.startCheckStatus, _self.statusError);
@@ -338,11 +329,6 @@ angular.module('taskRunner')
                 //TODO this is slow to update the status so just forcing status to cancelled above
                 //taskService.checkProgress($scope.id).then(_self.updateStatus);
             });
-        };
-
-        $scope.hideEmail = function () {
-            $scope.allowNotify = false;
-            canNotify = false;
         };
 
         $scope.$on('$destroy', function() {
@@ -390,25 +376,26 @@ angular.module('taskRunner')
             });
         };
 
-        function _getParams(inputItems) {
-            var params = '';
-            if (inputItems.query) {
-                params = $.param(inputItems.query, true);
-            } else {
-                params = 'id=' + inputItems.ids.join('&id=');
-            }
-            return params;
-        }
-
-        $scope.rerun = function() {
-            if(angular.isDefined($scope.tabs)) {
-                $scope.task.reload = true;
-                $scope.selectTask($scope.task);
-            } else {
-                var params = _getParams($scope.inputItems[0]); //this is an array so it doesn't get rendered if empty (could use ng-if instead)
-                $window.location.href = '#/cart?' + params + '&rerun=' + $stateParams.id;
-            }
-        };
+        // TODO removed when new design was added - re-implement?
+        //function _getParams(inputItems) {
+        //    var params = '';
+        //    if (inputItems.query) {
+        //        params = $.param(inputItems.query, true);
+        //    } else {
+        //        params = 'id=' + inputItems.ids.join('&id=');
+        //    }
+        //    return params;
+        //}
+        //
+        //$scope.rerun = function() {
+        //    if(angular.isDefined($scope.tabs)) {
+        //        $scope.task.reload = true;
+        //        $scope.selectTask($scope.task);
+        //    } else {
+        //        var params = _getParams($scope.inputItems[0]); //this is an array so it doesn't get rendered if empty (could use ng-if instead)
+        //        $window.location.href = '#/cart?' + params + '&rerun=' + $stateParams.id;
+        //    }
+        //};
 
         $scope.showUrl = function() {
             $scope.showCopyUrl = true;

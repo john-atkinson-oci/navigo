@@ -17,22 +17,34 @@ describe('StatusCtrl', function () {
         });
     });
 
-    var scope, controllerService, q, location, timeout, _leafletData, httpMock;
+    var scope, controllerService, q, location, timeout, _leafletData, httpMock, $modal;
 
     //spies
    // var $s = {'configService':{}};
 
-    beforeEach(inject(function ($rootScope, $controller, $q, $location, $timeout, $httpBackend) {
+    beforeEach(inject(function ($rootScope, $controller, $q, $location, $timeout, $httpBackend, _$modal_) {
         scope = $rootScope.$new();
         q = $q;
         controllerService = $controller;
         location = $location;
         timeout = $timeout;
         httpMock = $httpBackend;
+        $modal = _$modal_;
        // EZSpy.spyOnAll($s, [{configService:configService}]);
         //$s.searchService.getPageIds.and.returnValue([1]);
         //$s.searchService.testEsriGeocodeService.and.returnValue(q.when({}));
     }));
+
+    var inputItemsWithQuery = {name:'input_items', query:{fq:'field:facet'}, response:{docs:[]}};
+
+    function initCtrl() {
+        spyOn(location,'path').and.returnValue('status');
+
+        httpMock.expectGET(new RegExp('projections')).respond({});  // param service - projections call (could mock param service)
+        httpMock.expectGET(new RegExp('job')).respond({params:[inputItemsWithQuery],state:'SUCCESS'});  // check status call
+
+        controllerService('StatusCtrl', {$scope: scope, $stateParams: {id: 'foo'}, leafletData: _leafletData});
+    }
 
     describe('Load', function () {
 
@@ -40,16 +52,16 @@ describe('StatusCtrl', function () {
 
             //var response = {docs:[], numFound:0}, sort = {key:'key', value:'value'};
 
-            spyOn(location,'path').and.returnValue('status');
+            initCtrl();
 
-            httpMock.expectGET().respond({});  // param service - projections call (could mock param service)
-            httpMock.expectGET().respond({});  // check status call
+            httpMock.expectGET(new RegExp('display')).respond({params:[inputItemsWithQuery]});  // display call
+            httpMock.expectGET(new RegExp('status')).respond({state:'SUCCESS'});  // check status call
+            httpMock.expectGET(new RegExp('job')).respond({params:[inputItemsWithQuery],state:'SUCCESS'});  // check progress call
 
-            controllerService('StatusCtrl', {$scope: scope, $stateParams: {id: 'foo'}, leafletData: _leafletData});
+            httpMock.flush();
 
-            httpMock.expectGET().respond({});  // display call
-            httpMock.expectGET().respond({});  // check progress call
-            httpMock.expectGET().respond({});  // check status call on success
+            httpMock.expectGET(new RegExp('job')).respond({params:[inputItemsWithQuery],state:'SUCCESS'});  // check progress call
+            timeout.flush();
 
             httpMock.flush();
 
@@ -60,5 +72,223 @@ describe('StatusCtrl', function () {
             expect(scope.isRunning).toBeFalsy();
         });
 
+        it('should load status as running', function () {
+
+            //var response = {docs:[], numFound:0}, sort = {key:'key', value:'value'};
+
+            initCtrl();
+
+            httpMock.expectGET(new RegExp('display')).respond({params:['param']});  // display call
+            httpMock.expectGET(new RegExp('job')).respond({state:'RUNNING', params:[inputItemsWithQuery], status:{text:'running'}, progress:1});  // check progress call
+
+            httpMock.flush();
+
+            httpMock.expectGET(new RegExp('status')).respond({state:'SUCCESS'});  // check status
+            timeout.flush();
+
+            httpMock.expectGET(new RegExp('job')).respond({state:'SUCCESS', params:[inputItemsWithQuery]});  // check progress call again
+            //httpMock.expectGET().respond({state:'SUCCESS'});  // check status call on success
+            //httpMock.expectGET(new RegExp('status')).respond({state:'SUCCESS'});  // check status call on success
+
+            httpMock.flush();
+
+            httpMock.expectGET(new RegExp('job')).respond({state:'SUCCESS', params:[inputItemsWithQuery]});  // final progress call again
+            timeout.flush();
+
+            httpMock.flush();
+
+            scope.$apply();
+
+            expect(scope.isSuccess).toBeTruthy();
+            expect(scope.statusColor).toBe('alert-success');
+            expect(scope.isRunning).toBeFalsy();
+        });
+
+        it('should load status as failed', function () {
+
+            initCtrl();
+
+            httpMock.expectGET(new RegExp('display')).respond({params:['param']});  // display call
+            httpMock.expectGET(new RegExp('job')).respond({state:'FAILED', params:[inputItemsWithQuery]});  // check progress call
+            httpMock.expectGET(new RegExp('job')).respond({state:'FAILED', params:[inputItemsWithQuery], status:{text:'failed'}});  // final status
+
+            httpMock.flush();
+
+            httpMock.expectGET(new RegExp('status')).respond({state:'FAILED', status:{text:'failed'}});  // check status
+            timeout.flush();
+
+            scope.$apply();
+
+            expect(scope.isSuccess).toBeFalsy();
+            expect(scope.statusColor).toBe('alert-error');
+            expect(scope.isRunning).toBeFalsy();
+        });
+
+        it('should load status as warning', function () {
+
+            initCtrl();
+
+            httpMock.expectGET(new RegExp('display')).respond({params:['param']});  // display call
+            httpMock.expectGET(new RegExp('job')).respond({state:'WARNING', params:[inputItemsWithQuery]});  // check progress call
+            httpMock.expectGET(new RegExp('job')).respond({state:'WARNING', params:[inputItemsWithQuery], status:{text:'failed'}});  // final status
+
+            httpMock.flush();
+
+            httpMock.expectGET(new RegExp('job')).respond({state:'WARNING', status:{text:'failed'}});  // check status
+            timeout.flush();
+
+            scope.$apply();
+
+            expect(scope.isSuccess).toBeTruthy();
+            expect(scope.statusColor).toBe('alert-warning');
+            expect(scope.isRunning).toBeFalsy();
+        });
+
+        it('should load status as cancelled', function () {
+
+            initCtrl();
+
+            httpMock.expectGET(new RegExp('display')).respond({params:['param']});  // display call
+            httpMock.expectGET(new RegExp('job')).respond({state:'CANCELED', params:[inputItemsWithQuery]});  // check progress call
+            httpMock.expectGET(new RegExp('job')).respond({state:'CANCELED', params:[inputItemsWithQuery], status:{text:'failed'}});  // final status
+
+            httpMock.flush();
+
+            httpMock.expectGET(new RegExp('job')).respond({state:'CANCELED', status:{text:'failed'}});  // check status
+            timeout.flush();
+
+            scope.$apply();
+
+            expect(scope.isSuccess).toBeFalsy();
+            expect(scope.isRunning).toBeFalsy();
+        });
+
     });
+
+    describe('Functions', function () {
+
+        function initCancelled() {
+            initCtrl();
+
+            httpMock.expectGET(new RegExp('display')).respond({params:['param']});  // display call
+            httpMock.expectGET(new RegExp('job')).respond({state:'CANCELED', params:[inputItemsWithQuery]});  // check progress call
+            httpMock.expectGET(new RegExp('job')).respond({state:'CANCELED', params:[inputItemsWithQuery], status:{text:'failed'}});  // final status
+
+            httpMock.flush();
+
+            //httpMock.expectGET(new RegExp('job')).respond({state:'CANCELED', status:{text:'failed'}});  // check status
+            timeout.flush();
+
+            scope.$apply();
+        }
+
+        it('should email', function () {
+
+            initCancelled();
+
+            httpMock.expectPUT(new RegExp('email')).respond({});  // email
+
+            scope.emailClick();
+
+            httpMock.flush();
+
+            expect(scope.emailButtonText).toBe('Cancel Notify');
+
+            scope.emailClick();
+
+            expect(scope.emailButtonText).toBe('Notify Me When Done');
+        });
+
+        it('should cancel', function () {
+
+            initCancelled();
+
+            httpMock.expectDELETE(new RegExp('job')).respond({});  // cancel job
+
+            scope.cancelClick();
+
+            httpMock.flush();
+
+        });
+
+        it('should cancel', function () {
+
+            initCancelled();
+
+            httpMock.expectDELETE(new RegExp('job')).respond({});  // cancel job
+
+            scope.cancelClick();
+
+            httpMock.flush();
+
+        });
+
+        it('should show details', function () {
+
+            spyOn($modal, 'open').and.callThrough();
+
+            initCancelled();
+
+            scope.showDetails();
+
+            expect($modal.open).toHaveBeenCalled();
+
+        });
+
+        it('should show report', function () {
+
+            spyOn($modal, 'open').and.callThrough();
+
+            initCancelled();
+
+            scope.report = {Skipped:true};
+            scope.showReport();
+
+            expect($modal.open).toHaveBeenCalled();
+
+        });
+
+        it('should show log', function () {
+
+            spyOn($modal, 'open').and.callThrough();
+
+            initCancelled();
+
+            scope.report = {Skipped:true};
+            scope.getData('file');
+
+            expect($modal.open).toHaveBeenCalled();
+
+        });
+
+        it('should show url', function () {
+
+            $(document.body).append('<input id="copy-url">');
+
+            initCancelled();
+
+            scope.showUrl();
+
+            timeout.flush();
+        });
+
+        it('should kill timer on destroy when running', function () {
+
+            spyOn(timeout,'cancel').and.callThrough();
+
+            initCtrl();
+
+            httpMock.expectGET(new RegExp('display')).respond({params:['param']});  // display call
+            httpMock.expectGET(new RegExp('job')).respond({state:'RUNNING', params:[inputItemsWithQuery], status:{text:'running'}, progress:1});  // check progress call
+
+            httpMock.flush();
+
+            scope.$emit('$destroy');
+
+            expect(timeout.cancel).toHaveBeenCalled();
+
+        });
+
+    });
+
 });
