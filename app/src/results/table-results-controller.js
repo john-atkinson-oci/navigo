@@ -57,16 +57,23 @@ angular.module('voyager.results')
             }
         }
 
-        $scope.applyTag = function(tag) {
+        $scope.applyFlag = function(flag) {
             filterService.clear();
-            $location.search('q', null);
-            $location.search('place', null);
-            $location.search('recent', null);
-            $scope.$emit('removeFilterEvent', {});  //fire filter event
-            $location.search('fq', 'tag_flags:'+tag);
-            filterService.setFilters({'fq' : 'tag_flags:'+tag});
-            $scope.$emit('filterEvent');
-            $scope.$emit('searchEvent');
+            var params = $location.search();  // clone this?
+            delete params.q;
+            delete params.place;
+            delete params.recent;
+            params.fq = 'tag_flags' + flag;
+            $location.search(params);
+
+            // TODO will this fire multiple queries
+            //$scope.$emit('removeFilterEvent', {});  //fire filter event
+
+            filterService.setFilters({'fq' : 'tag_flags:'+flag});
+
+            // TODO check if this is firing too many solr calls
+            $scope.$emit('filterEvent');  //this should fire a search in the searchController, don't need search event
+            //$scope.$emit('searchEvent');
             return false;
         };
 
@@ -142,6 +149,7 @@ angular.module('voyager.results')
             }
         });
 
+        // TODO create a formatter service
         $scope.formatField = function(doc, facet) {
             var formatted = '', value = doc[facet.field];
             if(angular.isDefined(value)) {
@@ -166,6 +174,10 @@ angular.module('voyager.results')
             $scope.$emit('resultHoverEvent', {
                 doc: doc
             });
+        };
+
+        $scope.setDefer = function(defer) {
+            deferred = defer;
         };
 
     });
