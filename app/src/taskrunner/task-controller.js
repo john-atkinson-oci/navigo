@@ -35,6 +35,8 @@ angular.module('taskRunner')
                 $scope.task.description = response[1].data.description;
                 $scope.task.helpURL = response[1].data.helpURL;
 
+                //console.log(JSON.stringify(response[0].data));
+
                 var params = paramService.initParams(response, $scope.task.reload);
                 params.reload = $scope.task.reload;
                 $scope.hasAdvanced = params.hasAdvanced;
@@ -67,8 +69,10 @@ angular.module('taskRunner')
             var query = _getQuery(cartService.getQuery(), cartService.getItemIds());
             if (query) {
                 inputItems.query = query;
+                //console.log(JSON.stringify(query))
                 delete inputItems.ids;
             } else {
+                //console.log(JSON.stringify(query))
                 inputItems.ids = cartService.getItemIds();
                 delete inputItems.query;
             }
@@ -101,17 +105,18 @@ angular.module('taskRunner')
             }
         }
 
-        function _bboxParamToJson(queryCriteria) {
-            var bboxFilter = queryCriteria.bounds.replace('&fq=','');
-            var fq = queryCriteria.params.fq;
-            if (angular.isDefined(fq)) {
-                var filters = sugar.toArray(fq);
-                filters.push(bboxFilter);
-                queryCriteria.params.fq = filters;
-            } else {
-                queryCriteria.params.fq = bboxFilter;
-            }
-        }
+        //TODO bbox no longer supported - remove?
+        //function _bboxParamToJson(queryCriteria) {
+        //    var bboxFilter = queryCriteria.bounds.replace('&fq=','');
+        //    var fq = queryCriteria.params.fq;
+        //    if (angular.isDefined(fq)) {
+        //        var filters = sugar.toArray(fq);
+        //        filters.push(bboxFilter);
+        //        queryCriteria.params.fq = filters;
+        //    } else {
+        //        queryCriteria.params.fq = bboxFilter;
+        //    }
+        //}
 
         function _getQuery(queryCriteria, items) {
             var query = {params:{}}, hasItems = false;
@@ -133,9 +138,11 @@ angular.module('taskRunner')
             } else if(angular.isDefined(query.solrFilters)) {
                 query.params.fq = query.solrFilters;
             }
-            if(!_.isEmpty(query.bounds) && !hasItems) {
-                _bboxParamToJson(query);
-            }
+            //TODO bbox no longer supported - remove?
+            //if(!_.isEmpty(query.bounds) && !hasItems) {
+            //    _bboxParamToJson(query);
+            //}
+            //console.log(query)
             //remove params the task runner doesn't use
             delete query.params.bbox;
             delete query.params.bboxt;
@@ -187,7 +194,7 @@ angular.module('taskRunner')
             var inputItems = _.find(request.params,{type:'VoyagerResults'});
             delete inputItems.ids;
             inputItems.query = _getQuery(cartService.getQuery(), cartService.getItemIds());
-            console.log('Task ' + request.task + ' Query: ' + JSON.stringify(inputItems.query));
+            //console.log('Task ' + request.task + ' Query: ' + JSON.stringify(inputItems.query));
             return taskService.execute(request).then(function (response) {
                 $modalInstance.close();
                 $location.path('/status/' + response.data.id);
