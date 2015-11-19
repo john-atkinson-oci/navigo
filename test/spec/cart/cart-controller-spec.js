@@ -39,8 +39,8 @@ describe('Controller: CartCtrl', function () {
         });
 
         $http.expectGET(new RegExp('auth')).respond({response: {docs: []}}); //auth call
-        $http.expectJSONP().respond({response: {docs: [{id:'id'}]}});
-        $http.expectJSONP().respond({response: {docs: []}});  // queued items call
+        $http.expectJSONP(new RegExp('solr')).respond({response: {docs: [{id:'id'}]}});
+        $http.expectJSONP(new RegExp('solr')).respond({response: {docs: []}});  // queued items call
         $http.flush();
     }
 
