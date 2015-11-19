@@ -12,17 +12,19 @@ describe('Suggest:', function () {
         });
     });
 
-    var scope, element, controller, compiled, timeout, httpMock, $location;
+    var scope, element, controller, compiled, timeout, httpMock, $location, $document, $rootScope;
 
-    beforeEach(inject(function ($compile, $rootScope, $timeout, $httpBackend, _$location_) {
-        scope = $rootScope.$new();
+    beforeEach(inject(function ($compile, _$rootScope_, $timeout, $httpBackend, _$location_, _$document_){
+        scope = _$rootScope_.$new();
         element = angular.element('<input type="text" vs-suggest>');
-        compiled = $compile(element)(scope);
+        compiled = $compile(element)(_$rootScope_);
         element.scope().$apply();
         controller = element.controller(scope);
         timeout = $timeout;
         httpMock = $httpBackend;
         $location = _$location_;
+        $document = _$document_;
+        $rootScope = _$rootScope_;
     }));
 
     describe('Should Not Suggest', function() {
@@ -94,6 +96,17 @@ describe('Suggest:', function () {
 
             expect(scope.location).toBe('place');
             expect($location.search()['place.id']).toBe('id');
+        });
+
+        it('should not suggest after click away', function () {
+            var event = {'type':'click'};
+
+            spyOn($document,'off').and.callThrough();
+
+            $document.triggerHandler(event);
+
+            //TODO how to expect
+            //expect($document.off).toHaveBeenCalled();
         });
 
     });
