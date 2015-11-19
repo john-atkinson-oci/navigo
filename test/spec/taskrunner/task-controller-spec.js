@@ -37,8 +37,8 @@ describe('TaskCtrl', function () {
         //spyOn(location,'path').and.returnValue('status');
         //
         httpMock.expectGET(new RegExp('projections')).respond({});  // param service - projections call (could mock param service)
-        httpMock.expectGET(new RegExp('task\/name\/init')).respond({params:[inputItemsWithQuery],state:'SUCCESS'});  // check status call
-        httpMock.expectGET(new RegExp('display')).respond({params:[inputItemsWithQuery],state:'SUCCESS'});  // check status call
+        httpMock.expectGET(new RegExp('task\/name\/init')).respond({params:[inputItemsWithQuery]});  // check status call
+        httpMock.expectGET(new RegExp('display')).respond({params:[inputItemsWithQuery]});  // check status call
 
         controllerService('TaskCtrl', {$scope: scope, $modalInstance:{close: function(){}}, task:{name:'name'}, taskList:{}, extent:'0 0 0 0'});
 
@@ -52,7 +52,7 @@ describe('TaskCtrl', function () {
         });
 
         it('should exec', function () {
-            cartService.addQuery({fq:'field:facet',params:{bbox:'',bboxt:''}});
+            cartService.addQuery({fq:'field:facet',params:{bbox:'',bboxt:''}, solrFilters:[], bounds:'&fq=bbox:0000'});
             cartService.addItem({id:'1'});
 
             initCtrl();
@@ -65,6 +65,41 @@ describe('TaskCtrl', function () {
             httpMock.flush();
 
             expect(location.path()).toBe('/status/id');
+        });
+
+        it('should fail validation', function () {
+            cartService.addQuery({fq:'field:facet',params:{bbox:'',bboxt:''}, solrFilters:[], bounds:'&fq=bbox:0000'});
+            cartService.addItem({id:'1'});
+
+            initCtrl();
+
+            httpMock.expectPOST(new RegExp('validate=true')).respond(500,{params:[inputItemsWithQuery], errors:['error']});  // validate
+
+            scope.execTask();
+
+            httpMock.flush();
+
+            expect(scope.errors).toEqual(['error']);
+
+            scope.setError('error message');
+
+            expect(scope.errorMessage).toBe('error message');
+        });
+
+        it('should select task', function () {
+            cartService.addQuery({fq:'field:facet',params:{bbox:'',bboxt:''}});
+            cartService.addItem({id:'1'});
+
+            initCtrl();
+
+            httpMock.expectGET(new RegExp('task2\/init')).respond({params:[inputItemsWithQuery]});  // validate
+            httpMock.expectGET(new RegExp('display')).respond({params:[inputItemsWithQuery]});  // display
+
+            scope.selectTask({name:'task2', available:true});
+
+            httpMock.flush();
+
+            //expect(location.path()).toBe('/status/id');
         });
 
     });
