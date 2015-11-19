@@ -2,7 +2,7 @@
 
 describe('portalApp', function() {
 
-    var $rootScope, $state, $injector, $http, state = 'myState';
+    var $rootScope, $state, $injector, $http;
 
     beforeEach(function() {
         module('templates');
