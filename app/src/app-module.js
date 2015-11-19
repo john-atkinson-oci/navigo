@@ -31,13 +31,13 @@ angular.module('portalApp', [
     'angulartics.google.analytics',
     'voyager.common.featured'
 ])
-.factory('httpRequestInterceptor', function ($analytics, $injector, $q) {
+.factory('httpRequestInterceptor', function ($analytics, $injector, $q, $log) {
     'use strict';
     return {
         response: function(response) {
             var err = response.headers('x-access-token-error');
             if(!_.isEmpty(err)) {
-                console.log('Error with JWT Token', err);
+                $log.error('Error with JWT Token', err);
                 var $state = $injector.get('$state');
                 $state.go('login');
             }
@@ -45,7 +45,7 @@ angular.module('portalApp', [
         },
         responseError: function(response) {
             if (response.status === 419) { // token timed out
-                console.log('token timed out');
+                $log.error('token timed out');
                 var $state = $injector.get('$state');
                 $state.go('login');
             } else {  // call analytics and reject
