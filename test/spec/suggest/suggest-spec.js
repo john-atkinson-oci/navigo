@@ -12,16 +12,17 @@ describe('Suggest:', function () {
         });
     });
 
-    var scope, element, controller, compiled, timeout, httpMock;
+    var scope, element, controller, compiled, timeout, httpMock, $location;
 
-    beforeEach(inject(function ($compile, $rootScope, $timeout, $httpBackend) {
+    beforeEach(inject(function ($compile, $rootScope, $timeout, $httpBackend, _$location_) {
         scope = $rootScope.$new();
         element = angular.element('<input type="text" vs-suggest>');
-        compiled = $compile(element)($rootScope);
+        compiled = $compile(element)(scope);
         element.scope().$apply();
         controller = element.controller(scope);
         timeout = $timeout;
         httpMock = $httpBackend;
+        $location = _$location_;
     }));
 
     describe('Should Not Suggest', function() {
@@ -83,6 +84,16 @@ describe('Suggest:', function () {
             _flushHttp();
 
             expect(element.next().html()).toContain('suggest-item');
+        });
+
+        it('should suggest after search event', function () {
+            $location.search().place = 'place';
+
+            var data = {placefinder:{results:[{name:'other place'}], match:{name:'',id:'id'}, search:{text:'place'}}};
+            scope.$emit('searchResults', data);
+
+            expect(scope.location).toBe('place');
+            expect($location.search()['place.id']).toBe('id');
         });
 
     });

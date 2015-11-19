@@ -63,7 +63,7 @@ describe('Controller: CartNavCtrl', function () {
 		});
 		// init expects
 		$http.expectGET(new RegExp('auth')).respond({response: {docs:[]}});
-		$http.expectJSONP(new RegExp('solr\/tasks')).respond({response: {docs:[]}});
+		$http.expectJSONP(new RegExp('solr\/tasks')).respond({response: {docs:[{id:'task1', category:['category1']},{id:'task2', category:['category1']}]}});
 
 		$scope.refreshTasks();
 		$http.expectPOST(new RegExp('refresh')).respond({});
