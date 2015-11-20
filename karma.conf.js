@@ -67,9 +67,17 @@ module.exports = function(config) {
         // list of files / patterns to exclude
         exclude: ['app/src/initializer.js'],
 
-        // coverage reporter generates the coverage
-        reporters: ['progress', 'coverage'],
+        //plugins: ['karma-threshold-reporter'],
 
+        // coverage reporter generates the coverage
+        reporters: ['progress', 'coverage', 'threshold'],
+
+        thresholdReporter: {
+            statements: 90,
+            branches: 60,
+            functions: 70,
+            lines: 80
+        },
         // web server port
         //port: 8080,
 
@@ -112,7 +120,8 @@ module.exports = function(config) {
         coverageReporter: {
             reporters:[
                 {type: 'html', dir:'test/coverage/', subdir: 'html-report'},
-                {type: 'cobertura', dir:'test/coverage/', subdir: 'cobertura-report'}
+                {type: 'cobertura', dir:'test/coverage/', subdir: 'cobertura-report'},
+                {type: 'json', dir: 'test/coverage/', subdir: 'threshold'}
             ]
         },
 

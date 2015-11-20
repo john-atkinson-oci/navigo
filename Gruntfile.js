@@ -59,7 +59,8 @@ module.exports = function (grunt) {
         'concurrent:test',
         'autoprefixer',
         'connect:test',
-        'karma:unit'
+        'karma:unit',
+        'coverage'
     ]);
 
     grunt.registerTask('test-chrome', [
