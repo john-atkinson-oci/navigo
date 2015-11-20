@@ -1,9 +1,9 @@
 'use strict';
 
-describe('Run Clip Data by Polygon Task', function() {
+
+describe('Run Create Esri Map or Layer Package Task', function() {
 
     var Util = require('../../lib/util.js');
-    var s2Util = require('../../lib/s2-util.js');
     var searchPage = require('../../pages/search-page.js');
     var taskPage = require('../../pages/task-page.js');
     var taskStatusPage = require('../../pages/task-status-page.js');
@@ -11,26 +11,25 @@ describe('Run Clip Data by Polygon Task', function() {
 
     beforeEach(function() {
         searchPage.addAllToQueue('title:Hydrography_Lines');
-        browser.get(server + '#/queue?disp=default&task=clip_data');
+        browser.get(server + '#/queue?disp=default&task=create_esri_package');
         Util.waitForSpinner();
     });
 
-    it('should run using default parameter values', function() {
-        // Get the task parameter elements & verify number of parameters.
+    it('should run using Format: MPK', function() {
+        // Get list of parameters
         var paramList = taskPage.getParams();
+
+        // Verify we have the correct number of params & defaults
         expect(paramList.count()).toBe(4);
-        verifyDefaults(['', 'FileGDB', 'Same As Input']);
+        Util.waitForSpinner();  //can't click until spinner is gone
+        verifyDefaults();
+
+        // Execute the task with default parameter values
         taskPage.executeTask();
     });
 
-    it('should run using Format: SHP', function() {
-        setParams(2, 'Same As Input');
-        taskPage.executeTask();
-    });
-
-    it('should run using Format: SHP and Projection: Web Mercator Auxiliary Sphere', function() {
-        // SHP should be 2nd item in list
-        setParams(2, 'WGS 1984 Web Mercator (auxiliary sphere)');
+    it('should run using Format: LPK', function() {
+        setParams(2, 'LPK');
         taskPage.executeTask();
     });
 
@@ -41,27 +40,10 @@ describe('Run Clip Data by Polygon Task', function() {
     function verifyDefaults() {
         // Verify default values for output format and projection
         var s2Elements = taskPage.getParameterValues();
-        var expectedValues = ['', 'FileGDB', 'Same As Input'];
+        var expectedValues = ['', 'MPK'];
         for (var i = 0; i < expectedValues.length; ++i) {
             expect(s2Elements.get(i).getText()).toEqual(expectedValues[i]);
         }
-    }
-
-    function setParams(formatIndex, proj) {
-        // Get the task parameter elements.
-        var paramList = taskPage.getParams();
-        return paramList.then(function(params) {
-            var outputFormat = params[1];
-            outputFormat.element(by.css('.select2-choice')).click();
-            var lis = element.all(by.css('li.select2-results-dept-0'));
-            return lis.then(function(li) {
-                li[formatIndex-1].click();
-
-                // Set the projection.
-                var projection = params[2];
-                return s2Util.setText(projection, proj);
-            });
-        });
     }
 
     function verifyStatus() {
@@ -70,4 +52,18 @@ describe('Run Clip Data by Polygon Task', function() {
         expect(taskStatusPage.getSuccess().isPresent()).toBeTruthy();
         expect(taskStatusPage.getDownloadLink().isPresent()).toBeTruthy();
     }
+
+    function setParams(formatIndex, pkgFormat) {
+        // Verify we have the correct number of params.
+        var paramList = taskPage.getParams();
+        return paramList.then(function(params) {
+            var outputFormat = params[1];
+            outputFormat.element(by.css('.select2-choice')).click();
+            var lis = element.all(by.css('li.select2-results-dept-0'));
+            return lis.then(function(li) {
+                li[formatIndex-1].click();
+            });
+        });
+    }
+
 });

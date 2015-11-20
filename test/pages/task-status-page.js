@@ -21,6 +21,10 @@ var taskStatusPage = (function () {
 
         getWarning: function() {
             return element(by.css('.alert-warning'));
+        },
+
+        getShowReportLink: function() {
+            return element(by.css('[ng-click="showReport()"]'));
         }
 
     }

@@ -11,7 +11,6 @@ describe('Run Create GeoPDF Task', function() {
 
     beforeEach(function() {
         searchPage.addAllToQueue('title:Hydrography_Lines');
-        // Open Create GeoPDF task UI
         browser.get(server + '#/queue?disp=default&task=create_geopdf');
         Util.waitForSpinner();
     });
@@ -50,17 +49,14 @@ describe('Run Create GeoPDF Task', function() {
     function setParams(formatIndex, templateValue) {
         // Get the task parameter elements.
         var paramList = taskPage.getParams();
-        // Verify we have the correct number of params
-        expect(paramList.count()).toBe(6);
         return paramList.then(function(params) {
             var mapTemplate = params[1];
             mapTemplate.element(by.css('.select2-choice')).click();
-
             var lis = element.all(by.css('li.select2-results-dept-0'));
             return lis.then(function(li) {
                 li[formatIndex-1].click();
 
-                // now set the map template
+                // Set the map template.
                 var template = params[1];
                 return s2Util.setText(template, templateValue);
             });
