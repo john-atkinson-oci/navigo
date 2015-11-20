@@ -50,12 +50,19 @@ describe('Popover Directive:', function () {
 
         it('should trigger click', function () {
             applyDirective();
-            $(element).find('a.flyout_trigger').trigger('click');
+            $(element).find('.flyout_trigger').trigger('click');
+        });
+
+        it('should trigger mouseenter', function () {
+            applyDirective();
+            $(element).find('a.hover_flyout').trigger('mouseenter');
         });
 
         it('should trigger mouseleave', function () {
             applyDirective();
-            $(element).find('.hover_flyout').trigger('mouseleave');
+            $(element).find('.flyout_trigger').trigger('mouseleave');
+            // timeout.flush();
+            expect($(element).find('.hover_flyout').hasClass('opened')).toBe(false);
         });
 
         it('should append the element', function () {
