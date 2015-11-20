@@ -11,7 +11,6 @@ describe('Run Create GeoPDF Task', function() {
 
     beforeEach(function() {
         searchPage.addAllToQueue('title:Hydrography_Lines');
-        // Open Create GeoPDF task UI
         browser.get(server + '#/queue?disp=default&task=create_geopdf');
         Util.waitForSpinner();
     });

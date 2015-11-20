@@ -24,7 +24,7 @@ describe('Run Convert to KML Task', function() {
         Util.waitForSpinner();  //can't click until spinner is gone
 
         // Execute the task with default parameter values
-        taskPage.getTaskButton().click();
+        taskPage.executeTask();
         browser.waitForAngular();
 
         // Check the status and expect no errors
