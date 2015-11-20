@@ -9,7 +9,6 @@ describe('Run Convert to KML Task', function() {
     var taskStatusPage = require('../../pages/task-status-page.js');
     var server = Util.getServer();
 
-    // Load and run Convert to KML task
     it('should run convert_to_kml using default parameter values', function() {
         searchPage.addAllToQueue('title:Hydrography_Lines');
 

@@ -18,4 +18,4 @@ var taskReportPage = (function () {
     }
 
 })();  // jshint ignore:line
-module.exports = taskStatusPage;
+module.exports = taskReportPage;

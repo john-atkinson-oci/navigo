@@ -10,3 +10,4 @@ test-results.xml
 test/coverage/cobertura-report
 test/coverage/html-report
 reports/protractor
+test/e2e/tasks/convert-to-kml-task-spec.js
