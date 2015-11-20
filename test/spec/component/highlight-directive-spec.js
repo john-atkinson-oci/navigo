@@ -33,6 +33,12 @@ describe('Highlight Directive:', function () {
         element.scope().$apply();
     }
 
+    function applyScopeValues() {
+        scope.doc_path = {url: 'http://foo.bar'};
+        scope.sub_paths = [{url: 'http://one.com', path: 'one'}, {url: 'http://two.com', path: 'two'},{url: 'http://three.com', path: 'three'}];
+        scope.$digest();
+    }
+
     function getSelectedText(){
         return  window.getSelection ? window.getSelection() : document.selection.createRange();
     }
@@ -54,9 +60,7 @@ describe('Highlight Directive:', function () {
 
         it('should append the correct subpaths', function () {
             applyDirective();
-            scope.doc_path = {url: 'http://foo.bar'};
-            scope.sub_paths = [{url: 'http://one.com', path: 'one'}, {url: 'http://two.com', path: 'two'},{url: 'http://three.com', path: 'three'}];
-            scope.$digest();
+            applyScopeValues();
             var templateAsHtml = element.html();
             expect(templateAsHtml).toContain(scope.doc_path.url);
 
@@ -68,10 +72,7 @@ describe('Highlight Directive:', function () {
 
         it('should select the text on mouseover', function () {
             applyDirective();
-            scope.doc_path = {url: 'http://foo.bar'};
-            scope.sub_paths = [{url: 'http://one.com', path: 'one'}, {url: 'http://two.com', path: 'two'},{url: 'http://three.com', path: 'three'}];
-            scope.$digest();
-
+            applyScopeValues();
             $(element).find('#locationPath2').trigger('mouseover');
             var sel = getSelectedText();
             expect(sel).toMatch('onetwo');

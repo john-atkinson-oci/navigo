@@ -9,3 +9,4 @@ app/bower_components
 test-results.xml
 test/coverage/cobertura-report
 test/coverage/html-report
+reports/protractor
