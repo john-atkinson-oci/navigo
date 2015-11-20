@@ -11,7 +11,9 @@ describe('Popover Directive:', function () {
     });
 
     var elementHtmlBase = '<li vs-popover class="hover_flyout max_height">'+
-                '<a href="javascript:;" class="icon-arrow flyout_trigger"></a><div class="flyout queue_flyout">'+
+                '<a href="javascript:;" class="icon-arrow subcat_trigger keep_open"></a>'+
+                '<a href="javascript:;" class="icon-arrow flyout_trigger"></a>'+
+                '<a href="javascript:;" class="icon-arrow not_flyout_trigger"></a><div class="flyout queue_flyout">'+
                 '<div class="arrow"></div>'+
                 '<div class="flyout_inner">'+
                     '<ul>'+
@@ -51,21 +53,49 @@ describe('Popover Directive:', function () {
             $(element).find('a.flyout_trigger').trigger('click');
         });
 
+        it('should trigger mouseleave', function () {
+            applyDirective();
+            $(element).find('.hover_flyout').trigger('mouseleave');
+        });
+
         it('should append the element', function () {
             applyDirective();
             expect($(element).find('.hover_flyout')).toBeDefined();
         });
 
-        it('should anchor popover on click', function () {
+        it('should anchor flyout_trigger popover on click', function () {
             applyDirective();
             $(element).find('a.flyout_trigger').trigger('click');
 
             var flyout_inner = $(element).find('.flyout_inner');
             expect($(element).hasClass('max_height')).toBe(true);
             expect(flyout_inner).toBeDefined();
-
             expect($(element).find('.flyout').data('height')).toBeDefined();
+        });
 
+        it('should set maxheight on flyout_inner if is subcat_trigger', function () {
+            applyDirective();
+            $(element).find('a.subcat_trigger').trigger('click');
+            expect($(element).hasClass('max_height')).toBe(true);
+        });
+
+
+        it('should remove opened class on click if not keep_open', function () {
+            applyDirective();
+            $(element).addClass('opened');
+            expect($(element).hasClass('opened')).toBe(true);
+            $(element).find('a.flyout_trigger').removeClass('keep_open');
+            $(element).find('a.flyout_trigger').trigger('click');
+            expect($(element).hasClass('opened')).toBe(false);
+        });
+
+        it('should remove opened class on click if not keep_open and not flyout_trigger', function () {
+            applyDirective();
+            $(element).addClass('opened');
+            expect($(element).hasClass('opened')).toBe(true);
+            $(element).find('a.not_flyout_trigger').removeClass('keep_open');
+            $(element).find('a.not_flyout_trigger').trigger('click');
+            expect($(element).hasClass('opened')).toBe(false);
         });
 
     });
