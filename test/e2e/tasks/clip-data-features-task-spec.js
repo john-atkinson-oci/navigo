@@ -11,17 +11,19 @@ describe('Run Clip Data by Features Task', function() {
 
     beforeEach(function() {
         searchPage.addAllToQueue('title:Hydrography_Lines');
+        // Open Clip Data by Features task UI
         browser.get(server + '#/queue?disp=default&task=clip_data_by_features');
         Util.waitForSpinner();
     });
 
     it('should run using default parameter values', function() {
-        // Verify we have the correct number of params & defaults.
+        // Get the task parameter elements.
         var paramList = taskPage.getParams();
+        // Verify we have the correct number of params
         expect(paramList.count()).toBe(5);
         verifyDefaults(['', 'FileGDB', 'Same As Input']);
 
-        // Set the clip features.
+        // Set the clip features
         element(by.css('.btn.btn-default')).click();
         Util.waitForSpinner();
         Util.waitForSpinner();
@@ -29,7 +31,7 @@ describe('Run Clip Data by Features Task', function() {
         element(by.css('[ng-click="toggleFilters()"]')).click();
         var expectedFilters = element.all(by.css('[ng-click="toggleDisplayState(filter)"]'));
         expect(expectedFilters.count()).toBe(2);
-        var searchInput = element(by.css('[ng-model="searchInput"]'));
+        var searchInput = element(by.css('[ng-model="searchInput'));
         searchInput.sendKeys('Countries.shp');
         element(by.css('[ng-click="searchClick()"]')).click();
         setClipFeatures(0);
@@ -37,11 +39,13 @@ describe('Run Clip Data by Features Task', function() {
     });
 
     it('should run using Format: SHP', function() {
+
         setParams(2, 'Same As Input');
         taskPage.executeTask();
     });
 
     it('should run using Format: SHP and Projection: Web Mercator Auxiliary Sphere', function() {
+
         setParams(2, 'WGS 1984 Web Mercator (auxiliary sphere)');
         taskPage.executeTask();
     });
@@ -69,14 +73,19 @@ describe('Run Clip Data by Features Task', function() {
     function setParams(formatIndex, proj) {
         // Get the task parameter elements.
         var paramList = taskPage.getParams();
+
+        // Verify we have the correct number of params
+        expect(paramList.count()).toBe(5);
+
         return paramList.then(function(params) {
             var outputFormat = params[2];
             outputFormat.element(by.css('.select2-choice')).click();
+
             var lis = element.all(by.css('li.select2-results-dept-0'));
             return lis.then(function(li) {
                 li[formatIndex-1].click();
 
-                // Set the projection.
+                // now set the projection
                 var projection = params[3];
                 return s2Util.setText(projection, proj);
             });
