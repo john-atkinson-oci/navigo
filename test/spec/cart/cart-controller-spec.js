@@ -18,8 +18,8 @@ describe('Controller: CartCtrl', function () {
             $provide.constant('config', cfg);
         });
 
-        inject(function (_$controller_, _$timeout_, _authService_, _cartService_, _searchService_, _$location_, $httpBackend) {
-            $scope = {};
+        inject(function (_$controller_, _$timeout_, _authService_, _cartService_, _searchService_, _$location_, $httpBackend, $rootScope) {
+            $scope = $rootScope.$new();
             $timeout = _$timeout_;
             authService = _authService_;
             cartService = _cartService_;
@@ -34,19 +34,24 @@ describe('Controller: CartCtrl', function () {
     // Specs here
 
     function initCartCtrl() {
+        // clear cart (local storage) before each controller test
+        cartService.clear();
+
         $controller('CartCtrl', {
             $scope: $scope
         });
 
         $http.expectGET(new RegExp('auth')).respond({response: {docs: []}}); //auth call
-        $http.expectJSONP(new RegExp('solr')).respond({response: {docs: [{id:'id'}]}});
-        $http.expectJSONP(new RegExp('solr')).respond({response: {docs: []}});  // queued items call
+        //$http.expectJSONP(new RegExp('solr')).respond({response: {docs: [{id:'id'}]}});
+        //$http.expectJSONP(new RegExp('solr')).respond({response: {docs: []}});  // queued items call
         $http.flush();
     }
 
     it('should init', function () {
         cartService.addItems([{id:'id'}]);
         initCartCtrl();
+
+        $scope.clearQueue();
     });
 
     it('should remove item', function () {
@@ -56,6 +61,8 @@ describe('Controller: CartCtrl', function () {
         $scope.removeItem('id');
 
         expect($scope.cartItemCount).toBe(0);
+
+        $scope.clearQueue();
     });
 
     it('should remove by format', function () {
