@@ -58,5 +58,21 @@ describe('Selected Filter Directive:', function () {
             expect(html).toContain('filter one');
             expect(html).toContain('filter two');
         });
+
+        it('should bind window to resize event', function(){
+            applyDirective();
+            var events = $._data($window, 'events');
+            expect(events.resize).toBeDefined();
+        });
+
+        it('should unbind resize on destroy', function(){
+            applyDirective();
+            var events = $._data($window, 'events');
+            var resizeEventOrig = events.resize.length;
+            scope.$emit('destroy');
+            events = $._data($window, 'events');
+            var resizeEventNew = events.resize.length;
+            expect(resizeEventOrig).toBe(resizeEventNew + 1);
+        });
     });
 });
