@@ -21,9 +21,7 @@ describe('Run Clip Data by Polygon Task', function() {
         var paramList = taskPage.getParams();
         // Verify we have the correct number of params
         expect(paramList.count()).toBe(4);
-
         verifyDefaults(['', 'FileGDB', 'Same As Input']);
-
         taskPage.executeTask();
     });
 
@@ -35,19 +33,8 @@ describe('Run Clip Data by Polygon Task', function() {
     });
 
     it('should run using Format: SHP and Projection: Web Mercator Auxiliary Sphere', function() {
-
-        //// Search for results and add to queue
-        //searchPage.addAllToQueue('title:ca_ozone_pts');
-        //
-        //browser.waitForAngular();
-        //// Open Clip Data by Polygon task UI
-        //browser.get(server + '#/queue?disp=default&task=clip_data');
-        //
-        //Util.waitForSpinner();
-
         // SHP should be 2nd item in list
         setParams(2, 'WGS 1984 Web Mercator (auxiliary sphere)');
-
         taskPage.executeTask();
     });
 

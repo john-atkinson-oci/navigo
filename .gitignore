@@ -8,3 +8,4 @@ bower_components
 app/bower_components
 test-results.xml
 test/coverage/**
+reports/protractor

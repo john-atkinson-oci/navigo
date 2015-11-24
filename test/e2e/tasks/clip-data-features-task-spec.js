@@ -17,9 +17,8 @@ describe('Run Clip Data by Features Task', function() {
     });
 
     it('should run using default parameter values', function() {
-        // Get the task parameter elements.
+        // Verify we have the correct number of params & defaults.
         var paramList = taskPage.getParams();
-        // Verify we have the correct number of params
         expect(paramList.count()).toBe(5);
         verifyDefaults(['', 'FileGDB', 'Same As Input']);
 
@@ -31,7 +30,7 @@ describe('Run Clip Data by Features Task', function() {
         element(by.css('[ng-click="toggleFilters()"]')).click();
         var expectedFilters = element.all(by.css('[ng-click="toggleDisplayState(filter)"]'));
         expect(expectedFilters.count()).toBe(2);
-        var searchInput = element(by.css('[ng-model="searchInput'));
+        var searchInput = element(by.css('[ng-model="searchInput"]'));
         searchInput.sendKeys('Countries.shp');
         element(by.css('[ng-click="searchClick()"]')).click();
         setClipFeatures(0);
