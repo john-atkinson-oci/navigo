@@ -56,6 +56,7 @@ module.exports = function (grunt) {
 
     grunt.registerTask('test', [
         'clean:server',
+        'newer:jshint',
         'concurrent:test',
         'autoprefixer',
         'connect:test',
@@ -89,7 +90,6 @@ module.exports = function (grunt) {
     ]);
 
     grunt.registerTask('ci', [
-        'newer:jshint',
         'test',
         'build'
     ]);
