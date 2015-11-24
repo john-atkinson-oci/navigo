@@ -124,7 +124,7 @@
                                     </div>
                                     <div class="formatted_value" ng-if="!field.editing && field.isHtml" ng-bind-html="field.formattedValue"></div>
                                     <div class="formatted_value" ng-if="!field.editing && field.style === 'STRING'" ng-bind="field.formattedValue"></div>
-                
+
                                     <input ng-show="field.editing && !field.isHtml" ng-model="field.value" type="text" class="input_field" />
                                     <textarea ng-show="field.editing && field.isHtml" ng-model="field.value" class="input_field"></textarea>
 
@@ -166,9 +166,9 @@
                                                   ng-show="node.children && node.children.length > 0"
                                                   ng-click="node.collapsed = !node.collapsed"></span>
                                             <span ng-class="node.hasMissingData ? 'node_icon icon-error label-danger' : 'node_icon'"></span>
-	                                        <span class="label">
-	                                           <a href="#/show/{{node.id}}?disp={{disp}}" data-id="{{node.id}}">{{node.name}}</a>
-	                                        </span>
+                                            <span class="label">
+                                               <a href="#/show/{{node.id}}?disp={{disp}}" data-id="{{node.id}}">{{node.name}}</a>
+                                            </span>
                                         </div>
                                         <ul class="child" ng-if="!node.collapsed && node.children && node.children.length > 0"
                                             frang-tree-insert-children="node.children"></ul>

@@ -122,7 +122,7 @@
 			}
 		}
 	}
-
+	
 	.open_filter {
 		header {
 			.option_list {
@@ -397,26 +397,24 @@
 }
 
 @media (max-width: 1000px) {
-
-	#searchPage {
-		.result_container {
-			&.open_filter {
-				.container-fluid {
-					.list {
-						article {
-							width: 100%;
-						}
+	#searchPage .result_container {
+		&.open_filter {
+			.container-fluid {
+				.list {
+					article {
+						width: 100%;
 					}
 				}
 			}
 		}
-		.map_fixed {
-			height: calc(100% - 134px);
-			bottom: 0;
-		}
-		.tab {
-			width: 170px;
-		}
+		// do we need these 2?  may deleted
+		//.map_fixed {
+		//	height: calc(100% - 134px);
+		//	bottom: 0;
+		//}
+		//.tab {
+		//	width: 170px;
+		//}
 	}
 
 	#header {
@@ -427,6 +425,11 @@
 	.table_view .map_content #searchViewList {
 		margin-left: -85px !important;
 	}
+
+	.tab {
+		width: 170px;
+	}
+
 
 	.tab ul li a {
 		padding: 5px 12px;

@@ -57,6 +57,12 @@ angular.module('voyager.results')
             }
         }
 
+        $scope.hideThumbnails = false;
+
+        $scope.toggleThumbnails = function() {
+            $scope.hideThumbnails = !$scope.hideThumbnails;
+        };
+
         $scope.applyFlag = function(flag) {
             filterService.clear();
             var params = $location.search();  // clone this?
