@@ -39,13 +39,12 @@ describe('Controller: SavedSearchDialogCtrl', function () {
         });
 
         //TODO why twice??
-        $http.expectGET(new RegExp('auth')).respond({permissions:permission, user:{groups:[]}}); //auth call
-        $http.expectGET(new RegExp('auth')).respond({permissions:permission, user:{groups:[]}}); //auth call
+        $http.expectGET(new RegExp('auth\/info')).respond({permissions:permission, user:{groups:[]}}); //auth call
 
         if(permission.manage) {
-            $http.expectGET(new RegExp('groups')).respond({groups:[]}); //auth call
+            $http.expectGET(new RegExp('auth\/info\/groups')).respond({groups:[]}); //auth call
         } else if (permission.share_saved_search) {
-            //$http.expectGET(new RegExp('auth')).respond({permissions:permission, user:{groups:[]}}); //auth call
+            $http.expectGET(new RegExp('auth\/info')).respond({permissions:permission, user:{groups:[]}}); //auth call
         }
 
         $http.flush();
@@ -53,16 +52,17 @@ describe('Controller: SavedSearchDialogCtrl', function () {
     }
 
     it('should init as admin', function () {
+        spyOn(authService,'hasPermission').and.returnValue(true);
         initCtrl({manage:true});
     });
 
     it('should init as sharer', function () {
-        $http.expectGET(new RegExp('auth')).respond({manage:false, share_saved_search: true}); //auth call
+        //$http.expectGET(new RegExp('auth')).respond({manage:false, share_saved_search: true}); //auth call
         initCtrl({manage:false, share_saved_search: true});
     });
 
     it('should save', function () {
-        $http.expectGET(new RegExp('auth')).respond({manage:false, share_saved_search: true}); //auth call
+        //$http.expectGET(new RegExp('auth')).respond({manage:false, share_saved_search: true}); //auth call
         initCtrl({manage:false, share_saved_search: true});
 
         $scope.savedSearch.title = 'junk';

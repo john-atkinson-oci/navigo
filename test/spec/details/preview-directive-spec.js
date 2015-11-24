@@ -24,7 +24,7 @@ describe('Preview Directive:', function () {
 
     function applyDirective() {
 
-        httpMock.expectGET(new RegExp('auth')).respond({}); // auth call
+        //httpMock.expectGET(new RegExp('auth')).respond({}); // auth call
 
         element = angular.element('<div vs-preview class="relationship"><span class="label"><a data-id="id">node</a></span></div>');
         compiled = $compile(element)($rootScope);

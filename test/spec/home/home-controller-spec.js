@@ -35,7 +35,7 @@ describe('Controller: HomeCtrl', function () {
     function initController() {
         $controller('HomeCtrl', {$scope: $scope, $modalInstance: {}, resultTotalCount: 1, leafletData: leafletData});
 
-        $http.expectGET(new RegExp('auth')).respond({}); // auth call
+        //$http.expectGET(new RegExp('auth')).respond({}); // auth call
         $http.expectJSONP(new RegExp('ssearch')).respond({response:{docs:[]}}); // saved searches
         $http.expectJSONP(new RegExp('ssearch')).respond({response:{docs:[]}}); // get default saved search
         $http.expectJSONP(new RegExp('v0')).respond({response:{docs:[]}}); // featured search

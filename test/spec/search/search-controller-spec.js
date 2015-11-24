@@ -17,12 +17,12 @@ describe('SearchCtrl', function () {
         module('voyager.details');
     });
 
-    var scope, controllerService, translateServiceMock, authServiceMock, detailServiceMock, q, tagServiceMock, location, timeout, $http, cartService, $window;
+    var scope, controllerService, translateServiceMock, authServiceMock, detailServiceMock, q, tagServiceMock, location, timeout, $http, cartService, $window, authService;
 
     //spies
     var $s = {'configService':{}, 'cartService':{}, searchService:{}};
 
-    beforeEach(inject(function ($rootScope, $controller, $q, $location, $timeout, searchService, _cartService_, configService, _$httpBackend_, _$window_, searchModalService) {
+    beforeEach(inject(function ($rootScope, $controller, $q, $location, $timeout, searchService, _cartService_, configService, _$httpBackend_, _$window_, searchModalService, _authService_) {
         scope = $rootScope.$new();
         q = $q;
         controllerService = $controller;
@@ -31,7 +31,7 @@ describe('SearchCtrl', function () {
         $http = _$httpBackend_;
         cartService = _cartService_;
         $window = _$window_;
-
+        authService = _authService_;
         EZSpy.spyOnAll($s, [{searchService:searchService}, {cartService:cartService}, {configService:configService}, {searchModalService:searchModalService}]);
         $s.searchService.getPageIds.and.returnValue([1]);
         $s.searchService.testEsriGeocodeService.and.returnValue(q.when({}));
@@ -45,12 +45,13 @@ describe('SearchCtrl', function () {
         }
         controllerService('SearchCtrl', {$scope: scope});
 
-        $http.expectGET(new RegExp('auth')).respond(authResponse); //auth info call
+        //$http.expectGET(new RegExp('auth')).respond(authResponse); //auth info call
         if (search) {
             $http.expectJSONP(new RegExp('solr\/v0')).respond(response);  //search call
+            $http.flush();
         }
         scope.$apply();
-        $http.flush();
+
         timeout.flush();
     }
 
@@ -80,7 +81,7 @@ describe('SearchCtrl', function () {
 
             controllerService('SearchCtrl', {$scope: scope});
 
-            $http.expectGET(new RegExp('auth')).respond({}); //auth info call
+            //$http.expectGET(new RegExp('auth')).respond({}); //auth info call
             $http.expectJSONP(new RegExp('solr\/v0')).respond(500,'');  //search call
 
             scope.$apply();
@@ -225,6 +226,8 @@ describe('SearchCtrl', function () {
 
         it('should check permissions', function () {
             var response = {docs:[], numFound:0};
+
+            spyOn(authService,'hasPermission').and.returnValue(true);
 
             initCtrl({response: response}, true, {permissions:{edit_fields:true, flag: true, process:true}});
 

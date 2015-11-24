@@ -24,25 +24,25 @@ describe('portalApp', function() {
         //TODO why 3 auth calls
         $http.expectGET(new RegExp('auth')).respond({});
         $http.expectGET(new RegExp('auth')).respond({});
-        $http.expectGET(new RegExp('auth')).respond({});
+        //$http.expectGET(new RegExp('auth')).respond({});
 
         $http.flush();
 
         expect($state.current.name).toBe('login');
     });
 
-    it('should goto login when no permissions', function() {
+    it('should goto home when view permissions', function() {
         $http.expectGET(new RegExp('auth')).respond({});
 
         $state.go('search');
 
         //TODO why dup calls
         $http.expectGET(new RegExp('auth')).respond({permissions:{view:true}});
-        $http.expectGET(new RegExp('auth')).respond({permissions:{view:true}});
+        //$http.expectGET(new RegExp('auth')).respond({permissions:{view:true}});
         $http.expectGET(new RegExp('location')).respond({});
-        $http.expectGET(new RegExp('location')).respond({});
+        //$http.expectGET(new RegExp('location')).respond({});
         $http.expectJSONP(new RegExp('search')).respond({response:{docs:[]}});
-        $http.expectJSONP(new RegExp('search')).respond({response:{docs:[]}});
+        //$http.expectJSONP(new RegExp('search')).respond({response:{docs:[]}});
 
         $http.flush();
 
@@ -56,10 +56,10 @@ describe('portalApp', function() {
 
         //TODO why dup calls
         $http.expectGET(new RegExp('auth')).respond({permissions:{view:true}});
-        $http.expectGET(new RegExp('auth')).respond({permissions:{view:true}});
+        //$http.expectGET(new RegExp('auth')).respond({permissions:{view:true}});
         $http.expectGET(new RegExp('location')).respond({});
-        $http.expectGET(new RegExp('location')).respond({});
-        $http.expectGET(new RegExp('config')).respond({display:{path:'path',fields:[]}});
+        //$http.expectGET(new RegExp('location')).respond({});
+        //$http.expectGET(new RegExp('config')).respond({display:{path:'path',fields:[]}});
         $http.expectJSONP(new RegExp('search')).respond({response:{docs:[]}});
 
         $http.flush();
@@ -73,7 +73,7 @@ describe('portalApp', function() {
         $state.go('queue');
 
         //TODO why dup calls
-        $http.expectGET(new RegExp('auth')).respond({permissions:{view:true}});
+       // $http.expectGET(new RegExp('auth')).respond({permissions:{view:true}});
         $http.expectGET(new RegExp('auth')).respond({permissions:{view:true}});
         $http.expectGET(new RegExp('location')).respond({});
         $http.expectJSONP(new RegExp('search')).respond({response:{docs:[]}});

@@ -32,10 +32,6 @@ describe('Controller: SearchMapCtrl', function () {
 
     function initController() {
         $controller('SearchMapCtrl', {$scope: $scope});
-
-        $http.expectGET(new RegExp('auth')).respond({}); // auth call
-
-        $http.flush();
     }
 
     it('should init', function () {
@@ -109,7 +105,7 @@ describe('Controller: SearchMapCtrl', function () {
 
         $controller('SearchMapCtrl', {$scope: $scope});
 
-        $http.expectGET(new RegExp('auth')).respond({}); // auth call
+        //$http.expectGET(new RegExp('auth')).respond({}); // auth call
         var geoHash = {
             geohash: ['gridLevel', 3, 'columns', 162, 'rows', 105, 'minX', -180, 'maxX', 47.8125, 'minY', -90, 'maxY', 57.65625, 'counts_ints2D', [[36449, 42205]]]
         };
@@ -160,7 +156,7 @@ describe('Controller: SearchMapCtrl', function () {
 
         $controller('SearchMapCtrl', {$scope: $scope, mapServiceFactory: mapServiceFactory});
 
-        $http.expectGET(new RegExp('auth')).respond({}); // auth call
+        //$http.expectGET(new RegExp('auth')).respond({}); // auth call
 
         $http.expectGET(new RegExp('heatmap')).respond({facet_counts:{facet_heatmaps:{}}}); // heatmap call
 
@@ -194,7 +190,7 @@ describe('Controller: SearchMapCtrl', function () {
 
         $controller('SearchMapCtrl', {$scope: $scope});
 
-        $http.expectGET(new RegExp('auth')).respond({}); // auth call
+        //$http.expectGET(new RegExp('auth')).respond({}); // auth call
 
         $http.expectGET(new RegExp('heatmap')).respond({facet_counts:{facet_heatmaps:[]}}); // heatmap call
 
@@ -232,7 +228,7 @@ describe('Controller: SearchMapCtrl', function () {
 
         $controller('SearchMapCtrl', {$scope: $scope});
 
-        $http.expectGET(new RegExp('auth')).respond({}); // auth call
+        //$http.expectGET(new RegExp('auth')).respond({}); // auth call
 
         $http.expectGET(new RegExp('heatmap')).respond({facet_counts:{facet_heatmaps:[]}}); // heatmap call
 

@@ -38,14 +38,17 @@ describe('Controller: HeaderCtrl', function () {
 
     function initController() {
         $location.search().disp = 'disp';
-        sut = $controller('HeaderCtrl', {$scope: $scope, $authService: authService});
+        sut = $controller('HeaderCtrl', {$scope: $scope, authService: authService});
 
-        $http.expectGET(new RegExp('auth')).respond({}); // transitive auth call
-        $http.flush();
+        //$http.expectGET(new RegExp('auth')).respond({}); // transitive auth call
+        //$http.flush();
     }
 
     it('should init as admin', function () {
         spyOn(authService,'hasPermission').and.returnValue(true);
+        spyOn(authService,'addObserver').and.callFake(function(callback) {
+            callback();
+        });
 
         $location.path('/home');
 

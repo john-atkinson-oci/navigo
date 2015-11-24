@@ -354,8 +354,8 @@ angular.module('voyager.search')
 			modal.result.then(function () {
 				_doSearch();
 			});
-		};		
-        
+		};
+
         $scope.editAllPresentation = function() {
 			var modal = searchModalService.editAllPresentation($scope.totalItems);
 			modal.result.then(function () {

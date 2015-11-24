@@ -41,10 +41,10 @@ describe('Controller: CartCtrl', function () {
             $scope: $scope
         });
 
-        $http.expectGET(new RegExp('auth')).respond({response: {docs: []}}); //auth call
-        //$http.expectJSONP(new RegExp('solr')).respond({response: {docs: [{id:'id'}]}});
-        //$http.expectJSONP(new RegExp('solr')).respond({response: {docs: []}});  // queued items call
-        $http.flush();
+        //$http.expectGET(new RegExp('auth')).respond({response: {docs: []}}); //auth call
+        ////$http.expectJSONP(new RegExp('solr')).respond({response: {docs: [{id:'id'}]}});
+        ////$http.expectJSONP(new RegExp('solr')).respond({response: {docs: []}});  // queued items call
+        //$http.flush();
     }
 
     it('should init', function () {
@@ -73,7 +73,7 @@ describe('Controller: CartCtrl', function () {
             $scope: $scope
         });
 
-        $http.expectGET(new RegExp('auth')).respond({response: {docs: []}}); //auth call
+        //$http.expectGET(new RegExp('auth')).respond({response: {docs: []}}); //auth call
         var items = ['junk', 5, 'trunk', 3];
         $http.expectJSONP().respond({facet_counts:{facet_fields:{format:items}},response:{docs: [{id:'id'}], numFound: 5}});
         $http.flush();

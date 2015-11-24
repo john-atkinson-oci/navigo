@@ -1,4 +1,4 @@
-describe('SearchCtrl', function () {
+describe('TableCtrl', function () {
 
     'use strict';
 
@@ -37,13 +37,13 @@ describe('SearchCtrl', function () {
         }
         controllerService('TableCtrl', {$scope: scope});
 
-        $http.expectGET(new RegExp('auth')).respond(authResponse); //auth info call
+        //$http.expectGET(new RegExp('auth')).respond(authResponse); //auth info call
         if (search) {
             $http.expectJSONP(new RegExp('solr\/v0')).respond(response);  //search call
+            $http.flush();
+            timeout.flush();
         }
         scope.$apply();
-        $http.flush();
-        timeout.flush();
     }
 
     describe('Load', function () {

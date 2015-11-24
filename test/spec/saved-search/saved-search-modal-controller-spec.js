@@ -1,6 +1,6 @@
 'use strict';
 
-describe('Controller: SavedSearchDialogCtrl', function () {
+describe('Controller: SavedSearchModalCtrl', function () {
 
     var $scope, $timeout, $location, $http, $controller, authService, savedSearchService, recentSearchService;
     var cfg = _.clone(config);
@@ -44,7 +44,7 @@ describe('Controller: SavedSearchDialogCtrl', function () {
         });
         //
         ////TODO why twice??
-        $http.expectGET(new RegExp('auth')).respond({permissions:{}, user:{groups:[]}}); //auth call
+        //$http.expectGET(new RegExp('auth')).respond({permissions:{}, user:{groups:[]}}); //auth call
         //$http.expectGET(new RegExp('auth')).respond({permissions:permission, user:{groups:[]}}); //auth call
         //
         //if(permission.manage) {
@@ -53,8 +53,8 @@ describe('Controller: SavedSearchDialogCtrl', function () {
         //    //$http.expectGET(new RegExp('auth')).respond({permissions:permission, user:{groups:[]}}); //auth call
         //}
 
-        $http.flush();
-        $timeout.flush();
+        //$http.flush();
+        //$timeout.flush();
     }
 
     it('should init', function () {

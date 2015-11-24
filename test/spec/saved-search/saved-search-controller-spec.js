@@ -37,11 +37,11 @@ describe('Controller: SavedSearchCtrl', function () {
             $scope: $scope
         });
 
-        $http.expectGET(new RegExp('auth')).respond({response: {docs: []}}); //auth call
+        //$http.expectGET(new RegExp('auth')).respond({response: {docs: []}}); //auth call
 
         //TODO are observers causing multiple to fire?
         $http.expectJSONP(new RegExp('ssearch')).respond({response: {docs: [item]}});
-        $http.expectJSONP(new RegExp('ssearch')).respond({response: {docs: [item]}});
+       // $http.expectJSONP(new RegExp('ssearch')).respond({response: {docs: [item]}});
 
         $http.flush();
         $timeout.flush();

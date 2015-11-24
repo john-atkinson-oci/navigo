@@ -42,8 +42,8 @@ angular.module('voyager.search').
 
 			editAllPresentation: function(totalItems) {
 				return $modal.open({
-					templateUrl: 'src/bulk-updater/edit-presentation.html',
-					controller: 'EditPresentationCtrl',
+					templateUrl: 'src/bulk-update/edit-all.html',
+					controller: 'EditAllCtrl',
 					size: 'lg',
 					resolve: {
 						resultTotalCount: function() {

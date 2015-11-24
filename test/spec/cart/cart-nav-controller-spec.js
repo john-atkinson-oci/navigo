@@ -41,7 +41,7 @@ describe('Controller: CartNavCtrl', function () {
 			$scope: $scope
 		});
 		expect($scope.uiText.name).toBe('Queue');
-		$http.expectGET(new RegExp('auth')).respond({response: {docs:[]}});
+		//$http.expectGET(new RegExp('auth')).respond({response: {docs:[]}});
 		$http.expectJSONP().respond({response: {docs:[]}});
 		$http.flush();
 	});
@@ -51,7 +51,7 @@ describe('Controller: CartNavCtrl', function () {
 		CartNavCtrl = $controller('CartNavCtrl', {
 			$scope: $scope
 		});
-		$http.expectGET(new RegExp('auth')).respond({response: {docs:[]}});
+		//$http.expectGET(new RegExp('auth')).respond({response: {docs:[]}});
 		$http.expectJSONP().respond({response: {docs:[]}});
 		$http.flush();
 		$timeout.flush();
@@ -62,7 +62,7 @@ describe('Controller: CartNavCtrl', function () {
 			$scope: $scope
 		});
 		// init expects
-		$http.expectGET(new RegExp('auth')).respond({response: {docs:[]}});
+		//$http.expectGET(new RegExp('auth')).respond({response: {docs:[]}});
 		$http.expectJSONP(new RegExp('solr\/tasks')).respond({response: {docs:[{id:'task1', category:['category1']},{id:'task2', category:['category1']}]}});
 
 		$scope.refreshTasks();
