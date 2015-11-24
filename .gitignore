@@ -7,5 +7,4 @@ dist
 bower_components
 app/bower_components
 test-results.xml
-test/coverage/cobertura-report
-test/coverage/html-report
+test/coverage/**
