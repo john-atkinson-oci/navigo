@@ -5,5 +5,5 @@ dist
 .editorconfig
 .DS_Store
 bower_components
-app/bower_components
 assets/css/main.css
+test/coverage/**
