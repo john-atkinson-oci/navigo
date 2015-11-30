@@ -274,6 +274,11 @@ angular.module('voyager.map').
                 return wkt.write();
             },
             formatWktForDisplay: function(wkt) {
+
+                if (!this.isWkt(wkt)) {
+                    return wkt;
+                }
+
                 var wktArray = wkt.split(' ');
                 var firstPartWkt = wktArray[0].split('.');
                 var lastPartWkt = wktArray.pop().split('.');

@@ -131,7 +131,12 @@ angular.module('voyager.layout')
 		}
 
 		function _showSavedSearch() {
-			savedSearchService.showSearchModal('saved');
+			$modal.open({
+                template: '<saved-content />',
+                size:'lg',
+                scope: $scope
+            });
+
 			vm.toggleMobileNav();
 		}
 
