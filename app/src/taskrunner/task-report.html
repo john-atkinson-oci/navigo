@@ -49,6 +49,22 @@
                 </tbody>
             </table>
         </section>
+		<section class="col-sm-12" ng-if="data.Warnings">
+            <h3 class="report-sub-head">Warnings</h3>
+            <table class="table">
+                <thead>
+                <th>Item</th><th>Reason</th>
+                </thead>
+                <tbody style="background-color: white">
+                <div>
+                    <tr ng-repeat="row in data.Warnings">
+                        <td class="report-item-col"><a href="{{row.Item}}" target="_blank">{{row.Item}}</a></td>
+                        <td class="report-reason-col"><div>{{row.Reason}}</div></td>
+                    </tr>
+                </div>
+                </tbody>
+            </table>
+        </section>
     </div>
 </div>
 <div class="modal-footer">
