@@ -11,7 +11,7 @@
 				<div class="search-map" vs-search-map resize="false" control="true" cancel="false"></div>
 			</div>
 		</div>
-  </div>
+    </div>
 
 	<div class="map_content {{mapContentClass}}">
 		<div class="row">
@@ -71,11 +71,10 @@
 
 			<!-- filters on right -->
 		<!--TODO ng-if not working here why? - using ng-show-->
-	  <div id="filterContainer" class="col-lg-3 col-md-3 col-sm-5 col-xs-5" ng-show="filterVisible && totalItems">
-		<div ui-view="filters" vs-filters></div>
+	  	<div id="filterContainer" class="col-lg-3 col-md-3 col-sm-5 col-xs-5" ng-show="filterVisible && totalItems">
+			<div ui-view="filters" vs-filters></div>
 				<div class="filter_background"></div>
-	  </div>
-
+	  		</div>
 		</div>
 	</div>
 </div>

@@ -15,12 +15,19 @@ angular.module('voyager.filters')
             if (params.place) {
                 var formattedPlace = params.place;
                 var humanized;
+                var isBbox = false;
+                var isWkt = false;
 
                 if(mapUtil.isBbox(params.place)) {
                     formattedPlace = sugar.formatBBox(params.place);
+                    isBbox = true;
+                } else {
+                    formattedPlace = mapUtil.formatWktForDisplay(params.place);
+                    isWkt = true;
                 }
+
                 humanized = (params['place.op'] === 'within' ? 'Within' : 'Intersects') + ': ' + formattedPlace;
-                $scope.filters.push({'isInput': true, 'name': 'place', 'humanized': humanized});
+                $scope.filters.push({'isInput': true, 'name': 'place', 'humanized': humanized, 'isBbox' : isBbox, 'isWkt' : isWkt});
             }
         }
 
@@ -39,7 +46,7 @@ angular.module('voyager.filters')
             else if (facet.name === 'place') {
                 var filterHumanized = facet.humanized.split(': ');
                 filterHumanized.splice(0, 1);
-                var args = {isBbox:mapUtil.isBbox(filterHumanized.join(': '))};
+                var args = {isBbox: facet.isBbox, isWkt: facet.isWkt};
                 $location.search(clearPlace($location.search()));
                 $scope.$emit('removeFilterEvent', args);
             }
