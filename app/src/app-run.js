@@ -65,6 +65,10 @@ angular.module('portalApp')
             $rootScope.$broadcast('updateSearchType', args);
         });
 
+        $rootScope.$on('selectedDrawingTypeChanged', function(event, args) {
+            $rootScope.$broadcast('drawingTypeChanged', args);
+        });
+
         $rootScope.$on('$stateChangeError', function (e, toState, toParams, fromState, fromParams, error) {
             if (error === 'Not Authorized') {
                 $state.go('login');
