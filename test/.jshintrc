@@ -39,6 +39,7 @@
     "by": false,
     "$":false,
     "LeafletMapMock":false,
+    "ResponseMocks":false,
     "escapeRegExp":false,
     "L":false,
     "map":false
