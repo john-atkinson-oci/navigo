@@ -19,6 +19,7 @@ describe('Search Map Directive:', function () {
         compiled = compile(element)(scope);
         element.scope().$apply();
         controller = element.controller(scope);
+        $(document.body).append(element);
     }
 
     beforeEach(inject(function ($compile, $rootScope, _$timeout_, $httpBackend, _leafletData_, _$q_) {
@@ -70,25 +71,95 @@ describe('Search Map Directive:', function () {
             expect(scope.selectedMapType).toBe('Card');
         });
 
-        // TODO broken with Cainkade changes for NGA-11
-        // replaced with selectDrawingTool?
+        it('should draw rectangle', function () {
+            scope.selectedDrawingType = 'Intersects';
+            scope.displayFormat = 'detail_format';
 
-        //it('should draw rectangle', function () {
+            initDirective();
+
+            scope.selectDrawingTool($.Event('click'), 'rectangle');
+
+            leafletData.getMap().then(function(map) {
+                map.vsSearchType = 'junk';
+                var bounds = [[0, -0], [0, -0]];
+                var layer = L.rectangle(bounds, {color: '#ff7800', weight: 1});
+                map.fire('draw:created',{layer: layer});
+                map.fire('draw:drawstop');
+
+                // fire again so it removes and re applies
+                map.fire('draw:created',{layer: layer});
+                map.fire('draw:drawstop');
+
+                expect(scope._bbox).toEqual('0 0 0 0');
+            });
+
+            scope.$apply();
+            $timeout.flush();
+        });
+
+        it('should draw polygon', function () {
+            scope.selectedDrawingType = 'Intersects';
+            scope.displayFormat = 'detail_format';
+
+            initDirective();
+
+            scope.selectDrawingTool($.Event('click'), 'polygon');
+
+            leafletData.getMap().then(function(map) {
+                map.vsSearchType = 'junk';
+                var bounds = [[0, -0], [0, -0]];
+                var layer = L.polygon(bounds, {color: '#ff7800', weight: 1});
+                map.fire('draw:created',{layer: layer});
+                map.fire('draw:drawstop');
+
+                expect(scope._bbox).toEqual('POLYGON((0 0,0 0))');
+            });
+
+            scope.$apply();
+            $timeout.flush();
+        });
+
+        it('should draw point', function () {
+            scope.selectedDrawingType = 'Intersects';
+            scope.displayFormat = 'detail_format';
+
+            initDirective();
+
+            scope.selectDrawingTool($.Event('click'), 'point');
+
+            leafletData.getMap().then(function(map) {
+                map.vsSearchType = 'junk';
+                var layer = L.marker([0, 0]);
+                map.fire('draw:created',{layer: layer});
+                map.fire('draw:drawstop');
+
+                expect(scope._bbox).toEqual('POINT(0 0)');
+            });
+
+            scope.$apply();
+            $timeout.flush();
+        });
+
+        // TODO this fails in the wicket lib
+        //it('should draw polyline', function () {
         //    scope.selectedDrawingType = 'Intersects';
         //    scope.displayFormat = 'detail_format';
         //
-        //    spyOn(leafletData,'getMap').and.callThrough();
-        //
         //    initDirective();
         //
-        //    scope.drawRectangle('within', $.Event('click'));
+        //    scope.selectDrawingTool($.Event('click'), 'polyline');
+        //
+        //    leafletData.getMap().then(function(map) {
+        //        map.vsSearchType = 'junk';
+        //        var layer = L.polyline([[0, -0], [0, -0]]);
+        //        map.fire('draw:created',{layer: layer});
+        //        map.fire('draw:drawstop');
+        //
+        //        expect(scope._bbox).toEqual('POINT(0 0)');
+        //    });
         //
         //    scope.$apply();
         //    $timeout.flush();
-        //
-        //    expect(scope.selectedDrawingType).toBe('Within');
-        //    expect(leafletData.getMap).toHaveBeenCalled();
-        //
         //});
 
         it('should resize', function () {
@@ -109,6 +180,19 @@ describe('Search Map Directive:', function () {
 
             expect(scope.selectedDrawingType).toBe('Intersects');
             expect(leafletData.getMap).toHaveBeenCalled();
+        });
+
+        it('should zoom', function () {
+            initDirective();
+
+            scope.addMapSizeToggleControl();
+
+            expect(scope.controls.custom.length).toBe(4);
+
+            var control = scope.controls.custom[3];
+            var template = control.onAdd();
+
+            expect(template.innerHTML).toContain('map-size-drop-down');
         });
     });
 

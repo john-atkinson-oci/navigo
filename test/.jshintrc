@@ -40,7 +40,8 @@
     "$":false,
     "LeafletMapMock":false,
     "escapeRegExp":false,
-    "L":false
+    "L":false,
+    "map":false
   }
 }
 
