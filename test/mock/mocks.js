@@ -72,6 +72,22 @@ function LeafletMapMock() {
 
         removeControl: function() {
 
+        },
+
+        dragging: {
+            disable: function() {}
+        },
+
+        doubleClickZoom: {
+            disable: function() {}
+        },
+
+        scrollWheelZoom: {
+            disable: function() {}
+        },
+
+        options: {
+            minZoom:0
         }
     };
 }
