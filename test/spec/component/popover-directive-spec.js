@@ -42,7 +42,7 @@ describe('Popover Directive:', function () {
         // httpMock.expectGET(new RegExp('auth')).respond({}); // auth call
         element = angular.element(elementHtmlBase);
         compiled = $compile(element)(scope);
-        $(document.body).append(element);
+        $($document.body).append(element);
         element.scope().$apply();
     }
 

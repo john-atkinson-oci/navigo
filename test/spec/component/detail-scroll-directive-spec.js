@@ -7,13 +7,18 @@ describe('vsDetailScroll:', function () {
         module('voyager.component');
     });
 
-    var scope, element;
+    var scope, element, $window, timeout, document;
 
-    beforeEach(inject(function ($compile, $rootScope) {
+    beforeEach(inject(function ($compile, $rootScope, $timeout, _$document_, _$window_) {
+        timeout = $timeout;
+        document = _$document_;
         scope = $rootScope.$new();
-        element = angular.element('<div id="mock" vs-detail-scroll />');
+        $window = _$window_;
+        element = angular.element('<div><div id="mock" vs-detail-scroll><div id="detailTopStickyContent" /><div id="detailTabContentNav" class="sticky" /><div id="detailSecondaryColumn" /><div id="itemDetailContent" /></div></div>');
+        $(document.body).append(element);
         $compile(element)(scope);
         element.scope().$apply();
+
     }));
 
     describe('Load', function() {
@@ -35,5 +40,16 @@ describe('vsDetailScroll:', function () {
             expect(timer !== scope.resizeTimer).toBe(true);
         });
     });
+
+    it('should remove sticky', function (){
+        scope.initialize();
+        element.ready();
+        timeout.flush(351);
+        timeout.verifyNoPendingTasks();
+        var detailTabContentNav = $($(element).find('#detailTabContentNav')[0]);
+        expect(detailTabContentNav.hasClass('sticky')).toBe(true);
+        scope.setStickyContent();
+    });
+
 
 });
