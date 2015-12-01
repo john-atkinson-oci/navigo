@@ -1,0 +1,18 @@
+<div ng-controller="RecentSearchCtrl">
+    <article ng-show="showTab == 'recent'" class="clearfix">
+        <p ng-show="!recentSearches.length">You have no recent searches.</p>
+        <ul class="col-md-12 no_padding" ng-if="recentSearches.length">
+            <li ng-repeat="search in recentSearches">
+                <div>
+                    <a href="javascript:;" ng-class="search.saved && 'icon-heart_filled' || 'icon-heart_empty'" ng-if="hasPermission('save_search')" ng-click="toggleSave(search)"></a>
+                    <a href="javascript:;" class="underline" ng-click="applyRecentSearch(search)">
+                        <em ng-bind="search.title || search.q"></em>
+                        {{search.displayBBox == '' ? 'near' : ''}}{{search.displayPlaceOP}}
+                        <em ng-bind="search.displayBBox || search.place"></em>
+                    </a>
+                    <a href="javascript:;" class="pull-right icon-x" ng-click="deleteSearch($index)"><span class="sr-only" aria-label="delete">delete</span></a>
+                </div>
+            </li>
+        </ul>
+    </article>
+</div>

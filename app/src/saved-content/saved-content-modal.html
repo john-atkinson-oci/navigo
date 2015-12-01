@@ -23,63 +23,9 @@
     <div class="search_list" ng-if="!showSearch" ng-class="{'search_list_space' : showTab != 'saved'}" ng-include="'src/saved-location/saved-locations.html'">
     </div>
     <div class="search_list" ng-if="showSearch" ng-class="{'search_list_space' : showTab != 'saved'}">
-        <div ng-controller="SavedSearchCtrl">
-            <form name="savedForm" ng-submit="search()" ng-show="showTab == 'saved'">
-                <fieldset>
-                    <input name="savedTerm" class="form-control input_field focus_field" type="text" ng-model="savedTerm" placeholder="Search saved searches" />
-                    <label for="savedTerm" class="icon-input_search"></label>
-                    <a href="javascript:;" class="icon-x" aria-label="clear" ng-click="clearField('savedTerm', true)" tabindex="0"><span class="sr-only">clear</span></a>
-                </fieldset>
-            </form>
-            <article class="clearfix" ng-show="showTab == 'saved'">
-                <p ng-show="!personalSavedSearches.length">You have no saved searches.</p>
-                <ul class="col-md-12 no_padding sortable_list" ng-if="personalSavedSearches.length && !isAnonymous"
-                    as-sortable="dragControlListeners" ng-model="personalSavedSearches">
-                    <li ng-repeat="saved in personalSavedSearches"
-                        class="as-sortable-item"
-                        as-sortable-item>
-                        <div as-sortable-item-handle class="as-sortable-item-handle">
-                            <a href="javascript:;" class="icon-heart_filled"></a>
-                            <a href="javascript:;" class="underline" ng-click="applySavedSearch(saved)">
-                                <em>{{saved.title}}</em>
-                            </a>
-                            <a class="pull-right icon-x" ng-click="deleteSearch(saved.id)"><span class="sr-only">delete</span></a>
-                        </div>
-                    </li>
-                </ul>
-            </article>
-            <article ng-show="showTab == 'suggested'" class="clearfix">
-                <p ng-show="!savedSearches.length">You have no suggested searches.</p>
-                <ul class="col-md-12 no_padding" ng-if="savedSearches.length">
-                    <li ng-repeat="saved in savedSearches">
-                        <div>
-                            <a href="javascript:;" class="icon-heart_filled"></a>
-                            <a href="javascript:;" class="underline" ng-click="applySavedSearch(saved)">
-                                <em>{{saved.title}}</em>
-                            </a>
-                            <a href="javascript:;" class="pull-right icon-x" ng-if="hasPermission('manage')" ng-click="deleteSearch(saved.id)"><span class="sr-only">delete</span></a>
-                        </div>
-                    </li>
-                </ul>
-            </article>
+        <div ng-include="'src/saved-search/saved-searches.html'">
         </div>
-        <div ng-controller="RecentSearchCtrl">
-            <article ng-show="showTab == 'recent'" class="clearfix">
-                <p ng-show="!recentSearches.length">You have no recent searches.</p>
-                <ul class="col-md-12 no_padding" ng-if="recentSearches.length">
-                    <li ng-repeat="search in recentSearches">
-                        <div>
-                            <a href="javascript:;" ng-class="search.saved && 'icon-heart_filled' || 'icon-heart_empty'" ng-if="hasPermission('save_search')" ng-click="toggleSave(search)"></a>
-                            <a href="javascript:;" class="underline" ng-click="applyRecentSearch(search)">
-                                <em ng-bind="search.title || search.q"></em>
-                                {{search.displayBBox == '' ? 'near' : ''}}{{search.displayPlaceOP}}
-                                <em ng-bind="search.displayBBox || search.place"></em>
-                            </a>
-                            <a href="javascript:;" class="pull-right icon-x" ng-click="deleteSearch($index)"><span class="sr-only" aria-label="delete">delete</span></a>
-                        </div>
-                    </li>
-                </ul>
-            </article>
+        <div ng-include="'src/recent-search/recent-searches.html'">
         </div>
     </div>
 </div>
