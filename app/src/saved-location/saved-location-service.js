@@ -103,25 +103,19 @@ angular.module('voyager.search').
                 $location.path('search').search(solrParams);
 
                 filterService.applyFromUrl($location.search()).then(function() {
-                    $scope.$emit('addBboxEvent', {});  //updates map with bbox from url
                     $scope.$emit('filterEvent', {});
                 });
 
-                // $analytics.eventTrack('saved-location', {
-                //     category: 'run'
-                // });
-
-                //$scope.$emit('searchEvent');  //TODO remove - filterEvent will fire a search
-                this.addToRecent(saved);
-
+                //TODO - Cainkade/May this doesn't exist - commenting out for now
+                //this.addToRecent(saved);
             },
 
             deleteLocation: function(id){
-                return $http.delete(config.root + 'api/rest/display/slocation/' + id).then(function(){
-                            observers.forEach(function (entry) {
-                                entry(id);
-                            });
-                        });
+                return $http.delete(config.root + 'api/rest/display/slocation/' + id).then(function() {
+                    observers.forEach(function (entry) {
+                        entry(id);
+                    });
+                });
             },
             order: function(id, beforeId, afterId) {
                 var data = '';

@@ -1,8 +1,9 @@
-/*global angular, $, _ */
 'use strict';
 
 angular.module('voyager.search')
-.controller('SavedLocationCtrl', function ($scope, $location, savedLocationService, $modal, authService) {
+.controller('SavedLocationsCtrl', function ($scope, $location, savedLocationService, $modal, authService) {
+
+	var vm = this;
 
 	function _loadSavedLocations() {
 		savedLocationService.getSavedLocations().then(function(savedLocations) {
@@ -19,8 +20,8 @@ angular.module('voyager.search')
 					return false;
 				}
 			});
-			$scope.savedLocations = global;
-			$scope.personalSavedLocations = personal;
+			vm.savedLocations = global;
+			vm.personalSavedLocations = personal;
 		});
 	}
 
@@ -29,23 +30,21 @@ angular.module('voyager.search')
 	authService.addObserver(_loadSavedLocations);
 	savedLocationService.addObserver(_loadSavedLocations);
 
-	$scope.applySavedLocation = function(saved) {
+	vm.applySavedLocation = function(saved) {
 		savedLocationService.applySavedLocation(saved, $scope);
 	};
 
-	$scope.deleteLocation = function(id) {
-		savedLocationService.deleteLocation(id).then(function(){
-			_loadSavedLocations();
-		});
+	vm.deleteLocation = function(id) {
+		savedLocationService.deleteLocation(id);  //observer will reload
 	};
 
-	$scope.search = function() {
-		if (_.isEmpty($scope.savedTerm)) {
+	vm.search = function() {
+		if (_.isEmpty(vm.savedTerm)) {
 			_loadSavedLocations();
 			return;
 		}
 
-		savedLocationService.searchByTerm($scope.savedTerm).then(function(savedLocations){
+		savedLocationService.searchByTerm(vm.savedTerm).then(function(savedLocations){
 			var personal = [], permissions, all = '_EVERYONE';
 			$.each(savedLocations, function(index, saved) {
 				permissions = _.indexBy(saved.share);
@@ -53,18 +52,18 @@ angular.module('voyager.search')
 					personal.push(saved);
 				}
 			});
-			$scope.personalSavedLocations = personal;
+			vm.personalSavedLocations = personal;
 		});
 	};
 
 
-	$scope.dragLocationControlListeners = {
+	vm.dragLocationControlListeners = {
 		enabled: true,
 		accept: function() {
-			return $scope.dragLocationControlListeners.enabled;
+			return vm.dragLocationControlListeners.enabled;
 		},
 		orderChanged: function(eventObj) {
-			var list = $scope.personalSavedLocations,
+			var list = vm.personalSavedLocations,
 				index = eventObj.dest.index,
 				beforeId = null,
 				afterId = null;
@@ -76,10 +75,10 @@ angular.module('voyager.search')
 				afterId = list[index+1].id;
 			}
 
-			$scope.dragLocationControlListeners.enabled = false;
+			vm.dragLocationControlListeners.enabled = false;
 
 			savedLocationService.order(list[index].id, beforeId, afterId).then(function(){
-				$scope.dragLocationControlListeners.enabled = true;
+				vm.dragLocationControlListeners.enabled = true;
 			});
 		}
 	};

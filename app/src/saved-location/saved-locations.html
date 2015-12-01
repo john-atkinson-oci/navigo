@@ -1,0 +1,40 @@
+<div ng-controller="SavedLocationsCtrl as vm">
+    <form name="savedForm" ng-submit="vm.search()" ng-show="vm.showTab == 'saved'">
+        <fieldset>
+            <input name="savedTerm" class="form-control input_field focus_field" type="text" ng-model="vm.savedTerm" placeholder="Search saved locations" />
+            <label for="savedTerm" class="icon-input_search"></label>
+            <a href="javascript:;" class="icon-x" aria-label="clear" ng-click="vm.clearField('savedTerm', true)" tabindex="0"><span class="sr-only">clear</span></a>
+        </fieldset>
+    </form>
+    <article class="clearfix" ng-show="vm.showTab == 'saved'">
+        <p ng-show="!vm.personalSavedLocations.length">You have no saved locations.</p>
+        <ul class="col-md-12 no_padding sortable_list" ng-if="vm.personalSavedLocations.length && !vm.isAnonymous"
+            as-sortable="vm.dragLocationControlListeners" ng-model="vm.personalSavedLocations">
+            <li ng-repeat="saved in vm.personalSavedLocations"
+                class="as-sortable-item"
+                as-sortable-item>
+                <div as-sortable-item-handle class="as-sortable-item-handle">
+                    <a href="javascript:;" class="icon-heart_filled"></a>
+                    <a href="javascript:;" class="underline" ng-click="vm.applySavedLocation(saved)">
+                        <em>{{saved.name}}</em>
+                    </a>
+                    <a class="pull-right icon-x" ng-click="vm.deleteLocation(saved.id)"><span class="sr-only">delete</span></a>
+                </div>
+            </li>
+        </ul>
+    </article>
+    <article ng-show="vm.showTab == 'suggested'" class="clearfix">
+        <p ng-show="!vm.savedLocations.length">You have no suggested locations.</p>
+        <ul class="col-md-12 no_padding" ng-if="vm.savedLocations.length">
+            <li ng-repeat="saved in vm.savedLocations">
+                <div>
+                    <a href="javascript:;" class="icon-heart_filled"></a>
+                    <a href="javascript:;" class="underline" ng-click="vm.applySavedLocation(saved)">
+                        <em>{{saved.name}}</em>
+                    </a>
+                    <a href="javascript:;" class="pull-right icon-x" ng-if="vm.hasPermission('manage')" ng-click="vm.deleteSearch(saved.id)"><span class="sr-only">delete</span></a>
+                </div>
+            </li>
+        </ul>
+    </article>
+</div>

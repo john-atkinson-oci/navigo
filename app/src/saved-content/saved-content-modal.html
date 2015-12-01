@@ -20,47 +20,7 @@
     </nav>
 </div>
 <div class="modal-body modal_padding_bottom saved-modal">
-    <div class="search_list" ng-if="!showSearch" ng-class="{'search_list_space' : showTab != 'saved'}">
-        <div ng-controller="SavedLocationCtrl">
-            <form name="savedForm" ng-submit="search()" ng-show="showTab == 'saved'">
-                <fieldset>
-                    <input name="savedTerm" class="form-control input_field focus_field" type="text" ng-model="savedTerm" placeholder="Search saved locations" />
-                    <label for="savedTerm" class="icon-input_search"></label>
-                    <a href="javascript:;" class="icon-x" aria-label="clear" ng-click="clearField('savedTerm', true)" tabindex="0"><span class="sr-only">clear</span></a>
-                </fieldset>
-            </form>
-            <article class="clearfix" ng-show="showTab == 'saved'">
-                <p ng-show="!personalSavedLocations.length">You have no saved locations.</p>
-                <ul class="col-md-12 no_padding sortable_list" ng-if="personalSavedLocations.length && !isAnonymous"
-                    as-sortable="dragLocationControlListeners" ng-model="personalSavedLocations">
-                    <li ng-repeat="saved in personalSavedLocations"
-                        class="as-sortable-item"
-                        as-sortable-item>
-                        <div as-sortable-item-handle class="as-sortable-item-handle">
-                            <a href="javascript:;" class="icon-heart_filled"></a>
-                            <a href="javascript:;" class="underline" ng-click="applySavedLocation(saved)">
-                                <em>{{saved.name}}</em>
-                            </a>
-                            <a class="pull-right icon-x" ng-click="deleteLocation(saved.id)"><span class="sr-only">delete</span></a>
-                        </div>
-                    </li>
-                </ul>
-            </article>
-            <article ng-show="showTab == 'suggested'" class="clearfix">
-                <p ng-show="!savedLocations.length">You have no suggested locations.</p>
-                <ul class="col-md-12 no_padding" ng-if="savedLocations.length">
-                    <li ng-repeat="saved in savedLocations">
-                        <div>
-                            <a href="javascript:;" class="icon-heart_filled"></a>
-                            <a href="javascript:;" class="underline" ng-click="applySavedLocation(saved)">
-                                <em>{{saved.name}}</em>
-                            </a>
-                            <a href="javascript:;" class="pull-right icon-x" ng-if="hasPermission('manage')" ng-click="deleteSearch(saved.id)"><span class="sr-only">delete</span></a>
-                        </div>
-                    </li>
-                </ul>
-            </article>
-        </div>
+    <div class="search_list" ng-if="!showSearch" ng-class="{'search_list_space' : showTab != 'saved'}" ng-include="'src/saved-location/saved-locations.html'">
     </div>
     <div class="search_list" ng-if="showSearch" ng-class="{'search_list_space' : showTab != 'saved'}">
         <div ng-controller="SavedSearchCtrl">
