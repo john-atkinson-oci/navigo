@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('voyager.security').
-    factory('authService', function ($http, config, $q) {
+    factory('authService', function ($http, config, $q, $log) {
 
         var observers = [];
         var errorCallback;
@@ -48,11 +48,17 @@ angular.module('voyager.security').
         }
 
         var defaultErrorCallback = function (response) {
+            permissions = {};
+            _isAnonymous = true;
             if (response.error) {
-                console.log(response.error);
+                $log.error('auth failed: ' + response.error);
             } else {
-                console.log('failed');
+                $log.error('auth failed: ' + JSON.stringify(response));
             }
+            observers.forEach(function (entry) {
+                entry(response);
+            });
+            return response;
         };
 
         var doPost = function (request, action) {
@@ -169,15 +175,19 @@ angular.module('voyager.security').
                 // _methods = []; // remove comment for external only
                 // _methods.push({name:'test',url:'http://www.google.com'});
                 var methods = {all:_methods};
-                methods.all = _methods.filter(function(method) {
-                    return method.enabled === true;
-                });
-                methods.external = _.filter(_methods, function(method) {
-                    method.displayName = _.classify(method.name);
-                    return angular.isDefined(method.url) && method.enabled === true;
-                });
-                if(methods.external.length === 0) {
-                    delete methods.external;
+                if(angular.isDefined(_methods)) {
+                    methods.all = _methods.filter(function (method) {
+                        return method.enabled === true;
+                    });
+                    methods.external = _.filter(_methods, function (method) {
+                        method.displayName = _.classify(method.name);
+                        return angular.isDefined(method.url) && method.enabled === true;
+                    });
+                    if (methods.external.length === 0) {
+                        delete methods.external;
+                    }
+                } else {
+                    methods.all = [];
                 }
                 return methods;
             },

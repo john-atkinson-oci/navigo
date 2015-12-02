@@ -21,7 +21,6 @@ angular.module('voyager.layout')
 			$scope.disp = '?disp=' + $location.search().disp;
 		}
 
-
 		$scope.$on('filterChanged', function () {
 			if(angular.isDefined($location.search().disp)) {
 				$scope.disp = '?disp=' + $location.search().disp;
@@ -65,7 +64,10 @@ angular.module('voyager.layout')
 				_updateUserInfo();
 			});
 
-			$scope.$on('$stateChangeSuccess', _updateClassicLink);
+			$scope.$on('$stateChangeSuccess', function(event, toState) {
+				$scope.isLoginPage = toState.name === 'login';
+				_updateClassicLink();
+			});
 		}
 
 		function _updateClassicLink() {
@@ -90,7 +92,8 @@ angular.module('voyager.layout')
 		function _updateUserInfo() {
 			$scope.isAnonymous = authService.isAnonymous();
 			$scope.user = authService.getUser();
-			$scope.canCart = authService.hasPermission('process');
+			$scope.canView = authService.hasPermission('view');
+			$scope.canCart = $scope.canView && authService.hasPermission('process');
 			$scope.canManage = authService.hasPermission('manage');
 			$scope.showLogout = authService.showLogout();
 			_updateClassicLink();
