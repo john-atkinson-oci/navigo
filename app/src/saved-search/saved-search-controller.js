@@ -70,4 +70,10 @@ angular.module('voyager.search')
 			});
 	    }
 	};
+
+	$scope.$on('$destroy', function() {
+		authService.removeObserver(_loadSavedSearches);
+		savedSearchService.removeObserver(_loadSavedSearches);
+		recentSearchService.removeObserver(_loadSavedSearches);
+	});
 });

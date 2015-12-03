@@ -82,4 +82,9 @@ angular.module('voyager.search')
 			});
 		}
 	};
+
+	$scope.$on('$destroy', function() {
+		authService.removeObserver(_loadSavedLocations);
+		savedLocationService.removeObserver(_loadSavedLocations);
+	});
 });

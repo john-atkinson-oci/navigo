@@ -36,12 +36,14 @@ angular.module('cart')
             cartService.clear();
         };
 
-        cartService.addObserver(function(length, items, action){
+        function _updateCartCount(length, items, action) {
             if(action === 'clear') {
                 $scope.cartItems = [];
                 $scope.cartItemCount = 0;
             }
-        });
+        }
+
+        cartService.addObserver(_updateCartCount);
 
         var init = function () {
             $scope.displayCategory = cartService.getCount() > 100;
@@ -59,4 +61,7 @@ angular.module('cart')
 
         init();
 
+        $scope.$on('$destroy', function() {
+            cartService.removeObserver(_updateCartCount);
+        });
     });

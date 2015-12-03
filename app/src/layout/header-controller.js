@@ -59,13 +59,8 @@ angular.module('voyager.layout')
 
 		function _init() {
 			//add queue observer
-			cartService.addObserver(function(){
-				_updateQueueTotal();
-			});
-
-			authService.addObserver(function(){
-				_updateUserInfo();
-			});
+			cartService.addObserver(_updateQueueTotal);
+			authService.addObserver(_updateUserInfo);
 
 			$scope.$on('$stateChangeSuccess', _updateClassicLink);
 		}
@@ -160,5 +155,10 @@ angular.module('voyager.layout')
 
 			$window.open(baseUrl + params, '_blank');
 		};
+
+		$scope.$on('$destroy', function() {
+			authService.removeObserver(_updateUserInfo);
+			cartService.removeObserver(_updateQueueTotal);
+		});
 
 	});

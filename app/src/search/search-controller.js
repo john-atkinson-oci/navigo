@@ -81,6 +81,13 @@ angular.module('voyager.search')
 
 		_init();
 
+		function _reloadResults(response) {
+			if(response.action === 'login') {
+				_init();
+			}
+		}
+		authService.addObserver(_reloadResults);
+
 		function _setSortDirection() {
 			if (searchService.getSort()) {
 				$scope.sortDirection = searchService.getSort();
@@ -602,6 +609,7 @@ angular.module('voyager.search')
         $scope.$on('$destroy', function() {
             angular.element($window).unbind('scroll', _windowScroll);
             inView.reset();
+			authService.removeObserver(_reloadResults);
         });
 
     });

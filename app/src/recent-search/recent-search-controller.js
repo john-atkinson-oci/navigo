@@ -64,4 +64,8 @@ angular.module('voyager.search')
 			}
 		}
 
+		$scope.$on('$destroy', function() {
+			recentSearchService.removeObserver(_getRecentSearch);
+			savedSearchService.removeObserver(_changeSearchStatus);
+		});
 	});

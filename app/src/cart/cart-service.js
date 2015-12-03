@@ -116,6 +116,9 @@ angular.module('cart')
             addObserver: function (observer) {
                 observers.push(observer);
             },
+            removeObserver: function (observer) {
+                observers = _.without(observers, observer);
+            },
             remove: function (id) {
                 var itemMap = _getItems();
                 var query = localStorageService.get('cart-query');

@@ -582,4 +582,7 @@ angular.module('voyager.details')
             return false;
         }
 
+        $scope.$on('$destroy', function() {
+            authService.removeObserver(_setPermissions);
+        });
     });

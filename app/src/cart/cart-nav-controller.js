@@ -3,6 +3,11 @@ angular.module('cart')
     .controller('CartNavCtrl', function (config, $scope, $location, searchService, cartService, authService, usSpinnerService, $modal, taskService, $timeout) {
         'use strict';
 
+        function _syncCartNav() {
+            $scope.cartItemCount = cartService.getCount();
+            $scope.showTaskList = $scope.cartItemCount > 0;
+        }
+
         function _init() {
             $scope.lastSearch = searchService.getLastSearch();
             var path = $location.path().split('/');
@@ -14,10 +19,7 @@ angular.module('cart')
                 $scope.showTaskList = cartService.getCount() > 0;
                 _loadTasks();
 
-                cartService.addObserver(function(){
-                    $scope.cartItemCount = cartService.getCount();
-                    $scope.showTaskList = $scope.cartItemCount > 0;
-                });
+                cartService.addObserver(_syncCartNav);
                 _setPermissions();
                 authService.addObserver(_setPermissions);
             }
@@ -107,4 +109,8 @@ angular.module('cart')
 
         _init();
 
+        $scope.$on('$destroy', function() {
+            authService.removeObserver(_setPermissions);
+            cartService.removeObserver(_syncCartNav);
+        });
     });

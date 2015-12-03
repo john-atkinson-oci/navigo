@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('voyager.security').
-    factory('authService', function ($http, config, $q) {
+    factory('authService', function ($http, config, $q, $log) {
 
         var observers = [];
         var errorCallback;
@@ -49,10 +49,11 @@ angular.module('voyager.security').
 
         var defaultErrorCallback = function (response) {
             if (response.error) {
-                console.log(response.error);
+                $log.error(response.error);
             } else {
-                console.log('failed');
+                $log.error('auth failed: ' + JSON.stringify(response));
             }
+            return response;
         };
 
         var doPost = function (request, action) {
@@ -61,7 +62,11 @@ angular.module('voyager.security').
                 url: config.root + 'api/rest/auth/' + action + '.json',
                 data: request,
                 headers: {'Content-Type': 'application/x-www-form-urlencoded'}
-            }).then(_setLoginState, errorCallback);
+            }).then(function(response) {
+                response.action = action;
+                _setLoginState(response);
+                }, errorCallback
+            );
         };
 
         function _getInfoUrl() {
@@ -109,15 +114,13 @@ angular.module('voyager.security').
                 }
             },
             addObserver: function (obs) {
-                var exists = false;
-                observers.forEach(function (entry) {
-                    if (entry === obs) {
-                        exists = true;
-                    }
-                });
-                if (!exists) {
+                var index = _.findIndex(observers, obs);
+                if (index === -1) {
                     observers.push(obs);
                 }
+            },
+            removeObserver: function (obs) {
+                observers = _.without(observers, obs);
             },
             isLoggedIn: function () {
                 return loggedIn;
@@ -171,16 +174,21 @@ angular.module('voyager.security').
                 // _methods = []; // remove comment for external only
                 // _methods.push({name:'test',url:'http://www.google.com'});
                 var methods = {all:_methods};
-                methods.all = _methods.filter(function(method) {
-                    return method.enabled === true;
-                });
-                methods.external = _.filter(_methods, function(method) {
-                    method.displayName = _.classify(method.name);
-                    return angular.isDefined(method.url) && method.enabled === true;
-                });
-                if(methods.external.length === 0) {
-                    delete methods.external;
+                if(angular.isDefined(_methods)) {
+                    methods.all = _methods.filter(function(method) {
+                        return method.enabled === true;
+                    });
+                    methods.external = _.filter(_methods, function(method) {
+                        method.displayName = _.classify(method.name);
+                        return angular.isDefined(method.url) && method.enabled === true;
+                    });
+                    if(methods.external.length === 0) {
+                        delete methods.external;
+                    }
+                } else {
+                    methods.all = [];
                 }
+
                 return methods;
             },
 

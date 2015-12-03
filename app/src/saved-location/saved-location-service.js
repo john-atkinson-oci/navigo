@@ -78,17 +78,14 @@ angular.module('voyager.search').
             },
 
             addObserver: function (obs) {
-                var exists = false;
-                observers.forEach(function (entry) {
-                    if (entry === obs) {
-                        exists = true;
-                    }
-                });
-                if (!exists) {
+                var index = _.findIndex(observers, obs);
+                if (index === -1) {
                     observers.push(obs);
                 }
             },
-
+            removeObserver: function (obs) {
+                observers = _.without(observers, obs);
+            },
             saveLocation: function(SavedLocation, params) {
                 SavedLocation.config = configService.getConfigId();
                 SavedLocation.value = converter.toClassicParams(params);

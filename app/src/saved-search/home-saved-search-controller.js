@@ -8,7 +8,7 @@ angular.module('voyager.search')
         return authService.hasPermission(permission);
     };
 
-	function _loadSavedSearches() {
+	function _loadHomeSavedSearches() {
 		savedSearchService.getSavedSearches().then(function(savedSearches) {
 			var global = [], personal = [], permissions, all = '_EVERYONE';
 			$.each(savedSearches, function(index, saved) {
@@ -30,11 +30,11 @@ angular.module('voyager.search')
 		});
 	}
 
-	_loadSavedSearches();
+	_loadHomeSavedSearches();
 
-	authService.addObserver(_loadSavedSearches);
-	savedSearchService.addObserver(_loadSavedSearches);
-	recentSearchService.addObserver(_loadSavedSearches);
+	authService.addObserver(_loadHomeSavedSearches);
+	savedSearchService.addObserver(_loadHomeSavedSearches);
+	recentSearchService.addObserver(_loadHomeSavedSearches);
 
 	$scope.applySavedSearch = function(saved) {
 		savedSearchService.applySavedSearch(saved, $scope);
@@ -42,11 +42,16 @@ angular.module('voyager.search')
 
 	$scope.deleteSearch = function(id) {
 		savedSearchService.deleteSearch(id).then(function(){
-			_loadSavedSearches();
+			_loadHomeSavedSearches();
 			$analytics.eventTrack('saved-search', {
 				category: 'delete'
 			});
 		});
 	};
 
+	$scope.$on('$destroy', function() {
+		authService.removeObserver(_loadHomeSavedSearches);
+		savedSearchService.removeObserver(_loadHomeSavedSearches);
+		recentSearchService.removeObserver(_loadHomeSavedSearches);
+	});
 });

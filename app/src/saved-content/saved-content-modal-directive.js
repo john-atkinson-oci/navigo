@@ -52,6 +52,10 @@ angular.module('voyager.search').directive('savedContent', function(authService)
 			}
 
 			authService.addObserver(_syncState);
+
+			scope.$on('$destroy', function() {
+				authService.removeObserver(_syncState);
+			});
 		}
 	};
 

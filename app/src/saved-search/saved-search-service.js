@@ -124,17 +124,14 @@ angular.module('voyager.search').
             },
 
             addObserver: function (obs) {
-                var exists = false;
-                observers.forEach(function (entry) {
-                    if (entry === obs) {
-                        exists = true;
-                    }
-                });
-                if (!exists) {
+                var index = _.findIndex(observers, obs);
+                if (index === -1) {
                     observers.push(obs);
                 }
             },
-
+            removeObserver: function (observer) {
+                observers = _.without(observers, observer);
+            },
             saveSearch: function(savedSearch, params) {
                 savedSearch.config = configService.getConfigId();
                 savedSearch.query = converter.toClassicParams(params);
