@@ -72,6 +72,13 @@ angular.module('voyager.home')
             return authService.hasPermission(permission);
         };
 
+		function _reload(response) {
+			if(response.action === 'login') {
+				_init();
+			}
+		}
+		authService.addObserver(_reload);
+
 		_init();
 
 		/**
@@ -228,7 +235,6 @@ angular.module('voyager.home')
 			$scope.selectedMapType = type;
 		}
 
-
 		function _applyCollection(collection) {
 
 			var solrParams = savedSearchService.getParams(collection);
@@ -240,4 +246,8 @@ angular.module('voyager.home')
 		    });
 
 		}
+
+		$scope.$on('$destroy', function() {
+			authService.removeObserver(_reload);
+		});
 	});

@@ -67,7 +67,11 @@ angular.module('voyager.security').
                 url: config.root + 'api/rest/auth/' + action + '.json',
                 data: request,
                 headers: {'Content-Type': 'application/x-www-form-urlencoded'}
-            }).then(_setLoginState, errorCallback);
+            }).then(function(response) {
+                    response.action = action;
+                    _setLoginState(response);
+                }, errorCallback
+            );
         };
 
         function _getInfoUrl() {
@@ -113,15 +117,13 @@ angular.module('voyager.security').
                 }
             },
             addObserver: function (obs) {
-                var exists = false;
-                observers.forEach(function (entry) {
-                    if (entry === obs) {
-                        exists = true;
-                    }
-                });
-                if (!exists) {
+                var index = _.findIndex(observers, obs);
+                if (index === -1) {
                     observers.push(obs);
                 }
+            },
+            removeObserver: function (obs) {
+                observers = _.without(observers, obs);
             },
             isLoggedIn: function () {
                 return loggedIn;
