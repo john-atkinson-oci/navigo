@@ -29,6 +29,12 @@ angular.module('voyager.filters')
                 humanized = (params['place.op'] === 'within' ? 'Within' : 'Intersects') + ': ' + formattedPlace;
                 $scope.filters.push({'isInput': true, 'name': 'place', 'humanized': humanized, 'isBbox' : isBbox, 'isWkt' : isWkt});
             }
+            if(params['links.to']) {
+                $scope.filters.push({'isInput': false, 'name': 'linksTo', 'humanized': 'Links.To:' + params['links.to']});
+            }
+            if(params['links.from']) {
+                $scope.filters.push({'isInput': false, 'name': 'linksFrom', 'humanized': 'Links.From:' + params['links.from']});
+            }
         }
 
         function clearPlace(params) {
@@ -49,6 +55,13 @@ angular.module('voyager.filters')
                 var args = {isBbox: facet.isBbox, isWkt: facet.isWkt};
                 $location.search(clearPlace($location.search()));
                 $scope.$emit('removeFilterEvent', args);
+            }
+            else if (facet.name === 'linksTo' || facet.name === 'linksFrom') {
+                var params = $location.search();
+                delete params['links.to'];
+                delete params['links.from'];
+                $location.search(params);
+                $scope.$emit('removeFilterEvent', facet);
             }
             else {
                 filterService.removeFilter(facet);
