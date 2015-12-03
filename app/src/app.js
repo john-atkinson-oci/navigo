@@ -78,10 +78,10 @@ angular.module('portalApp', [
 
         function _canProcess(authService, $q) {
             return authService.getPrivileges().then(function() {
-                if(!authService.hasPermission('process')) {
-                    return $q.reject('Not Authorized');
-                } else {
+                if(authService.hasPermission('view') && authService.hasPermission('process')) {
                     return $q.when({});
+                } else {
+                    return $q.reject('Not Authorized');
                 }
             });
         }
