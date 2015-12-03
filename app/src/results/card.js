@@ -157,15 +157,18 @@ angular.module('voyager.results')
                     actionManager.toggleDisplay(actions.types.add, $scope);
                 });
 
-                // TODO check usage and remove
-                //$scope.applyFilter = function(filter, value) {
-                //    var facet = {field:value, filter:filter, humanized : translateService.getFieldName(filter) + ':' + value, name:value};
-                //    filterService.addFilter(facet);
-                //    $location.search('fq', filterService.getFilterAsLocationParams());
-                //    $timeout(function() {  //let scope digest and add url params
-                //        $scope.$emit('filterEvent',{});
-                //    });
-                //};
+                $scope.applyFilter = function(filter, value) {
+                    if($location.path() === '/search') {
+                        var facet = {field:value, filter:filter, humanized : translateService.getFieldName(filter) + ':' + value, name:value};
+                        filterService.addFilter(facet);
+                        $location.search('fq', filterService.getFilterAsLocationParams());
+                        $timeout(function() {  //let scope digest and add url params
+                            $scope.$emit('filterEvent',{});
+                        });
+                    } else {
+                        $window.location.href = '/#search?fq=' + filter + ':' + value + '&disp=' + $location.search().disp;
+                    }
+                };
 
             }
         };

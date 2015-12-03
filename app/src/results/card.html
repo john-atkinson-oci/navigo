@@ -12,7 +12,9 @@
 			<a href="{{::doc.detailLink}}" class="underline">
 				<div class="title"><span ng-if="doc.hasMissingData" class="icon-error"></span><span class="txt" ng-bind="::doc.name"></span></div>
 			</a>
-            <div class="format" ng-bind-html="::doc.formatValue" ng-show="::doc.formatValue"></div>
+			<a ng-if="doc.format" href="javascript:;" ng-click="applyFilter('format',doc.format)">
+				<div class="format" ng-bind-html="::doc.formatValue" ng-show="::doc.formatValue"></div>
+			</a>
             <div class="description" vg-bind-html="::doc.htmlValue"></div>
 		</div>
 	</div>

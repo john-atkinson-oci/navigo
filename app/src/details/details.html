@@ -16,7 +16,11 @@
                                 <h3 class="label label-danger icon-error missing_data" ng-show="doc.hasMissingData">Missing Data</h3>
                                 <h1><span ng-bind="::doc.name"></span></h1>
                                 <div ng-if="showFormat" class="field info muted">
-                                    <span ng-bind="::doc.displayFormat" ng-class="formatClass"></span><span ng-show="::doc.modified" class="bullet" ng-if="showFormat">&bull;</span><span ng-show="::doc.modified">Last index {{::doc.modified | date:'M/d/yyyy, hh:mma' }}</span>
+                                    <a href="#/search?fq=format:{{::doc.format}}&disp={{::disp}}">
+                                        <span ng-bind="::doc.displayFormat" ng-class="formatClass"></span>
+                                    </a>
+                                    <span ng-show="::doc.modified" class="bullet" ng-if="showFormat">&bull;</span>
+                                    <span ng-show="::doc.modified">Last index {{::doc.modified | date:'M/d/yyyy, hh:mma' }}</span>
                                 </div>
                                 <div ng-if="showPath" class="field">
                                     <a href="{{::doc.fullpath}}" ng-show="isURL" target="_blank">{{::doc.fullpath}}</a>

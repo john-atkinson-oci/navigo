@@ -131,16 +131,16 @@
                 if(angular.isDefined(doc.format)) {
                     _setFormatProperties(doc);
                 }
+                if (!_.isEmpty(doc.format)) {
+                    doc.formatValue = translateService.getTypeAbbr(doc.format);
+                    doc.formatLink = '#/search?fq=format:' + doc.format + '&disp=' + disp;
+                }
 
                 if(angular.isDefined(doc.bytes)) {
                     doc.size = sugar.bytesToSize(doc.bytes);
                 }
 
                 htmlified = _loadDisplayFields(doc);
-
-                if (!_.isEmpty(doc.format)){
-                    doc.formatValue = translateService.getTypeAbbr(doc.format);
-                }
 
                 doc.htmlValue = _removeLongTextFieldNames(htmlified);
                 doc.detailLink = _getDetailsLink(doc, disp);
