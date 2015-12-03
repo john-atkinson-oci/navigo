@@ -86,7 +86,6 @@ angular.module('voyager.security').
             return $http.get(_getInfoUrl(),{cache: false, headers: {'Cache-Control' : 'no-cache'}}).then(_setLoginState, defaultErrorCallback);
         }
 
-        _getPrivileges();
         return {
             doLogin: function ($scope, successHandler, errorHandler) {
                 errorCallback = errorHandler;
