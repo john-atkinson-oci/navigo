@@ -17,7 +17,7 @@ describe('SearchCtrl', function () {
         module('voyager.details');
     });
 
-    var scope, controllerService, translateServiceMock, authServiceMock, detailServiceMock, q, tagServiceMock, location, timeout, $http, cartService, $window, authService;
+    var scope, controllerService, translateServiceMock, detailServiceMock, q, tagServiceMock, location, timeout, $http, cartService, $window, authService;
 
     //spies
     var $s = {'configService':{}, 'cartService':{}, searchService:{}};
@@ -143,7 +143,7 @@ describe('SearchCtrl', function () {
 
             spyOn(scope,'$broadcast');
 
-            controllerService('SearchCtrl', {$scope: scope, 'cartService': $s.cartService, 'searchService': $s.searchService, 'translateService': translateServiceMock, 'authService': authServiceMock, 'detailService': detailServiceMock, 'configService':$s.configService, 'tagService':tagServiceMock});
+            controllerService('SearchCtrl', {$scope: scope, 'cartService': $s.cartService, 'searchService': $s.searchService, 'translateService': translateServiceMock, 'detailService': detailServiceMock, 'configService':$s.configService, 'tagService':tagServiceMock});
             $http.expectGET(new RegExp('auth')).respond({});
 
             scope.$apply();
@@ -161,7 +161,7 @@ describe('SearchCtrl', function () {
             $s.configService.getSortable.and.returnValue([sortField, sortField2]);
             $s.searchService.doSearch2.and.returnValue(q.when({data:{response:response}}));
 
-            controllerService('SearchCtrl', {$scope: scope, 'cartService': $s.cartService, 'searchService': $s.searchService, 'translateService': translateServiceMock, 'authService': authServiceMock, 'detailService': detailServiceMock, 'configService':$s.configService, 'tagService':tagServiceMock});
+            controllerService('SearchCtrl', {$scope: scope, 'cartService': $s.cartService, 'searchService': $s.searchService, 'translateService': translateServiceMock, 'detailService': detailServiceMock, 'configService':$s.configService, 'tagService':tagServiceMock});
             $http.expectGET(new RegExp('auth')).respond({});
 
             scope.$apply();
@@ -183,7 +183,7 @@ describe('SearchCtrl', function () {
             $s.configService.getSortable.and.returnValue([sort]);
             $s.searchService.doSearch2.and.returnValue(q.when({data:{response:response}}));
 
-            controllerService('SearchCtrl', {$scope: scope, 'cartService': $s.cartService, 'searchService': $s.searchService, 'translateService': translateServiceMock, 'authService': authServiceMock, 'detailService': detailServiceMock, 'configService':$s.configService, 'tagService':tagServiceMock});
+            controllerService('SearchCtrl', {$scope: scope, 'cartService': $s.cartService, 'searchService': $s.searchService, 'translateService': translateServiceMock, 'detailService': detailServiceMock, 'configService':$s.configService, 'tagService':tagServiceMock});
             $http.expectGET(new RegExp('auth')).respond({});
 
             scope.$apply();
@@ -208,7 +208,7 @@ describe('SearchCtrl', function () {
             $s.configService.getSortable.and.returnValue([sort]);
             $s.searchService.doSearch2.and.returnValue(q.when({data:{response:response}}));
 
-            controllerService('SearchCtrl', {$scope: scope, 'cartService': $s.cartService, 'searchService': $s.searchService, 'translateService': translateServiceMock, 'authService': authServiceMock, 'detailService': detailServiceMock, 'configService':$s.configService, 'tagService':tagServiceMock});
+            controllerService('SearchCtrl', {$scope: scope, 'cartService': $s.cartService, 'searchService': $s.searchService, 'translateService': translateServiceMock, 'detailService': detailServiceMock, 'configService':$s.configService, 'tagService':tagServiceMock});
             $http.expectGET(new RegExp('auth')).respond({});
 
             scope.$apply();
@@ -336,7 +336,7 @@ describe('SearchCtrl', function () {
             $s.configService.getSortable.and.returnValue([sort]);
             $s.searchService.doSearch2.and.returnValue(q.when({data:{response:response}}));
 
-            controllerService('SearchCtrl', {$scope: scope, 'cartService': $s.cartService, 'searchService': $s.searchService, 'translateService': translateServiceMock, 'authService': authServiceMock, 'detailService': detailServiceMock, 'configService':$s.configService, 'tagService':tagServiceMock});
+            controllerService('SearchCtrl', {$scope: scope, 'cartService': $s.cartService, 'searchService': $s.searchService, 'translateService': translateServiceMock, 'detailService': detailServiceMock, 'configService':$s.configService, 'tagService':tagServiceMock});
             scope.$apply();
             spyOn(scope, 'switchMap').and.callThrough();
 
@@ -354,7 +354,7 @@ describe('SearchCtrl', function () {
             $s.configService.getSortable.and.returnValue([sort]);
             $s.searchService.doSearch2.and.returnValue(q.when({data:{response:response}}));
 
-            controllerService('SearchCtrl', {$scope: scope, 'cartService': $s.cartService, 'searchService': $s.searchService, 'translateService': translateServiceMock, 'authService': authServiceMock, 'detailService': detailServiceMock, 'configService':$s.configService, 'tagService':tagServiceMock, 'searchModalService':$s.searchModalService});
+            controllerService('SearchCtrl', {$scope: scope, 'cartService': $s.cartService, 'searchService': $s.searchService, 'translateService': translateServiceMock, 'detailService': detailServiceMock, 'configService':$s.configService, 'tagService':tagServiceMock, 'searchModalService':$s.searchModalService});
             scope.$apply();
 
             scope.exportResultsList();

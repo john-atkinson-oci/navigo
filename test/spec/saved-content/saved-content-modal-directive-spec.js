@@ -64,6 +64,8 @@ describe('Saved Content Modal Directive:', function () {
         it('should default to suggested searches on anonymous', function(){
             httpMock.whenJSONP(new RegExp('ssearch\/select')).respond(response);
             httpMock.expectJSONP(new RegExp('slocation\/select')).respond(response);
+            //TODO why is this firing again
+            httpMock.expectJSONP(new RegExp('slocation\/select')).respond(response);
             applyDirective();
             var evt = scope.$emit('click');
             scope.showCategory(evt, null);

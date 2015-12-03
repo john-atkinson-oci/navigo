@@ -18,8 +18,8 @@ describe('Controller: CartNavCtrl', function () {
 			$provide.constant('config', cfg);
 		});
 
-		inject(function (_$controller_, _$timeout_, _taskService_, _authService_, _cartService_, _searchService_, _$modal_, _usSpinnerService_, _$location_, $httpBackend) {
-			$scope = {};
+		inject(function (_$controller_, _$timeout_, _taskService_, _authService_, _cartService_, _searchService_, _$modal_, _usSpinnerService_, _$location_, $httpBackend, $rootScope) {
+			$scope = $rootScope.$new();
 			$timeout = _$timeout_;
 			taskService = _taskService_;
 			authService = _authService_;
