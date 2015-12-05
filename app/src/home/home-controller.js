@@ -72,9 +72,19 @@ angular.module('voyager.home')
             return authService.hasPermission(permission);
         };
 
+		function _fetch() {
+			//fetch for featured items and collections
+			homeService.fetchCollections().then(function(respond) {
+				$scope.collections = respond;
+			});
+			homeService.fetchFeatured().then(function(respond) {
+				$scope.featured = respond;
+			});
+		}
+
 		function _reload(response) {
 			if(response.action === 'login') {
-				_init();
+				_fetch();
 			}
 		}
 		authService.addObserver(_reload);
@@ -88,14 +98,7 @@ angular.module('voyager.home')
 
 			_createMap();
 
-			//fetch for featured items and collections
-			homeService.fetchCollections().then(function(respond) {
-				$scope.collections = respond;
-			});
-
-			homeService.fetchFeatured().then(function(respond) {
-				$scope.featured = respond;
-			});
+			_fetch();
 
 			$scope.$watch('selectedMapType', function(){
 				if ($scope.selectedMapType === 'Map') {
