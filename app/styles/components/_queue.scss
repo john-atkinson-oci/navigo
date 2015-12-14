@@ -12,10 +12,69 @@
 	margin-top: 10px;
 }
 
+
+// Circles for task steps
+.taskSteps {
+
+	li {
+		width: 1.5em;
+		height: 1.5em;
+		text-align: center;
+		line-height: 1.5em;
+		border: 2px;
+		border-radius: 1em;
+		background: #3a992d;
+		margin: 0 3em;
+		display: inline-block;
+		color: white;
+		position: relative;
+	}
+
+	li::before{
+		content: '';
+		position: absolute;
+		top: .9em;
+		left: -6em;
+		width: 5.5em;
+		height: .15em;
+		background: #3a992d;
+		z-index: -1;
+	}
+
+
+
+	li:first-child::before {
+		display: none;
+	}
+
+	.active {
+		width: 2em;
+		height: 2em;
+		line-height: 2em;
+		background: #3a992d;
+	}
+
+	.active ~ li {
+		background: white;
+		border: 2px solid lightgrey;
+		color: grey;
+	}
+
+	.active ~ li::before {
+		background: lightgrey;
+	}
+
+	body {
+		font-family: sans-serif;
+		padding: 2em;
+	}
+}
+
 // layout
 .page.queue {
 	padding-top: 0px;
 	background: $white;
+
 	.top_area {
 		padding-top: 30px;
 		padding-left: 20px;

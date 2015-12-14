@@ -48,10 +48,10 @@ var config = {
             add:{text:'Add to Queue',icon:'glyphicon glyphicon-list'}
         },
         navbar: {
-            add:{text:'Queue',icon:'icon-card_list'}
+            add:{text:'cart',icon:'icon-card_list'}
         },
         list: {
-            name:'Queue'
+            name:'cart'
         }
     },
     "homepage": {

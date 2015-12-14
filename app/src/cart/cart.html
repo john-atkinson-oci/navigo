@@ -5,6 +5,11 @@
 			<div class="content queue-content">
 				<p ng-if="!cartItems.length && !loading">You have no items in the queue.</p>
 				<table class="table table-condensed table-striped" ng-if="!displayCategory && cartItems.length > 0">
+
+					<div style="line-height: 40px;">
+						<span style="font-size: 24px"> Selected content to be processed</span>
+						<a class="btn btn-primary-sm pull-right" href="#tasks" style="margin-bottom: 10px">Select task ></a></a>
+					</div>
 					<thead>
 						<tr class="semi">
 							<th>&nbsp;</th>

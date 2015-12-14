@@ -1,0 +1,50 @@
+<div class="page queue" ng-controller="TasksCtrl">
+    <ng-include src="'src/cart/cart-nav.html'"></ng-include>
+    <span us-spinner spinner-key="tasks-spinner" spinner-start-active="1"></span>
+    <div class="queue-secondary">
+        <div class="inner">
+            <div ng-show="!refreshing">
+                <p ng-if="!taskList">Unfortunately, none of the default Voyager Tasks are available.</p>
+                <table class="table table-striped" ng-if="taskList">
+
+                    <thead>
+                    <tr class="semi">
+                        <th>
+                            <div style="line-height: 20px;padding:20px">
+                                <span style="font-size: 24px">Select a task</span>
+                                <div class="pull-right" style="font-size: 16px">Refresh tasks
+                                    <button title="Refresh Task List" ng-disabled="refreshing" class="btn btn-xs"
+                                            ng-click="refreshTasks()" style="background: dodgerblue; color: white">
+                                        <span class="glyphicon glyphicon-refresh" style="line-height: inherit"></span>
+                                    </button>
+                                </div>
+                            </div>
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>
+                            <div class="task_group" ng-repeat="(name, group) in taskList">
+                                <a href="javascript:;" class="icon-arrow subcat_trigger keep_open" >
+                                    <span class="glyphicon glyphicon-record" style="display: inline-block;font-size: 1.25em;color: green"></span>
+                                    <span style="padding:10px;font-size:18px;font-weight: 700;">{{name}}</span>
+                                </a>
+                                <ul class="subcat">
+                                    <li ng-repeat="task in group | filter: filterTask">
+                                        <a href="javascript:;" ng-click="selectTask(task)">
+                                            <span class="glyphicon glyphicon-ok-circle" ng-class="getIcon(task)" style="display:inline-block;width:20px;font-size: 1em; color: green"></span>
+                                            <span style="display:inline-block;width:200px;font-weight: 700">{{task.display}}</span>
+                                            <span class="description" style="font-size:14px;display:inline-block;width:30px"></span>{{task.description}}</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+</div>
