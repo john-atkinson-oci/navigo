@@ -17,6 +17,7 @@
 .taskSteps {
 
 	li {
+		content: '';
 		width: 1.5em;
 		height: 1.5em;
 		text-align: center;
@@ -28,36 +29,42 @@
 		display: inline-block;
 		color: white;
 		position: relative;
+
 	}
 
 	li::before{
 		content: '';
 		position: absolute;
-		top: .9em;
+		top: .7em;
 		left: -6em;
 		width: 5.5em;
 		height: .15em;
 		background: #3a992d;
-		z-index: -1;
+		z-index: 1000;
 	}
-
-
 
 	li:first-child::before {
 		display: none;
 	}
 
+	span {
+		float:left;
+		color:lightgrey;
+		white-space:nowrap;
+		margin-left:-30px;
+	}
+
 	.active {
-		width: 2em;
-		height: 2em;
-		line-height: 2em;
+		width: 1.5em;
+		height: 1.5em;
+		line-height: 1.5em;
 		background: #3a992d;
+		color: white;
 	}
 
 	.active ~ li {
 		background: white;
 		border: 2px solid lightgrey;
-		color: grey;
 	}
 
 	.active ~ li::before {
@@ -65,7 +72,7 @@
 	}
 
 	body {
-		font-family: sans-serif;
+		font-family: "proxima_nova_rgregular";
 		padding: 2em;
 	}
 }
@@ -155,7 +162,7 @@
 	.subcat {
 		display: none;
 		li {
-			border-bottom: 1px solid $white;
+			border-bottom: 1px solid #f9f9f9;
 
 			&:last-child {
 				border-bottom: 0;
@@ -163,9 +170,12 @@
 
 			a {
 				padding-left: 36px;
-				background-color: #eef1f2;
+				//background-color: #eef1f2;
 			}
 		}
+
+		li:nth-child(odd) { background-color:#f9f9f9 }
+		li:nth-child(even) {	background-color:#ffffff }
 	}
 
 	&.opened {

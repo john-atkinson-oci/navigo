@@ -1,23 +1,107 @@
 <div ng-controller="CartNavCtrl" class="clearfix top_area">
     <div class="inner">
+
+        <!--Back to search link-->
         <a class="back-to-search semi" ng-href="{{lastSearch}}"><span>&lsaquo;</span> Back to search</a>
-        <div style="position: fixed;left:35%;padding:5px">
-            <ul class="taskSteps">
-                <li class="{{page == 'queue' && 'selected' && 'active' || ''}}" style="color:lightgrey">1
+
+        <div style="position: absolute;left:25%;padding:5px">
+
+            <!--The Cart page-->
+            <ul class="taskSteps" ng-if="page == 'queue'">
+                <li class="{{'selected' && 'active' || ''}}">1
                     <a href="#queue">
-                        <span style="float:left;color:lightgrey;text-align:center;white-space:nowrap;margin-left:-25px">Review cart</span>
+                        <span>Review cart</span>
                     </a>
                 </li>
                 <li class="{{page == 'tasks' && 'selected' && 'active' || ''}}" style="color:lightgrey">2
                     <a href="#tasks">
-                        <span style="float:left;color:lightgrey;white-space:nowrap;margin-left:-25px">Select task</span>
+                        <span>Select task</span>
                     </a>
                 </li>
                 <li class="{{page == 'task' && 'selected' && 'active' || ''}}" style="color:lightgrey">3
-                    <span style="float:left;color:lightgrey;white-space:nowrap;margin-left:-30px">Configure task</span>
+                    <span>Configure task</span>
                 </li>
                 <li style="color:lightgrey">4
-                    <span style="float:left;color:lightgrey;white-space:nowrap;margin-left:-30px">Task status</span>
+                    <span>Task status</span>
+                </li>
+            </ul>
+
+            <!--The Tasks page-->
+            <ul class="taskSteps" ng-if="page == 'tasks'">
+                <li>
+                    <div class="glyphicon glyphicon-ok" style="font-size:12px"></div>
+                    <a href="#queue">
+                        <span>Review cart</span>
+                    </a>
+                </li>
+                <li class="{{'selected' && 'active' || ''}}">2
+                    <a href="#tasks">
+                        <span>Select task</span>
+                    </a>
+                </li>
+                <li class="{{page == 'task' && 'selected' && 'active' || ''}}" style="color:lightgrey">3
+                    <span>Configure task</span>
+                </li>
+                <li style="color:lightgrey">4
+                    <span>Task status</span>
+                </li>
+            </ul>
+
+            <!--The Task page-->
+            <ul class="taskSteps" ng-if="page == 'task'">
+                <li>
+                    <div class="glyphicon glyphicon-ok" style="font-size:12px"></div>
+                    <a href="#queue">
+                        <span>Review cart</span>
+                    </a>
+                </li>
+                <li>
+                    <div class="glyphicon glyphicon-ok" style="font-size:12px"></div>
+                    <a href="#tasks">
+                        <span>Select task</span>
+                    </a>
+                </li>
+                <li class="{{page == 'task' && 'selected' && 'active' || ''}}">3
+                    <span>Configure task</span>
+                </li>
+                <li style="color:lightgrey">4
+                    <span>Task status</span>
+                </li>
+            </ul>
+
+            <!--The Task status page-->
+            <ul class="taskSteps" ng-if="page == 'status'">
+                <li>
+                    <div class="glyphicon glyphicon-ok" style="font-size:12px"></div>
+                    <a href="#queue">
+                        <span>Review cart</span>
+                    </a>
+                </li>
+                <li>
+                    <div class="glyphicon glyphicon-ok" style="font-size:12px"></div>
+                    <a href="#tasks">
+                        <span>Select task</span>
+                    </a>
+                </li>
+                <li>
+                    <div class="glyphicon glyphicon-ok" style="font-size:12px"></div>
+                    <span>Configure task</span>
+                </li>
+                <li ng-if="taskStatusIcon == 'fa fa-cog fa-spin'">
+                    <div ng-class="taskStatusIcon" style="font-size: 12px;"></div>
+                    <span>Task status</span>
+                </li>
+                <li ng-if="taskStatusIcon == 'icon-warning'" style="background: orange">
+                    <div class="glyphicon glyphicon-ok" style="font-size:12px"></div>
+                    <span>Task status</span>
+                </li>
+                <li ng-if="taskStatusIcon == 'icon-error'" style="background: red">
+                    <div class="icon-queue_status_error" style="font-size: 12px"></div>
+                    <span>Task status</span>
+                </li>
+                <li ng-if="taskStatusIcon == 'glyphicon glyphicon-ok'">
+                    <div class="glyphicon glyphicon-ok" style="font-size:12px"></div>
+                    <span>Task status</span>
                 </li>
             </ul>
         </div>

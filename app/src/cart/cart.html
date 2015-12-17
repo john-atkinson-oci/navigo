@@ -2,11 +2,9 @@
 	<ng-include src="'src/cart/cart-nav.html'"></ng-include>
 	<div class="queue-secondary">
 		<div class="inner">
-			<div class="content queue-content">
-				<p ng-if="!cartItems.length && !loading">You have no items in the queue.</p>
+			<div class="content queue-content"><p ng-if="!cartItems.length && !loading">You have no items in the queue.</p>
 				<table class="table table-condensed table-striped" ng-if="!displayCategory && cartItems.length > 0">
-
-					<div style="line-height: 40px;">
+					<div ng-if="cartItems.length > 0" style="line-height: 40px;">
 						<span style="font-size: 24px"> Selected content to be processed</span>
 						<a class="btn btn-primary-sm pull-right" href="#tasks" style="margin-bottom: 10px">Select task ></a></a>
 					</div>

@@ -77,5 +77,9 @@ angular.module('portalApp')
             }
         });
 
+        $rootScope.$on('taskStatusEvent', function(event, args) {
+            $rootScope.$broadcast('taskStatusChanged', args);
+        });
+
         L.Icon.Default.imagePath = 'assets/img';
     });

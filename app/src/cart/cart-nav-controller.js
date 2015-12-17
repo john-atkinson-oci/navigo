@@ -4,6 +4,7 @@ angular.module('cart')
         'use strict';
 
         function _init() {
+            $scope.taskStatusIcon = 'fa fa-cog fa-spin';
             $scope.lastSearch = searchService.getLastSearch();
             var path = $location.path().split('/');
             $scope.page = path[1];
@@ -108,4 +109,16 @@ angular.module('cart')
 
         _init();
 
+        // Return the status icon for the message type.
+        $scope.$on('taskStatusChanged', function (event, args) {
+           if (args === 'alert-running') {
+               $scope.taskStatusIcon = 'fa fa-cog fa-spin';
+           } else if (args === 'alert-success') {
+               $scope.taskStatusIcon = 'glyphicon glyphicon-ok';
+           } else if (args === 'alert-warning') {
+               $scope.taskStatusIcon = 'icon-warning';
+           } else {
+                $scope.taskStatusIcon = 'icon-error';
+           }
+        });
     });

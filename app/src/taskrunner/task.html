@@ -1,37 +1,40 @@
-<div class="clearfix top_area" ng-controller="TaskCtrl">
+<div class="page queue" ng-controller="TaskCtrl">
     <ng-include src="'src/cart/cart-nav.html'"></ng-include>
-    <div class="queue-secondary"></div>
-    <div class="content container">
-        <div class="task_header">
-            <h3>{{task.display}} <a href="{{task.helpURL}}" title="Help" target="_blank"><i
-                    class="fa fa-question-circle" aria-label="Help and Support"></i></a></h3>
-            <p ng-bind="task.description"></p>
-        </div>
+    <span us-spinner spinner-key="tasks-spinner" spinner-start-active="1"></span>
+    <div class="queue-secondary">
+        <div class="content container">
+            <div class="task_header">
+                <h3>{{task.display}} <a href="{{task.helpURL}}" title="Help" target="_blank"><i
+                        class="fa fa-question-circle" aria-label="Help and Support"></i></a></h3>
+                <p ng-bind="task.description"></p>
+            </div>
 
-        <div>
-            <div class="row" id="task-details">
-                <div class="pull-right" ng-show="hasAdvanced">
-                    <a href="javascript:;" class="underline small" ng-click="showAdvanced = !showAdvanced"><span
-                            class="txt">{{showAdvanced ? 'Hide':'Show'}} Advanced Options</span></a>
-                </div>
-                <div id="mapParams" class="col-sm-6" ng-show="hasMap">
-                    <vs-param ng-repeat="p in mapParams" param="p" show="showAdvanced"></vs-param>
-                </div>
-                <div id="params" ng-class="hasMap ? 'col-sm-6' : 'col-lg-12 col-md-12'">
-                    <vs-param ng-repeat="p in params" param="p" show="showAdvanced"></vs-param>
-                    <div class="process-control alert alert-danger" ng-repeat="error in errors" ng-show="hasError"><span
-                            class="icon_warning"/> {{error.message}}
+            <div>
+                <div class="row" id="task-details">
+                    <div class="pull-right" ng-show="hasAdvanced">
+                        <a href="javascript:;" class="underline small" ng-click="showAdvanced = !showAdvanced"><span
+                                class="txt">{{showAdvanced ? 'Hide':'Show'}} Advanced Options</span></a>
+                    </div>
+                    <div id="mapParams" class="col-sm-6" ng-show="hasMap">
+                        <vs-param ng-repeat="p in mapParams" param="p" show="showAdvanced"></vs-param>
+                    </div>
+                    <div id="params" ng-class="hasMap ? 'col-sm-6' : 'col-lg-12 col-md-12'">
+                        <vs-param ng-repeat="p in params" param="p" show="showAdvanced"></vs-param>
+                        <div class="process-control alert alert-danger" ng-repeat="error in errors"
+                             ng-show="hasError"><span
+                                class="icon_warning"/> {{error.message}}
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div class="modal-footer" style="padding: 10px 0 0 0">
-            <div class="cta_row">
-                <button class="btn btn-primary" ng-click="execTask()">Run Task</button>
-                <a href="javascript:;" class="link_secondary" ng-click="cancel()">Cancel</a>
+            <div class="modal-footer" style="padding: 0 0 0 0">
+                <div class="cta_row">
+                    <button class="btn btn-primary" ng-click="execTask()">Run Task</button>
+                    <a href="javascript:;" class="link_secondary" ng-click="cancel()">Cancel</a>
+                </div>
             </div>
+            <a href="javascript:;" class="modal-close icon-x" ng-click="cancel()"></a>
         </div>
-        <a href="javascript:;" class="modal-close icon-x" ng-click="cancel()"></a>
     </div>
 </div>
