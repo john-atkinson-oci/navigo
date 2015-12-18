@@ -16,6 +16,10 @@
 // Circles for task steps
 .taskSteps {
 
+	position: absolute;
+	left: 25%;
+	padding: 5px;
+
 	li {
 		content: '';
 		width: 1.5em;
@@ -27,7 +31,7 @@
 		background: #3a992d;
 		margin: 0 3em;
 		display: inline-block;
-		color: white;
+		color: #ffffff;
 		position: relative;
 
 	}
@@ -49,31 +53,45 @@
 
 	span {
 		float:left;
-		color:lightgrey;
+		color:#d3d7d8;
 		white-space:nowrap;
 		margin-left:-30px;
 	}
 
 	.active {
-		width: 1.5em;
-		height: 1.5em;
 		line-height: 1.5em;
 		background: #3a992d;
-		color: white;
+		color: #ffffff;
 	}
 
 	.active ~ li {
-		background: white;
-		border: 2px solid lightgrey;
+		background: #ffffff;
+		border: 2px solid #d3d7d8;
 	}
 
 	.active ~ li::before {
-		background: lightgrey;
+		background: #d3d7d8;
 	}
 
 	body {
 		font-family: "proxima_nova_rgregular";
 		padding: 2em;
+	}
+
+	.size-twelve {
+		font-size: 12px;
+	}
+
+	.lightgrey {
+		color: #d3d7d8;
+	}
+
+	.orange {
+		background: #ffA500;
+	}
+
+	.red {
+		background: #ff0000;
 	}
 }
 
