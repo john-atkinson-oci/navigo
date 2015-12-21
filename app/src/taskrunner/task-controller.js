@@ -4,12 +4,7 @@ angular.module('taskRunner')
     .controller('TaskCtrl', function ($scope, taskService, usSpinnerService, paramService, localStorageService, cartService, sugar, $location, $stateParams) {
         'use strict';
 
-        //$scope.task = {};
         $scope.task = $stateParams.task;
-        //$scope.task = task;
-        //$scope.taskList = taskList;
-        //$scope.extent = extent;
-
         $scope.params = [];
         $scope.hasMap = true;
         $scope.showAdvanced = false;
@@ -152,9 +147,9 @@ angular.module('taskRunner')
 
         _init();
 
-        $scope.cancel = function() {
-            $modalInstance.close();
-        };
+        //$scope.cancel = function() {
+        //    $modalInstance.close();
+        //};
 
         $scope.setError = function(val) {
             $scope.errorMessage = val;
