@@ -1,4 +1,4 @@
-/*global angular, $, _*/
+/*global angular, _*/
 
 angular.module('taskRunner')
 
