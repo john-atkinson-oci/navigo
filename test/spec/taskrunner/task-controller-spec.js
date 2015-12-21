@@ -40,7 +40,7 @@ describe('TaskCtrl', function () {
         httpMock.expectGET(new RegExp('task\/name\/init')).respond({params:[inputItemsWithQuery]});  // check status call
         httpMock.expectGET(new RegExp('display')).respond({params:[inputItemsWithQuery]});  // check status call
 
-        controllerService('TaskCtrl', {$scope: scope, $modalInstance:{close: function(){}}, task:{name:'name'}, taskList:{}, extent:'0 0 0 0'});
+        controllerService('TaskCtrl', {$scope: scope, task:{name:'name'}, taskList:{}, extent:'0 0 0 0'});
 
         httpMock.flush();
     }
