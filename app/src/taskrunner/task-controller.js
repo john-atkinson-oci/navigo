@@ -149,10 +149,6 @@ angular.module('taskRunner')
 
         _init();
 
-        //$scope.cancel = function() {
-        //    $modalInstance.close();
-        //};
-
         $scope.setError = function(val) {
             $scope.errorMessage = val;
             $scope.hasError = true;
