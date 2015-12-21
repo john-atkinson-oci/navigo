@@ -12,6 +12,7 @@ describe('TaskCtrl', function () {
         module('ui.bootstrap');
         module('cart');
         module('voyager.filters');
+        module('ui.router');
         module(function ($provide) {
             $provide.constant('config', config);
             //$provide.value('authService',{});  //mock the auth service so it doesn't call the init methods
@@ -39,7 +40,6 @@ describe('TaskCtrl', function () {
         httpMock.expectGET(new RegExp('projections')).respond({});  // param service - projections call (could mock param service)
         httpMock.expectGET(new RegExp('task\/name\/init')).respond({params:[inputItemsWithQuery]});  // check status call
         httpMock.expectGET(new RegExp('display')).respond({params:[inputItemsWithQuery]});  // check status call
-
         controllerService('TaskCtrl', {$scope: scope, task:{name:'name'}, taskList:{}, extent:'0 0 0 0'});
 
         httpMock.flush();

@@ -5,6 +5,8 @@ angular.module('taskRunner')
         'use strict';
 
         $scope.task = $stateParams.task;
+        $scope.taskList = $stateParams.taskList;
+        $scope.extent = $stateParams.extent;
         $scope.params = [];
         $scope.hasMap = true;
         $scope.showAdvanced = false;
