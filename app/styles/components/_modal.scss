@@ -137,6 +137,11 @@
 	padding-top: 10px;
 }
 
+.modal-task-footer {
+	@extend .modal-footer;
+	padding: 0 0 0 0;
+}
+
 .modal-footer {
 	background-color: $likewhite;
 	border: 0;

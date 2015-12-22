@@ -100,6 +100,27 @@ angular.module('portalApp')
                     }
                 }
             })
+            .state('tasks', {
+                url: '/tasks',
+                templateUrl: 'src/taskrunner/tasks.html',
+                resolve: {
+                    load: function ($q, authService) {
+                        return _canProcess(authService, $q);
+                    }
+                }
+            })
+
+            .state('task', {
+                url: '/task',
+                templateUrl: 'src/taskrunner/task.html',
+                params: {task: {}},
+                resolve: {
+                    load: function ($q, authService) {
+                        return _canProcess(authService, $q);
+                    }
+                }
+            })
+
             .state('history', {
                 url: '/history',
                 templateUrl: 'src/jobs/view-jobs.html',

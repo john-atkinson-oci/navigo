@@ -34,7 +34,7 @@ var config = {
     markerLimit:10001,
     proxy:'http://localhost:8888/proxy/jsonp/',
     docActions: [
-        {text:'Add to Queue', action:'add', visible:'canCart', toggle:'inCart', off:'Remove', onIcon:'icon-plus', offIcon:'icon-x'},
+        {text:'Add to Cart', action:'add', visible:'canCart', toggle:'inCart', off:'Remove', onIcon:'icon-plus', offIcon:'icon-x'},
         {text:'Download', action:'download', visible:'hasDownload', alt:'Open'},
         {text:'Open in Map Viewer', action:'open', visible:'isService', url:'http://voyagerdemo.com/voyagerwidget/'},
         {text:'Open in ArcMap', action:'openArcMap', visible:'isEsriLayer'}
@@ -45,13 +45,13 @@ var config = {
     ui: {
         details:{
             map:{text:'Preview',icon:'glyphicon glyphicon-globe'},
-            add:{text:'Add to Queue',icon:'glyphicon glyphicon-list'}
+            add:{text:'Add to Cart',icon:'glyphicon glyphicon-list'}
         },
         navbar: {
-            add:{text:'Queue',icon:'icon-card_list'}
+            add:{text:'Cart',icon:'icon-card_list'}
         },
         list: {
-            name:'Queue'
+            name:'Cart'
         }
     },
     "homepage": {

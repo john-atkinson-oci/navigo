@@ -12,10 +12,94 @@
 	margin-top: 10px;
 }
 
+
+// Circles for task steps
+.taskSteps {
+
+	position: absolute;
+	left: 25%;
+	padding: 5px;
+
+	li {
+		content: '';
+		width: 1.5em;
+		height: 1.5em;
+		text-align: center;
+		line-height: 1.5em;
+		border: 2px;
+		border-radius: 1em;
+		background: #3a992d;
+		margin: 0 3em;
+		display: inline-block;
+		color: #ffffff;
+		position: relative;
+
+	}
+
+	li::before{
+		content: '';
+		position: absolute;
+		top: .7em;
+		left: -6em;
+		width: 5.5em;
+		height: .15em;
+		background: #3a992d;
+		z-index: 1000;
+	}
+
+	li:first-child::before {
+		display: none;
+	}
+
+	span {
+		float:left;
+		color:#d3d7d8;
+		white-space:nowrap;
+		margin-left:-30px;
+	}
+
+	.active {
+		line-height: 1.5em;
+		background: #3a992d;
+		color: #ffffff;
+	}
+
+	.active ~ li {
+		background: #ffffff;
+		border: 2px solid #d3d7d8;
+	}
+
+	.active ~ li::before {
+		background: #d3d7d8;
+	}
+
+	body {
+		font-family: "proxima_nova_rgregular";
+		padding: 2em;
+	}
+
+	.size-twelve {
+		font-size: 12px;
+	}
+
+	.lightgrey {
+		color: #d3d7d8;
+	}
+
+	.orange {
+		background: #ffA500;
+	}
+
+	.red {
+		background: #ff0000;
+	}
+}
+
 // layout
 .page.queue {
 	padding-top: 0px;
 	background: $white;
+
 	.top_area {
 		padding-top: 30px;
 		padding-left: 20px;
@@ -96,7 +180,7 @@
 	.subcat {
 		display: none;
 		li {
-			border-bottom: 1px solid $white;
+			border-bottom: 1px solid #f9f9f9;
 
 			&:last-child {
 				border-bottom: 0;
@@ -104,9 +188,12 @@
 
 			a {
 				padding-left: 36px;
-				background-color: #eef1f2;
+				//background-color: #eef1f2;
 			}
 		}
+
+		li:nth-child(odd) { background-color:#f9f9f9 }
+		li:nth-child(even) {	background-color:#ffffff }
 	}
 
 	&.opened {

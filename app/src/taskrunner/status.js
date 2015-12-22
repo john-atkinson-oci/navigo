@@ -19,10 +19,12 @@ angular.module('taskRunner')
         $scope.messages = [];
         $scope.isDetailsOpen = true;
         $scope.statusMessage = '';
+
         $scope.isDetailsCollapsed = true;
         $scope.showLog = true;
         $scope.logFiles = [];
         $scope.showFile = false;
+        $scope.$emit('taskStatusEvent', 'alert-running');
 
         //var info = 'This task as well as a list of your recent tasks can be found under the Home > Processing > History page should you need to access the download of the log after this session.';
         var info = '';
@@ -41,6 +43,7 @@ angular.module('taskRunner')
             $scope.isRunning = false;
             $scope.hasProgressMessage = false;
             $scope.progress = [];
+            $scope.$emit('taskStatusEvent', messageType);
         };
 
         this.statusError = function (data) {
@@ -183,10 +186,12 @@ angular.module('taskRunner')
                 $scope.statusDetail = 'Completed with Warnings. See task log for details.';
                 $scope.statusIcon = _getIcon(data.state);
                 $scope.statusColor = 'alert-warning';
+                $scope.messageType = 'alert-warning';
             } else {
                 $scope.statusDetail = 'Your task was successful.';
                 $scope.statusIcon = _getIcon('SUCCESS');
                 $scope.statusColor = 'alert-success';
+                $scope.messageType = 'alert-success';
             }
 
             if($scope.files.length > 0) {
@@ -198,7 +203,7 @@ angular.module('taskRunner')
                 _confirmStatus();  //seems generating log files can be delayed
             }, 1000);
 
-            done('alert-success');
+            done($scope.messageType);
 
             $analytics.eventTrack('process', {
                 category: $scope.type, label: data.state  // jshint ignore:line

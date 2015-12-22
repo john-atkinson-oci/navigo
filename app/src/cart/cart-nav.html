@@ -1,41 +1,109 @@
 <div ng-controller="CartNavCtrl" class="clearfix top_area">
     <div class="inner">
-        <header>
-            <a class="back-to-search semi" ng-href="{{lastSearch}}"><span>&lsaquo;</span> Back to search</a>
-            <h1>My {{uiText.name}} <span ng-if="cartItemCount" class="highlight queue_count" ng-bind="cartItemCount | number"></span></h1>
-        </header>
 
-        <nav class="col-md-12 no_padding clearfix">
-            <div class="col-md-6 no_padding tab">
-                <ul>
-                    <li class="{{page == 'queue' && 'selected' || ''}}"><a href="#queue">New Task</a></li>
-                    <li class="{{page == 'status' && 'selected' || ''}}"><a>Task status</a></li>
-                    <li class="{{page == 'history' && 'selected' || ''}}"><a href="#history">Task history</a></li>
-                </ul>
-            </div>
-            <div class="col-md-6 no_padding pull-right">
-                <div class="hover_flyout top_only pull-right max_height" ng-if="showTaskList">
-                    <a href="javascript:;" class="btn btn-primary flyout_trigger" id="runTaskBtn">Select a task<span class="icon-arrow"></span></a>
-                    <div class="flyout task_flyout">
-                        <div class="arrow"></div>
-                        <div class="flyout_inner">
-                            <ul>
-                                <li class="semi">
-                                    <div class="task_group" ng-repeat="(name, group) in taskList">
-                                        <a href="javascript:;" class="icon-arrow subcat_trigger keep_open">{{name}}</a>
-                                        <ul class="subcat">
-                                            <li ng-repeat="task in group | filter: filterTask">
-                                                <a href="javascript:;" ng-click="selectTask(task)" id="{{task.name}}" title="{{task.description}}">{{task.display}}</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </li>
-                                <li class="reload_task" ng-show="canReload"><a href="javascript:;" ng-click="refreshTasks()" class="keep_open">Refresh <span class="glyphicon glyphicon-refresh"></span>&nbsp;<span us-spinner="{top: '20px', left: '125px', radius: 4, width: 3, length: 5}" spinner-key="tasks-spinner"></span></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </nav>
+        <!--Back to search link-->
+        <a class="back-to-search semi" ng-href="{{lastSearch}}"><span>&lsaquo;</span> Back to search</a>
+
+        <div>
+            <!--The Cart page-->
+            <ul class="taskSteps" ng-if="page == 'queue'">
+                <li class="{{'selected' && 'active' || ''}}">1
+                    <a href="#queue">
+                        <span>Review cart</span>
+                    </a>
+                </li>
+                <li class="{{page == 'tasks' && 'selected' && 'active' || ''}} lightgrey">2
+                    <a href="#tasks">
+                        <span>Select task</span>
+                    </a>
+                </li>
+                <li class="{{page == 'task' && 'selected' && 'active' || ''}} lightgrey">3
+                    <span>Configure task</span>
+                </li>
+                <li style="color:lightgrey">4
+                    <span>Task status</span>
+                </li>
+            </ul>
+
+            <!--The Tasks page-->
+            <ul class="taskSteps" ng-if="page == 'tasks'">
+                <li>
+                    <div class="glyphicon glyphicon-ok size-twelve"></div>
+                    <a href="#queue">
+                        <span>Review cart</span>
+                    </a>
+                </li>
+                <li class="{{'selected' && 'active' || ''}}">2
+                    <a href="#tasks">
+                        <span>Select task</span>
+                    </a>
+                </li>
+                <li class="{{page == 'task' && 'selected' && 'active' || ''}} lightgrey">3
+                    <span>Configure task</span>
+                </li>
+                <li class="lightgrey">4
+                    <span>Task status</span>
+                </li>
+            </ul>
+
+            <!--The Task page-->
+            <ul class="taskSteps" ng-if="page == 'task'">
+                <li>
+                    <div class="glyphicon glyphicon-ok size-twelve"></div>
+                    <a href="#queue">
+                        <span>Review cart</span>
+                    </a>
+                </li>
+                <li>
+                    <div class="glyphicon glyphicon-ok size-twelve"></div>
+                    <a href="#tasks">
+                        <span>Select task</span>
+                    </a>
+                </li>
+                <li class="{{page == 'task' && 'selected' && 'active' || ''}}">3
+                    <span>Configure task</span>
+                </li>
+                <li class="lightgrey">4
+                    <span>Task status</span>
+                </li>
+            </ul>
+
+            <!--The Task status page-->
+            <ul class="taskSteps" ng-if="page == 'status'">
+                <li>
+                    <div class="glyphicon glyphicon-ok size-twelve"></div>
+                    <a href="#queue">
+                        <span>Review cart</span>
+                    </a>
+                </li>
+                <li>
+                    <div class="glyphicon glyphicon-ok size-twelve"></div>
+                    <a href="#tasks">
+                        <span>Select task</span>
+                    </a>
+                </li>
+                <li>
+                    <div class="glyphicon glyphicon-ok size-twelve"></div>
+                    <span>Configure task</span>
+                </li>
+                <li ng-if="taskStatusIcon == 'fa fa-cog fa-spin'">
+                    <div ng-class="taskStatusIcon"></div>
+                    <span>Task status</span>
+                </li>
+                <li ng-if="taskStatusIcon == 'icon-warning'" class="orange">
+                    <div class="glyphicon glyphicon-ok size-twelve"></div>
+                    <span>Task status</span>
+                </li>
+                <li ng-if="taskStatusIcon == 'icon-error'" class="red">
+                    <div class="icon-queue_status_error size-twelve"></div>
+                    <span>Task status</span>
+                </li>
+                <li ng-if="taskStatusIcon == 'glyphicon glyphicon-ok'">
+                    <div class="glyphicon glyphicon-ok size-twelve"></div>
+                    <span>Task status</span>
+                </li>
+            </ul>
+        </div>
+            <h1>My {{uiText.name}} <span ng-if="cartItemCount" class="highlight queue_count" ng-bind="cartItemCount | number"></span></h1>
     </div>
 </div>

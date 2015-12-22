@@ -3,12 +3,8 @@ angular.module('cart')
     .controller('CartNavCtrl', function (config, $scope, $location, searchService, cartService, authService, usSpinnerService, $modal, taskService, $timeout) {
         'use strict';
 
-        function _syncCartNav() {
-            $scope.cartItemCount = cartService.getCount();
-            $scope.showTaskList = $scope.cartItemCount > 0;
-        }
-
         function _init() {
+            $scope.taskStatusIcon = 'fa fa-cog fa-spin';
             $scope.lastSearch = searchService.getLastSearch();
             var path = $location.path().split('/');
             $scope.page = path[1];
@@ -18,8 +14,12 @@ angular.module('cart')
             } else {
                 $scope.showTaskList = cartService.getCount() > 0;
                 _loadTasks();
+                $scope.cartItemCount = cartService.getCount();
 
-                cartService.addObserver(_syncCartNav);
+                cartService.addObserver(function () {
+                    $scope.cartItemCount = cartService.getCount();
+                    $scope.showTaskList = $scope.cartItemCount > 0;
+                });
                 _setPermissions();
                 authService.addObserver(_setPermissions);
             }
@@ -39,23 +39,23 @@ angular.module('cart')
         }
 
         function _loadTasks() {
-            taskService.findAllTasks($scope.canReload).then(function(response) {
+            taskService.findAllTasks($scope.canReload).then(function (response) {
                 $scope.taskList = response;
                 $scope.refreshing = false;
                 var task = _getTask();
-                if(!_.isEmpty(task)) {
-                    $timeout(function() {
+                if (!_.isEmpty(task)) {
+                    $timeout(function () {
                         var defaultTask;
-                        if(_.isArray($scope.taskList)) {
-                            defaultTask = _.find($scope.taskList, {name:task});
+                        if (_.isArray($scope.taskList)) {
+                            defaultTask = _.find($scope.taskList, {name: task});
                         } else {
-                            _.each($scope.taskList, function(category) {
-                                if(!defaultTask) {
-                                    defaultTask = _.find(category, {name:task});
+                            _.each($scope.taskList, function (category) {
+                                if (!defaultTask) {
+                                    defaultTask = _.find(category, {name: task});
                                 }
                             });
                         }
-                        if(defaultTask && defaultTask.available === true) {
+                        if (defaultTask && defaultTask.available === true) {
                             $scope.selectTask(defaultTask);
                         }
                     });
@@ -64,19 +64,19 @@ angular.module('cart')
             });
         }
 
-        $scope.refreshTasks = function() {
+        $scope.refreshTasks = function () {
             if (!$scope.refreshing) {
                 $scope.refreshing = true;
                 usSpinnerService.spin('tasks-spinner');
-                taskService.refresh().then(function() {
+                taskService.refresh().then(function () {
                     _loadTasks();
                 });
             }
         };
 
-        $scope.selectTask = function(task) {
+        $scope.selectTask = function (task) {
             task.isSelected = !task.isSelected;
-            if(task.available === true) {
+            if (task.available === true) {
                 task.isNew = true;
                 _openTaskModal(task);
             }
@@ -84,21 +84,21 @@ angular.module('cart')
 
         function _openTaskModal(task) {
             var modalInstance = $modal.open({
-                    templateUrl: 'src/taskrunner/task.html',
-                    size: 'lg',
-                    controller: 'TaskCtrl',
-                    resolve: {
-                        task: function() {
-                            return task;
-                        },
-                        taskList: function() {
-                            return $scope.taskList;
-                        },
-                        extent: function() {
-                            return $scope.cartItemExtent;
-                        }
+                templateUrl: 'src/taskrunner/task.html',
+                size: 'lg',
+                controller: 'TaskCtrl',
+                resolve: {
+                    task: function () {
+                        return task;
+                    },
+                    taskList: function () {
+                        return $scope.taskList;
+                    },
+                    extent: function () {
+                        return $scope.cartItemExtent;
                     }
-                });
+                }
+            });
 
             modalInstance.result.then(function () {
                 $location.search('task', null);
@@ -109,8 +109,16 @@ angular.module('cart')
 
         _init();
 
-        $scope.$on('$destroy', function() {
-            authService.removeObserver(_setPermissions);
-            cartService.removeObserver(_syncCartNav);
+        // Return the status icon for the message type.
+        $scope.$on('taskStatusChanged', function (event, args) {
+            if (args === 'alert-running') {
+                $scope.taskStatusIcon = 'fa fa-cog fa-spin';
+            } else if (args === 'alert-success') {
+                $scope.taskStatusIcon = 'glyphicon glyphicon-ok';
+            } else if (args === 'alert-warning') {
+                $scope.taskStatusIcon = 'icon-warning';
+            } else {
+                $scope.taskStatusIcon = 'icon-error';
+            }
         });
     });
