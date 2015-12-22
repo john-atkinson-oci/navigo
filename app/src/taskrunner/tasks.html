@@ -26,9 +26,9 @@
                                     <span class="category-name"><b>{{name}}</b></span>
                                 </a>
                                 <ul class="subcat">
-                                    <li ng-repeat="task in group | filter: filterTask">
+                                    <li ng-repeat="task in group">
                                         <a href="javascript:;" ng-click="selectTask(task)">
-                                            <span class="glyphicon glyphicon-ok-circle glyphicon-green task-status" ng-class="getIcon(task)"></span>
+                                            <span class="glyphicon glyphicon-ok-circle glyphicon-green task-status" ng-class="task.available ? 'glyphicon-ok-circle':'glyphicon-ban-circle'"></span>
                                             <span class="task-display-name"><b>{{task.display}}</b></span>
                                             <span class="task-description">{{task.description}}</span></a>
                                     </li>

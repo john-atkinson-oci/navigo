@@ -1,5 +1,7 @@
 .task_header {
 	position: relative;
+	background: #ffffff;
+	padding: 1px 1px 10px 15px;
 
 	h3, p {
 		padding-right: 200px;
@@ -30,6 +32,18 @@
 				overflow-y: auto;
 			}
 		}
+	}
+}
+
+.task-params {
+	background: #ffffff;
+	padding-left: 15px;
+	padding-right: 15px;
+	padding-top: 10px;
+	margin-top: 1px;
+
+	> .row {
+		margin-right: 0;
 	}
 }
 
