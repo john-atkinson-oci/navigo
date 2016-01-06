@@ -56,6 +56,11 @@ angular.module('taskRunner').
                 return $q.all([taskPromise,taskDisplayPromise]);
             },
 
+            // TODO: REVIEW
+            fetchValidTaskItems: function(query) {
+                return cartItemsQuery.fetchValidTaskItemsCount(query);
+            },
+
             lookupTaskDisplay: function(type) {
                 return $http.get(config.root + 'api/rest/process/task/' + type + '/display.json?lang=en');
             },

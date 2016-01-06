@@ -4,6 +4,10 @@
     <div class="queue-secondary">
         <div class="content container">
             <div class="task_header">
+                <div ng-if="hasInvalidItems">
+                    <b class="col-lg-8 col-md-8 semi  alert-warning">
+                        <i class="icon-queue_status_error size-twelve" style="color: white"></i> Some items in the cart are not valid for this task. Voyager will process what it can or select a different task.</b>
+                </div>
                 <h3>{{task.display}} <a href="{{task.helpURL}}" title="Help" target="_blank"><i
                         class="fa fa-question-circle" aria-label="Help and Support"></i></a></h3>
                 <p ng-bind="task.description"></p>

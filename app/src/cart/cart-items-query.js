@@ -130,7 +130,7 @@ angular.module('cart').
         function _getQueryString(queryCriteria, items) {
             var queryString = config.root + 'solr/v0/select';
             queryString += _setParams(queryCriteria, items);
-            queryString += '&fl=id,title, name:[name],format,thumb:[thumbURL]';
+            queryString += '&fl=id,title,name:[name],format,thumb:[thumbURL]';
             queryString += '&rows=100&extent.bbox=true';
             if(queryCriteria && (angular.isUndefined(items) || items.length === 0)) { //setParams will apply filters
                 if(angular.isDefined(queryCriteria.filters)) {
@@ -209,6 +209,15 @@ angular.module('cart').
             });
         }
 
+        //TODO: REVIEW
+        function _fetchValidTaskItemsCount(queryCriteria) {
+            return $http.jsonp(_getQueryString(queryCriteria)).then(function successCallback(res) {
+                return ({count:res.data.response.numFound});
+            }, function errorCallback(res) {
+                console.log(res.message);
+            });
+        }
+
         function _fetchQueued(queryCriteria, items, queued) {
             return $http.jsonp(_getQueuedQueryString(queryCriteria, items, queued)).then(function(res) {
                 return res.data.response.docs;
@@ -245,6 +254,11 @@ angular.module('cart').
                 } else {
                     return _fetchSummary(_.clone(queryCriteria), items);
                 }
+            },
+
+            //TODO: REVIEW
+            fetchValidTaskItemsCount: function(queryCriteria) {
+              return _fetchValidTaskItemsCount(_.clone(queryCriteria));
             },
 
             fetchQueued: function(queryCriteria, items, queued) {
