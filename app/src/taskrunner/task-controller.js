@@ -1,15 +1,12 @@
 /*global angular, $, _*/
 
 angular.module('taskRunner')
-    .controller('TaskCtrl', function ($scope, $modalInstance, taskService, usSpinnerService, paramService, localStorageService, task, taskList, extent, cartService, sugar, $location) {
+    .controller('TaskCtrl', function ($scope, taskService, usSpinnerService, paramService, localStorageService, cartService, sugar, $location, $stateParams) {
         'use strict';
 
-        //$scope.task = {};
-
-        $scope.task = task;
-        $scope.taskList = taskList;
-        $scope.extent = extent;
-
+        $scope.task = $stateParams.task;
+        $scope.taskList = $stateParams.taskList;
+        $scope.extent = $stateParams.extent;
         $scope.params = [];
         $scope.hasMap = true;
         $scope.showAdvanced = false;
@@ -152,10 +149,6 @@ angular.module('taskRunner')
 
         _init();
 
-        $scope.cancel = function() {
-            $modalInstance.close();
-        };
-
         $scope.setError = function(val) {
             $scope.errorMessage = val;
             $scope.hasError = true;
@@ -196,7 +189,6 @@ angular.module('taskRunner')
             inputItems.query = _getQuery(cartService.getQuery(), cartService.getItemIds());
             //console.log('Task ' + request.task + ' Query: ' + JSON.stringify(inputItems.query));
             return taskService.execute(request).then(function (response) {
-                $modalInstance.close();
                 $location.path('/status/' + response.data.id);
             }, function(error) {
                 _errorHandler(error, params);
