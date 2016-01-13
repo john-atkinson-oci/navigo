@@ -26,6 +26,11 @@
 	</head>
     <!-- ecobar - add class to body tag to enable - see example below-->
     <body vs-popover vs-layout ng-app="portalApp">
+	<!-- top banner-->
+		<div ng-if="hasBanner" id="top-banner">
+			<div style="text-align: center; width: 100%; position: fixed; z-index: 1000" vg-bind-html="banner">
+			</div>
+		</div>
         <div id="no_access" class="alert alert-danger" style="display: none">
             <h3> <span class="glyphicon glyphicon-lock"></span> You don't have permission to use Voyager.</h3>
         </div>
@@ -38,6 +43,12 @@
 
 			<div id="footer" ng-include="'src/layout/footer.html'"></div>
 			<div id="initialLoadContainer"></div>
+		</div>
+
+		<!--bottom banner-->
+		<div ng-if="hasBanner" id="bottom-banner">
+			<div style="text-align: center; width: 100%; position: fixed; z-index: 1001; bottom: 0; left: 0" vg-bind-html="banner">
+			</div>
 		</div>
 
 		<!-- build:js scripts/vendor.js -->
