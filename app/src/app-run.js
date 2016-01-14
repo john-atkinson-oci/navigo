@@ -1,6 +1,15 @@
 angular.module('portalApp')
-    .run(function ($rootScope, $location, authService, $state, config) { // instance-injector
+    .run(function ($rootScope, $location, authService, $state, config, $timeout) { // instance-injector
         'use strict';
+
+        if(!_.isEmpty(config.homepage.bannerHTML)) {
+            $rootScope.hasBanner = true;
+            $rootScope.banner = config.homepage.bannerHTML;
+            $timeout(function() {
+                var $topBanner = $('#top-banner');
+                $topBanner.height($topBanner.children(':first').height());
+            });
+        }
 
         if ($location.search().widget === 'true') {
             $rootScope.isWidget = true;
