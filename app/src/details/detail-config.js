@@ -168,7 +168,8 @@ angular.module('voyager.details').
             //var exclusions = {'id':true, 'name':true,'format':true,'path':true,'thumb':true,'preview':true,'download':true,'bbox':true,'title':true};
             var formattedValue = '';
             $.each(doc, function (name, value) {
-                if (_summaryInclusions[name] && fields[name].displayable === true) {
+                // TODO - this fields array is the full fields index and gets cached locally - may get out of sync after new fields added to index until browser refresh
+                if (_summaryInclusions[name] && fields[name] && fields[name].displayable === true) {
                     if(_.isArray(value)) {
                         value = value.join(', ');
                     }
