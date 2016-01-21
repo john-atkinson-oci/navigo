@@ -167,7 +167,7 @@ angular.module('voyager.details').
             //var exclusions = {'id':true, 'name':true,'format':true,'path':true,'thumb':true,'preview':true,'download':true,'bbox':true,'title':true};
             var formattedValue = '', isArray = false;
             $.each(doc, function (name, value) {
-                if (_summaryInclusions[name] && fields[name].displayable === true) {
+                if (_summaryInclusions[name] && fields[name] && fields[name].displayable === true) {
                     isArray = false;
                     if(_.isArray(value)) {
                         value = value.join(', ');
