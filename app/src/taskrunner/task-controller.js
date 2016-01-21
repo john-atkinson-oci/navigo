@@ -10,7 +10,6 @@ angular.module('taskRunner')
         $scope.params = [];
         $scope.hasMap = true;
         $scope.showAdvanced = false;
-        $scope.hasInvalidItems = $stateParams.hasInvalidItems;
 
         function _applyExtentToMapParams() {
             if (!_.isEmpty($scope.extent)) {
@@ -23,8 +22,6 @@ angular.module('taskRunner')
         }
 
         var _init = function () {
-
-            _fetchInvalidItems();
 
             $scope.hasError = false;
             $scope.errors = {};
@@ -79,25 +76,6 @@ angular.module('taskRunner')
             }
             return params;
         }
-
-        function _fetchInvalidItems() {
-            var constraint = "&fq=format_keyword:Vector";
-            var query = cartService.getQuery();
-            query.filters += constraint;
-            cartItemsQuery.fetchValidTaskItemsCount(query).then(function(data) {
-                var cnt = data.count;
-                if (cnt == query.count){
-                    $scope.hasInvalidItems = false;
-                }
-                else if (cnt < query.count) {
-                    $scope.hasInvalidItems = true;
-                }
-                else {
-                    task.available = false;
-                }
-            });
-        }
-
 
         function _validate(params) {
             var request = {'task': $scope.task.name, 'params': params};
