@@ -1,7 +1,7 @@
 /*global angular, $, _*/
 
 angular.module('taskRunner')
-    .controller('TaskCtrl', function ($scope, taskService, usSpinnerService, paramService, localStorageService, cartService, sugar, $location, $stateParams, cartItemsQuery) {
+    .controller('TaskCtrl', function ($scope, taskService, usSpinnerService, paramService, localStorageService, cartService, sugar, $location, $stateParams) {
         'use strict';
 
         $scope.task = $stateParams.task;
@@ -22,7 +22,6 @@ angular.module('taskRunner')
         }
 
         var _init = function () {
-
             $scope.hasError = false;
             $scope.errors = {};
             $scope.hasAdvanced = false;
