@@ -209,15 +209,6 @@ angular.module('cart').
             });
         }
 
-        //TODO: REVIEW
-        function _fetchValidTaskItemsCount(queryCriteria) {
-            return $http.jsonp(_getQueryString(queryCriteria)).then(function successCallback(res) {
-                return ({count:res.data.response.numFound});
-            }, function errorCallback(res) {
-                console.log(res.message);
-            });
-        }
-
         function _fetchQueued(queryCriteria, items, queued) {
             return $http.jsonp(_getQueuedQueryString(queryCriteria, items, queued)).then(function(res) {
                 return res.data.response.docs;
@@ -254,11 +245,6 @@ angular.module('cart').
                 } else {
                     return _fetchSummary(_.clone(queryCriteria), items);
                 }
-            },
-
-            //TODO: REVIEW
-            fetchValidTaskItemsCount: function(queryCriteria) {
-              return _fetchValidTaskItemsCount(_.clone(queryCriteria));
             },
 
             fetchQueued: function(queryCriteria, items, queued) {
