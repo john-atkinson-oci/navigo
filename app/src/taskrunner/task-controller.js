@@ -135,7 +135,7 @@ angular.module('taskRunner')
             } else if(angular.isDefined(query.filters)) {
                 var find = '&fq=';
                 var re = new RegExp(find, 'g');
-                if (query.filters.startsWith('&fq=')) {
+                if (query.filters.indexOf('&fq=') === 0) {
                     query.params.fq = query.filters.substring(4).replace(re, ' AND ');
                 }
                 else {
