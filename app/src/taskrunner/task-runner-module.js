@@ -1,2 +1,2 @@
 /*global angular*/
-angular.module('taskRunner', ['voyager.map','fileBrowser','ui.select2', 'voyager.fields','simpleSearch']);
+angular.module('taskRunner', ['voyager.map','fileBrowser','ui.select2', 'voyager.fields','simpleSearch', 'dialogs.main', 'cart']);
