@@ -7,7 +7,13 @@ angular.module('voyager.filters')
         button += '<span class="text">{{facet.display}} <span class="facet_count">({{facet.count}})</span></span> <span ng-show="facet.isSelected" class="icon-x"></span>';
         button += '</a>';
 
-        var checkbox = '<div class="checkbox"><label><input type="checkbox" ng-click="filterResults(facet)" ng-disabled="facet.disabled" ng-checked="facet.isSelected">{{facet.display}} <span class="facet_count" ng-hide="facet.hasCount == false">({{facet.count}})</span></label><span title="Not Available" class="facet_error icon-error" ng-show="facet.hasError == true">&nbsp;</span></div>';
+        var checkbox = '<div class="checkbox">' +
+            '<label><input type="checkbox" ng-click="filterResults(facet)" ng-disabled="facet.disabled" ng-checked="facet.isSelected">{{facet.display}} ' +
+            '<span class="facet_count" ng-hide="facet.hasCount == false">({{facet.count}})</span>' +
+            '</label>' +
+            '<span title="Not Available" class="facet_error icon-error" ng-show="facet.hasError == true">&nbsp;</span>' +
+            '<span class="fa fa-star-o pull-right checkbox-only" ng-hide="facet.hasCount == false" ng-click="filterOnly(facet)" title="Only This"></span>' +
+            '</div>';
 
         var slider = '<div class="slider_wrap"><form class="form-inline" role="form"><div class="form-group">';
         slider += '<input class="form-control input-xs semi" type="text" ng-model="facet.model[0]" ng-init="facet.model[0] = (facet.model[0] == undefined) ? facet.min : facet.model[0]">';
