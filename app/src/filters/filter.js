@@ -25,7 +25,7 @@ angular.module('voyager.filters')
         tree += '<li frang-tree-repeat="node in facet.tree">';
         tree += '<div ng-class="node.children && node.children.length > 0 ? \'folderNode\' : \'leaf\'"><span class="icon"';
         tree += 'ng-class="{collapsed: node.collapsed, expanded: !node.collapsed}"';
-        tree += 'ng-show="true"';
+        tree += 'ng-show="node.children && node.children.length > 0"';
         tree += 'ng-click="loadNode(node)"></span>';
         tree += '<i class="fa" ng-class="{\'fa-folder\': node.collapsed, \'fa-folder-open\': !node.collapsed}"></i>';
         tree += '<span class="label" ng-class="{folder: node.children && node.children.length > 0}">';
