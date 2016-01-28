@@ -126,18 +126,63 @@ describe('Filters:', function () {
         });
 
         it('should filter selected', function () {
+            var displayFilter = {name: 'facet', field: 'field2'};
+
+            cfg.settings.data.filters = [displayFilter];
+
+            scope.filters = [];
+            _filterService.clear();
+
             controllerService('FiltersCtrl', {$scope: scope, filterService: _filterService});
-            var facet = {isSelected: true};
+            var facet = {isSelected: true, field: 'field1', name: 'facet'};
             scope.filterResults(facet);
 
-            var res = {facet_counts:{facet_fields:{}}};
+            var res = {facet_counts:{facet_fields:{field1:['facet',5]}}};
 
             var url = new RegExp(escapeRegExp('root/solr/v0/select?voyager.config.id=default&rows=0&facet=true'));
             httpMock.expectJSONP(url).respond(res);  // solr filter query
             _flushHttp(httpMock);
 
-            // TODO need assertions on scope.filters
-            //console.log(JSON.stringify(scope.filters));
+            scope.$apply();
+
+            expect(scope.filters.length).toBe(1);
+            expect(scope.filters[0].name).toBe(facet.name);
+        });
+
+        it('should only filter', function () {
+            var displayFilter = {name: 'facet1', field: 'field1'};
+            cfg.settings.data.filters = [displayFilter, {name: 'facet2', field: 'field1'}];
+
+            _filterService.clear();
+
+            controllerService('FiltersCtrl', {$scope: scope, filterService: _filterService});
+            var facet = {isSelected: true, field: 'field1', name:'facet1'};
+            scope.filterResults(facet);  // only function should remove this
+
+            var res = {facet_counts:{facet_fields:{field1:['facet1',5]}}};
+
+            var url = new RegExp(escapeRegExp('root/solr/v0/select?voyager.config.id=default&rows=0&facet=true'));
+            httpMock.expectJSONP(url).respond(res);  // solr filter query
+            _flushHttp(httpMock);
+
+            // 2 display filters configured to show (cfg.settings.data.filters)
+            expect(scope.filters.length).toBe(2);
+
+            var facet2 = {isSelected: true, filter: 'field1', name:'facet2'};
+            scope.filterOnly(facet2);
+
+            res = {facet_counts:{facet_fields:{field1:['facet2',5]}}};
+            httpMock.expectJSONP(url).respond(res);  // solr filter query
+            _flushHttp(httpMock);
+
+            var filterParams = $location.search().fq;
+
+            expect(filterParams.length).toBe(1);
+            expect(filterParams[0]).toEqual(facet2.filter + ':' + facet2.name);
+
+            // 2 display filters configured to show (cfg.settings.data.filters)
+            expect(scope.filters.length).toBe(2);
+            expect(scope.filters[0].name).toBe(displayFilter.name);
         });
 
         it('should filter results with shards', function () {
