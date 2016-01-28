@@ -56,8 +56,19 @@ angular.module('voyager.filters')
                 angular.element($window).bind('scroll', _windowScroll);
                 scope.$on('$destroy', onDestroy);
 
+				var $banner = $('#top-banner'), padding;
 				if ($('.content-header-padding').length) {
-					element.css('padding-top', '210px');
+					padding = 210;
+					if ($banner.length) {
+						padding += $banner.height();
+					}
+					element.css('padding-top', padding + 'px');
+				} else if($banner.length) {
+					padding = element.css('padding-top');
+					padding = padding.replace('px','');
+					padding = parseInt(padding);
+					padding += $banner.height();
+					element.css('padding-top', padding + 'px');
 				}
 
 				function onDestroy() {
