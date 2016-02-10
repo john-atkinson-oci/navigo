@@ -57,6 +57,14 @@ angular.module('cart').
                 }
                 //TODO place isn't working as q param
                 //filters += _getPlaceFilter(queryCriteria);
+
+                if (_.has(queryCriteria, 'constraints')){
+                    filters += queryCriteria.filters;
+                    queryCriteria.params.q = itemsStr + sep + filters;
+                }
+                else {
+                    queryCriteria.params.q = itemsStr + sep + '(' + filters + ')';
+                }
                 queryCriteria.params.q = itemsStr + sep + '(' + queryCriteria.params.q + ' AND ' + filters + ')';
             } else if (hasItems && !_.isEmpty(queryCriteria.solrFilters)) { //has items and filters, do an OR
                 filters = _cleanFilters(queryCriteria.solrFilters); //filters are AND (within OR below)
@@ -66,7 +74,15 @@ angular.module('cart').
                 }
                 //TODO place isn't working as q param
                 //filters += _getPlaceFilter(queryCriteria);
-                queryCriteria.params.q = itemsStr + sep + '(' + filters + ')';
+
+                if (_.has(queryCriteria, 'constraints')){
+                    filters += queryCriteria.filters;
+                    queryCriteria.params.q = itemsStr + sep + filters;
+                }
+                else {
+                    queryCriteria.params.q = itemsStr + sep + '(' + filters + ')';
+                }
+
             } else if (hasItems && angular.isDefined(queryCriteria.bounds) && !_.isEmpty(queryCriteria.bounds)) { //has items and bounds, do an OR
                 bounds = queryCriteria.bounds.replace('&fq=','');
                 queryCriteria.params.q = itemsStr + sep + '(' + bounds + ')';
@@ -74,6 +90,8 @@ angular.module('cart').
             //} else if (hasItems && angular.isDefined(queryCriteria.params.place)) { //has items and place, do an OR
             //    filters = _getPlaceFilter(queryCriteria, true);
             //    queryCriteria.params.q = itemsStr + sep + '(' + filters + ')';
+            } else if( hasItems && !_.isEmpty(queryCriteria.filters)) {
+                queryCriteria.params.q = itemsStr + queryCriteria.filters;
             } else {
                 queryCriteria.params.q = itemsStr;
             }
@@ -132,6 +150,7 @@ angular.module('cart').
             queryString += _setParams(queryCriteria, items);
             queryString += '&fl=id,title,name:[name],format,thumb:[thumbURL]';
             queryString += '&rows=100&extent.bbox=true';
+
             if(queryCriteria && (angular.isUndefined(items) || items.length === 0)) { //setParams will apply filters
                 if(angular.isDefined(queryCriteria.filters)) {
                     queryString += queryCriteria.filters;
@@ -245,6 +264,10 @@ angular.module('cart').
                 } else {
                     return _fetchSummary(_.clone(queryCriteria), items);
                 }
+            },
+
+            fetchItems: function(queryCriteria, items) {
+                return _fetchItems(queryCriteria, items);
             },
 
             fetchQueued: function(queryCriteria, items, queued) {

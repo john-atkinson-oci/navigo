@@ -3,60 +3,7 @@
 	<div class="queue-secondary">
 		<div class="inner">
 			<div class="content queue-content"><p ng-if="!cartItems.length && !loading">You have no items in the queue.</p>
-				<table class="table table-condensed table-striped" ng-if="!displayCategory && cartItems.length > 0">
-					<div ng-if="cartItems.length > 0">
-						<span style="font-size: 24px"> Selected content to be processed</span>
-						<a class="btn btn-primary-sm pull-right" href="#tasks" style="margin-bottom: 10px">Select task ></a></a>
-					</div>
-					<thead>
-						<tr class="semi">
-							<th>&nbsp;</th>
-							<th>Name</th>
-							<th>Format</th>
-							<th>&nbsp;</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr ng-repeat="item in cartItems">
-							<td class="thumbnail_col">
-								<a href="#/show/{{item.id}}?disp={{disp}}">
-									<img src="assets/img/s.png" ng-class="item.defaultThumb ? 'default-thumb-queue':''" style="background-image: url({{item.thumb}})" alt="{{item.name}}" />
-								</a>
-							</td>
-							<td class="name_col">
-								<a href="#/show/{{item.id}}?disp={{disp}}" class="underline semi"><span class="txt">{{item.name}}</span></a>
-							</td>
-							<td>
-								<a href="#/show/{{item.id}}?disp={{disp}}">{{item.displayFormat}}</a>
-							</td>
-							<td class="action_col">
-								<a href="javascript:;" ng-click="removeItem(item.id)"><span class="sr-only">remove</span><span class="icon-x"></span></a>
-							</td>
-						</tr>
-					</tbody>
-				</table>
-				<table class="table table-condensed table-striped" ng-if="displayCategory">
-					<thead>
-						<tr class="semi">
-							<th class="format_col">Format</th>
-							<th class="count_col">Item count</th>
-							<th>&nbsp;</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr ng-repeat="item in cartItems">
-							<td>
-								<a href="#/show/{{item.id}}?disp={{disp}}" class="semi underline"><span class="txt">{{item.displayFormat}}</span></a>
-							</td>
-							<td>
-								{{item.count | number}}
-							</td>
-							<td class="action_col">
-								<a href="javascript:;" ng-click="removeItemByFormat(item)"><span class="sr-only">remove</span><span class="icon-x"></span></a>
-							</td>
-						</tr>
-					  </tbody>
-				  </table>
+				<vs-cart-items cart-items="cartItems" display-category="displayCategory" invalid="false"></vs-cart-items>
 				<a class="clear-queue semi" href="javascript:;" ng-click="clearQueue()" ng-if="cartItems.length">Clear my {{uiText.name}}</a>
 			</div>
 		</div>

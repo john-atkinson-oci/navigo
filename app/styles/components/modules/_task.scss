@@ -3,16 +3,28 @@
 	background: #ffffff;
 	padding: 1px 1px 10px 15px;
 
+	.warning-msg {
+		width: 100%;
+		color: #ffffff;
+		background-color: #f0ad4e;
+		text-shadow: #ffffff;
+	}
+
 	div {
+		padding-bottom: 10px;
+		padding-right: 10px;
 		padding-top: 10px;
 		width: 100%;
 	}
 
-	b {
-		width: 99%;
+	i {
 		padding: 5px;
-		background: #ffA500;
+	}
+
+	a {
+		padding-right: 10px;
 		color: #ffffff;
+		text-shadow: #ffffff;
 	}
 
 	h3, p {
@@ -31,7 +43,7 @@
 	}
 
 	.pull-right {
-		position: absolute;
+		position: static;
 		right: 40px;
 		top: 50px;
 

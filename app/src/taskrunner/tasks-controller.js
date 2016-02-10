@@ -1,14 +1,14 @@
 /*global angular, _*/
 
 angular.module('taskRunner')
-
-    .controller('TasksCtrl', function ($scope, taskService, usSpinnerService, authService, $state) {
+    .controller('TasksCtrl', function ($scope, taskService, usSpinnerService, authService, $state, taskModalService) {
         'use strict';
 
         $scope.toggleTasksText = 'Show All';
         $scope.hasUnavailable = false;
-
-
+        $scope.hasInvalidItems = false;
+        $scope.errorMessage = 'All the items in the cart are invalid formats';
+        $scope.constraintFormats = [];
 
         function _loadTasks() {
             taskService.findAllTasks($scope.canReload).then(function(response) {
@@ -19,7 +19,20 @@ angular.module('taskRunner')
                 var unavailableTasks = [];
                 var taskCount = 0;
                 angular.forEach($scope.taskList, function(tasks) {
-                    unavailableTasks = unavailableTasks.concat(_.filter(tasks, function(task){return task.available === false;}));
+                    tasks.warnings = 0;
+                    tasks.errors = 0;
+                    unavailableTasks = unavailableTasks.concat(_.filter(tasks, function(task){
+                        taskService.validateTaskItems(task.constraints).then(function(severity){
+                            if (severity === 1) {
+                                tasks.warnings += 1;
+                            }
+                            else if(severity === 2){
+                                tasks.errors += 1;
+                            }
+                            task.severity = severity;
+                        });
+                        return task.available === false;
+                    }));
                     taskCount += tasks.length;
                 });
                 $scope.hasUnavailable = unavailableTasks.length > 0;
@@ -38,8 +51,33 @@ angular.module('taskRunner')
             });
         };
 
+        $scope.showTaskValidationError = function() {
+            taskModalService.showTaskValidationError($scope.errorMessage, $scope.constraintFormats);
+        };
+
         $scope.selectTask = function(task) {
-            $state.go('task', {task: task});
+            $scope.constraintFormats = [];
+            _.each(task.constraints, function(value) {
+                value = value.split(':')[1];
+                $scope.constraintFormats.push(value);
+            });
+            taskService.validateTaskItems(task.constraints).then(function(severity){
+                if (severity === 0) {
+                    task.error = false;
+                    task.warning = false;
+                    $state.go('task', {task: task});
+                }
+                else if (severity === 1) {
+                    task.error = false;
+                    task.warning = true;
+                    //task.constraints = $scope.constraintFormats;
+                    $scope.hasInvalidItems = true;
+                    $state.go('task', {task: task});
+                }
+                else if (severity === 2) {
+                    $scope.showTaskValidationError($scope.errorMessage, $scope.constraintFormats);
+                }
+            });
         };
 
         authService.getPrivileges().then(function() {

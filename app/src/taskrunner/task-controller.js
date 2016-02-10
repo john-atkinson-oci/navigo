@@ -1,7 +1,7 @@
 /*global angular, $, _*/
 
 angular.module('taskRunner')
-    .controller('TaskCtrl', function ($scope, taskService, usSpinnerService, paramService, localStorageService, cartService, sugar, $location, $stateParams) {
+    .controller('TaskCtrl', function ($scope, taskService, taskModalService, usSpinnerService, paramService, localStorageService, cartService, cartItemsQuery, sugar, $location, $stateParams) {
         'use strict';
 
         $scope.task = $stateParams.task;
@@ -26,6 +26,7 @@ angular.module('taskRunner')
             $scope.errors = {};
             $scope.hasAdvanced = false;
             $scope.showAdvanced = false;
+            $scope.displayCategory = cartService.getCount() > 100;
             usSpinnerService.spin('tasks-spinner');
             taskService.lookupTaskType($scope.task.name).then(function (response) {
                 $scope.task.display = response[1].data.display;
@@ -204,5 +205,18 @@ angular.module('taskRunner')
                 _errorHandler(error, params);
             });
             //return $q.when();
+        };
+
+        $scope.showInvalidTaskItems = function() {
+            return taskModalService.showInvalidTaskItems($scope.invalidTaskItems);
+        };
+
+        $scope.getInvalidTaskItems = function() {
+            taskService.validateTaskItems($scope.task.constraints, true).then(function(data) {
+                $scope.invalidTaskItems = data.docs;
+                $scope.showInvalidTaskItems($scope.invalidTaskItems).result.then(function(){
+                    $scope.task.warning = false;
+                });
+            });
         };
     });
