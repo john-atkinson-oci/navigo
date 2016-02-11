@@ -8,7 +8,7 @@
         <th>&nbsp;</th>
         <th>Name</th>
         <th>Format</th>
-        <th>&nbsp;</th>
+        <th><a class="link_secondary" href="javascript:;" ng-click="removeInvalidItems(cartItems)" ng-show="invalid" style="white-space: nowrap; color: #337ab7">Remove all</a></th>
     </tr>
     </thead>
     <tbody>
@@ -25,7 +25,7 @@
             <a href="#/show/{{item.id}}?disp={{disp}}">{{item.displayFormat}}</a>
         </td>
         <td class="action_col">
-            <a href="javascript:;" ng-click="removeItem(item.id)"><span class="sr-only">remove</span><span class="icon-x"></span></a>
+            <a href="javascript:;" ng-click="removeItem(item.id)" ng-show="!invalid"><span class="sr-only">remove</span><span class="icon-x"></span></a>
         </td>
     </tr>
     </tbody>

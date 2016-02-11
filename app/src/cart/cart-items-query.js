@@ -63,9 +63,8 @@ angular.module('cart').
                     queryCriteria.params.q = itemsStr + sep + filters;
                 }
                 else {
-                    queryCriteria.params.q = itemsStr + sep + '(' + filters + ')';
+                    queryCriteria.params.q = itemsStr + sep + '(' + queryCriteria.params.q + ' AND ' + filters + ')';
                 }
-                queryCriteria.params.q = itemsStr + sep + '(' + queryCriteria.params.q + ' AND ' + filters + ')';
             } else if (hasItems && !_.isEmpty(queryCriteria.solrFilters)) { //has items and filters, do an OR
                 filters = _cleanFilters(queryCriteria.solrFilters); //filters are AND (within OR below)
                 if(angular.isDefined(queryCriteria.bounds) && !_.isEmpty(queryCriteria.bounds)) {

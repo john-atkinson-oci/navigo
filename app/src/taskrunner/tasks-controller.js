@@ -1,7 +1,7 @@
 /*global angular, _*/
 
 angular.module('taskRunner')
-    .controller('TasksCtrl', function ($scope, taskService, usSpinnerService, authService, $state, taskModalService) {
+    .controller('TasksCtrl', function ($scope, taskService, usSpinnerService, authService, $state, taskModalService, translateService) {
         'use strict';
 
         $scope.toggleTasksText = 'Show All';
@@ -59,7 +59,19 @@ angular.module('taskRunner')
             $scope.constraintFormats = [];
             _.each(task.constraints, function(value) {
                 value = value.split(':')[1];
-                $scope.constraintFormats.push(value);
+                var values = value.split(' ');
+                if (values){
+                    angular.forEach(values, function(value){
+                        value = value.replace('(', '');
+                        value = value.replace(')', '');
+                        value = translateService.getType(value);
+                        $scope.constraintFormats.push(value);
+                    });
+                }
+                else{
+                    value = translateService.getType(value);
+                    $scope.constraintFormats.push(value);
+                }
             });
             taskService.validateTaskItems(task.constraints).then(function(severity){
                 if (severity === 0) {
