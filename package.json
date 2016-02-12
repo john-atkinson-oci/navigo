@@ -3,6 +3,7 @@
   "version": "1.9.8",
   "dependencies": {
     "jasmine-core": "^2.3.4",
+    "phantomjs-prebuilt": "^2.1.4",
     "sinon": "^1.17.2"
   },
   "devDependencies": {
@@ -48,13 +49,12 @@
     "karma-junit-reporter": "~0.2.2",
     "karma-ng-html2js-preprocessor": "~0.1.0",
     "karma-ng-scenario": "~0.1.0",
-    "karma-phantomjs-launcher": "~0.1.4",
+    "karma-phantomjs-launcher": "~1.0.0",
     "karma-requirejs": "~0.2.0",
     "karma-script-launcher": "~0.1.0",
     "karma-sinon": "~1.0.4",
     "load-grunt-config": "~0.16.0",
     "load-grunt-tasks": "~0.2.0",
-    "phantomjs": "~1.9",
     "protractor-html-screenshot-reporter": "0.0.21",
     "protractor-jasmine2-html-reporter": "0.0.5",
     "requirejs": "~2.1.9",
