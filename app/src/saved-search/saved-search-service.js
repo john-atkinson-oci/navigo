@@ -103,6 +103,11 @@ angular.module('voyager.search').
                     voyagerParams = querystring.parse(sugar.trim(saved.path.replace(/\//g,'&'),'&'));
                 }
 
+                if (angular.isDefined(voyagerParams.catalog) && angular.isUndefined(solrParams.shards)) {
+                    // TODO why is shards missing on a federated saved search?
+                    solrParams.shards = _.isArray(voyagerParams.catalog) ? voyagerParams.catalog.join(',') : voyagerParams.catalog;
+                }
+
                 if(angular.isDefined(voyagerParams.bbox)) {
                     _applyBbox(solrParams, voyagerParams);
                 }

@@ -149,7 +149,6 @@ angular.module('cart').
             queryString += _setParams(queryCriteria, items);
             queryString += '&fl=id,title,name:[name],format,thumb:[thumbURL]';
             queryString += '&rows=100&extent.bbox=true';
-
             if(queryCriteria && (angular.isUndefined(items) || items.length === 0)) { //setParams will apply filters
                 if(angular.isDefined(queryCriteria.filters)) {
                     queryString += queryCriteria.filters;
