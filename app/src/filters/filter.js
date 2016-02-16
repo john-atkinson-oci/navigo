@@ -7,7 +7,13 @@ angular.module('voyager.filters')
         button += '<span class="text">{{facet.display}} <span class="facet_count">({{facet.count}})</span></span> <span ng-show="facet.isSelected" class="icon-x"></span>';
         button += '</a>';
 
-        var checkbox = '<div class="checkbox"><label><input type="checkbox" ng-click="filterResults(facet)" ng-disabled="facet.disabled" ng-checked="facet.isSelected">{{facet.display}} <span class="facet_count" ng-hide="facet.hasCount == false">({{facet.count}})</span></label><span title="Not Available" class="facet_error icon-error" ng-show="facet.hasError == true">&nbsp;</span></div>';
+        var checkbox = '<div class="checkbox">' +
+            '<label><input type="checkbox" ng-click="filterResults(facet)" ng-disabled="facet.disabled" ng-checked="facet.isSelected">{{facet.display}} ' +
+            '<span class="facet_count" ng-hide="facet.hasCount == false">({{facet.count}})</span>' +
+            '</label>' +
+            '<span title="Not Available" class="facet_error icon-error" ng-show="facet.hasError == true">&nbsp;</span>' +
+            '<span class="fa fa-star-o pull-right checkbox-only" ng-hide="facet.hasCount == false" ng-click="filterOnly(facet)" title="Only This"></span>' +
+            '</div>';
 
         var slider = '<div class="slider_wrap"><form class="form-inline" role="form"><div class="form-group">';
         slider += '<input class="form-control input-xs semi" type="text" ng-model="facet.model[0]" ng-init="facet.model[0] = (facet.model[0] == undefined) ? facet.min : facet.model[0]">';
@@ -25,7 +31,7 @@ angular.module('voyager.filters')
         tree += '<li frang-tree-repeat="node in facet.tree">';
         tree += '<div ng-class="node.children && node.children.length > 0 ? \'folderNode\' : \'leaf\'"><span class="icon"';
         tree += 'ng-class="{collapsed: node.collapsed, expanded: !node.collapsed}"';
-        tree += 'ng-show="true"';
+        tree += 'ng-show="node.children && node.children.length > 0"';
         tree += 'ng-click="loadNode(node)"></span>';
         tree += '<i class="fa" ng-class="{\'fa-folder\': node.collapsed, \'fa-folder-open\': !node.collapsed}"></i>';
         tree += '<span class="label" ng-class="{folder: node.children && node.children.length > 0}">';
