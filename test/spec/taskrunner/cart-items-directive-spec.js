@@ -1,0 +1,70 @@
+describe('Cart Items Directive:', function () {
+    'use strict';
+
+    var cfg = _.clone(config);
+
+    beforeEach(function () {
+        module('templates');
+        module('voyager.security');
+        module('taskRunner');
+        module('voyager.results');
+        module('voyager.filters');
+        module('cart');
+        module('angulartics');
+        module('ui.bootstrap');
+        //module('voyager.common'); //auth service module - apparently this is needed to mock the auth service
+        module(function ($provide) {
+            $provide.constant('config', cfg);
+        });
+    });
+
+    var $scope, template, element, controller;
+    beforeEach(inject(function($rootScope, $compile) {
+        $scope = $rootScope.$new();
+        element = angular.element('<div vs-cart-items></div>');
+        template = $compile(element)($scope);
+        $scope.$digest();
+        controller = element.controller();
+        $scope = element.isolateScope();
+
+    }));
+
+    describe('Remove invalid items', function () {
+
+        it('should remove invalid items', inject(function (cartService, taskModalService) {
+
+            var items = [{id:'junk'}];
+
+            cartService.clear();
+            cartService.addItems(items);
+
+            spyOn(taskModalService, 'close');
+
+            $scope.removeInvalidItems(items);
+            expect(taskModalService.close).toHaveBeenCalled();
+
+            cartService.clear();
+        }));
+
+
+        it('should remove items by format', inject(function (cartService, $q) {
+
+            var item = {id:'junk', key:'junkkey'};
+            var deferred = $q.defer();
+
+            spyOn(cartService, 'fetch').and.returnValue(deferred.promise);
+            spyOn(cartService, 'setQueryCount').and.callThrough();
+
+            cartService.clear();
+            cartService.addItem(item);
+
+            $scope.removeItemByFormat(item);
+
+            expect(cartService.fetch).toHaveBeenCalled();
+
+            cartService.clear();
+        }));
+
+    });
+
+});

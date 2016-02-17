@@ -59,4 +59,12 @@ describe('Factory: taskService', function () {
         $http.flush();
 
     });
+
+    it('should lookup task type', function () {
+
+        taskService.lookupTask('zip_files').then(function (response) {
+            expect(response[1].data.display === 'Zip Files');
+        });
+    });
+
 });
