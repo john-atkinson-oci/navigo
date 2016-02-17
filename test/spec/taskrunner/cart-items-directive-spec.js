@@ -31,6 +31,20 @@ describe('Cart Items Directive:', function () {
 
     describe('Remove invalid items', function () {
 
+        it('should remove item', inject(function (cartService) {
+
+            var item = {id:'junk', key:'junkkey'};
+
+            cartService.clear();
+            cartService.addItem(item);
+
+            $scope.removeItem('junk');
+
+            expect(cartService.getCount()).toBe(0);
+
+            cartService.clear();
+        }));
+
         it('should remove invalid items', inject(function (cartService, taskModalService) {
 
             var items = [{id:'junk'}];
@@ -49,19 +63,17 @@ describe('Cart Items Directive:', function () {
 
         it('should remove items by format', inject(function (cartService, $q) {
 
-            var item = {id:'junk', key:'junkkey'};
+            var items = [{id:'junk', key:'junkkey'}, {id:'junk2', key:'junkkey2'}];
             var deferred = $q.defer();
-
             spyOn(cartService, 'fetch').and.returnValue(deferred.promise);
-            spyOn(cartService, 'setQueryCount').and.callThrough();
 
             cartService.clear();
-            cartService.addItem(item);
+            cartService.setItems(items);
 
-            $scope.removeItemByFormat(item);
+            $scope.removeItemByFormat({id:'junk', key:'junkkey'});
+            deferred.resolve();
 
             expect(cartService.fetch).toHaveBeenCalled();
-
             cartService.clear();
         }));
 

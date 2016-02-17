@@ -18,6 +18,11 @@ angular.module('taskRunner')
                     });
                 };
 
+                $scope.removeItem = function (id) {
+                    cartService.remove(id);
+                    $scope.cartItems = _removeValue($scope.cartItems, id);
+                };
+
                 $scope.removeInvalidItems = function (invalidItems) {
                     $.each(invalidItems, function( index, item ) {
                         cartService.remove(item.id);
