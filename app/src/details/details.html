@@ -15,14 +15,16 @@
                             <header class="result_title">
                                 <h3 class="label label-danger icon-error missing_data" ng-show="doc.hasMissingData">Missing Data</h3>
                                 <h1><span ng-bind="::doc.name"></span></h1>
-                                <div ng-if="showFormat" class="field info muted">
+                                <div ng-if="summaryFlags.showType" class="field info muted">
                                     <a href="#/search?fq=format:{{::doc.format}}&disp={{::disp}}">
                                         <span ng-bind="::doc.displayFormat" ng-class="formatClass"></span>
                                     </a>
-                                    <span ng-show="::doc.modified" class="bullet" ng-if="showFormat">&bull;</span>
-                                    <span ng-show="::doc.modified">Last index {{::doc.modified | date:'M/d/yyyy, hh:mma' }}</span>
+                                    <span ng-show="summaryFlags.showLastUpdateDate">
+                                        <span ng-show="::doc.modified" class="bullet" ng-if="showFormat">&bull;</span>
+                                        <span ng-show="::doc.modified">Last index {{::doc.modified | date:'M/d/yyyy, hh:mma' }}</span>
+                                    </span>
                                 </div>
-                                <div ng-if="showPath" class="field">
+                                <div ng-if="summaryFlags.showPath" class="field">
                                     <a href="{{::doc.fullpath}}" ng-show="isURL" target="_blank">{{::doc.fullpath}}</a>
                                     <div ng-hide="isURL" vs-highlight>
                                         <span id="locationPathWrap"></span><span id="locationPathNotHighlight"><a href="{{::doc_path.url}}" id="locationPath0">{{::doc_path.path}}</a><a href="{{::sub_path.url}}" ng-repeat="sub_path in sub_paths" id="locationPath{{$index + 1}}">{{::sub_path.path}}</a></span>
@@ -31,7 +33,7 @@
                                 <!--
                                 <div class="star_wrap"><span class="star{{rate.current_rating}}">({{rate.total_user || 'not rated'}})</span></div>
                                 -->
-                                <div class="doc_description" ng-if="description">
+                                <div class="doc_description" ng-if="description && summaryFlags.showDescription">
                                     <div ng-if="!description.editing" ng-bind-html="description.formattedValue"></div>&nbsp;&nbsp;
 
                                     <a href="javascript:;" class="edit_link" ng-if="canEdit && description.editable && !description.editing" ng-click="edit(description)"><span class="icon-edit"></span>Edit</a>
@@ -41,10 +43,15 @@
                                         <button ng-click="doSave(description)" type="button" title="Save" class="btn btn-secondary">Save</button>
                                         <a href="javascript:;" ng-click="cancel(description)" type="button" title="Cancel" class="link_secondary">Cancel</a>
                                     </div>
+                                 </div>
+                                 <div>
+                                   <span ng-repeat="field in summaryFields" class="field">
+                                     <span><b>{{field.name}}</b>: {{field.formattedValue}}</span>
+                                   </span>
                                 </div>
-                            </header>
+                             </header>
 
-                            <ul class="util_list">
+                            <ul ng-show="pageFramework.showTools" class="util_list">
                                 <li ng-show="doc.hasDownload || doc.isMappable || (canFlag && !isRemote) || doc.isEsriLayer">
                                    <div class="hover_flyout">
                                         <a href="javascript:;" class="btn btn-util icon-arrow flyout_trigger"><span class="icon-tools"></span>Tools</a>
@@ -100,9 +107,9 @@
                     </div>
                     <nav id="detailTabContentNav" class="tab tab_border clearfix">
                         <ul>
-                            <li ng-if="displayFields.length" ng-class="showTab == 'summary' && 'selected' || ''"><a href="javascript:;" ng-click="changeTab('summary')">Details</a></li>
-                            <li ng-if="doc.hasMetadata" ng-class="showTab == 'metadata' && 'selected' || ''"><a href="javascript:;" ng-click="changeTab('metadata')">Metadata</a></li>
-                            <li ng-if="hasRelationships" ng-class="showTab == 'relationship' && 'selected' || ''"><a href="javascript:;" ng-click="changeTab('relationship')">Relationships</a></li>
+                            <li ng-if="displayFields.length && pageFramework.showDetailsTable" ng-class="showTab == 'summary' && 'selected' || ''"><a href="javascript:;" ng-click="changeTab('summary')">Details</a></li>
+                            <li ng-if="doc.hasMetadata && pageFramework.showMetadataTable" ng-class="showTab == 'metadata' && 'selected' || ''"><a href="javascript:;" ng-click="changeTab('metadata')">Metadata</a></li>
+                            <li ng-if="hasRelationships && pageFramework.showRelationshipsTable" ng-class="showTab == 'relationship' && 'selected' || ''"><a href="javascript:;" ng-click="changeTab('relationship')">Relationships</a></li>
                             <li ng-if="doc.hasSchema" ng-class="showTab == 'schema' && 'selected' || ''"><a href="javascript:;" ng-click="changeTab('schema')">Schema</a></li>
                         </ul>
                     </nav>
@@ -115,7 +122,7 @@
                             </div>
                         </section>
 
-                        <section class="tab_content" ng-show="showTab == 'summary'">
+                        <section class="tab_content" ng-show="showTab == 'summary' && pageFramework.showDetailsTable">
                             <table class="table table-body-striped table-condensed" id="details-table">
                                 <tbody>
                                 <tr ng-repeat="field in displayFields">
@@ -147,7 +154,7 @@
                                 </tbody>
                             </table>
                         </section>
-                        <section class="tab_content" ng-show="showTab == 'metadata'">
+                        <section class="tab_content" ng-show="showTab == 'metadata' && pageFramework.showMetadataTable">
                             <div class="content_inner">
                                 <select ui-select2="{dropdownAutoWidth: 'true', minimumResultsForSearch: -1}" ng-model="theme.selected">
                                     <option value="FGDC Classic">FGDC Classic</option>
@@ -160,7 +167,7 @@
                                 <iframe ng-src="{{trustSrc(metadataUrl)}}" class="metadata {{frameLoading}}" id="metadataFrame" iframe-load></iframe>
                             </div>
                         </section>
-                        <section class="tab_content" ng-show="showTab == 'relationship'">
+                        <section class="tab_content" ng-show="showTab == 'relationship' && pageFramework.showRelationshipsTable">
                             <section class="relationship clearfix" vs-preview>
                                 <div class="content_inner" ng-if="tree">
                                     <header>
@@ -243,11 +250,11 @@
 
                 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
                     <div id="detailSecondaryColumn">
-                        <div class="thumbnail_wrap">
+                        <div ng-if="pageFramework.showThumbnail" class="thumbnail_wrap">
                             <div class="tag" ng-if="doc.tag_flags"><a href="javascript:;" ng-click="searchFlag(doc.tag_flags)" ng-bind="doc.tag_flags"></a></div>
                             <img class="img-thumbnail" alt="..." ng-src="{{preview}}" />
                         </div>
-                        <div ng-if="showMap">
+                        <div ng-if="pageFramework.showMap">
                             <div class="detail_map" vs-details-map></div>
                         </div>
                         <section class="recent" ng-show="recent.length">

@@ -5,11 +5,12 @@ angular.module('voyager.details').
 
         var displayFields;
         if(config.settings) {
-            displayFields = config.settings.data.display.fields;
+            displayFields = config.settings.data.details.detailsTableFields;
         }
 
         //summary
         var _summaryFields = [];
+        var _summaryFlags = {};
         var _summaryInclusions = {};
         var _summaryParams = '';
         var _summaryFieldsOrder = {};
@@ -21,9 +22,12 @@ angular.module('voyager.details').
         var _editable = {};
         var _styles = {};
         var _summaryStyles = {};
+        var _pageFramework = {};
 
         var _showPath = true;
         var _showFormat = true;
+        var _defaultMetadataStylesheet = '';
+
 
         var excludePrefix = config.excludeDetails;
 
@@ -46,22 +50,37 @@ angular.module('voyager.details').
             });
         }
 
+        function _getPageFramework() {
+          return _pageFramework;
+        }
+
+        function _getSummaryFlags() {
+          return _summaryFlags;
+        }
+
+        function _getDefaultMetadataStylesheet() {
+          return _defaultMetadataStylesheet;
+        }
+
         function _load(configId) {
             var deferred = $q.defer();
             configLoader.prepare().then(function() {
                 translateService.init();
                 configService.getConfigDetails(configId).then(function(response) {
-                    var display = response.data.display;
+                    var display = response.data.details;
+                    _pageFramework = display.pageFramework;
+                    _summaryFlags = display.summaryFields;
+                    _defaultMetadataStylesheet = display.defaultMetadataStylesheet;
                     if(display.path === false) {
                         _showPath = false;
                     }
                     if(display.ref === false) {
                         _showFormat = false;
                     }
-                    displayFields = response.data.display.fields;
-                    _showAllFields = response.data.display.showAllFields;
-                    if (response.data.summary) {
-                        _summaryFields = response.data.summary.fields;
+                    displayFields = display.detailsTableFields;
+                    _showAllFields = display.detailsTableConfig == 'ALL';
+                    if (display.summaryFields) {
+                        _summaryFields = display.summaryFields.fields;
                         _setSummaryInclusions();
                     }
                     _setInclusions();
@@ -212,7 +231,14 @@ angular.module('voyager.details').
 
             getFields: _getFields,
 
-            getSummaryFields: _getSummaryFields
+            getSummaryFields: _getSummaryFields,
+
+            getPageFramework: _getPageFramework,
+
+            getDefaultMetadataStylesheet: _getDefaultMetadataStylesheet,
+
+            getSummaryFlags: _getSummaryFlags
+
         };
 
     });

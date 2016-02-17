@@ -54,19 +54,19 @@ angular.module('voyager.config').
 
         function _updateConfig(configData) {
             _shards = null;
-            _systemFilterMap = _.indexBy(configData.filters, 'field');
-            _setConfigFields(configData.display.fields);
+            _systemFilterMap = _.indexBy(configData.filtering, 'field');
+            _setConfigFields(configData.details.detailsTableFields);
             _homepage = configData.homepage;
-            if(configData.summary) {
-                _setSummaryFields(configData.summary.fields);
+            if(configData.cardView) {
+                _setSummaryFields(configData.cardView.fields);
             } else {
                 _summaryFields = {};
                 _summarySolrParams = '';
                 _summaryFieldsOrder = {};
                 _summaryFieldsStyle = {};
             }
-            if(angular.isDefined(configData.table)) {
-                _setTableFields(configData.table);
+            if(angular.isDefined(configData.tableView)) {
+                _setTableFields(configData.tableView.fields);
             }
         }
 
@@ -90,7 +90,8 @@ angular.module('voyager.config').
         }
 
         function _load(configId) {
-            return $http.get(config.root + 'api/rest/display/config/' + configId + '.json').then(function (res) {
+            return $http.get(config.root + 'api/rest/display/display_config/' + configId + '.json').then(function (res) {
+            // return $http.get(config.root + 'api/rest/display/config/' + configId + '.json').then(function (res) {
                 _configId = configId;
                 config.settings = res;
                 _updateConfig(config.settings.data);
@@ -182,7 +183,7 @@ angular.module('voyager.config').
 
             getDisplayFilters: function () {
                 //facetTypes are filters
-                var facetTypes = config.settings.data.filters, hasShard = false, catalogFilter;
+                var facetTypes = config.settings.data.filtering, hasShard = false, catalogFilter;
                 $.each(facetTypes, function (index, value) {
                     value.value = '';
                     value.values = [];  //facets
@@ -196,9 +197,10 @@ angular.module('voyager.config').
                 });
 
                 translateService.translateFilterNames(facetTypes);
-                if(config.settings.data.showFederatedSerach && angular.isDefined($location.search().shards)) {
-                    _createCatalogFilter(catalogFilter, facetTypes);
-                }
+                // TODO: federated search? 
+                // if(config.settings.data.showFederatedSerach && angular.isDefined($location.search().shards)) {
+                //     _createCatalogFilter(catalogFilter, facetTypes);
+                // }
                 return facetTypes;
             },
 
@@ -228,7 +230,10 @@ angular.module('voyager.config').
             },
 
             getFilters: function () {
-                return config.settings.data.filters;
+                if(config.settings.data.filtering == null) {
+                  config.settings.data.filtering = [];
+                }
+                return config.settings.data.filtering;
             },
 
             setConfigId: function (configId) {
@@ -250,7 +255,8 @@ angular.module('voyager.config').
             },
 
             getConfigDetails: function(id) {
-                return $http.get(config.root + 'api/rest/display/config/' + id + '.json');
+                return $http.get(config.root + 'api/rest/display/display_config/' + id + '.json');
+                // return $http.get(config.root + 'api/rest/display/config/' + id + '.json');
             },
 
             getSolrFields: function() {
@@ -336,7 +342,7 @@ angular.module('voyager.config').
             },
 
             showMap: function() {
-                var showMap = config.settings.data.display.showMap;
+                var showMap = config.settings.data.pageFramework.showMap;
                 if (angular.isUndefined(showMap)) {
                     showMap = true; //default
                 }
@@ -345,8 +351,8 @@ angular.module('voyager.config').
 
             getSortable: function() {
                 var sortable = [];
-                if(angular.isDefined(config.settings.data.sortable)) {
-                    $.each(config.settings.data.sortable, function(index, field) {
+                if(angular.isDefined(config.settings.data.sorting)) {
+                    $.each(config.settings.data.sorting, function(index, field) {
                         sortable.push({key:field, value:translateService.getFieldName(field)});
                     });
                 }
