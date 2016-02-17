@@ -41,7 +41,6 @@ describe('Cart Items Directive:', function () {
             $scope.removeItem('junk');
 
             expect(cartService.getCount()).toBe(0);
-
             cartService.clear();
         }));
 
@@ -66,14 +65,19 @@ describe('Cart Items Directive:', function () {
             var items = [{id:'junk', key:'junkkey'}, {id:'junk2', key:'junkkey2'}];
             var deferred = $q.defer();
             spyOn(cartService, 'fetch').and.returnValue(deferred.promise);
+            spyOn(cartService, 'getItemIds');
 
             cartService.clear();
             cartService.setItems(items);
 
             $scope.removeItemByFormat({id:'junk', key:'junkkey'});
             deferred.resolve();
-
             expect(cartService.fetch).toHaveBeenCalled();
+
+            $scope.task = {name:'zip_files', constraints: ['format_type:File']};
+            $scope.removeItemByFormat();
+            expect(cartService.getItemIds).toHaveBeenCalled();
+
             cartService.clear();
         }));
 
