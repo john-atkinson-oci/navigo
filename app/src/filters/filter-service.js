@@ -240,6 +240,17 @@ angular.module('voyager.filters').
                         return false;
                     }
                 });
+            },
+
+            removeThisFilter: function(facet) {
+                filters = _.reject(filters, function (filter) {
+                    if (filter.filter === facet.filter) {
+                        delete filterMap[filter.name];
+                        filter.isSelected = false;
+                        return true;
+                    }
+                    return false;
+                });
             }
 
         };

@@ -18,6 +18,7 @@ angular.module('voyager.component')
 				var detailSecondaryColumnHeight;
 				var itemDetailEl;
 				var tipped = false;
+				var $banner;
 
 				scope.initialize = function() {
 					element.ready(function(){
@@ -25,8 +26,21 @@ angular.module('voyager.component')
 							detailTopStickyContent = angular.element('#detailTopStickyContent');
 							detailTabContentNav = angular.element('#detailTabContentNav');
 							detailSecondaryColumn = angular.element('#detailSecondaryColumn');
+
+							$banner = angular.element('#top-banner');
+							if($banner.outerHeight() > 0) {
+								$timeout(function() {
+									var paddingTop = detailTopStickyContent.css('padding-top');
+									paddingTop = parseInt(paddingTop.replace('px',''));
+									detailTopStickyContent.css('padding-top', $banner.outerHeight() + paddingTop);
+									detailSecondaryColumn.css('padding-top', $banner.outerHeight() + paddingTop);
+									scope.resize();
+								});
+							}
+
 							detailTabContentNavHeight = detailTabContentNav.outerHeight();
 							itemDetailEl = angular.element('#itemDetailContent');
+
 							scope.setStickyContent();
 
 							windowEl.on('scroll', _scroll);
@@ -98,13 +112,25 @@ angular.module('voyager.component')
 
 					if (scrollTop === 0) {
 						detailSecondaryColumn.removeClass('sticky').css('margin-top', 0);
+						if($banner.outerHeight() > 0) {
+							detailSecondaryColumn.css('padding-top', 0);
+						}
 					} else if ((scrollTop + windowHeight) >= detailSecondaryColumnHeight) {
-						detailSecondaryColumn.addClass('sticky').css('width', '365px').css('margin-top', -(detailSecondaryColumnHeight - windowHeight) + 'px');
+						var marginTop = -(detailSecondaryColumnHeight - windowHeight);
+						// TODO - prevent image from scrolling under header (when recent search items show up under the map this happens)?
+						//if($banner.outerHeight() > 0) {
+						//	marginTop += $banner.outerHeight() * 2;
+						//}
+						detailSecondaryColumn.addClass('sticky').css('width', '365px').css('margin-top', marginTop + 'px');
 					}
 				}
 
 				function _setContentNavStyle() {
-					detailTabContentNav.addClass('sticky').css('top', (detailTopStickyContentHeight + detailTabContentNavHeight + 10) +'px');
+					var top = detailTopStickyContentHeight + detailTabContentNavHeight + 10;
+					if ($banner.outerHeight() > 0) {
+						top += $banner.outerHeight();
+					}
+					detailTabContentNav.addClass('sticky').css('top', top +'px');
 					detailTabContentNav.next().css('padding-top', detailTabContentNavHeight  + 'px');
 				}
 
@@ -112,6 +138,10 @@ angular.module('voyager.component')
 					detailTabContentNav.css('top', 0).removeClass('sticky').next().css('margin-top', '10px');
 					detailTopStickyContent.removeClass('sticky').next().css('margin-top', 0);
 					detailSecondaryColumn.removeClass('sticky').css('margin-top', '0px');
+					if($banner.outerHeight() > 0) {
+						detailSecondaryColumn.css('padding-top', '0px');
+						detailTopStickyContent.css('padding-top', '0px');
+					}
 				}
 
 				scope.setStickyContent = function() {
@@ -121,8 +151,11 @@ angular.module('voyager.component')
 						detailTopStickyContent.removeClass('sticky').next().css('margin-top', 0);
 						detailTabContentNav.removeClass('sticky');
 						detailTopStickyContentHeight = detailTopStickyContent.outerHeight();
-						detailTabContentNavTipPoint = detailTabContentNav.offset().top - detailTopStickyContentHeight - 100;
 
+						detailTabContentNavTipPoint = detailTabContentNav.offset().top - detailTopStickyContentHeight - 100;
+						if ($banner.outerHeight() > 0) {
+							detailTopStickyContentHeight -= $banner.outerHeight() * 2;
+						}
 						var mainContentHeight = itemDetailEl.outerHeight();
 						detailTopStickyContent.addClass('sticky').next().css('margin-top',  detailTopStickyContentHeight + 'px');
 						detailSecondaryColumnHeight = detailSecondaryColumn.height() + 138;
