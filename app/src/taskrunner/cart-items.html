@@ -1,0 +1,54 @@
+<div ng-if="cartItems.length > 0 && !invalid">
+    <span style="font-size: 24px"> Selected content to be processed</span>
+    <a class="btn btn-primary-sm pull-right" href="#tasks" style="margin-bottom: 10px">Select task ></a></a>
+</div>
+<table class="table table-condensed table-striped" ng-if="!displayCategory && cartItems.length > 0">
+    <thead>
+    <tr class="semi">
+        <th>&nbsp;</th>
+        <th>Name</th>
+        <th>Format</th>
+        <th><a class="link_secondary" href="javascript:;" ng-click="removeInvalidItems(cartItems)" ng-show="invalid" style="white-space: nowrap; color: #337ab7">Remove all</a></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="item in cartItems">
+        <td class="thumbnail_col">
+            <a href="#/show/{{item.id}}?disp={{disp}}">
+                <img src="assets/img/s.png" ng-class="item.defaultThumb ? 'default-thumb-queue':''" style="background-image: url({{item.thumb}})" alt="{{item.name}}" />
+            </a>
+        </td>
+        <td class="name_col">
+            <a href="#/show/{{item.id}}?disp={{disp}}" class="underline semi"><span class="txt">{{item.name}}</span></a>
+        </td>
+        <td>
+            <a href="#/show/{{item.id}}?disp={{disp}}">{{item.displayFormat}}</a>
+        </td>
+        <td class="action_col">
+            <a href="javascript:;" ng-click="removeItem(item.id)" ng-show="!invalid"><span class="sr-only">remove</span><span class="icon-x"></span></a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<table class="table table-condensed table-striped" ng-if="displayCategory">
+    <thead>
+    <tr class="semi">
+        <th class="format_col">Format</th>
+        <th class="count_col">Item count</th>
+        <th><a class="link_secondary" href="javascript:;" ng-click="removeItemByFormat()" ng-show="invalid" style="white-space: nowrap; color: #337ab7">Remove all</a></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="item in cartItems">
+        <td>
+            <a href="#/show/{{item.id}}?disp={{disp}}" class="semi underline"><span class="txt">{{item.displayFormat}}</span></a>
+        </td>
+        <td>
+            {{item.count | number}}
+        </td>
+        <td class="action_col">
+            <a href="javascript:;" ng-click="removeItemByFormat(item)" ng-show="!invalid"><span class="sr-only">remove</span><span class="icon-x"></span></a>
+        </td>
+    </tr>
+    </tbody>
+</table>

@@ -1,7 +1,7 @@
 <div class="page queue" ng-controller="TasksCtrl">
     <ng-include src="'src/cart/cart-nav.html'"></ng-include>
     <span us-spinner spinner-key="tasks-spinner" spinner-start-active="1"></span>
-    <div class="queue-secondary">
+    <div cdivs="queue-secondary">
         <div class="inner">
             <div class="task-list" ng-show="!refreshing">
                 <p ng-if="!taskList">Unfortunately, none of the default Voyager Tasks are available.</p>
@@ -10,7 +10,7 @@
                     <tr class="semi">
                         <th>
                             <span>Select a task</span>
-                            <button title="Refresh Task List" ng-disabled="refreshing" class="btn btn-xs pull-right"
+                            <button title="Refresh Task List" ng-disabled="refreshing" class="btn btn-xs pull-right" ng-show="canReload"
                                     ng-click="refreshTasks()">
                                 <span class="glyphicon glyphicon-refresh"></span>
                             </button>
@@ -22,15 +22,21 @@
                         <td>
                             <div class="task_group" ng-repeat="(name, group) in taskList">
                                 <a href="javascript:;" class="icon-arrow subcat_trigger keep_open">
-                                    <span class="glyphicon glyphicon-record glyphicon-green"></span>
+                                    <span class="glyphicon glyphicon-record glyphicon-green" ng-if="group.warnings == 0 && group.errors == 0"></span>
+                                    <span class="glyphicon glyphicon-record glyphicon-orange" ng-if="group.warnings > 0 || group.errors > 0 && group.errors < group.length"></span>
+                                    <span class="glyphicon glyphicon-record glyphicon-red" ng-if="group.errors == group.length"></span>
                                     <span class="category-name"><b>{{name}}</b></span>
                                 </a>
                                 <ul class="subcat">
                                     <li ng-repeat="task in group">
                                         <a href="javascript:;" ng-click="selectTask(task)">
-                                            <span class="glyphicon glyphicon-ok-circle glyphicon-green task-status" ng-class="task.available ? 'glyphicon-ok-circle':'glyphicon-ban-circle'"></span>
+                                            <span class="glyphicon glyphicon-record glyphicon-green task-status" ng-if="task.severity == 0" ng-class="task.available ? 'glyphicon-ok-circle':'glyphicon-ban-circle'"></span>
+                                            <span class="glyphicon glyphicon-record glyphicon-orange task-status" ng-if="task.severity == 1" ng-class="task.available ? 'glyphicon-ok-circle':'glyphicon-ban-circle'"></span>
+                                            <span class="glyphicon glyphicon-record glyphicon-red task-status" ng-if="task.severity == 2" ng-class="task.available ? 'glyphicon-ok-circle':'glyphicon-ban-circle'"></span>
                                             <span class="task-display-name"><b>{{task.display}}</b></span>
-                                            <span class="task-description">{{task.description}}</span></a>
+                                            <span class="task-description">{{task.description}}</span>
+                                            <span class="btn btn-xs pull-right" ng-if="task.severity == 2" style="background: #ff0000;color:white">Error details</span>
+                                        </a>
                                     </li>
                                 </ul>
                             </div>

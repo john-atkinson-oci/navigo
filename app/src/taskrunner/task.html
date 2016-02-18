@@ -4,12 +4,19 @@
     <div class="queue-secondary">
         <div class="content container">
             <div class="task_header">
+                <div ng-if="task.warning">
+                    <div class="warning-msg" ng-controller="TasksCtrl">
+                        <i class="fa fa-warning"></i>
+                        Some items in the cart are invalid for this task.
+                        <a class="link_secondary pull-right" href="javascript:;" ng-click="getInvalidTaskItems()">Show invalid items</a>
+                    </div>
+                </div>
                 <h3>{{task.display}} <a href="{{task.helpURL}}" title="Help" target="_blank"><i
                         class="fa fa-question-circle" aria-label="Help and Support"></i></a></h3>
                 <p ng-bind="task.description"></p>
             </div>
 
-            <div>
+            <div class="task-params">
                 <div class="row" id="task-details">
                     <div class="pull-right" ng-show="hasAdvanced">
                         <a href="javascript:;" class="underline small" ng-click="showAdvanced = !showAdvanced"><span
