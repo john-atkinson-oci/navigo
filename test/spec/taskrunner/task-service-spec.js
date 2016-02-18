@@ -28,7 +28,7 @@ describe('Factory: taskService', function () {
         var files = taskService.getFiles(statusResponse);
 
         expect(files.length).toBe(1);
-        expect(files[0].downloadUrl).toContain(new RegExp('task\/output') + 'name');
+        expect(files[0].downloadUrl).toContain(new RegExp('output'));
     });
 
     it('should get log files', function () {
@@ -38,8 +38,8 @@ describe('Factory: taskService', function () {
         var files = taskService.getLogFiles(statusResponse);
 
         expect(files.length).toBe(2);
-        expect(files[0].downloadUrl).toContain(new RegExp('task\/output') + '_stderr');
-        expect(files[1].downloadUrl).toContain(new RegExp('task\/output') + '_stdout');
+        expect(files[0].downloadUrl).toContain('_stderr');
+        expect(files[1].downloadUrl).toContain('_stdout');
 
         expect(files[0].displayName).toBe('Processing Error Log');
         expect(files[1].displayName).toBe('Processing Output');
@@ -59,4 +59,12 @@ describe('Factory: taskService', function () {
         $http.flush();
 
     });
+
+    it('should lookup task type', function () {
+
+        taskService.lookupTask('zip_files').then(function (response) {
+            expect(response[1].data.display === 'Zip Files');
+        });
+    });
+
 });

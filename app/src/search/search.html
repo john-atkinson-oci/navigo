@@ -23,7 +23,8 @@
 				<div id="selectedFilters" ng-controller="SelectedFiltersCtrl" vs-selected-filter data-view="{{view}}">
 					<div class="overtop" ng-if="filters.length">
 						<div class="hover_flyout">
-							<a href="javascript:;" class="semi icon-arrow flyout_trigger">Filters</a>
+							<div class="semi" ng-show="view == 'table'">Filters</div>
+							<a href="javascript:;" ng-hide="view == 'table'" class="semi icon-arrow flyout_trigger">Filters</a>
 							<div class="flyout">
 								<div class="arrow"></div>
 								<div class="flyout_inner">
@@ -34,6 +35,7 @@
 							</div>
 						</div>
 						<ul class="selected_list">
+							<li style="margin-left: -20px; margin-right: 20px; background-color: #fa8333"><a class="btn" style="background-color: #fa8333" href="javascript:;" ng-show="view == 'table'" ng-click="clearAllFilter()">Clear All<span class="icon-x"></span></a></li>
 							<li ng-repeat="selected in filters"><a href="javascript:;" ng-click="removeFilter(selected)">{{selected.humanized}}<span class="icon-x"></span></a></li>
 						</ul>
 					</div>

@@ -120,6 +120,18 @@
 			margin-bottom: 0;
 		}
 
+		.checkbox-only {
+			display: none;
+		}
+
+		.checkbox:hover {
+			.checkbox-only {
+				display: block;
+				color: $white;
+				cursor: pointer;
+			}
+		}
+
 		.icon-x {
 			font-size: 9px;
 		}

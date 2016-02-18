@@ -13,6 +13,7 @@ describe('TaskCtrl', function () {
         module('cart');
         module('voyager.filters');
         module('ui.router');
+        module('dialogs.main');
         module(function ($provide) {
             $provide.constant('config', config);
             //$provide.value('authService',{});  //mock the auth service so it doesn't call the init methods
@@ -46,6 +47,10 @@ describe('TaskCtrl', function () {
         httpMock.flush();
     }
 
+    function escapeRegExp(str) {
+        return str.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, '\\$&');
+    }
+
     describe('Load', function () {
 
         it('should load', function () {
@@ -53,12 +58,45 @@ describe('TaskCtrl', function () {
         });
 
         it('should exec', function () {
+
             cartService.addQuery({fq:'field:facet',params:{bbox:'',bboxt:''}, solrFilters:[], bounds:'&fq=bbox:0000'});
             cartService.addItem({id:'1'});
 
             initCtrl();
 
             httpMock.expectPOST(new RegExp('validate=true')).respond({});  // validate
+            httpMock.expectPOST(new RegExp('validate=false')).respond({id:'id'});  // exec
+
+            scope.execTask();
+
+            httpMock.flush();
+
+            expect(location.path()).toBe('/status/id');
+        });
+
+        it('should exec using filters and bbox', function () {
+            cartService.remove(1);
+            var q = {fq:'field:facet', params:{filter:'true', bbox:'',bboxt:''}, filters:'&fq={!tag=format_type}format_type:(File)', solrFilters:[], bounds:'&fq=bbox:0000'};
+            cartService.addQuery(q);
+            initCtrl();
+
+            httpMock.expectPOST(new RegExp('validate=true'), new RegExp(escapeRegExp('"fq":"{!tag=format_type}format_type:(File)"}'))).respond({id:'id'});  // validate
+            httpMock.expectPOST(new RegExp('validate=false')).respond({id:'id'});  // exec
+
+            scope.execTask();
+
+            httpMock.flush();
+
+            expect(location.path()).toBe('/status/id');
+        });
+
+        it('should exec using filters', function () {
+            cartService.remove(1);
+            var q = {fq:'field:facet', params:{filter:'true'}, filters:'&fq={!tag=format_type}format_type:(File)'};
+            cartService.addQuery(q);
+            initCtrl();
+
+            httpMock.expectPOST(new RegExp('validate=true'), new RegExp(escapeRegExp('"fq":"{!tag=format_type}format_type:(File)"}'))).respond({id:'id'});  // validate
             httpMock.expectPOST(new RegExp('validate=false')).respond({id:'id'});  // exec
 
             scope.execTask();

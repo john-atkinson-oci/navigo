@@ -5,7 +5,7 @@ angular.module('voyager.security')
         var error;
 
         $scope.canRemember = config.rememberMe;
-        $scope.hideDefault = localStorageService.get('default-cred') === 'true';
+        $scope.hideDefault = config.homepage.showDefaultCredentials === false || localStorageService.get('default-cred') === 'true';
 
         $scope.setDefaultCred = function () {
             $scope.user = 'admin';

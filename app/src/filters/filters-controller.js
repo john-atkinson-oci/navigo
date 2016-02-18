@@ -97,6 +97,11 @@ angular.module('voyager.filters')
             _fetchFilter();
         };
 
+        $scope.filterOnly = function(facet) {
+            filterService.removeThisFilter(facet);
+            _addFilter(facet);
+        };
+
         function _addFilter(facet) {
             filterService.removeExisting(facet);
             filterService.addFilter(facet);
