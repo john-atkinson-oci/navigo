@@ -1,6 +1,6 @@
 'use strict';
 angular.module('taskRunner')
-    .directive('vsCartItems', function (cartItemsQuery, cartService, taskService, taskModalService) {
+    .directive('vsCartItems', function (cartItemsQuery, cartService, taskService, taskModalService, $location) {
 
         return {
             templateUrl: 'src/taskrunner/cart-items.html',
@@ -11,6 +11,8 @@ angular.module('taskRunner')
                 task: '='
             },
             controller: function ($scope) {
+
+                $scope.disp = $location.search().disp || 'default';
 
                 var _removeValue = function (array, id) {
                     return _.reject(array, function (item) {
