@@ -1,0 +1,22 @@
+<div class="fluid-row modal-header task_header clearfix">
+    <h3 style="color:#FF0000">{{errorMessage}}</h3>
+</div>
+
+<div class="col-xs-12">
+    <section ng-class="hasDetails? 'col-md-6':'col-sm-12'">
+        <h4>Valid formats include:</h4>
+        <table class="table">
+            <tbody style="background-color: white">
+            <div>
+                <tr ng-repeat="row in constraintFormats">
+                    <td>{{row}}</td>
+                </tr>
+            </div>
+            </tbody>
+        </table>
+    </section>
+</div>
+
+<div class="modal-footer"></div>
+<a href="javascript:;" class="modal-close icon-x" ng-click="cancel()"></a>
+
