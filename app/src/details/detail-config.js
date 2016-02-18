@@ -51,15 +51,15 @@ angular.module('voyager.details').
         }
 
         function _getPageFramework() {
-          return _pageFramework;
+            return _pageFramework;
         }
 
         function _getSummaryFlags() {
-          return _summaryFlags;
+            return _summaryFlags;
         }
 
         function _getDefaultMetadataStylesheet() {
-          return _defaultMetadataStylesheet;
+            return _defaultMetadataStylesheet;
         }
 
         function _load(configId) {
@@ -68,6 +68,7 @@ angular.module('voyager.details').
                 translateService.init();
                 configService.getConfigDetails(configId).then(function(response) {
                     var display = response.data.details;
+                    // console.log(response);
                     _pageFramework = display.pageFramework;
                     _summaryFlags = display.summaryFields;
                     _defaultMetadataStylesheet = display.defaultMetadataStylesheet;
@@ -78,7 +79,7 @@ angular.module('voyager.details').
                         _showFormat = false;
                     }
                     displayFields = display.detailsTableFields;
-                    _showAllFields = display.detailsTableConfig == 'ALL';
+                    _showAllFields = display.detailsTableConfig === 'ALL';
                     if (display.summaryFields) {
                         _summaryFields = display.summaryFields.fields;
                         _setSummaryInclusions();

@@ -19,8 +19,7 @@ angular.module('voyager.details')
         $scope.loading = true;
         $scope.disp = $stateParams.disp || 'default';
         $scope.hasRelationships = false;
-				
-				$scope.pageFramework = {};
+        $scope.pageFramework = {};
 
         $scope.uiText = config.ui.details;
 

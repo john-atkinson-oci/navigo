@@ -198,9 +198,9 @@ angular.module('voyager.config').
 
                 translateService.translateFilterNames(facetTypes);
                 // TODO: federated search? 
-                // if(config.settings.data.showFederatedSerach && angular.isDefined($location.search().shards)) {
-                //     _createCatalogFilter(catalogFilter, facetTypes);
-                // }
+                if(config.settings.data.showFederatedSearch && angular.isDefined($location.search().shards)) {
+                    _createCatalogFilter(catalogFilter, facetTypes);
+                }
                 return facetTypes;
             },
 
@@ -230,8 +230,8 @@ angular.module('voyager.config').
             },
 
             getFilters: function () {
-                if(config.settings.data.filtering == null) {
-                  config.settings.data.filtering = [];
+                if(config.settings.data.filtering === null) {
+                    config.settings.data.filtering = [];
                 }
                 return config.settings.data.filtering;
             },
