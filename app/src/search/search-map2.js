@@ -248,7 +248,7 @@ angular.module('voyager.search')
 				}
 
 				function _convertBuffer(geoJSON) {
-					mapCustomControls.convertBuffer($scope.buffer.distance, geoJSON.geometry).then(function(response){
+					mapCustomControls.convertBuffer($scope.buffer, geoJSON.geometry).then(function(response){
 						geoJSON.geometry = response.data;
 						if (_bufferBoundaryLayer) {
 							_map.removeLayer(_bufferBoundaryLayer);
@@ -264,6 +264,7 @@ angular.module('voyager.search')
 						if ($attrs.cancel === 'false') {
 							$rootScope.$broadcast('bboxChangeEvent', {place: $scope.search.place});
 						}
+						// $scope.buffer.distance = 0;
 					});
 				}
 
@@ -382,7 +383,8 @@ angular.module('voyager.search')
 					});
 				}
 
-				$scope.bufferMeasures = ['miles'];
+				$scope.bufferMeasures = [{id: 'mi', text: 'Miles'}, {id: 'km', text: 'Kilometers'}, {id: 'm', text: 'Meters'}, {id: 'ft', text: 'Feet'}, {id: 'deg', text: 'Lat/Lng Degree'}, {id: 'nmi', text: 'Nautical Miles'}];
+				$scope.buffer = {measure: 'mi'};
 
 				function _removeLayers() {
 					if (angular.isDefined(_searchBoundaryLayer)) {
@@ -414,7 +416,7 @@ angular.module('voyager.search')
 
 				$scope.bufferCancel = function($event) {
 					$event.preventDefault();
-					$scope.buffer = {};
+					$scope.buffer = {measure: 'mi'};
 					angular.element('.leaflet-popup-close-button')[0].click();
 				};
 
