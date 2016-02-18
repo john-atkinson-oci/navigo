@@ -185,8 +185,10 @@ angular.module('cart')
                     this.addQuery(query);
                 }
             },
-            addQuery: function(query) {
-                var items = _getItems();
+            addQuery: function(query, items) {
+                if (angular.isUndefined(items)) {
+                    items = _getItems();
+                }
                 var length = _.keys(items).length;
                 if(length > 0 && query.actualCount !== true) {
                     query.count += length;

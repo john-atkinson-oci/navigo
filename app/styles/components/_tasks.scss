@@ -22,6 +22,29 @@
     color: #008000;
 
     &.task-status {
+      font-size: 1.3em !important;
+      width:40px;
+    }
+  }
+
+  .glyphicon-orange {
+    display: inline-block;
+    font-size: 1.5em;
+    color: #ffA500;
+
+    &.task-status {
+      font-size: 1.3em !important;
+      width:40px;
+    }
+  }
+
+  .glyphicon-red {
+    display: inline-block;
+    font-size: 1.5em;
+    color: #aa0000;
+
+    &.task-status {
+      font-size: 1.3em !important;
       width:40px;
     }
   }
@@ -40,6 +63,10 @@
   .task-description {
     font-size: 15px;
     width: 20px;
+  }
+
+  .error-details {
+    font-size: 15px;
   }
 
 }

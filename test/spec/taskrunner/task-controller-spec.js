@@ -74,9 +74,25 @@ describe('TaskCtrl', function () {
             expect(location.path()).toBe('/status/id');
         });
 
-        it('should exec using filters', function () {
+        it('should exec using filters and bbox', function () {
             cartService.remove(1);
             var q = {fq:'field:facet', params:{filter:'true', bbox:'',bboxt:''}, filters:'&fq={!tag=format_type}format_type:(File)', solrFilters:[], bounds:'&fq=bbox:0000'};
+            cartService.addQuery(q);
+            initCtrl();
+
+            httpMock.expectPOST(new RegExp('validate=true'), new RegExp(escapeRegExp('"fq":"{!tag=format_type}format_type:(File)"}'))).respond({id:'id'});  // validate
+            httpMock.expectPOST(new RegExp('validate=false')).respond({id:'id'});  // exec
+
+            scope.execTask();
+
+            httpMock.flush();
+
+            expect(location.path()).toBe('/status/id');
+        });
+
+        it('should exec using filters', function () {
+            cartService.remove(1);
+            var q = {fq:'field:facet', params:{filter:'true'}, filters:'&fq={!tag=format_type}format_type:(File)'};
             cartService.addQuery(q);
             initCtrl();
 

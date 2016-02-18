@@ -1,0 +1,14 @@
+<div ng-controller="TaskCtrl">
+    <div class="fluid-row modal-header task_header clearfix">
+        <h3>Invalid Items</h3>
+    </div>
+    <div class="queue-secondary">
+        <div class="inner">
+            <div class="content queue-content">
+                <vs-cart-items cart-items="invalidTaskItems" display-category="displayCategory" task="task" invalid="true"></vs-cart-items>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal-footer"></div>
+<a href="javascript:;" class="modal-close icon-x" ng-click="cancel()"></a>
