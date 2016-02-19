@@ -90,7 +90,7 @@
                         </section>
                     </div>
                     <div class="tag_wrap">
-                        <span ng-if="canViewTags">
+                        <span ng-if="canViewTags" ng-show="pageFramework.showTags">
                             <h4>Tags:</h4>
                             <ul class="tag_list">
                                 <li ng-repeat="label in labels"><a href="javascript:;" ng-click="searchTag(label)" ng-bind="label"></a><span ng-if="!$last">,</span></li>
