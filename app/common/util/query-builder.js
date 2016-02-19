@@ -8,7 +8,7 @@ angular.module('voyager.util').
         var getFacetParams = function (field) {
             var facetParams = '';
             if (field && field !== 'shards') {
-                var fieldConfig = _.find(config.settings.data.filters, function(filter) {return filter.field === field;});
+                var fieldConfig = _.find(config.settings.data.filtering, function(filter) {return filter.field === field;});
                 if(angular.isDefined(fieldConfig.minCount)) {
                     facetParams += '&f.' + fieldConfig.field + '.facet.mincount=' + fieldConfig.minCount;
                 }
@@ -19,7 +19,7 @@ angular.module('voyager.util').
                 }
                 return facetParams;
             }
-            var filters = config.settings.data.filters;
+            var filters = config.settings.data.filtering;
 
             $.each(filters, function (index, filter) {
                 if(filter.field !== 'shards') {
@@ -146,7 +146,7 @@ angular.module('voyager.util').
                 queryString += '?' + sugar.toQueryString(params);
                 queryString += '&rows=' + rows;
                 queryString += '&facet=true&facet.mincount=1&facet.limit=' + facetLimit + getFacetParams(field);
-                var fieldConfig = _.find(config.settings.data.filters, function(filter) {return filter.field === field;});
+                var fieldConfig = _.find(config.settings.data.filtering, function(filter) {return filter.field === field;});
                 if(field !== 'shards') {
                     if(fieldConfig.style === "CHECK") {
                         queryString += '&facet.field={!ex=' + field + '}' + field;

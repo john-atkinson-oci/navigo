@@ -19,6 +19,7 @@ angular.module('voyager.details')
         $scope.loading = true;
         $scope.disp = $stateParams.disp || 'default';
         $scope.hasRelationships = false;
+        $scope.pageFramework = {};
 
         $scope.uiText = config.ui.details;
 
@@ -172,6 +173,8 @@ angular.module('voyager.details')
 
                 $scope.displayFields = detailConfig.getFields(doc, detailService.getFields());
                 $scope.summaryFields = detailConfig.getSummaryFields(doc, detailService.getFields());
+                $scope.pageFramework = detailConfig.getPageFramework();
+                $scope.summaryFlags = detailConfig.getSummaryFlags();
                 $scope.description = doc.displayDescription;
 
                 if (doc.fullpath) {
@@ -255,7 +258,7 @@ angular.module('voyager.details')
 
         function _setStyle() {
             $scope.theme = {};
-            $scope.theme.selected = config.metadataStyle;
+            $scope.theme.selected = detailConfig.getDefaultMetadataStylesheet() || config.metadataStyle;
             $scope.$watch('theme.selected', function(){
                 var shard = $stateParams.shard;
                 var root = config.root;

@@ -5,7 +5,13 @@ config.fields = {data:{fields:[], FIELD:[], FIELD_DESCR:[]}};
 config.fileFormats = {data:{VALUE:{format:''}}};
 config.locations = {data:{VALUE:{location:''}}};
 config.settings = {'data':{'display':{'fields':[{'name':'field'}]}}};
+config.settings.data.pageFramework = {showMap: true};
+config.settings.data.sorting = ['name'];
+config.settings.data.filtering = [];
 config.settings.data.filters = [];
+config.settings.data.details = {
+	detailsTableFields : []
+};
 config.root = 'root/';
 config.require = {locations:'api/rest/i18n/field/location.json'};
 config.rawFields = {};
@@ -15,7 +21,8 @@ config.docActions = [
     {text:'Download', action:'download', visible:'hasDownload', alt:'Open'},
     {text:'Open in Map Viewer', action:'open', visible:'isService', url:'http://voyagerdemo.com/voyagerwidget/'},
     {text:'Open in ArcMap', action:'openArcMap', visible:'isEsriLayer'}
-]
+];
+config.pageFramework = {showMap: true};
 //config.settings.data.showFederatedSerach = true;
 
 var bounds = {};
