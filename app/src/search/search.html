@@ -3,7 +3,7 @@
 		<div class="search-map-container-inner">
 			<div id="searchViewList" ng-hide="view == 'table'" ng-include="'src/search/search-view-list.html'"></div>
 
-			<div ng-controller="SearchMapCtrl" style="height: 100%" ng-if="showMap">
+			<div ng-controller="SearchMapCtrl" style="height: 100%" ng-show="pageFramework.showMap">
 				<div class="alert alert-warning alert-dismissible" role="alert" ng-show="hasMapError">
 				 	<button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
 					<strong>Warning!</strong> Your base map is not supported!
@@ -11,14 +11,13 @@
 				<div class="search-map" vs-search-map resize="false" control="true" cancel="false"></div>
 			</div>
 		</div>
-    </div>
+	</div>
 
 	<div class="map_content {{mapContentClass}}">
 		<div class="row">
 			<!-- search results section -->
 			<div class="result_container no_padding" ng-class="{'open_filter' : (filterVisible && hasResults())}">
-		<header class="sticky clearfix {{headerClass}}" ng-include="'src/search/results-header.html'">
-		</header>
+				<header class="sticky clearfix {{headerClass}}" ng-include="'src/search/results-header.html'"></header>
 				<div class="container-fluid clearfix">
 				<div id="selectedFilters" ng-controller="SelectedFiltersCtrl" vs-selected-filter data-view="{{view}}">
 					<div class="overtop" ng-if="filters.length">
@@ -73,7 +72,7 @@
 
 			<!-- filters on right -->
 		<!--TODO ng-if not working here why? - using ng-show-->
-	  	<div id="filterContainer" class="col-lg-3 col-md-3 col-sm-5 col-xs-5" ng-show="filterVisible && totalItems">
+	  	<div id="filterContainer" class="col-lg-3 col-md-3 col-sm-5 col-xs-5" ng-show="pageFramework.showFilters && filterVisible && totalItems">
 			<div ui-view="filters" vs-filters></div>
 				<div class="filter_background"></div>
 	  		</div>

@@ -2,7 +2,7 @@
 'use strict';
 
 angular.module('voyager.layout')
-	.controller('HeaderCtrl', function(config, $rootScope, $scope, $modal, $window, $location, $stateParams, sugar, cartService, authService, savedSearchService, $state) {
+	.controller('HeaderCtrl', function(config, $rootScope, $scope, $modal, $window, $location, $stateParams, sugar, cartService, authService, savedSearchService, $state, configService) {
 
 		var vm = this;
 
@@ -30,7 +30,7 @@ angular.module('voyager.layout')
 			}
 		});
 
-        $rootScope.$on('$stateChangeStart', function(event, toState){
+		$rootScope.$on('$stateChangeStart', function(event, toState){
 			vm.showNav = toState.name !== 'login';
 		});
 
@@ -63,6 +63,8 @@ angular.module('voyager.layout')
 			authService.addObserver(_updateUserInfo);
 
 			$scope.$on('$stateChangeSuccess', _updateClassicLink);
+			vm.pageFramework = configService.getPageFramework();
+
 		}
 
 		function _updateClassicLink() {

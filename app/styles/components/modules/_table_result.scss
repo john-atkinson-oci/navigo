@@ -90,3 +90,18 @@
 		}
 	}
 }
+
+.no-header {
+    .main_container { padding-top: 0; }
+    .table_view {
+        .map_content {padding-top: 0; top: 0;}
+    }
+    #header {display: none;}
+    .header-controller {display: none;}
+    .list_wrap {padding-top: 65px !important;}
+}
+
+.no-map {
+    .list_wrap {margin-top: 0 !important;}
+} 
+
