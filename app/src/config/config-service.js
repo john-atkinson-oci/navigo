@@ -77,7 +77,7 @@ angular.module('voyager.config').
             _systemFilterMap = _.indexBy(configData.filtering, 'field');
             _setConfigFields(configData.details.detailsTableFields);
             _homepage = configData.homepage;
-            _pageFramework = configData.pageFramework;
+            _pageFramework = configData.pageElements;
             _defaultView = configData.defaultView;
             _cardView = configData.cardView;
             if(configData.cardView) {
@@ -113,8 +113,7 @@ angular.module('voyager.config').
         }
 
         function _load(configId) {
-            return $http.get(config.root + 'api/rest/display/display_config/' + configId + '.json').then(function (res) {
-            // return $http.get(config.root + 'api/rest/display/config/' + configId + '.json').then(function (res) {
+            return $http.get(config.root + 'api/rest/display/config/' + configId + '.json').then(function (res) {
                 _configId = configId;
                 config.settings = res;
                 _updateConfig(config.settings.data);
@@ -284,8 +283,7 @@ angular.module('voyager.config').
             },
 
             getConfigDetails: function(id) {
-                return $http.get(config.root + 'api/rest/display/display_config/' + id + '.json');
-                // return $http.get(config.root + 'api/rest/display/config/' + id + '.json');
+                return $http.get(config.root + 'api/rest/display/config/' + id + '.json');
             },
 
             getSolrFields: function() {
@@ -371,7 +369,7 @@ angular.module('voyager.config').
             },
 
             showMap: function() {
-                var showMap = config.settings.data.pageFramework.showMap;
+                var showMap = config.settings.data.pageElements.showMap;
                 if (angular.isUndefined(showMap)) {
                     showMap = true; //default
                 }

@@ -69,7 +69,7 @@ angular.module('voyager.details').
                 configService.getConfigDetails(configId).then(function(response) {
                     var display = response.data.details;
                     // console.log(response);
-                    _pageFramework = display.pageFramework;
+                    _pageFramework = display.pageElements;
                     _summaryFlags = display.summaryFields;
                     _defaultMetadataStylesheet = display.defaultMetadataStylesheet;
                     if(display.path === false) {
