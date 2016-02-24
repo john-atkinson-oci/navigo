@@ -36,9 +36,9 @@ angular.module('voyager.config').
         }
 
         // TODO: this should return the actual mapview, but for temporary it's returning the cardview. 
-        function _getMapView() {
-            return _cardView;
-        }
+        // function _getMapView() {
+        //     return _cardView;
+        // }
 
         function _setConfigFields(displayFields) {
             $.each(displayFields, function (index, value) {

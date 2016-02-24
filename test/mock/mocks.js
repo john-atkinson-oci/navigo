@@ -5,13 +5,15 @@ config.fields = {data:{fields:[], FIELD:[], FIELD_DESCR:[]}};
 config.fileFormats = {data:{VALUE:{format:''}}};
 config.locations = {data:{VALUE:{location:''}}};
 config.settings = {'data':{'display':{'fields':[{'name':'field'}]}}};
-config.settings.data.pageFramework = {showMap: true};
+config.settings.data.pageFramework = {showMap: true, showHeaderInfo: true};
 config.settings.data.sorting = ['name'];
 config.settings.data.filtering = [];
+config.settings.data.defaultView = 'card';
 config.settings.data.filters = [];
 config.settings.data.details = {
 	detailsTableFields : []
 };
+
 config.root = 'root/';
 config.require = {locations:'api/rest/i18n/field/location.json'};
 config.rawFields = {};
