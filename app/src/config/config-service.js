@@ -19,6 +19,26 @@ angular.module('voyager.config').
         var _editable = {};
         var _defaultMapView = {lng: 0, lat: 0, zoom: 3};
         var _catalogsPromise;
+        var _pageFramework;
+        var _defaultView;
+        var _cardView;
+
+        function _getPageFramework() {
+            return _pageFramework;
+        }
+
+        function _getDefaultView() {
+            return _defaultView.toLowerCase();
+        }
+
+        function _getCardView() {
+            return _cardView;
+        }
+
+        // TODO: this should return the actual mapview, but for temporary it's returning the cardview. 
+        // function _getMapView() {
+        //     return _cardView;
+        // }
 
         function _setConfigFields(displayFields) {
             $.each(displayFields, function (index, value) {
@@ -44,7 +64,7 @@ angular.module('voyager.config').
         function _setTableFields(table) {
             _tableFields = [];
             $.each(table, function (index, value) {
-                var tableField = {field:value.field, display:translateService.getFieldName(value.field), width: value.width};
+                var tableField = {field:value.name, display:translateService.getFieldName(value.name), width: value.width};
                 _tableFields.push(tableField);
                 if(angular.isDefined(value.width)) {
                     _tableColumnWidthMap[value.field] = {value:parseFloat(value.width)};
@@ -57,6 +77,9 @@ angular.module('voyager.config').
             _systemFilterMap = _.indexBy(configData.filtering, 'field');
             _setConfigFields(configData.details.detailsTableFields);
             _homepage = configData.homepage;
+            _pageFramework = configData.pageFramework;
+            _defaultView = configData.defaultView;
+            _cardView = configData.cardView;
             if(configData.cardView) {
                 _setSummaryFields(configData.cardView.fields);
             } else {
@@ -65,8 +88,8 @@ angular.module('voyager.config').
                 _summaryFieldsOrder = {};
                 _summaryFieldsStyle = {};
             }
-            if(angular.isDefined(configData.tableView)) {
-                _setTableFields(configData.tableView.fields);
+            if(angular.isDefined(configData.listView)) {
+                _setTableFields(configData.listView.fields);
             }
         }
 
@@ -180,6 +203,12 @@ angular.module('voyager.config').
         }
 
         return {
+
+            getPageFramework: _getPageFramework,
+
+            getDefaultView: _getDefaultView,
+
+            getCardView: _getCardView,
 
             getDisplayFilters: function () {
                 //facetTypes are filters

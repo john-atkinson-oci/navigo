@@ -1,7 +1,7 @@
 <div class="tab">
 	<ul>
-		<li ng-if="showMap" ng-class="view == 'map' && 'selected' || ''"><a href="javascript:;" ng-click="switchView('map')">Map</a></li>
+		<li ng-if="pageFramework.showMap" ng-class="view == 'map' && 'selected' || ''"><a href="javascript:;" ng-click="switchView('map')">Map</a></li>
 		<li ng-class="view == 'card' && 'selected' || ''"><a href="javascript:;" ng-click="switchView('card')">Card</a></li>
-		<li ng-if="showMap" ng-class="view == 'table' && 'selected' || ''"><a href="javascript:;" ng-click="switchView('table')">Table</a></li>
+		<li ng-class="view == 'table' && 'selected' || ''"><a href="javascript:;" ng-click="switchView('table')">Table</a></li>
 	</ul>
 </div>

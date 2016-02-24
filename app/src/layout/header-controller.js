@@ -30,7 +30,7 @@ angular.module('voyager.layout')
 			}
 		});
 
-        $rootScope.$on('$stateChangeStart', function(event, toState){
+		$rootScope.$on('$stateChangeStart', function(event, toState){
 			vm.showNav = toState.name !== 'login';
 		});
 
@@ -61,7 +61,6 @@ angular.module('voyager.layout')
 			//add queue observer
 			cartService.addObserver(_updateQueueTotal);
 			authService.addObserver(_updateUserInfo);
-
 			$scope.$on('$stateChangeSuccess', _updateClassicLink);
 		}
 

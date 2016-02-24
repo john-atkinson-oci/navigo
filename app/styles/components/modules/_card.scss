@@ -134,6 +134,18 @@
 	}
 }
 
+.card_view {
+	.no-thumb {
+		.title {
+			margin-top: 20px;
+		}
+		.detail_wrap .detail {
+			height: 300px;
+		}
+	}
+
+}
+
 .alt_list_view {
 	header {
 		h1 {
@@ -203,7 +215,25 @@
 			}
 		}
 	}
+
+	.no-thumb {
+		.title {
+			margin-top: 0px;
+		}
+
+		.detail_wrap {
+			padding-left: 0px !important;
+
+			.detail {
+				height: 150px !important;
+			}
+		}
+		.tag {
+			left: 0 !important;
+		}
+	}
 }
+
 
 .wide_list_view {
 	article {

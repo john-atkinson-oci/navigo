@@ -72,10 +72,11 @@ angular.module('voyager.results')
                 }
 
             },
-            controller: function ($scope, filterService, translateService, $timeout, $location) {
+            controller: function ($scope, filterService, translateService, $timeout, $location, configService) {
 
                 $scope.imagePrefix = config.root + 'meta/';
                 $scope.link = sugar.copy(config.docLink);  //copy so we don't change config
+                $scope.cardView = configService.getCardView();
                 actionManager.setAction($scope.link, $scope);
                 if($scope.link.action === 'preview' && $location.path() === '/home') {
                     $scope.link.visible = false;

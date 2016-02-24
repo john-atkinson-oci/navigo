@@ -20,11 +20,20 @@ angular.module('voyager.search')
 			$scope.bigMap = false;
 			$scope.mapSize = 'small-map';
 			$scope.showGrid = false;
-			$scope.showMap = configService.showMap();
+			// $scope.showMap = configService.showMap();
 			$scope.result = {};
 			$scope.filterVisible = false;
 			$scope.placefinderLink = config.root + 'manage/settings/placefinder';
 			$scope.eof = false;
+			$scope.pageFramework = configService.getPageFramework();
+
+			if(!$scope.pageFramework.showHeaderInfo){
+				angular.element('body').addClass('no-header');
+			}
+
+			if(!$scope.pageFramework.showMap){
+				angular.element('body').addClass('no-map');
+			}
 
 			loading.show('#working');
 
@@ -50,8 +59,8 @@ angular.module('voyager.search')
 			$scope.totalItems = 1; //default so no results message doesn't display when loading
 
 			if (_.isEmpty(_params.view)) {
-				$scope.view = 'card';
-				$location.search('view', 'card');
+				$scope.view = configService.getDefaultView();
+				$location.search('view', $scope.view);
 			} else if (_params.view === 'table') {
 				$scope.view = 'table';
 				searchService.setItemsPerPage(50);
@@ -261,7 +270,7 @@ angular.module('voyager.search')
 				}
 				//disp config can change after running a saved search
 				var showMap = configService.showMap();
-				if(showMap !== $scope.showMap) {
+				if(showMap !== $scope.pageFramework.showMap) {
 					$scope.showMap = showMap;
 					_setPageClass();
 				}
@@ -420,7 +429,7 @@ angular.module('voyager.search')
         };
         
 		function _setPageClass() {
-			var _pageClass = searchViewService.getPageClass($scope.filterVisible, $scope.view, $scope.showMap, $scope.searchError, $scope.resultError);
+			var _pageClass = searchViewService.getPageClass($scope.filterVisible, $scope.view, $scope.pageFramework.showMap, $scope.searchError, $scope.resultError);
 			$scope.mapWrapperClass = _pageClass.mapWrapperClass;
 			$scope.mapContentClass = _pageClass.mapContentClass;
 			$scope.headerClass = _pageClass.headerClass;
