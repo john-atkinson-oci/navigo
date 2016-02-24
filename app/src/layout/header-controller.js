@@ -2,7 +2,7 @@
 'use strict';
 
 angular.module('voyager.layout')
-	.controller('HeaderCtrl', function(config, $rootScope, $scope, $modal, $window, $location, $stateParams, sugar, cartService, authService, savedSearchService, $state, configService) {
+	.controller('HeaderCtrl', function(config, $rootScope, $scope, $modal, $window, $location, $stateParams, sugar, cartService, authService, savedSearchService, $state) {
 
 		var vm = this;
 
@@ -61,10 +61,7 @@ angular.module('voyager.layout')
 			//add queue observer
 			cartService.addObserver(_updateQueueTotal);
 			authService.addObserver(_updateUserInfo);
-
 			$scope.$on('$stateChangeSuccess', _updateClassicLink);
-			vm.pageFramework = configService.getPageFramework();
-
 		}
 
 		function _updateClassicLink() {
