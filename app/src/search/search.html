@@ -46,26 +46,25 @@
 						<div class="row" ui-view="table-results" vs-table-results data-size="{{tableViewMapSize}}"></div>
 					</div>
 
-			  <!--card results-->
-						<div class="list card_list {{listViewClass}}" ng-if="view != 'table' && view != 'list'">
-							<div class="row" ui-view="card-results"></div>
+					<!--card results-->
+					<div class="list card_list {{listViewClass}}" ng-if="view != 'table' && view != 'list'">
+						<div class="row" ui-view="card-results"></div>
+					</div>
+
+					<!--table results-->
+					<div class="list list_list" ng-if="view == 'list'">
+						<div class="row" ui-view="table-results"></div>
+					</div>
+
+					<div class="list">
+						<div class="row">
+							<div class="col-xs-12 label" ng-if="eof" style="background-color: #ecf0f1; color: black; border: 1px solid #d2d6d7; margin-left: 10px; width:98%">
+								<h4><span>End of Results</span></h4>
+							</div>
 						</div>
-
-			  <!--table results-->
-			  <div class="list list_list" ng-if="view == 'list'">
-				<div class="row" ui-view="table-results"></div>
-			  </div>
-
-			  <div class="list">
-				<div class="row">
-				  <div class="col-xs-12 label" ng-if="eof" style="background-color: #ecf0f1; color: black; border: 1px solid #d2d6d7; margin-left: 10px; width:98%">
-					  <h4><span>End of Results</span></h4>
-				  </div>
+					</div>
 				</div>
-			  </div>
 			</div>
-
-		</div>
 			<span us-spinner="{top:'100%',left:'48%',radius:6, width:3, length: 5}" spinner-key="scroll-spinner"></span>
 				<div class="no_result" ng-include="'src/results/no-results.html'"></div>
 			</div>

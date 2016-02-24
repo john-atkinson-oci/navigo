@@ -21,6 +21,7 @@ angular.module('voyager.config').
         var _catalogsPromise;
         var _pageFramework;
         var _defaultView;
+        var _cardView;
 
         function _getPageFramework() {
             return _pageFramework;
@@ -28,6 +29,15 @@ angular.module('voyager.config').
 
         function _getDefaultView() {
             return _defaultView.toLowerCase();
+        }
+
+        function _getCardView() {
+            return _cardView;
+        }
+
+        // TODO: this should return the actual mapview, but for temporary it's returning the cardview. 
+        function _getMapView() {
+            return _cardView;
         }
 
         function _setConfigFields(displayFields) {
@@ -69,6 +79,7 @@ angular.module('voyager.config').
             _homepage = configData.homepage;
             _pageFramework = configData.pageFramework;
             _defaultView = configData.defaultView;
+            _cardView = configData.cardView;
             if(configData.cardView) {
                 _setSummaryFields(configData.cardView.fields);
             } else {
@@ -194,8 +205,10 @@ angular.module('voyager.config').
         return {
 
             getPageFramework: _getPageFramework,
-            
+
             getDefaultView: _getDefaultView,
+
+            getCardView: _getCardView,
 
             getDisplayFilters: function () {
                 //facetTypes are filters

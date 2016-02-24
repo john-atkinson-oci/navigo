@@ -132,6 +132,16 @@
 	.icon-x:before {
 		font-size: $xsmallSize;
 	}
+
+	.no-thumb {
+		.title {
+			margin-top: 20px;
+		}
+		.detail_wrap .detail {
+			height: 300px !important;
+		}
+	}
+
 }
 
 .alt_list_view {
