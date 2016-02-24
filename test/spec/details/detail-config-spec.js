@@ -25,7 +25,7 @@ describe('Factory: detailConfig', function () {
 
 	var dispFields = [{name: 'name', style: 'STRIP_HTML'},{name:'format', style: 'HTML'}, {name:'contains_mime'}, {name:'location'}, {name:'abstract'}, {name: 'description'}];
 	var res = {
-		details: {pageFramework: {}, detailsTableFields: dispFields},
+		details: {pageElements: {}, detailsTableFields: dispFields},
 		display: {
 			path: true,
 			fields: dispFields
@@ -42,7 +42,7 @@ describe('Factory: detailConfig', function () {
 		//$http.expectGET(new RegExp('auth')).respond({permissions:{manage:true, process:true}});  // auth call
 		$http.expectGET(new RegExp('root\/api\/rest\/i18n\/field\/location.json')).respond({VALUE:{location:'location'}}); // location call
 
-		$http.expectGET(new RegExp('root\/api\/rest\/display\/display_config\/config.json')).respond(res);  // display call
+		$http.expectGET(new RegExp('root\/api\/rest\/display\/config\/config.json')).respond(res);  // display call
 
 		detailConfig.load('config');
 		$http.flush();

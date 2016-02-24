@@ -5,7 +5,7 @@ config.fields = {data:{fields:[], FIELD:[], FIELD_DESCR:[]}};
 config.fileFormats = {data:{VALUE:{format:''}}};
 config.locations = {data:{VALUE:{location:''}}};
 config.settings = {'data':{'display':{'fields':[{'name':'field'}]}}};
-config.settings.data.pageFramework = {showMap: true, showHeaderInfo: true};
+config.settings.data.pageElements = {showMap: true, showHeaderInfo: true};
 config.settings.data.sorting = ['name'];
 config.settings.data.filtering = [];
 config.settings.data.defaultView = 'card';
@@ -24,7 +24,7 @@ config.docActions = [
     {text:'Open in Map Viewer', action:'open', visible:'isService', url:'http://voyagerdemo.com/voyagerwidget/'},
     {text:'Open in ArcMap', action:'openArcMap', visible:'isEsriLayer'}
 ];
-config.pageFramework = {showMap: true};
+config.pageElements = {showMap: true};
 //config.settings.data.showFederatedSerach = true;
 
 var bounds = {};
