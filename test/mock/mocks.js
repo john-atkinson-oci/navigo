@@ -9,10 +9,10 @@ config.settings.data.pageElements = {showMap: true, showHeaderInfo: true};
 config.settings.data.sorting = ['name'];
 config.settings.data.filters = [];
 config.settings.data.defaultView = 'card';
-config.settings.data.filters = [];
 config.settings.data.details = {
 	detailsTableFields : []
 };
+config.settings.data.listView = {fields :[{field: 'field', name: 'field'}]};
 
 config.root = 'root/';
 config.require = {locations:'api/rest/i18n/field/location.json'};
