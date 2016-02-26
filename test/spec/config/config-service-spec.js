@@ -29,7 +29,7 @@ describe('Config:', function () {
                 details: {
                     detailsTableFields: [{name: 'format'},{name:'junk', style:'junk'}]
                 },
-                filtering:[{field: 'format'}, {field: 'junk', style:'junk'}]
+                filters:[{field: 'format'}, {field: 'junk', style:'junk'}]
             };
             // var dispSettings = {display:{fields:[{name: 'format'},{name:'junk', style:'junk'}]}, filters:[{field: 'format'}, {field: 'junk', style:'junk'}]};
             httpMock.expectGET().respond(dispSettings);
@@ -45,7 +45,7 @@ describe('Config:', function () {
 
             var actual = sut.lookupFilter('format');
 
-            expect(actual.field).toEqual(dispSettings.filtering[0].field);
+            expect(actual.field).toEqual(dispSettings.filters[0].field);
             expect(actual.stype).toEqual('string');
 
             var style = sut.lookupFilterStyle('junk');
@@ -61,7 +61,7 @@ describe('Config:', function () {
                 details: {
                     detailsTableFields: [{name: 'format'},{name:'junk', style:'junk'}]
                 },
-                filtering:[{field: 'format'}, {field: 'junk', style:'junk'}]
+                filters:[{field: 'format'}, {field: 'junk', style:'junk'}]
             };
             httpMock.expectGET().respond(dispSettings);
             httpMock.expectJSONP().respond({response: {docs:[{name:'format', stype:'string', multivalued:true}]}});  //data types call
@@ -83,7 +83,8 @@ describe('Config:', function () {
                 details: {
                     detailsTableFields: [{name: 'format'},{name:'junk', style:'junk'}]
                 },
-                filtering:[{field: 'format'}, {field: 'junk', style:'junk'}]
+                filters:[{field: 'format'}, {field: 'junk', style:'junk'}],
+                cardView: {fields:[{field: 'summary', style:'junk',name:'name'}]}
             };
             httpMock.expectGET().respond(dispSettings);
             httpMock.expectJSONP().respond({response: {docs:[{name:'format', stype:'string', multivalued:true}]}});  //data types call
@@ -92,10 +93,9 @@ describe('Config:', function () {
 
             httpMock.flush();
 
-            // var displayFields = sut.getDisplayFields({name:'name'});
+            var displayFields = sut.getDisplayFields({name:'name'});
 
-            // TODO
-            // expect(displayFields[0].raw).toBe('name');
+            expect(displayFields[0].raw).toBe('name');
 
         });
 

@@ -66,16 +66,15 @@ describe('Filters:', function () {
 
             _flushHttp(httpMock);
 
-						// TODO: make this work with DisplayConfig
-            // var actualFilter = scope.filters[0];
-            // expect(actualFilter.name).toBe(displayFilter.name);
+            var actualFilter = scope.filters[0];
+            expect(actualFilter.name).toBe(displayFilter.name);
 
-            // var facets = actualFilter.values;
+            var facets = actualFilter.values;
 
             //This is more of a functional test it spans outside of the filtersController (trying to get more bang for buck)
-            // expect(facets[0].name).toBe(displayFacet[0]);
-            // expect(facets[0].count).toBe(displayFacet[1]);
-            // expect(facets[0].filter).toBe(displayFilter.field);
+            expect(facets[0].name).toBe(displayFacet[0]);
+            expect(facets[0].count).toBe(displayFacet[1]);
+            expect(facets[0].filter).toBe(displayFilter.field);
         });
 
         it('should fetch on filterChanged event', function () {
@@ -98,9 +97,9 @@ describe('Filters:', function () {
             scope.$apply();
 
             _flushHttp(httpMock);
-						// TODO: make this work with DisplayConfig
-            // var actualFilter = scope.filters[0];
-            // expect(actualFilter.name).toBe(displayFilter.name);
+
+            var actualFilter = scope.filters[0];
+            expect(actualFilter.name).toBe(displayFilter.name);
         });
     });
 
@@ -145,9 +144,9 @@ describe('Filters:', function () {
             _flushHttp(httpMock);
 
             scope.$apply();
-						// TODO: make this work with DisplayConfig
-            // expect(scope.filters.length).toBe(1);
-            // expect(scope.filters[0].name).toBe(facet.name);
+
+            expect(scope.filters.length).toBe(1);
+            expect(scope.filters[0].name).toBe(facet.name);
         });
 
         it('should only filter', function () {
@@ -167,8 +166,7 @@ describe('Filters:', function () {
             _flushHttp(httpMock);
 
             // 2 display filters configured to show (cfg.settings.data.filters)
-            // TODO: make this work with DisplayConfig
-            // expect(scope.filters.length).toBe(2);
+            expect(scope.filters.length).toBe(2);
 
             var facet2 = {isSelected: true, filter: 'field1', name:'facet2'};
             scope.filterOnly(facet2);
@@ -183,14 +181,13 @@ describe('Filters:', function () {
             expect(filterParams[0]).toEqual(facet2.filter + ':' + facet2.name);
 
             // 2 display filters configured to show (cfg.settings.data.filters)
-            // TODO: make this work with DisplayConfig
-            // expect(scope.filters.length).toBe(2);
-            // expect(scope.filters[0].name).toBe(displayFilter.name);
+            expect(scope.filters.length).toBe(2);
+            expect(scope.filters[0].name).toBe(displayFilter.name);
         });
 
         it('should filter results with shards', function () {
 
-            cfg.settings.data.showFederatedSerach = true;
+            cfg.settings.data.showFederatedSearch = true;
 
             $location.search('shards','shard');
             $location.path('/search');
@@ -211,11 +208,10 @@ describe('Filters:', function () {
             httpMock.expectJSONP(url).respond(res);  // solr filter query
 
             // TODO why called again?
-            // TODO: make this work with DisplayConfig
-            // httpMock.expectGET(new RegExp(escapeRegExp('root/api/rest/index/config/federation.json'))).respond({servers:[{url:'url/'}]}); // catalogs call
-            // _flushHttp(httpMock);
+            httpMock.expectGET(new RegExp(escapeRegExp('root/api/rest/index/config/federation.json'))).respond({servers:[{url:'url/'}]}); // catalogs call
+            _flushHttp(httpMock);
 
-            cfg.settings.data.showFederatedSerach = false; // set false so it doesn't affect other tests
+            cfg.settings.data.showFederatedSearch = false; // set false so it doesn't affect other tests
 
             expect($location.search().shards).toEqual('shard,shard');
             // TODO need assertions on scope.filters
@@ -228,57 +224,53 @@ describe('Filters:', function () {
             controllerService('FiltersCtrl', {$scope: scope, filterService: _filterService});
             var facet = {isSelected: true, model:[1,2], name:'name', display:'display', style:'RANGE', filter:'rangeField', field:'rangeField'};
             scope.addRangeFilter(facet);
-            // TODO: make this work with DisplayConfig
-            // httpMock.expectJSONP(new RegExp(escapeRegExp('stats=true'))).respond({stats:{stats_fields:{rangeField:{min:0, max:5}}}});  // stats query for range values
+            httpMock.expectJSONP(new RegExp(escapeRegExp('stats=true'))).respond({stats:{stats_fields:{rangeField:{min:0, max:5}}}});  // stats query for range values
 
-            // var res = {facet_counts:{facet_fields:{rangeField:['facet',1]}}};
-            // var url = new RegExp(escapeRegExp('root/solr/v0/select?voyager.config.id=default&rows=0&facet=true'));
-            // httpMock.expectJSONP(url).respond(res);  // solr filter query
-            // _flushHttp(httpMock);
+            var res = {facet_counts:{facet_fields:{rangeField:['facet',1]}}};
+            var url = new RegExp(escapeRegExp('root/solr/v0/select?voyager.config.id=default&rows=0&facet=true'));
+            httpMock.expectJSONP(url).respond(res);  // solr filter query
+            _flushHttp(httpMock);
 
-            // cfg.settings.data.filters = [];
+            cfg.settings.data.filters = [];
         });
 
         it('should add stats filter', function () {
-            // TODO: make this work with DisplayConfig
+            cfg.settings.data.filters = [{field: 'statsField', style: 'STATS', minCount: 0}];
 
-						// cfg.settings.data.filters = [{field: 'statsField', style: 'STATS', minCount: 0}];
+            controllerService('FiltersCtrl', {$scope: scope, filterService: _filterService});
+            var facet = {isSelected: true, model:[1,2], name:'name', display:'display', style:'STATS', filter:'statsField', field:'statsField'};
+            scope.addRangeFilter(facet);
 
-            // controllerService('FiltersCtrl', {$scope: scope, filterService: _filterService});
-            // var facet = {isSelected: true, model:[1,2], name:'name', display:'display', style:'STATS', filter:'statsField', field:'statsField'};
-            // scope.addRangeFilter(facet);
+            httpMock.expectJSONP(new RegExp(escapeRegExp('stats=true'))).respond({stats:{stats_fields:{statsField:{min:0, max:5}}}});  // stats query for range values
 
-            // httpMock.expectJSONP(new RegExp(escapeRegExp('stats=true'))).respond({stats:{stats_fields:{statsField:{min:0, max:5}}}});  // stats query for range values
+            var res = {facet_counts:{facet_fields:{statsField:['facet',1]}}};
+            var url = new RegExp(escapeRegExp('root/solr/v0/select?voyager.config.id=default&rows=0&facet=true'));
+            httpMock.expectJSONP(url).respond(res);  // solr filter query
 
-            // var res = {facet_counts:{facet_fields:{statsField:['facet',1]}}};
-            // var url = new RegExp(escapeRegExp('root/solr/v0/select?voyager.config.id=default&rows=0&facet=true'));
-            // httpMock.expectJSONP(url).respond(res);  // solr filter query
+            httpMock.expectJSONP(new RegExp(escapeRegExp('stats=true'))).respond({stats:{stats_fields:{statsField:{min:0, max:5}}}});  // stats query for range values
 
-            // httpMock.expectJSONP(new RegExp(escapeRegExp('stats=true'))).respond({stats:{stats_fields:{statsField:{min:0, max:5}}}});  // stats query for range values
+            _flushHttp(httpMock);
 
-            // _flushHttp(httpMock);
-
-            // cfg.settings.data.filters = [];
+            cfg.settings.data.filters = [];
         });
 
         it('should add calendar filter', function () {
-            // TODO: make this work with DisplayConfig
-            // cfg.settings.data.filters = [{field: 'calendarField', style: 'RANGE', minCount: 0, stype:'date'}];
+            cfg.settings.data.filters = [{field: 'calendarField', style: 'RANGE', minCount: 0, stype:'date'}];
 
-            // controllerService('FiltersCtrl', {$scope: scope, filterService: _filterService});
+            controllerService('FiltersCtrl', {$scope: scope, filterService: _filterService});
 
-            // var facet = {isSelected: true, model:[1,2], name:'name', display:'display', style:'RANGE', stype:'date', filter:'calendarField'};
-            // scope.addCalendarFilter(facet);
+            var facet = {isSelected: true, model:[1,2], name:'name', display:'display', style:'RANGE', stype:'date', filter:'calendarField'};
+            scope.addCalendarFilter(facet);
 
-            // httpMock.expectJSONP(new RegExp(escapeRegExp('stats=true'))).respond({stats:{stats_fields:{calendarField:{min:0, max:5}}}});  // stats query for range values
+            httpMock.expectJSONP(new RegExp(escapeRegExp('stats=true'))).respond({stats:{stats_fields:{calendarField:{min:0, max:5}}}});  // stats query for range values
 
-            // var res = {facet_counts:{facet_fields:{calendarField:['facet',1]}}};
+            var res = {facet_counts:{facet_fields:{calendarField:['facet',1]}}};
 
-            // var url = new RegExp(escapeRegExp('root/solr/v0/select?voyager.config.id=default&rows=0&facet=true'));
-            // httpMock.expectJSONP(url).respond(res);  // solr filter query
-            // _flushHttp(httpMock);
+            var url = new RegExp(escapeRegExp('root/solr/v0/select?voyager.config.id=default&rows=0&facet=true'));
+            httpMock.expectJSONP(url).respond(res);  // solr filter query
+            _flushHttp(httpMock);
 
-            // cfg.settings.data.filters = [];
+            cfg.settings.data.filters = [];
         });
 
         it('should add folder filter', function () {
