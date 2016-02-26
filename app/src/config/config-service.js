@@ -74,7 +74,7 @@ angular.module('voyager.config').
 
         function _updateConfig(configData) {
             _shards = null;
-            _systemFilterMap = _.indexBy(configData.filtering, 'field');
+            _systemFilterMap = _.indexBy(configData.filters, 'field');
             _setConfigFields(configData.details.detailsTableFields);
             _homepage = configData.homepage;
             _pageFramework = configData.pageElements;
@@ -211,7 +211,7 @@ angular.module('voyager.config').
 
             getDisplayFilters: function () {
                 //facetTypes are filters
-                var facetTypes = config.settings.data.filtering, hasShard = false, catalogFilter;
+                var facetTypes = config.settings.data.filters, hasShard = false, catalogFilter;
                 $.each(facetTypes, function (index, value) {
                     value.value = '';
                     value.values = [];  //facets
@@ -258,10 +258,10 @@ angular.module('voyager.config').
             },
 
             getFilters: function () {
-                if(config.settings.data.filtering === null) {
-                    config.settings.data.filtering = [];
+                if(config.settings.data.filters === null) {
+                    config.settings.data.filters = [];
                 }
-                return config.settings.data.filtering;
+                return config.settings.data.filters;
             },
 
             setConfigId: function (configId) {
