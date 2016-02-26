@@ -26,6 +26,7 @@ config.docActions = [
 ];
 config.pageElements = {showMap: true};
 //config.settings.data.showFederatedSerach = true;
+config.homepage.bannerHTML = 'banner';
 
 var bounds = {};
 bounds.toBBoxString = function() {return '0,0,0,0';};
