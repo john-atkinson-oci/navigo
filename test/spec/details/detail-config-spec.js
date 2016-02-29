@@ -25,7 +25,7 @@ describe('Factory: detailConfig', function () {
 
 	var dispFields = [{name: 'name', style: 'STRIP_HTML'},{name:'format', style: 'HTML'}, {name:'contains_mime'}, {name:'location'}, {name:'abstract'}, {name: 'description'}];
 	var res = {
-		details: {pageFramework: {}, detailsTableFields: dispFields},
+		details: {pageElements: {}, detailsTableFields: dispFields, summaryFields: {fields: dispFields}},
 		display: {
 			path: true,
 			fields: dispFields
@@ -33,7 +33,7 @@ describe('Factory: detailConfig', function () {
 		cardView: {
 			fields: dispFields
 		},
-		summary: {
+		fields: {
 			fields: dispFields
 		}
 	};
@@ -42,7 +42,7 @@ describe('Factory: detailConfig', function () {
 		//$http.expectGET(new RegExp('auth')).respond({permissions:{manage:true, process:true}});  // auth call
 		$http.expectGET(new RegExp('root\/api\/rest\/i18n\/field\/location.json')).respond({VALUE:{location:'location'}}); // location call
 
-		$http.expectGET(new RegExp('root\/api\/rest\/display\/display_config\/config.json')).respond(res);  // display call
+		$http.expectGET(new RegExp('root\/api\/rest\/display\/config\/config.json')).respond(res);  // display call
 
 		detailConfig.load('config');
 		$http.flush();
@@ -61,15 +61,13 @@ describe('Factory: detailConfig', function () {
 		expect(actual.length).toBe(Object.keys(fields).length);
 	});
 
-	// TODO make this work again with DisplayConfig
 	it('should get summary fields', function () {
-		// var doc = { name: ['name'], format: 'format', contains_mime: ['mime','2'], location: 'location', abstract: 'abstract', description: 'description'};
-		// var fields = {name:{displayable:true}, format:{displayable:true}, contains_mime:{displayable:true}, location:{displayable:true}, abstract:{displayable:true}, description:{displayable:true}};
+		var doc = { name: ['name'], format: 'format', contains_mime: ['mime','2'], location: 'location', abstract: 'abstract', description: 'description'};
+		var fields = {name:{displayable:true}, format:{displayable:true}, contains_mime:{displayable:true}, location:{displayable:true}, abstract:{displayable:true}, description:{displayable:true}};
 
-		// var actual = detailConfig.getSummaryFields(doc,fields);
+		var actual = detailConfig.getSummaryFields(doc,fields);
 
-		// TODO
-		// expect(actual.length).toBe(Object.keys(fields).length);
+		expect(actual.length).toBe(Object.keys(fields).length);
 	});
 
 });

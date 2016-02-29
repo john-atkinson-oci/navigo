@@ -76,18 +76,19 @@ describe('Controller: HomeCtrl', function () {
     });
 
     it('should init with map hidden', function () {
-        cfg.settings.data.display.showMap = false;
+        // cfg.settings.data.display.showMap = false; // TODO does pageElements control the home page?
+        cfg.settings.data.pageElements.showMap = false;
 
         initController();
 
-       // expect($scope.containerStyle.indexOf('-60') > -1).toBeTruthy();
-            // TODO: make this work with DisplayConfig
-        // expect($scope.mapTypes).toEqual(['Place']);
+        // expect($scope.containerStyle.indexOf('-60') > -1).toBeTruthy();
+        expect($scope.mapTypes).toEqual(['Place']);
         expect($scope.showMap).toBeFalsy();
         expect($scope.selectedMapType).toBe('Place');
     });
 
     it('should init with place finder hidden', function () {
+        cfg.settings.data.pageElements.showMap = true;
         cfg.homepage.showPlaceQuery = false;
 
         initController();
@@ -101,12 +102,13 @@ describe('Controller: HomeCtrl', function () {
 
     it('should init with place finder and map hidden', function () {
         cfg.homepage.showPlaceQuery = false;
-        cfg.settings.data.display.showMap = false;
+        //cfg.settings.data.display.showMap = false;  // TODO does pageElements control the home page?
+        cfg.settings.data.pageElements.showMap = false;
 
         initController();
-            // TODO: make this work with DisplayConfig
-        // expect($scope.searchInputClass).toEqual('col-xs-12');
-        // expect($scope.showSpatialInput).toBeFalsy();
+
+        expect($scope.searchInputClass).toEqual('col-xs-12');
+        expect($scope.showSpatialInput).toBeFalsy();
 
         delete cfg.homepage.showPlaceQuery; //reset to default
     });

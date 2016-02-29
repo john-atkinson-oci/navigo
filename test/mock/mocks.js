@@ -5,14 +5,14 @@ config.fields = {data:{fields:[], FIELD:[], FIELD_DESCR:[]}};
 config.fileFormats = {data:{VALUE:{format:''}}};
 config.locations = {data:{VALUE:{location:''}}};
 config.settings = {'data':{'display':{'fields':[{'name':'field'}]}}};
-config.settings.data.pageFramework = {showMap: true, showHeaderInfo: true};
+config.settings.data.pageElements = {showMap: true, showHeaderInfo: true};
 config.settings.data.sorting = ['name'];
-config.settings.data.filtering = [];
-config.settings.data.defaultView = 'card';
 config.settings.data.filters = [];
+config.settings.data.defaultView = 'card';
 config.settings.data.details = {
 	detailsTableFields : []
 };
+config.settings.data.listView = {fields :[{field: 'field', name: 'field'}]};
 
 config.root = 'root/';
 config.require = {locations:'api/rest/i18n/field/location.json'};
@@ -24,8 +24,9 @@ config.docActions = [
     {text:'Open in Map Viewer', action:'open', visible:'isService', url:'http://voyagerdemo.com/voyagerwidget/'},
     {text:'Open in ArcMap', action:'openArcMap', visible:'isEsriLayer'}
 ];
-config.pageFramework = {showMap: true};
+config.pageElements = {showMap: true};
 //config.settings.data.showFederatedSerach = true;
+config.homepage.bannerHTML = 'banner';
 
 var bounds = {};
 bounds.toBBoxString = function() {return '0,0,0,0';};

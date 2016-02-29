@@ -16,9 +16,9 @@ describe('TableCtrl', function () {
         module('voyager.component');
     });
 
-    var scope, controllerService, q, location, timeout, $http, cartService, $window;
+    var scope, controllerService, q, location, timeout, $http, cartService, $window, configService;
 
-    beforeEach(inject(function ($rootScope, $controller, $q, $location, $timeout, searchService, _cartService_, configService, _$httpBackend_, _$window_) {
+    beforeEach(inject(function ($rootScope, $controller, $q, $location, $timeout, searchService, _cartService_, _configService_, _$httpBackend_, _$window_) {
         scope = $rootScope.$new();
         q = $q;
         controllerService = $controller;
@@ -27,6 +27,7 @@ describe('TableCtrl', function () {
         $http = _$httpBackend_;
         cartService = _cartService_;
         $window = _$window_;
+        configService = _configService_;
     }));
 
     $(document.body).append('<div ng-controller="TableCtrl"><table ng-table="tableParams"><tr ng-repeat="doc in $data"></tr></table>');
@@ -35,6 +36,8 @@ describe('TableCtrl', function () {
         if (angular.isUndefined(authResponse)) {
             authResponse = {};
         }
+        spyOn(configService, 'getTableFields').and.returnValue([{field: 'field'}]);
+
         controllerService('TableCtrl', {$scope: scope});
 
         //$http.expectGET(new RegExp('auth')).respond(authResponse); //auth info call
