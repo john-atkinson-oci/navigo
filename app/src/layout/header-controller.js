@@ -11,6 +11,7 @@ angular.module('voyager.layout')
 		vm.logout = _logout;
 		vm.showSavedSearch = _showSavedSearch;
 		vm.manageLink = config.root + 'manage';
+		vm.myVoyagerLink = config.root + 'manage/#/savedsearches';
 		vm.showClassicLink = false;
 		vm.showNav = $location.path() !== '/login';
 		vm.buildRev = '@build.revision@';
@@ -88,6 +89,7 @@ angular.module('voyager.layout')
 			vm.user = authService.getUser();
 			vm.canCart = authService.hasPermission('process');
 			vm.canManage = authService.hasPermission('manage');
+			vm.canSaveSearch = authService.hasPermission('save_search');
 			vm.showLogout = authService.showLogout();
 			_updateClassicLink();
 
