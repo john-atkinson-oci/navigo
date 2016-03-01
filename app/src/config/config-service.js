@@ -9,6 +9,8 @@ angular.module('voyager.config').
         var _solrParams = '';
         var _summarySolrParams = '';
         var _tableFields = [];
+        var _cardViewFields = [];
+        var _cardViewNames = [];
         var _displayFieldsOrder = {};
         var _displayFieldsStyle = {};
         var _summaryFieldsOrder = {};
@@ -72,6 +74,24 @@ angular.module('voyager.config').
             });
         }
 
+        function _setCardViewFields(cardViewFields) {
+            _cardViewFields = [];
+            $.each(cardViewFields, function (index, value) {
+                var cardViewField = {field:value.name, display:translateService.getFieldName(value.name)};
+                cardViewField.maxLines = value.maxLines || 3;
+                cardViewField.showLabel = value.showLabel;
+                _cardViewFields.push(cardViewField);
+            });
+        }
+
+        function _setCardViewNames(cardViewNames) {
+            _cardViewNames = [];
+            $.each(cardViewNames, function (index, value) {
+                var cardViewName = {field:value, display:translateService.getFieldName(value)};
+                _cardViewNames.push(cardViewName);
+            });
+        }
+
         function _updateConfig(configData) {
             _shards = null;
             _systemFilterMap = _.indexBy(configData.filters, 'field');
@@ -90,6 +110,14 @@ angular.module('voyager.config').
             }
             if(angular.isDefined(configData.listView)) {
                 _setTableFields(configData.listView.fields);
+            }
+            if(angular.isDefined(configData.cardView)) {
+                if(angular.isDefined(configData.cardView.fields)) {
+                    _setCardViewFields(configData.cardView.fields);
+                }
+                if(angular.isDefined(configData.cardView.names)) {
+                    _setCardViewNames(configData.cardView.names);
+                }
             }
         }
 
@@ -236,6 +264,10 @@ angular.module('voyager.config').
                 return config.settings.data;
             },
 
+            getAllowsTextWrappingOnTableView :function () {
+                return config.settings.data.listView.allowTextWrapping;
+            },
+
             lookupFilter: function(filter) {
                 return _systemFilterMap[filter];
             },
@@ -317,6 +349,14 @@ angular.module('voyager.config').
                 return _.sortBy(prettyFields,'order');
             },
 
+            getCardViewFields: function() {
+                return _cardViewFields;
+            },
+
+            getCardViewNames: function() {
+                return _cardViewNames;
+            },
+
             getTableFields: function() {
                 return _tableFields;
             },
@@ -360,7 +400,6 @@ angular.module('voyager.config').
                 return config.settings.data;
             },
 
-
             getSort: function() {
                 var sort = {};
                 sort.direction = angular.isDefined(config.defaultSortDirection)? config.defaultSortDirection : 'desc';
@@ -369,6 +408,9 @@ angular.module('voyager.config').
             },
 
             showMap: function() {
+                if(config.settings.data.pageElements === null) {
+                    config.settings.data.pageElements = {showMap: true};
+                }
                 var showMap = config.settings.data.pageElements.showMap;
                 if (angular.isUndefined(showMap)) {
                     showMap = true; //default
