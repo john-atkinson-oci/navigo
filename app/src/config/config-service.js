@@ -351,7 +351,7 @@ angular.module('voyager.config').
 
             getUpdatedSettings: function() {
                 var colInfo;
-                $.each(config.settings.data.table, function(index, column) {
+                $.each(config.settings.data.listView.fields, function(index, column) {
                     colInfo = _tableColumnWidthMap[column.field];
                     if(angular.isDefined(colInfo)) {
                         column.width = colInfo.value;

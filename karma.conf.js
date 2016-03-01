@@ -54,6 +54,7 @@ module.exports = function(config) {
             'app/lib/leaflet/wicket-leaflet.js',
             'app/lib/tree/*.js',
             'app/config.js',
+            'app/bower_components/voyager-ui-toolkit/dist/vs.toolkit.min.js',
             'app/common/**/*module.js',
             'app/common/**/*.js',
             'app/src/**/*module.js',

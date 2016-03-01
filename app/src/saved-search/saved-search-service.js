@@ -1,7 +1,7 @@
 /*global angular, $, querystring, config */
 
 angular.module('voyager.search').
-    factory('savedSearchService', function (sugar, $http, configService, $q, authService, $modal, recentSearchService, $location, filterService, $analytics, converter) {
+    factory('savedSearchService', function (sugar, $http, configService, $q, authService, $modal, recentSearchService, $location, filterService, $analytics, converter, displayConfigResource, solrGrunt) {
         'use strict';
 
         var observers = [];
@@ -47,8 +47,8 @@ angular.module('voyager.search').
                 sugar.postJson(configService.getUpdatedSettings(), 'display', 'config').then(function(response) {
                     request.config = response.data.id;
                     /* jshint ignore:start */
-                    request.query += '/disp=' + request.config;
-                    request.path = request.query;
+                    //request.query += '/disp=' + request.config;
+                    request.path += '/disp=' + request.config;
                     sugar.postJson(request, 'display', 'ssearch').then(function(savedResponse) {
                         deferred.resolve();
                     }, function(error) {
@@ -60,8 +60,8 @@ angular.module('voyager.search').
                 });
                 return deferred.promise;
             } else {
-                request.query += '/disp=' + request.config;
-                request.path = request.query;
+                //request.query += '/disp=' + request.config;
+                request.path += '/disp=' + request.config;
                 return sugar.postJson(request, 'display', 'ssearch');
             }
         }
@@ -82,6 +82,15 @@ angular.module('voyager.search').
                 console.log(error);
                 return error;
             });
+        }
+
+        function _makeid() {
+            var text = '';
+            var possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+            for( var i=0; i < 6; i++ ) {
+                text += possible.charAt(Math.floor(Math.random() * possible.length));
+            }
+            return text;
         }
 
         //public methods - client interface
@@ -139,16 +148,31 @@ angular.module('voyager.search').
             },
             saveSearch: function(savedSearch, params) {
                 savedSearch.config = configService.getConfigId();
-                savedSearch.query = converter.toClassicParams(params);
-                return _doSave(savedSearch);
+
+                var config = configService.getUpdatedSettings();
+                var configClone = angular.copy(config);
+                if(angular.isDefined(params.view)) {
+                    configClone.defaultView = _.classify(params.view);
+                }
+                configClone.id = _makeid();
+                delete configClone.title;
+
+                return displayConfigResource.saveDisplayConfig(configClone).then(function() {
+                    savedSearch.disp = configClone.id;
+                    savedSearch.config = configClone.id;
+                    var solrParams = solrGrunt.getSolrParams(params);
+                    savedSearch.query = $.param(solrParams, true);
+                    savedSearch.path = converter.toClassicParams(params);
+                    return _doSave(savedSearch);
+                });
             },
 
             deleteSearch: function(id){
                 return $http.delete(config.root + 'api/rest/display/ssearch/' + id).then(function(){
-                            observers.forEach(function (entry) {
-                                entry(id);
-                            });
-                        });
+                    observers.forEach(function (entry) {
+                        entry(id);
+                    });
+                });
             },
 
             showSaveSearchDialog: function (item) {
@@ -189,21 +213,25 @@ angular.module('voyager.search').
                 });
             },
             applySavedSearch: function(saved, $scope) {
-                var solrParams = this.getParams(saved);
-                //solrParams.id = saved.id;  TODO why are we setting this?
+                var self = this;
+                displayConfigResource.getDisplayConfig(saved.config).then(function(res) {
+                    var display = res.data;
+                    var solrParams = self.getParams(saved);
+                    solrParams.view = display.defaultView.toLowerCase();
 
-                $scope.$emit('clearSearchEvent');
+                    $scope.$emit('clearSearchEvent');
 
-                $location.path('search').search(solrParams);
-                filterService.applyFromUrl($location.search()).then(function() {
-                    $scope.$emit('filterEvent', {});
+                    $location.path('search').search(solrParams);
+                    filterService.applyFromUrl($location.search()).then(function() {
+                        $scope.$emit('filterEvent', {});
+                    });
+
+                    $analytics.eventTrack('saved-search', {
+                        category: 'run'
+                    });
+                    //$scope.$emit('searchEvent');  //TODO remove - filterEvent will fire a search
+                    self.addToRecent(saved);
                 });
-
-                $analytics.eventTrack('saved-search', {
-                    category: 'run'
-                });
-                //$scope.$emit('searchEvent');  //TODO remove - filterEvent will fire a search
-                this.addToRecent(saved);
             },
             addToRecent: function(searchItem) {
                 var item = {};

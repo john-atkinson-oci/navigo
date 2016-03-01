@@ -68,7 +68,8 @@ describe('Controller: SavedSearchDialogCtrl', function () {
         $scope.savedSearch.title = 'junk';
         $scope.savedSearch.makeDefault = true;
 
-        $http.expectPOST(new RegExp('ssearch')).respond({manage:false, share_saved_search: true}); //auth call
+        $http.expectPOST(new RegExp('display\/config')).respond({defaultView:'view'}); //save disp
+        $http.expectPOST(new RegExp('ssearch')).respond({manage:false, share_saved_search: true}); //save search
 
         $scope.ok();
 

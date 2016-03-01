@@ -1,2 +1,2 @@
 /*global angular*/
-angular.module('voyager.search', ['voyager.filters', 'voyager.util', 'angularSpinner', 'ui.router', 'ui.slider', 'leaflet-directive', 'voyager.map', 'dialogs.main', 'leaflet-directive', 'ui.bootstrap', 'cart', 'voyager.security', 'ngGrid', 'angulartics', 'voyager.map', 'voyager.common.featured', 'voyager.heatmap']);
+angular.module('voyager.search', ['voyager.filters', 'voyager.util', 'angularSpinner', 'ui.router', 'ui.slider', 'leaflet-directive', 'voyager.map', 'dialogs.main', 'leaflet-directive', 'ui.bootstrap', 'cart', 'voyager.security', 'ngGrid', 'angulartics', 'voyager.map', 'voyager.common.featured', 'voyager.heatmap', 'vs.tools.displayConfig']);
