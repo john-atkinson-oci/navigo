@@ -72,12 +72,15 @@ angular.module('voyager.results')
                 }
 
             },
-            controller: function ($scope, filterService, translateService, $timeout, $location, configService) {
+            controller: function ($scope, filterService, translateService, $timeout, $location, configService, $filter) {
 
                 $scope.imagePrefix = config.root + 'meta/';
                 $scope.link = sugar.copy(config.docLink);  //copy so we don't change config
                 $scope.cardView = configService.getCardView();
                 actionManager.setAction($scope.link, $scope);
+                $scope.fields = configService.getCardViewFields();
+                $scope.names = configService.getCardViewNames();
+                
                 if($scope.link.action === 'preview' && $location.path() === '/home') {
                     $scope.link.visible = false;
                 }
@@ -170,7 +173,36 @@ angular.module('voyager.results')
                         $window.location.href = '/#search?fq=' + filter + ':' + value + '&disp=' + $location.search().disp;
                     }
                 };
-
+                
+                $scope.getNameToUse = function(doc, names) {
+                    var selectedName = null;
+                    $.each(names, function(idx, name){
+                        if(selectedName === null && doc[name.field] !== null) {
+                            selectedName = name;
+                        }
+                    });
+                    return selectedName ? selectedName.field : null;
+                };
+                
+                $scope.formatField = function(doc, facet) {
+                    var formatted = '', value = doc[facet.field];
+                    if(angular.isDefined(value)) {
+                        if (facet.field === 'format') {
+                            formatted = translateService.getTypeAbbr(value);
+                        } else if (facet.field === 'modified') {
+                            formatted = $filter('date')(Date.parse(value), 'M/d/yyyy, hh:mma');
+                        } else if (facet.field === 'bytes') {
+                            if (value > 0) {
+                                formatted = $filter('bytes')(value);
+                            } else {
+                                formatted = '0 bytes';
+                            }
+                        } else {
+                            formatted = value;
+                        }
+                    }
+                    return formatted;
+                };
             }
         };
     });
