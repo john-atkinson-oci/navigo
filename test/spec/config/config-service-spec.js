@@ -99,5 +99,58 @@ describe('Config:', function () {
 
         });
 
+
+        it('should use cardview fields', function () {
+
+            var dispSettings = {
+                details: {
+                    detailsTableFields: [{name: 'format'},{name:'junk', style:'junk'}]
+                },
+                filters:[{field: 'format'}, {field: 'junk', style:'junk'}],
+                cardView: {
+                    fields:[{field: 'summary', style:'junk',name:'name'}]
+                }
+            };
+            httpMock.expectGET().respond(dispSettings);
+            httpMock.expectJSONP().respond({response: {docs:[{name:'format', stype:'string', multivalued:true}]}});  //data types call
+
+            sut.setFilterConfig('configID');
+
+            httpMock.flush();
+
+            var displayFields = sut.getCardViewFields({name:'name'});
+
+
+            expect(displayFields[0].field).toBe('name');
+
+        });
+
+        it('should use cardview names', function () {
+
+            var dispSettings = {
+                details: {
+                    detailsTableFields: [{name: 'format'},{name:'junk', style:'junk'}]
+                },
+                filters:[{field: 'format'}, {field: 'junk', style:'junk'}],
+                cardView: {
+                    fields:[{field: 'summary', style:'junk',name:'name'}],
+                    names: ['name', 'title', 'foo']
+                }
+            };
+            httpMock.expectGET().respond(dispSettings);
+            httpMock.expectJSONP().respond({response: {docs:[{name:'format', stype:'string', multivalued:true}]}});  //data types call
+
+            sut.setFilterConfig('configID');
+
+            httpMock.flush();
+
+            var displayFields = sut.getCardViewNames();
+            console.log(displayFields);
+
+
+            expect(displayFields[0].field).toBe('name');
+
+        });
+
     });
 });
