@@ -5,6 +5,9 @@ describe('Controller: HomeSavedSearchCtrl', function () {
     var $scope, $timeout, $location, $http, $controller, authService, savedSearchService, recentSearchService;
     var cfg = _.clone(config);
 
+    var dispConfigMock = {};
+    dispConfigMock.getDisplayConfig = function() {};
+
     beforeEach(function () {
 
         module('voyager.security');
@@ -12,11 +15,14 @@ describe('Controller: HomeSavedSearchCtrl', function () {
         module('voyager.util');
         module('voyager.filters');
         module('voyager.config');
+        module('voyager.config');
+        module('vs.tools.displayConfig');
         module(function ($provide) {
             $provide.constant('config', cfg);
+            $provide.constant('displayConfigResource', dispConfigMock);
         });
 
-        inject(function (_$controller_, _$timeout_, _authService_, _$location_, $httpBackend, _savedSearchService_, _recentSearchService_, $rootScope) {
+        inject(function (_$controller_, _$timeout_, _authService_, _$location_, $httpBackend, _savedSearchService_, _recentSearchService_, $rootScope, _displayConfigResource_, $q) {
             $scope = $rootScope.$new();
             $timeout = _$timeout_;
             $location = _$location_;
@@ -25,6 +31,8 @@ describe('Controller: HomeSavedSearchCtrl', function () {
             authService = _authService_;
             savedSearchService = _savedSearchService_;
             recentSearchService = _recentSearchService_;
+
+            spyOn(_displayConfigResource_,'getDisplayConfig').and.returnValue($q.when({data:{defaultView: 'view'}}));
         });
 
     });
@@ -63,6 +71,9 @@ describe('Controller: HomeSavedSearchCtrl', function () {
 
         var saved = {id: 'id', query:'query'};
         $scope.applySavedSearch(saved);
+
+        $http.expectJSONP(new RegExp('ssearch')).respond({response: {docs: [item]}});  // why?
+        $scope.$apply();
 
         expect(savedSearchService.applySavedSearch).toHaveBeenCalledWith(saved, $scope);
 
