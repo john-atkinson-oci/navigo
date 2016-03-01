@@ -45,6 +45,8 @@ angular.module('voyager.results')
         window.store = Store;  //for resizable cols directive - storing changes to col width
 
         $scope.tableFields = configService.getTableFields();
+        $scope.textWrappingNotAllowed = !configService.getAllowsTextWrappingOnTableView();
+        
         _setDefaultColumnWidths();
 
 

@@ -264,6 +264,10 @@ angular.module('voyager.config').
                 return config.settings.data;
             },
 
+            getAllowsTextWrappingOnTableView :function () {
+                return config.settings.data.listView.allowTextWrapping;
+            },
+
             lookupFilter: function(filter) {
                 return _systemFilterMap[filter];
             },
