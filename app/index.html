@@ -1,8 +1,9 @@
-<!doctype html>
+<!DOCTYPE html>
+<html ng-app="portalApp">
 	<head>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta charset="utf-8">
-		<title>Voyager</title>
+		<title ng-bind="title"></title>
 		<meta name="viewport" content="width=device-width">
 		<!-- build:css assets/css/vendor.css -->
 		<!-- bower:css -->
@@ -25,7 +26,7 @@
 
 	</head>
     <!-- ecobar - add class to body tag to enable - see example below-->
-    <body vs-popover vs-layout ng-app="portalApp">
+    <body vs-popover vs-layout>
 	<!-- top banner-->
 		<div ng-if="hasBanner" id="top-banner">
 			<div style="text-align: center; width: 100%; position: fixed; z-index: 1000" vg-bind-html="banner">
