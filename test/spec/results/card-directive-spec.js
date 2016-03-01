@@ -17,7 +17,7 @@ describe('Card Directive:', function () {
         });
     });
 
-    var scope, $timeout, httpMock, compile, $q, element, compiled, controller, cartService, $location, inView;
+    var scope, $timeout, httpMock, compile, $q, element, compiled, controller, cartService, $location, inView, configService;
 
     function initDirective() {
 
@@ -29,7 +29,7 @@ describe('Card Directive:', function () {
         controller = element.controller(scope);
     }
 
-    beforeEach(inject(function ($compile, $rootScope, _$timeout_, $httpBackend, _$q_, _cartService_, _$location_, _inView_) {
+    beforeEach(inject(function ($compile, $rootScope, _$timeout_, $httpBackend, _$q_, _cartService_, _$location_, _inView_, _configService_) {
         scope = $rootScope.$new();
         $timeout = _$timeout_;
         httpMock = $httpBackend;
@@ -38,6 +38,7 @@ describe('Card Directive:', function () {
         cartService = _cartService_;
         $location = _$location_;
         inView = _inView_;
+        configService = _configService_;
     }));
 
 
@@ -86,6 +87,19 @@ describe('Card Directive:', function () {
 
         });
 
+        it('should apply filter', function () {
+            scope.doc = {id:'id', canCart:true};
+
+            $location.path('/search');
+
+            initDirective();
+
+            scope.applyFilter('foo', 'bar');
+
+            expect($location.search().fq).toEqual(['foo:bar']);
+
+        });
+
         it('should toggle on addAll event', function () {
             scope.doc = {id:'id', canCart:true};
 
@@ -121,6 +135,8 @@ describe('Card Directive:', function () {
 
             expect(scope.cartAction).toBe('Add');
         });
+        
+        
 
         //it('should toggle map mode', function () {
         //    scope.displayFormat = 'detail_format';
