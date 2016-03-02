@@ -107,6 +107,7 @@
 
 .nowrap {
     white-space: nowrap;
-    text-overflow: clip ellipsis;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
 
