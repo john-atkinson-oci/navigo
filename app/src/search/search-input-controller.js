@@ -74,9 +74,12 @@ angular.module('voyager.search')
 
 				var placeType = initParams['place.op'];
 				if(angular.isDefined(placeType)) {
-					$scope.search['place.op'] = placeType;
+					$scope.search['place.op'] = placeType.toLowerCase();
 					$scope.selectedDrawingType = _.classify(placeType);
+				} else if(angular.isDefined($scope.selectedDrawingType)) {
+					$scope.search['place.op'] = $scope.selectedDrawingType.toLowerCase();
 				}
+				$location.search('place.op', $scope.search['place.op']);
 				_setBBoxNull();
 			}
 			else if (!_.isEmpty(initParams.bbox)) {
@@ -109,7 +112,7 @@ angular.module('voyager.search')
 
 		function _setBBoxNull() {
 			//$scope.search.place = null;
-			$scope.search['place.op'] = null;
+			// $scope.search['place.op'] = null;
 			$scope.search.vw = null;
 		}
 
@@ -120,6 +123,9 @@ angular.module('voyager.search')
 				$scope.$emit('clearBboxEvent', {});
 			}
 			$scope.search['place.op'] = $scope.selectedDrawingType.toLowerCase();
+			if(angular.isDefined($scope.selectedDrawingType)) {
+				$location.search('place.op', $scope.selectedDrawingType.toLowerCase());
+			}
 			if (_.isEmpty($scope.search.place)) {
 				$scope.search.place = null;
                 $location.search('place.id', null);
