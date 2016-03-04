@@ -41,7 +41,22 @@ angular.module('voyager.details')
             $scope.canViewTags = authService.hasPermission('view_tags');
         }
 
+        function _adjustForBanner() {
+            $timeout(function() {
+                var $banner = angular.element('#top-banner');
+                if($banner.outerHeight() > 0) {
+                    var $floatingNav = angular.element('.floating-nav');
+                    if($floatingNav.length > 0) {
+                        $floatingNav.offset({top: $floatingNav.offset().top + $banner.outerHeight()});
+                    } else {
+                        _adjustForBanner();
+                    }
+                }
+            }, 250);
+        }
+
         function _activate() {
+
             var shard = $location.search().shard;
             if (angular.isDefined(shard)) {
                 var local = config.root;
@@ -253,6 +268,8 @@ angular.module('voyager.details')
                 cartService.fetchQueued([{id:doc.id}]).then(function(items) {
                     doc.inCart = items.length > 0;
                 });
+
+                _adjustForBanner();
             });
         }
 

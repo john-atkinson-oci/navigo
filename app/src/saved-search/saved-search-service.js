@@ -90,7 +90,7 @@ angular.module('voyager.search').
             for( var i=0; i < 6; i++ ) {
                 text += possible.charAt(Math.floor(Math.random() * possible.length));
             }
-            return text;
+            return text.toLowerCase();
         }
 
         //public methods - client interface

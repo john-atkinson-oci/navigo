@@ -23,3 +23,34 @@
 		}
 	}
 }
+
+.floating-nav {
+	position: fixed;
+	background-color: rgba(236, 240, 241, .7);
+	padding: 10px 10px 10px 10px;
+	z-index: 10;
+	top: 64px;
+	width: 100%;
+	margin-left: -10px;
+
+	> li {
+		display: inline-block;
+		border-left: 1px solid $borderColor;
+		font-family: $semiStrongFont;
+		font-size: $smallSize;
+
+		&.first {
+			border-left: none;
+		}
+
+		&.first, &:first-child {
+			a {
+				padding-left: 0;
+			}
+		}
+
+		a {
+			padding: 0 10px;
+		}
+	}
+}
