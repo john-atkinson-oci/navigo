@@ -12,12 +12,7 @@
 			<div class="title" ng-if="getNameToUse(doc, names) != null">
 				<span ng-if="doc.hasMissingData" class="icon-error"></span><a href="{{doc.detailLink}}" class="underline"><span class="txt">{{doc[getNameToUse(doc, names)]}}</span></a></span>
 			</div> 
-			<div ng-repeat="field in fields">
-				<a ng-if="field.field == 'format'" href="javascript:;">
-					<div class="format" ng-bind-html="::doc.formatValue" ng-show="::doc.formatValue"></div>
-				</a>
-				<span ng-if="field.field != 'format' && doc[field.field]"><span ng-if="field.showLabel">{{field.field}}: </span>{{formatField(doc, field)}}</span>
-			</div>
+			<div vg-bind-html="doc.htmlValue"></div>
 		</div>
 	</div>
 	<!--

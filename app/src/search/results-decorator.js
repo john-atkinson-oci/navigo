@@ -25,9 +25,9 @@
             var formattedValue, htmlified = '', lowerFieldName, values, formattedValues, actualValues = {}, trimmed, facetValue;
 
             doc.displayFields = configService.getDisplayFields(doc);
-            if(doc.displayFields.length > 3) {
-                doc.displayFields = doc.displayFields.splice(0,3);
-            }
+            // if(doc.displayFields.length > 3) {
+            //     doc.displayFields = doc.displayFields.splice(0,3);
+            // }
 
             $.each(doc.displayFields, function(index, field) {
                 formattedValue = field.value;
