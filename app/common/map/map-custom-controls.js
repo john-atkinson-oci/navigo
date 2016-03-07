@@ -37,9 +37,9 @@ angular.module('voyager.map').
 
         function _drawingToolTemplate() {
             var template = '<div class="leaflet-draw-section"><div class="leaflet-bar">';
-            template += '<a class="voyager-draw-rect" ng-class="{\'selected\': _drawing}" ng-mousedown="toggleDrawingOption($event)" ng-mouseup="releaseDrawingOption($event)"><i class="icon-map_draw_{{toolType}}"></i></a>';
+            template += '<a class="voyager-draw-rect" ng-class="{\'selected\': _drawing}" ng-mouseover="toggleDrawingOption($event)" ng-mouseleave="toggleDrawingTools(false)"><i class="icon-map_draw_{{toolType}}"></i></a>';
             template += '</div>';
-            template += '<div class="leaflet-bar drawing-option-cont" ng-if="showDrawingTools">';
+            template += '<div class="leaflet-bar drawing-option-cont" ng-if="showDrawingTools" ng-mouseover="toggleDrawingTools(true)" ng-mouseleave="toggleDrawingTools(false)">';
             template += '<ul id="drawingTools">';
             template += '<li><a ng-click="selectDrawingTool($event, \'rectangle\')" title="Rectangle"><i class="icon-map_draw_rectangle"></i></a></li>';
             template += '<li><a ng-click="selectDrawingTool($event, \'polygon\')" title="Polygon"><i class="icon-map_draw_polygon"></i></a></li>';

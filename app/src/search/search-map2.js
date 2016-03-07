@@ -72,7 +72,7 @@ angular.module('voyager.search')
 				var _closeMarker;
 				var _editMarker;
 				var _bufferBoundaryLayer;
-
+				var _timer;
 
 				$scope._drawing = false;
 				$scope.toolType = 'rectangle';
@@ -159,6 +159,7 @@ angular.module('voyager.search')
 					clickTime = (new Date());
 					$event.preventDefault();
 					$event.stopPropagation();
+					$scope.releaseDrawingOption($event);
 					return false;
 				};
 
@@ -181,6 +182,19 @@ angular.module('voyager.search')
 				function currentColor() {
 					return mapUtil.currentColor($scope.selectedDrawingType);
 				}
+
+				$scope.toggleDrawingTools = function(show) {
+					if(_timer) {
+						$timeout.cancel(_timer);
+					}
+					if (show === false) {
+						_timer = $timeout(function() {
+							$scope.showDrawingTools = false;
+						}, 1000);
+					} else {
+						$scope.showDrawingTools = true;
+					}
+				};
 
 				$scope.selectDrawingTool = function($event, toolType) {
 					$event.preventDefault();
