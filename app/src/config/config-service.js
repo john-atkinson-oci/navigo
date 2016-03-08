@@ -13,8 +13,12 @@ angular.module('voyager.config').
         var _cardViewNames = [];
         var _displayFieldsOrder = {};
         var _displayFieldsStyle = {};
+        var _displayFieldsShowLabels = {};
+        var _displayFieldsMaxLines = {};
         var _summaryFieldsOrder = {};
         var _summaryFieldsStyle = {};
+        var _summaryFieldsShowLabels = {};
+        var _summaryFieldsMaxLines = {};
         var _tableColumnWidthMap = {};
         var _shards = null;
         var _homepage = {};
@@ -59,6 +63,8 @@ angular.module('voyager.config').
                 _summaryFields[value.name] =  translateService.getFieldName(value.name);
                 _summaryFieldsOrder[value.name] = index;
                 _summaryFieldsStyle[value.name] = value.style;
+                _summaryFieldsShowLabels[value.name] = value.showLabel;
+                _summaryFieldsMaxLines[value.name] = value.maxLines;
                 _summarySolrParams += ',' + value.name;
             });
         }
@@ -326,23 +332,35 @@ angular.module('voyager.config').
             },
 
             getDisplayFields: function(doc) {
-                var prettyFields = [], fields, order, style;
+                var prettyFields = [], fields, order, style, labels, lines;
 
                 fields = _displayFields;
                 order = _displayFieldsOrder;
                 style = _displayFieldsStyle;
+                labels = _displayFieldsShowLabels;
+                lines = _displayFieldsMaxLines;
 
                 if(!_.isEmpty(_summaryFields)) {
                     fields = _summaryFields;
                     order = _summaryFieldsOrder;
                     style = _summaryFieldsStyle;
+                    labels = _summaryFieldsShowLabels;
+                    lines = _summaryFieldsMaxLines;
                 }
                 $.each(doc, function (name, value) {
                     if (fields[name]) {
                         if(_.isArray(value )) {
                             value = value.join(', ');
                         }
-                        prettyFields.push({'name': fields[name], 'value': value, order: order[name], style: style[name], raw: name});
+                        prettyFields.push({
+                            'name': fields[name],
+                            'value': value,
+                            order: order[name],
+                            style: style[name],
+                            raw: name,
+                            showLabel: labels[name],
+                            maxLines: lines[name]
+                        });
                     }
                 });
 

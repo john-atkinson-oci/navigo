@@ -49,6 +49,11 @@
 				width: 100%;
 				height: 120px;
 				overflow: hidden;
+				line-height: 20px;
+				.max-lines {
+					text-overflow: ellipsis;
+					overflow: hidden;
+				}
 			}
 
 			a {

@@ -61,7 +61,9 @@
                     //TODO how to determine which fields can be linkable - multivalue only?
                     if(lowerFieldName !== 'description' && lowerFieldName !== 'abstract' && isNaN(field.value) && lowerFieldName !== 'extent') {
                         if(formattedValue.indexOf(',') !== -1) {
-                            htmlified += '<b>' + field.name + '</b>:';
+                            if(field.showLabel) {
+                                htmlified += '<b>' + field.name + '</b>:';
+                            }
                             values = formattedValue.split(',');
                             var sep = '';
                             _.each(values, function(val) {
@@ -75,10 +77,13 @@
                             });
                             htmlified += '<br>';
                         } else {
-                            htmlified += '<b>' + field.name + '</b>: <a href="javascript:;" ng-click="applyFilter(\'' + field.raw + '\',\'' + field.value + '\')">' + $('<p>' + field.formattedValue + '</p>').text() + '</a><br>';
+                            htmlified += (field.showLabel? '<b>' + field.name + '</b>:':'' ) + '<a href="javascript:;" ng-click="applyFilter(\'' + field.raw + '\',\'' + field.value + '\')">' + $('<p>' + field.formattedValue + '</p>').text() + '</a><br>';
                         }
                     } else {
-                        htmlified += '<b>' + field.name + '</b>:' + $('<p>' + field.formattedValue + '</p>').text() + '<br>';
+                        htmlified += (field.showLabel? '<b>' + field.name + '</b>:':'' ) + $('<p>' + field.formattedValue + '</p>').text() + '<br>';
+                    }
+                    if(field.maxLines) {
+                        htmlified = '<div class="max-lines" style="max-height: '+ field.maxLines * 20  +'px;">' + htmlified + '</div>';
                     }
                 }
             });
