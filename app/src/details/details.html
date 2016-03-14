@@ -62,7 +62,7 @@
                                  </div>
                                  <div>
                                    <span ng-repeat="field in summaryFields" class="field">
-                                     <span><b>{{field.name}}</b>: {{field.formattedValue}}</span>
+                                     <span ng-show="field.htmlValue" vg-bind-html="field.htmlValue"></span>
                                    </span>
                                 </div>
                              </header>

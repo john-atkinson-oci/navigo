@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('voyager.details').
-    factory('detailConfig', function(config, $q, configService, translateService, configLoader) {
+    factory('detailConfig', function(config, $q, configService, translateService, configLoader, resultsDecorator) {
 
         var displayFields;
         if(config.settings) {
@@ -21,7 +21,11 @@ angular.module('voyager.details').
         var _showAllFields = false;
         var _editable = {};
         var _styles = {};
+        var _showLabels = {};
+        var _maxLines = {};
         var _summaryStyles = {};
+        var _summaryMaxLines = {};
+        var _summaryShowLabels= {};
         var _pageFramework = {};
 
         var _showPath = true;
@@ -35,6 +39,8 @@ angular.module('voyager.details').
             $.each(displayFields, function (index, value) {
                 inclusions[value.name] = value.name;
                 _styles[value.name] = value.style;
+                _showLabels[value.name] = value.showLabel;
+                _maxLines[value.name] = value.maxLines;
                 displayParams += ', ' + value.name;
                 _displayFieldsOrder[value.name] = index;
                 _editable[value.name] = value.editable;
@@ -45,6 +51,8 @@ angular.module('voyager.details').
             $.each(_summaryFields, function (index, value) {
                 _summaryInclusions[value.name] = value.name;
                 _summaryStyles[value.name] = value.style;
+                _summaryMaxLines[value.name] = value.maxLines;
+                _summaryShowLabels[value.name] = value.showLabel;
                 _summaryParams += ', ' + value.name;
                 _summaryFieldsOrder[value.name] = index;
             });
@@ -157,6 +165,8 @@ angular.module('voyager.details').
                             formattedValues: formattedValues,
                             order: _displayFieldsOrder[name],
                             editable: _editable[name],
+                            maxLines: _maxLines[name],
+                            showLabel: _showLabels[name],
                             key: name,
                             style: _styles[name],
                             isHtml: isHtml
@@ -185,38 +195,45 @@ angular.module('voyager.details').
             var prettyFields = [];
 
             //var exclusions = {'id':true, 'name':true,'format':true,'path':true,'thumb':true,'preview':true,'download':true,'bbox':true,'title':true};
-            var formattedValue = '', isArray = false;
+            var formattedValue = '';
+            //, isArray = false;
             $.each(doc, function (name, value) {
                 if (_summaryInclusions[name] && fields[name] && fields[name].displayable === true) {
-                    isArray = false;
-                    if(_.isArray(value)) {
-                        value = value.join(', ');
-                        isArray = true;
-                    }
-                    formattedValue = value;
-                    if(name === 'format') {
-                        formattedValue = translateService.getType(value);
-                    }
-                    if(name === 'contains_mime') {
-                        if(isArray) {
-                            var formattedValues = [];
-                            var arrValue = value.split(', ');
-                            _.each(arrValue, function(val) {
-                                formattedValues.push(translateService.getType(val));
-                            });
-                            formattedValue = formattedValues.join();
-                        } else {
-                            formattedValue = translateService.getType(value);
-                        }
-                    }
-                    if(_summaryStyles[name] === 'STRIP_HTML') {
-                        formattedValue = $('<p>' + value + '</p>').text();
-                    }
+                    fields[name].value = value;
+                    fields[name].maxLines = _summaryMaxLines[name];
+                    fields[name].showLabel = _summaryShowLabels[name];
+                    fields[name].style = _summaryStyles[name];
+                    fields[name].name = translateService.getFieldName(name);
+                    var htmlified = resultsDecorator.decorateField(fields[name]);
+                    // isArray = false;
+                    // if(_.isArray(value)) {
+                    //     value = value.join(', ');
+                    //     isArray = true;
+                    // }
+                    // formattedValue = value;
+                    // if(name === 'format') {
+                    //     formattedValue = translateService.getType(value);
+                    // }
+                    // if(name === 'contains_mime') {
+                    //     if(isArray) {
+                    //         var formattedValues = [];
+                    //         var arrValue = value.split(', ');
+                    //         _.each(arrValue, function(val) {
+                    //             formattedValues.push(translateService.getType(val));
+                    //         });
+                    //         formattedValue = formattedValues.join();
+                    //     } else {
+                    //         formattedValue = translateService.getType(value);
+                    //     }
+                    // }
+                    // if(_summaryStyles[name] === 'STRIP_HTML') {
+                    //     formattedValue = $('<p>' + value + '</p>').text();
+                    // }
                     var isHtml = false;
-                    if(_styles[name] === 'HTML') {
+                    if(_summaryStyles[name] === 'HTML') {
                         isHtml = true;
                     }
-                    prettyFields.push({'name': translateService.getFieldName(name), 'value': value, formattedValue: formattedValue, order:_summaryFieldsOrder[name], key:name, style: _summaryStyles[name], isHtml: isHtml});
+                    prettyFields.push({'name': translateService.getFieldName(name), 'value': value, formattedValue: formattedValue, order:_summaryFieldsOrder[name], key:name, style: _summaryStyles[name], isHtml: isHtml, htmlValue: htmlified});
                 }
             });
 

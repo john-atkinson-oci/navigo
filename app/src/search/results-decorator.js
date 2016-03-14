@@ -22,7 +22,8 @@
         }
 
         function _loadDisplayFields(doc) {
-            var formattedValue, htmlified = '', lowerFieldName, values, formattedValues, actualValues = {}, trimmed, facetValue;
+            var htmlified = '';
+            // var formattedValue, htmlified = '', lowerFieldName, values, formattedValues, actualValues = {}, trimmed, facetValue;
 
             doc.displayFields = configService.getDisplayFields(doc);
             // if(doc.displayFields.length > 3) {
@@ -30,64 +31,69 @@
             // }
 
             $.each(doc.displayFields, function(index, field) {
-                formattedValue = field.value;
-
-                lowerFieldName = field.name.toLowerCase();
-
-                if(lowerFieldName !== 'format') {
-                    if(field.style === 'STRIP_HTML') {
-                        formattedValue = $('<p>' + field.value + '</p>').text();
-                    }
-                    if(field.style === 'HTML') {
-                        field.isHtml = true;
-                    }
-                    if(field.raw === 'contains_mime') {
-                        if(field.value.indexOf(',') !== -1) {
-                            formattedValues = [];
-                            values = formattedValue.split(',');
-                            _.each(values, function(val) {
-                                trimmed = _.trim(val);
-                                formattedValue = translateService.getType(trimmed);
-                                formattedValues.push(formattedValue);
-                                actualValues[formattedValue] = trimmed;
-                            });
-                            formattedValue = formattedValues.join();
-                        } else {
-                            formattedValue = translateService.getType(field.value);
-                        }
-                    }
-                    field.formattedValue = formattedValue;
-
-                    //TODO how to determine which fields can be linkable - multivalue only?
-                    if(lowerFieldName !== 'description' && lowerFieldName !== 'abstract' && isNaN(field.value) && lowerFieldName !== 'extent') {
-                        if(formattedValue.indexOf(',') !== -1) {
-                            if(field.showLabel) {
-                                htmlified += '<b>' + field.name + '</b>:';
-                            }
-                            values = formattedValue.split(',');
-                            var sep = '';
-                            _.each(values, function(val) {
-                                htmlified += sep;
-                                facetValue = _.trim(val);
-                                if (angular.isDefined(actualValues[facetValue])) {
-                                    facetValue = actualValues[facetValue];  //reverse lookup the actual from translated
-                                }
-                                htmlified += '<a href="javascript:;" ng-click="applyFilter(\'' + field.raw + '\',\'' + facetValue + '\')"> ' + val + '</a>';
-                                sep = ',';
-                            });
-                            htmlified += '<br>';
-                        } else {
-                            htmlified += (field.showLabel? '<b>' + field.name + '</b>:':'' ) + '<a href="javascript:;" ng-click="applyFilter(\'' + field.raw + '\',\'' + field.value + '\')">' + $('<p>' + field.formattedValue + '</p>').text() + '</a><br>';
-                        }
-                    } else {
-                        htmlified += (field.showLabel? '<b>' + field.name + '</b>:':'' ) + $('<p>' + field.formattedValue + '</p>').text() + '<br>';
-                    }
-                    if(field.maxLines) {
-                        htmlified = '<div class="max-lines" style="max-height: '+ field.maxLines * 20  +'px;">' + htmlified + '</div>';
-                    }
-                }
+                htmlified += _decorateField(field);
             });
 
+            return htmlified;
+        }
+        
+        function _decorateField(field) {
+            var  htmlified = '', values, formattedValues, actualValues = {}, trimmed, facetValue;
+            var formattedValue = field.value;
+            var lowerFieldName = field.name.toLowerCase();
+
+            if(lowerFieldName !== 'format') {
+                if(field.style === 'STRIP_HTML') {
+                    formattedValue = $('<p>' + field.value + '</p>').text();
+                }
+                if(field.style === 'HTML') {
+                    field.isHtml = true;
+                }
+                if(field.raw === 'contains_mime') {
+                    if(field.value.indexOf(',') !== -1) {
+                        formattedValues = [];
+                        values = formattedValue.split(',');
+                        _.each(values, function(val) {
+                            trimmed = _.trim(val);
+                            formattedValue = translateService.getType(trimmed);
+                            formattedValues.push(formattedValue);
+                            actualValues[formattedValue] = trimmed;
+                        });
+                        formattedValue = formattedValues.join();
+                    } else {
+                        formattedValue = translateService.getType(field.value);
+                    }
+                }
+                field.formattedValue = formattedValue;
+
+                //TODO how to determine which fields can be linkable - multivalue only?
+                if(lowerFieldName !== 'description' && lowerFieldName !== 'abstract' && isNaN(field.value) && lowerFieldName !== 'extent') {
+                    if(formattedValue.indexOf(',') !== -1) {
+                        if(field.showLabel) {
+                            htmlified += '<b>' + field.name + '</b>:';
+                        }
+                        values = formattedValue.split(',');
+                        var sep = '';
+                        _.each(values, function(val) {
+                            htmlified += sep;
+                            facetValue = _.trim(val);
+                            if (angular.isDefined(actualValues[facetValue])) {
+                                facetValue = actualValues[facetValue];  //reverse lookup the actual from translated
+                            }
+                            htmlified += '<a href="javascript:;" ng-click="applyFilter(\'' + field.raw + '\',\'' + facetValue + '\')"> ' + val + '</a>';
+                            sep = ',';
+                        });
+                        htmlified += '<br>';
+                    } else {
+                        htmlified += (field.showLabel? '<b>' + field.name + '</b>: ':'' ) + '<a href="javascript:;" ng-click="applyFilter(\'' + field.raw + '\',\'' + field.value + '\')">' + $('<p>' + field.formattedValue + '</p>').text() + '</a><br>';
+                    }
+                } else {
+                    htmlified += (field.showLabel? '<b>' + field.name + '</b>: ':'' ) + $('<p>' + field.formattedValue + '</p>').text() + '<br>';
+                }
+                if(field.maxLines) {
+                    htmlified = '<div class="max-lines" style="max-height: '+ field.maxLines * 20  +'px;">' + htmlified + '</div>';
+                }
+            }
             return htmlified;
         }
 
@@ -169,7 +175,8 @@
 
         //public methods - client interface
         return {
-            decorate : _decorate
+            decorate : _decorate,
+            decorateField: _decorateField
         };
     }
 
