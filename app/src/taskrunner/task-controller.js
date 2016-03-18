@@ -174,6 +174,7 @@ angular.module('taskRunner')
         };
 
         $scope.execTask = function () {
+            $scope.$emit('taskStatusEvent', 'alert-running');
             var params = _prepare();
             _validate(params).then(function() {
                 var request = {'task': $scope.task.name, 'params': params};
