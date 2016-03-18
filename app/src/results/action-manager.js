@@ -17,6 +17,9 @@
             if(scope.doc[action.toggle] === true) {
                 action.display = action.off;
                 action.icon = action.offIcon;
+                if (scope.isTable) {
+                    action.display = action.offList;
+                }
                 action.buttonType = 'btn-default';
             } else {
                 action.display = action.text;

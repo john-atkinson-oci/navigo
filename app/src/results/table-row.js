@@ -22,6 +22,10 @@ angular.module('voyager.results')
                         if(scope.doc.download.indexOf('file:') === 0) {
                             action.text = action.alt;
                         }
+                    } else if (action.action === 'add') {
+                        if (scope.doc.inCart) {
+                            action.display = action.offList;
+                        }
                     }
                 }
             });
@@ -56,6 +60,8 @@ angular.module('voyager.results')
                 $scope.link = sugar.copy(config.docLink);  //copy so we don't change config
                 actionManager.setAction($scope.link, $scope);
                 $scope.toggleCart = function(doc) {
+                    var action = _.find($scope.actions,{action:'add'});
+
                     if(doc.inCart) {
                         cartService.remove(doc.id);
                         $scope.cartAction = 'Add';
@@ -64,6 +70,7 @@ angular.module('voyager.results')
                         $analytics.eventTrack('removeFromList', {
                             category: 'results', label: 'card'  // jshint ignore:line
                         });
+                        action.display = action.text;
                     } else {
                         cartService.addItem(doc);
                         $scope.cartAction = 'Remove';
@@ -72,6 +79,8 @@ angular.module('voyager.results')
                         $analytics.eventTrack('addToList', {
                             category: 'results', label: 'card'  // jshint ignore:line
                         });
+                        action.onList = action.display;
+                        action.display = action.offList;
                     }
                 };
 
@@ -125,6 +134,7 @@ angular.module('voyager.results')
                         $scope.cartAction = 'Add';
                         $scope.btnType = 'btn-primary';
                     }
+                    $scope.isTable = true;
                     actionManager.toggleDisplay(actions.types.add, $scope);
                 });
 
