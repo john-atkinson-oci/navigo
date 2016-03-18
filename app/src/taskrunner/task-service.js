@@ -1,10 +1,11 @@
 /*global angular, $ */
 
 angular.module('taskRunner').
-    factory('taskService', function ($http, config, $q, cartService, cartItemsQuery) {
+    factory('taskService', function ($http, config, $q, cartService, cartItemsQuery, translateService, taskModalService) {
         'use strict';
 
         var _items = [];
+        var errorMessage = 'All the items in the cart are invalid formats';
 
         function _buildQuery(isAdmin) {
             var filter = '&fq=available:true';
@@ -106,6 +107,31 @@ angular.module('taskRunner').
                     query.filters += constraint_string;
                 });
                 return query;
+            },
+
+            getTaskConstraintFormats: function (taskConstraints) {
+                var constraintFormats = [];
+                _.each(taskConstraints, function(value) {
+                        value = value.split(':')[1];
+                        var values = value.split(' ');
+                        if (values){
+                            angular.forEach(values, function(value){
+                                value = value.replace('(', '');
+                                value = value.replace(')', '');
+                                value = translateService.getType(value);
+                                constraintFormats.push(value);
+                            });
+                        }
+                        else{
+                            value = translateService.getType(value);
+                            constraintFormats.push(value);
+                        }
+                    });
+                return constraintFormats;
+            },
+
+            showTaskValidationError: function(constraintFormats) {
+                taskModalService.showTaskValidationError(errorMessage, constraintFormats);
             },
 
             validateTaskItems: function (constraints, invalidItemsOnly) {

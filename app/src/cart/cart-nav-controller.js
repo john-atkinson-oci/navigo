@@ -1,6 +1,6 @@
 /*global angular */
 angular.module('cart')
-    .controller('CartNavCtrl', function (config, $scope, $location, searchService, cartService, authService, usSpinnerService, $modal, taskService, $timeout) {
+    .controller('CartNavCtrl', function (config, $scope, $location, searchService, cartService, authService, usSpinnerService, $modal, taskService, $timeout, $state) {
         'use strict';
 
         function _init() {
@@ -32,7 +32,7 @@ angular.module('cart')
 
         function _getTask() {
             var task = $location.search().task;
-            if (angular.isUndefined(task)) {
+            if (angular.isUndefined(task) && $location.path().indexOf('status') <= -1) {
                 return config.defaultTask;
             }
             return task;
@@ -78,39 +78,30 @@ angular.module('cart')
             task.isSelected = !task.isSelected;
             if (task.available === true) {
                 task.isNew = true;
-                _openTaskModal(task);
+                var constraintFormats = taskService.getTaskConstraintFormats(task.constraints);
+                taskService.validateTaskItems(task.constraints).then(function(severity){
+                    if (severity === 0) {
+                        task.error = false;
+                        task.warning = false;
+                        $state.go('task', {task: task});
+                    }
+                    else if (severity === 1) {
+                        task.error = false;
+                        task.warning = true;
+                        $scope.hasInvalidItems = true;
+                        $state.go('task', {task: task});
+                    }
+                    else if (severity === 2) {
+                        taskService.showTaskValidationError(constraintFormats);
+                    }
+                });
+
             }
         };
 
-        function _openTaskModal(task) {
-            var modalInstance = $modal.open({
-                templateUrl: 'src/taskrunner/task.html',
-                size: 'lg',
-                controller: 'TaskCtrl',
-                resolve: {
-                    task: function () {
-                        return task;
-                    },
-                    taskList: function () {
-                        return $scope.taskList;
-                    },
-                    extent: function () {
-                        return $scope.cartItemExtent;
-                    }
-                }
-            });
-
-            modalInstance.result.then(function () {
-                $location.search('task', null);
-            }, function () {
-                //$log.info('Modal dismissed at: ' + new Date());
-            });
-        }
-
-        _init();
-
         // Return the status icon for the message type.
         $scope.$on('taskStatusChanged', function (event, args) {
+            $scope.loadDefaultTask = false;
             if (args === 'alert-running') {
                 $scope.taskStatusIcon = 'fa fa-cog fa-spin';
             } else if (args === 'alert-success') {
@@ -121,4 +112,33 @@ angular.module('cart')
                 $scope.taskStatusIcon = 'icon-error';
             }
         });
+
+        // Call _init function.
+        _init();
+
+        //function _openTaskModal(task) {
+        //    var modalInstance = $modal.open({
+        //        templateUrl: 'src/taskrunner/task.html',
+        //        size: 'lg',
+        //        controller: 'TaskCtrl',
+        //        resolve: {
+        //            task: function () {
+        //                return task;
+        //            },
+        //            taskList: function () {
+        //                return $scope.taskList;
+        //            },
+        //            extent: function () {
+        //                return $scope.cartItemExtent;
+        //            }
+        //        }
+        //    });
+        //
+        //    modalInstance.result.then(function () {
+        //        $location.search('task', null);
+        //    }, function () {
+        //        //$log.info('Modal dismissed at: ' + new Date());
+        //    });
+        //}
+
     });

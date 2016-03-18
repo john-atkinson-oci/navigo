@@ -2,7 +2,7 @@
 
 describe('Controller: CartNavCtrl', function () {
 
-	var $scope, CartNavCtrl, $timeout, taskService, authService, cartService, searchService, $modal, usSpinnerService, $location, $http, $controller;
+	var $scope, CartNavCtrl, $timeout, taskService, authService, cartService, searchService, $modal, $state, usSpinnerService, $location, $http, $controller;
 	var cfg = _.clone(config);
 
 	beforeEach(function () {
@@ -18,7 +18,7 @@ describe('Controller: CartNavCtrl', function () {
 			$provide.constant('config', cfg);
 		});
 
-		inject(function (_$controller_, _$timeout_, _taskService_, _authService_, _cartService_, _searchService_, _$modal_, _usSpinnerService_, _$location_, $httpBackend, $rootScope) {
+		inject(function (_$controller_, _$timeout_, _taskService_, _authService_, _cartService_, _searchService_, _$modal_, _usSpinnerService_, _$location_, _$state_, $httpBackend, $rootScope) {
 			$scope = $rootScope.$new();
 			$timeout = _$timeout_;
 			taskService = _taskService_;
@@ -30,6 +30,7 @@ describe('Controller: CartNavCtrl', function () {
 			$location = _$location_;
 			$http = $httpBackend;
 			$controller = _$controller_;
+			$state = _$state_;
 		});
 
 	});
@@ -72,15 +73,17 @@ describe('Controller: CartNavCtrl', function () {
 	});
 
 	it('should select task', function () {
-		CartNavCtrl = $controller('CartNavCtrl', {
+		$controller('CartNavCtrl', {
 			$scope: $scope
 		});
 
-		spyOn($modal, 'open').and.callThrough();
+		spyOn(taskService,'validateTaskItems').and.callThrough();
 
-		$scope.selectTask({available:true});
+		var task = {name:'task2', available:true, constraints:['format_keyword:File']};
 
-		expect($modal.open).toHaveBeenCalled();
+		$scope.selectTask(task);
+
+		expect(taskService.validateTaskItems).toHaveBeenCalled();
 	});
 
 });
