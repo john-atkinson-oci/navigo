@@ -113,7 +113,6 @@ angular.module('cart')
             }
         });
 
-        // Call _init function.
         _init();
 
         //function _openTaskModal(task) {
