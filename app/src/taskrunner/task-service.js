@@ -5,9 +5,8 @@ angular.module('taskRunner').
         'use strict';
 
         var _items = [];
-        var defaultTaskName = config.defaultTask;
         var errorMessage = 'All the items in the cart are invalid formats';
-        if (!_.isEmpty(config.defaultTask)) {
+        if (angular.isDefined(config.defaultTask) && !_.isEmpty(config.defaultTask)) {
             errorMessage = 'All the items in the cart are invalid formats for: ' + _.classify(config.defaultTask);
         }
 
