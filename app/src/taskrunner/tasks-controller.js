@@ -1,13 +1,12 @@
 /*global angular, _*/
 
 angular.module('taskRunner')
-    .controller('TasksCtrl', function ($scope, taskService, usSpinnerService, authService, $state, taskModalService, translateService) {
+    .controller('TasksCtrl', function ($scope, taskService, usSpinnerService, authService, $state) {
         'use strict';
 
         $scope.toggleTasksText = 'Show All';
         $scope.hasUnavailable = false;
         $scope.hasInvalidItems = false;
-        $scope.errorMessage = 'All the items in the cart are invalid formats';
         $scope.constraintFormats = [];
 
         function _loadTasks() {
@@ -51,28 +50,8 @@ angular.module('taskRunner')
             });
         };
 
-        $scope.showTaskValidationError = function() {
-            taskModalService.showTaskValidationError($scope.errorMessage, $scope.constraintFormats);
-        };
-
         $scope.selectTask = function(task) {
-            $scope.constraintFormats = [];
-            _.each(task.constraints, function(value) {
-                value = value.split(':')[1];
-                var values = value.split(' ');
-                if (values){
-                    angular.forEach(values, function(value){
-                        value = value.replace('(', '');
-                        value = value.replace(')', '');
-                        value = translateService.getType(value);
-                        $scope.constraintFormats.push(value);
-                    });
-                }
-                else{
-                    value = translateService.getType(value);
-                    $scope.constraintFormats.push(value);
-                }
-            });
+            $scope.constraintFormats = taskService.getTaskConstraintFormats(task.constraints);
             taskService.validateTaskItems(task.constraints).then(function(severity){
                 if (severity === 0) {
                     task.error = false;
@@ -82,12 +61,11 @@ angular.module('taskRunner')
                 else if (severity === 1) {
                     task.error = false;
                     task.warning = true;
-                    //task.constraints = $scope.constraintFormats;
                     $scope.hasInvalidItems = true;
                     $state.go('task', {task: task});
                 }
                 else if (severity === 2) {
-                    $scope.showTaskValidationError($scope.errorMessage, $scope.constraintFormats);
+                    taskService.showTaskValidationError($scope.constraintFormats);
                 }
             });
         };
