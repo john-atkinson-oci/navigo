@@ -97,6 +97,8 @@ angular.module('voyager.filters')
 
         if($location.search().fq) {
             filterService.setFilters($location.search().fq);
+        } else if (angular.isDefined($location.search()['links.to']) || angular.isDefined($location.search()['links.from'])) {
+            filterService.clear();  // no fq filters defined on url when loading so clear any the service has stored
         }
         _setSelectedFilters();
 
