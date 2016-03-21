@@ -9,7 +9,7 @@ angular.module('voyager.filters')
         }
 
         function _loadRemoteLocations() {
-            if ($location.path() === '/search' && angular.isDefined($location.search().shards)) {
+            if ($location.path() === '/search' && (angular.isDefined($location.search().shards) || config.settings.data.queryAllCatalogs)) {
                 // load remote location names
                 return _fetch().then(function (catalogs) {
                     var catalogPromises = [];
