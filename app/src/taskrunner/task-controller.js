@@ -6,7 +6,7 @@ angular.module('taskRunner')
 
         $scope.task = $stateParams.task;
         $scope.taskList = $stateParams.taskList;
-        $scope.extent = $stateParams.extent;
+        $scope.extent = taskService.getExtent();
         $scope.params = [];
         $scope.hasMap = true;
         $scope.showAdvanced = false;
