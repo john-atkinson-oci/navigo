@@ -5,6 +5,7 @@ angular.module('taskRunner').
         'use strict';
 
         var _items = [];
+        var _extent = null;
         var errorMessage = 'All the items in the cart are invalid formats';
         if (angular.isDefined(config.defaultTask) && !_.isEmpty(config.defaultTask)) {
             errorMessage = 'All the items in the cart are invalid formats for: ' + _.classify(config.defaultTask);
@@ -149,6 +150,7 @@ angular.module('taskRunner').
                 else {
                     return cartItemsQuery.fetchItems(query, items).then(function(data) {
                         var count = data.count;
+                        _extent = data.bbox;
                         if (count === query.count){
                             severity = 0; // Valid
                         }
@@ -208,6 +210,10 @@ angular.module('taskRunner').
 
             setItems: function(items) {
                 _items = items;
+            },
+
+            getExtent: function() {
+                return _extent;
             },
 
             getItems: function() {
