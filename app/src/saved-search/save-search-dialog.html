@@ -3,9 +3,9 @@
 </div>
 <div class="modal-body">
     <form class="form-save-search" role="form">
-    	<div class="alert alert-danger" ng-show="hasError()">{{error}}</div>
+    	<div class="alert alert-danger row" ng-show="error"><span class="glyphicon glyphicon-warning-sign"></span><span style="padding-left: 5px;">{{error}}</span></div>
     	<fieldset>
-	        <input id="savedSearchName" type="text" class="form-control focus_field" placeholder="Enter name" ng-model="savedSearch.title" ng-keypress="handleEnter($event)" required autofocus>
+	        <input id="savedSearchName" type="text" class="form-control focus_field" placeholder="Enter name" ng-model="savedSearch.title" ng-keydown="handleEnter($event)" required autofocus>
 	    	<label class="icon-heart_filled" for="savedSearchName" aria-lable="Enter name"><span class="sr-only">Enter name</span></label>
 	    </fieldset>
 	    <fieldset>

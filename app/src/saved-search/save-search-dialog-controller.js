@@ -57,7 +57,27 @@ angular.module('voyager.search')
             var savedSearchCopy = _.cloneDeep($scope.savedSearch);  //copy so not to alter binding
             savedSearchCopy.share = _.pluck(savedSearchCopy.share,'id');
 
-            savedSearchService.saveSearch(savedSearchCopy, searchItem).then(function(response) {
+            savedSearchService.fetch(savedSearchCopy).then(function(docs) {
+                if (docs.length === 0 || _.contains($scope.error,'Overwrite')) {
+                    delete $scope.error;
+                    if (docs.length > 0) {
+                        savedSearchCopy.id = docs[0].id;
+                    }
+                    return _saveSearch(savedSearchCopy);
+                } else {
+                    var existingSearch = docs[0];
+                    if (existingSearch.owner === authService.getUser().id || authService.hasPermission('manage')) {
+                        $scope.error = 'Saved Search exists. Overwrite?';
+                    } else {
+                        $scope.error = 'Saved Search exists. You don\'t have permission to overwrite. Please rename your search.';
+                    }
+                }
+            });
+
+        };
+
+        function _saveSearch(savedSearch) {
+            return savedSearchService.saveSearch(savedSearch, searchItem).then(function(response) {
 
                 $modalInstance.close();
                 $analytics.eventTrack('saved-search', {
@@ -72,7 +92,7 @@ angular.module('voyager.search')
             }, function(error) {
                 console.log(error.data);
             });
-        };
+        }
 
         $scope.cancel = function () {
             $modalInstance.dismiss('cancel');
@@ -80,6 +100,13 @@ angular.module('voyager.search')
 
         $scope.hasPermission = function(permission) {
             return authService.hasPermission(permission);
+        };
+
+        $scope.handleEnter = function(ev) {
+            delete $scope.error;
+            if (ev.which === 13) {
+                $scope.ok();
+            }
         };
 
     });

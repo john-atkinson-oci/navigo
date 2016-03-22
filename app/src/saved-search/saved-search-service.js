@@ -66,16 +66,20 @@ angular.module('voyager.search').
             }
         }
 
-        function _getQueryString() {
+        function _getQueryString(name) {
             var rows = 150;  //TODO set to what we really want
             var queryString = config.root + 'solr/ssearch/select?';
             queryString += 'rows=' + rows + '&rand=' + Math.random();
+            if (angular.isDefined(name)) {
+                name = name.replace(/ /g, '\%20');  // jshint ignore:line
+                queryString += '&fq=title:' + name;
+            }
             queryString += '&wt=json&json.wrf=JSON_CALLBACK';
             return queryString;
         }
 
-        function _execute() {
-            return $http.jsonp(_getQueryString()).then(function (data) {
+        function _fetch(name) {
+            return $http.jsonp(_getQueryString(name)).then(function (data) {
                 return data.data.response.docs;
             }, function(error) {
                 //@TODO: handle error
@@ -93,10 +97,25 @@ angular.module('voyager.search').
             return text.toLowerCase();
         }
 
+        function _getDisplayConfig(params) {
+            var config = configService.getUpdatedSettings();
+            var configClone = angular.copy(config);
+            if(angular.isDefined(params.view)) {
+                configClone.defaultView = _.classify(params.view);
+            }
+            configClone.id = _makeid();
+            delete configClone.title;
+            return configClone;
+        }
+
         //public methods - client interface
         return {
             getSavedSearches: function() {
-                return _execute();
+                return _fetch();
+            },
+
+            fetch: function(savedSearch) {
+                return _fetch(savedSearch.title);
             },
 
             getParams: function(saved) {
@@ -143,19 +162,14 @@ angular.module('voyager.search').
                     observers.push(obs);
                 }
             },
+
             removeObserver: function (observer) {
                 observers = _.without(observers, observer);
             },
+
             saveSearch: function(savedSearch, params) {
                 savedSearch.config = configService.getConfigId();
-
-                var config = configService.getUpdatedSettings();
-                var configClone = angular.copy(config);
-                if(angular.isDefined(params.view)) {
-                    configClone.defaultView = _.classify(params.view);
-                }
-                configClone.id = _makeid();
-                delete configClone.title;
+                var configClone = _getDisplayConfig(params);
 
                 return displayConfigResource.saveDisplayConfig(configClone).then(function() {
                     savedSearch.disp = configClone.id;
