@@ -36,13 +36,15 @@
 
             return htmlified;
         }
-        
+
         function _decorateField(field) {
             var  htmlified = '', values, formattedValues, actualValues = {}, trimmed, facetValue;
             var formattedValue = field.value;
             var lowerFieldName = field.name.toLowerCase();
 
-            if(lowerFieldName !== 'format') {
+                if(lowerFieldName === 'format') {
+                  formattedValue = translateService.getType(field.value);
+                }
                 if(field.style === 'STRIP_HTML') {
                     formattedValue = $('<p>' + field.value + '</p>').text();
                 }
@@ -93,7 +95,7 @@
                 if(field.maxLines) {
                     htmlified = '<div class="max-lines" style="max-height: '+ field.maxLines * 20  +'px;">' + htmlified + '</div>';
                 }
-            }
+            // }
             return htmlified;
         }
 
