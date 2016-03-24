@@ -32,7 +32,7 @@ angular.module('cart')
 
         function _getTask() {
             var task = $location.search().task;
-            if (angular.isUndefined(task) && $location.path().indexOf('status') <= -1) {
+            if (angular.isUndefined(task) && $location.path().indexOf('status') <= -1 && $location.path().indexOf('tasks') <= -1 && $location.path().indexOf('task') <= -1 && $location.path().indexOf('tasks') <= -1) {
                 return config.defaultTask;
             }
             return task;
