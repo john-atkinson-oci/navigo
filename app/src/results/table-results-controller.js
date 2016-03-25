@@ -171,6 +171,8 @@ angular.module('voyager.results')
                     } else {
                         formatted = '0 bytes';
                     }
+                } else if (!isNaN((new Date(value)).getDate())) {
+                    formatted = $filter('date')(Date.parse(value), 'M/d/yyyy, hh:mma');
                 } else {
                     formatted = value;
                 }
