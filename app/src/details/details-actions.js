@@ -18,7 +18,7 @@
             doc.isopen = false;
             if (action.action === 'download') {
                 if(angular.isDefined(doc.download)) {
-                    if(doc.download.indexOf('file:') === 0) {
+                    if(doc.download.indexOf('file:') === 0 || doc.format_type === 'Service') {
                         action.text = action.alt;
                     }
                 }

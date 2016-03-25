@@ -19,7 +19,7 @@ angular.module('voyager.results')
                     displayActions.push(action);
 
                     if(action.action === 'download' && angular.isDefined(scope.doc.download)) {
-                        if(scope.doc.download.indexOf('file:') === 0) {
+                        if(scope.doc.download.indexOf('file:') === 0 || scope.doc.format_type === 'Service') {
                             action.text = action.alt;
                         }
                     } else if (action.action === 'add') {
