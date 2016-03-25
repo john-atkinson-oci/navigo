@@ -6,7 +6,7 @@
     angular.module('voyager.search')
         .factory('resultsDecorator', resultsDecorator);
 
-    function resultsDecorator(configService, sugar, translateService, cartService, authService, $location, config) {
+    function resultsDecorator(configService, sugar, translateService, cartService, authService, $location, config, $filter) {
         var _mappable = {'application/x-arcgis-image-server':true,'application/x-arcgis-feature-server':true,'application/x-arcgis-feature-server-layer':true,'application/x-arcgis-map-server':true,'application/x-arcgis-map-server-layer':true,'application/vnd.ogc.wms_xml':true, 'application/vnd.ogc.wms_layer_xml':true};
 
         function _setFormatProperties(doc) {
@@ -65,6 +65,8 @@
                 } else {
                     formattedValue = translateService.getType(field.value);
                 }
+            } else if (!isNaN((new Date(field.value)).getDate())) {
+                formattedValue = $filter('date')(Date.parse(field.value), 'M/d/yyyy, hh:mma');
             }
             field.formattedValue = formattedValue;
 
