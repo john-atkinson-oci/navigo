@@ -397,3 +397,8 @@
   background-position: 5% 105% !important;
   background-size: 200% !important;
 }
+
+.search-map .leaflet-popup-tip-container {
+  height: 0px;
+  width: 0px;
+}

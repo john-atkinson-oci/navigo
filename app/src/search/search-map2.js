@@ -54,7 +54,7 @@ angular.module('voyager.search')
 
 		return {
 			compile: function(element, attr) {
-				element.append('<leaflet style="height: 100%" center="clientDefault" defaults="defaults" controls="controls" layers="layers" id="search-map" watch-markers="no"></leaflet>');
+				element.append('<leaflet class="search-map" style="height: 100%" center="clientDefault" defaults="defaults" controls="controls" layers="layers" id="search-map" watch-markers="no"></leaflet>');
 
 				return function (scope) {           //<- This is link function
 					if(angular.isDefined(attr.zoom)) {
@@ -362,7 +362,8 @@ angular.module('voyager.search')
 					var editIcon = L.icon({
 						iconUrl: 'assets/img/icon_edit.png',
 						iconSize:     [20, 20], // size of the icon
-						iconAnchor:   anchor // point of the icon which will correspond to marker's location
+						iconAnchor:   anchor, // point of the icon which will correspond to marker's location
+						popupAnchor: [-95, 160]
 					});
 
 					_editMarker = L.marker(pointPosition, {icon:editIcon}).addTo(map).bindPopup(addBufferOption());
