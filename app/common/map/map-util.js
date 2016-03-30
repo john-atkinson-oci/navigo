@@ -170,10 +170,10 @@ angular.module('voyager.map').
                 if (checkArea) {
                     area = L.GeometryUtil.geodesicArea(bounds);
                     if(area < 15000) {  // 15000 sq meters ~ 10 miles
-                        // TODO - handle other types
-                        if(geo.type === 'Polygon') {  // just show a point since the polygon may not be visible when zoomed out
+                        if(geo.type !== 'Point') {  // just show a point since the polygon may not be visible when zoomed out
                             geo.type = 'Point';
-                            geo.coordinates = geo.coordinates[0][0];
+                            var center = bounds.getCenter();
+                            geo.coordinates = [center.lng, center.lat];
                             geoJson = this.getGeoJson(geo, type, 3);
                         }
                     }
@@ -202,6 +202,7 @@ angular.module('voyager.map').
                     if(area < 15000) {  // 15000 sq meters ~ 10 miles
                         map.setZoom(3);  // area is small, zoom out
                     }
+                    // TODO - since we zoomed out, should we add a marker to indicate where the bbox is
                 }
             },
 
