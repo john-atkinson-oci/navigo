@@ -163,21 +163,46 @@ angular.module('voyager.map').
                 return polygon;
             },
 
-            drawGeoJson: function (map, geo, fit, type) {
+            drawGeoJson: function (map, geo, fit, type, checkArea) {
                 var geoJson = this.getGeoJson(geo, type, 3);
+                var bounds = geoJson.getBounds();
+                var area = 100000;  // default to large area
+                if (checkArea) {
+                    area = L.GeometryUtil.geodesicArea(bounds);
+                    if(area < 15000) {  // 15000 sq meters ~ 10 miles
+                        // TODO - handle other types
+                        if(geo.type === 'Polygon') {  // just show a point since the polygon may not be visible when zoomed out
+                            geo.type = 'Point';
+                            geo.coordinates = geo.coordinates[0][0];
+                            geoJson = this.getGeoJson(geo, type, 3);
+                        }
+                    }
+                }
                 map.addLayer(geoJson);
                 if (fit) {
                     $timeout(function() {
-                        var bounds = geoJson.getBounds();
                         map.currentBounds = bounds;  //flag so resize event doesn't override
                         map.fitBounds(bounds);
+                        if(area < 15000) {  // 15000 sq meters ~ 10 miles
+                            // TODO - can we make this smarter
+                            // check the basemap zoom levels/boundaries and align with our area to get a more accurate zoom level
+                            // use some kind of "near me" to find nearest location (placefinder?) and zoom to the boundaries of this point and that place
+                            map.setZoom(3);  // area is small, zoom out
+                        }
                     });
                 }
                 return geoJson;
             },
 
-            fitToBBox: function (map, bbox) {
-                map.fitBounds(_getBounds(bbox));
+            fitToBBox: function (map, bbox, checkArea) {
+                var bounds = _getBounds(bbox);
+                map.fitBounds(bounds);
+                if (checkArea) {
+                    var area = L.GeometryUtil.geodesicArea(bounds);
+                    if(area < 15000) {  // 15000 sq meters ~ 10 miles
+                        map.setZoom(3);  // area is small, zoom out
+                    }
+                }
             },
 
             isWkt: function (args) {

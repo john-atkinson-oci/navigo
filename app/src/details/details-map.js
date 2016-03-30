@@ -23,7 +23,7 @@ angular.module('voyager.details')
                         $timeout(function() {
                             map.invalidateSize(false);  //workaround when initially hidden
                             //TODO if we can map it do it by default
-                            geoLayer = mapUtil.drawGeoJson(map, geo, true);
+                            geoLayer = mapUtil.drawGeoJson(map, geo, true, undefined, true);
                         });
                     });
                 }

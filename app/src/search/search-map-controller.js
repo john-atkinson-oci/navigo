@@ -184,7 +184,7 @@ angular.module('voyager.search')
                 }
                 var place = results.placefinder.match;
                 _searchBoundary = place.extent.join(' ');
-                _searchBoundaryLayer = mapUtil.drawGeoJson($scope.map, place.geo, true, results.placefinder.search.op);
+                _searchBoundaryLayer = mapUtil.drawGeoJson($scope.map, place.geo, true, results.placefinder.search.op, false);
                 _addToLayerControl(_searchBoundaryLayer, $scope.map, {mapKey:'Place'});
             } else if(_searchBoundaryLayer) {  //if no place remove the search boundary layer
                 _removeSearchBoundary();
