@@ -1,11 +1,11 @@
 /*global angular, _, ga */
 angular.module('voyager.security')
-    .controller('AuthBaseCtrl', function ($scope, authService, $window, config, localStorageService) {
+    .controller('AuthBaseCtrl', function ($scope, authService, $window, config, localStorageService, configService) {
         'use strict';
         var error;
 
         $scope.canRemember = config.rememberMe;
-        $scope.hideDefault = config.homepage.showDefaultCredentials === false || localStorageService.get('default-cred') === 'true';
+        $scope.hideDefault = config.homepage.showDefaultCredentials === false;
 
         $scope.setDefaultCred = function () {
             $scope.user = 'admin';
@@ -13,8 +13,9 @@ angular.module('voyager.security')
         };
 
         $scope.removeDefault = function() {
-            localStorageService.add('default-cred','true');
-            $scope.hideDefault = true;
+            configService.hideDefaultCredentials().then(function() {
+                $scope.hideDefault = true;
+            });
         };
 
         $scope.authSuccess = function() {

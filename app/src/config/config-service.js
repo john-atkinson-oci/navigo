@@ -498,6 +498,9 @@ angular.module('voyager.config').
             },
             getCatalogs: function() {
                 return _catalogsPromise;
+            },
+            hideDefaultCredentials: function() {
+                return $http.post(config.root + 'api/rest/appearance/defaultCredentials?show=false');
             }
         };
 
