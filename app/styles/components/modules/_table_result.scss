@@ -111,3 +111,21 @@
     overflow: hidden;
 }
 
+.default-thumb-simple-table {
+	background-position: 10% 93% !important;
+	background-size: 140% !important;
+}
+
+.thumbnail-col-simple-table {
+	height: 53px;
+	padding: 0;
+	width: 92px;
+
+	img {
+		display: block;
+		width: 100%;
+		height: auto;
+		max-height: 53px;
+		background-position: 50% 50%;
+	}
+}

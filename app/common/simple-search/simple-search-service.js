@@ -18,6 +18,9 @@ angular.module('simpleSearch').
                 if(doc.bytes) {
                     doc.size = _bytesToSize(doc.bytes);
                 }
+                if(angular.isDefined(doc.thumb) && doc.thumb.indexOf('vres/mime') !== -1) {
+                    doc.defaultThumb = true;
+                }
             });
             return docs;
         }
