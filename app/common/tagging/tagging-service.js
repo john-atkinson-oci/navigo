@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('voyager.tagging').
-    factory('tagService', function ($http, $q, $location, queryBuilder, sugar, solrUtil, config) {
+    factory('tagService', function ($http, $q, $location, queryBuilder, sugar, solrUtil, config, solrGrunt) {
 
         function _save(field, value, query, mode) {
             if (angular.isUndefined(mode)) {
@@ -92,7 +92,7 @@ angular.module('voyager.tagging').
                 if (angular.isDefined(docId)) {
                     query = {fq:'id:' + docId};
                 } else {
-                    query = $location.search();
+                    query = solrGrunt.getSolrParams($location.search());
                 }
                 return _save(field, tagValue, query);
             },
