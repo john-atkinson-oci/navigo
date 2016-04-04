@@ -29,7 +29,12 @@ angular.module('voyager.component')
 						listWrapEl.css({'padding-top': filterContainerHeight + 'px'});
 
 						if (attr.view === 'table') {
-							searchResultMapContainer.css('top', (118 + filterContainerHeight) + 'px');
+							var top = 118 + filterContainerHeight;
+							var banner = angular.element('#top-banner');
+							if (banner.length > 0) {
+								top += banner.height();
+							}
+							searchResultMapContainer.css('top', top + 'px');
 							// resultsTable = angular.element('#resultsTable');
 							// var offset = listWrapEl.offset().top - 20;
 							// resultsTable.stickyTableHeaders('destroy');

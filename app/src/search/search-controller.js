@@ -9,6 +9,7 @@ angular.module('voyager.search')
 		var _page = 1;
 		var _params = $location.search();
 		var _searching = false;
+		var _bannerAdjusted = false;
 
 		$scope.showPan = true;
 
@@ -504,6 +505,20 @@ angular.module('voyager.search')
 			$scope.mapSize = newSetting.mapSize;
 		};
 
+		function _bannerAdjust() {
+			if(!_bannerAdjusted) {
+				_bannerAdjusted = true;
+				$timeout(function() {
+					var banner = angular.element('#top-banner');
+					if (banner.length > 0) {
+						var bannerHeight = banner.height();
+						var mapContent = angular.element('.map_content');
+						mapContent.offset({top: mapContent.offset().top + bannerHeight});
+					}
+				});
+			}
+		}
+
 		function _setView(view, doSearch) {
 			var currentView = $scope.view;
 			$scope.view = angular.isUndefined(view) ? 'card' : view;
@@ -511,6 +526,7 @@ angular.module('voyager.search')
 
 			$location.search('view', $scope.view);
 			if (view === 'table') {
+				_bannerAdjust();
 				searchService.setItemsPerPage(50);
 			} else {
 				searchService.setItemsPerPage(24);
