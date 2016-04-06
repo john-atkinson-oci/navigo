@@ -12,6 +12,9 @@ angular.module('voyager.util').
                 if(angular.isDefined(fieldConfig.minCount)) {
                     facetParams += '&f.' + fieldConfig.field + '.facet.mincount=' + fieldConfig.minCount;
                 }
+                if(angular.isDefined(fieldConfig.sort)) {
+                    facetParams += '&f.' + fieldConfig.field + '.facet.sort=' + fieldConfig.sort;
+                }
                 if(fieldConfig.style === 'CHECK') {
                     facetParams += '&facet.field={!ex=' + field + '}' + field;
                 } else {
@@ -34,6 +37,9 @@ angular.module('voyager.util').
                     }
                     if(angular.isDefined(filter.minCount)) {
                         facetParams += '&f.' + filter.field + '.facet.mincount=' + filter.minCount;
+                    }
+                    if(angular.isDefined(filter.sort)) {
+                        facetParams += '&f.' + filter.field + '.facet.sort=' + filter.sort;
                     }
                 }
             });

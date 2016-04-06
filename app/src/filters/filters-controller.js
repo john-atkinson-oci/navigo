@@ -81,7 +81,7 @@ angular.module('voyager.filters')
             } else {
                 if (facet.field === 'shard') {
                     var urlShards = $location.search().shards;
-                    if (urlShards !== '') {
+                    if (urlShards !== '' && angular.isDefined(urlShards)) {
                         shards = urlShards.split(',');
                     }
                     shards.push(facet.id);
