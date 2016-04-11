@@ -218,7 +218,7 @@ angular.module('voyager.config').
             catalogFilter.value = 'Catalog';
             var urlShards = $location.search().shards;
             if(angular.isDefined(urlShards)) {
-              urlShards = urlShards.split(',');
+                urlShards = urlShards.split(',');
             }
             _catalogsPromise = catalogService.fetch().then(function (catalogs) {
                 var selectedCount = 0;
@@ -230,12 +230,12 @@ angular.module('voyager.config').
                     }
                 });
                 if (selectedCount === 0 && catalogFilter.values.length > 0) {
-                  var local = _.find(catalogFilter.values, {id: 'LOCAL'});
-                  if(!!local) {
-                    local.isSelected = true;
-                    selectedCount = 1;
-                    $location.search('shards', ['LOCAL'].join());
-                  }
+                    var local = _.find(catalogFilter.values, {id: 'LOCAL'});
+                    if(!!local) {
+                        local.isSelected = true;
+                        selectedCount = 1;
+                        $location.search('shards', ['LOCAL'].join());
+                    }
                 }
                 if (selectedCount === 1) {  //if only 1 selected, disable it so one has to always be selected
                     var filter = _.find(catalogFilter.values, {isSelected: true});
