@@ -197,7 +197,7 @@ angular.module('voyager.results')
                             } else {
                                 formatted = '0 bytes';
                             }
-                        } else if (!isNaN((new Date(value)).getDate())) {
+                        } else if (sugar.isDate(value)) {
                             formatted = $filter('date')(Date.parse(value), 'M/d/yyyy, hh:mma');
                         } else {
                             formatted = value;

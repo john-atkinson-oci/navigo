@@ -65,7 +65,7 @@
                 } else {
                     formattedValue = translateService.getType(field.value);
                 }
-            } else if (!isNaN((new Date(field.value)).getDate())) {
+            } else if (sugar.isDate(field.value)) {
                 formattedValue = $filter('date')(Date.parse(field.value), 'M/d/yyyy, hh:mma');
             }
             field.formattedValue = formattedValue;
