@@ -5,7 +5,7 @@ angular.module('voyager.search')
 		'use strict';
 
 		function getMapSizeTemplate() {
-			var mapSizeTemplate = '<div class="leaflet-control-map-size-toggle leaflet-bar leaflet-control">';
+			var mapSizeTemplate = '<div ng-show="view == \'table\'" class="leaflet-control-map-size-toggle leaflet-bar leaflet-control">';
 			mapSizeTemplate += '<div class="map-size-drop-down">';
 			mapSizeTemplate += '<div class="icon-arrow flyout-trigger" ng-click="toggleMapSizeDropDown()"><span class="icon-search_map"></span></div>';
 			mapSizeTemplate += '<div class="flyout"><div class="arrow"></div><div class="flyout_inner">';
@@ -530,7 +530,12 @@ angular.module('voyager.search')
 
 				$scope.$watch('view', function(view){
 					_cancelDraw();
-
+					// adjust layers control placement if table view is showing map size toggle control
+					if (view === 'table') {
+						$('.leaflet-control-layers-toggle').parent().parent().addClass('leaflet-bottom-search');
+					} else {
+						$('.leaflet-control-layers-toggle').parent().parent().removeClass('leaflet-bottom-search');
+					}
 					leafletData.getMap('search-map').then(function (map) {
 						if(view === 'map') {
 							map.options.minZoom = 2;  //keep from zooming out too far when the map is big

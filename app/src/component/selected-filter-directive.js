@@ -41,7 +41,9 @@ angular.module('voyager.component')
 							// resultsTable.stickyTableHeaders({fixedOffset: offset});
 						} else {
 							selectedFilterEl.next('.list_wrap').css({'margin-top' : 0});
-							searchResultMapContainer.css({'top': '', 'height': '100%', 'visibility': 'visible'});
+							// TODO - setting height to 100% hides the bottom map controls - why is this needed?
+							// searchResultMapContainer.css({'top': '', 'height': '100%', 'visibility': 'visible'});
+							searchResultMapContainer.css({'top': '', 'visibility': 'visible'});
 						}
 					}, 100);
 				};
