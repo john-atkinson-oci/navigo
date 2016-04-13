@@ -217,7 +217,9 @@ angular.module('voyager.config').
             }
             catalogFilter.value = 'Catalog';
             var urlShards = $location.search().shards;
-            urlShards = urlShards.split(',');
+            if(angular.isDefined(urlShards)) {
+                urlShards = urlShards.split(',');
+            }
             _catalogsPromise = catalogService.fetch().then(function (catalogs) {
                 var selectedCount = 0;
                 _.each(catalogs, function (catalog) {
@@ -227,6 +229,14 @@ angular.module('voyager.config').
                         selectedCount++;
                     }
                 });
+                if (selectedCount === 0 && catalogFilter.values.length > 0) {
+                    var local = _.find(catalogFilter.values, {id: 'LOCAL'});
+                    if(!!local) {
+                        local.isSelected = true;
+                        selectedCount = 1;
+                        $location.search('shards', ['LOCAL'].join());
+                    }
+                }
                 if (selectedCount === 1) {  //if only 1 selected, disable it so one has to always be selected
                     var filter = _.find(catalogFilter.values, {isSelected: true});
                     filter.disabled = true;
@@ -260,7 +270,7 @@ angular.module('voyager.config').
 
                 translateService.translateFilterNames(facetTypes);
                 // TODO: federated search? 
-                if(config.settings.data.showFederatedSearch && angular.isDefined($location.search().shards)) {
+                if(config.settings.data.showFederatedSearch) {
                     _createCatalogFilter(catalogFilter, facetTypes);
                 }
                 return facetTypes;
