@@ -29,6 +29,7 @@ angular.module('taskRunner').
         var readOnlyTpl = '<div class="process-control" style>' + readOnlyLabelTpl + '<div style="padding-left: 5px;">{{param.value}}</div></div>';
         var readOnlyListTpl = '<div class="process-control" style>' + readOnlyLabelTpl + '<div style="padding-left: 5px;">{{param.value.join()}}</div></div>';
         var pwdReadOnlyTpl = '<div class="process-control" style>' + readOnlyLabelTpl + '<input type="password" ng-model="param.value" ng-disabled="true" style="padding-left: 5px;"></div>';
+        var dateTpl = labelTpl + '<div class="input-group date"><input type="text" placeholder="yyyy-mm-dd" class="form-control" datepicker-popup="yyyy-MM-dd" is-open="isDateOpen" ng-click="openDatePicker($event)" ng-model="param.value" close-text="Close" ng-required="true"><span class="input-group-addon" style="width: 0" ng-click="openDatePicker($event)"><span class="glyphicon glyphicon-calendar" ng-click="openDatePicker($event)"></span></span></div>';
 
         var browseTpl = '<div class="input-group" style="width: 100%">' +
             '<input type="text" class="form-control" ng-model="param.value">' +
@@ -63,6 +64,7 @@ angular.module('taskRunner').
             'Field':fieldTpl,
             'IndexItem':searchTpl,
             'QueryIndex':searchTpl,
+            'Date':dateTpl,
 
             //'VoyagerResults-readOnly':'<div>' + readOnlyLabelTpl + '<div vs-results-control readonly="true" class="process-control" style="width:100%; float:left; margin-bottom: 0px"></div></div>',
             'VoyagerResults-readOnly':'<div>' + readOnlyLabelTpl + '<div vs-view-items></div></div>',
