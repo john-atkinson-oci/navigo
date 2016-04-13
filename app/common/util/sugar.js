@@ -3,6 +3,7 @@
 angular.module('voyager.util').
     factory('sugar', function ($http) {
         'use strict';
+        var DATE_REGEX = new RegExp("^\\d{4}(-\\d{2}){2}T\\d{2}:\\d{2}(:\\d{2}(\\.\\d{1,3})?)?Z$", "i");
 
         function _convertExtent(val) {
             if(val.indexOf('bbox') >= 0) {
@@ -79,6 +80,10 @@ angular.module('voyager.util').
                 }
                 var i = parseInt(Math.floor(Math.log(bytes) / Math.log(1024)));
                 return Math.round(bytes / Math.pow(1024, i), 2) + ' ' + sizes[i];
+            },
+            
+            isDate: function(input) {
+                return ((!isNaN((new Date(input)).getDate())) && DATE_REGEX.test(input));
             },
 
             toArray: function (val) {
