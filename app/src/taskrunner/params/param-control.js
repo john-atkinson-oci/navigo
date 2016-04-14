@@ -154,7 +154,6 @@ angular.module('taskRunner')
             };
 
             $scope.openDatePicker = function($event) {
-                $event.preventDefault();
                 $event.stopPropagation();
                 $scope.isDateOpen = true;
             };
