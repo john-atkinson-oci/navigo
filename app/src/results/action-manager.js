@@ -4,7 +4,7 @@
     angular.module('voyager.results')
         .factory('actionManager', actionManager);
 
-    function actionManager($window, $analytics, $modal) {
+    function actionManager($window, $analytics, $modal, authService, sugar) {
 
         function _isVisible(action, scope) {
             if (action.visible === true) {
@@ -54,7 +54,13 @@
                     //    var url = config.root + 'stream/' + scope.doc.id + '.zip';
                     //    $window.location.href = url;
                     //} else {
-                    $window.location.href = scope.doc.download;
+                    if(sugar.canOpen(scope.doc)) {
+                        $window.location.href = scope.doc.download;
+                    } else {
+                        authService.getUserInfo().then(function(user) {
+                            $window.location.href = scope.doc.download + sugar.paramDelimiter(scope.doc.download) + '_vgp=' + user.exchangeToken ;
+                        });
+                    }
                     //}
                 };
             } else if (action.action === 'open') {

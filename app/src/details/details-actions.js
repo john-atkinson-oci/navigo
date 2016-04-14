@@ -3,7 +3,7 @@
 
     angular.module('voyager.details').factory('detailsActions', detailsActions);
 
-    function detailsActions($window, $analytics, config, sugar) {
+    function detailsActions($window, $analytics, config, sugar, authService) {
 
         function _isVisible(action, doc) {
             if (action.visible === true) {
@@ -26,7 +26,13 @@
                     $analytics.eventTrack('download', {
                         category: 'results', label: doc.format // jshint ignore:line
                     });
-                    $window.location.href = doc.download;
+                    if(sugar.canOpen(doc)) {
+                        $window.location.href = doc.download;
+                    } else {
+                        authService.getUserInfo().then(function(user) {
+                            $window.location.href = doc.download + sugar.paramDelimiter(doc.download) + '_vgp=' + user.exchangeToken ;
+                        });
+                    }
                 };
             } else if (action.action === 'open') {
                 action.do = function() {

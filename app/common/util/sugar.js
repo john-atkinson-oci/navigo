@@ -231,6 +231,14 @@ angular.module('voyager.util').
 
             canOpen: function(doc) {
                 return doc.download.indexOf('file:') === 0 || doc.format_type === 'Service' || doc.format_type === 'Server' || doc.format_type === 'Map' || doc.format_type === 'Application';
+            },
+
+            paramDelimiter: function(url) {
+                var sep = '?';
+                if(url.indexOf('?') !== -1) {
+                    sep = '&';
+                }
+                return sep;
             }
 
         };
