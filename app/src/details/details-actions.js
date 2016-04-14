@@ -3,7 +3,7 @@
 
     angular.module('voyager.details').factory('detailsActions', detailsActions);
 
-    function detailsActions($window, $analytics, config) {
+    function detailsActions($window, $analytics, config, sugar) {
 
         function _isVisible(action, doc) {
             if (action.visible === true) {
@@ -18,7 +18,7 @@
             doc.isopen = false;
             if (action.action === 'download') {
                 if(angular.isDefined(doc.download)) {
-                    if(doc.download.indexOf('file:') === 0 || doc.format_type === 'Service') {
+                    if(sugar.canOpen(doc)) {
                         action.text = action.alt;
                     }
                 }

@@ -3,11 +3,11 @@
 angular.module('voyager.util').
     factory('sugar', function ($http) {
         'use strict';
-        var DATE_REGEX = new RegExp("^\\d{4}(-\\d{2}){2}T\\d{2}:\\d{2}(:\\d{2}(\\.\\d{1,3})?)?Z$", "i");
+        var DATE_REGEX = new RegExp('^\\d{4}(-\\d{2}){2}T\\d{2}:\\d{2}(:\\d{2}(\\.\\d{1,3})?)?Z$', 'i');
 
         function _convertExtent(val) {
             if(val.indexOf('bbox') >= 0) {
-                val = val.replace(/["\)]/g, ""); //remove double quotes and right paren
+                val = val.replace(/["\)]/g, ''); //remove double quotes and right paren
                 var bboxInfo = val.split('(');
                 var mode = bboxInfo[0].replace('Is','').toUpperCase();
                 mode = mode.replace('BBOX:','');
@@ -18,8 +18,8 @@ angular.module('voyager.util').
         }
 
         function _cleanSlash(val) {
-            var newVal = val.replace(/\\/g, "");  //remove all escape characters
-            newVal = newVal.replace(/\//g, "\\/"); //but still need to escape forward slashes
+            var newVal = val.replace(/\\/g, '');  //remove all escape characters
+            newVal = newVal.replace(/\//g, '\\/'); //but still need to escape forward slashes
             newVal = _convertExtent(newVal);
             return newVal;
         }
@@ -57,10 +57,10 @@ angular.module('voyager.util').
             retroParams: function (params) {
                 _removeFunk(params);
                 var retro = $.param(params, true);
-                retro = retro.replace(/\+/g, " ");
-                retro = retro.replace(/ /g, "%20");
+                retro = retro.replace(/\+/g, ' ');
+                retro = retro.replace(/ /g, '%20');
                 //params = params.replace(/[\s\/\+\-!\(\){}\^"~*?:]|&&|\|\|/g, "\\$&");
-                retro = retro.replace(/\\/g, "");
+                retro = retro.replace(/\\/g, '');
                 retro = retro.replace(/&/g, '/');
                 retro = retro.replace(/%3A/g, ':');
                 //params = params.replace(/%5C/g, '');
@@ -227,6 +227,10 @@ angular.module('voyager.util').
                 var service = config.root + url;
                 var headerConfig = {headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'}};
                 return $http.post(service, data, headerConfig);
+            },
+
+            canOpen: function(doc) {
+                return doc.download.indexOf('file:') === 0 || doc.format_type === 'Service' || doc.format_type === 'Server' || doc.format_type === 'Map' || doc.format_type === 'Application';
             }
 
         };

@@ -37,7 +37,7 @@ angular.module('voyager.results')
                     }
 
                     if(action.action === 'download' && angular.isDefined(scope.doc.download)) {
-                        if(scope.doc.download.indexOf('file:') === 0 || scope.doc.format_type === 'Service') {
+                        if(sugar.canOpen(scope.doc)) {
                             action.text = action.alt;
                         }
                     }
