@@ -6,6 +6,7 @@ angular.module('cart')
         'use strict';
         $scope.hasError = false;
         $scope.loading = true;
+        $scope.cartName = config.ui.list.name.toLowerCase();
 
         $scope.disp = $location.search().disp || 'default';
 
