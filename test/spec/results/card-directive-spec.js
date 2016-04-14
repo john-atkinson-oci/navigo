@@ -135,7 +135,15 @@ describe('Card Directive:', function () {
 
             expect(scope.cartAction).toBe('Add');
         });
-        
+
+        it('should perform actions', function () {
+            scope.doc = {id:'id', canCart:true, hasDownload:true, isService: true, download: 'file://file', geo:'geo'};
+
+            initDirective();
+
+            scope.actions[0].do();
+            scope.actions[1].do();
+        });
         
 
         //it('should toggle map mode', function () {
