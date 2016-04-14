@@ -530,12 +530,6 @@ angular.module('voyager.search')
 
 				$scope.$watch('view', function(view){
 					_cancelDraw();
-					// adjust layers control placement if table view is showing map size toggle control
-					if (view === 'table') {
-						$('.leaflet-control-layers-toggle').parent().parent().addClass('leaflet-bottom-search');
-					} else {
-						$('.leaflet-control-layers-toggle').parent().parent().removeClass('leaflet-bottom-search');
-					}
 					leafletData.getMap('search-map').then(function (map) {
 						if(view === 'map') {
 							map.options.minZoom = 2;  //keep from zooming out too far when the map is big
@@ -548,6 +542,12 @@ angular.module('voyager.search')
 							// console.log('view change - moving');
 							if(!angular.isDefined(map.currentBounds)) {
 								$scope.resizeMap();
+							}
+							// adjust layers control placement if table view is showing map size toggle control
+							if (view === 'table') {
+								$('.leaflet-control-layers-toggle').parent().parent().addClass('leaflet-bottom-search');
+							} else {
+								$('.leaflet-control-layers-toggle').parent().parent().removeClass('leaflet-bottom-search');
 							}
 						}, 200);
 					});

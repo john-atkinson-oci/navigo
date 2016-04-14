@@ -505,17 +505,21 @@ angular.module('voyager.search')
 			$scope.mapSize = newSetting.mapSize;
 		};
 
-		function _bannerAdjust() {
-			if(!_bannerAdjusted) {
+		function _bannerAdjust(view) {
+			if(!_bannerAdjusted && view === 'table') {
 				_bannerAdjusted = true;
 				$timeout(function() {
 					var banner = angular.element('#top-banner');
 					if (banner.length > 0) {
 						var bannerHeight = banner.height();
 						var mapContent = angular.element('.map_content');
-						mapContent.offset({top: mapContent.offset().top + bannerHeight});
+						mapContent.offset({top:  mapContent.offset().top + bannerHeight});
 					}
 				});
+			} else {
+				var mapContent = angular.element('.map_content');
+				mapContent.css('top', '');
+				_bannerAdjusted = false;
 			}
 		}
 
@@ -525,8 +529,8 @@ angular.module('voyager.search')
 			_page = 1;
 
 			$location.search('view', $scope.view);
+			_bannerAdjust(view);
 			if (view === 'table') {
-				_bannerAdjust();
 				searchService.setItemsPerPage(50);
 			} else {
 				searchService.setItemsPerPage(24);
