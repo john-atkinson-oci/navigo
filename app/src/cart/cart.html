@@ -2,7 +2,7 @@
 	<ng-include src="'src/cart/cart-nav.html'"></ng-include>
 	<div class="queue-secondary">
 		<div class="inner">
-			<div class="content queue-content"><p ng-if="!cartItems.length && !loading">You have no items in the cart.</p>
+			<div class="content queue-content"><p ng-if="!cartItems.length && !loading">You have no items in the {{cartName}}.</p>
 				<vs-cart-items cart-items="cartItems" display-category="displayCategory" invalid="false"></vs-cart-items>
 				<a class="clear-queue semi" href="javascript:;" ng-click="clearQueue()" ng-if="cartItems.length">Clear my {{uiText.name}}</a>
 			</div>

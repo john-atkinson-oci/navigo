@@ -152,6 +152,11 @@ angular.module('taskRunner')
                     $scope.param.display = item.name;
                 });
             };
+
+            $scope.openDatePicker = function($event) {
+                $event.stopPropagation();
+                $scope.isDateOpen = true;
+            };
         }
 
         return {
