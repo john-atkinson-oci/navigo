@@ -28,9 +28,10 @@ angular.module('voyager.component')
 
 						listWrapEl.css({'padding-top': filterContainerHeight + 'px'});
 
+						var banner = angular.element('#top-banner');
+
 						if (attr.view === 'table') {
 							var top = 118 + filterContainerHeight;
-							var banner = angular.element('#top-banner');
 							if (banner.length > 0) {
 								top += banner.height();
 							}
@@ -43,7 +44,12 @@ angular.module('voyager.component')
 							selectedFilterEl.next('.list_wrap').css({'margin-top' : 0});
 							// TODO - setting height to 100% hides the bottom map controls - why is this needed?
 							// searchResultMapContainer.css({'top': '', 'height': '100%', 'visibility': 'visible'});
-							searchResultMapContainer.css({'top': '', 'visibility': 'visible'});
+							var height = '';
+							if (banner.length) {
+								// 64 is the header, 5 is padding
+								height = ($window.innerHeight - banner.height() - 64 - 5) + 'px';
+							}
+							searchResultMapContainer.css({'top': '', 'height': height, 'visibility': 'visible'});
 						}
 					}, 100);
 				};
