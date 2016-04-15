@@ -222,8 +222,8 @@ angular.module('voyager.util').
                 voyagerParams += _toClassic(params, 'place.op', 'place.op');
 
                 voyagerParams += _toClassic(params, 'voyager.list', 'voyager.list');
-                if(params.view === 'table') {
-                    voyagerParams += '/view=TABLE';
+                if(angular.isDefined(params.view) && params.view !== 'card') {
+                    voyagerParams += '/view=' + params.view;
                 }
                 if(angular.isDefined(params.sort)) {
                     voyagerParams += '/sort=' + params.sort;
