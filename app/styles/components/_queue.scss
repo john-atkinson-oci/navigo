@@ -190,6 +190,11 @@
 				padding-left: 36px;
 				//background-color: #eef1f2;
 			}
+
+			.disabled {
+				cursor: default;
+				color: #999999;
+			}
 		}
 
 		li:nth-child(odd) { background-color:#f9f9f9 }
@@ -228,6 +233,14 @@
 		top: 0px;
 		font-size: 20px;
 		padding-right: 2px;
+	}
+}
+
+// task error link
+.task-error-link {
+	color: $activeLinkColor;
+	&:hover {
+		cursor: pointer;
 	}
 }
 

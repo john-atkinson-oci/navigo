@@ -29,14 +29,19 @@
                                 </a>
                                 <ul class="subcat">
                                     <li ng-repeat="task in group">
-                                        <a href="javascript:;" ng-click="selectTask(task)">
+                                        <a href="javascript:;" ng-click="selectTask(task)" ng-if="task.severity < 2">
                                             <span class="glyphicon glyphicon-record glyphicon-green task-status" ng-if="task.severity == 0" ng-class="task.available ? 'glyphicon-ok-circle':'glyphicon-ban-circle'"></span>
                                             <span class="glyphicon glyphicon-record glyphicon-orange task-status" ng-if="task.severity == 1" ng-class="task.available ? 'glyphicon-ok-circle':'glyphicon-ban-circle'"></span>
-                                            <span class="glyphicon glyphicon-record glyphicon-red task-status" ng-if="task.severity == 2" ng-class="task.available ? 'glyphicon-ok-circle':'glyphicon-ban-circle'"></span>
                                             <span class="task-display-name"><b>{{task.display}}</b></span>
                                             <span class="task-description">{{task.description}}</span>
-                                            <span class="btn btn-xs pull-right" ng-if="task.severity == 2" style="background: #ff0000;color:white">Not Available (details)</span>
                                         </a>
+                                        <a class="disabled" ng-if="task.severity == 2">
+                                            <span class="glyphicon glyphicon-record glyphicon-red task-status" ng-class="task.available ? 'glyphicon-ok-circle':'glyphicon-ban-circle'"></span>
+                                            <span class="task-display-name"><b>{{task.display}}</b></span>
+                                            <span class="task-description">{{task.description}}</span>
+                                            <span class="task-error-link pull-right" ng-click="selectTask(task)">Not Available</span>
+                                        </a>
+
                                     </li>
                                 </ul>
                             </div>
