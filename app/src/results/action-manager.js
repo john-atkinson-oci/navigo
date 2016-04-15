@@ -55,7 +55,7 @@
                     //    $window.location.href = url;
                     //} else {
                     if(sugar.canOpen(scope.doc)) {
-                        $window.location.href = scope.doc.download;
+                        $window.open(scope.doc.download);
                     } else {
                         authService.getUserInfo().then(function(user) {
                             $window.location.href = scope.doc.download + sugar.paramDelimiter(scope.doc.download) + '_vgp=' + user.exchangeToken ;

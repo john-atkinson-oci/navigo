@@ -27,7 +27,7 @@
                         category: 'results', label: doc.format // jshint ignore:line
                     });
                     if(sugar.canOpen(doc)) {
-                        $window.location.href = doc.download;
+                        $window.open(doc.download);
                     } else {
                         authService.getUserInfo().then(function(user) {
                             $window.location.href = doc.download + sugar.paramDelimiter(doc.download) + '_vgp=' + user.exchangeToken ;
