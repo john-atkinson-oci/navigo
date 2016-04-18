@@ -71,7 +71,7 @@ angular.module('voyager.search').
             var queryString = config.root + 'solr/ssearch/select?';
             queryString += 'rows=' + rows + '&rand=' + Math.random();
             if (angular.isDefined(name)) {
-                name = name.replace(/ /g, '\%20');  // jshint ignore:line
+                name = name.replace(/ /g, '\\%20');  // jshint ignore:line
                 queryString += '&fq=title:' + name;
             }
             queryString += '&wt=json&json.wrf=JSON_CALLBACK';
