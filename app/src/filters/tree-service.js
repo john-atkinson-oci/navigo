@@ -7,10 +7,14 @@ angular.module('voyager.filters').
         var _fields = {};
         var _trees = {};
 
+        function _isHierarchy(filter) {
+            return filter.style === 'HIERARCHY' || filter.stype === 'hierarchy';
+        }
+
         function _getTreeParams() {
             var configFilters = configService.getFilters(), facetParams = '';
             $.each(configFilters, function (index, filter) {
-                if(filter.style === 'HIERARCHY') {
+                if(_isHierarchy(filter)) {
                     facetParams += '&facet.field=' + filter.field + '&f.' + filter.field + '.facet.mincount=1' + '&f.' + filter.field + '.facet.prefix=%s/';
                     _trees[filter.field] = {};
                 }
@@ -22,7 +26,7 @@ angular.module('voyager.filters').
             var configFilters = configService.getFilters();
             var hasTree = false;
             $.each(configFilters, function (index, filter) {
-                if(filter.style === 'HIERARCHY') {
+                if(_isHierarchy(filter)) {
                     hasTree = true;
                     return false;
                 }
@@ -261,7 +265,7 @@ angular.module('voyager.filters').
                 _setTree(params, filterParams, bboxParams).then(function() {
                     if (!_.isEmpty(_trees)) {
                         $.each(filters, function(index, filter) {
-                            if (filter.style === 'HIERARCHY') {
+                            if (_isHierarchy(filter)) {
                                 //var tree = _getTree(_trees[filter.field], _getSelected(params.fq), filter.field);
                                 var structure = _buildStructure(_trees[filter.field], _getSelected(params.fq), filter.field);
                                 var expanded = [];
