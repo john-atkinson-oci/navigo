@@ -107,7 +107,7 @@ angular.module('voyager.config').
             _defaultView = configData.defaultView;
             _cardView = configData.cardView;
             if(configData.cardView) {
-                _setSummaryFields(configData.cardView.fields);
+                _setSummaryFields(configData.cardView.fields || []);
             } else {
                 _summaryFields = {};
                 _summarySolrParams = '';
