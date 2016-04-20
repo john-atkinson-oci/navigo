@@ -224,6 +224,9 @@ angular.module('voyager.filters')
                 resolve: {
                     selectedFilter: function () {
                         return filter;
+                    },
+                    updateFilters: function () {
+                        return $scope.filterResults;
                     }
                 }
             });

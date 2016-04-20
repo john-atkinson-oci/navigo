@@ -8,7 +8,7 @@ angular.module('voyager.util').
         function _getSolrParams(params) {
             var solrParams = {};
             $.each(params,function(key, value) {
-                if (angular.isUndefined(_nonSolrParams[key])) {
+                if (angular.isUndefined(_nonSolrParams[key]) && value !== '') {
                     solrParams[key] = value;
                 }
             });

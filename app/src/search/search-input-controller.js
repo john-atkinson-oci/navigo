@@ -83,7 +83,7 @@ angular.module('voyager.search')
 				_setBBoxNull();
 			}
 			else if (!_.isEmpty(initParams.bbox)) {
-				console.log(initParams);
+				// console.log(initParams);
 				_updatePlaceToBbox(initParams);
 			} else {
 				$scope.search.place = '';
