@@ -70,6 +70,8 @@ describe('Controller: HomeSavedSearchCtrl', function () {
         spyOn(savedSearchService,'applySavedSearch').and.callThrough();
 
         var saved = {id: 'id', query:'query'};
+        saved.display = cfg.settings.data;
+
         $scope.applySavedSearch(saved);
 
         $http.expectJSONP(new RegExp('ssearch')).respond({response: {docs: [item]}});  // why?

@@ -420,7 +420,7 @@ angular.module('voyager.config').
             getUpdatedSettings: function() {
                 var colInfo;
                 $.each(config.settings.data.listView.fields, function(index, column) {
-                    colInfo = _tableColumnWidthMap[column.field];
+                    colInfo = _tableColumnWidthMap[column.field || column.name];
                     if(angular.isDefined(colInfo)) {
                         column.width = colInfo.value;
                     }
@@ -511,6 +511,9 @@ angular.module('voyager.config').
             },
             hideDefaultCredentials: function() {
                 return $http.post(config.root + 'api/rest/appearance/defaultCredentials?show=false');
+            },
+            updateConfig: function(data) {
+                return _updateConfig(data);
             }
         };
 

@@ -219,6 +219,7 @@ angular.module('voyager.search')
 					_page = searchScroll.getPage();  //so infinite scroll is on the right page
 					searchScroll.do(_params.view);
 				}
+				$scope.resetTable = false;
 
 			}, function(res){
 				_handleSearchError(res);
@@ -250,6 +251,7 @@ angular.module('voyager.search')
 		});
 
 		$scope.$on('filterChanged', function (event, args) {
+			$scope.resetTable = false;
 			if(args && args.refresh === false) {
 				return;
 			}
@@ -574,10 +576,16 @@ angular.module('voyager.search')
 
 		$scope.clearSearch = function() {
 			filterService.clear();
+			savedSearchService.reset();
 			$location.search('');
 			_page = 1;
 			_doSearch();
 		};
+
+		$scope.$on('clearSearch', function() {
+			$scope.resetTable = true;
+			searchService.reset();
+		});
 
 		function _loadNextChunk($scope) {
 			_page += 1;

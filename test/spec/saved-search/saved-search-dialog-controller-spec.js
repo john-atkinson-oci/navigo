@@ -69,8 +69,6 @@ describe('Controller: SavedSearchDialogCtrl', function () {
         $scope.savedSearch.makeDefault = true;
 
         $http.expectJSONP(new RegExp('ssearch')).respond({response:{docs:[]}}); //save search
-
-        $http.expectPOST(new RegExp('display\/config')).respond({defaultView:'view'}); //save disp
         $http.expectPOST(new RegExp('ssearch')).respond({manage:false, share_saved_search: true}); //save search
 
         $scope.ok();

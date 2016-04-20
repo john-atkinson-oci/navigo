@@ -1,7 +1,7 @@
 /*global angular, $, querystring, config */
 
 angular.module('voyager.search').
-    factory('savedSearchService', function (sugar, $http, configService, $q, authService, $modal, recentSearchService, $location, filterService, $analytics, converter, displayConfigResource, solrGrunt) {
+    factory('savedSearchService', function (sugar, $http, configService, $q, authService, $modal, recentSearchService, $location, filterService, $analytics, converter, displayConfigResource, solrGrunt, $timeout) {
         'use strict';
 
         var observers = [];
@@ -41,34 +41,18 @@ angular.module('voyager.search').
         }
 
         function _doSave(request) {
-
             if(configService.hasChanges()) {
-                var deferred = $q.defer();
-                sugar.postJson(configService.getUpdatedSettings(), 'display', 'config').then(function(response) {
-                    request.config = response.data.id;
-                    /* jshint ignore:start */
-                    //request.query += '/disp=' + request.config;
-                    request.path += '/disp=' + request.config;
-                    sugar.postJson(request, 'display', 'ssearch').then(function(savedResponse) {
-                        deferred.resolve();
-                    }, function(error) {
-                        deferred.reject(error);
-                    });
-                    /* jshint ignore:end */
-                }, function(error) {
-                    deferred.reject(error);
-                });
-                return deferred.promise;
-            } else {
-                //request.query += '/disp=' + request.config;
-                request.path += '/disp=' + request.config;
-                return sugar.postJson(request, 'display', 'ssearch');
+                var settings = configService.getUpdatedSettings();
+                request.display_override = {listView: {fields: settings.listView.fields}};
             }
+            //request.query += '/disp=' + request.config;
+            request.path += '/disp=' + request.config;
+            return sugar.postJson(request, 'display', 'ssearch');
         }
 
         function _getQueryString(name) {
             var rows = 150;  //TODO set to what we really want
-            var queryString = config.root + 'solr/ssearch/select?';
+            var queryString = config.root + 'solr/ssearch/select?&fl=*,display:[display]&';
             queryString += 'rows=' + rows + '&rand=' + Math.random();
             if (angular.isDefined(name)) {
                 name = name.replace(/ /g, '\\%20');  // jshint ignore:line
@@ -86,26 +70,6 @@ angular.module('voyager.search').
                 console.log(error);
                 return error;
             });
-        }
-
-        function _makeid() {
-            var text = '';
-            var possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-            for( var i=0; i < 6; i++ ) {
-                text += possible.charAt(Math.floor(Math.random() * possible.length));
-            }
-            return text.toLowerCase();
-        }
-
-        function _getDisplayConfig(params) {
-            var config = configService.getUpdatedSettings();
-            var configClone = angular.copy(config);
-            if(angular.isDefined(params.view)) {
-                configClone.defaultView = _.classify(params.view);
-            }
-            configClone.id = _makeid();
-            delete configClone.title;
-            return configClone;
         }
 
         //public methods - client interface
@@ -151,7 +115,7 @@ angular.module('voyager.search').
                     solrParams.sort = sort[0].replace('_sort','');  //TODO workaround, bug with saved search?
                     solrParams.sortdir = sort[1];
                 } else {
-                    solrParams.sortdir = 'desc';
+                    //solrParams.sortdir = 'desc';
                 }
                 return solrParams;
             },
@@ -169,16 +133,11 @@ angular.module('voyager.search').
 
             saveSearch: function(savedSearch, params) {
                 savedSearch.config = configService.getConfigId();
-                var configClone = _getDisplayConfig(params);
 
-                return displayConfigResource.saveDisplayConfig(configClone).then(function() {
-                    savedSearch.disp = configClone.id;
-                    savedSearch.config = configClone.id;
-                    var solrParams = solrGrunt.getSolrParams(params);
-                    savedSearch.query = $.param(solrParams, true);
-                    savedSearch.path = converter.toClassicParams(params);
-                    return _doSave(savedSearch);
-                });
+                var solrParams = solrGrunt.getSolrParams(params);
+                savedSearch.query = $.param(solrParams, true);
+                savedSearch.path = converter.toClassicParams(params);
+                return _doSave(savedSearch);
             },
 
             deleteSearch: function(id){
@@ -227,25 +186,31 @@ angular.module('voyager.search').
                 });
             },
             applySavedSearch: function(saved, $scope) {
-                var self = this;
-                displayConfigResource.getDisplayConfig(saved.config).then(function(res) {
-                    var display = res.data;
-                    var solrParams = self.getParams(saved);
+                var currentView = $location.search().view;
+                var display = saved.display;
+                var solrParams = this.getParams(saved);
+                if(angular.isUndefined(solrParams.view)) {
                     solrParams.view = display.defaultView.toLowerCase();
+                }
+                $scope.$emit('clearSearchEvent');
 
-                    $scope.$emit('clearSearchEvent');
-
-                    $location.path('search').search(solrParams);
-                    filterService.applyFromUrl($location.search()).then(function() {
-                        $scope.$emit('filterEvent', {});
+                $location.search(solrParams);
+                configService.updateConfig(saved.display);
+                filterService.applyFromUrl($location.search()).then(function() {
+                    // when the table renders it will force a search event so don't emit here
+                    var params = {};
+                    if (solrParams.view === 'table' && currentView === 'table') {
+                        params.refresh = false;  // table fires its own search during init
+                    }
+                    $timeout(function() {  // let scope digest so table is removed/columns reset in case sizes change
+                        $scope.$emit('filterEvent', params);
                     });
-
-                    $analytics.eventTrack('saved-search', {
-                        category: 'run'
-                    });
-                    //$scope.$emit('searchEvent');  //TODO remove - filterEvent will fire a search
-                    self.addToRecent(saved);
                 });
+
+                $analytics.eventTrack('saved-search', {
+                    category: 'run'
+                });
+                this.addToRecent(saved);
             },
             addToRecent: function(searchItem) {
                 var item = {};

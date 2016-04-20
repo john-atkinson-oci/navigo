@@ -62,6 +62,8 @@ describe('Controller: SavedSearchCtrl', function () {
         spyOn(savedSearchService,'applySavedSearch').and.callThrough();
 
         var saved = {id: 'id', query:'query'};
+        saved.display = cfg.settings.data;
+
         $scope.applySavedSearch(saved);
 
         expect(savedSearchService.applySavedSearch).toHaveBeenCalledWith(saved, $scope);

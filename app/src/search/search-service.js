@@ -187,6 +187,11 @@ angular.module('voyager.search').
                 return $http.jsonp(service);
             },
 
+            reset: function() {
+                _sortDirection = angular.isDefined(config.defaultSortDirection)? config.defaultSortDirection : 'desc';
+                _sortField = _defaultSortField || 'score';
+            },
+
             testEsriGeocodeService: function() {
                 var d = $q.defer();
                 $http.jsonp(queryBuilder.buildEsriGeocodeServiceTestQuery())

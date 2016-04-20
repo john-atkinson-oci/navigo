@@ -21,8 +21,8 @@ angular.module('voyager.results')
                 if(angular.isUndefined(field.width)) {
                     field.width = '' + defaultWidth + '%';
                 }
-                width = field.width.replace('%');
-                width = parseFloat(width).toFixed(2);
+                width = field.width.replace('%','');
+                width = Number(parseFloat(width).toFixed(2));
                 totalWidth += width;
             });
 
@@ -87,7 +87,7 @@ angular.module('voyager.results')
 
         $scope.$on('searchResults', function (event, data) {
             $scope.tableFields = configService.getTableFields();
-
+            _setDefaultColumnWidths();
             var docs = data.response.docs;
             if(!loaded) {
                 loaded = true;
