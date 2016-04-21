@@ -24,10 +24,12 @@ angular.module('voyager.filters')
             usSpinnerService.stop('facets-spinner');
         });
 
-        $scope.filterResults = function (facet) {
+        $scope.filterResults = function (facet, evt) {
             if (facet.style !== 'CHECK') {
                 $modalInstance.close(facet);
             } else {
+                // this logic has to be reversed - the actual filters will look as the isSelected and remove form the array of true. 
+                facet.checked = evt.currentTarget.checked;
                 $scope.updateFilters(facet);
             }
         };

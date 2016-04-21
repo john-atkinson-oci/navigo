@@ -72,11 +72,25 @@ angular.module('voyager.filters')
         //click events
         $scope.filterResults = function (facet) {
             var shards = [];
+            // to keep the checkbox state in sync with the filters state.
+            // TODO: handle this in a more elegant way.
+            var forceSelectedParameter = false;
+            // logic reversal!  'checked' is from the 'show all' modal (see facetscontroller $scope.filterResults).
+            // the logic below this will select the facet if isSelected == false.
+            if (angular.isDefined(facet.checked)) {
+                facet.isSelected = !facet.checked;
+                delete facet.checked;
+                forceSelectedParameter = true;
+            }
             if (facet.isSelected) {
                 if (facet.field === 'shard') {
                     $scope.removeFilter(facet);
                 } else {
                     filterService.removeFilter(facet);
+                }
+                if(forceSelectedParameter) {
+                    // force sync with 'show all' modal.
+                    facet.isSelected = false;
                 }
             } else {
                 if (facet.field === 'shard') {
@@ -88,6 +102,10 @@ angular.module('voyager.filters')
                     $location.search('shards', shards.join());  //update url
                 } else {
                     filterService.addFilter(facet);
+                    if(forceSelectedParameter) {
+                        // force sync with 'show all' modal.
+                        facet.isSelected = true;
+                    }
                 }
             }
             $location.search('fq', filterService.getFilterAsLocationParams());  //apply new filter param to url

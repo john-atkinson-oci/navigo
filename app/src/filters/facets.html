@@ -19,7 +19,7 @@
                 <td>{{facet.count}}</td><td><div style="max-width: 450px; overflow: hidden; -ms-text-overflow: ellipsis; text-overflow: ellipsis;">{{facet.humanized}}</div></td>
             </tr>
             <tr ng-show="facet.style === 'CHECK'" ng-repeat="facet in facets | orderBy:predicate:reverse">
-                <td><label><input type="checkbox" ng-click="filterResults(facet)" ng-disabled="facet.disabled" ng-checked="facet.isSelected"></label></td><td>{{facet.count}}</td><td><div style="max-width: 450px; overflow: hidden; -ms-text-overflow: ellipsis; text-overflow: ellipsis;">{{facet.humanized}}</div></td>
+                <td><label><input type="checkbox" ng-click="filterResults(facet, $event)" ng-disabled="facet.disabled" ng-checked="facet.isSelected"></label></td><td>{{facet.count}}</td><td><div style="max-width: 450px; overflow: hidden; -ms-text-overflow: ellipsis; text-overflow: ellipsis;">{{facet.humanized}}</div></td>
             </tr>
             </tbody>
           </table>

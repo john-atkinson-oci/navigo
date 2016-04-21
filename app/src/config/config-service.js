@@ -237,10 +237,10 @@ angular.module('voyager.config').
                 //         $location.search('shards', ['LOCAL'].join());
                 //     }
                 // }
-                // if (selectedCount === 1) {  //if only 1 selected, disable it so one has to always be selected
-                //     var filter = _.find(catalogFilter.values, {isSelected: true});
-                //     filter.disabled = true;
-                // }
+                if (selectedCount === 1) {  //if only 1 selected, disable it so one has to always be selected
+                    var filter = _.find(catalogFilter.values, {isSelected: true});
+                    filter.disabled = true;
+                }
                 return;
             });
         }
