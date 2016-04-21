@@ -115,7 +115,7 @@ angular.module('voyager.config').
                 _summaryFieldsStyle = {};
             }
             if(angular.isDefined(configData.listView)) {
-                _setTableFields(configData.listView.fields);
+                _setTableFields(configData.listView.fields || []);
             }
             if(angular.isDefined(configData.cardView)) {
                 if(angular.isDefined(configData.cardView.fields)) {
