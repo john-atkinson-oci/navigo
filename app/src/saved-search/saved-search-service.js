@@ -195,6 +195,10 @@ angular.module('voyager.search').
                 $scope.$emit('clearSearchEvent');
 
                 $location.search(solrParams);
+                // force redirection to /search from home page (VG-4050)
+                if ($location.path() !== '/search') {
+                    $location.path('/search');
+                }
                 configService.updateConfig(saved.display);
                 filterService.applyFromUrl($location.search()).then(function() {
                     // when the table renders it will force a search event so don't emit here

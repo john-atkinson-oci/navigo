@@ -149,7 +149,6 @@ angular.module('voyager.filters').
                             return false;
                         });
                     }
-
                     filters.push(facet);
                     filterMap[facet.name] = facet;
                 }

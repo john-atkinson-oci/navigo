@@ -107,7 +107,7 @@ angular.module('voyager.config').
             _defaultView = configData.defaultView;
             _cardView = configData.cardView;
             if(configData.cardView) {
-                _setSummaryFields(configData.cardView.fields);
+                _setSummaryFields(configData.cardView.fields || []);
             } else {
                 _summaryFields = {};
                 _summarySolrParams = '';
@@ -115,7 +115,7 @@ angular.module('voyager.config').
                 _summaryFieldsStyle = {};
             }
             if(angular.isDefined(configData.listView)) {
-                _setTableFields(configData.listView.fields);
+                _setTableFields(configData.listView.fields || []);
             }
             if(angular.isDefined(configData.cardView)) {
                 if(angular.isDefined(configData.cardView.fields)) {
@@ -229,14 +229,14 @@ angular.module('voyager.config').
                         selectedCount++;
                     }
                 });
-                if (selectedCount === 0 && catalogFilter.values.length > 0) {
-                    var local = _.find(catalogFilter.values, {id: 'LOCAL'});
-                    if(!!local) {
-                        local.isSelected = true;
-                        selectedCount = 1;
-                        $location.search('shards', ['LOCAL'].join());
-                    }
-                }
+                // if (selectedCount === 0 && catalogFilter.values.length > 0) {
+                //     var local = _.find(catalogFilter.values, {id: 'LOCAL'});
+                //     if(!!local) {
+                //         local.isSelected = true;
+                //         selectedCount = 1;
+                //         $location.search('shards', ['LOCAL'].join());
+                //     }
+                // }
                 if (selectedCount === 1) {  //if only 1 selected, disable it so one has to always be selected
                     var filter = _.find(catalogFilter.values, {isSelected: true});
                     filter.disabled = true;

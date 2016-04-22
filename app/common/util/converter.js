@@ -159,7 +159,7 @@ angular.module('voyager.util').
                         }
                     } else if (facet.style === 'RANGE' || facet.style === 'STATS' || facet.style === 'DATE') {
                         if (facet.filter !== facet.name) {
-                            filterString += '&fq=' + facet.filter + ':' + facet.name;
+                            filterString += '&fq=' + facet.filter + ':' + _solrReady(facet.name);
                         } else if (facet.model) {  //TODO figure out why this is happening (filter field and name are same)
                             filterString += '&fq=' + facet.filter + ':[' + facet.model[0] + ' TO ' + facet.model[1] + ']';
                         } else {  //last ditch effort/hack (should not happen)
