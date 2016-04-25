@@ -28,7 +28,9 @@ angular.module('voyager.filters')
             if (facet.style !== 'CHECK') {
                 $modalInstance.close(facet);
             } else {
-                // this logic has to be reversed - the actual filters will look as the isSelected and remove form the array of true. 
+                // facet.checked - for the filterscontroller $scope.filterResults
+                // if checked is defined, will set isSelected to the reverse of the checked value.
+                // then will look at the 'isSelected' and remove from the array if true.
                 facet.checked = evt.currentTarget.checked;
                 $scope.updateFilters(facet);
             }

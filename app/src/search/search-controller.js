@@ -576,7 +576,7 @@ angular.module('voyager.search')
 
 		$scope.clearSearch = function() {
 			filterService.clear();
-			savedSearchService.reset();
+			searchService.reset();
 			$location.search('');
 			_page = 1;
 			_doSearch();
