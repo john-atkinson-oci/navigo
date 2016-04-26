@@ -63,7 +63,7 @@ var config = {
         "sidebarLinksTitle": "Collections",
         "sidebarLinksLabel": "featured",
         "footerHTML": "&copy; 2015 Voyager Search"
-        //"bannerHTML": "<h3 class=\"banner\" style=\"line-height: 40px; background-color: green; color: white; height: 40px; margin: 0px;\">BANNER<\/h3>"
+        //"bannerHTML": "<h3 class=\"banner\" style=\"line-height: 40px; background-color: green; color: white; height: 20px; margin: 0px;\">BANNER<\/h3>"
     },
     defaultTask:'',
     ecobar: false,
@@ -76,7 +76,7 @@ var config = {
         "heatmapOpacity": 0.75,
         "heatmapBlurRadius": 4
     },
-    excludeDetails : ['_', 'allow_', 'deny_', 'http_header', 'tree', 'links', 'geo', 'path_to_', 'debug_properties', 'linkcount_', 'hasThumb', 'hasPreview', 'hasMetadata', 'md5', 'worker', 'extractor', 'hasLayerFile'],
+    excludeDetails : ['_', 'allow_', 'deny_', 'http_header', 'tree', 'links', 'geo', 'path_to_', 'debug_properties', 'linkcount_', 'hasThumb', 'hasPreview', 'hasMetadata', 'md5', 'worker', 'extractor', 'hasLayerFile', 'id', 'extent', 'root', 'indexing_warning'],
     chartData: 'http://voyagerdemo.com/sql/solr/v0/select?q=*:*&fl=name,meta_Field_Name,meta_Operator,meta_Producing,fl_Well_Depth,meta_Well_Statu,%20meta_Well_Type&wt=json&rows=1000&json.wrf=JSON_CALLBACK',
     rememberMe: true
 };
