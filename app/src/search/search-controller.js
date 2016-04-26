@@ -362,7 +362,7 @@ angular.module('voyager.search')
         };
 
 		$scope.flagAllResults = function() {
-			var modal = searchModalService.flagModal('src/bulk-update/flag-all.html', 'FlagAllCtrl');
+			var modal = searchModalService.flagModal('src/bulk-update/flag-all.html', 'FlagAllCtrl', $scope.totalItems);
 			modal.result.then(function () {
 				_doSearch();
 			});
