@@ -14,13 +14,15 @@
 								<label for="location" class="icon-input_location" aria-label="Draw region on the map"><span class="sr-only">Draw region on the map</span></label>
 								<input type="text" class="input_field" readonly="true" ng-model="search.displayBBox" name="location" maxlength="256" placeholder="Draw region on the map" autocomplete="off" />
 								<a href="#" ng-click="clearField($event)"><span class="icon icon-x"></span></a>
-								<a href="#" ng-click="saveLocation($event)" ng-if="search.displayBBox"><span class="icon icon-heart_filled"></span></a>
+								<!-- TODO enable when saved locations is enabled-->
+								<!--<a href="#" ng-click="saveLocation($event)" ng-if="search.displayBBox"><span class="icon icon-heart_filled"></span></a>-->
 							</div>
 							<div class="location_wrap" ng-hide="showMap">
 								<label for="location" class="icon-input_location" aria-label="Where is it located?"><span class="sr-only">Where is it located?</span></label>
 								<input vs-suggest autosearch="off" type="text" class="input_field" ng-model="search.location" name="location" maxlength="256" placeholder="Where is it located?" autocomplete="off" />
 								<a href="#" ng-click="clearField($event)"><span class="icon icon-x"></span></a>
-								<a href="#" ng-click="saveLocation($event)" ng-if="search.location"><span class="icon icon-heart_filled"></span></a>
+								<!-- TODO enable when saved locations is enabled-->
+								<!--<a href="#" ng-click="saveLocation($event)" ng-if="search.location"><span class="icon icon-heart_filled"></span></a>-->
 							</div>
 							<div class="select_wrap">
 								<label class="icon-arrow sr-only" for="locationSelect" aria-label="Select drawing type"><span class="sr-only">Select drawing type</span></label>

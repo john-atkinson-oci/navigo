@@ -1,15 +1,17 @@
 <div class="modal-header">
     <ul class="saved_primary_nav">
         <li ng-class="{'selected' : showSearch}"><a href="javascript:;" ng-click="showCategory($event, 'search')">Searches</a></li>
-        <li ng-class="{'selected' : !showSearch}"><a href="javascript:;" ng-click="showCategory($event, 'location')">Locations</a></li>
+        <!-- TODO enable when we add this feature on the back end-->
+        <!--<li ng-class="{'selected' : !showSearch}"><a href="javascript:;" ng-click="showCategory($event, 'location')">Locations</a></li>-->
     </ul>
 
-    <nav class="tab tab_border clearfix" ng-if="!showSearch">
-        <ul>
-            <li ng-if="!isAnonymous" ng-class="showTab == 'saved' && 'selected' || ''"><a href="javascript:;" ng-click="changeTab('saved')">My saved locations</a></li>
-            <li ng-class="showTab == 'suggested' && 'selected' || ''"><a href="javascript:;" ng-click="changeTab('suggested')">Suggested locations</a></li>
-        </ul>
-    </nav>
+    <!-- TODO enable when we add this feature on the back end-->
+    <!--<nav class="tab tab_border clearfix" ng-if="!showSearch">-->
+        <!--<ul>-->
+            <!--<li ng-if="!isAnonymous" ng-class="showTab == 'saved' && 'selected' || ''"><a href="javascript:;" ng-click="changeTab('saved')">My saved locations</a></li>-->
+            <!--<li ng-class="showTab == 'suggested' && 'selected' || ''"><a href="javascript:;" ng-click="changeTab('suggested')">Suggested locations</a></li>-->
+        <!--</ul>-->
+    <!--</nav>-->
 
     <nav class="tab tab_border clearfix" ng-if="showSearch">
         <ul>
