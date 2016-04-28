@@ -57,6 +57,11 @@ angular.module('voyager.details')
 
         function _activate() {
 
+            if(!$scope.pageFramework.showHeaderInfo && $location.path().indexOf('/search') > -1){
+                angular.element('body').addClass('no-header');
+            } else {
+                angular.element('body').removeClass('no-header');
+            }
             var shard = $location.search().shard;
             if (angular.isDefined(shard)) {
                 var local = config.root;

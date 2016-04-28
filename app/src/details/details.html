@@ -31,13 +31,13 @@
                             <header class="result_title">
                                 <h3 class="label label-danger icon-error missing_data" ng-show="doc.hasMissingData">Missing Data</h3>
                                 <h1><span ng-bind="::doc.name"></span></h1>
-                                <div ng-if="summaryFlags.showType" class="field info muted">
-                                    <a href="#/search?fq=format:{{::doc.format}}&disp={{::disp}}">
+                                <div ng-if="summaryFlags.showType || summaryFlags.showLastUpdateDate" class="field info muted">
+                                    <a ng-show="summaryFlags.showType" href="#/search?fq=format:{{::doc.format}}&disp={{::disp}}">
                                         <span ng-bind="::doc.displayFormat" ng-class="formatClass"></span>
                                     </a>
                                     <span ng-show="summaryFlags.showLastUpdateDate">
                                         <span ng-show="::doc.modified" class="bullet" ng-if="showFormat">&bull;</span>
-                                        <span ng-show="::doc.modified">Last index {{::doc.modified | date:'M/d/yyyy, hh:mma' }}</span>
+                                        <span ng-show="::doc.modified">Last modified {{::doc.modified | date:'M/d/yyyy, hh:mma' }}</span>
                                     </span>
                                 </div>
                                 <div ng-if="summaryFlags.showPath" class="field">
@@ -268,9 +268,10 @@
                 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12" style="margin-top: 5px">
                     <div id="detailSecondaryColumn">
                         <div ng-if="pageFramework.showThumbnail" class="thumbnail_wrap">
-                            <div class="tag" ng-if="doc.tag_flags"><a href="javascript:;" ng-click="searchFlag(doc.tag_flags)" ng-bind="doc.tag_flags"></a></div>
+                            <div class="tag" ng-if="doc.tag_flags && summaryFlags.showFlag"><a href="javascript:;" ng-click="searchFlag(doc.tag_flags)" ng-bind="doc.tag_flags"></a></div>
                             <img class="img-thumbnail" alt="..." ng-src="{{preview}}" />
                         </div>
+                        <div class="tag" style="display: block; position: relative; top: 0; left: 0; padding-bottom: 5px;" ng-if="doc.tag_flags && !pageFramework.showThumbnail && summaryFlags.showFlag"><a href="javascript:;" ng-click="searchFlag(doc.tag_flags)" ng-bind="doc.tag_flags"></a></div>
                         <div ng-if="pageFramework.showMap">
                             <div class="detail_map" vs-details-map></div>
                         </div>
