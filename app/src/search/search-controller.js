@@ -355,6 +355,7 @@ angular.module('voyager.search')
 
         $scope.addAllToCart = function() {
             $scope.isCartOpen = false;
+			cartService.clear();
             var query = cartItemsQuery.getQueryCriteria($location.search());
             query.count = $scope.totalItems;
             cartService.addQuery(query);
