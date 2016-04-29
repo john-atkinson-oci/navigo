@@ -164,11 +164,14 @@ angular.module('voyager.home')
 			//get the default saved search and apply to params
 			savedSearchQuery.fetchDefaultParams().then(function(solrParams) {
 				// these are overridden by the home page inputs
-				delete solrParams.q;
-				delete solrParams.place;
-				delete solrParams['place.op'];
-				delete solrParams['place.id'];
-
+				if(!_.isEmpty(params.q)) {
+					delete solrParams.q;
+				}
+				if(!_.isEmpty(params.place)) {
+					delete solrParams.place;
+					delete solrParams['place.op'];
+					delete solrParams['place.id'];
+				}
 				params = _.extend(params, solrParams);
 				$location.path('search').search(params);
 			});
