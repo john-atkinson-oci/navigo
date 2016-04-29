@@ -134,9 +134,10 @@ angular.module('voyager.search').
             saveSearch: function(savedSearch, params) {
                 savedSearch.config = configService.getConfigId();
 
-                var solrParams = solrGrunt.getSolrParams(params);
-                savedSearch.query = $.param(solrParams, true);
-                savedSearch.path = converter.toClassicParams(params);
+                // TODO - remove - .query is derived from path
+                //var solrParams = solrGrunt.getSolrParams(params);
+                //savedSearch.query = $.param(solrParams, true);
+                savedSearch.path = converter.toClassicParams(params, true);
                 return _doSave(savedSearch);
             },
 

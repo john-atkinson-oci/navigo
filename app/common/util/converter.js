@@ -213,9 +213,17 @@ angular.module('voyager.util').
                 return filterQuery;
             },
 
-            toClassicParams: function(params) {
+            toClassicParams: function(params, savedSearch) {
                 var voyagerParams = '';
-                voyagerParams += _toClassic(params, 'q', 'q');
+
+                if(angular.isDefined(params.q)) {
+                    if(!savedSearch) {
+                        voyagerParams += _toClassic(params, 'q', 'q');
+                    } else {
+                        voyagerParams += '/q=' + params.q;
+                    }
+                }
+
                 voyagerParams += _toClassic(params, 'fq', 'f');
 
                 voyagerParams += _toClassic(params, 'place', 'place');
