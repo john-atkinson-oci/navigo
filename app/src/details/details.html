@@ -49,6 +49,7 @@
                                 <!--
                                 <div class="star_wrap"><span class="star{{rate.current_rating}}">({{rate.total_user || 'not rated'}})</span></div>
                                 -->
+                                <div>
                                 <div class="doc_description" ng-if="description && summaryFlags.showDescription">
                                     <div ng-if="!description.editing" ng-bind-html="description.formattedValue"></div>&nbsp;&nbsp;
 
@@ -60,10 +61,21 @@
                                         <a href="javascript:;" ng-click="cancel(description)" type="button" title="Cancel" class="link_secondary">Cancel</a>
                                     </div>
                                  </div>
-                                 <div>
-                                   <span ng-repeat="field in summaryFields" class="field">
-                                     <span ng-show="field.htmlValue" vg-bind-html="field.htmlValue"></span>
-                                   </span>
+                                   <div ng-repeat="field in summaryFields">
+                                     <span class="summary_field" ng-show="!field.isHtml && field.style !== 'STRING'">
+                                        <span class="summary_field_name">{{field.name}}: </span>
+                                        <span ng-if="!field.isArray">
+                                            <a href="#/search?fq={{field.key + ':' + field.value}}&disp={{disp}}" ng-if="field.stype != 'date' && field.key != 'bbox'">{{field.formattedValue}}</a>
+                                            <a href="#/search?place={{field.value}}&disp={{disp}}" ng-if="field.key == 'bbox'">{{field.formattedValue}}</a>
+                                            <a href="#/search?fq={{field.key + ':' + field.value}}&disp={{disp}}" ng-if="field.stype == 'date'">{{field.formattedValue | date:'medium'}}</a>
+                                        </span>
+                                        <span ng-if="field.isArray" ng-repeat="f in field.value track by $index">
+                                            <a href="#/search?fq={{field.key + ':' + f}}&disp={{disp}}">{{field.formattedValues[f]}}</a>{{!$last && ', ' || ''}}
+                                        </span>
+                                    </span>
+                                    <span class="summary_field" ng-if="field.isHtml"><span  class="summary_field_name">{{field.name}}:</span><span ng-bind-html="field.formattedValue"></span></span>
+                                    <span class="summary_field" ng-if="field.style === 'STRING'"><span  class="summary_field_name">{{field.name}}:</span> <span ng-bind-html="field.formattedValue"></span></span>
+                                </div>
                                 </div>
                              </header>
 

@@ -106,15 +106,15 @@ angular.module('voyager.details').
             return index !== -1;
         }
 
-        function _getFields(doc, fields) {
+        function _getFields(doc, fields, typeInclusions, typeStyles, typeShowAllFields) {
             var prettyFields = [];
-            var emptyFields = _.clone(inclusions);
+            var emptyFields = _.clone(typeInclusions);
             var isArray = false;
 
             //var exclusions = {'id':true, 'name':true,'format':true,'path':true,'thumb':true,'preview':true,'download':true,'bbox':true,'title':true};
             var formattedValue = '';
             $.each(doc, function (name, value) {
-                if ((inclusions[name] || _showAllFields === true) && angular.isDefined(fields[name]) && fields[name].displayable === true) {
+                if ((typeInclusions[name] || typeShowAllFields === true) && angular.isDefined(fields[name]) && fields[name].displayable === true) {
                     delete emptyFields[name];
                     if (!_exclude(name)) {
 
@@ -145,16 +145,16 @@ angular.module('voyager.details').
                         if (name === 'location') {
                             formattedValue = translateService.getLocation(value);
                         }
-                        if (_styles[name] === 'STRIP_HTML') {
+                        if (typeStyles[name] === 'STRIP_HTML') {
                             formattedValue = $('<p>' + value + '</p>').text();
                         }
 
                         var isHtml = false;
-                        if (_styles[name] === 'HTML') {
+                        if (typeStyles[name] === 'HTML') {
                             isHtml = true;
                         }
                         if (value.length > 100 && !isHtml) {
-                            _styles[name] = 'STRING'; //so it doesn't become a link
+                            typeStyles[name] = 'STRING'; //so it doesn't become a link
                         }
                         prettyFields.push({
                             'name': translateService.getFieldName(name),
@@ -168,7 +168,7 @@ angular.module('voyager.details').
                             maxLines: _maxLines[name],
                             showLabel: _showLabels[name],
                             key: name,
-                            style: _styles[name],
+                            style: typeStyles[name],
                             isHtml: isHtml
                         });
                     }
@@ -191,53 +191,12 @@ angular.module('voyager.details').
             return _.sortBy(prettyFields, 'order');
         }
 
+        function _getDisplayFields(doc, fields) {
+            return _getFields(doc, fields, inclusions, _styles, _showAllFields);
+        }
+
         function _getSummaryFields(doc, fields) {
-            var prettyFields = [];
-
-            //var exclusions = {'id':true, 'name':true,'format':true,'path':true,'thumb':true,'preview':true,'download':true,'bbox':true,'title':true};
-            var formattedValue = '';
-            //, isArray = false;
-            $.each(doc, function (name, value) {
-                if (_summaryInclusions[name] && fields[name] && fields[name].displayable === true) {
-                    fields[name].value = value;
-                    fields[name].maxLines = _summaryMaxLines[name];
-                    fields[name].showLabel = _summaryShowLabels[name];
-                    fields[name].style = _summaryStyles[name];
-                    fields[name].name = translateService.getFieldName(name);
-                    var htmlified = resultsDecorator.decorateField(fields[name]);
-                    // isArray = false;
-                    // if(_.isArray(value)) {
-                    //     value = value.join(', ');
-                    //     isArray = true;
-                    // }
-                    // formattedValue = value;
-                    // if(name === 'format') {
-                    //     formattedValue = translateService.getType(value);
-                    // }
-                    // if(name === 'contains_mime') {
-                    //     if(isArray) {
-                    //         var formattedValues = [];
-                    //         var arrValue = value.split(', ');
-                    //         _.each(arrValue, function(val) {
-                    //             formattedValues.push(translateService.getType(val));
-                    //         });
-                    //         formattedValue = formattedValues.join();
-                    //     } else {
-                    //         formattedValue = translateService.getType(value);
-                    //     }
-                    // }
-                    // if(_summaryStyles[name] === 'STRIP_HTML') {
-                    //     formattedValue = $('<p>' + value + '</p>').text();
-                    // }
-                    var isHtml = false;
-                    if(_summaryStyles[name] === 'HTML') {
-                        isHtml = true;
-                    }
-                    prettyFields.push({'name': translateService.getFieldName(name), 'value': value, formattedValue: formattedValue, order:_summaryFieldsOrder[name], key:name, style: _summaryStyles[name], isHtml: isHtml, htmlValue: htmlified});
-                }
-            });
-
-            return _.sortBy(prettyFields, 'order');
+            return _getFields(doc, fields, _summaryInclusions, _summaryStyles, false);
         }
 
         return {
@@ -247,7 +206,7 @@ angular.module('voyager.details').
 
             showFormat: function() {return _showFormat;},
 
-            getFields: _getFields,
+            getFields: _getDisplayFields,
 
             getSummaryFields: _getSummaryFields,
 
