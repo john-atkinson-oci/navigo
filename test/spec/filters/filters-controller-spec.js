@@ -149,6 +149,25 @@ describe('Filters:', function () {
             expect(scope.filters[0].name).toBe(facet.name);
         });
 
+        it('should show all facets', function () {
+            controllerService('FiltersCtrl', {$scope: scope, filterService: _filterService});
+            var filter = {displayState: '', field:'field'};
+            scope.showAllFacets(filter);
+        });
+
+        it('should get field name', function () {
+            controllerService('FiltersCtrl', {$scope: scope, filterService: _filterService});
+            var node = {collapsed: false, loaded: false};
+            scope.loadNode(node);
+            expect(node.collapsed).toBe(true);
+        });
+
+        it('should load node', function () {
+            controllerService('FiltersCtrl', {$scope: scope, filterService: _filterService});
+            var name = scope.getFieldName('foo');
+            expect(name).toBe('Foo');
+        });
+
         it('should only filter', function () {
             var displayFilter = {name: 'facet1', field: 'field1'};
             cfg.settings.data.filters = [displayFilter, {name: 'facet2', field: 'field1'}];
