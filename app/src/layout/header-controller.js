@@ -11,7 +11,7 @@ angular.module('voyager.layout')
 		vm.logout = _logout;
 		vm.showSavedSearch = _showSavedSearch;
 		vm.manageLink = config.root + 'manage';
-		vm.myVoyagerLink = config.root + 'manage/#/savedsearches';
+		vm.myVoyagerLink = config.root + 'manage';
 		vm.showClassicLink = false;
 		vm.showNav = $location.path() !== '/login';
 		vm.buildRev = '@build.revision@';
