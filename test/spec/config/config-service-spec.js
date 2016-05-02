@@ -203,6 +203,35 @@ describe('Config:', function () {
 
         });
         
+        it('should get updated settings', function () {
+
+            var dispSettings = {
+                details: {
+                    detailsTableFields: [{name: 'format'},{name:'junk', style:'junk'}]
+                },
+                filters:[{field: 'format'}, {field: 'junk', style:'junk'}],
+                cardView: {
+                    fields:[{field: 'summary', style:'junk',name:'name', width: 120}],
+                    names: ['name', 'title', 'foo']
+                },
+                listView: {
+                    fields:[{field: 'summary', style:'junk',name:'name', width: 120}],
+                }
+            };
+            httpMock.expectGET().respond(dispSettings);
+            httpMock.expectJSONP().respond({response: {docs:[{name:'format', stype:'string', multivalued:true}]}});  //data types call
+
+            sut.setFilterConfig('configID');
+
+            httpMock.flush();
+            var width = 200;
+            var display = sut.getUpdatedSettings();
+            expect(display).toBeDefined();
+            width = sut.getColumnWidth('summary');
+            expect(width).toBe(120);
+
+        });
+        
         it('should get sort', function () {
 
             var dispSettings = {
