@@ -284,6 +284,14 @@ angular.module('voyager.config').
                 return config.settings.data.listView.allowTextWrapping;
             },
 
+            getShowThumbnailOnTableView :function () {
+                return config.settings.data.listView.showThumbnail;
+            },
+
+            getShowFlagOnTableView :function () {
+                return config.settings.data.listView.showFlag;
+            },
+
             lookupFilter: function(filter) {
                 return _systemFilterMap[filter];
             },

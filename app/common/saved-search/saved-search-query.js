@@ -33,12 +33,6 @@ var SavedSearchQuery = (function () {
         }
         _sugar.decodeParams(solrParams);  //workaround - seems the params get encoded twice
         solrParams.disp = savedSearch.config;
-        if(angular.isDefined(savedSearch.view)) {
-            solrParams.view = savedSearch.view.toLowerCase();
-            if (solrParams.view !== 'table' && solrParams.view !== 'map') {
-                solrParams.view = 'card';
-            }
-        }
         return solrParams;
     }
 

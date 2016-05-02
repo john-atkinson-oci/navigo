@@ -46,9 +46,8 @@ angular.module('voyager.results')
 
         $scope.tableFields = configService.getTableFields();
         $scope.textWrappingNotAllowed = !configService.getAllowsTextWrappingOnTableView();
-        
-        _setDefaultColumnWidths();
 
+        _setDefaultColumnWidths();
 
         function _getSort(sortParam) {
             var name;
@@ -59,7 +58,8 @@ angular.module('voyager.results')
             }
         }
 
-        $scope.hideThumbnails = false;
+        $scope.hideThumbnails = !configService.getShowThumbnailOnTableView();
+        $scope.hideFlags = !configService.getShowFlagOnTableView();
 
         $scope.toggleThumbnails = function() {
             $scope.hideThumbnails = !$scope.hideThumbnails;

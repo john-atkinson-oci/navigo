@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('voyager.details').
-    factory('detailConfig', function(config, $q, configService, translateService, configLoader, resultsDecorator) {
+    factory('detailConfig', function(config, $q, configService, translateService, configLoader) {
 
         var displayFields;
         if(config.settings) {
