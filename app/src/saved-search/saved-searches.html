@@ -1,4 +1,5 @@
 <div ng-controller="SavedSearchCtrl">
+    
     <form name="savedForm" ng-submit="search()" ng-show="showTab == 'saved'">
         <fieldset>
             <input name="savedTerm" class="form-control input_field focus_field" type="text" ng-model="savedTerm" placeholder="Search saved searches" />
@@ -10,7 +11,7 @@
         <p ng-show="!personalSavedSearches.length">You have no saved searches.</p>
         <ul class="col-md-12 no_padding sortable_list" ng-if="personalSavedSearches.length && !isAnonymous"
             as-sortable="dragControlListeners" ng-model="personalSavedSearches">
-            <li ng-repeat="saved in personalSavedSearches"
+            <li ng-repeat="saved in personalSavedSearches|filter: savedTerm"
                 class="as-sortable-item"
                 as-sortable-item>
                 <div as-sortable-item-handle class="as-sortable-item-handle">
