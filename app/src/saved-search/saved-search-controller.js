@@ -76,4 +76,13 @@ angular.module('voyager.search')
 		savedSearchService.removeObserver(_loadSavedSearches);
 		recentSearchService.removeObserver(_loadSavedSearches);
 	});
+
+	$scope.criteriaMatch = function(term) {
+		return function(item) {
+			if(angular.isUndefined(term)) {
+				return true;
+			}
+			return item.title.indexOf(term) > -1;
+		};
+	};
 });

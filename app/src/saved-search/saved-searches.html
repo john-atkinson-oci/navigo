@@ -11,7 +11,7 @@
         <p ng-show="!personalSavedSearches.length">You have no saved searches.</p>
         <ul class="col-md-12 no_padding sortable_list" ng-if="personalSavedSearches.length && !isAnonymous"
             as-sortable="dragControlListeners" ng-model="personalSavedSearches">
-            <li ng-repeat="saved in personalSavedSearches|filter: savedTerm"
+            <li ng-repeat="saved in personalSavedSearches|filter: criteriaMatch(savedTerm)"
                 class="as-sortable-item"
                 as-sortable-item>
                 <div as-sortable-item-handle class="as-sortable-item-handle">
