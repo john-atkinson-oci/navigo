@@ -79,10 +79,7 @@ angular.module('voyager.search')
 
 	$scope.criteriaMatch = function(term) {
 		return function(item) {
-			if(angular.isUndefined(term)) {
-				return true;
-			}
-			return item.title.indexOf(term) > -1;
+			return angular.isUndefined(term) ? true : (item.title.toLowerCase().indexOf(term.toLowerCase()) > -1);
 		};
 	};
 });
