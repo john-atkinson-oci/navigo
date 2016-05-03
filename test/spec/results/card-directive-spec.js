@@ -144,7 +144,29 @@ describe('Card Directive:', function () {
             scope.actions[0].do();
             scope.actions[1].do();
         });
-        
+
+        it('should format fields', function () {
+            var doc = {id:'id', canCart:true, hasDownload:true, isService: true, download: 'file://file', geo:'geo', format: 'audio/mpeg', modified: '1978-09-14T20:47:24Z', somedate: '2014-10-31T20:47:24Z', notexist: 'fooooo'};
+            var facet = {field: 'format'};
+            scope.doc = doc;
+            initDirective();
+            var formatted = scope.formatField(doc, facet);
+            expect(formatted).toBeDefined();
+            expect(formatted).toBe('MP3');
+
+            facet = {field: 'modified'};
+            formatted = scope.formatField(doc, facet);
+            expect(formatted).toBe('9/14/1978, 01:47PM');
+
+            facet = {field: 'somedate'};
+            formatted = scope.formatField(doc, facet);
+            expect(formatted).toBe('10/31/2014, 01:47PM');
+
+            facet = {field: 'notexist'};
+            formatted = scope.formatField(doc, facet);
+            expect(formatted).toBe('fooooo');
+
+        });
 
         //it('should toggle map mode', function () {
         //    scope.displayFormat = 'detail_format';
