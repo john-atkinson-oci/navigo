@@ -236,16 +236,16 @@ angular.module('voyager.search')
 								_drawedShape.disable();
 							}
 							if ($scope.toolType === 'polyline') {
-								_drawedShape = new L.Draw.Polyline(map, {shapeOptions: _shapeOptions(color), repeatMode:false, showArea: false});
+								_drawedShape = new L.Draw.Polyline(map, {shapeOptions: _shapeOptions(color), repeatMode:true, showArea: false});
 							}
 							else if ($scope.toolType === 'polygon') {
-								_drawedShape = new L.Draw.Polygon(map,{shapeOptions: _shapeOptions(color), repeatMode:false, showArea: true});
+								_drawedShape = new L.Draw.Polygon(map,{shapeOptions: _shapeOptions(color), repeatMode:true, showArea: true});
 							}
 							else if ($scope.toolType === 'point') {
-								_drawedShape = new L.Draw.Marker(map,{icon: markerIcon});
+								_drawedShape = new L.Draw.Marker(map,{icon: markerIcon, repeatMode:true});
 							}
 							else {
-								_drawedShape = new L.Draw.Rectangle(map,{shapeOptions: _shapeOptions(color), repeatMode:false, showArea: false});
+								_drawedShape = new L.Draw.Rectangle(map,{shapeOptions: _shapeOptions(color), repeatMode:true, showArea: false});
 							}
 							_drawedShape.enable();
 						});
