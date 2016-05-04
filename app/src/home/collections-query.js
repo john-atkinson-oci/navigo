@@ -4,7 +4,7 @@ angular.module('voyager.home')
     .service('collectionsQuery', function(config, $http) {
 
         function _getQueryString() {
-            var rows = 6;
+            var rows = 1000;
             var label = config.homepage.sidebarLinksLabel;
             var queryString = config.root + 'solr/ssearch/select?fq=labels:' + label + '&fl=id,title,query,count:[count]';
             queryString += '&rows=' + rows + '&rand=' + Math.random();
