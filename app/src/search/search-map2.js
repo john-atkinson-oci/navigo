@@ -97,13 +97,15 @@ angular.module('voyager.search')
 				$scope.$on('removeFilter', function(events, args) {
 					_cancelDraw();
 
-					if (args.isBbox || args.isWkt) {
-						_removeLayers();
-					}
+					// if (args.isBbox || args.isWkt) {
+					// }
+					_removeLayers();
+					_removeMarkers();
 				});
 
 				$scope.$on('clearBboxEvent', function(){
 					_removeLayers();
+					_removeMarkers();
 				});
 
 
@@ -242,7 +244,7 @@ angular.module('voyager.search')
 								_drawedShape = new L.Draw.Polygon(map,{shapeOptions: _shapeOptions(color), repeatMode:true, showArea: true});
 							}
 							else if ($scope.toolType === 'point') {
-								_drawedShape = new L.Draw.Marker(map,{icon: markerIcon, repeatMode:true});
+								_drawedShape = new L.Draw.Marker(map,{icon: markerIcon, repeatMode:false});
 							}
 							else {
 								_drawedShape = new L.Draw.Rectangle(map,{shapeOptions: _shapeOptions(color), repeatMode:true, showArea: false});
@@ -351,25 +353,29 @@ angular.module('voyager.search')
 
 
 				function _addEditBufferMarker(map, pointPosition) {
+					if(angular.isDefined(_editMarker) && _editMarker !== null) {
+						// _editMarker.setOpacity(1.0);
+						_editMarker.setLatLng(pointPosition);
+					} else {
+						var anchor = [0, 0];
+						if ($scope.toolType === 'rectangle') {
+							anchor = [-2, 2];
+						} else if ($scope.toolType === 'point') {
+							anchor = [0, 25];
+						}
 
-					var anchor = [0, 0];
-					if ($scope.toolType === 'rectangle') {
-						anchor = [-2, 2];
-					} else if ($scope.toolType === 'point') {
-						anchor = [0, 25];
+						var editIcon = L.icon({
+							iconUrl: 'assets/img/icon_edit.png',
+							iconSize:     [20, 20], // size of the icon
+							iconAnchor:   anchor, // point of the icon which will correspond to marker's location
+							popupAnchor: [-95, 160]
+						});
+
+						_editMarker = L.marker(pointPosition, {icon:editIcon}).addTo(map).bindPopup(addBufferOption());
+						_editMarker.on('click', function () {
+							_editMarker.openPopup();
+						});
 					}
-
-					var editIcon = L.icon({
-						iconUrl: 'assets/img/icon_edit.png',
-						iconSize:     [20, 20], // size of the icon
-						iconAnchor:   anchor, // point of the icon which will correspond to marker's location
-						popupAnchor: [-95, 160]
-					});
-
-					_editMarker = L.marker(pointPosition, {icon:editIcon}).addTo(map).bindPopup(addBufferOption());
-					_editMarker.on('click', function () {
-						_editMarker.openPopup();
-					});
 				}
 
 				function _addClearBoundaryMarker(map, pointPosition) {
@@ -404,7 +410,6 @@ angular.module('voyager.search')
 				function _removeLayers() {
 					if (angular.isDefined(_searchBoundaryLayer)) {
 						_map.removeLayer(_searchBoundaryLayer);
-						_map.removeLayer(_editMarker);
 						if (angular.isDefined(_closeMarker)) {
 							_map.removeLayer(_closeMarker);
 						}
@@ -413,6 +418,13 @@ angular.module('voyager.search')
 						if (angular.isDefined(_bufferBoundaryLayer)) {
 							_map.removeLayer(_bufferBoundaryLayer);
 						}
+					}
+				}
+
+				function _removeMarkers() {
+					if (angular.isDefined(_editMarker) && _editMarker !== null) {
+						_map.removeLayer(_editMarker);
+						_editMarker = null;
 					}
 				}
 
