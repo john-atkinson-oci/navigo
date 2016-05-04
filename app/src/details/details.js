@@ -39,6 +39,7 @@ angular.module('voyager.details')
             $scope.canAdmin = authService.hasPermission('manage');
             $scope.canFlag = authService.hasPermission('flag');
             $scope.canViewTags = authService.hasPermission('view_tags');
+            $scope.canViewMetadata = authService.hasPermission('show_metadata');
         }
 
         function _adjustForBanner() {
@@ -242,7 +243,7 @@ angular.module('voyager.details')
 
                 detailService.addRecent($scope.doc);
 
-                if(doc.hasMetadata) {
+                if(doc.hasMetadata && $scope.canViewMetadata) {
                     _setStyle();
                 }
 
@@ -451,7 +452,7 @@ angular.module('voyager.details')
 
         function _setSelectedTab() {
             if (!$scope.displayFields.length) {
-                if ($scope.doc.hasMetadata) {
+                if ($scope.doc.hasMetadata && $scope.canViewMetadata) {
                     $scope.showTab = 'metadata';
                 } else if ($scope.hasRelationships) {
                     $scope.showTab = 'relationship';
