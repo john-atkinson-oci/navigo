@@ -94,7 +94,7 @@ angular.module('voyager.search')
 					}
 				}
 
-				$scope.$on('removeFilter', function(events, args) {
+				$scope.$on('removeFilter', function() {
 					_cancelDraw();
 
 					// if (args.isBbox || args.isWkt) {
