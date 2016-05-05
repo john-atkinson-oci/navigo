@@ -427,8 +427,8 @@ angular.module('voyager.search')
 						_editMarker = null;
 					}
 					if (angular.isDefined(_closeMarker && _closeMarker !== null)) {
-							_map.removeLayer(_closeMarker);
-							_closeMarker = null;
+						_map.removeLayer(_closeMarker);
+						_closeMarker = null;
 					}
 				}
 
