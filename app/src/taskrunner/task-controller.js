@@ -133,14 +133,9 @@ angular.module('taskRunner')
                 query.params.q += ')';
             } else if(hasItems && !_.isEmpty(query.bounds) ) {
                 query.params.q += ' OR (' + query.bounds.replace('&fq=','') + ')';
-            } else if(angular.isDefined(query.filters)) {
-                var find = '&fq=';
-                var re = new RegExp(find, 'g');
-                if (query.filters.indexOf('&fq=') === 0) {
-                    query.params.fq = query.filters.substring(4).replace(re, ' AND ');
-                }
-                else {
-                    query.params.fq = query.filters.replace(re, ' AND ');
+            }  else if(angular.isDefined(query.filters)) {
+                if (query.filters.search('&fq=') > -1) {
+                    query.params.fq = query.filters.split('&fq=');
                 }
             }
             else if (angular.isDefined(query.solrFilters)) {
