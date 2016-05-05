@@ -96,9 +96,6 @@ angular.module('voyager.search')
 
 				$scope.$on('removeFilter', function() {
 					_cancelDraw();
-
-					// if (args.isBbox || args.isWkt) {
-					// }
 					_removeLayers();
 					_removeMarkers();
 				});
@@ -380,28 +377,34 @@ angular.module('voyager.search')
 
 				function _addClearBoundaryMarker(map, pointPosition) {
 
-					if ($attrs.cancel === 'false') {
-						return;
+					if(angular.isDefined(_closeMarker) && _closeMarker !== null) {
+						// _editMarker.setOpacity(1.0);
+						_closeMarker.setLatLng(pointPosition);
+					} else {
+						if ($attrs.cancel === 'false') {
+							return;
+						}
+
+						var anchor = [-20, 0];
+						if ($scope.toolType === 'rectangle') {
+							anchor = [-22, 2];
+						} else if ($scope.toolType === 'point') {
+							anchor = [-20, 25];
+						}
+
+						var closeIcon = L.icon({
+							iconUrl: 'assets/img/icon_x.png',
+							iconSize:     [20, 20], // size of the icon
+							iconAnchor:   anchor // point of the icon which will correspond to marker's location
+						});
+
+						_closeMarker = L.marker(pointPosition, {icon:closeIcon}).addTo(map);
+						_closeMarker.on('mousedown', function () {
+							_removeLayers();
+							_removeMarkers();
+							_remove = true;
+						});
 					}
-
-					var anchor = [-20, 0];
-					if ($scope.toolType === 'rectangle') {
-						anchor = [-22, 2];
-					} else if ($scope.toolType === 'point') {
-						anchor = [-20, 25];
-					}
-
-					var closeIcon = L.icon({
-						iconUrl: 'assets/img/icon_x.png',
-						iconSize:     [20, 20], // size of the icon
-						iconAnchor:   anchor // point of the icon which will correspond to marker's location
-					});
-
-					_closeMarker = L.marker(pointPosition, {icon:closeIcon}).addTo(map);
-					_closeMarker.on('mousedown', function () {
-						_removeLayers();
-						_remove = true;
-					});
 				}
 
 				$scope.bufferMeasures = [{id: 'mi', text: 'Miles'}, {id: 'km', text: 'Kilometers'}, {id: 'm', text: 'Meters'}, {id: 'ft', text: 'Feet'}, {id: 'deg', text: 'Lat/Lng Degree'}, {id: 'nmi', text: 'Nautical Miles'}];
@@ -410,9 +413,6 @@ angular.module('voyager.search')
 				function _removeLayers() {
 					if (angular.isDefined(_searchBoundaryLayer)) {
 						_map.removeLayer(_searchBoundaryLayer);
-						if (angular.isDefined(_closeMarker)) {
-							_map.removeLayer(_closeMarker);
-						}
 						$scope.search.displayBBox = null;
 						$scope.search.place = null;
 						if (angular.isDefined(_bufferBoundaryLayer)) {
@@ -425,6 +425,10 @@ angular.module('voyager.search')
 					if (angular.isDefined(_editMarker) && _editMarker !== null) {
 						_map.removeLayer(_editMarker);
 						_editMarker = null;
+					}
+					if (angular.isDefined(_closeMarker && _closeMarker !== null)) {
+						_map.removeLayer(_closeMarker);
+						_closeMarker = null;
 					}
 				}
 
