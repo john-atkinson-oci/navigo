@@ -103,7 +103,7 @@
 					</header>
 					<ul>
 						<li ng-repeat="item in collections">
-							<a href="javascript:;" class="icon-collection" ng-click="applyCollection(item)">{{::item.title}}<span>{{::item.count | number}} item{{::item.count > 1 ? "s" : ""}}</span></a>
+							<a href="javascript:;" class="icon-collection" ng-click="applySavedSearch(item)">{{::item.title}}<span>{{::item.count | number}} item{{::item.count > 1 ? "s" : ""}}</span></a>
 						</li>
 					</ul>
 				</section>
