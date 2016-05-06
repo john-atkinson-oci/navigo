@@ -12,7 +12,7 @@ angular.module('voyager.security').
         var _groups = [];
         var _sso = true;
         var _isAnonymous = true;
-        var _PERMISSIONS = ['manage','download','process','configure_view','save_search','share_saved_search','view','tag','edit_fields','flag','view_tags'];
+        var _PERMISSIONS = ['manage','download','process','configure_view','save_search','share_saved_search','view','tag','edit_fields','flag','view_tags','export'];
         var _PERMISSIONS_LIST = 'check=' + _PERMISSIONS.join('&check=');
         var _methods = [];
 
