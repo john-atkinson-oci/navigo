@@ -6,7 +6,7 @@ angular.module('voyager.home')
         function _getQueryString() {
             var rows = 1000;
             var label = config.homepage.sidebarLinksLabel;
-            var queryString = config.root + 'solr/ssearch/select?fq=labels:' + label + '&fl=id,title,query,count:[count]';
+            var queryString = config.root + 'solr/ssearch/select?fq=labels:' + label + '&fl=id,title,query,count:[count],display:[display],*';
             queryString += '&rows=' + rows + '&rand=' + Math.random();
             queryString += '&wt=json&json.wrf=JSON_CALLBACK';
             return queryString;

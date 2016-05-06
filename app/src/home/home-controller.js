@@ -188,15 +188,12 @@ angular.module('voyager.home')
 
 
 		function _applyCollection(collection) {
-
 			var solrParams = savedSearchService.getParams(collection);
-			$location.path('search').search(solrParams);
-
+			$location.search(solrParams);
 
 		    filterService.applyFromUrl($location.search()).then(function() {
 		        //$scope.$emit('changeViewEvent', {});
 		    });
-
 		}
 
 		$scope.$on('$destroy', function() {
