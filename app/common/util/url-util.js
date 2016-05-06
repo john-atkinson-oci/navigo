@@ -7,7 +7,7 @@ angular.module('voyager.util').
         var lastUrl = '#/search';
 
         var getPrefix = function (url) {
-            var prefix = "&";
+            var prefix = '&';
             if (url.indexOf('?') === -1) {
                 prefix = '?';
             }
@@ -18,7 +18,7 @@ angular.module('voyager.util').
             //TODO just store location.search() instead of doing all this?
             buildSearchUrl: function (config, query, page, mapView, view, sort) {
                 var url = '#/search';
-                var sep = "?";
+                var sep = '?';
                 if (config) {
                     url += sep + 'disp=' + config;
                     sep = '&';
@@ -28,7 +28,7 @@ angular.module('voyager.util').
                     sep = '&';
                 }
                 $.each(filterService.getFilters(), function (index, facet) {
-                    url += sep + 'fq=' + facet.filter + ":" + facet.name;
+                    url += sep + 'fq=' + facet.filter + ':' + facet.name;
                     sep = '&';
                 });
 
@@ -51,16 +51,16 @@ angular.module('voyager.util').
 
             buildSearchUrl2: function (solrParams, page, mapView, view, sort) {
                 var url = '#/search';
-                var sep = "?";
+                var sep = '?';
                 $.each(solrParams,function(key, value) {
-                    if(value !== '*:*') {  //don't apply all (default) wildcard to url, its implicit
+                    if(value !== '*:*' && key !== 'sort') {  //don't apply all (default) wildcard to url, its implicit
                         url += sep + key + '=' + value;
                         sep = '&';
                     }
                 });
                 $.each(filterService.getFilters(), function (index, facet) {
                     if (facet.filter !== '') {
-                        url += sep + 'fq=' + facet.filter + ":" + facet.name;
+                        url += sep + 'fq=' + facet.filter + ':' + facet.name;
                     } else {  //solr function
                         url += sep + 'fq=' + encodeURIComponent(facet.name);
                     }
