@@ -136,7 +136,7 @@
                     <nav id="detailTabContentNav" class="tab tab_border clearfix">
                         <ul>
                             <li ng-if="displayFields.length && pageFramework.showDetailsTable" ng-class="showTab == 'summary' && 'selected' || ''"><a href="javascript:;" ng-click="changeTab('summary')">Details</a></li>
-                            <li ng-if="doc.hasMetadata && pageFramework.showMetadataTable" ng-class="showTab == 'metadata' && 'selected' || ''"><a href="javascript:;" ng-click="changeTab('metadata')">Metadata</a></li>
+                            <li ng-if="doc.hasMetadata && pageFramework.showMetadataTable && canViewMetadata" ng-class="showTab == 'metadata' && 'selected' || ''"><a href="javascript:;" ng-click="changeTab('metadata')">Metadata</a></li>
                             <li ng-if="hasRelationships && pageFramework.showRelationshipsTable" ng-class="showTab == 'relationship' && 'selected' || ''"><a href="javascript:;" ng-click="changeTab('relationship')">Relationships</a></li>
                             <li ng-if="doc.hasSchema" ng-class="showTab == 'schema' && 'selected' || ''"><a href="javascript:;" ng-click="changeTab('schema')">Schema</a></li>
                         </ul>

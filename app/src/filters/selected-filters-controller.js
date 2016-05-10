@@ -10,7 +10,7 @@ angular.module('voyager.filters')
             $scope.filters = filterService.getFilters().slice(0);
 
             if (params.q && params.q !== '*:*') {
-                $scope.filters.push({'isInput': true, 'name': 'search', 'humanized': 'Search:' + params.q});
+                $scope.filters.push({'isInput': true, 'name': 'search', 'humanized': 'Search:' +params.q, pretty: params.q});
             }
             if (params.place) {
                 var formattedPlace = params.place;
@@ -27,13 +27,13 @@ angular.module('voyager.filters')
                 }
 
                 humanized = (params['place.op'] === 'within' ? 'Within' : 'Intersects') + ': ' + formattedPlace;
-                $scope.filters.push({'isInput': true, 'name': 'place', 'humanized': humanized, 'isBbox' : isBbox, 'isWkt' : isWkt});
+                $scope.filters.push({'isInput': true, 'name': 'place', 'humanized': humanized, 'isBbox' : isBbox, 'isWkt' : isWkt, pretty: formattedPlace});
             }
             if(params['links.to']) {
-                $scope.filters.push({'isInput': false, 'name': 'linksTo', 'humanized': 'Links.To:' + params['links.to']});
+                $scope.filters.push({'isInput': false, 'name': 'linksTo', 'humanized': 'Links.To:' + params['links.to'], pretty: params['links.to']});
             }
             if(params['links.from']) {
-                $scope.filters.push({'isInput': false, 'name': 'linksFrom', 'humanized': 'Links.From:' + params['links.from']});
+                $scope.filters.push({'isInput': false, 'name': 'linksFrom', 'humanized': 'Links.From:' + params['links.from'], pretty: params['links.from']});
             }
         }
 

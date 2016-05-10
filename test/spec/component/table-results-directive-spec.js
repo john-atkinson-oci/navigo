@@ -5,6 +5,7 @@ describe('vsTableRsults:', function () {
 
 	beforeEach(function () {
 		module('voyager.component');
+		module('voyager.results');  //TODO move table component out of here it shouldn't depend on voyager.results
 	});
 
 	var scope, element;

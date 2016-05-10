@@ -2,7 +2,7 @@
     <table ng-table="tableParams" class="table ng-table-resizable-columns ng-table-rowselected table-condensed table-striped" data-resizable-columns-id="resultsTable" id="resultsTable">
         <thead>
             <tr>
-                <th class="semi img" style="width:92px;">
+                <th class="semi img" style="width:92px;" data-noresize>
                     <div class="hover_flyout">
                         <a href="javascript:;" class="semi icon-arrow flyout_trigger">Image</a>
                         <div class="flyout">
@@ -22,7 +22,7 @@
                     ng-click="tableParams.sorting(field.field , tableParams.isSortBy(field.field, 'asc') ? 'desc' : 'asc')">
                     <div>{{field.display}}</div>
                 </th>
-                <th class="semi" style="width:100px;">Tools</th>
+                <th class="semi" style="width:100px;" data-noresize>Tools</th>
             </tr>
         </thead>
         <tbody>
