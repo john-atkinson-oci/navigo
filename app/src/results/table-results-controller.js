@@ -20,6 +20,8 @@ angular.module('voyager.results')
             $.each($scope.tableFields, function(index, field) {
                 if(angular.isUndefined(field.width)) {
                     field.width = '' + defaultWidth + '%';
+                } else if (field.width.indexOf('%') === -1) {
+                    field.width = field.width + '%';
                 }
                 width = field.width.replace('%','');
                 width = Number(parseFloat(width).toFixed(2));
