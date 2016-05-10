@@ -1,7 +1,7 @@
 /*global angular */
 
 angular.module('voyager.component')
-	.directive('vsTableResults', function($window, $document) {
+	.directive('vsTableResults', function($window, $document, tableResultsService) {
 		'use strict';
 
 		return {
@@ -72,6 +72,9 @@ angular.module('voyager.component')
 					}
 
 					scope.animate(listWrapEl, {marginTop: (availableHeight - 20)});
+
+					tableResultsService.setFixedWidths();
+
 				};
 
 				scope.resize = function() {
