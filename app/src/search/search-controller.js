@@ -344,6 +344,10 @@ angular.module('voyager.search')
             return !hasRemoteShard() && $scope.hasPermission('flag');
         };
 
+		$scope.exportPermission = function() {
+			return $scope.hasPermission('export');
+		};
+
         $scope.canCart = function () {
             return !hasRemoteShard() && $scope.hasPermission('process');
         };

@@ -47,9 +47,9 @@ describe('TaskCtrl', function () {
         httpMock.flush();
     }
 
-    function escapeRegExp(str) {
-        return str.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, '\\$&');
-    }
+    //function escapeRegExp(str) {
+    //    return str.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, '\\$&');
+    //}
 
     describe('Load', function () {
 
@@ -80,7 +80,8 @@ describe('TaskCtrl', function () {
             cartService.addQuery(q);
             initCtrl();
 
-            httpMock.expectPOST(new RegExp('validate=true'), new RegExp(escapeRegExp('"fq":"{!tag=format_type}format_type:(File)"}'))).respond({id:'id'});  // validate
+            //httpMock.expectPOST(new RegExp('validate=true'), new RegExp(escapeRegExp('"fq":"{!tag=format_type}format_type:(File)"}'))).respond({id:'id'});  // validate
+            httpMock.expectPOST(new RegExp('validate=true'), '{"task":"name","params":[{"name":"input_items","query":{"filter":"true","fq":["","{!tag=format_type}format_type:(File)"]},"type":"VoyagerResults","response":{"docs":[]},"readOnly":false,"label":"","desc":""}]}').respond({id:'id'});
             httpMock.expectPOST(new RegExp('validate=false')).respond({id:'id'});  // exec
 
             scope.execTask();
@@ -96,7 +97,8 @@ describe('TaskCtrl', function () {
             cartService.addQuery(q);
             initCtrl();
 
-            httpMock.expectPOST(new RegExp('validate=true'), new RegExp(escapeRegExp('"fq":"{!tag=format_type}format_type:(File)"}'))).respond({id:'id'});  // validate
+            //httpMock.expectPOST(new RegExp('validate=true'), new RegExp(escapeRegExp('"fq":"{!tag=format_type}format_type:(File)"}'))).respond({id:'id'});  // validate
+            httpMock.expectPOST(new RegExp('validate=true'), '{"task":"name","params":[{"name":"input_items","query":{"filter":"true","fq":["","{!tag=format_type}format_type:(File)"]},"type":"VoyagerResults","response":{"docs":[]},"readOnly":false,"label":"","desc":""}]}').respond({id:'id'});
             httpMock.expectPOST(new RegExp('validate=false')).respond({id:'id'});  // exec
 
             scope.execTask();

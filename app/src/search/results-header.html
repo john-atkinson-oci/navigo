@@ -24,7 +24,7 @@
                     <li ng-if="flagPermission()"><a href="javascript:;" ng-click="flagAllResults()">Flag All</a></li>
                     <li ng-if="flagPermission()"><a href="javascript:;" ng-click="removeAllFlags()">Remove All Flags</a></li>
                     <li ng-if="canEditPermission()"><a href="javascript:;" ng-click="editAllPresentation()">Edit Fields for All</a></li>
-                    <li ng-if="view == 'table'"><a href="javascript:;" ng-click="exportResultsList()">Export results list</a></li>
+                    <li ng-if="view == 'table' && exportPermission()"><a href="javascript:;" ng-click="exportResultsList()">Export results list</a></li>
                 </ul>
             </div>
         </div>
