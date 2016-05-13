@@ -39,7 +39,7 @@
     "underscore": "1.7.0",
     "underscore-contrib": "0.3.0",
     "underscore.string": "~2.3.3",
-    "voyager-ui-toolkit": "*"
+    "voyager-ui-toolkit": "v1.9.8a"
   },
   "devDependencies": {
     "angular-mocks": "1.5.0",
