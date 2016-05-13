@@ -175,7 +175,7 @@ angular.module('portalApp')
         //});
 
         $analyticsProvider.registerEventTrack(function (action, properties) {
-            if (angular.isDefined(config.analyticUrl)) {
+            if (angular.isDefined(config.analyticsUrl)) {
                 properties.action = action;
                 $.post(config.analyticsUrl, {message: JSON.stringify(properties)});
             }
