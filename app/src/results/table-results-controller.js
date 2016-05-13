@@ -1,6 +1,6 @@
 /*global angular, $, window */
 angular.module('voyager.results')
-    .controller('TableCtrl', function ($scope, ngTableParams, $timeout, $location, configService, translateService, $filter, filterService, config, sugar) {
+    .controller('TableCtrl', function ($scope, ngTableParams, $timeout, $location, configService, translateService, $filter, filterService, config, sugar, tableResultsService) {
         'use strict';
 
         var loaded = false;
@@ -20,13 +20,13 @@ angular.module('voyager.results')
             $.each($scope.tableFields, function(index, field) {
                 if(angular.isUndefined(field.width)) {
                     field.width = '' + defaultWidth + '%';
+                } else if (field.width.indexOf('%') === -1) {
+                    field.width = field.width + '%';
                 }
                 width = field.width.replace('%','');
                 width = Number(parseFloat(width).toFixed(2));
                 totalWidth += width;
             });
-
-            //$scope.toolsWidth = (100 - totalWidth) + '%';
         }
 
         var Store = (function () {
@@ -98,6 +98,11 @@ angular.module('voyager.results')
                 deferred.resolve(docs); //for some reason this doesn't always reload the grid hence reload above
                 reloading = false;
             }
+
+            // keep the image and tools columns fixed - after scope digest
+            $timeout(function() {
+                tableResultsService.setFixedWidths();
+            });
 
             $timeout(function () {
                 $(window).trigger('resize');

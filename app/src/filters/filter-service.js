@@ -1,7 +1,7 @@
 /*global angular, $, _ */
 
 angular.module('voyager.filters').
-    factory('filterService', function (translateService, facetService, $q, configService, rangeService, converter) {
+    factory('filterService', function (translateService, facetService, $q, configService, rangeService, converter, $filter, sugar) {
         'use strict';
         var filters = [];  //user selected filters
         var filterMap = {}; //quick lookup for filters
@@ -40,16 +40,23 @@ angular.module('voyager.filters').
             } else {
                 style = configService.lookupFilterStyle(filterKeyValue.name);
             }
+            var pretty = filterKeyValue.name === 'location' ? translateService.getLocation(filterKeyValue.value) : translateService.getType(decodeURI(filterKeyValue.value));
+            var humanized = translateService.getFieldName(filterKeyValue.name) + ':' + pretty;
+
             var decodeValue = decodeURIComponent(filterKeyValue.value);
             var timeValues = decodeValue.replace(/[\[\]]/g, '').split(' TO ');
-            var humanized = translateService.getFieldName(filterKeyValue.name) + ':' + (filterKeyValue.name === 'location' ? translateService.getLocation(filterKeyValue.value) : translateService.getType(decodeURI(filterKeyValue.value)));
-
-            if (style !== 'RANGE' && Date.parse(timeValues[0])) {
+            if (style !== 'RANGE' && sugar.isValidDate(timeValues[0])) {
                 style = 'DATE';
+                var dateFilterValue = Date.parse(timeValues[0]);
+                pretty =  $filter('date')(dateFilterValue, 'M/d/yyyy');
+                if(timeValues[1]) {
+                    dateFilterValue = Date.parse(timeValues[1]);
+                    pretty += ' TO ' + $filter('date')(dateFilterValue, 'M/d/yyyy');
+                }
                 humanized = translateService.getFieldName(filterKeyValue.name) + ':' + decodeValue;
             }
 
-            var selectedFilter = {'filter': filterKeyValue.name, 'name': filterKeyValue.value, 'humanized': humanized, isSelected: true, 'style': style, 'displayState': 'in'};
+            var selectedFilter = {'filter': filterKeyValue.name, 'name': filterKeyValue.value, 'humanized': humanized, isSelected: true, 'style': style, 'displayState': 'in', pretty: pretty};
 
             // TODO add STATS and DATE styles here to decorateSelected?
             if(style === 'RANGE') {
