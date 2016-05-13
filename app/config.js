@@ -42,6 +42,7 @@ var config = {
     docLink: {text:'Preview', action:'preview', visible:'isService'},
     //analyticsId: 'UA-56933647-1',
     analyticsId: '',
+    analyticsUrl: 'http://voyagerdemo.com/log/message',
     ui: {
         details:{
             map:{text:'Preview',icon:'glyphicon glyphicon-globe'},

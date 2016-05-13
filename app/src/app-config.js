@@ -1,6 +1,6 @@
 /*global config */
 angular.module('portalApp')
-    .config(function ($stateProvider, $httpProvider, $urlRouterProvider) {
+    .config(function ($stateProvider, $httpProvider, $urlRouterProvider, $analyticsProvider) {
         'use strict';
 
         function _loadIfAllowed(authService, $q, configLoader, $location) {
@@ -168,5 +168,17 @@ angular.module('portalApp')
         $httpProvider.defaults.headers.get['Cache-Control'] = 'no-cache';  // jshint ignore:line
         $httpProvider.defaults.headers.get['Pragma'] = 'no-cache';  // jshint ignore:line
         $httpProvider.interceptors.push('httpRequestInterceptor');
+
+        // TODO - send to custom analytics
+        //$analyticsProvider.registerPageTrack(function (path) {
+        //    console.log('analytics path: ' + path);
+        //});
+
+        $analyticsProvider.registerEventTrack(function (action, properties) {
+            if (angular.isDefined(config.analyticUrl)) {
+                properties.action = action;
+                $.post(config.analyticsUrl, {message: JSON.stringify(properties)});
+            }
+        });
 
     }).constant('config',config);
