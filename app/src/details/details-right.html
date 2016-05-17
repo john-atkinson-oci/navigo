@@ -1,0 +1,33 @@
+<div id="detailSecondaryColumn">
+    <div ng-if="pageFramework.showMap">
+        <div class="detail_map" vs-details-map></div>
+    </div>
+    <section class="tags" ng-if="canViewTags && pageFramework.showTags">
+        <header style="line-height: 3em;">
+            <h1 class="tag_header">Tags</h1>
+            <div ng-show="canTag && !isRemote" class="tag_icon">
+                <a href="javascript:;" class="edit_link" ng-click="toggleEditTag()" ng-show="labels.length"><span class="icon-edit"></span>{{showEditTag && 'Hide' || 'Edit'}}</a>
+                <a href="javascript:;" class="edit_link" ng-show="!labels.length" ng-click="toggleEditTag()"><span class="icon-edit"></span>{{showEditTag && 'Hide' || 'Add'}}</a>
+            </div>
+        </header>
+        <div ng-hide="showEditTag" style="clear: both;">
+            <ul class="tag_list list-inline">
+                <li ng-repeat="label in labels"><a href="javascript:;" ng-click="searchTag(label)" ng-bind="label"></a><span ng-if="!$last">,</span></li>
+            </ul>
+        </div>
+
+        <div ng-show="showEditTag">
+            <input id="labels" type="hidden" ui-select2="select2Options" ng-model="labels" style="width: 100%" vg-tags>
+        </div>
+    </section>
+    <section class="recent" ng-show="recent.length">
+        <header>
+            <h1>Recently viewed</h1>
+        </header>
+        <div class="list alt_list_view clearfix">
+            <div class="row">
+                <article ng-repeat="doc in recent" vs-card-recent></article>
+            </div>
+        </div>
+    </section>
+</div>

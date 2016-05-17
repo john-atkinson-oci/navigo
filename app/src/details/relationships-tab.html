@@ -1,0 +1,54 @@
+<section class="relationship clearfix" vs-preview>
+    <div class="content_inner" ng-if="tree">
+        <header>
+            <h1 class="semi">Structure</h1>
+        </header>
+        <ul class="tree" frang-tree>
+            <li frang-tree-repeat="node in tree">
+                <div ng-class="{folder: node.children && node.children.length > 0, selected:node.id === doc.id}">
+                                                <span class="icon"
+                                                      ng-class="{collapsed: node.collapsed, expanded: !node.collapsed}"
+                                                      ng-show="node.children && node.children.length > 0"
+                                                      ng-click="node.collapsed = !node.collapsed"></span>
+                    <span ng-class="node.hasMissingData ? 'node_icon icon-error label-danger' : 'node_icon'"></span>
+                                                <span class="label">
+                                                   <a href="#/show/{{node.id}}?disp={{disp}}" data-id="{{node.id}}">{{node.name}}</a>
+                                                </span>
+                </div>
+                <ul class="child" ng-if="!node.collapsed && node.children && node.children.length > 0"
+                    frang-tree-insert-children="node.children"></ul>
+            </li>
+        </ul>
+    </div>
+    <div id="preview" ui-view="preview"></div>
+</section>
+
+<section class="relationship clearfix" ng-repeat="rel in ::relationships" ng-if="rel.values.length > 0">
+    <div class="list alt_list_view wide_list_view content_inner">
+        <header class="row clearfix">
+            <h1 class="semi col-md-6">{{::rel.name}}</h1>
+            <div class="pull-right col-md-6" ng-show="rel.numFound > rel.values.length">
+                <span class="semi">showing 1-{{rel.values.length}}</span> of <span class="semi">{{rel.numFound | number}}</span>
+                &nbsp;&nbsp;<a href="#/search?links.to={{doc.id + ':' + rel.type}}&disp={{disp}}" class="semi">Show all</a>
+            </div>
+        </header>
+        <div class="row">
+            <article ng-repeat="doc in rel.values" vs-card></article>
+        </div>
+    </div>
+</section>
+
+<section class="relationship clearfix" ng-repeat="fromRel in ::fromRelationships">
+    <div class="list alt_list_view wide_list_view content_inner">
+        <header class="row clearfix">
+            <h1 class="semi col-md-6">{{::fromRel.name}}</h1>
+            <div class="pull-right col-md-6" ng-show="fromRel.numFound > fromRel.values.length">
+                <span class="semi">showing 1-{{fromRel.values.length}}</span> of <span class="semi">{{fromRel.numFound | number}}</span>
+                &nbsp;&nbsp;<a href="#/search?links.from={{doc.id + ':' + fromRel.type}}&disp={{disp}}" class="semi">Show all</a>
+            </div>
+        </header>
+        <div class="row">
+            <article ng-repeat="doc in fromRel.values" vs-card></article>
+        </div>
+    </div>
+</section>
