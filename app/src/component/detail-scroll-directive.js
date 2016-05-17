@@ -10,15 +10,25 @@ angular.module('voyager.component')
 
 				var windowEl;
 				var detailTopStickyContent;
-				var detailTopStickyContentHeight;
 				var detailTabContentNav;
 				var detailTabContentNavTipPoint;
 				var detailTabContentNavHeight;
 				var detailSecondaryColumn;
-				var detailSecondaryColumnHeight;
 				var itemDetailEl;
-				var tipped = false;
 				var $banner;
+
+				function bannerAdjust() {
+					$banner = angular.element('#top-banner');
+					if($banner.outerHeight() > 0) {
+						$timeout(function() {
+							var paddingTop = detailTopStickyContent.css('padding-top');
+							paddingTop = parseInt(paddingTop.replace('px',''));
+							detailTopStickyContent.css('padding-top', $banner.outerHeight() + paddingTop);
+							detailSecondaryColumn.css('padding-top', $banner.outerHeight() + paddingTop);
+							scope.resize();
+						});
+					}
+				}
 
 				scope.initialize = function() {
 					element.ready(function(){
@@ -27,21 +37,10 @@ angular.module('voyager.component')
 							detailTabContentNav = angular.element('#detailTabContentNav');
 							detailSecondaryColumn = angular.element('#detailSecondaryColumn');
 
-							$banner = angular.element('#top-banner');
-							if($banner.outerHeight() > 0) {
-								$timeout(function() {
-									var paddingTop = detailTopStickyContent.css('padding-top');
-									paddingTop = parseInt(paddingTop.replace('px',''));
-									detailTopStickyContent.css('padding-top', $banner.outerHeight() + paddingTop);
-									detailSecondaryColumn.css('padding-top', $banner.outerHeight() + paddingTop);
-									scope.resize();
-								});
-							}
+							bannerAdjust();
 
 							detailTabContentNavHeight = detailTabContentNav.outerHeight();
 							itemDetailEl = angular.element('#itemDetailContent');
-
-							scope.setStickyContent();
 
 							windowEl.on('scroll', _scroll);
 							windowEl.on('resize', scope.resize);
@@ -69,7 +68,7 @@ angular.module('voyager.component')
 				scope.resize = function() {
 					$timeout.cancel(scope.resizeTimer);
 					scope.resizeTimer = $timeout(function(){
-						scope.setStickyContent();
+						//scope.setStickyContent();
 					}, 100);
 				};
 
@@ -79,101 +78,37 @@ angular.module('voyager.component')
 				};
 
 				function _scroll() {
-					if (windowEl.width() <= 767) {
-						return;
-					}
 
 					var scrollTop = $document.scrollTop();
-					var windowHeight = windowEl.height();
-					var mainContentHeight = $document.outerHeight();
 
-					if (mainContentHeight > windowHeight || detailSecondaryColumnHeight > windowHeight) {
-						if (!tipped && scrollTop >= detailTabContentNavTipPoint) {
-							tipped = true;
-							_setContentNavStyle();
-						}
-						else if (tipped && scrollTop < detailTabContentNavTipPoint) {
-							tipped = false;
-							detailTabContentNav.removeClass('sticky').css('top', 0).next().css('padding-top', '0px');
-						}
-					}
+					var $nameHeader = angular.element('h1[name=doc-header]');
+					var $floatingNav = angular.element('.floating-nav');
 
-					_setSecondaryContentStyle(scrollTop, mainContentHeight);
-				}
+					var floatingNavBottom = $floatingNav.offset().top + $floatingNav.height() + 30;
+					var nameHeaderBottom = $nameHeader.offset().top + $nameHeader.height();
+					var $floatingHeader = angular.element('.floating-header > h1');
 
-				function _setSecondaryContentStyle(scrollTop, mainContentHeight) {
-
-					var windowHeight = windowEl.height();
-
-					if (detailSecondaryColumnHeight >= mainContentHeight || detailSecondaryColumnHeight < windowHeight) {
-						// do nothing
-						return;
-					}
-
-					if (scrollTop === 0) {
-						detailSecondaryColumn.removeClass('sticky').css('margin-top', 0);
-						if($banner.outerHeight() > 0) {
-							detailSecondaryColumn.css('padding-top', 0);
-						}
-					} else if ((scrollTop + windowHeight) >= detailSecondaryColumnHeight) {
-						var marginTop = -(detailSecondaryColumnHeight - windowHeight);
-						// TODO - prevent image from scrolling under header (when recent search items show up under the map this happens)?
-						//if($banner.outerHeight() > 0) {
-						//	marginTop += $banner.outerHeight() * 2;
-						//}
-						detailSecondaryColumn.addClass('sticky').css('width', '365px').css('margin-top', marginTop + 'px');
-					}
-				}
-
-				function _setContentNavStyle() {
-					var top = detailTopStickyContentHeight + detailTabContentNavHeight + 10;
-					if ($banner.outerHeight() > 0) {
-						top += $banner.outerHeight();
-					}
-					detailTabContentNav.addClass('sticky').css('top', top +'px');
-					detailTabContentNav.next().css('padding-top', detailTabContentNavHeight  + 'px');
-				}
-
-				function _removeStyleForSmallScreen() {
-					detailTabContentNav.css('top', 0).removeClass('sticky').next().css('margin-top', '10px');
-					detailTopStickyContent.removeClass('sticky').next().css('margin-top', 0);
-					detailSecondaryColumn.removeClass('sticky').css('margin-top', '0px');
-					if($banner.outerHeight() > 0) {
-						detailSecondaryColumn.css('padding-top', '0px');
-						detailTopStickyContent.css('padding-top', '0px');
-					}
-				}
-
-				scope.setStickyContent = function() {
-					if (windowEl.width() <= 767) { // smaller screen, remove sticky class
-						_removeStyleForSmallScreen();
+					// show/hide the doc title in the toolbar if its hidden in the summary
+					if(floatingNavBottom < nameHeaderBottom) {
+						$floatingHeader.hide();
 					} else {
-						detailTopStickyContent.removeClass('sticky').next().css('margin-top', 0);
-						detailTabContentNav.removeClass('sticky');
-						detailTopStickyContentHeight = detailTopStickyContent.outerHeight();
-
-						detailTabContentNavTipPoint = detailTabContentNav.offset().top - detailTopStickyContentHeight - 100;
-						if ($banner.outerHeight() > 0) {
-							detailTopStickyContentHeight -= $banner.outerHeight() * 2;
-						}
-						var mainContentHeight = itemDetailEl.outerHeight();
-						detailTopStickyContent.addClass('sticky').next().css('margin-top',  detailTopStickyContentHeight + 'px');
-						detailSecondaryColumnHeight = detailSecondaryColumn.height() + 138;
-
-						if (detailSecondaryColumnHeight < windowEl.height()) {
-							detailSecondaryColumn.addClass('sticky').css({'margin-top': 0, 'width': '365px'});
-						} else {
-							detailSecondaryColumn.removeClass('sticky');
-							_setSecondaryContentStyle($document.scrollTop(), mainContentHeight);
-						}
-
-						if (tipped) {
-							_setContentNavStyle();
-						}
+						$floatingHeader.show();
 					}
-				};
 
-			} //link
+					// fix the tabs to remain visible if scrolled below
+					if(detailTabContentNav.offset().top < floatingNavBottom) {
+						var fixedTop = floatingNavBottom - scrollTop;
+						detailTabContentNav.css({ top: fixedTop + 'px', position: 'fixed'});
+					}
+
+					// remove the fixed tabs if scrolled back up
+					var $divider = angular.element('hr[name=divider]');
+					if($divider.offset().top > detailTabContentNav.offset().top) {
+						detailTabContentNav.css({ top: 'auto', position: 'static'});
+					}
+				}
+
+			}
 		};
 	});
 

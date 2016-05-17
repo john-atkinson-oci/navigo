@@ -1,10 +1,12 @@
 <header class="result_title col-xs-12">
     <div ng-if="pageFramework.showThumbnail" class="thumbnail_wrap">
         <div class="tag" ng-if="doc.tag_flags && summaryFlags.showFlag"><a href="javascript:;" ng-click="searchFlag(doc.tag_flags)" ng-bind="doc.tag_flags"></a></div>
-        <img class="img-thumbnail" alt="" ng-src="{{preview}}" style="max-height: 300px; float: left; margin-right: 20px;" />
+        <img class="img-thumbnail" alt="" ng-src="{{preview}}" style="width: 325px; float: left; margin-right: 20px;" />
     </div>
     <h3 class="label label-danger icon-error missing_data" ng-show="doc.hasMissingData">Missing Data</h3>
-    <h1><span ng-bind="::doc.name"></span></h1>
+    <h1 name="doc-header">
+        <span ng-bind="::doc.name"></span>
+    </h1>
     <div ng-if="summaryFlags.showType || summaryFlags.showLastUpdateDate" class="field info muted">
         <a ng-show="summaryFlags.showType" href="#/search?fq=format:{{::doc.format}}&disp={{::disp}}">
             <span ng-bind="::doc.displayFormat" ng-class="formatClass"></span>
