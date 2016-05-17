@@ -9,6 +9,9 @@
         <span class="txt">Next</span>&nbsp; <span class="fa fa-angle-right"></span>
     </a>
 </li>
+<li class="floating-header">
+    <h1><span ng-bind="::doc.name"></span></h1>
+</li>
 <li class="details_tools">
     <ul ng-show="pageFramework.showTools" class="util_list">
         <li ng-show="doc.hasDownload || doc.isMappable || (canFlag && !isRemote) || doc.isEsriLayer">

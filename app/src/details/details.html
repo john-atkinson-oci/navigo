@@ -1,6 +1,6 @@
 <div class="page" id="detailPage" ng-controller="DetailsCtrl">
     <!-- TODO - disabled details scroll - doesn't work with smaller resolutions-->
-    <div class="container-fluid" xvs-detail-scroll>
+    <div class="container-fluid" vs-detail-scroll>
         <div id="working" ng-if="loading"></div>
         <div ng-if="!loading">
             <div class="row detail-content-wrap">
@@ -12,10 +12,10 @@
                         </section>
                     </div>
                     <div class="col-xs-12">
-                        <hr style="border-color: lightgrey;">
+                        <hr style="border-color: lightgrey;" name="divider">
                     </div>
                     <div class="col-md-8">
-                        <nav id="detailTabContentNav" class="tab tab_border clearfix">
+                        <nav id="detailTabContentNav" class="tab tab_border clearfix col-xs-12 row">
                             <ul>
                                 <li ng-if="displayFields.length && pageFramework.showDetailsTable" ng-class="showTab == 'summary' && 'selected' || ''"><a href="javascript:;" ng-click="changeTab('summary')">Details</a></li>
                                 <li ng-if="doc.hasMetadata && pageFramework.showMetadataTable && canViewMetadata" ng-class="showTab == 'metadata' && 'selected' || ''"><a href="javascript:;" ng-click="changeTab('metadata')">Metadata</a></li>

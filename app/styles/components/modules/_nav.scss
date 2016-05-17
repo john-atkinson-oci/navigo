@@ -28,7 +28,7 @@
 	position: fixed;
 	background-color: rgba(236, 240, 241, 1);
 	padding: 20px 40px 10px 10px;
-	z-index: 10;
+	z-index: 1001;
 	top: 64px;
 	width: 100%;
 	margin-left: -10px;
@@ -52,5 +52,21 @@
 		a {
 			padding: 0 10px;
 		}
+	}
+}
+
+.floating-header {
+	border-left: none !important;
+	position: absolute;
+	left: 350px;
+	margin-top: -5px;
+	max-width: 500px;
+
+	h1 {
+		font-family: proxima_novalight;
+		font-size: 2.5rem;
+		position: relative;
+		margin-top: 0px;
+		display: none;
 	}
 }
