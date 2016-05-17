@@ -368,7 +368,7 @@ angular.module('voyager.search')
 							popupAnchor: [-95, 160]
 						});
 
-						_editMarker = L.marker(pointPosition, {icon:editIcon}).addTo(map).bindPopup(addBufferOption());
+						_editMarker = L.marker(pointPosition, {icon:editIcon, zIndexOffset: 5000}).addTo(map).bindPopup(addBufferOption());
 						_editMarker.on('click', function () {
 							_editMarker.openPopup();
 						});
@@ -398,7 +398,7 @@ angular.module('voyager.search')
 							iconAnchor:   anchor // point of the icon which will correspond to marker's location
 						});
 
-						_closeMarker = L.marker(pointPosition, {icon:closeIcon}).addTo(map);
+						_closeMarker = L.marker(pointPosition, {icon:closeIcon, zIndexOffset: 5000}).addTo(map);
 						_closeMarker.on('mousedown', function () {
 							_removeLayers();
 							_removeMarkers();
