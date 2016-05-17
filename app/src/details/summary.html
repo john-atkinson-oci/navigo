@@ -1,0 +1,54 @@
+<header class="result_title col-xs-12">
+    <div ng-if="pageFramework.showThumbnail" class="thumbnail_wrap">
+        <div class="tag" ng-if="doc.tag_flags && summaryFlags.showFlag"><a href="javascript:;" ng-click="searchFlag(doc.tag_flags)" ng-bind="doc.tag_flags"></a></div>
+        <img class="img-thumbnail" alt="" ng-src="{{preview}}" style="max-height: 300px; float: left; margin-right: 20px;" />
+    </div>
+    <h3 class="label label-danger icon-error missing_data" ng-show="doc.hasMissingData">Missing Data</h3>
+    <h1><span ng-bind="::doc.name"></span></h1>
+    <div ng-if="summaryFlags.showType || summaryFlags.showLastUpdateDate" class="field info muted">
+        <a ng-show="summaryFlags.showType" href="#/search?fq=format:{{::doc.format}}&disp={{::disp}}">
+            <span ng-bind="::doc.displayFormat" ng-class="formatClass"></span>
+        </a>
+        <span ng-show="summaryFlags.showLastUpdateDate">
+            <span ng-show="::doc.modified" class="bullet" ng-if="showFormat">&bull;</span>
+            <span ng-show="::doc.modified">Last modified {{::doc.modified | date:'M/d/yyyy, hh:mma' }}</span>
+        </span>
+    </div>
+    <div ng-if="summaryFlags.showPath" class="field">
+        <a href="{{::doc.fullpath}}" ng-show="isURL" target="_blank">{{::doc.fullpath}}</a>
+        <div ng-hide="isURL" vs-highlight>
+            <span id="locationPathWrap"></span><span id="locationPathNotHighlight"><a href="{{::doc_path.url}}" id="locationPath0">{{::doc_path.path}}</a><a href="{{::sub_path.url}}" ng-repeat="sub_path in sub_paths" id="locationPath{{$index + 1}}">{{::sub_path.path}}</a></span>
+        </div>
+    </div>
+    <!--
+    <div class="star_wrap"><span class="star{{rate.current_rating}}">({{rate.total_user || 'not rated'}})</span></div>
+    -->
+    <div>
+        <div class="doc_description" ng-if="description && summaryFlags.showDescription">
+            <div ng-if="!description.editing" ng-bind-html="description.formattedValue"></div>&nbsp;&nbsp;
+
+            <a href="javascript:;" class="edit_link" ng-if="canEdit && description.editable && !description.editing" ng-click="edit(description)"><span class="icon-edit"></span>Edit</a>
+            <textarea ng-show="description.editing && description.isHtml" ng-model="description.value" class="input_field"></textarea>
+
+            <div class="action_row" ng-show="description.editing">
+                <button ng-click="doSave(description)" type="button" title="Save" class="btn btn-secondary">Save</button>
+                <a href="javascript:;" ng-click="cancel(description)" type="button" title="Cancel" class="link_secondary">Cancel</a>
+            </div>
+        </div>
+        <div ng-repeat="field in summaryFields">
+             <span class="summary_field" ng-show="!field.isHtml && field.style !== 'STRING'">
+                <span class="summary_field_name">{{field.name}}: </span>
+                <span ng-if="!field.isArray">
+                    <a href="#/search?fq={{field.key + ':' + field.value}}&disp={{disp}}" ng-if="field.stype != 'date' && field.key != 'bbox'">{{field.formattedValue}}</a>
+                    <a href="#/search?place={{field.value}}&disp={{disp}}" ng-if="field.key == 'bbox'">{{field.formattedValue}}</a>
+                    <a href="#/search?fq={{field.key + ':' + field.value}}&disp={{disp}}" ng-if="field.stype == 'date'">{{field.formattedValue | date:'medium'}}</a>
+                </span>
+                <span ng-if="field.isArray" ng-repeat="f in field.value track by $index">
+                    <a href="#/search?fq={{field.key + ':' + f}}&disp={{disp}}">{{field.formattedValues[f]}}</a>{{!$last && ', ' || ''}}
+                </span>
+            </span>
+            <span class="summary_field" ng-if="field.isHtml"><span  class="summary_field_name">{{field.name}}:</span><span ng-bind-html="field.formattedValue"></span></span>
+            <span class="summary_field" ng-if="field.style === 'STRING'"><span  class="summary_field_name">{{field.name}}:</span> <span ng-bind-html="field.formattedValue"></span></span>
+        </div>
+    </div>
+</header>

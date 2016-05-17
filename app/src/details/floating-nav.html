@@ -1,0 +1,49 @@
+<li class="first details_nav" ng-show="::hasRecords">
+    <a href="javascript:;" ng-disabled="noPrevious" ng-click="getPrevious()" class="underline">
+        <span class="fa fa-angle-left"></span>&nbsp; <span class="txt">Previous</span>
+    </a>
+</li>
+<li class="{{!hasRecords && 'first' || ''}} details_nav"><a href="{{lastSearch}}" class="underline"><span class="txt">Return to Search</span></a></li>
+<li ng-show="::hasRecords" class="details_nav">
+    <a href="javascript:;" ng-disabled="noNext" ng-click="getNext()" class="underline">
+        <span class="txt">Next</span>&nbsp; <span class="fa fa-angle-right"></span>
+    </a>
+</li>
+<li class="details_tools">
+    <ul ng-show="pageFramework.showTools" class="util_list">
+        <li ng-show="doc.hasDownload || doc.isMappable || (canFlag && !isRemote) || doc.isEsriLayer">
+            <div class="hover_flyout" style="position: inherit">
+                <a href="javascript:;" class="btn btn-util icon-arrow flyout_trigger"><span class="icon-tools"></span>Tools</a>
+                <div class="flyout">
+                    <div class="arrow"></div>
+                    <div class="flyout_inner">
+                        <ul>
+                            <li ng-repeat="action in actions" ng-if="action.visible">
+                                <a href="javascript:;" ng-click="action.do()">{{action.text}}</a>
+                            </li>
+                            <li ng-show="canFlag && !isRemote && !doc.tag_flags"><a href="javascript:;" ng-click="showFlagModal()">Flag This</a></li>
+                            <li ng-show="canFlag && !isRemote && doc.tag_flags"><a href="javascript:;" ng-click="removeFlag()">Remove Flag</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </li>
+        <li ng-show="!doc.inCart && canCart()"><a href="javascript:;" class="btn btn-util" role="button" ng-click="addToCart()"><span class="icon-plus"></span>{{uiText.add.text}}</span></a></li>
+        <li ng-show="doc.inCart"><a href="javascript:;" class="btn btn-util" role="button" ng-click="removeFromCart()"><span class="icon-x"></span> Remove</a></li>
+        <li ng-if="isRemote"><a href="javascript:;" class="btn btn-util" role="button" ng-click="openOnRemote()">Open on Remote Server</a></li>
+        <!--
+        <li>
+            <div class="hover_flyout">
+                <a href="javascript:;" class="btn btn-util icon-arrow flyout_trigger"><span class="icon-card_star_empty"></span>Rate this</a>
+                <div class="flyout rating_flyout">
+                    <div class="arrow"></div>
+                    <div class="flyout_inner">
+                        <rating ng-model="rate.user_rating" max="3" readonly="false" on-leave="ratingLeave(value)"></rating>
+                        <div class="small">Roll over stats, then click to rate.</div>
+                    </div>
+                </div>
+            </div>
+        </li>
+        -->
+    </ul>
+</li>

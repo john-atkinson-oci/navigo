@@ -1,0 +1,31 @@
+<table class="table table-body-striped table-condensed" id="details-table">
+    <tbody>
+    <tr ng-repeat="field in displayFields">
+        <th>{{field.name}}</th>
+        <td>
+            <div class="formatted_value" ng-show="!field.editing && !field.isHtml && field.style !== 'STRING'">
+                                            <span ng-if="!field.isArray">
+                                                <a href="#/search?fq={{field.key + ':' + field.value}}&disp={{disp}}" ng-if="field.stype != 'date' && field.key != 'bbox'">{{field.formattedValue}}</a>
+                                                <a href="#/search?place={{field.value}}&disp={{disp}}" ng-if="field.key == 'bbox'">{{field.formattedValue}}</a>
+                                                <a href="#/search?fq={{field.key + ':' + field.value}}&disp={{disp}}" ng-if="field.stype == 'date'">{{field.formattedValue | date:'medium'}}</a>
+                                            </span>
+                                            <span ng-if="field.isArray" ng-repeat="f in field.value track by $index">
+                                                <a href="#/search?fq={{field.key + ':' + f}}&disp={{disp}}">{{field.formattedValues[f]}}</a>{{!$last && ', ' || ''}}
+                                            </span>
+            </div>
+            <div class="formatted_value" ng-if="!field.editing && field.isHtml" ng-bind-html="field.formattedValue"></div>
+            <div class="formatted_value" ng-if="!field.editing && field.style === 'STRING'" ng-bind="field.formattedValue"></div>
+
+            <input ng-show="field.editing && !field.isHtml" ng-model="field.value" type="text" class="input_field" />
+            <textarea ng-show="field.editing && field.isHtml" ng-model="field.value" class="input_field"></textarea>
+
+            <a href="javascript:;" class="edit_link pull-right" ng-show="canEdit && field.editable && !field.editing && !field.appending" title="Edit" ng-click="edit(field)"><span class="icon-edit"></span>Edit</a>
+
+            <div class="action_row" ng-show="field.editing">
+                <button ng-click="doSave(field)" type="button" title="Save" class="btn btn-secondary">Save</button>
+                <a href="javascript:;" ng-click="cancel(field)" type="button" title="Cancel" class="link_secondary">Cancel</a>
+            </div>
+        </td>
+    </tr>
+    </tbody>
+</table>
