@@ -16,11 +16,11 @@ angular.module('voyager.search').directive('savedContent', function(authService)
 				if (category === 'search') {
 					if (!scope.showSearch) {
 						scope.showSearch = true;
-						scope.showTab = scope.isAnonymous ? 'suggested' : 'saved';
+						scope.showTab = scope.canSave ? 'suggested' : 'saved';
 					}
 				} else {
 					scope.showSearch = false;
-					scope.showTab = scope.isAnonymous ? 'suggested' : 'saved';
+					scope.showTab = scope.canSave ? 'suggested' : 'saved';
 				}
 
 				return false;
@@ -42,13 +42,15 @@ angular.module('voyager.search').directive('savedContent', function(authService)
 			});
 
 			scope.isAnonymous = authService.isAnonymous();
+			scope.canSave = authService.hasPermission('save_search');
 
-			if(scope.isAnonymous) {
+			if(scope.canSave) {
 				scope.showTab = 'suggested';
 			}
 
 			function _syncState() {
 				scope.isAnonymous = authService.isAnonymous();
+				scope.canSave = authService.hasPermission('save_search');
 			}
 
 			authService.addObserver(_syncState);
