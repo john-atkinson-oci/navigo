@@ -9,11 +9,11 @@ describe('Saved Content Modal Directive:', function () {
         });
     });
 
-    var scope, element, compiled, timeout, httpMock, $window, $document, $compile, $rootScope, $modal;
+    var scope, element, compiled, timeout, httpMock, $window, $document, $compile, $rootScope, $modal, authService;
 
     var response = new ResponseMocks().mockSavedSearchesResponse;
 
-    beforeEach(inject(function (_$compile_, _$rootScope_, $timeout, $httpBackend, _$window_, _$document_, _$modal_) {
+    beforeEach(inject(function (_$compile_, _$rootScope_, $timeout, $httpBackend, _$window_, _$document_, _$modal_, _authService_) {
         $rootScope = _$rootScope_;
         scope = $rootScope.$new();
         $compile = _$compile_;
@@ -22,6 +22,7 @@ describe('Saved Content Modal Directive:', function () {
         $window = _$window_;
         $document = _$document_;
         $modal = _$modal_;
+        authService = _authService_;
     }));
 
     afterEach(function() {
@@ -61,7 +62,8 @@ describe('Saved Content Modal Directive:', function () {
             httpMock.flush();
         });
 
-        it('should default to suggested searches on anonymous', function(){
+        it('should default to suggested searches when has save_search permission', function(){
+            spyOn(authService,'hasPermission').and.returnValue(true);
             httpMock.whenJSONP(new RegExp('ssearch\/select')).respond(response);
             httpMock.expectJSONP(new RegExp('slocation\/select')).respond(response);
             //TODO why is this firing again
@@ -72,7 +74,8 @@ describe('Saved Content Modal Directive:', function () {
             httpMock.flush();
         });
 
-        it('should default to suggested tab on anonymous', function(){
+        it('should default to suggested tab when has save_search permission', function(){
+            spyOn(authService,'hasPermission').and.returnValue(true);
             httpMock.whenJSONP(new RegExp('ssearch\/select')).respond(response);
             // httpMock.whenJSONP(new RegExp('slocation\/select')).respond(response);
             applyDirective();
@@ -84,6 +87,7 @@ describe('Saved Content Modal Directive:', function () {
         });
 
         it('should change tabs when asked', function(){
+            spyOn(authService,'hasPermission').and.returnValue(true);
             httpMock.whenJSONP(new RegExp('ssearch\/select')).respond(response);
             httpMock.whenJSONP(new RegExp('slocation\/select')).respond(response);
             applyDirective();
