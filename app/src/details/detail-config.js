@@ -164,7 +164,7 @@ angular.module('voyager.details').
                             formattedValue: formattedValue,
                             formattedValues: formattedValues,
                             order: _displayFieldsOrder[name],
-                            editable: _editable[name],
+                            editable: _editable[name] || configService.getIsGlobalEditable(),
                             maxLines: _maxLines[name],
                             showLabel: _showLabels[name],
                             key: name,
@@ -183,7 +183,7 @@ angular.module('voyager.details').
 
             //fields without values aren't returned in the query results, display those that are editable
             $.each(emptyFields, function (name) {
-                if(_editable[name] === true) {
+                if(_editable[name] === true || configService.getIsGlobalEditable()) {
                     prettyFields.push({name: translateService.getFieldName(name), value: '', formattedValue: '', order:_displayFieldsOrder[name], editable: true, key:name});
                 }
             });

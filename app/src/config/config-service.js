@@ -28,6 +28,7 @@ angular.module('voyager.config').
         var _pageFramework;
         var _defaultView;
         var _cardView;
+        var _globalEditable;
 
         function _getPageFramework() {
             return _pageFramework;
@@ -102,6 +103,7 @@ angular.module('voyager.config').
             _shards = null;
             _systemFilterMap = _.indexBy(configData.filters, 'field');
             _setConfigFields(configData.details.detailsTableFields);
+            _globalEditable = configData.details.detailsTableFieldsAreEditable;
             _homepage = configData.homepage;
             _pageFramework = configData.pageElements;
             _defaultView = configData.defaultView;
@@ -522,6 +524,9 @@ angular.module('voyager.config').
             },
             updateConfig: function(data) {
                 return _updateConfig(data);
+            },
+            getIsGlobalEditable : function() {
+                return _globalEditable;
             }
         };
 
