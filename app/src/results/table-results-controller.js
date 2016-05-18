@@ -102,6 +102,8 @@ angular.module('voyager.results')
             // keep the image and tools columns fixed - after scope digest
             $timeout(function() {
                 tableResultsService.setFixedWidths();
+                // workaround - in some scenarios the width bound with angular doesn't work
+                tableResultsService.forceWidths();
             });
 
             $timeout(function () {

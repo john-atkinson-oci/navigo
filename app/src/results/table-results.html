@@ -15,7 +15,7 @@
                         </div>
                     </div>
                 </th>
-                <th style="width:{{field.width}}" ng-repeat="field in tableFields" data-resizable-column-id="{{field.field}}" class="semi sortable" ng-class="{
+                <th style="width:{{field.width}}" ng-repeat="field in tableFields" data-resizable-column-id="{{field.field}}" data-width="{{field.width}}" class="semi sortable" ng-class="{
                             'sort-asc': tableParams.isSortBy(field.field, 'asc'),
                             'sort-desc': tableParams.isSortBy(field.field, 'desc')
                           }"
