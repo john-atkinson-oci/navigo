@@ -1,7 +1,7 @@
 /*global angular, $, L */
 
 angular.module('voyager.search')
-	.directive('vsSearchMap', function ($compile, config, mapUtil, $timeout, mapControls, configService, $window, $http, sugar, $rootScope, mapCustomControls) {
+	.directive('vsSearchMap', function ($compile, config, mapUtil, $timeout, mapControls, configService, $window, $http, sugar, $rootScope, mapCustomControls, searchViewService) {
 		'use strict';
 
 		function getMapSizeTemplate() {
@@ -547,6 +547,7 @@ angular.module('voyager.search')
 				$scope.$watch('view', function(view){
 					_cancelDraw();
 					leafletData.getMap('search-map').then(function (map) {
+						// TODO - limit zoom on table view?  Map is big there too
 						if(view === 'map') {
 							map.options.minZoom = 2;  //keep from zooming out too far when the map is big
 						} else {
@@ -556,7 +557,7 @@ angular.module('voyager.search')
 						$timeout(function () {  //workaround for leaflet bug:  https://github.com/Leaflet/Leaflet/issues/2021
 							map.invalidateSize();  //workaround when initially hidden
 							// console.log('view change - moving');
-							if(!angular.isDefined(map.currentBounds)) {
+							if(angular.isUndefined(map.currentBounds) && angular.isUndefined(searchViewService.getUserView())) {
 								$scope.resizeMap();
 							}
 							// adjust layers control placement if table view is showing map size toggle control
