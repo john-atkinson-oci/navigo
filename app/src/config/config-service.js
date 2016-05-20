@@ -29,6 +29,7 @@ angular.module('voyager.config').
         var _defaultView;
         var _cardView;
         var _globalEditable;
+        var _isQueryAllCatalogs;
 
         function _getPageFramework() {
             return _pageFramework;
@@ -102,6 +103,7 @@ angular.module('voyager.config').
         function _updateConfig(configData) {
             _shards = null;
             _systemFilterMap = _.indexBy(configData.filters, 'field');
+            _isQueryAllCatalogs = configData.queryAllCatalogs;
             _setConfigFields(configData.details.detailsTableFields);
             _globalEditable = configData.details.detailsTableFieldsAreEditable;
             _homepage = configData.homepage;
@@ -208,8 +210,9 @@ angular.module('voyager.config').
         }
 
         function _createCatalogFacet(catalog, urlShards) {
-            var selected = _.indexOf(urlShards, catalog.id);
-            return {display: catalog.name, style: 'CHECK', isSelected: selected !== -1, field: 'shard', hasCount: false, id: catalog.id, raw: catalog.url};
+            var selected = _.indexOf(urlShards, catalog.id) !== -1 || _isQueryAllCatalogs;
+            
+            return {display: catalog.name, style: 'CHECK', isSelected: selected, field: 'shard', hasCount: false, id: catalog.id, raw: catalog.url};
         }
 
         function _createCatalogFilter(catalogFilter, facetTypes) {
@@ -231,17 +234,14 @@ angular.module('voyager.config').
                         selectedCount++;
                     }
                 });
-                // if (selectedCount === 0 && catalogFilter.values.length > 0) {
-                //     var local = _.find(catalogFilter.values, {id: 'LOCAL'});
-                //     if(!!local) {
-                //         local.isSelected = true;
-                //         selectedCount = 1;
-                //         $location.search('shards', ['LOCAL'].join());
-                //     }
-                // }
-                if (selectedCount === 1) {  //if only 1 selected, disable it so one has to always be selected
+                if (selectedCount === 1 ) {  //if only 1 selected, disable it so one has to always be selected. 
                     var filter = _.find(catalogFilter.values, {isSelected: true});
                     filter.disabled = true;
+                } 
+                if(!!_isQueryAllCatalogs) {
+                    _.each(catalogFilter.values, function (facet) {
+                       facet.disabled = true; 
+                    });
                 }
                 return;
             });
