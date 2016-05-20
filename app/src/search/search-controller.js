@@ -545,7 +545,7 @@ angular.module('voyager.search')
 			if (view === 'table') {
 				searchService.setItemsPerPage(50);
 			} else {
-				searchService.setItemsPerPage(24);
+				searchService.setItemsPerPage(48);
 				if(doSearch === true) {
 					_doSearch(_page);
 				}

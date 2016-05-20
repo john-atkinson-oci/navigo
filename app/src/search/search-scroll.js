@@ -12,7 +12,7 @@
             if (view === 'table') {
                 searchService.setItemsPerPage(50);
             } else {
-                searchService.setItemsPerPage(24);
+                searchService.setItemsPerPage(48);
             }
         }
 
@@ -45,7 +45,7 @@
                     if(view === 'table') {
                         records = 50 * _actualPage;
                     } else {
-                        records = 24 * _actualPage;
+                        records = 48 * _actualPage;
                     }
                     //console.log('setting items per page: ' + records);
                     searchService.setItemsPerPage(records);

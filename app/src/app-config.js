@@ -41,6 +41,9 @@ angular.module('portalApp')
                     'table-results@search': {
                         'templateUrl':'src/results/table-results.html'
                     },
+                    'grid-results@search': {
+                        'templateUrl':'src/results/grid-results.html'
+                    },
                     'selected-filters@search': {
                         'templateUrl':'src/filters/selected-filters.html',
                         'controller':'SelectedFiltersCtrl'

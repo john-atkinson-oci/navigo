@@ -1,0 +1,9 @@
+<article class="grid_item" ng-repeat="doc in results" xvs-card style="min-width: 125px; max-width: 150px; margin-bottom: 20px; padding: 0" ng-if="::doc.thumb">
+    <div class="img">
+        <a ng-href="{{::doc.detailLink}}">
+            <img src="{{::doc.thumb}}" style="height: 150px; width: 150px" class="img-responsive" ng-class="doc.defaultThumb ? 'default-thumb' : ''" alt="{{::doc.name}}" />
+        </a>
+    </div>
+    <!--TODO - add gridView.showFlag condition below-->
+    <div class="tag" ng-if="::doc.tag_flags"><a href="javascript:;" ng-click="applyTag(doc.tag_flags)" ng-bind="::doc.tag_flags"></a></div>
+</article>

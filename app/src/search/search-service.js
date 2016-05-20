@@ -5,7 +5,7 @@ angular.module('voyager.search').
         'use strict';
         var _page = 1;
         var _idsPage = _page;
-        var _itemsPerPage = 24;
+        var _itemsPerPage = 48;
         var _lastResult = {};
         var _recordIds = [];
         var _sortDirection = angular.isDefined(config.defaultSortDirection)? config.defaultSortDirection : 'desc';

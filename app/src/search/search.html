@@ -42,6 +42,7 @@
 
 				<div class="list_wrap">
 
+					<!--table results-->
 					<div class="list table_list" ng-if="view == 'table'">
 						<div class="row" vs-table-results data-size="{{tableViewMapSize}}">
 							<!-- the ng if below will make sure the directive reloads and reset the columns -->
@@ -49,14 +50,14 @@
 						</div>
 					</div>
 
-					<!--card results-->
-					<div class="list card_view card_list {{listViewClass}}" ng-if="view != 'table' && view != 'list'">
+					<!--card/map results-->
+					<div class="list card_view card_list {{listViewClass}}" ng-if="view == 'map' || view == 'card'">
 						<div class="row" ui-view="card-results"></div>
 					</div>
 
-					<!--table results-->
-					<div class="list list_list" ng-if="view == 'list'">
-						<div class="row" ui-view="table-results"></div>
+					<!--grid results-->
+					<div class="list" ng-if="view == 'grid'">
+						<div class="row" ui-view="grid-results"></div>
 					</div>
 
 					<div class="list">

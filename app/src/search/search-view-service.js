@@ -21,7 +21,7 @@ angular.module('voyager.search').
 				page.mapWrapperClass = 'tab_center';
 				page.mapContentClass = 'col-lg-12 col-md-12 no_float';
 				page.headerClass = 'col-lg-12 col-md-12 col-sm-12 col-xs-12 no_float';
-			} else if (view === 'card' || view === 'list') {
+			} else if (view === 'card' || view === 'list' || view === 'grid') {
 				page.mapContentClass = 'col-lg-8 col-md-8 col-sm-8 col-xs-6 col-lg-push-4 col-md-push-4 col-sm-push-4 col-xs-push-6 no_float';
 				page.headerClass = 'col-lg-8 col-md-8 col-sm-12 col-xs-12';
 
