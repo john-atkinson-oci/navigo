@@ -1,7 +1,7 @@
 /*global angular, $, _, window, document */
 'use strict';
 angular.module('voyager.details')
-    .controller('DetailsCtrl', function ($scope, $stateParams, cartService, translateService, authService, config, detailService, mapServiceFactory, leafletData, usSpinnerService, dialogs, $sce, $q, configService, $timeout, tagService, searchService, $location, $window, urlUtil, resultsDecorator, loading, detailConfig, $analytics, $modal, filterService, detailsActions, $log) {
+    .controller('DetailsCtrl', function ($scope, $stateParams, cartService, translateService, authService, config, detailService, mapServiceFactory, leafletData, usSpinnerService, dialogs, $sce, $q, configService, $timeout, tagService, searchService, $location, $window, urlUtil, resultsDecorator, loading, detailConfig, $analytics, $uibModal, filterService, detailsActions, $log) {
 
         var displayParams = '';
         var _layer;
@@ -565,7 +565,7 @@ angular.module('voyager.details')
         };
 
         $scope.showFlagModal = function() {
-            var modal = $modal.open({
+            var modal = $uibModal.open({
                 templateUrl: 'src/bulk-update/flag-all.html',
                 controller: 'FlagAllCtrl',
                 resolve: {

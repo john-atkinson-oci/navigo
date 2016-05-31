@@ -3,7 +3,7 @@
 angular.module('voyager.search')
 	.controller('SearchCtrl', function ($scope, cartService, searchService, $location, authService, loading, $window, $document,
 										usSpinnerService, configService, localStorageService, config, $analytics, savedSearchService,
-										recentSearchService, filterService, cartItemsQuery, $timeout, inView, $q, $modal, searchScroll,
+										recentSearchService, filterService, cartItemsQuery, $timeout, inView, $q, searchScroll,
 										urlUtil, searchViewService, searchModalService) {
 
 		var _busy = true;
@@ -658,5 +658,13 @@ angular.module('voyager.search')
             inView.reset();
 			authService.removeObserver(_reloadResults);
         });
+
+		$scope.hoverIn = function(doc){
+			doc.hoverShow = true;
+		};
+
+		$scope.hoverOut = function(doc){
+			doc.hoverShow = false;
+		};
 
     });

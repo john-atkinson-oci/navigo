@@ -2,7 +2,7 @@
 'use strict';
 
 angular.module('voyager.layout')
-	.controller('HeaderCtrl', function(config, $rootScope, $scope, $modal, $window, $location, $stateParams, sugar, cartService, authService, savedSearchService, $state) {
+	.controller('HeaderCtrl', function(config, $rootScope, $scope, $uibModal, $window, $location, $stateParams, sugar, cartService, authService, savedSearchService, $state) {
 
 		var vm = this;
 
@@ -99,7 +99,7 @@ angular.module('voyager.layout')
 		}
 
 		function _showLoginDialog() {
-			var modalInstance = $modal.open({
+			var modalInstance = $uibModal.open({
 				templateUrl: 'common/security/login.html',
 				size:'md',
 				controller: 'AuthCtrl'
@@ -127,7 +127,7 @@ angular.module('voyager.layout')
 		}
 
 		function _showSavedSearch() {
-			$modal.open({
+			$uibModal.open({
                 template: '<saved-content />',
                 size:'lg',
                 scope: $scope

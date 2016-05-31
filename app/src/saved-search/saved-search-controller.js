@@ -2,7 +2,7 @@
 'use strict';
 
 angular.module('voyager.search')
-.controller('SavedSearchCtrl', function ($scope, $location, filterService, savedSearchService, $modal, authService, $analytics, recentSearchService) {
+.controller('SavedSearchCtrl', function ($scope, $location, filterService, savedSearchService, authService, $analytics, recentSearchService) {
 
 	function _loadSavedSearches() {
 		savedSearchService.getSavedSearches().then(function(savedSearches) {

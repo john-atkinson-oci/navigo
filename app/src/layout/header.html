@@ -18,7 +18,7 @@
 					<span class="highlight queue_count" ng-bind="vm.queueTotal | number"></span>
 				</a><a href="javascript:;" class="icon-arrow flyout_trigger"></a>
 				<div class="flyout queue_flyout">
-					<div class="arrow"></div>
+					<div class="flyout_arrow"></div>
 					<div class="flyout_inner">
 						<ul>
 							<li><a href="javascript:;" ng-click="vm.gotoPage('queue')">New task</a></li>
@@ -31,7 +31,7 @@
 			<li class="hover_flyout" ng-hide="vm.isAnonymous">
 				<a href="javascript:;" class="icon-arrow underline flyout_trigger"><span class="icon-header_account"></span><span class="txt" ng-bind="vm.user.name"></span></a>
 				<div class="flyout user_flyout">
-					<div class="arrow"></div>
+					<div class="flyout_arrow"></div>
 					<div class="flyout_inner">
 						<ul>
 							<li ng-if="vm.canManage"><a href="{{vm.manageLink}}">Manage Voyager</a></li>

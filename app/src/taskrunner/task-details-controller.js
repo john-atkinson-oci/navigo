@@ -1,5 +1,5 @@
 angular.module('taskRunner')
-    .controller('TaskDetailsCtrl', function ($scope, $modalInstance, inputItems, params, task) {
+    .controller('TaskDetailsCtrl', function ($scope, $uibModalInstance, inputItems, params, task) {
         'use strict';
 
         $scope.task = task;
@@ -7,7 +7,7 @@ angular.module('taskRunner')
         $scope.params = params;
 
         $scope.cancel = function() {
-            $modalInstance.close();
+            $uibModalInstance.close();
         };
 
     });

@@ -3,7 +3,7 @@
 'use strict';
 
 angular.module('voyager.home')
-	.controller('HomeCtrl', function(config, $scope, $window, $location, homeService, authService, leafletData, filterService, searchService, savedSearchService, sugar, configService, savedSearchQuery, $modal) {
+	.controller('HomeCtrl', function(config, $scope, $window, $location, homeService, authService, leafletData, filterService, searchService, savedSearchService, sugar, configService, savedSearchQuery, $uibModal) {
 
 		$scope.search = {};
 		$scope.mapTypes = ['Place', 'Map'];
@@ -110,7 +110,7 @@ angular.module('voyager.home')
 		}
 
 		$scope.saveLocation = function() {
-			$modal.open({
+			$uibModal.open({
                 template: '<vs-save-location-dialog />',
                 size: 'md',
                 scope: $scope

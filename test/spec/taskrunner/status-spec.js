@@ -17,19 +17,19 @@ describe('StatusCtrl', function () {
         });
     });
 
-    var scope, controllerService, q, location, timeout, _leafletData, httpMock, $modal;
+    var scope, controllerService, q, location, timeout, _leafletData, httpMock, $uibModal;
 
     //spies
    // var $s = {'configService':{}};
 
-    beforeEach(inject(function ($rootScope, $controller, $q, $location, $timeout, $httpBackend, _$modal_) {
+    beforeEach(inject(function ($rootScope, $controller, $q, $location, $timeout, $httpBackend, _$uibModal_) {
         scope = $rootScope.$new();
         q = $q;
         controllerService = $controller;
         location = $location;
         timeout = $timeout;
         httpMock = $httpBackend;
-        $modal = _$modal_;
+        $uibModal = _$uibModal_;
        // EZSpy.spyOnAll($s, [{configService:configService}]);
         //$s.searchService.getPageIds.and.returnValue([1]);
         //$s.searchService.testEsriGeocodeService.and.returnValue(q.when({}));
@@ -225,39 +225,39 @@ describe('StatusCtrl', function () {
 
         it('should show details', function () {
 
-            spyOn($modal, 'open').and.callThrough();
+            spyOn($uibModal, 'open').and.callThrough();
 
             initCancelled();
 
             scope.showDetails();
 
-            expect($modal.open).toHaveBeenCalled();
+            expect($uibModal.open).toHaveBeenCalled();
 
         });
 
         it('should show report', function () {
 
-            spyOn($modal, 'open').and.callThrough();
+            spyOn($uibModal, 'open').and.callThrough();
 
             initCancelled();
 
             scope.report = {Skipped:true};
             scope.showReport();
 
-            expect($modal.open).toHaveBeenCalled();
+            expect($uibModal.open).toHaveBeenCalled();
 
         });
 
         it('should show log', function () {
 
-            spyOn($modal, 'open').and.callThrough();
+            spyOn($uibModal, 'open').and.callThrough();
 
             initCancelled();
 
             scope.report = {Skipped:true};
             scope.getData('file');
 
-            expect($modal.open).toHaveBeenCalled();
+            expect($uibModal.open).toHaveBeenCalled();
 
         });
 

@@ -1,7 +1,7 @@
 /*global angular, $, _, document */
 
 angular.module('taskRunner')
-    .controller('StatusCtrl', function ($scope, taskService, $stateParams, $timeout, config, $location, paramService, $window, usSpinnerService, $analytics, $modal, sugar) {
+    .controller('StatusCtrl', function ($scope, taskService, $stateParams, $timeout, config, $location, paramService, $window, usSpinnerService, $analytics, $uibModal, sugar) {
 
         'use strict';
 
@@ -344,7 +344,7 @@ angular.module('taskRunner')
         });
 
         $scope.getData = function(file) {
-            $modal.open({
+            $uibModal.open({
                 templateUrl: 'src/taskrunner/task-log.html',
                 controller: 'TaskLogCtrl',
                 size: 'lg',
@@ -363,7 +363,7 @@ angular.module('taskRunner')
         };
 
         $scope.showDetails = function() {
-            $modal.open({
+            $uibModal.open({
                 templateUrl: 'src/taskrunner/task-details.html',
                 controller: 'TaskDetailsCtrl',
                 size: 'lg',
@@ -414,7 +414,7 @@ angular.module('taskRunner')
             if($scope.report.Skipped || $scope.report.Errors) {
                 size = 'lg';
             }
-            $modal.open({
+            $uibModal.open({
                 templateUrl: 'src/taskrunner/task-report.html',
                 controller: 'TaskReportCtrl',
                 size: size,

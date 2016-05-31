@@ -1,9 +1,9 @@
 /*global angular, _ */
 angular.module('voyager.search')
-    .controller('EditAllCtrl', function ($scope, $modalInstance, tagService, configService, resultTotalCount, $controller) {
+    .controller('EditAllCtrl', function ($scope, $uibModalInstance, tagService, configService, resultTotalCount, $controller) {
         'use strict';
 
-        $controller('BaseUpdateCtrl', { $scope: $scope, resultTotalCount: resultTotalCount , $modalInstance: $modalInstance});
+        $controller('BaseUpdateCtrl', { $scope: $scope, resultTotalCount: resultTotalCount , $uibModalInstance: $uibModalInstance});
 
         var _tags = [];
 

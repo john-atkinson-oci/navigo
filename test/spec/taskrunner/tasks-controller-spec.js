@@ -19,16 +19,16 @@ describe('TasksCtrl', function () {
         });
     });
 
-    var $scope, controllerService, q, location, timeout, httpMock, $modal, cartService, $state;
+    var $scope, controllerService, q, location, timeout, httpMock, $uibModal, cartService, $state;
 
-    beforeEach(inject(function ($rootScope, $controller, $q, $location, $timeout, $httpBackend, _$modal_, _cartService_, _$state_) {
+    beforeEach(inject(function ($rootScope, $controller, $q, $location, $timeout, $httpBackend, _$uibModal_, _cartService_, _$state_) {
         $scope = $rootScope.$new();
         q = $q;
         controllerService = $controller;
         location = $location;
         timeout = $timeout;
         httpMock = $httpBackend;
-        $modal = _$modal_;
+        $uibModal = _$uibModal_;
         cartService = _cartService_;
         $state = _$state_;
     }));
