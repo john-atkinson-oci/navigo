@@ -1,6 +1,6 @@
 'use strict';
 angular.module('voyager.search')
-    .controller('BaseUpdateCtrl', function ($scope, $modalInstance, tagService, resultTotalCount, $timeout, usSpinnerService, config) {
+    .controller('BaseUpdateCtrl', function ($scope, $uibModalInstance, tagService, resultTotalCount, $timeout, usSpinnerService, config) {
 
         var _loading = false;
 
@@ -46,12 +46,12 @@ angular.module('voyager.search')
         };
 
         $scope.cancel = function () {
-            $modalInstance.dismiss('cancel');
+            $uibModalInstance.dismiss('cancel');
             $scope.successMessage = false;
         };
 
         $scope.done = function () {
-            $modalInstance.close();
+            $uibModalInstance.close();
         };
 
     });

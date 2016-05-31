@@ -2,7 +2,7 @@
 
 describe('Controller: HeaderCtrl', function () {
 
-    var $scope, $timeout, $modal, usSpinnerService, $location, $http, $controller, q, authService, sut, $window, $state;
+    var $scope, $timeout, $uibModal, usSpinnerService, $location, $http, $controller, q, authService, sut, $window, $state;
     var cfg = _.clone(config);
 
     beforeEach(function () {
@@ -17,10 +17,10 @@ describe('Controller: HeaderCtrl', function () {
             $provide.constant('config', cfg);
         });
 
-        inject(function (_$controller_, _$timeout_, _$modal_, _usSpinnerService_, _$location_, $httpBackend , $rootScope, _$q_, _authService_, _$window_, _$state_) {
+        inject(function (_$controller_, _$timeout_, _$uibModal_, _usSpinnerService_, _$location_, $httpBackend , $rootScope, _$q_, _authService_, _$window_, _$state_) {
             $scope = $rootScope.$new();
             $timeout = _$timeout_;
-            $modal = _$modal_;
+            $uibModal = _$uibModal_;
             usSpinnerService = _usSpinnerService_;
             $location = _$location_;
             $http = $httpBackend;

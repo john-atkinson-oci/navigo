@@ -4,7 +4,7 @@
     angular.module('voyager.results')
         .factory('actionManager', actionManager);
 
-    function actionManager($window, $analytics, $modal, authService, sugar) {
+    function actionManager($window, $analytics, $uibModal, authService, sugar) {
 
         function _isVisible(action, scope) {
             if (action.visible === true) {
@@ -93,7 +93,7 @@
                     $analytics.eventTrack('tag', {
                         category: 'results', label: action.url // jshint ignore:line
                     });
-                    $modal.open({
+                    $uibModal.open({
                         templateUrl: 'common/tagging/tagging.html',
                         size: 'md',
                         controller: 'TagDialog',

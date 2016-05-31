@@ -1,7 +1,7 @@
 /*global angular, querystring, config */
 
 angular.module('voyager.search').
-    factory('savedLocationService', function (sugar, $http, configService, $q, authService, $modal, $location, $analytics, filterService, converter) {
+    factory('savedLocationService', function (sugar, $http, configService, $q, authService, $location, $analytics, filterService, converter) {
         'use strict';
 
         var observers = [];

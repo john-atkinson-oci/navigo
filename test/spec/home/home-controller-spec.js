@@ -2,7 +2,7 @@
 
 describe('Controller: HomeCtrl', function () {
 
-    var $scope, $timeout, $modal, usSpinnerService, $location, $http, $controller, leafletData, q;
+    var $scope, $timeout, $uibModal, usSpinnerService, $location, $http, $controller, leafletData, q;
     var cfg = _.clone(config);
 
     beforeEach(function () {
@@ -15,10 +15,10 @@ describe('Controller: HomeCtrl', function () {
             $provide.constant('config', cfg);
         });
 
-        inject(function (_$controller_, _$timeout_, _$modal_, _usSpinnerService_, _$location_, $httpBackend , $rootScope, _leafletData_, _$q_) {
+        inject(function (_$controller_, _$timeout_, _$uibModal_, _usSpinnerService_, _$location_, $httpBackend , $rootScope, _leafletData_, _$q_) {
             $scope = $rootScope.$new();
             $timeout = _$timeout_;
-            $modal = _$modal_;
+            $uibModal = _$uibModal_;
             usSpinnerService = _usSpinnerService_;
             $location = _$location_;
             $http = $httpBackend;
@@ -33,7 +33,7 @@ describe('Controller: HomeCtrl', function () {
     // Specs here
 
     function initController() {
-        $controller('HomeCtrl', {$scope: $scope, $modalInstance: {}, resultTotalCount: 1, leafletData: leafletData});
+        $controller('HomeCtrl', {$scope: $scope, $uibModalInstance: {}, resultTotalCount: 1, leafletData: leafletData});
 
         //$http.expectGET(new RegExp('auth')).respond({}); // auth call
         $http.expectJSONP(new RegExp('ssearch')).respond({response:{docs:[]}}); // saved searches

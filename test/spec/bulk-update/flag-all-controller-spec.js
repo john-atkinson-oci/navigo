@@ -2,7 +2,7 @@
 
 describe('Controller: FlagAllCtrl', function () {
 
-    var $scope, $timeout, $modal, usSpinnerService, $location, $http, $controller;
+    var $scope, $timeout, $uibModal, usSpinnerService, $location, $http, $controller;
     var cfg = _.clone(config);
 
     beforeEach(function () {
@@ -14,10 +14,10 @@ describe('Controller: FlagAllCtrl', function () {
             $provide.constant('config', cfg);
         });
 
-        inject(function (_$controller_, _$timeout_, _$modal_, _usSpinnerService_, _$location_, $httpBackend) {
+        inject(function (_$controller_, _$timeout_, _$uibModal_, _usSpinnerService_, _$location_, $httpBackend) {
             $scope = {};
             $timeout = _$timeout_;
-            $modal = _$modal_;
+            $uibModal = _$uibModal_;
             usSpinnerService = _usSpinnerService_;
             $location = _$location_;
             $http = $httpBackend;
@@ -29,7 +29,7 @@ describe('Controller: FlagAllCtrl', function () {
     // Specs here
 
     it('should init', function () {
-        $controller('FlagAllCtrl', {$scope: $scope, $modalInstance: {}, resultData: {totalItemCount:1}});
+        $controller('FlagAllCtrl', {$scope: $scope, $uibModalInstance: {}, resultData: {totalItemCount:1}});
         $http.expectJSONP(new RegExp('usertags')).respond({facet_counts:{facet_fields:{fss_tag_flags:['flag']}}});
         $http.flush();
 
@@ -37,7 +37,7 @@ describe('Controller: FlagAllCtrl', function () {
     });
 
     it('should validate', function () {
-        $controller('FlagAllCtrl', {$scope: $scope, $modalInstance: {}, resultData: {totalItemCount:1}});
+        $controller('FlagAllCtrl', {$scope: $scope, $uibModalInstance: {}, resultData: {totalItemCount:1}});
         $http.expectJSONP(new RegExp('usertags')).respond({facet_counts:{facet_fields:{fss_tag_flags:['flag']}}});
         $http.flush();
 
@@ -49,7 +49,7 @@ describe('Controller: FlagAllCtrl', function () {
     });
 
     it('should save all', function () {
-        $controller('FlagAllCtrl', {$scope: $scope, $modalInstance: {close:function(){}}, resultData: {totalItemCount:1}});
+        $controller('FlagAllCtrl', {$scope: $scope, $uibModalInstance: {close:function(){}}, resultData: {totalItemCount:1}});
         $http.expectJSONP(new RegExp('usertags')).respond({facet_counts:{facet_fields:{fss_tag_tags:['tag']}}});
         $http.flush();
 
@@ -65,7 +65,7 @@ describe('Controller: FlagAllCtrl', function () {
 
     // *NOTE this is the remove controller - just adding here
     it('should remove all', function () {
-        $controller('RemoveAllFlagsCtrl', {$scope: $scope, $modalInstance: {close:function(){}}, resultData: {totalItemCount:1}});
+        $controller('RemoveAllFlagsCtrl', {$scope: $scope, $uibModalInstance: {close:function(){}}, resultData: {totalItemCount:1}});
 
         $scope.save();
 
@@ -76,7 +76,7 @@ describe('Controller: FlagAllCtrl', function () {
     });
 
     it('should cancel', function () {
-        $controller('RemoveAllFlagsCtrl', {$scope: $scope, $modalInstance: {dismiss:function(){}}, resultData: {totalItemCount:1}});
+        $controller('RemoveAllFlagsCtrl', {$scope: $scope, $uibModalInstance: {dismiss:function(){}}, resultData: {totalItemCount:1}});
 
         $scope.cancel();
 

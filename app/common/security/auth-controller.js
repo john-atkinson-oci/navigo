@@ -1,6 +1,6 @@
 /*global angular */
 angular.module('voyager.security')
-    .controller('AuthCtrl', function ($scope, $modalInstance, $controller) {
+    .controller('AuthCtrl', function ($scope, $uibModalInstance, $controller) {
         'use strict';
 
         $controller('AuthBaseCtrl', { $scope: $scope });
@@ -8,11 +8,11 @@ angular.module('voyager.security')
         var successCallback = $scope.authSuccess;
         $scope.authSuccess = function() {
             successCallback();
-            $modalInstance.close();
+            $uibModalInstance.close();
         };
 
         $scope.cancel = function () {
-            $modalInstance.dismiss('cancel');
+            $uibModalInstance.dismiss('cancel');
         };
 
     });

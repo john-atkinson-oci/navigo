@@ -1,6 +1,6 @@
 /*global angular */
 angular.module('voyager.filters')
-    .controller('FacetsCtrl', function ($scope, $modalInstance, selectedFilter, updateFilters, facetService, $location, translateService, usSpinnerService) {
+    .controller('FacetsCtrl', function ($scope, $uibModalInstance, selectedFilter, updateFilters, facetService, $location, translateService, usSpinnerService) {
 
         'use strict';
         $scope.selectedFilter = translateService.getFieldName(selectedFilter.field);
@@ -26,7 +26,7 @@ angular.module('voyager.filters')
 
         $scope.filterResults = function (facet, evt) {
             if (facet.style !== 'CHECK') {
-                $modalInstance.close(facet);
+                $uibModalInstance.close(facet);
             } else {
                 // facet.checked - for the filterscontroller $scope.filterResults
                 // if checked is defined, will set isSelected to the reverse of the checked value.
@@ -37,7 +37,7 @@ angular.module('voyager.filters')
         };
 
         $scope.cancel = function () {
-            $modalInstance.dismiss('cancel');
+            $uibModalInstance.dismiss('cancel');
         };
 
     });

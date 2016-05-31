@@ -1,12 +1,12 @@
 /*global angular */
 
 angular.module('voyager.search').
-	factory('searchModalService', function ($modal) {
+	factory('searchModalService', function ($uibModal) {
 		'use strict';
 
 		return {
 			exportResultsList: function(scope) {
-				$modal.open({
+				$uibModal.open({
 					template: '<div><vs-export-results /></div>',
 					size: 'md',
 					scope: scope
@@ -14,7 +14,7 @@ angular.module('voyager.search').
 			},
 
 			showResultErrorTrace: function(resultStackTrace) {
-				$modal.open({
+				$uibModal.open({
 					templateUrl: 'src/results/result-error.html',
 					controller: 'ResultErrorCtrl',
 					size: 'lg',
@@ -27,7 +27,7 @@ angular.module('voyager.search').
 			},
 
 			flagModal: function(templateUrl, controller, totalItems) {
-				return $modal.open({
+				return $uibModal.open({
 					templateUrl: templateUrl,
 					controller: controller,
 					resolve: {
@@ -41,7 +41,7 @@ angular.module('voyager.search').
 			},
 
 			editAllPresentation: function(totalItems) {
-				return $modal.open({
+				return $uibModal.open({
 					templateUrl: 'src/bulk-update/edit-all.html',
 					controller: 'EditAllCtrl',
 					size: 'lg',

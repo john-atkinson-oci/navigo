@@ -34,7 +34,7 @@ describe('Controller: SavedSearchDialogCtrl', function () {
     function initCtrl(permission) {
         $controller('SaveSearchDialog', {
             $scope: $scope,
-            $modalInstance:{close:function(){}},
+            $uibModalInstance:{close:function(){}},
             searchItem:{query:{}}
         });
 

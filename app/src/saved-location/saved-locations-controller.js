@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('voyager.search')
-.controller('SavedLocationsCtrl', function ($scope, $location, savedLocationService, $modal, authService) {
+.controller('SavedLocationsCtrl', function ($scope, $location, savedLocationService, authService) {
 
 	var vm = this;
 

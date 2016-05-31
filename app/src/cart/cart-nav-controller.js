@@ -1,6 +1,6 @@
 /*global angular */
 angular.module('cart')
-    .controller('CartNavCtrl', function (config, $scope, $location, searchService, cartService, authService, usSpinnerService, $modal, taskService, $timeout, $state) {
+    .controller('CartNavCtrl', function (config, $scope, $location, searchService, cartService, authService, usSpinnerService, $uibModal, taskService, $timeout, $state) {
         'use strict';
 
         function _init() {

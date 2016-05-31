@@ -2,7 +2,7 @@
 
 describe('Controller: CartNavCtrl', function () {
 
-	var $scope, CartNavCtrl, $timeout, taskService, authService, cartService, searchService, $modal, $state, usSpinnerService, $location, $http, $controller;
+	var $scope, CartNavCtrl, $timeout, taskService, authService, cartService, searchService, $uibModal, $state, usSpinnerService, $location, $http, $controller;
 	var cfg = _.clone(config);
 
 	beforeEach(function () {
@@ -18,14 +18,14 @@ describe('Controller: CartNavCtrl', function () {
 			$provide.constant('config', cfg);
 		});
 
-		inject(function (_$controller_, _$timeout_, _taskService_, _authService_, _cartService_, _searchService_, _$modal_, _usSpinnerService_, _$location_, _$state_, $httpBackend, $rootScope) {
+		inject(function (_$controller_, _$timeout_, _taskService_, _authService_, _cartService_, _searchService_, _$uibModal_, _usSpinnerService_, _$location_, _$state_, $httpBackend, $rootScope) {
 			$scope = $rootScope.$new();
 			$timeout = _$timeout_;
 			taskService = _taskService_;
 			authService = _authService_;
 			cartService = _cartService_;
 			searchService = _searchService_;
-			$modal = _$modal_;
+			$uibModal = _$uibModal_;
 			usSpinnerService = _usSpinnerService_;
 			$location = _$location_;
 			$http = $httpBackend;

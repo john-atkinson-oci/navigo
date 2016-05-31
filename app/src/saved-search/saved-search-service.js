@@ -1,7 +1,7 @@
 /*global angular, $, querystring, config */
 
 angular.module('voyager.search').
-    factory('savedSearchService', function (sugar, $http, configService, $q, authService, $modal, recentSearchService, $location, filterService, $analytics, converter, displayConfigResource, solrGrunt, $timeout) {
+    factory('savedSearchService', function (sugar, $http, configService, $q, authService, $uibModal, recentSearchService, $location, filterService, $analytics, converter, displayConfigResource, solrGrunt, $timeout) {
         'use strict';
 
         var observers = [];
@@ -150,7 +150,7 @@ angular.module('voyager.search').
             },
 
             showSaveSearchDialog: function (item) {
-                var modalInstance = $modal.open({
+                var modalInstance = $uibModal.open({
                     templateUrl: 'src/saved-search/save-search-dialog.html',
                     size: 'md',
                     controller: 'SaveSearchDialog',
@@ -169,7 +169,7 @@ angular.module('voyager.search').
             },
 
             showSearchModal: function(tab) {
-                var modalInstance = $modal.open({
+                var modalInstance = $uibModal.open({
                         templateUrl: 'src/saved-search/saved-search-modal.html',
                         size:'lg',
                         controller: 'SavedSearchModalCtrl',
