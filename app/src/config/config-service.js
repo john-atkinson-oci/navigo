@@ -237,10 +237,10 @@ angular.module('voyager.config').
                 if (selectedCount === 1 ) {  //if only 1 selected, disable it so one has to always be selected. 
                     var filter = _.find(catalogFilter.values, {isSelected: true});
                     filter.disabled = true;
-                } 
+                }
                 if(!!_isQueryAllCatalogs) {
                     _.each(catalogFilter.values, function (facet) {
-                       facet.disabled = true; 
+                        facet.disabled = true;
                     });
                 }
                 return;
