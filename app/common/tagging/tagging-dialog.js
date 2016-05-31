@@ -1,6 +1,6 @@
 /*global angular, $, _, queryString*/
 angular.module('voyager.tagging')
-    .controller('TagDialog', function($scope, $modalInstance, $analytics, tagService, doc) {
+    .controller('TagDialog', function($scope, $uibModalInstance, $analytics, tagService, doc) {
         'use strict';
 
         $scope.doc = doc;
@@ -11,7 +11,7 @@ angular.module('voyager.tagging')
 
         $scope.ok = function () {
             tagService.save($scope.id, $scope.field, $scope.value).then(function(response) {
-                $modalInstance.close();
+                $uibModalInstance.close();
                 $analytics.eventTrack('tag', {
                     category: 'results'
                 });
@@ -21,7 +21,7 @@ angular.module('voyager.tagging')
         };
 
         $scope.cancel = function () {
-            $modalInstance.dismiss('cancel');
+            $uibModalInstance.dismiss('cancel');
         };
 
     });

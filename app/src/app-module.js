@@ -6,7 +6,6 @@ angular.module('portalApp', [
     'ngAria',
     'angularSpinner',
     'ui.router',
-    'pascalprecht.translate',
     'ui.bootstrap',
     'ui.slider',
     'ui.select2',

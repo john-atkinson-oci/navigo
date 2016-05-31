@@ -1,14 +1,14 @@
 /*global angular */
 
 angular.module('taskRunner').
-	factory('taskModalService', function ($modal) {
+	factory('taskModalService', function ($uibModal) {
 		'use strict';
 		var modalInstance = null;
 
 		return {
 
 			showTaskValidationError: function(errorMessage, constraintFormats) {
-				$modal.open({
+				$uibModal.open({
 					templateUrl: 'src/taskrunner/task-error-dialog.html',
 					controller: 'TaskErrorCtrl',
 					size: 'lg',
@@ -24,7 +24,7 @@ angular.module('taskRunner').
 			},
 
 			showInvalidTaskItems: function(invalidTaskItems) {
-				modalInstance = $modal.open({
+				modalInstance = $uibModal.open({
 					templateUrl: 'src/taskrunner/invalid-items-dialog.html',
 					controller: 'InvalidItemsCtrl',
 					size: 'lg',

@@ -1,6 +1,6 @@
 /*global angular */
 angular.module('taskRunner')
-    .controller('ModalSearchCtrl', function($scope, $modalInstance, queryCriteria) {
+    .controller('ModalSearchCtrl', function($scope, $uibModalInstance, queryCriteria) {
         'use strict';
 
         $scope.queryCriteria = queryCriteria;
@@ -8,10 +8,10 @@ angular.module('taskRunner')
         $scope.isModal = true;
 
         $scope.ok = function (path) {
-            $modalInstance.close(path);
+            $uibModalInstance.close(path);
         };
 
         $scope.cancel = function () {
-            $modalInstance.dismiss('cancel');
+            $uibModalInstance.dismiss('cancel');
         };
 });

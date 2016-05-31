@@ -1,7 +1,7 @@
 /*global angular */
 
 angular.module('taskRunner')
-    .controller('TaskLogCtrl', function ($scope, $modalInstance, taskService, usSpinnerService, file, task) {
+    .controller('TaskLogCtrl', function ($scope, $uibModalInstance, taskService, usSpinnerService, file, task) {
         'use strict';
 
         $scope.task = task;
@@ -17,7 +17,7 @@ angular.module('taskRunner')
         };
 
         $scope.cancel = function() {
-            $modalInstance.close();
+            $uibModalInstance.close();
         };
 
     });

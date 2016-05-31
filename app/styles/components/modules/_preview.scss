@@ -69,3 +69,29 @@
 		}
 	}
 }
+
+.preview {
+	position: absolute;
+	top: 0px;
+	left: 150px;
+	z-index: 1001;
+	//width: 500px;
+	//background: $white;
+	font-size: $smallSize;
+	//display: none;
+
+	article {
+		background: $white;
+		position: relative;
+		border: 1px solid $borderColor;
+		@include boxShadow(0, 1px, 3px, 1px, rgba(0, 0, 0, 0.11));
+	}
+
+	.article_inner {
+		position: relative;
+		//padding: 0 15px 15px;
+		padding-top: 10px;
+		overflow: hidden;
+
+	}
+}

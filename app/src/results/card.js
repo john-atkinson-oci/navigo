@@ -15,7 +15,7 @@ angular.module('voyager.results')
             );
         };
     })
-    .directive('vsCard', function (authService, cartService, config, $window, $analytics, $modal, actionManager, sugar, inView, $document, $location) {
+    .directive('vsCard', function (authService, cartService, config, $window, $analytics, actionManager, sugar, inView, $document, $location) {
 
         function _initActions(scope){
             var actionMap = {}, defaultAction = null, displayActions = [], actions = sugar.copy(config.docActions);  //copy so we don't change config and every card has separate instance of actions
@@ -163,7 +163,7 @@ angular.module('voyager.results')
 
                 $scope.applyFilter = function(filter, value) {
                     if($location.path() === '/search') {
-                        var facet = {field:value, filter:filter, humanized : translateService.getFieldName(filter) + ':' + value, name:value};
+                        var facet = {field:value, filter:filter, humanized : translateService.getFieldName(filter) + ':' + value, name:value, pretty: translateService.getType(value)};
                         filterService.addFilter(facet);
                         $location.search('fq', filterService.getFilterAsLocationParams());
                         $timeout(function() {  //let scope digest and add url params

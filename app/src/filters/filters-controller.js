@@ -1,6 +1,6 @@
 'use strict';
 angular.module('voyager.filters')
-    .controller('FiltersCtrl', function ($scope, filterService, $location, $modal, $timeout, statsService, treeService, configService, filterQuery, translateService, filterStyle, calendarFilter, $document, catalogService) {
+    .controller('FiltersCtrl', function ($scope, filterService, $location, $uibModal, $timeout, statsService, treeService, configService, filterQuery, translateService, filterStyle, calendarFilter, $document, catalogService) {
 
         var _busy = false;
         var _notifyFilter = false;
@@ -236,7 +236,7 @@ angular.module('voyager.filters')
         };
 
         $scope.showAllFacets = function (filter) {
-            var modalInstance = $modal.open({
+            var modalInstance = $uibModal.open({
                 templateUrl: 'src/filters/facets.html',
                 controller: 'FacetsCtrl',
                 resolve: {

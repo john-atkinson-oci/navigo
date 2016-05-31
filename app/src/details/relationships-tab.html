@@ -6,14 +6,14 @@
         <ul class="tree" frang-tree>
             <li frang-tree-repeat="node in tree">
                 <div ng-class="{folder: node.children && node.children.length > 0, selected:node.id === doc.id}">
-                                                <span class="icon"
-                                                      ng-class="{collapsed: node.collapsed, expanded: !node.collapsed}"
-                                                      ng-show="node.children && node.children.length > 0"
-                                                      ng-click="node.collapsed = !node.collapsed"></span>
+                    <span class="icon"
+                          ng-class="{collapsed: node.collapsed, expanded: !node.collapsed}"
+                          ng-show="node.children && node.children.length > 0"
+                          ng-click="node.collapsed = !node.collapsed"></span>
                     <span ng-class="node.hasMissingData ? 'node_icon icon-error label-danger' : 'node_icon'"></span>
-                                                <span class="label">
-                                                   <a href="#/show/{{node.id}}?disp={{disp}}" data-id="{{node.id}}">{{node.name}}</a>
-                                                </span>
+                    <span class="label">
+                       <a href="#/show/{{node.id}}?disp={{disp}}" data-id="{{node.id}}">{{node.name}}</a>
+                    </span>
                 </div>
                 <ul class="child" ng-if="!node.collapsed && node.children && node.children.length > 0"
                     frang-tree-insert-children="node.children"></ul>

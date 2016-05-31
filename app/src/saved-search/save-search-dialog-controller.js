@@ -2,7 +2,7 @@
 'use strict';
 
 angular.module('voyager.search')
-    .controller('SaveSearchDialog', function($scope, $modalInstance, savedSearchService, $location, authService, $analytics, recentSearchService, searchItem) {
+    .controller('SaveSearchDialog', function($scope, $uibModalInstance, savedSearchService, $location, authService, $analytics, recentSearchService, searchItem) {
 
         $scope.savedSearch = {query:searchItem.query};
 
@@ -79,7 +79,7 @@ angular.module('voyager.search')
         function _saveSearch(savedSearch) {
             return savedSearchService.saveSearch(savedSearch, searchItem).then(function(response) {
 
-                $modalInstance.close();
+                $uibModalInstance.close();
                 $analytics.eventTrack('saved-search', {
                     category: 'save'
                 });
@@ -95,7 +95,7 @@ angular.module('voyager.search')
         }
 
         $scope.cancel = function () {
-            $modalInstance.dismiss('cancel');
+            $uibModalInstance.dismiss('cancel');
         };
 
         $scope.hasPermission = function(permission) {

@@ -57,7 +57,7 @@ angular.module('taskRunner')
             }
         }
 
-        function _controller($scope, $modal) {
+        function _controller($scope, $uibModal) {
 
             var lastTerm = '';
             var filteredGroups = [];
@@ -115,7 +115,7 @@ angular.module('taskRunner')
 
             $scope.open = function (size) {
 
-                var modalInstance = $modal.open({
+                var modalInstance = $uibModal.open({
                     templateUrl: 'common/filebrowser/file-browser.html',
                     controller: 'ModalBrowseCtrl',
                     size: size,
@@ -136,7 +136,7 @@ angular.module('taskRunner')
 
             $scope.search = function (size) {
 
-                var modalInstance = $modal.open({
+                var modalInstance = $uibModal.open({
                     templateUrl: 'common/simple-search/search.html',
                     controller: 'ModalSearchCtrl',
                     size: size,

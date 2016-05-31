@@ -1,7 +1,7 @@
 /*global angular, _ */
 
 angular.module('voyager.search')
-	.controller('SearchInputCtrl', function ($scope, config, $location, searchService, $timeout, filterService, mapUtil, sugar, $modal) {
+	.controller('SearchInputCtrl', function ($scope, config, $location, searchService, $timeout, filterService, mapUtil, sugar, $uibModal) {
 		'use strict';
 
 		var placeChanged = false;
@@ -22,7 +22,7 @@ angular.module('voyager.search')
 		};
 
 		$scope.saveLocation = function() {
-			$modal.open({
+			$uibModal.open({
                 template: '<vs-save-location-dialog />',
                 size: 'md',
                 scope: $scope

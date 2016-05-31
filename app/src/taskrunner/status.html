@@ -54,7 +54,7 @@
 								<div class="hover_flyout">
 									<a href="javascript:;" class="flyout_trigger"><i class="fa fa-file"></i>&nbsp;View task log</a>
 									<div class="flyout">
-										<div class="arrow"></div>
+										<div class="flyout_arrow"></div>
 										<div class="flyout_inner">
 											<ul>
 												<li ng-repeat="file in logFiles">
@@ -69,7 +69,7 @@
                                 <div class="hover_flyout">
                                     <a href="javascript:;" class="flyout_trigger">Messages</a>
                                     <div class="flyout">
-                                        <div class="arrow"></div>
+                                        <div class="flyout_arrow"></div>
                                         <div class="flyout_inner">
                                             <ul>
                                                 <li ng-repeat="message in messages">
@@ -84,7 +84,7 @@
                                 <div class="hover_flyout">
                                     <a href="javascript:;" class="flyout_trigger">Warnings</a>
                                     <div class="flyout">
-                                        <div class="arrow"></div>
+                                        <div class="flyout_arrow"></div>
                                         <div class="flyout_inner">
                                             <ul>
                                                 <li ng-repeat="warning in warnings track by $index">
@@ -105,7 +105,7 @@
 								<div class="hover_flyout keep_open">
 									<a href="javascript:" class="flyout_trigger"><i class="fa fa-bell"></i>&nbsp;Notify when complete</a>
 									<div class="flyout">
-										<div class="arrow"></div>
+										<div class="flyout_arrow"></div>
 										<div class="flyout_inner">
 											<form class="form-inline" role="form" style="padding: 20px 20px 20px 20px; width: 300px; height: 110px;">
 												<div class="form-group" style="width: 100%">
@@ -122,7 +122,7 @@
                                 <div class="hover_flyout">
                                     <a href="javascript:" class="flyout_trigger"><i class="fa fa-copy"></i>&nbsp;Copy URL</a>
                                     <div class="flyout copy_flyout">
-                                        <div class="arrow"></div>
+                                        <div class="flyout_arrow"></div>
                                         <div class="flyout_inner">
                                             <input id="copy-url" type="text" readonly value="{{copyUrl}}" onClick="javascript:this.select();" />
                                         </div>
