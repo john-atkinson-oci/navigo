@@ -24,7 +24,7 @@ module.exports = function(config) {
             'app/bower_components/angular-route/angular-route.js',
             'app/bower_components/angular-local-storage/dist/angular-local-storage.min.js',
             'app/bower_components/angular-translate/angular-translate.js',
-            'app/bower_components/angular-dialog-service/dialogs.min.js',
+            'app/bower_components/angular-dialog-service/dist/dialogs.min.js',
             'app/bower_components/angular-dialog-service/dist/dialogs-default-translations.min.js',
             'app/bower_components/spin.js/spin.js',
             'app/bower_components/ng-sortable/dist/ng-sortable.js',

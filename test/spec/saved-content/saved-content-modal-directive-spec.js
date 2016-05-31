@@ -9,11 +9,11 @@ describe('Saved Content Modal Directive:', function () {
         });
     });
 
-    var scope, element, compiled, timeout, httpMock, $window, $document, $compile, $rootScope, $modal, authService;
+    var scope, element, compiled, timeout, httpMock, $window, $document, $compile, $rootScope, $uibModal, authService;
 
     var response = new ResponseMocks().mockSavedSearchesResponse;
 
-    beforeEach(inject(function (_$compile_, _$rootScope_, $timeout, $httpBackend, _$window_, _$document_, _$modal_, _authService_) {
+    beforeEach(inject(function (_$compile_, _$rootScope_, $timeout, $httpBackend, _$window_, _$document_, _$uibModal_, _authService_) {
         $rootScope = _$rootScope_;
         scope = $rootScope.$new();
         $compile = _$compile_;
@@ -21,7 +21,7 @@ describe('Saved Content Modal Directive:', function () {
         httpMock = $httpBackend;
         $window = _$window_;
         $document = _$document_;
-        $modal = _$modal_;
+        $uibModal = _$uibModal_;
         authService = _authService_;
     }));
 
