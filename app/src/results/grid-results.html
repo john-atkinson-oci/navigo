@@ -5,5 +5,5 @@
         </a>
     </div>
     <!--TODO - add gridView.showFlag condition below-->
-    <div class="tag" ng-if="::doc.tag_flags"><a href="javascript:;" ng-click="applyTag(doc.tag_flags)" ng-bind="::doc.tag_flags"></a></div>
+    <div class="tag" ng-if="::doc.tag_flags && gridView.showFlag"><a href="javascript:;" ng-click="applyTag(doc.tag_flags)" ng-bind="::doc.tag_flags"></a></div>
 </article>

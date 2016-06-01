@@ -28,6 +28,7 @@ angular.module('voyager.config').
         var _pageFramework;
         var _defaultView;
         var _cardView;
+        var _gridView;
         var _globalEditable;
         var _isQueryAllCatalogs;
 
@@ -110,6 +111,7 @@ angular.module('voyager.config').
             _pageFramework = configData.pageElements;
             _defaultView = configData.defaultView;
             _cardView = configData.cardView;
+            _gridView = configData.gridView;
             if(configData.cardView) {
                 _setSummaryFields(configData.cardView.fields || []);
             } else {
@@ -254,6 +256,10 @@ angular.module('voyager.config').
             getDefaultView: _getDefaultView,
 
             getCardView: _getCardView,
+
+            getGridView: function() {
+                return _gridView;
+            },
 
             getDisplayFilters: function () {
                 //facetTypes are filters

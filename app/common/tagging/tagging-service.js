@@ -99,6 +99,24 @@ angular.module('voyager.tagging').
 
             removeBulkField: function(field) {
                 return _save(field, '', $location.search(), 'REMOVE');
+            },
+
+            applyTag: function(tag, $scope, filterService) {
+                if ($location.path().indexOf('/search') > -1) {
+                    filterService.clear();
+                    $location.search('q', null);
+                    $location.search('place', null);
+                    $location.search('recent', null);
+                    $scope.$emit('removeFilterEvent', {});  //fire filter event
+                }
+                else {
+                    $location.path('search');
+                }
+
+                $location.search('fq', 'tag_flags:' + tag);
+                filterService.setFilters({'fq' : 'tag_flags:' + tag});
+                $scope.$emit('filterEvent');
+                return false;
             }
         };
 

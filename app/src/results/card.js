@@ -15,7 +15,7 @@ angular.module('voyager.results')
             );
         };
     })
-    .directive('vsCard', function (authService, cartService, config, $window, $analytics, actionManager, sugar, inView, $document, $location) {
+    .directive('vsCard', function (authService, cartService, config, $window, $analytics, actionManager, sugar, inView, $document, $location, tagService) {
 
         function _initActions(scope){
             var actionMap = {}, defaultAction = null, displayActions = [], actions = sugar.copy(config.docActions);  //copy so we don't change config and every card has separate instance of actions
@@ -109,21 +109,7 @@ angular.module('voyager.results')
                 };
 
                 $scope.applyTag = function(tag) {
-                    if ($location.path().indexOf('/search') > -1) {
-                        filterService.clear();
-                        $location.search('q', null);
-                        $location.search('place', null);
-                        $location.search('recent', null);
-                        $scope.$emit('removeFilterEvent', {});  //fire filter event
-                    }
-                    else {
-                        $location.path('search');
-                    }
-
-                    $location.search('fq', 'tag_flags:'+tag);
-                    filterService.setFilters({'fq' : 'tag_flags:'+tag});
-                    $scope.$emit('filterEvent');
-                    return false;
+                    tagService.applyTag(tag, $scope, filterService);
                 };
 
                 $scope.hover = function(active) {

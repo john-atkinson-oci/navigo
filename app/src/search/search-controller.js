@@ -4,7 +4,7 @@ angular.module('voyager.search')
 	.controller('SearchCtrl', function ($scope, cartService, searchService, $location, authService, loading, $window, $document,
 										usSpinnerService, configService, localStorageService, config, $analytics, savedSearchService,
 										recentSearchService, filterService, cartItemsQuery, $timeout, inView, $q, searchScroll,
-										urlUtil, searchViewService, searchModalService) {
+										urlUtil, searchViewService, searchModalService, tagService) {
 
 		var _busy = true;
 		//var _scrollTimer;
@@ -225,6 +225,7 @@ angular.module('voyager.search')
 					searchScroll.do(_params.view);
 				}
 				$scope.resetTable = false;
+				$scope.gridView = configService.getGridView();
 
 			}, function(res){
 				_handleSearchError(res);
@@ -665,6 +666,10 @@ angular.module('voyager.search')
 
 		$scope.hoverOut = function(doc){
 			doc.hoverShow = false;
+		};
+
+		$scope.applyTag = function(tag) {
+			tagService.applyTag(tag, $scope, filterService);
 		};
 
     });
