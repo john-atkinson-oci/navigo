@@ -1,9 +1,8 @@
 <article class="grid_item" ng-repeat="doc in results" ng-if="::doc.thumb" popover-placement="auto right" uib-popover-template="'src/results/grid-item-preview.html'" popover-is-open="doc.hoverShow" ng-mouseover="hoverIn(doc)" ng-mouseleave="hoverOut(doc)">
     <div class="img">
         <a ng-href="{{::doc.detailLink}}">
-            <img src="{{::doc.thumb}}" ng-class="doc.defaultThumb ? 'default-thumb' : ''" alt="{{::doc.name}}" />
+            <img ng-src="{{::doc.thumb}}" ng-class="doc.defaultThumb ? 'default-thumb' : ''" alt="{{::doc.name}}" />
         </a>
     </div>
-    <!--TODO - add gridView.showFlag condition below-->
     <div class="tag" ng-if="::doc.tag_flags && gridView.showFlag"><a href="javascript:;" ng-click="applyTag(doc.tag_flags)" ng-bind="::doc.tag_flags"></a></div>
 </article>
