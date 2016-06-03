@@ -173,10 +173,12 @@ angular.module('voyager.details').
                         });
                     }
                 }
-                if (name === 'abstract' && !_.isEmpty(doc.abstract)) {
-                    doc.displayDescription = _.last(prettyFields); // jshint ignore:line
-                } else if (name === 'description' && !_.isEmpty(doc.description)) {
-                    doc.displayDescription = _.last(prettyFields);
+                if (prettyFields.length > 0) {
+                    if (name === 'abstract' && !_.isEmpty(doc.abstract)) {
+                        doc.displayDescription = _.last(prettyFields); // jshint ignore:line
+                    } else if (name === 'description' && !_.isEmpty(doc.description)) {
+                        doc.displayDescription = _.last(prettyFields);
+                    }
                 }
 
             });
