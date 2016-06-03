@@ -31,7 +31,7 @@ angular.module('voyager.details').
         var _showPath = true;
         var _showFormat = true;
         var _defaultMetadataStylesheet = '';
-
+        var _globalEditable = false;
 
         var excludePrefix = config.excludeDetails;
 
@@ -88,6 +88,7 @@ angular.module('voyager.details').
                     }
                     displayFields = display.detailsTableFields;
                     _showAllFields = display.detailsTableConfig === 'ALL';
+                    _globalEditable = display.detailsTableFieldsAreEditable;
                     if (display.summaryFields) {
                         _summaryFields = display.summaryFields.fields;
                         _setSummaryInclusions();
@@ -164,7 +165,7 @@ angular.module('voyager.details').
                             formattedValue: formattedValue,
                             formattedValues: formattedValues,
                             order: _displayFieldsOrder[name],
-                            editable: _editable[name] || configService.getIsGlobalEditable(),
+                            editable: _editable[name] || _globalEditable,
                             maxLines: _maxLines[name],
                             showLabel: _showLabels[name],
                             key: name,
@@ -185,7 +186,7 @@ angular.module('voyager.details').
 
             //fields without values aren't returned in the query results, display those that are editable
             $.each(emptyFields, function (name) {
-                if(_editable[name] === true || configService.getIsGlobalEditable()) {
+                if(_editable[name] === true || _globalEditable) {
                     prettyFields.push({name: translateService.getFieldName(name), value: '', formattedValue: '', order:_displayFieldsOrder[name], editable: true, key:name});
                 }
             });
