@@ -1,7 +1,9 @@
 /*global angular, $, _, window, document */
 'use strict';
 angular.module('voyager.details')
-    .controller('DetailsCtrl', function ($scope, $stateParams, cartService, translateService, authService, config, detailService, mapServiceFactory, leafletData, usSpinnerService, dialogs, $sce, $q, configService, $timeout, tagService, searchService, $location, $window, urlUtil, resultsDecorator, loading, detailConfig, $analytics, $uibModal, filterService, detailsActions, $log) {
+    .controller('DetailsCtrl', function ($scope, $stateParams, cartService, translateService, authService, config, detailService, mapServiceFactory, leafletData,
+                                         usSpinnerService, dialogs, $sce, $q, configService, $timeout, tagService, searchService, $location, $window, urlUtil, resultsDecorator,
+                                         loading, detailConfig, $analytics, $uibModal, filterService, detailsActions, $log, converter) {
 
         var displayParams = '';
         var _layer;
@@ -29,9 +31,14 @@ angular.module('voyager.details')
         var _tags = [];
         $scope.select2Options = {
             'multiple': true,
-            'simple_tags': true,
-            'tags': _tags
+            'simple_tags': true
         };
+
+        if (!_.isEmpty(config.homepage.tagValues)) {
+            $scope.select2Options.data = converter.toIdTextArray(config.homepage.tagValues);
+        } else {
+            $scope.select2Options.tags = _tags;
+        }
 
         function _setPermissions() {
             $scope.canEdit = authService.hasPermission('edit_fields');

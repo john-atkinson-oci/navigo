@@ -1,6 +1,6 @@
 /*global angular, _ */
 angular.module('voyager.search')
-    .controller('EditAllCtrl', function ($scope, $uibModalInstance, tagService, configService, resultTotalCount, $controller) {
+    .controller('EditAllCtrl', function ($scope, $uibModalInstance, tagService, configService, resultTotalCount, $controller, config, converter) {
         'use strict';
 
         $controller('BaseUpdateCtrl', { $scope: $scope, resultTotalCount: resultTotalCount , $uibModalInstance: $uibModalInstance});
@@ -9,9 +9,14 @@ angular.module('voyager.search')
 
         $scope.select2Options = {
             'multiple': true,
-            'simple_tags': true,
-            'tags': _tags
+            'simple_tags': true
         };
+
+        if (!_.isEmpty(config.homepage.editValues)) {
+            $scope.select2Options.data = converter.toIdTextArray(config.homepage.editValues);
+        } else {
+            $scope.select2Options.tags = _tags;
+        }
 
         function _init() {
 

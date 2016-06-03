@@ -241,6 +241,13 @@ angular.module('voyager.util').
                 }
 
                 return voyagerParams;
+            },
+
+            toIdTextArray: function(source) {
+                source = source.replace(/ /g, '').split(',');
+                return _.transform(source, function(arr, val, idx) {
+                    arr[idx] = {id: val, text: val};
+                });
             }
         };
 
