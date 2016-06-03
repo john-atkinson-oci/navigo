@@ -68,5 +68,8 @@
 		position: relative;
 		margin-top: 0px;
 		display: none;
+		overflow: hidden;
+		-ms-text-overflow: ellipsis;
+		text-overflow: ellipsis;
 	}
 }
