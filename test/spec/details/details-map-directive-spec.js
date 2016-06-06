@@ -35,12 +35,10 @@ describe('Details Map Directive:', function () {
 
         it('should render leaflet map', function () {
 
-            var geo = {
-                'type': 'Feature',
-                'geometry': {
-                    'type': 'Point',
-                    'coordinates': [0, 0]
-                }
+            var geo = {'type': 'Polygon',
+                'coordinates': [
+                [ [100.0, 0.0], [101.0, 0.0], [101.0, 1.0], [100.0, 1.0], [100.0, 0.0] ]
+            ]
             };
 
             scope.doc = {id:'id', geo:geo};
