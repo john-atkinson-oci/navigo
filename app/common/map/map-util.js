@@ -168,8 +168,10 @@ angular.module('voyager.map').
                 var bounds = geoJson.getBounds();
                 var area = 100000;  // default to large area
                 if (checkArea) {
-                    area = L.GeometryUtil.geodesicArea(bounds);
-                    if(area < 15000) {  // 15000 sq meters ~ 10 miles
+                    var lyr = L.GeoJSON.geometryToLayer(geo);
+                    var latlngs = lyr.getLatLngs();
+                    area = L.GeometryUtil.geodesicArea(latlngs);
+                    if(area < 15000 && area !== 0) {  // 15000 sq meters ~ 10 miles
                         if(geo.type !== 'Point') {  // just show a point since the polygon may not be visible when zoomed out
                             geo.type = 'Point';
                             var center = bounds.getCenter();
@@ -183,7 +185,7 @@ angular.module('voyager.map').
                     $timeout(function() {
                         map.currentBounds = bounds;  //flag so resize event doesn't override
                         map.fitBounds(bounds);
-                        if(area < 15000) {  // 15000 sq meters ~ 10 miles
+                        if(area < 15000 && area !== 0) {  // 15000 sq meters ~ 10 miles
                             // TODO - can we make this smarter
                             // check the basemap zoom levels/boundaries and align with our area to get a more accurate zoom level
                             // use some kind of "near me" to find nearest location (placefinder?) and zoom to the boundaries of this point and that place
