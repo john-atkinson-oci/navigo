@@ -150,6 +150,7 @@ angular.module('taskRunner').
                 else {
                     return cartItemsQuery.fetchItems(query, items).then(function(data) {
                         var count = data.count;
+                        _extent = data.bbox;
                         if (count === query.count){
                             severity = 0; // Valid
                         }
@@ -162,13 +163,6 @@ angular.module('taskRunner').
                         return severity;
                     });
                 }
-            },
-
-            setItemExtent: function() {
-                var items = cartService.getItemIds();
-                return cartItemsQuery.fetchItems(null, items).then(function(data) {
-                    _extent = data.bbox;
-                });
             },
 
             checkStatus: function (id) {

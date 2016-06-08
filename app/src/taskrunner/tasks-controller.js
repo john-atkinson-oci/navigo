@@ -10,7 +10,6 @@ angular.module('taskRunner')
         $scope.constraintFormats = [];
 
         function _loadTasks() {
-            taskService.setItemExtent();
             taskService.findAllTasks($scope.canReload).then(function(response) {
                 $scope.taskList = response; //.data.response.docs;
                 usSpinnerService.stop('tasks-spinner');
