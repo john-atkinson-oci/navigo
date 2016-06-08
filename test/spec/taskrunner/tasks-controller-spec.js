@@ -40,7 +40,7 @@ describe('TasksCtrl', function () {
         });
 
         httpMock.expectGET(new RegExp('auth\/info')).respond({permissions:permission, user:{groups:[]}}); //auth call
-        httpMock.expectJSONP(new RegExp('solr')).respond({response: {docs: items}}); // for setItemExtent call
+        //httpMock.expectJSONP(new RegExp('solr')).respond({response: {docs: items}}); // for setItemExtent call
         httpMock.expectJSONP(new RegExp('solr\/tasks')).respond({response: {docs: items}});
         httpMock.expectJSONP(new RegExp('solr')).respond({response: {docs: items}}); // for validateTaskItems which calls cartItemsQuery.fetchItems
         httpMock.flush();
@@ -66,7 +66,7 @@ describe('TasksCtrl', function () {
             var item = {category: ['category'], task: 'name'};
             initCtrl({manage:true}, [item]);
             httpMock.expectPOST(new RegExp('tasks\/refresh')).respond({});
-            httpMock.expectJSONP(new RegExp('solr')).respond({response: {docs: []}}); // for setItemExtent call
+            //httpMock.expectJSONP(new RegExp('solr')).respond({response: {docs: []}}); // for setItemExtent call
             httpMock.expectJSONP(new RegExp('solr\/tasks')).respond({response: {docs: [item]}});
             httpMock.expectJSONP(new RegExp('solr')).respond({response: {docs: []}}); // for validateTaskItems which calls cartItemsQuery.fetchItems
             $scope.refreshTasks();
