@@ -59,7 +59,7 @@ angular.module('voyager.map').
                 return _drawingToolTemplate();
             },
             convertBuffer: function(buffer, geoJSON) {
-                return $http.post(config.root + 'api/rest/spatial/buffer?diff=true&distance=' + buffer.distance + '&units=' + buffer.measure, geoJSON);
+                return $http.post(config.root + 'api/rest/spatial/buffer?diff=false&distance=' + buffer.distance + '&units=' + buffer.measure, geoJSON);
             }
         };
 
