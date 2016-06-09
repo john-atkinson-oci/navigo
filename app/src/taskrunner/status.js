@@ -426,4 +426,24 @@ angular.module('taskRunner')
             });
         };
 
+        $scope.scheduleTask = function() {
+            $scope.currentJobId = $scope.id;
+            $modal.open({
+                template: '<div><vs-schedule-task /></div>',
+                size: 'md',
+                scope: $scope,
+                windowClass: 'modal-simple'
+            });
+        };
+
+        $scope.cancelTask = function() {
+            $scope.currentJobId = $scope.id;
+            $modal.open({
+                template: '<div><vs-cancel-scheduled-task /></div>',
+                size: 'md',
+                scope: $scope,
+                windowClass: 'modal-simple'
+            });
+        };
+
     });

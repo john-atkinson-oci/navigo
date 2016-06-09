@@ -3,7 +3,7 @@
 angular.module('taskRunner').
     factory('templateService', function () {
         'use strict';
-        var advancedIcon = '<i ng-show="param.advanced" class="fa fa-gear" title="Advanced"></i>';
+        var advancedIcon = '<i ng-show="param.advanced" class="fa fa-gear" title="Advanced" style="margin-right: 5px"></i>';
         var requiredIcon = '<i ng-show="param.required" class="fa fa-asterisk" title="Required" style="margin-left: 2px; color: darkred; font-size: x-small"></i>';
         var errorTpl = '<div  class="process-control alert alert-danger" style="color:red" ng-show="param.error"><span class="glyphicon glyphicon-arrow-up"/> {{param.error}}</div>';
         var labelTpl = '<dl style="margin-bottom: 5px"><dt>' + advancedIcon + '{{param.label}}' + requiredIcon + '<dt><dd>{{param.desc}}</dd></dl>';

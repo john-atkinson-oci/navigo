@@ -33,8 +33,6 @@ angular.module('taskRunner')
                 $scope.task.description = response[1].data.description;
                 $scope.task.helpURL = response[1].data.helpURL;
 
-                //console.log(JSON.stringify(response[0].data));
-
                 var params = paramService.initParams(response, $scope.task.reload);
                 params.reload = $scope.task.reload;
                 $scope.hasAdvanced = params.hasAdvanced;
@@ -67,10 +65,8 @@ angular.module('taskRunner')
             var query = _getQuery(cartService.getQuery(), cartService.getItemIds());
             if (query) {
                 inputItems.query = query;
-                //console.log(JSON.stringify(query))
                 delete inputItems.ids;
             } else {
-                //console.log(JSON.stringify(query))
                 inputItems.ids = cartService.getItemIds();
                 delete inputItems.query;
             }
