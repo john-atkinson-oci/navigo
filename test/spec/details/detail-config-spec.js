@@ -44,6 +44,10 @@ describe('Factory: detailConfig', function () {
 
 		$http.expectGET(new RegExp('root\/api\/rest\/display\/config\/config.json')).respond(res);  // display call
 
+		$http.expectJSONP(new RegExp('fields')).respond({response:{docs:[]}});  // fields call
+
+		$http.expectGET(new RegExp('root\/api\/rest\/display\/config\/config.json')).respond(res);  // display call
+
 		detailConfig.load('config');
 		$http.flush();
 	});

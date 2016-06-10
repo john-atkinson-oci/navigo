@@ -1,5 +1,3 @@
-/*global describe, beforeEach, module, it, inject, expect, config, angular, _ */
-
 describe('Filters:', function () {
     'use strict';
 
@@ -7,9 +5,10 @@ describe('Filters:', function () {
 
     beforeEach(function () {
         module('voyager.util');
-        angular.mock.module('voyager.security'); //auth service module - apparently this is needed to mock the auth service
+        //angular.mock.module('voyager.security'); //auth service module - apparently this is needed to mock the auth service
         module(function ($provide) {
             var cfg = _.clone(config);
+            cfg.settings.data.filters = [];
             cfg.settings.data.filters.push({'name':'field','style':'HIERARCHY',field:'field'});
             $provide.constant('config', cfg);
             $provide.value('authService',{});  //mock the transitive auth service so it doesn't call the init methods
@@ -29,6 +28,7 @@ describe('Filters:', function () {
         }));
 
         it('should update tree', function () {
+
             expect(true).toBe(true);
             //response is a little funky:  [folder, count, folder, count]
 						
