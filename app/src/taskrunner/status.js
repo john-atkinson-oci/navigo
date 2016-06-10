@@ -428,7 +428,7 @@ angular.module('taskRunner')
 
         $scope.scheduleTask = function() {
             $scope.currentJobId = $scope.id;
-            $modal.open({
+            $uibModal.open({
                 template: '<div><vs-schedule-task /></div>',
                 size: 'md',
                 scope: $scope,
@@ -438,7 +438,7 @@ angular.module('taskRunner')
 
         $scope.cancelTask = function() {
             $scope.currentJobId = $scope.id;
-            $modal.open({
+            $uibModal.open({
                 template: '<div><vs-cancel-scheduled-task /></div>',
                 size: 'md',
                 scope: $scope,

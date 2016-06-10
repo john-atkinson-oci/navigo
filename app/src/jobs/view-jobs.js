@@ -1,5 +1,5 @@
 angular.module('taskRunner')
-    .controller('JobsCtrl', function ($scope, jobService, $stateParams, config, $window, taskService, sugar, usSpinnerService, urlUtil, $location, $modal) {
+    .controller('JobsCtrl', function ($scope, jobService, $stateParams, config, $window, taskService, sugar, usSpinnerService, urlUtil, $location, $uibModal) {
         'use strict';
 
         $scope.display = $location.search().disp || 'default';
@@ -101,7 +101,7 @@ angular.module('taskRunner')
 
         $scope.schedule = function(job) {
             $scope.currentJobId = job.id;
-            $modal.open({
+            $uibModal.open({
                 template: '<div><vs-schedule-task /></div>',
                 size: 'md',
                 scope: $scope,
