@@ -28,14 +28,6 @@
     <div>
         <div class="doc_description" ng-if="description && summaryFlags.showDescription">
             <div ng-if="!description.editing" ng-bind-html="description.formattedValue"></div>&nbsp;&nbsp;
-
-            <a href="javascript:;" class="edit_link" ng-if="canEdit && description.editable && !description.editing" ng-click="edit(description)"><span class="icon-edit"></span>Edit</a>
-            <textarea ng-show="description.editing && description.isHtml" ng-model="description.value" class="input_field"></textarea>
-
-            <div class="action_row" ng-show="description.editing">
-                <button ng-click="doSave(description)" type="button" title="Save" class="btn btn-secondary">Save</button>
-                <a href="javascript:;" ng-click="cancel(description)" type="button" title="Cancel" class="link_secondary">Cancel</a>
-            </div>
         </div>
         <div ng-repeat="field in summaryFields">
              <span class="summary_field" ng-show="!field.isHtml && field.style !== 'STRING'">
