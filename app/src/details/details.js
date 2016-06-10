@@ -34,7 +34,7 @@ angular.module('voyager.details')
         };
 
         function _setPermissions() {
-            $scope.canEdit = authService.hasPermission('edit_fields');
+            $scope.canEdit = authService.hasPermission('edit_fields') && $scope.isRemote !== true;
             $scope.canTag = authService.hasPermission('tag');
             $scope.canAdmin = authService.hasPermission('manage');
             $scope.canFlag = authService.hasPermission('flag');
