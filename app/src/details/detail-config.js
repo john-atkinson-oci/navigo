@@ -31,7 +31,7 @@ angular.module('voyager.details').
         var _showPath = true;
         var _showFormat = true;
         var _defaultMetadataStylesheet = '';
-
+        var _globalEditable = false;
 
         var excludePrefix = config.excludeDetails;
 
@@ -74,26 +74,30 @@ angular.module('voyager.details').
             var deferred = $q.defer();
             configLoader.prepare().then(function() {
                 translateService.init();
-                configService.getConfigDetails(configId).then(function(response) {
-                    var display = response.data.details;
-                    // console.log(response);
-                    _pageFramework = display.pageElements;
-                    _summaryFlags = display.summaryFields;
-                    _defaultMetadataStylesheet = display.defaultMetadataStylesheet;
-                    if(display.path === false) {
-                        _showPath = false;
-                    }
-                    if(display.ref === false) {
-                        _showFormat = false;
-                    }
-                    displayFields = display.detailsTableFields;
-                    _showAllFields = display.detailsTableConfig === 'ALL';
-                    if (display.summaryFields) {
-                        _summaryFields = display.summaryFields.fields;
-                        _setSummaryInclusions();
-                    }
-                    _setInclusions();
-                    deferred.resolve();
+                // TODO - fix this it will load the config twice when deep linking to details page
+                configService.setFilterConfig(configId).then(function() {
+                    configService.getConfigDetails(configId).then(function (response) {
+                        var display = response.data.details;
+                        // console.log(response);
+                        _pageFramework = display.pageElements;
+                        _summaryFlags = display.summaryFields;
+                        _defaultMetadataStylesheet = display.defaultMetadataStylesheet;
+                        if (display.path === false) {
+                            _showPath = false;
+                        }
+                        if (display.ref === false) {
+                            _showFormat = false;
+                        }
+                        displayFields = display.detailsTableFields;
+                        _showAllFields = display.detailsTableConfig === 'ALL';
+                        _globalEditable = display.detailsTableFieldsAreEditable;
+                        if (display.summaryFields) {
+                            _summaryFields = display.summaryFields.fields;
+                            _setSummaryInclusions();
+                        }
+                        _setInclusions();
+                        deferred.resolve();
+                    });
                 });
             });
             return deferred.promise;
@@ -164,7 +168,7 @@ angular.module('voyager.details').
                             formattedValue: formattedValue,
                             formattedValues: formattedValues,
                             order: _displayFieldsOrder[name],
-                            editable: _editable[name],
+                            editable: _editable[name] || _globalEditable,
                             maxLines: _maxLines[name],
                             showLabel: _showLabels[name],
                             key: name,
@@ -173,17 +177,19 @@ angular.module('voyager.details').
                         });
                     }
                 }
-                if (name === 'abstract' && !_.isEmpty(doc.abstract)) {
-                    doc.displayDescription = _.last(prettyFields); // jshint ignore:line
-                } else if (name === 'description' && !_.isEmpty(doc.description)) {
-                    doc.displayDescription = _.last(prettyFields);
+                if (prettyFields.length > 0) {
+                    if (name === 'abstract' && !_.isEmpty(doc.abstract)) {
+                        doc.displayDescription = _.last(prettyFields); // jshint ignore:line
+                    } else if (name === 'description' && !_.isEmpty(doc.description)) {
+                        doc.displayDescription = _.last(prettyFields);
+                    }
                 }
 
             });
 
             //fields without values aren't returned in the query results, display those that are editable
             $.each(emptyFields, function (name) {
-                if(_editable[name] === true) {
+                if(_editable[name] === true || _globalEditable) {
                     prettyFields.push({name: translateService.getFieldName(name), value: '', formattedValue: '', order:_displayFieldsOrder[name], editable: true, key:name});
                 }
             });
