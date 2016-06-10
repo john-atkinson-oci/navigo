@@ -74,27 +74,30 @@ angular.module('voyager.details').
             var deferred = $q.defer();
             configLoader.prepare().then(function() {
                 translateService.init();
-                configService.getConfigDetails(configId).then(function(response) {
-                    var display = response.data.details;
-                    // console.log(response);
-                    _pageFramework = display.pageElements;
-                    _summaryFlags = display.summaryFields;
-                    _defaultMetadataStylesheet = display.defaultMetadataStylesheet;
-                    if(display.path === false) {
-                        _showPath = false;
-                    }
-                    if(display.ref === false) {
-                        _showFormat = false;
-                    }
-                    displayFields = display.detailsTableFields;
-                    _showAllFields = display.detailsTableConfig === 'ALL';
-                    _globalEditable = display.detailsTableFieldsAreEditable;
-                    if (display.summaryFields) {
-                        _summaryFields = display.summaryFields.fields;
-                        _setSummaryInclusions();
-                    }
-                    _setInclusions();
-                    deferred.resolve();
+                // TODO - fix this it will load the config twice when deep linking to details page
+                configService.setFilterConfig(configId).then(function() {
+                    configService.getConfigDetails(configId).then(function (response) {
+                        var display = response.data.details;
+                        // console.log(response);
+                        _pageFramework = display.pageElements;
+                        _summaryFlags = display.summaryFields;
+                        _defaultMetadataStylesheet = display.defaultMetadataStylesheet;
+                        if (display.path === false) {
+                            _showPath = false;
+                        }
+                        if (display.ref === false) {
+                            _showFormat = false;
+                        }
+                        displayFields = display.detailsTableFields;
+                        _showAllFields = display.detailsTableConfig === 'ALL';
+                        _globalEditable = display.detailsTableFieldsAreEditable;
+                        if (display.summaryFields) {
+                            _summaryFields = display.summaryFields.fields;
+                            _setSummaryInclusions();
+                        }
+                        _setInclusions();
+                        deferred.resolve();
+                    });
                 });
             });
             return deferred.promise;
