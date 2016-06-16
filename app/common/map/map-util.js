@@ -126,6 +126,9 @@ angular.module('voyager.map').
             },
 
             getGeoJson: function(geo, type, weight) {
+                if(_.isString(geo)) {
+                    geo = JSON.parse(geo);
+                }
                 var style = _getStyle(type, weight);
                 var isPoint = geo.type === 'Point' || geo.type === 'MultiPoint';
                 return L.geoJson(geo, {
