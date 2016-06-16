@@ -128,7 +128,7 @@ angular.module('cart').
             return {results:results, count:count};
         }
 
-        function _getSummaryQueryString(queryCriteria, items) {
+        function _getSummaryQueryString(queryCriteria, items, block) {
             var queryString = config.root + 'solr/v0/select';
             queryString += _setParams(queryCriteria, items);
             queryString += '&fl=id,name:[name],format&extent.bbox=true';
@@ -139,17 +139,22 @@ angular.module('cart').
                 }
                 queryString += queryCriteria.bounds;
             }
+            if(angular.isDefined(block)) {
+                queryString += '&block=' + block;
+            }
             queryString += '&wt=json&json.wrf=JSON_CALLBACK';
             $log.log('Cart summary queryString: ' + queryString);
             return queryString;
         }
 
-        function _getQueryString(queryCriteria, items) {
+        function _getQueryString(queryCriteria, items, block) {
             var queryString = config.root + 'solr/v0/select';
             queryString += _setParams(queryCriteria, items);
             queryString += '&fl=id,title,name:[name],format,thumb:[thumbURL]';
             queryString += '&rows=100&extent.bbox=true';
-
+            if(angular.isDefined(block)) {
+                queryString += '&block=' + block;
+            }
             if(queryCriteria && (angular.isUndefined(items) || items.length === 0)) { //setParams will apply filters
                 if(angular.isDefined(queryCriteria.filters)) {
                     queryString += queryCriteria.filters;
@@ -219,8 +224,8 @@ angular.module('cart').
             });
         }
 
-        function _fetchItems(queryCriteria, items) {
-            return $http.jsonp(_getQueryString(queryCriteria, items)).then(function(res) {
+        function _fetchItems(queryCriteria, items, block) {
+            return $http.jsonp(_getQueryString(queryCriteria, items, block)).then(function(res) {
                 var docs = res.data.response.docs;
                 _decorate(docs);
                 return {'docs': docs, 'bbox':res.data['extent.bbox'], count:res.data.response.numFound};
@@ -233,8 +238,8 @@ angular.module('cart').
             });
         }
 
-        function _fetchSummary(queryCriteria, items) {
-            return $http.jsonp(_getSummaryQueryString(queryCriteria, items)).then(function(res) {
+        function _fetchSummary(queryCriteria, items, block) {
+            return $http.jsonp(_getSummaryQueryString(queryCriteria, items, block)).then(function(res) {
                 var rows = _buildRows(res.data.facet_counts.facet_fields.format);
                 return {'docs': rows.results, 'bbox':res.data['extent.bbox'], count:res.data.response.numFound};
             });
@@ -252,16 +257,16 @@ angular.module('cart').
                 return _getQueryCriteria(params);
             },
 
-            execute: function (queryCriteria, items) {
+            execute: function (queryCriteria, items, block) {
                 var count = 1;
                 if (queryCriteria) {
                     count = queryCriteria.count;
                     delete queryCriteria.params.sort;
                 }
                 if(count <= 100) {
-                    return _fetchItems(_.clone(queryCriteria), items);
+                    return _fetchItems(_.clone(queryCriteria), items, block);
                 } else {
-                    return _fetchSummary(_.clone(queryCriteria), items);
+                    return _fetchSummary(_.clone(queryCriteria), items, block);
                 }
             },
 

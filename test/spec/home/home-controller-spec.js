@@ -2,7 +2,7 @@
 
 describe('Controller: HomeCtrl', function () {
 
-    var $scope, $timeout, $uibModal, usSpinnerService, $location, $http, $controller, leafletData, q;
+    var $scope, $timeout, $uibModal, usSpinnerService, $location, $http, $controller, leafletData, q, cartService;
     var cfg = _.clone(config);
 
     beforeEach(function () {
@@ -15,7 +15,7 @@ describe('Controller: HomeCtrl', function () {
             $provide.constant('config', cfg);
         });
 
-        inject(function (_$controller_, _$timeout_, _$uibModal_, _usSpinnerService_, _$location_, $httpBackend , $rootScope, _leafletData_, _$q_) {
+        inject(function (_$controller_, _$timeout_, _$uibModal_, _usSpinnerService_, _$location_, $httpBackend , $rootScope, _leafletData_, _$q_, _cartService_) {
             $scope = $rootScope.$new();
             $timeout = _$timeout_;
             $uibModal = _$uibModal_;
@@ -25,6 +25,7 @@ describe('Controller: HomeCtrl', function () {
             $controller = _$controller_;
             leafletData = _leafletData_;
             q = _$q_;
+            cartService = _cartService_;
         });
 
         cfg.settings.data.display.showMap = true;
@@ -33,9 +34,11 @@ describe('Controller: HomeCtrl', function () {
     // Specs here
 
     function initController() {
-        $controller('HomeCtrl', {$scope: $scope, $uibModalInstance: {}, resultTotalCount: 1, leafletData: leafletData});
+        spyOn(cartService, 'fetch').and.returnValue(q.when({}));
+        spyOn(cartService, 'setQueryCount');
 
-        //$http.expectGET(new RegExp('auth')).respond({}); // auth call
+        $controller('HomeCtrl', {$scope: $scope, $uibModalInstance: {}, resultTotalCount: 1, leafletData: leafletData, cartService: cartService});
+
         $http.expectJSONP(new RegExp('ssearch')).respond({response:{docs:[]}}); // saved searches
         $http.expectJSONP(new RegExp('ssearch')).respond({response:{docs:[]}}); // get default saved search
         $http.expectJSONP(new RegExp('v0')).respond({response:{docs:[]}}); // featured search

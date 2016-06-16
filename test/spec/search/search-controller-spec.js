@@ -32,9 +32,12 @@ describe('SearchCtrl', function () {
         cartService = _cartService_;
         $window = _$window_;
         authService = _authService_;
+
         EZSpy.spyOnAll($s, [{searchService:searchService}, {cartService:cartService}, {configService:configService}, {searchModalService:searchModalService}]);
         $s.searchService.getPageIds.and.returnValue([1]);
         $s.searchService.testEsriGeocodeService.and.returnValue(q.when({}));
+
+        $s.cartService.fetch.and.returnValue(q.when({}));
     }));
 
     cfg.settings.data.sortable = ['field'];

@@ -3,7 +3,7 @@
 'use strict';
 
 angular.module('voyager.home')
-	.controller('HomeCtrl', function(config, $scope, $window, $location, homeService, authService, leafletData, filterService, searchService, savedSearchService, sugar, configService, savedSearchQuery, $uibModal) {
+	.controller('HomeCtrl', function(config, $scope, $window, $location, homeService, authService, leafletData, filterService, searchService, savedSearchService, sugar, configService, savedSearchQuery, $uibModal, cartService, $log) {
 
 		$scope.search = {};
 		$scope.mapTypes = ['Place', 'Map'];
@@ -80,6 +80,13 @@ angular.module('voyager.home')
 		 * @function - on page load, fetch data
 		 */
 		function _init() {
+
+			// update cart count in case something was removed from index
+			cartService.fetch(false).then(function(data) {
+				cartService.setQueryCount(data.count);
+			}, function(error) {
+				$log.error(error);
+			});
 
 			//fetch for featured items and collections
 			homeService.fetchCollections().then(function(respond) {

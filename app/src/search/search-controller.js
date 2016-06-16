@@ -4,7 +4,7 @@ angular.module('voyager.search')
 	.controller('SearchCtrl', function ($scope, cartService, searchService, $location, authService, loading, $window, $document,
 										usSpinnerService, configService, localStorageService, config, $analytics, savedSearchService,
 										recentSearchService, filterService, cartItemsQuery, $timeout, inView, $q, searchScroll,
-										urlUtil, searchViewService, searchModalService, tagService) {
+										urlUtil, searchViewService, searchModalService, tagService, $log) {
 
 		var _busy = true;
 		//var _scrollTimer;
@@ -151,6 +151,15 @@ angular.module('voyager.search')
 			}
 		}
 
+		// update cart count in case something was removed from index
+		function _syncCartCount() {
+			cartService.fetch(false).then(function(data) {
+				cartService.setQueryCount(data.count);
+			}, function(error) {
+				$log.error(error);
+			});
+		}
+
 		function _handleSearchError(res) {
 			searchScroll.setPosition(0);
 			$scope.eof = false;
@@ -214,6 +223,7 @@ angular.module('voyager.search')
 				$scope.totalItems = res.data.response.numFound;
 				$scope.eof = $scope.totalItems > 0 && $scope.results.length >= $scope.totalItems;
 				_syncCartState($scope.results);
+				_syncCartCount();
 				_searchSuccess();
 				_searching = false;
 				$scope.searchError = false;

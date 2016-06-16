@@ -144,10 +144,10 @@ angular.module('cart')
                     return item;
                 });
             },
-            fetch:function() {
+            fetch:function(block) {
                 var query = this.getQuery(), itemIds = this.getItemIds();
                 if(query || itemIds.length > 0) {
-                    return cartItemsQuery.execute(query, itemIds);
+                    return cartItemsQuery.execute(query, itemIds, block);
                 } else {
                     return $q.when({count:0, docs:[]});
                 }
