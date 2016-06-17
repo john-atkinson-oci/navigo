@@ -148,9 +148,13 @@ angular.module('taskRunner').
                     return cartItemsQuery.execute(query, items);
                 }
                 else {
+                    query.solrFilters = [];
                     return cartItemsQuery.fetchItems(query, items).then(function(data) {
                         var count = data.count;
-                        _extent = data.bbox;
+                        if (angular.isUndefined(_extent) || _extent === null){
+                            _extent = data.bbox;
+                        }
+
                         if (count === query.count){
                             severity = 0; // Valid
                         }
