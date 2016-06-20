@@ -38,7 +38,7 @@
     </div>
 </section>
 
-<section class="relationship clearfix" ng-repeat="fromRel in ::fromRelationships">
+<section class="relationship clearfix" ng-repeat="fromRel in ::fromRelationships" ng-if="fromRel.values.length > 0">
     <div class="list alt_list_view wide_list_view content_inner">
         <header class="row clearfix">
             <h1 class="semi col-md-6">{{::fromRel.name}}</h1>
