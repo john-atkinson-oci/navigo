@@ -425,30 +425,28 @@ angular.module('voyager.details')
             });
 
             detailService.fetchToRelationships($scope.doc.id, displayParams, $stateParams.shard).then(function(relationships) {
-                if (!$.isEmptyObject(relationships)) {
-                    _.each(relationships, function(obj) {
-                        if (obj.values && obj.values.length > 0) {
-                            $scope.relationships = relationships;
-                            $scope.hasRelationships = true;
-                            _setSelectedTab();
-                            return false;
-                        }
-                    });
-                } else {
-                    $log.log('no result');
-                }
+                _applyRelationships(relationships, 'relationships');
             });
 
             detailService.fetchFromRelationships($scope.doc, displayParams, $stateParams.shard).then(function(relationships) {
-                if (!$.isEmptyObject(relationships)) {
-                    $scope.fromRelationships = relationships;
-                    $scope.hasRelationships = true;
-                    _setSelectedTab();
-                } else {
-                    $log.log('no result');
-                }
+                _applyRelationships(relationships, 'fromRelationships');
             });
         };
+
+        function _applyRelationships(relationships, type) {
+            if (!$.isEmptyObject(relationships)) {
+                _.each(relationships, function(obj) {
+                    if (obj.values && obj.values.length > 0) {
+                        $scope[type] = relationships;
+                        $scope.hasRelationships = true;
+                        _setSelectedTab();
+                        return false;
+                    }
+                });
+            } else {
+                $log.log('no result');
+            }
+        }
 
         function _setSelectedTab() {
             if (!$scope.displayFields.length) {
