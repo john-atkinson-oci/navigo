@@ -16,7 +16,7 @@
             <span ng-show="::doc.modified">Last modified {{::doc.modified | date:'M/d/yyyy, hh:mma' }}</span>
         </span>
     </div>
-    <div ng-if="summaryFlags.showPath" class="field">
+    <div ng-if="summaryFlags.showPath" class="field" style="overflow: hidden">
         <a href="{{::doc.fullpath}}" ng-show="isURL" target="_blank">{{::doc.fullpath}}</a>
         <div ng-hide="isURL" vs-highlight>
             <span id="locationPathWrap"></span><span id="locationPathNotHighlight"><a href="{{::doc_path.url}}" id="locationPath0">{{::doc_path.path}}</a><a href="{{::sub_path.url}}" ng-repeat="sub_path in sub_paths" id="locationPath{{$index + 1}}">{{::sub_path.path}}</a></span>
