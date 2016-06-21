@@ -4,7 +4,7 @@ Contributing
 General Guidelines
 ------------------
 
-* Keep directives small and applicable to the tag - don't put a directive on the body tag
+* Keep directives small and applicable to the html tag - don't put a directive on the body tag
 * Limit jQuery use - only inside directives and only if necessary
 * Prefer directives over controllers - controllers are obsolete in Angular 2
 * Performance is important - avoid bottlenecks like nested loops
