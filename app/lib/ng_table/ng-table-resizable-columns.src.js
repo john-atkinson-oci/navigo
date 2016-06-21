@@ -2,9 +2,12 @@
 angular.module('ngTableResizableColumns', [])
 .directive('ngTableResizableColumns', function() {
 
+    var timo;
+
     var parseWidth = function(node) {
         return parseFloat(node.style.width.replace('%', ''));
     }, setWidth = function(node, table, width) {
+        console.log("Updating Width of row " + node.cellIndex + " to " + width + " (" + width.toFixed(2) + "%)");
         if(table) {
             table.find('.results-column')[node.cellIndex].style.width = "" + width.toFixed(2) + "%";
         }
@@ -33,7 +36,9 @@ angular.module('ngTableResizableColumns', [])
       this.restoreColumnWidths();
       this.syncHandleWidths();
       $(window).on('resize.rc', (function() {
-        return _this.syncHandleWidths();
+          clearTimeout(timo);
+          timo = setTimeout(_this.syncHandleWidths, 500);
+          return;
       }));
     }
 
@@ -151,6 +156,7 @@ angular.module('ngTableResizableColumns', [])
       $(document).on('mousemove.rc touchmove.rc', function(e) {
         var difference;
         difference = (pointerX(e) - startPosition) / _this.$table.width() * 100;
+          console.log("Resizing Based on Table Width: " + _this.$table.width() + " and Difference: " + difference);
         setWidth($rightColumn[0], _this.$table, widths.right - difference);
         return setWidth($leftColumn[0], _this.$table, widths.left + difference);
       });

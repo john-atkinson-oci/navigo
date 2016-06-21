@@ -4,7 +4,8 @@
         <colgroup>
             <col style="width: 92px;" class="results-column">
             <col ng-repeat="field in tableFields" style="width: {{field.width}};" class="results-column">
-            <col style="width:100px;" class="results-column">
+            <!--col style="width: 100px;" class="results-column"-->
+            <col style="width: auto;" class="results-column">
         </colgroup>
         <thead>
             <tr>
@@ -28,7 +29,8 @@
                     ng-click="tableParams.sorting(field.field , tableParams.isSortBy(field.field, 'asc') ? 'desc' : 'asc')">
                     <div>{{field.display}}</div>
                 </th>
-                <th class="semi" style="width:100px;" data-noresize>Tools</th>
+                <!--th class="semi" style="width:100px;" data-noresize>Tools</th-->
+                <th class="semi" style="width: auto;" data-noresize>Tools</th>
             </tr>
         <tr></tr>
         </thead>
