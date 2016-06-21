@@ -1,5 +1,10 @@
 <div ng-controller="TableCtrl">
     <table ng-table="tableParams" class="table ng-table-resizable-columns ng-table-rowselected table-condensed table-striped" data-resizable-columns-id="resultsTable" id="resultsTable">
+        <colgroup>
+            <col style="width: 92px;">
+            <col ng-repeat="field in tableFields" style="width: {{field.width}};">
+
+        </colgroup>
         <thead>
             <tr>
                 <th class="semi img" style="width:92px;" data-noresize>
@@ -54,4 +59,5 @@
             </tr>
         </tbody>
     </table>
+    <table id="header-fixed"></table>
 </div>
