@@ -15,7 +15,7 @@
                         <hr style="border-color: lightgrey;" name="divider">
                     </div>
                     <div class="col-md-8">
-                        <nav id="detailTabContentNav" class="tab tab_border clearfix col-xs-12 row">
+                        <nav id="detailTabContentNav" class="tab tab_border clearfix col-xs-12 row" style="width: 100%">
                             <ul>
                                 <li ng-if="displayFields.length && pageFramework.showDetailsTable" ng-class="showTab == 'summary' && 'selected' || ''"><a href="javascript:;" ng-click="changeTab('summary')">Details</a></li>
                                 <li ng-if="doc.hasMetadata && pageFramework.showMetadataTable && canViewMetadata" ng-class="showTab == 'metadata' && 'selected' || ''"><a href="javascript:;" ng-click="changeTab('metadata')">Metadata</a></li>
