@@ -1,9 +1,10 @@
 <div ng-controller="TableCtrl">
+    <div id="header-space"></div>
     <table ng-table="tableParams" class="table ng-table-resizable-columns ng-table-rowselected table-condensed table-striped" data-resizable-columns-id="resultsTable" id="resultsTable">
         <colgroup>
-            <col style="width: 92px;">
-            <col ng-repeat="field in tableFields" style="width: {{field.width}};">
-
+            <col style="width: 92px;" class="results-column">
+            <col ng-repeat="field in tableFields" style="width: {{field.width}};" class="results-column">
+            <col style="width:100px;" class="results-column">
         </colgroup>
         <thead>
             <tr>
@@ -29,6 +30,7 @@
                 </th>
                 <th class="semi" style="width:100px;" data-noresize>Tools</th>
             </tr>
+        <tr></tr>
         </thead>
         <tbody>
             <tr ng-repeat="doc in $data" ng-class="{'active': doc.$selected}" ng-mouseenter="hover(doc)" ng-mouseleave="hover(null)" vs-table-row>
@@ -59,5 +61,4 @@
             </tr>
         </tbody>
     </table>
-    <table id="header-fixed"></table>
 </div>

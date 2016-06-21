@@ -40,7 +40,6 @@
 	thead {
 		position: fixed;
 		z-index: 1;
-		margin-right: 20px;
 		tr {
 			th {
 				border-width: 0 0 2px 0;
@@ -91,6 +90,10 @@
 				border-width: 0 5px 5px 5px;
 			}
 		}
+	}
+
+	tbody tr:first-child td{
+		padding-top: 56px;
 	}
 }
 
