@@ -14,7 +14,8 @@ General Guidelines
 
 Testing Requirements
 --------------------
-* All javascript files contributed (controller, service, directive, etc) require a test spec with 100% coverage
+* All javascript files contributed (controller, service, directive, etc) require a test spec with 80% coverage
+  * A unit test threshold of 80% coverage is set.  If coverage falls below that, the build will fail.
 * A protractor test should exercise the functionality in the UI
   * Follow Guideline:  https://github.com/CarmenPopoviciu/protractor-testing-guidelines
 
