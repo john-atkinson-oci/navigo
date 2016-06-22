@@ -2,8 +2,6 @@
 angular.module('ngTableResizableColumns', [])
 .directive('ngTableResizableColumns', function() {
 
-    var timo;
-
     var parseWidth = function(node) {
         return parseFloat(node.style.width.replace('%', ''));
     }, setWidth = function(node, table, width) {
@@ -34,10 +32,9 @@ angular.module('ngTableResizableColumns', [])
       this.setHeaders();
       this.restoreColumnWidths();
       this.syncHandleWidths();
-      $(window).on('resize.rc', (function() {
-          clearTimeout(timo);
-          timo = setTimeout(_this.syncHandleWidths, 500);
-          return;
+      $(window).on('resize.rc', (function()
+      {
+          return _this.syncHandleWidths();
       }));
     }
 
@@ -59,11 +56,19 @@ angular.module('ngTableResizableColumns', [])
 
     ResizableColumns.prototype.assignPercentageWidths = function() {
       var _this = this;
-      return this.$tableHeaders.each(function(_, el) {
+        var variableWidthHeaders = [];
+      return this.$tableHeaders.each(function(i, el) {
         var $el;
         $el = $(el);
+          if(!($el.attr('data-noresize')))
+          {
+              console.log("INDEX " + i + " IS VARIABLE WIDTH");
+          }
+          console.dir($el);
+          var elWidth = $el.outerWidth() / _this.$table.width() * 100;
+          console.log(elWidth);
           if(!_this.loading) {
-              return setWidth($el[0], _this.$table, $el.outerWidth() / _this.$table.width() * 100);
+              return setWidth($el[0], _this.$table, elWidth);
           }
       });
     };
@@ -90,18 +95,21 @@ angular.module('ngTableResizableColumns', [])
     ResizableColumns.prototype.syncHandleWidths = function() {
       var _this = this;
       this.setHeaders();
-        var theColumns = this.$table.find('.results-column');
-        this.$tableHeaders.each(function(i,el){
-           var myCol = theColumns[i];
-            myCol.style.width = el.style.width;
-        });
+        //this.createHandles();
+
+      var theColumns = this.$table.find('.results-column');
+      this.$tableHeaders.each(function(i,el){
+          var myCol = theColumns[i];
+          myCol.style.width = el.style.width;
+      });
+
       return this.$handleContainer.width(this.$table.width()).find('.rc-handle').each(function(_, el) {
-        var $el;
-        $el = $(el);
-        return $el.css({
-          left: $el.data('th').outerWidth() + ($el.data('th').offset().left - _this.$handleContainer.offset().left),
-          height: _this.options.resizeFromBody ? _this.$table.height() : _this.$table.find('thead').height()
-        });
+          var $el;
+          $el = $(el);
+          return $el.css({
+              left: $el.data('th').outerWidth() + ($el.data('th').offset().left - _this.$handleContainer.offset().left),
+              height: _this.options.resizeFromBody ? _this.$table.height() : _this.$table.find('thead').height()
+          });
       });
     };
 
@@ -155,7 +163,6 @@ angular.module('ngTableResizableColumns', [])
       $(document).on('mousemove.rc touchmove.rc', function(e) {
         var difference;
         difference = (pointerX(e) - startPosition) / _this.$table.width() * 100;
-          console.log("Resizing Based on Table Width: " + _this.$table.width() + " and Difference: " + difference);
         setWidth($rightColumn[0], _this.$table, widths.right - difference);
         return setWidth($leftColumn[0], _this.$table, widths.left + difference);
       });
