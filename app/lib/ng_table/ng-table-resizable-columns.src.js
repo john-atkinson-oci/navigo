@@ -7,7 +7,6 @@ angular.module('ngTableResizableColumns', [])
     var parseWidth = function(node) {
         return parseFloat(node.style.width.replace('%', ''));
     }, setWidth = function(node, table, width) {
-        console.log("Updating Width of row " + node.cellIndex + " to " + width + " (" + width.toFixed(2) + "%)");
         if(table) {
             table.find('.results-column')[node.cellIndex].style.width = "" + width.toFixed(2) + "%";
         }
