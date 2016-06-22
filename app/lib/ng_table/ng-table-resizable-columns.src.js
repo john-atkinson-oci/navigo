@@ -32,9 +32,8 @@ angular.module('ngTableResizableColumns', [])
       this.setHeaders();
       this.restoreColumnWidths();
       this.syncHandleWidths();
-      $(window).on('resize.rc', (function()
-      {
-          return _this.syncHandleWidths();
+      $(window).on('resize.rc', (function() {
+        return _this.syncHandleWidths();
       }));
     }
 
@@ -111,12 +110,12 @@ angular.module('ngTableResizableColumns', [])
       });
 
       return this.$handleContainer.width(this.$table.width()).find('.rc-handle').each(function(_, el) {
-          var $el;
-          $el = $(el);
-          return $el.css({
-              left: $el.data('th').outerWidth() + ($el.data('th').offset().left - _this.$handleContainer.offset().left),
-              height: _this.options.resizeFromBody ? _this.$table.height() : _this.$table.find('thead').height()
-          });
+        var $el;
+        $el = $(el);
+        return $el.css({
+          left: $el.data('th').outerWidth() + ($el.data('th').offset().left - _this.$handleContainer.offset().left),
+          height: _this.options.resizeFromBody ? _this.$table.height() : _this.$table.find('thead').height()
+        });
       });
     };
 
