@@ -11,8 +11,6 @@ angular.module('ngTableResizableColumns', [])
         return node.style.width = "" + width.toFixed(2) + "%";
     }, pointerX = function(e) {
         return (e.type.indexOf('touch') === 0) ? (e.originalEvent.touches[0] || e.originalEvent.changedTouches[0]).pageX : e.pageX;
-    }, toPercentageOf = function(width, table) {
-        return width / table.width() * 100;
     };
 
     function ResizableColumns($table, loading) {
@@ -105,7 +103,6 @@ angular.module('ngTableResizableColumns', [])
     ResizableColumns.prototype.syncHandleWidths = function() {
       var _this = this;
       this.setHeaders();
-        //this.createHandles();
 
       var theColumns = this.$table.find('.results-column');
       this.$tableHeaders.each(function(i,el){
