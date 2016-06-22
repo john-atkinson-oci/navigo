@@ -21,16 +21,15 @@
                             </div>
                         </div>
                     </div>
-                </th>
-                <th style="width:{{field.width}}" ng-repeat="field in tableFields" data-resizable-column-id="{{field.field}}" data-width="{{field.width}}" class="semi sortable" ng-class="{
+                </th><!--
+                --><th style="width:{{field.width}}" ng-repeat="field in tableFields" data-resizable-column-id="{{field.field}}" data-width="{{field.width}}" class="semi sortable" ng-class="{
                             'sort-asc': tableParams.isSortBy(field.field, 'asc'),
                             'sort-desc': tableParams.isSortBy(field.field, 'desc')
                           }"
                     ng-click="tableParams.sorting(field.field , tableParams.isSortBy(field.field, 'asc') ? 'desc' : 'asc')">
                     <div>{{field.display}}</div>
-                </th>
-                <!--th class="semi" style="width:100px;" data-noresize>Tools</th-->
-                <th class="semi" style="width: auto;" data-noresize>Tools</th>
+                </th><!--
+                --><th class="semi" style="width:100px;" data-noresize>Tools</th>
             </tr>
         </thead>
         <tbody>

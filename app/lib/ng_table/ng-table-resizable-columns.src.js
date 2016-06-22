@@ -11,6 +11,8 @@ angular.module('ngTableResizableColumns', [])
         return node.style.width = "" + width.toFixed(2) + "%";
     }, pointerX = function(e) {
         return (e.type.indexOf('touch') === 0) ? (e.originalEvent.touches[0] || e.originalEvent.changedTouches[0]).pageX : e.pageX;
+    }, toPercentageOf = function(width, table) {
+        return width / table.width() * 100;
     };
 
     function ResizableColumns($table, loading) {
@@ -57,17 +59,25 @@ angular.module('ngTableResizableColumns', [])
     ResizableColumns.prototype.assignPercentageWidths = function() {
       var _this = this;
         var variableWidthHeaders = [];
+        var totalWidth = 0;
       return this.$tableHeaders.each(function(i, el) {
         var $el;
         $el = $(el);
-          if(!($el.attr('data-noresize')))
+          if(!($el[0].attributes.getNamedItem("data-noresize")))
           {
-              console.log("INDEX " + i + " IS VARIABLE WIDTH");
+              variableWidthHeaders.push($el);
           }
-          console.dir($el);
           var elWidth = $el.outerWidth() / _this.$table.width() * 100;
-          console.log(elWidth);
+          totalWidth = totalWidth + (Math.round(elWidth*100)/100);
           if(!_this.loading) {
+              if((i === (_this.$tableHeaders.length - 1)) && (totalWidth != 100))
+              {
+                  if(variableWidthHeaders.length > 0) {
+                      var currentWidth = Number(variableWidthHeaders[0][0].style.width.substring(0, variableWidthHeaders[0][0].style.width.length - 1));
+                      var fixedWidth = currentWidth + (100 - totalWidth);
+                      setWidth(variableWidthHeaders[0][0], _this.$table, currentWidth + (100 - totalWidth));
+                  }
+              }
               return setWidth($el[0], _this.$table, elWidth);
           }
       });
