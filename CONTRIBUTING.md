@@ -4,9 +4,14 @@ Contributing
 General Guidelines
 ------------------
 
-* Keep directives small and applicable to the tag - don't put a directive on the body tag
+* Keep directives small and applicable to the html tag - don't put a directive on the body tag
 * Limit jQuery use - only inside directives and only if necessary
 * Prefer directives over controllers - controllers are obsolete in Angular 2
+* Avoid using $scope (obsolete in Angular 2)
+  * The new .component function (1.5) for directives has ways around using $scope
+  * For interacting between components, use the observer pattern on a shared Angular service/factory.
+    * auth-service.js is an example that uses this pattern
+    * See https://github.com/Reactive-Extensions/RxJS for a more comprehensive approach
 * Performance is important - avoid bottlenecks like nested loops
 * Customizations should be easy to enable/disable (modular).
   * Directives are a good start so they can be easily added/removed from a tag without breaking things.
@@ -14,7 +19,8 @@ General Guidelines
 
 Testing Requirements
 --------------------
-* All javascript files contributed (controller, service, directive, etc) require a test spec with 100% coverage
+* All javascript files contributed (controller, service, directive, etc) require a test spec with 80% coverage
+  * A unit test threshold of 80% coverage is set.  If coverage falls below that, the build will fail.
 * A protractor test should exercise the functionality in the UI
   * Follow Guideline:  https://github.com/CarmenPopoviciu/protractor-testing-guidelines
 
