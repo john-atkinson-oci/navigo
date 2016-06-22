@@ -71,7 +71,7 @@ angular.module('ngTableResizableColumns', [])
               if((i === (_this.$tableHeaders.length - 1)) && (totalWidth != 100))
               {
                   if(variableWidthHeaders.length > 0) {
-                      var currentWidth = Number(variableWidthHeaders[0][0].style.width.substring(0, variableWidthHeaders[0][0].style.width.length - 1));
+                      var currentWidth = Number(parseWidth(variableWidthHeaders[0][0]));
                       var fixedWidth = currentWidth + (100 - totalWidth);
                       setWidth(variableWidthHeaders[0][0], _this.$table, currentWidth + (100 - totalWidth));
                   }
