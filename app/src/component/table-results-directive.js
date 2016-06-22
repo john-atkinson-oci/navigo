@@ -72,10 +72,6 @@ angular.module('voyager.component')
 					}
 
 					scope.animate(listWrapEl, {marginTop: (availableHeight - 20)});
-					
-					
-					
-					//scope.animate(listWrapEl, {marginTop: (availableHeight + 20)});
 
 					tableResultsService.setFixedWidths();
 
